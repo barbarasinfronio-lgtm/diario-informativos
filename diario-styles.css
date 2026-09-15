@@ -78,15 +78,26 @@
   }
 
   .page {
-    /* Escapa da coluna estreita do tema: centraliza em relação à janela
-       inteira, não ao espaço que o tema reservou para o conteúdo. */
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    max-width: 760px;
+    /* Escapa da coluna estreita do tema: "calc(50% - 50vw)" nas duas
+       margens estica a caixa até a largura real da janela, não a do
+       espaço que o tema reservou para o conteúdo (o "left: 50%" que
+       tentamos antes calcula em relação ao pai estreito, por isso não
+       funcionava direito). */
+    width: auto;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     padding: 3.5rem 1.5rem 5rem;
     box-sizing: border-box;
+  }
+
+  /* A largura de leitura confortável (760px) fica nos filhos diretos,
+     centralizados dentro do ".page" já esticado. */
+  .page > header.masthead,
+  .page > main,
+  .page > footer.colophon {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   header.masthead {
