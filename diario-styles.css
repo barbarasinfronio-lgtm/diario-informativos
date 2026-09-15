@@ -1,4 +1,10 @@
 
+  /* O tema do Blogger prende o conteúdo da página numa coluna estreita
+     (layout de barra lateral). "overflow-x: hidden" evita uma barra de
+     rolagem horizontal indesejada quando o ".page" escapa dessa coluna
+     mais abaixo. */
+  body { overflow-x: hidden; }
+
   :root {
     --ground: #eceeea;
     --surface: #ffffff;
@@ -72,9 +78,15 @@
   }
 
   .page {
+    /* Escapa da coluna estreita do tema: centraliza em relação à janela
+       inteira, não ao espaço que o tema reservou para o conteúdo. */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
     max-width: 760px;
-    margin: 0 auto;
     padding: 3.5rem 1.5rem 5rem;
+    box-sizing: border-box;
   }
 
   header.masthead {
