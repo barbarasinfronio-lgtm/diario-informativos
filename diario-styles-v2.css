@@ -5,6 +5,12 @@
      mais abaixo. */
   body { overflow-x: hidden; }
 
+  /* Garante que o atributo "hidden" (usado para abrir/fechar os painéis
+     de personalização e estudo coletivo) sempre esconda o elemento,
+     mesmo quando outra regra abaixo define "display: flex" ou parecido
+     para esse mesmo elemento. */
+  [hidden] { display: none !important; }
+
   :root {
     --ground: #eceeea;
     --surface: #ffffff;
