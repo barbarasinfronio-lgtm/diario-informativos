@@ -1,3 +1,4 @@
+
 (function () {
   "use strict";
 
@@ -9,6 +10,8 @@
   var ledeText = document.getElementById("lede-text");
   var footerSource = document.getElementById("footer-source");
 
+  // Boneco personalizável — mesmo esquema do Diário dos Informativos,
+  // guardado sob uma chave própria para não interferir na outra página.
   var AVATAR_KEY = "leis-avatar";
   var AVATAR_DEFAULT = { gender: "f", tone: "3" };
   var GENDER_BASE = { f: "\u{1F469}", m: "\u{1F468}", x: "\u{1F9D1}" };
@@ -255,7 +258,9 @@
   }
 
   // ---- Estudo coletivo -------------------------------------------------
-  var GROUP_KEY = "informativos-grupo";
+  // Grupo próprio desta página (coleção "groups"), independente do
+  // grupo do Diário dos Informativos — mesmo padrão, código separado.
+  var GROUP_KEY = "informativos-grupo"; // mesma chave do Diário dos Informativos — grupo compartilhado entre as duas páginas (mesmo domínio)
   function readGroupPref() {
     try {
       var raw = localStorage.getItem(GROUP_KEY);
@@ -338,14 +343,16 @@
     var totals = computeTotals();
     var ref = memberDocRef(groupPref.code);
     if (!ref) return;
-    // merge: true preserva os campos de outros diários (ex: lidasInformativos)
+    // merge: true — este membro pode já ter um documento com os campos do
+    // Diário dos Informativos (lidas/estrelasOuro); só atualizamos os
+    // campos próprios do Diário das Leis, sem apagar os do outro.
     ref.set({
       name: groupPref.name,
       lidasLeis: totals.lidas,
       avatar: avatarPref,
       joinedAt: groupPref.joinedAt,
       updatedAt: new Date().toISOString()
-    }, { merge: true }).catch(function () {});
+    }, { merge: true }).catch(function () { /* best-effort */ });
   }
 
   function fetchGroupCreator(code) {
@@ -369,35 +376,26 @@
     lastGroupSnap = snap;
     var members = snap.docs.map(function (d) {
       var data = d.data() || {};
-      var infoCount = data.lidasInformativos != null ? data.lidasInformativos : (data.lidas || 0);
-      var leisCount = data.lidasLeis || 0;
-      var totalGeral = infoCount + leisCount;
-
       return {
         id: d.id,
         name: data.name,
-        lidasInformativos: infoCount,
-        lidasLeis: leisCount,
-        totalGeral: totalGeral,
+        lidas: data.lidasLeis,
         avatar: data.avatar,
         joinedAt: data.joinedAt || ""
       };
     }).filter(function (m) { return m && m.name; });
-
     members.sort(function (a, b) {
       var aCreator = a.id === groupCreatorId, bCreator = b.id === groupCreatorId;
       if (aCreator !== bCreator) return aCreator ? -1 : 1;
       if (a.joinedAt !== b.joinedAt) return a.joinedAt < b.joinedAt ? -1 : 1;
       return (a.name || "").localeCompare(b.name || "");
     });
-
-    var maxTotal = 0;
-    members.forEach(function (m) { if (m.totalGeral > maxTotal) maxTotal = m.totalGeral; });
-
+    var maxLidas = 0;
+    members.forEach(function (m) { if ((m.lidas || 0) > maxLidas) maxLidas = m.lidas || 0; });
     groupLeaderboard.innerHTML = "";
     members.forEach(function (m) {
       var li = document.createElement("li");
-      li.className = "group-member" + (maxTotal > 0 && m.totalGeral === maxTotal ? " is-leader" : "");
+      li.className = "group-member" + (maxLidas > 0 && m.lidas === maxLidas ? " is-leader" : "");
 
       var nameEl = document.createElement("span");
       nameEl.className = "member-name";
@@ -406,13 +404,13 @@
       var emojisEl = document.createElement("span");
       emojisEl.className = "member-emojis";
       var emoji = avatarEmoji(m.avatar && GENDER_BASE[m.avatar.gender] && TONE_MOD[m.avatar.tone] ? m.avatar : AVATAR_DEFAULT);
-      var CAP = 30;
-      var count = m.totalGeral || 0;
+      var count = m.lidas || 0;
+      var CAP = 40;
       emojisEl.textContent = emoji.repeat(Math.min(count, CAP)) + (count > CAP ? " +" + (count - CAP) : "");
 
       var countEl = document.createElement("span");
       countEl.className = "member-count";
-      countEl.innerHTML = "<strong>" + count + " total</strong> (" + m.lidasInformativos + " 📰 · " + m.lidasLeis + " 📗)";
+      countEl.textContent = count + (count === 1 ? " lida" : " lidas");
 
       li.appendChild(nameEl);
       li.appendChild(emojisEl);
@@ -548,10 +546,7 @@
     writeAvatarPref(avatarPref);
     syncAvatarControls();
     render();
-    if (!applyingRemote) {
-      scheduleSync();
-      scheduleGroupSync(); // <-- Atualiza no grupo instantaneamente
-    }
+    if (!applyingRemote) scheduleSync();
   }
 
   if (avatarToggleGenderSelect) avatarToggleGenderSelect.addEventListener("change", onAvatarPrefChange);
@@ -559,7 +554,7 @@
 
   syncAvatarControls();
 
-  // ---- Vincular e-mail (opcional) -------------------------------------
+  // ---- Vincular e-mail (opcional) — mesma lógica do Diário dos Informativos
   var accountToggleBtn = document.getElementById("account-toggle");
   var accountPanel = document.getElementById("account-panel");
   var accountLinkBlock = document.getElementById("account-link-block");
@@ -639,9 +634,12 @@
   if (accountLinkBtn) accountLinkBtn.addEventListener("click", linkEmailAccount);
   if (accountSigninBtn) accountSigninBtn.addEventListener("click", signInWithEmail);
 
+  // 1) pintura instantânea com o que já está salvo neste navegador
   applyMap(readLocal());
   render();
 
+  // 2) login anônimo no Firebase (própria coleção "progress-leis",
+  // independente do progresso do Diário dos Informativos)
   var progressUnsub = null;
 
   function bindUser(uid) {
