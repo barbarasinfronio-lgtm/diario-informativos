@@ -1,4 +1,3 @@
-
 (function () {
   "use strict";
 
@@ -52,8 +51,6 @@
   var avatarPref = readAvatarPref();
 
   function stfLink(row) {
-    // Edições com página HTML publicada no site oficial (até a 999); a partir
-    // da 1000 (inclusive as mais recentes) abrem o PDF oficial.
     return row.edicao < 1000
       ? "https://www.stf.jus.br/arquivo/informativo/documento/informativo" + row.edicao + ".htm"
       : "https://www.stf.jus.br/arquivo/cms/informativoSTF/anexo/Informativo_PDF/Informativo_stf_" + row.edicao + ".pdf";
@@ -118,7 +115,6 @@
 
   function rowKey(orgKey, row) { return orgKey + ":" + row.ano + ":" + row.edicao; }
 
-  // ISO-8601 week number (year, week) for a Date, computed in UTC.
   function isoWeekParts(date) {
     var d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
     var day = d.getUTCDay() || 7;
@@ -136,7 +132,6 @@
     return isNaN(dt.getTime()) ? null : dt;
   }
 
-  // A gold star requires both dates known and falling in the same ISO week.
   function isSameWeek(isoA, isoB) {
     var a = parseIsoDate(isoA);
     var b = parseIsoDate(isoB);
@@ -174,7 +169,6 @@
             row.lida = !!v.lida;
             row.lidaEm = v.lidaEm || null;
           } else {
-            // legacy boolean format
             row.lida = !!v;
             row.lidaEm = null;
           }
@@ -279,9 +273,7 @@
           var gold = isSameWeek(row.data, row.lidaEm);
           star.textContent = "📰";
           star.className = "star" + (gold ? " star-gold" : " star-normal");
-          star.title = gold
-            ? "Lido na semana de publicação"
-            : "Lido";
+          star.title = gold ? "Lido na semana de publicação" : "Lido";
         } else {
           star.textContent = "🗞️";
           star.className = "star star-empty";
@@ -324,11 +316,7 @@
     }
   }
 
-  // Identidade do visitante: vem do login anônimo do Firebase (nenhum
-  // cadastro visível — a pessoa só digita um nome). Fica null até o
-  // Firebase confirmar o login, lá no fim deste arquivo.
   var viewerId = null;
-
   var dbCap = null;
   var dbReady = false;
   var progressDoc = null;
@@ -379,11 +367,6 @@
   }
 
   // ---- Estudo coletivo -----------------------------------------------
-  // A "group" is a shared db document (groups/<code>) plus one member
-  // sub-document per participant (groups/<code>/members/<viewerId>) that
-  // stores only that person's display name, current counts and avatar —
-  // never their individual reading list. Everyone subscribed to the same
-  // code sees every member's counts update live.
   var GROUP_KEY = "informativos-grupo";
   function readGroupPref() {
     try {
@@ -402,9 +385,6 @@
   var groupSyncTimer = null;
   var groupCreatorId = null;
 
-  // Legacy groupPref values (saved before per-member ordering existed)
-  // may lack joinedAt — backfill it once so the join order stays stable
-  // across future writes instead of drifting on every update.
   (function ensureJoinedAt() {
     if (groupPref && !groupPref.joinedAt) {
       groupPref.joinedAt = new Date().toISOString();
@@ -475,20 +455,18 @@
     var totals = computeTotals();
     var ref = memberDocRef(groupPref.code);
     if (!ref) return;
-    // merge: true — este membro pode já ter um documento com o campo
-    // lidasLeis (Diário das Leis, mesmo grupo); não apagamos esse campo.
+    // merge: true preserva os campos de outros diários (ex: lidasLeis)
     ref.set({
       name: groupPref.name,
-      lidas: totals.lidas,
+      lidasInformativos: totals.lidas,
+      lidas: totals.lidas, // retrocompatibilidade
       estrelasOuro: totals.estrelasOuro,
       avatar: avatarPref,
       joinedAt: groupPref.joinedAt,
       updatedAt: new Date().toISOString()
-    }, { merge: true }).catch(function () { /* best-effort */ });
+    }, { merge: true }).catch(function () {});
   }
 
-  // Reads who created the group so the leaderboard can always list that
-  // person first, with everyone else below in the order they joined.
   function fetchGroupCreator(code) {
     if (!dbCap) return;
     dbCap.doc("groups/" + code).get().then(function (snap) {
@@ -510,30 +488,36 @@
     lastGroupSnap = snap;
     var members = snap.docs.map(function (d) {
       var data = d.data() || {};
+      var infoCount = data.lidasInformativos != null ? data.lidasInformativos : (data.lidas || 0);
+      var leisCount = data.lidasLeis || 0;
+      var totalGeral = infoCount + leisCount;
+
       return {
         id: d.id,
         name: data.name,
-        lidas: data.lidas,
-        estrelasOuro: data.estrelasOuro,
+        lidasInformativos: infoCount,
+        lidasLeis: leisCount,
+        totalGeral: totalGeral,
+        estrelasOuro: data.estrelasOuro || 0,
         avatar: data.avatar,
         joinedAt: data.joinedAt || ""
       };
     }).filter(function (m) { return m && m.name; });
-    // O criador do grupo sempre aparece primeiro; os demais, abaixo, na
-    // ordem em que entraram (quem "vence" continua destacado com o brilho
-    // dourado, mas a posição na lista não muda por causa disso).
+
     members.sort(function (a, b) {
       var aCreator = a.id === groupCreatorId, bCreator = b.id === groupCreatorId;
       if (aCreator !== bCreator) return aCreator ? -1 : 1;
       if (a.joinedAt !== b.joinedAt) return a.joinedAt < b.joinedAt ? -1 : 1;
       return (a.name || "").localeCompare(b.name || "");
     });
-    var maxLidas = 0;
-    members.forEach(function (m) { if ((m.lidas || 0) > maxLidas) maxLidas = m.lidas || 0; });
+
+    var maxTotal = 0;
+    members.forEach(function (m) { if (m.totalGeral > maxTotal) maxTotal = m.totalGeral; });
+
     groupLeaderboard.innerHTML = "";
     members.forEach(function (m) {
       var li = document.createElement("li");
-      li.className = "group-member" + (maxLidas > 0 && m.lidas === maxLidas ? " is-leader" : "");
+      li.className = "group-member" + (maxTotal > 0 && m.totalGeral === maxTotal ? " is-leader" : "");
 
       var nameEl = document.createElement("span");
       nameEl.className = "member-name";
@@ -542,13 +526,13 @@
       var emojisEl = document.createElement("span");
       emojisEl.className = "member-emojis";
       var emoji = avatarEmoji(m.avatar && GENDER_BASE[m.avatar.gender] && TONE_MOD[m.avatar.tone] ? m.avatar : AVATAR_DEFAULT);
-      var count = m.lidas || 0;
-      var CAP = 40;
+      var CAP = 30;
+      var count = m.totalGeral || 0;
       emojisEl.textContent = emoji.repeat(Math.min(count, CAP)) + (count > CAP ? " +" + (count - CAP) : "");
 
       var countEl = document.createElement("span");
       countEl.className = "member-count";
-      countEl.textContent = count + (count === 1 ? " lido" : " lidos");
+      countEl.innerHTML = "<strong>" + count + " total</strong> (" + m.lidasInformativos + " 📰 · " + m.lidasLeis + " 📗)";
 
       li.appendChild(nameEl);
       li.appendChild(emojisEl);
@@ -562,7 +546,7 @@
     if (!dbCap) return;
     groupMembersUnsub = dbCap.collection("groups/" + code + "/members").onSnapshot(
       renderLeaderboard,
-      function () { /* subscription lost; leaderboard just stops updating */ }
+      function () {}
     );
     fetchGroupCreator(code);
   }
@@ -641,8 +625,6 @@
   if (groupCopyBtn) groupCopyBtn.addEventListener("click", copyInviteLink);
   if (groupLeaveBtn) groupLeaveBtn.addEventListener("click", leaveGroup);
 
-  // Pre-fill the code field from an invite link (?grupo=CODE), and open
-  // the panel so a new visitor sees it right away.
   (function prefillInviteCode() {
     try {
       var params = new URLSearchParams(location.search);
@@ -698,12 +680,6 @@
   syncAvatarControls();
 
   // ---- Vincular e-mail (opcional) -------------------------------------
-  // A conta anônima do Firebase só existe no armazenamento deste
-  // navegador: se ele for limpo, ou a pessoa usar outro computador, um
-  // UID novo é criado e o progresso antigo fica inacessível. Vincular um
-  // e-mail + senha à conta anônima (linkWithCredential) resolve isso sem
-  // exigir cadastro de ninguém que não queira: quem nunca clicar aqui
-  // continua exatamente como antes, só com o nome/anônimo.
   var accountToggleBtn = document.getElementById("account-toggle");
   var accountPanel = document.getElementById("account-panel");
   var accountLinkBlock = document.getElementById("account-link-block");
@@ -783,18 +759,9 @@
   if (accountLinkBtn) accountLinkBtn.addEventListener("click", linkEmailAccount);
   if (accountSigninBtn) accountSigninBtn.addEventListener("click", signInWithEmail);
 
-  // 1) instant paint from whatever this browser has locally
   applyMap(readLocal());
   render();
 
-  // 2) login anônimo no Firebase (nenhum cadastro visível para a pessoa,
-  // a menos que ela mesma escolha vincular um e-mail acima), depois
-  // reconcilia com o progresso salvo dela e liga a escuta em tempo real.
-  // O documento de cada visitante vive em progress/<uid> — ninguém mais lê
-  // ou escreve nele, e o Firestore garante isso pelas regras de segurança
-  // do projeto. bindUser() é chamada de novo sempre que o UID muda (por
-  // exemplo, quando a pessoa usa "Já vinculei — recuperar aqui" e o
-  // Firebase troca da conta anônima para a conta vinculada antiga).
   var progressUnsub = null;
 
   function bindUser(uid) {
@@ -816,9 +783,7 @@
       }
       render();
       applyingRemote = false;
-    }, function () {
-      // assinatura perdida; local + gravações "melhor esforço" continuam
-    });
+    }, function () {});
     if (groupPref) {
       subscribeGroup(groupPref.code);
       updateMyMemberDoc();
