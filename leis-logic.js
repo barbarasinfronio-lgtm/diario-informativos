@@ -166,11 +166,12 @@
       edition.appendChild(date);
 
       var star = document.createElement("span");
-      star.textContent = avatarEmoji(avatarPref);
       if (row.lida) {
+        star.textContent = "📗";
         star.className = "star star-gold";
         star.title = "Lida";
       } else {
+        star.textContent = "📕";
         star.className = "star star-empty";
         star.title = "Ainda não lida";
       }
