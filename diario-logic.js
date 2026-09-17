@@ -275,14 +275,15 @@
         }
 
         var star = document.createElement("span");
-        star.textContent = avatarEmoji(avatarPref);
         if (row.lida) {
           var gold = isSameWeek(row.data, row.lidaEm);
+          star.textContent = "📰";
           star.className = "star" + (gold ? " star-gold" : " star-normal");
           star.title = gold
             ? "Lido na semana de publicação"
             : "Lido";
         } else {
+          star.textContent = "🗞️";
           star.className = "star star-empty";
           star.title = "Ainda não lido";
         }
