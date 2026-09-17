@@ -349,6 +349,13 @@
     cursor: pointer;
   }
 
+  .avatar-toggle-primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-ink, #fff);
+    font-weight: 600;
+  }
+
   .avatar-toggle-preview {
     font-size: 1rem;
     line-height: 1;
