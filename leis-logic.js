@@ -166,12 +166,11 @@
       edition.appendChild(date);
 
       var star = document.createElement("span");
+      star.textContent = avatarEmoji(avatarPref);
       if (row.lida) {
-        star.textContent = "📗";
         star.className = "star star-gold";
         star.title = "Lida";
       } else {
-        star.textContent = "📕";
         star.className = "star star-empty";
         star.title = "Ainda não lida";
       }
@@ -491,17 +490,10 @@
     }
   }
 
-  if (groupToggleBtn && groupPanel) {
-    groupToggleBtn.addEventListener("click", function () {
-      var open = groupPanel.hidden;
-      groupPanel.hidden = !open;
-      groupToggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  }
-  if (groupCreateBtn) groupCreateBtn.addEventListener("click", createGroup);
-  if (groupJoinBtn) groupJoinBtn.addEventListener("click", joinGroup);
-  if (groupCopyBtn) groupCopyBtn.addEventListener("click", copyInviteLink);
-  if (groupLeaveBtn) groupLeaveBtn.addEventListener("click", leaveGroup);
+  // Os botões de baixo (e os de personalizar boneco / vincular e-mail, mais
+  // adiante) usam delegação de clique — ver "Delegação de cliques" perto do
+  // fim do arquivo — em vez de addEventListener direto, para não depender
+  // da ordem em que o Blogger termina de inserir cada bloco no DOM.
 
   (function prefillInviteCode() {
     try {
@@ -528,14 +520,6 @@
     if (avatarToggleGenderSelect) avatarToggleGenderSelect.value = avatarPref.gender;
     if (avatarToneSelect) avatarToneSelect.value = avatarPref.tone;
     if (avatarPreview) avatarPreview.textContent = avatarEmoji(avatarPref);
-  }
-
-  if (avatarToggleBtn && avatarPanel) {
-    avatarToggleBtn.addEventListener("click", function () {
-      var open = avatarPanel.hidden;
-      avatarPanel.hidden = !open;
-      avatarToggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
   }
 
   function onAvatarPrefChange() {
@@ -624,15 +608,36 @@
       .catch(function (err) { showAccountError(accountErrorMessage(err)); });
   }
 
-  if (accountToggleBtn && accountPanel) {
-    accountToggleBtn.addEventListener("click", function () {
-      var open = accountPanel.hidden;
-      accountPanel.hidden = !open;
-      accountToggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+  // ---- Delegação de cliques --------------------------------------------
+  // Um único listener no "document", em vez de um addEventListener por
+  // botão — evita depender da ordem/tempo em que o Blogger termina de
+  // inserir cada bloco de HTML no DOM.
+  function togglePanel(btn, panel) {
+    if (!btn || !panel) return;
+    var open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
-  if (accountLinkBtn) accountLinkBtn.addEventListener("click", linkEmailAccount);
-  if (accountSigninBtn) accountSigninBtn.addEventListener("click", signInWithEmail);
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest(
+      "#avatar-toggle, #group-toggle, #account-toggle, " +
+      "#group-create-btn, #group-join-btn, #group-copy-btn, #group-leave-btn, " +
+      "#account-link-btn, #account-signin-btn"
+    );
+    if (!t) return;
+    switch (t.id) {
+      case "avatar-toggle": togglePanel(t, document.getElementById("avatar-panel")); break;
+      case "group-toggle": togglePanel(t, document.getElementById("group-panel")); break;
+      case "account-toggle": togglePanel(t, document.getElementById("account-panel")); break;
+      case "group-create-btn": createGroup(); break;
+      case "group-join-btn": joinGroup(); break;
+      case "group-copy-btn": copyInviteLink(); break;
+      case "group-leave-btn": leaveGroup(); break;
+      case "account-link-btn": linkEmailAccount(); break;
+      case "account-signin-btn": signInWithEmail(); break;
+    }
+  });
 
   // 1) pintura instantânea com o que já está salvo neste navegador
   applyMap(readLocal());
