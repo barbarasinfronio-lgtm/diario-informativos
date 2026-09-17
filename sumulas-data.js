@@ -18,7 +18,7 @@
 // próprio nas fontes oficiais, por isso entram como "em_breve" por
 // enquanto e vão sendo preenchidos aos poucos.
 
-var SUMULAS_LINK_SV = "https://portal.stf.jus.br/jurisprudencia/sumulas/sumulas_vinculantes.asp";
+var SUMULAS_LINK_SV = "https://jurisprudencia.stf.jus.br/pages/search?classeNumeroIncidente=vinculante&base=sumulas&is_vinculante=true&pesquisa_inteiro_teor=false&sinonimo=true&plural=true&radicais=false&buscaExata=true&page=1&pageSize=10&sort=date&sortBy=asc&isAdvanced=true";
 var SUMULAS_LINK_TJMG = "https://www.tjmg.jus.br/portal-tjmg/jurisprudencia/consulta-de-jurisprudencia/lista-de-sumulas.htm";
 var SUMULAS_LINK_TJRS = "https://www.tjrs.jus.br/novo/jurisprudencia-e-legislacao/jurisprudencia/sumulas/";
 var SUMULAS_LINK_TJSP = "https://www.tjsp.jus.br/SecaoDireitoPublico/SecaoDireitoPublico/sumulas";
