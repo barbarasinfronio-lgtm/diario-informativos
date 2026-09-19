@@ -1,9 +1,9 @@
 // Diário das Leis — dados (índice de leis citadas nos conteúdos programáticos
 // dos editais mapeados: TJMG, TJSC, TJPR, TJSP, TJRS, TJGO, TJPE, TRF5, ENAM, MPSP, MPMG,
-// PGE-CE, AGU e PFN). As leis acrescentadas depois usam links do LexML (resolve pelo
+// PGE-CE, AGU, PFN, DPU, PF, DPE-BA e DPE-SP). As leis acrescentadas depois usam links do LexML (resolve pelo
 // tipo/ano/número da norma).
 // Cada matéria é uma aba; cada lei tem nome, identificação e link para o
-// site oficial (Planalto, portal do tribunal/assembleia estadual, ou портал
+// site oficial (Planalto, portal do tribunal/assembleia estadual, ou portal
 // oficial equivalente). Gerado a partir dos mapeamentos já produzidos —
 // alguns links de leis estaduais/normas mais obscuras podem precisar de
 // ajuste; qualquer link quebrado pode ser reportado para correção.
@@ -52,6 +52,7 @@ var LEIS_DATA = {
     { nome: "Resolução de contrato de imóvel em incorporação (distrato)", numero: "Lei nº 13.786/2018", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2018;13786" },
     { nome: "Marco Legal das Garantias", numero: "Lei nº 14.711/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14711" },
     { nome: "Assinaturas eletrônicas em interações com entes públicos", numero: "Lei nº 14.063/2020", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2020;14063" },
+    { nome: "Lei de Terras", numero: "Lei nº 601/1850", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1850;601" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -76,6 +77,7 @@ var LEIS_DATA = {
     { nome: "Altera as LC (SC) nº 339/2006 e 367/2006", numero: "Lei Complementar (SC) nº 413/2008", link: "https://leis.alesc.sc.gov.br/html/2008/413_2008_lei_complementar.html" },
     { nome: "Processos perante o STJ e o STF (recursos)", numero: "Lei nº 8.038/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8038" },
     { nome: "Altera a Lei de Arbitragem", numero: "Lei nº 13.129/2015", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2015;13129" },
+    { nome: "Fundo de Defesa de Direitos Difusos", numero: "Lei nº 9.008/1995", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1995;9008" },
   ]},
 
   consumidor: { label: "Consumidor", leis: [
@@ -88,6 +90,12 @@ var LEIS_DATA = {
     { nome: "Planos e seguros privados de assistência à saúde", numero: "Lei nº 9.656/1998", link: "https://www.planalto.gov.br/ccivil_03/leis/l9656.htm" },
     { nome: "Superendividamento do consumidor", numero: "Lei nº 14.181/2021", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2021;14181" },
     { nome: "Planos de saúde — reconstrução mamária (altera a Lei 9.656/1998)", numero: "Lei nº 14.538/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14538" },
+    { nome: "Sistema Nacional de Defesa do Consumidor (SNDC)", numero: "Decreto nº 2.181/1997", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1997;2181" },
+    { nome: "Crédito consignado em folha de pagamento", numero: "Lei nº 10.820/2003", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2003;10820" },
+    { nome: "Práticas infracionais nas relações de consumo (oferta e preços)", numero: "Decreto nº 5.903/2006", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2006;5903" },
+    { nome: "Altera a Lei do Cadastro Positivo", numero: "Lei Complementar nº 166/2019", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2019;166" },
+    { nome: "Preservação e não comprometimento do mínimo existencial", numero: "Decreto nº 11.150/2022", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2022;11150" },
+    { nome: "Apostas de quota fixa (bets)", numero: "Lei nº 14.790/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14790" },
   ]},
 
   crianca: { label: "Criança e Adolescente", leis: [
@@ -142,6 +150,14 @@ var LEIS_DATA = {
     { nome: "Tipifica racismo por injúria racial", numero: "Lei nº 14.532/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14532" },
     { nome: "Crimes contra a economia popular", numero: "Lei nº 1.521/1951", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1951;1521" },
     { nome: "Altera a Lei de Crimes de Preconceito de Raça ou Cor", numero: "Lei nº 9.459/1997", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1997;9459" },
+    { nome: "Convenção da ONU contra o Crime Organizado Transnacional (Palermo)", numero: "Decreto nº 5.015/2004", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2004;5015" },
+    { nome: "Protocolo contra o Tráfico de Migrantes por Via Terrestre, Marítima e Aérea", numero: "Decreto nº 5.016/2004", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2004;5016" },
+    { nome: "Protocolo para Prevenir, Reprimir e Punir o Tráfico de Pessoas", numero: "Decreto nº 5.017/2004", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2004;5017" },
+    { nome: "Convenção contra o Tráfico Ilícito de Entorpecentes (Viena, 1988)", numero: "Decreto nº 154/1991", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1991;154" },
+    { nome: "Convenção das Nações Unidas contra a Corrupção (Mérida)", numero: "Decreto nº 5.687/2006", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2006;5687" },
+    { nome: "Convenção sobre o Crime Cibernético (Budapeste)", numero: "Decreto nº 11.491/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2023;11491" },
+    { nome: "Tipificação criminal de delitos informáticos", numero: "Lei nº 12.737/2012", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2012;12737" },
+    { nome: "Regulamenta o Estatuto do Desarmamento (armas e munições)", numero: "Decreto nº 9.847/2019", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2019;9847" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -167,6 +183,10 @@ var LEIS_DATA = {
     { nome: "Ação penal originária nos Tribunais de Justiça e TRFs", numero: "Lei nº 8.658/1993", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1993;8658" },
     { nome: "Inclusão de presos em estabelecimentos penais federais", numero: "Lei nº 11.671/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11671" },
     { nome: "Identificação criminal do civilmente identificado", numero: "Lei nº 12.037/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;12037" },
+    { nome: "Organização da Justiça Militar da União", numero: "Lei nº 8.457/1992", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1992;8457" },
+    { nome: "Infrações de repercussão interestadual ou internacional", numero: "Lei nº 10.446/2002", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2002;10446" },
+    { nome: "Investigação criminal conduzida pelo delegado de polícia", numero: "Lei nº 12.830/2013", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2013;12830" },
+    { nome: "Assistência jurídica ao preso — altera a Lei de Execução Penal", numero: "Lei nº 12.313/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12313" },
   ]},
 
   constitucional: { label: "Direito Constitucional", leis: [
@@ -175,6 +195,8 @@ var LEIS_DATA = {
     { nome: "Reforma do Judiciário", numero: "Emenda Constitucional nº 45/2004", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2004;45" },
     { nome: "Representação interventiva (ADI interventiva)", numero: "Lei nº 12.562/2011", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2011;12562" },
     { nome: "Mandado de Injunção", numero: "Lei nº 13.300/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2016;13300" },
+    { nome: "Crimes de responsabilidade", numero: "Lei nº 1.079/1950", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1950;1079" },
+    { nome: "Defensoria Pública na Constituição", numero: "Emenda Constitucional nº 80/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2014;80" },
   ]},
 
   eleitoral: { label: "Direito Eleitoral", leis: [
@@ -327,6 +349,12 @@ var LEIS_DATA = {
     { nome: "Medidas de enfrentamento da emergência de saúde pública (COVID-19)", numero: "Lei nº 13.979/2020", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2020;13979" },
     { nome: "Medidas de vigilância em saúde (dengue, chikungunya, zika)", numero: "Lei nº 13.301/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2016;13301" },
     { nome: "Regulamento da Lei Anticorrupção (revogado pelo Decreto 11.129/2022)", numero: "Decreto nº 8.420/2015", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2015;8420" },
+    { nome: "Lei Orgânica Nacional da Defensoria Pública", numero: "Lei Complementar nº 80/1994", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:1994;80" },
+    { nome: "Regime jurídico dos policiais civis da União e do DF", numero: "Lei nº 4.878/1965", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1965;4878" },
+    { nome: "Carreira policial federal (classes e estrutura)", numero: "Lei nº 9.266/1996", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1996;9266" },
+    { nome: "Estatuto da Segurança Privada e da Segurança das Instituições Financeiras", numero: "Lei nº 14.967/2024", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2024;14967" },
+    { nome: "Participação da comunidade na gestão do SUS", numero: "Lei nº 8.142/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8142" },
+    { nome: "Plano Nacional de Educação (PNE 2014-2024)", numero: "Lei nº 13.005/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2014;13005" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -338,6 +366,7 @@ var LEIS_DATA = {
     { nome: "Altera a LOAS (Sistema Único de Assistência Social — SUAS)", numero: "Lei nº 12.435/2011", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2011;12435" },
     { nome: "Reforma da Previdência", numero: "Emenda Constitucional nº 103/2019", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2019;103" },
     { nome: "Plano de Benefícios da Previdência Social", numero: "Lei nº 8.213/1991", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1991;8213" },
+    { nome: "Regulamento da Previdência Social", numero: "Decreto nº 3.048/1999", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1999;3048" },
   ]},
 
   humanos: { label: "Direitos Humanos", leis: [
@@ -364,6 +393,17 @@ var LEIS_DATA = {
     { nome: "Sistema Nacional de Segurança Alimentar e Nutricional (SISAN)", numero: "Lei nº 11.346/2006", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2006;11346" },
     { nome: "Ensino de história e cultura afro-brasileira", numero: "Lei nº 10.639/2003", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2003;10639" },
     { nome: "Ensino de história e cultura afro-brasileira e indígena", numero: "Lei nº 11.645/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11645" },
+    { nome: "Uso de instrumentos de menor potencial ofensivo por agentes de segurança", numero: "Lei nº 13.060/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2014;13060" },
+    { nome: "Regulamenta o uso da força e de instrumentos de menor potencial ofensivo", numero: "Decreto nº 12.341/2024", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2024;12341" },
+    { nome: "Lei de Migração", numero: "Lei nº 13.445/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13445" },
+    { nome: "Estatuto da Juventude", numero: "Lei nº 12.852/2013", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2013;12852" },
+    { nome: "Lei de Cotas no ensino superior e técnico", numero: "Lei nº 12.711/2012", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2012;12711" },
+    { nome: "Reserva de vagas para negros em concursos públicos federais", numero: "Lei nº 12.990/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2014;12990" },
+    { nome: "Convenção Interamericana contra o Racismo", numero: "Decreto nº 10.932/2022", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2022;10932" },
+    { nome: "Política Nacional para a População em Situação de Rua", numero: "Decreto nº 7.053/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2009;7053" },
+    { nome: "Política Nacional de Povos e Comunidades Tradicionais", numero: "Decreto nº 6.040/2007", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2007;6040" },
+    { nome: "Titulação das terras de quilombos", numero: "Decreto nº 4.887/2003", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2003;4887" },
+    { nome: "Sistema Nacional de Prevenção e Combate à Tortura", numero: "Lei nº 12.847/2013", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2013;12847" },
   ]},
 
   trabalhista: { label: "Direito do Trabalho", leis: [

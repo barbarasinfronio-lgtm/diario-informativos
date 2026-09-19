@@ -1,6 +1,7 @@
 // Editais de concurso — dados (conteúdo programático mapeado).
 // Há dois tipos de item: tipo "carreira" (espécie de cargo — junta o conteúdo de todos os
-// editais daquela carreira, campo "editais") e tipo "edital" (um edital específico).
+// editais daquela carreira, campo "editais"; secao "exame" = exames nacionais como o ENAM;
+// emBreve:true = ainda sem edital mapeado) e tipo "edital" (um edital específico).
 // Cada edital tem: identificação, disciplinas por bloco/grupo e a lista de leis do
 // Diário de Leis que o programa cobre. Cada lei é [matéria, número] — a mesma chave
 // usada pelo Diário de Leis (matéria + número da norma).
@@ -12,29 +13,30 @@ var EDITAIS_DATA = [
  {
   "id": "carreira-magistratura-federal",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
-  "cargo": "união dos editais: TRF5 + ENAM",
-  "orgao": "Reúne o conteúdo de 2 editais",
+  "cargo": "união dos editais: TRF5",
+  "orgao": "Reúne o conteúdo de 1 edital",
   "titulo": "Magistratura Federal",
-  "edital": "TRF5: XVI Concurso para Juiz Federal Substituto · ENAM: 6º Exame Nacional da Magistratura",
+  "edital": "TRF5: XVI Concurso para Juiz Federal Substituto",
   "grupos": [
    {
     "nome": "Disciplinas (união dos editais)",
     "disciplinas": [
-     "Direito Constitucional — 2 de 2 editais",
-     "Direito Previdenciário — 1 de 2 editais",
-     "Direito Penal — 2 de 2 editais",
-     "Direito Processual Penal — 1 de 2 editais",
-     "Direito Econômico e de Proteção ao Consumidor — 1 de 2 editais",
-     "Direito Civil — 2 de 2 editais",
-     "Direito Processual Civil — 2 de 2 editais",
-     "Direito Empresarial — 2 de 2 editais",
-     "Direito Financeiro e Tributário — 1 de 2 editais",
-     "Direito Administrativo — 2 de 2 editais",
-     "Direito Ambiental — 1 de 2 editais",
-     "Direito Internacional Público e Privado — 1 de 2 editais",
-     "Noções Gerais de Direito e Formação Humanística — 2 de 2 editais",
-     "Direitos Humanos — 2 de 2 editais"
+     "Direito Constitucional",
+     "Direito Previdenciário",
+     "Direito Penal",
+     "Direito Processual Penal",
+     "Direito Econômico e de Proteção ao Consumidor",
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Empresarial",
+     "Direito Financeiro e Tributário",
+     "Direito Administrativo",
+     "Direito Ambiental",
+     "Direito Internacional Público e Privado",
+     "Noções Gerais de Direito e Formação Humanística",
+     "Direitos Humanos"
     ]
    }
   ],
@@ -72,38 +74,6 @@ var EDITAIS_DATA = [
     "Lei nº 10.406/2002"
    ],
    [
-    "civil",
-    "Lei nº 13.874/2019"
-   ],
-   [
-    "civil",
-    "Lei nº 14.711/2023"
-   ],
-   [
-    "civil",
-    "Lei nº 14.195/2021"
-   ],
-   [
-    "civil",
-    "Lei nº 10.741/2003"
-   ],
-   [
-    "civil",
-    "Lei nº 12.965/2014"
-   ],
-   [
-    "civil",
-    "Lei nº 6.766/1979"
-   ],
-   [
-    "civil",
-    "Lei nº 1.060/1950"
-   ],
-   [
-    "civil",
-    "Lei nº 8.245/1991"
-   ],
-   [
     "processual_civil",
     "Lei nº 13.105/2015"
    ],
@@ -134,18 +104,6 @@ var EDITAIS_DATA = [
    [
     "processual_civil",
     "Lei nº 10.259/2001"
-   ],
-   [
-    "processual_civil",
-    "Lei nº 13.655/2018"
-   ],
-   [
-    "processual_civil",
-    "Lei nº 9.507/1997"
-   ],
-   [
-    "processual_civil",
-    "Lei nº 12.153/2009"
    ],
    [
     "consumidor",
@@ -208,10 +166,6 @@ var EDITAIS_DATA = [
     "Decreto-Lei nº 3.689/1941"
    ],
    [
-    "processual_penal",
-    "Lei nº 9.296/1996"
-   ],
-   [
     "constitucional",
     "CF/1988"
    ],
@@ -230,10 +184,6 @@ var EDITAIS_DATA = [
    [
     "empresarial",
     "Lei nº 9.279/1996"
-   ],
-   [
-    "empresarial",
-    "Lei Complementar nº 123/2006"
    ],
    [
     "tributario",
@@ -272,26 +222,6 @@ var EDITAIS_DATA = [
     "Lei nº 11.079/2004"
    ],
    [
-    "administrativo",
-    "Lei nº 13.460/2017"
-   ],
-   [
-    "administrativo",
-    "Lei nº 13.303/2016"
-   ],
-   [
-    "administrativo",
-    "Lei nº 13.848/2019"
-   ],
-   [
-    "administrativo",
-    "Lei nº 14.230/2021"
-   ],
-   [
-    "administrativo",
-    "Lei nº 8.987/1995"
-   ],
-   [
     "previdenciario",
     "Lei nº 8.213/1991"
    ],
@@ -310,46 +240,42 @@ var EDITAIS_DATA = [
    [
     "humanos",
     "Decreto nº 6.949/2009"
-   ],
-   [
-    "humanos",
-    "Decreto nº 592/1992"
    ]
   ],
   "extras": [],
   "editais": [
-   "trf5-xvi",
-   "enam-2026-2"
+   "trf5-xvi"
   ]
  },
  {
   "id": "carreira-magistratura-estadual",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
-  "cargo": "união dos editais: TJGO + TJPE + TJRS + ENAM",
-  "orgao": "Reúne o conteúdo de 4 editais",
+  "cargo": "união dos editais: TJGO + TJPE + TJRS",
+  "orgao": "Reúne o conteúdo de 3 editais",
   "titulo": "Magistratura Estadual",
-  "edital": "TJGO: 59º Concurso de Juiz Substituto · TJPE: Concurso de Juiz Substituto · TJRS: Concurso para Juiz de Direito Substituto · ENAM: 6º Exame Nacional da Magistratura",
+  "edital": "TJGO: 59º Concurso de Juiz Substituto · TJPE: Concurso de Juiz Substituto · TJRS: Concurso para Juiz de Direito Substituto",
   "grupos": [
    {
     "nome": "Disciplinas (união dos editais)",
     "disciplinas": [
-     "Direito Civil — 4 de 4 editais",
-     "Direito Processual Civil — 4 de 4 editais",
-     "Direito do Consumidor — 3 de 4 editais",
-     "Direito da Criança e do Adolescente — 3 de 4 editais",
-     "Direito Penal — 4 de 4 editais",
-     "Direito Processual Penal — 3 de 4 editais",
-     "Direito Constitucional — 4 de 4 editais",
-     "Direito Eleitoral — 3 de 4 editais",
-     "Direito Empresarial — 4 de 4 editais",
-     "Direito Tributário e Financeiro — 1 de 4 editais",
-     "Direito Ambiental — 3 de 4 editais",
-     "Direito Administrativo — 4 de 4 editais",
-     "Noções Gerais de Direito e Formação Humanística — 4 de 4 editais",
-     "Direitos Humanos — 4 de 4 editais",
-     "Direito Financeiro e Tributário — 1 de 4 editais",
-     "Direito Tributário — 1 de 4 editais"
+     "Direito Civil — 3 de 3 editais",
+     "Direito Processual Civil — 3 de 3 editais",
+     "Direito do Consumidor — 3 de 3 editais",
+     "Direito da Criança e do Adolescente — 3 de 3 editais",
+     "Direito Penal — 3 de 3 editais",
+     "Direito Processual Penal — 3 de 3 editais",
+     "Direito Constitucional — 3 de 3 editais",
+     "Direito Eleitoral — 3 de 3 editais",
+     "Direito Empresarial — 3 de 3 editais",
+     "Direito Tributário e Financeiro — 1 de 3 editais",
+     "Direito Ambiental — 3 de 3 editais",
+     "Direito Administrativo — 3 de 3 editais",
+     "Noções Gerais de Direito e Formação Humanística — 3 de 3 editais",
+     "Direitos Humanos — 3 de 3 editais",
+     "Direito Financeiro e Tributário — 1 de 3 editais",
+     "Direito Tributário — 1 de 3 editais"
     ]
    }
   ],
@@ -491,14 +417,6 @@ var EDITAIS_DATA = [
     "Decreto nº 3.413/2000"
    ],
    [
-    "civil",
-    "Lei nº 14.711/2023"
-   ],
-   [
-    "civil",
-    "Lei nº 14.195/2021"
-   ],
-   [
     "processual_civil",
     "Lei nº 12.016/2009"
    ],
@@ -557,10 +475,6 @@ var EDITAIS_DATA = [
    [
     "processual_civil",
     "Lei nº 13.129/2015"
-   ],
-   [
-    "processual_civil",
-    "Lei nº 13.655/2018"
    ],
    [
     "consumidor",
@@ -1079,14 +993,6 @@ var EDITAIS_DATA = [
     "Decreto-Lei nº 200/1967"
    ],
    [
-    "administrativo",
-    "Lei nº 13.460/2017"
-   ],
-   [
-    "administrativo",
-    "Lei nº 13.848/2019"
-   ],
-   [
     "previdenciario",
     "Lei nº 8.742/1993"
    ],
@@ -1163,13 +1069,13 @@ var EDITAIS_DATA = [
   "editais": [
    "tjgo-59",
    "tjpe-2026",
-   "tjrs-2026",
-   "enam-2026-2"
+   "tjrs-2026"
   ]
  },
  {
   "id": "carreira-promotor",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
   "cargo": "união dos editais: MPSP + MPMG",
   "orgao": "Reúne o conteúdo de 2 editais",
@@ -1902,8 +1808,232 @@ var EDITAIS_DATA = [
   ]
  },
  {
+  "id": "exame-enam",
+  "tipo": "carreira",
+  "secao": "exame",
+  "sigla": "Exame",
+  "cargo": "união dos editais: ENAM",
+  "orgao": "Reúne o conteúdo de 1 edital",
+  "titulo": "ENAM — Exame Nacional da Magistratura",
+  "edital": "ENAM: 6º Exame Nacional da Magistratura",
+  "grupos": [
+   {
+    "nome": "Disciplinas (união dos editais)",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Noções Gerais de Direito e Formação Humanística",
+     "Direitos Humanos",
+     "Direito Processual Civil",
+     "Direito Civil",
+     "Direito Empresarial",
+     "Direito Penal"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "civil",
+    "Lei nº 13.874/2019"
+   ],
+   [
+    "civil",
+    "Lei nº 14.711/2023"
+   ],
+   [
+    "civil",
+    "Lei nº 14.195/2021"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Lei nº 10.741/2003"
+   ],
+   [
+    "civil",
+    "Lei nº 13.146/2015"
+   ],
+   [
+    "civil",
+    "Lei nº 12.965/2014"
+   ],
+   [
+    "civil",
+    "Lei nº 6.766/1979"
+   ],
+   [
+    "civil",
+    "Lei nº 1.060/1950"
+   ],
+   [
+    "civil",
+    "Lei nº 9.278/1996"
+   ],
+   [
+    "civil",
+    "Lei nº 8.009/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 8.245/1991"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.655/2018"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 12.016/2009"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 4.717/1965"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 7.347/1985"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.507/1997"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.307/1996"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.140/2015"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 10.259/2001"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 12.153/2009"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.296/1996"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "empresarial",
+    "Lei nº 9.279/1996"
+   ],
+   [
+    "administrativo",
+    "Decreto-Lei nº 3.365/1941"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.303/2016"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.848/2019"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.230/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "humanos",
+    "Decreto nº 678/1992"
+   ],
+   [
+    "humanos",
+    "Decreto nº 6.949/2009"
+   ],
+   [
+    "humanos",
+    "Decreto nº 592/1992"
+   ]
+  ],
+  "extras": [],
+  "editais": [
+   "enam-2026-2"
+  ]
+ },
+ {
   "id": "carreira-delegado",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
   "cargo": "união dos editais: PF",
   "orgao": "Reúne o conteúdo de 1 edital",
@@ -2271,6 +2401,7 @@ var EDITAIS_DATA = [
  {
   "id": "carreira-defensor",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
   "cargo": "união dos editais: DPU + DPE-BA + DPE-SP",
   "orgao": "Reúne o conteúdo de 3 editais",
@@ -2937,6 +3068,7 @@ var EDITAIS_DATA = [
  {
   "id": "carreira-advogado-publico",
   "tipo": "carreira",
+  "secao": "carreira",
   "sigla": "Carreira",
   "cargo": "união dos editais: PGE-CE + AGU + PFN",
   "orgao": "Reúne o conteúdo de 3 editais",
@@ -3603,6 +3735,36 @@ var EDITAIS_DATA = [
    "agu-adv-2022",
    "pfn-2022"
   ]
+ },
+ {
+  "id": "exame-enac",
+  "tipo": "carreira",
+  "secao": "exame",
+  "emBreve": true,
+  "sigla": "Exame",
+  "cargo": "aguardando o edital",
+  "orgao": "Exame Nacional dos Cartórios (CNJ)",
+  "titulo": "ENAC — Exame Nacional dos Cartórios",
+  "edital": "Edital ainda não mapeado",
+  "grupos": [],
+  "leis": [],
+  "extras": [],
+  "editais": []
+ },
+ {
+  "id": "exame-enap",
+  "tipo": "carreira",
+  "secao": "exame",
+  "emBreve": true,
+  "sigla": "Exame",
+  "cargo": "aguardando o edital",
+  "orgao": "Exame Nacional da Advocacia Pública (AGU)",
+  "titulo": "Exame Nacional da Advocacia Pública",
+  "edital": "Edital ainda não mapeado",
+  "grupos": [],
+  "leis": [],
+  "extras": [],
+  "editais": []
  },
  {
   "id": "tjgo-59",
