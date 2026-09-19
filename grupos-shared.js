@@ -130,9 +130,32 @@
     return S.memberRef(code, viewerId).set(payload, { merge: true });
   };
 
+  // Passa a escutar os membros do grupo. As regras do Firestore só deixam
+  // LER a lista quem já é membro; por isso, antes de escutar, garantimos que
+  // o documento desta pessoa em "members" existe (é idempotente: só regrava
+  // nome, avatar e data de entrada que ela mesma já escolheu). Sem isso, na
+  // hora de entrar num grupo a escuta poderia começar antes da gravação e
+  // ser recusada. Devolve a função de cancelar a escuta, como antes.
   S.subscribeMembers = function (code, onData, onError) {
-    return firebase.firestore().collection("groups/" + code + "/members")
-      .onSnapshot(onData, onError || function () {});
+    var cancelled = false;
+    var unsub = null;
+    var pref = S.findGroup ? S.findGroup(code) : null;
+    var user = firebase.auth().currentUser;
+    var ready = Promise.resolve();
+    if (pref && user) {
+      ready = S.updateMember(code, user.uid, {
+        name: pref.name, avatar: S.readAvatarPref(), joinedAt: pref.joinedAt
+      }).catch(function () {});
+    }
+    ready.then(function () {
+      if (cancelled) return;
+      unsub = firebase.firestore().collection("groups/" + code + "/members")
+        .onSnapshot(onData, onError || function () {});
+    });
+    return function () {
+      cancelled = true;
+      if (unsub) unsub();
+    };
   };
 
   S.fetchGroupMeta = function (code) {
