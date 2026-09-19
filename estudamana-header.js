@@ -25,6 +25,7 @@
     // ".html"). Páginas que não estão nesta lista entram DEPOIS dessas,
     // da mais antiga para a mais nova — então páginas novas caem no fim.
     order: [
+      "editais",
       "diario-dos-informativos",
       "diario-das-decisoes",
       "diario-de-leis",

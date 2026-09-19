@@ -1,0 +1,120 @@
+@import url("estudamana-tokens.css");
+
+/* =====================================================================
+   editais-styles.css — página "Editais" e barra do edital no Diário de Leis.
+   Só usa as cores/fontes do estudamana-tokens.css.
+   ===================================================================== */
+
+/* ---- barra do edital (Diário de Leis) --------------------------------- */
+.edital-bar {
+  background: var(--surface);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin: 0 0 1rem;
+  font-family: var(--font-sans);
+  color: var(--ink);
+}
+.edital-empty { margin: 0 0 0.6rem; font-size: calc(0.9rem * var(--fs-scale)); color: var(--ink-soft); }
+.edital-empty a, .edital-progress a { color: var(--accent); font-weight: 600; }
+.edital-head {
+  display: flex; flex-wrap: wrap; gap: 0.6rem 1rem;
+  align-items: center; justify-content: space-between;
+}
+.edital-title { font-size: calc(0.95rem * var(--fs-scale)); line-height: 1.35; }
+.edital-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: calc(0.68rem * var(--fs-scale));
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.edital-btn {
+  font: inherit; font-size: calc(0.8rem * var(--fs-scale));
+  padding: 0.4rem 0.85rem; border-radius: 999px;
+  border: 1px solid var(--surface-line);
+  background: var(--surface); color: var(--ink-soft); cursor: pointer;
+}
+.edital-btn:hover { background: var(--surface-2); color: var(--ink); }
+.edital-btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.edital-btn-primary:hover { background: var(--accent); color: var(--accent-ink); filter: brightness(1.1); }
+.edital-btn:focus-visible, .edital-mode:focus-visible, .edital-select:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.edital-picker { margin: 0.7rem 0 0; }
+.edital-picker[hidden] { display: none; }
+.edital-picker-label { display: block; font-size: calc(0.78rem * var(--fs-scale)); color: var(--ink-faint); margin-bottom: 0.3rem; }
+.edital-picker-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.edital-select {
+  flex: 1 1 260px; font: inherit; font-size: calc(0.85rem * var(--fs-scale));
+  padding: 0.45rem 0.6rem; border-radius: 10px;
+  border: 1px solid var(--surface-line); background: var(--surface); color: var(--ink);
+}
+.edital-modes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0 0; }
+.edital-mode {
+  font: inherit; font-size: calc(0.8rem * var(--fs-scale));
+  padding: 0.4rem 0.8rem; border-radius: 999px;
+  border: 1px solid var(--surface-line); background: var(--surface); color: var(--ink-soft); cursor: pointer;
+}
+.edital-mode:hover { background: var(--surface-2); color: var(--ink); }
+.edital-mode.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.edital-mode .count { font-family: var(--font-mono); font-size: 0.85em; opacity: 0.85; margin-left: 0.25rem; }
+.edital-progress { margin: 0.6rem 0 0; font-size: calc(0.78rem * var(--fs-scale)); color: var(--ink-faint); }
+
+/* ---- página "Editais" -------------------------------------------------- */
+#editais-main { display: block; }
+.ed-current {
+  display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; justify-content: space-between;
+  background: var(--accent-soft); color: var(--ink);
+  border: 1px solid var(--accent); border-radius: var(--radius);
+  padding: 0.9rem 1.1rem; margin-bottom: 1.25rem;
+}
+.ed-current p { margin: 0; font-size: calc(0.95rem * var(--fs-scale)); }
+.ed-current .edital-kicker { color: var(--accent); }
+.ed-none {
+  background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold);
+  border-radius: var(--radius); padding: 0.85rem 1.1rem; margin-bottom: 1.25rem;
+  font-size: calc(0.92rem * var(--fs-scale));
+}
+.ed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 1rem; align-items: start; }
+.ed-card {
+  background: var(--surface); border: 1px solid var(--surface-line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.6rem;
+}
+.ed-card.is-main { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow); }
+.ed-card-top { display: flex; gap: 0.6rem; align-items: flex-start; justify-content: space-between; }
+.ed-sigla {
+  font-family: var(--font-mono); font-weight: 700; font-size: calc(0.85rem * var(--fs-scale));
+  background: var(--accent-soft); color: var(--accent); border-radius: 8px; padding: 0.2rem 0.55rem; white-space: nowrap;
+}
+.ed-tag-main {
+  font-family: var(--font-mono); font-size: calc(0.66rem * var(--fs-scale)); letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 0.15rem 0.55rem;
+}
+.ed-card h2 { font-family: var(--font-serif); font-size: calc(1.05rem * var(--fs-scale)); line-height: 1.25; margin: 0; }
+.ed-meta { margin: 0; font-size: calc(0.8rem * var(--fs-scale)); color: var(--ink-soft); line-height: 1.4; }
+.ed-stats { display: flex; gap: 1rem; flex-wrap: wrap; font-size: calc(0.78rem * var(--fs-scale)); color: var(--ink-faint); }
+.ed-stats b { color: var(--ink); font-size: calc(0.95rem * var(--fs-scale)); }
+.ed-bar { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.ed-bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.ed-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ed-link {
+  font-size: calc(0.8rem * var(--fs-scale)); color: var(--accent); font-weight: 600; text-decoration: none;
+  padding: 0.4rem 0.2rem;
+}
+.ed-link:hover { text-decoration: underline; }
+
+.ed-card details { border-top: 1px solid var(--surface-line); padding-top: 0.55rem; }
+.ed-card summary { cursor: pointer; font-size: calc(0.85rem * var(--fs-scale)); font-weight: 600; color: var(--ink); }
+.ed-card summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ed-group { margin: 0.6rem 0 0; }
+.ed-group h3 {
+  margin: 0 0 0.2rem; font-family: var(--font-mono); font-size: calc(0.7rem * var(--fs-scale));
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint);
+}
+.ed-group ul, .ed-laws ul, .ed-extras ul { margin: 0; padding-left: 1.1rem; font-size: calc(0.8rem * var(--fs-scale)); color: var(--ink-soft); }
+.ed-group li, .ed-laws li, .ed-extras li { margin: 0.12rem 0; }
+.ed-laws h3, .ed-extras h3 { margin: 0.7rem 0 0.2rem; font-size: calc(0.82rem * var(--fs-scale)); font-family: var(--font-sans); color: var(--ink); }
+.ed-laws li.is-read { color: var(--done); }
+.ed-laws li.is-read::marker { content: "✓ "; }
+.ed-note { margin: 0.5rem 0 0; font-size: calc(0.75rem * var(--fs-scale)); color: var(--ink-faint); }
+.ed-foot { margin: 1.5rem 0 0; color: var(--ink-faint); font-size: calc(0.75rem * var(--fs-scale)); }

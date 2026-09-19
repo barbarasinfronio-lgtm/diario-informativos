@@ -109,15 +109,126 @@
     return map;
   }
 
+  // ---- Edital principal ---------------------------------------------------
+  // O edital escolhido (página "Editais") filtra as leis mostradas aqui. O
+  // código do edital fica em editais-shared.js (salvo no navegador e na conta).
+  var FILTER_KEY = "leis-filtro"; // "edital" | "todas"
+  var ES = null;                  // EditaisShared, quando carregado
+  var filterMode = "edital";
+  try { if (localStorage.getItem(FILTER_KEY) === "todas") filterMode = "todas"; } catch (e) {}
+  var EDITAIS_URL = "https://www.estudamana.com.br/p/editais.html";
+  var editPanelOpen = false;
+
+  function activeEdital() { return ES && ES.principal ? ES.principal() : null; }
+
+  // chaves das leis do edital, ou null quando não há filtro ativo
+  function activeKeys() {
+    var ed = activeEdital();
+    return ed && filterMode === "edital" ? ES.lawKeys(ed) : null;
+  }
+
+  function orgRows(orgKey, keys) {
+    var rows = stateByOrg[orgKey];
+    if (!keys) return rows;
+    return rows.filter(function (r) { return keys[rowKey(orgKey, r)]; });
+  }
+
+  function visibleOrgs(keys) {
+    if (!keys) return ORG_ORDER;
+    return ORG_ORDER.filter(function (k) { return orgRows(k, keys).length > 0; });
+  }
+
+  function editalTotals(ed) {
+    var keys = ES.lawKeys(ed), total = 0, lidas = 0;
+    ORG_ORDER.forEach(function (k) {
+      stateByOrg[k].forEach(function (r) {
+        if (keys[rowKey(k, r)]) { total++; if (r.lida) lidas++; }
+      });
+    });
+    return { total: total, lidas: lidas };
+  }
+
+  function escapeHtml(t) {
+    return String(t).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  function renderEditalBar() {
+    if (!ES || !tabsRoot || !ES.data().length) return;
+    var bar = document.getElementById("edital-bar");
+    if (!bar) {
+      bar = document.createElement("div");
+      bar.id = "edital-bar";
+      bar.className = "edital-bar";
+      tabsRoot.parentNode.insertBefore(bar, tabsRoot);
+    }
+    var ed = activeEdital();
+    var options = ES.data().map(function (e) {
+      return '<option value="' + e.id + '"' + (ed && ed.id === e.id ? " selected" : "") + ">" +
+        escapeHtml(e.sigla + " — " + e.titulo) + "</option>";
+    }).join("");
+    var picker =
+      '<div class="edital-picker" id="edital-picker"' + ((ed && !editPanelOpen) ? " hidden" : "") + ">" +
+      '<label class="edital-picker-label" for="edital-select">' + (ed ? "Escolha o novo edital principal" : "Escolha o seu edital") + "</label>" +
+      '<div class="edital-picker-row">' +
+      '<select id="edital-select" class="edital-select">' + (ed ? "" : '<option value="">Selecione…</option>') + options + "</select>" +
+      '<button type="button" class="edital-btn edital-btn-primary" id="edital-save">' + (ed ? "Salvar" : "Definir como principal") + "</button>" +
+      (ed ? '<button type="button" class="edital-btn" id="edital-cancel">Cancelar</button>' : "") +
+      "</div></div>";
+
+    if (!ed) {
+      bar.innerHTML =
+        '<p class="edital-empty">🎯 Escolha o edital do seu concurso e o Diário passa a mostrar só as leis dele. ' +
+        '<a href="' + EDITAIS_URL + '">Ver os editais</a></p>' + picker;
+      return;
+    }
+    var t = editalTotals(ed);
+    var allCount = 0;
+    ORG_ORDER.forEach(function (k) { allCount += stateByOrg[k].length; });
+    bar.innerHTML =
+      '<div class="edital-head">' +
+      '<div class="edital-title"><span class="edital-kicker">Edital principal</span>' +
+      '<strong>' + escapeHtml(ed.sigla) + '</strong> <span>' + escapeHtml(ed.titulo) + " · " + escapeHtml(ed.cargo) + "</span></div>" +
+      '<button type="button" class="edital-btn" id="edital-change" aria-expanded="' + (editPanelOpen ? "true" : "false") + '">Alterar edital principal</button>' +
+      "</div>" + picker +
+      '<div class="edital-modes" role="group" aria-label="Quais leis mostrar">' +
+      '<button type="button" class="edital-mode' + (filterMode === "edital" ? " active" : "") + '" data-mode="edital">Leis do meu edital <span class="count">' + t.total + "</span></button>" +
+      '<button type="button" class="edital-mode' + (filterMode === "todas" ? " active" : "") + '" data-mode="todas">Todas as leis <span class="count">' + allCount + "</span></button>" +
+      "</div>" +
+      '<p class="edital-progress">' + t.lidas + " de " + t.total + " leis do edital lidas" +
+      (ed.extras && ed.extras.length ? ' · <a href="' + EDITAIS_URL + '">' + ed.extras.length + " normas do edital fora deste índice</a>" : "") + "</p>";
+  }
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("#edital-change, #edital-cancel, #edital-save, .edital-mode");
+    if (!t || !ES) return;
+    if (t.id === "edital-change") { editPanelOpen = !editPanelOpen; renderEditalBar(); return; }
+    if (t.id === "edital-cancel") { editPanelOpen = false; renderEditalBar(); return; }
+    if (t.id === "edital-save") {
+      var sel = document.getElementById("edital-select");
+      if (sel && sel.value) { editPanelOpen = false; ES.setPrincipal(sel.value); }
+      return;
+    }
+    if (t.classList.contains("edital-mode")) {
+      filterMode = t.getAttribute("data-mode") === "todas" ? "todas" : "edital";
+      try { localStorage.setItem(FILTER_KEY, filterMode); } catch (err) {}
+      render();
+    }
+  });
+
   function renderTabs() {
     tabsRoot.innerHTML = "";
-    ORG_ORDER.forEach(function (key) {
+    var keys = activeKeys();
+    var orgs = visibleOrgs(keys);
+    if (orgs.indexOf(currentOrg) === -1) currentOrg = orgs[0] || ORG_ORDER[0];
+    orgs.forEach(function (key) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "org-tab" + (key === currentOrg ? " active" : "");
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-selected", key === currentOrg ? "true" : "false");
-      btn.innerHTML = LEIS_DATA[key].label + '<span class="count">' + stateByOrg[key].length + "</span>";
+      btn.innerHTML = LEIS_DATA[key].label + '<span class="count">' + orgRows(key, keys).length + "</span>";
       btn.addEventListener("click", function () {
         if (currentOrg === key) return;
         currentOrg = key;
@@ -128,11 +239,15 @@
   }
 
   function render() {
+    renderEditalBar();
     renderTabs();
-    ledeText.textContent = "Leis citadas no conteúdo programático dos editais de magistratura (TJMG, TJSC, TJPR, TJSP, TJRS). Marque conforme for lendo.";
+    var edNow = activeEdital();
+    ledeText.textContent = (edNow && filterMode === "edital")
+      ? "Leis do conteúdo programático do edital " + edNow.sigla + " (" + edNow.titulo + "). Marque conforme for lendo."
+      : "Leis citadas no conteúdo programático dos editais mapeados (magistratura, Ministério Público e advocacia pública). Marque conforme for lendo.";
     footerSource.innerHTML = 'Índice montado a partir do conteúdo programático dos editais mapeados. Os links levam ao site oficial (Planalto ou portal do respectivo estado) — se algum link estiver quebrado ou desatualizado, avise para correção.';
 
-    var state = stateByOrg[currentOrg];
+    var state = orgRows(currentOrg, activeKeys());
 
     listRoot.innerHTML = "";
     var section = document.createElement("section");
@@ -231,7 +346,7 @@
       return;
     }
     setNote("Salvando…");
-    progressDoc.set({ map: map, avatar: avatarPref, updatedAt: new Date().toISOString() })
+    progressDoc.set({ map: map, avatar: avatarPref, updatedAt: new Date().toISOString() }, { merge: true })
       .then(function () {
         setNote("Salvo — só para você.");
         setTimeout(function () { setNote(""); }, 1600);
@@ -476,6 +591,32 @@
     subscribeAllGroups();
     pushProgressToGroups();
   }
+
+  // Edital principal: carrega editais-shared.js da mesma pasta deste script
+  // (nenhuma mudança no HTML da página é necessária).
+  (function loadEditais() {
+    var me = document.currentScript;
+    if (!me) {
+      var all = document.getElementsByTagName("script");
+      for (var i = 0; i < all.length; i++) {
+        if (/leis-logic\.js/.test(all[i].src)) { me = all[i]; break; }
+      }
+    }
+    if (!me || !me.src) return;
+    var url = me.src.replace(/leis-logic\.js(\?.*)?$/, "editais-shared.js$1");
+    var tag = document.createElement("script");
+    tag.src = url;
+    tag.onload = function () {
+      if (!window.EditaisShared) return;
+      window.EditaisShared.load(function (shared) {
+        ES = shared;
+        ES.onChange(function () { render(); });
+        render();
+        ES.bindCloud({ signIn: false });
+      });
+    };
+    document.head.appendChild(tag);
+  })();
 
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
