@@ -62,6 +62,10 @@
   --bronze-soft: #f5e6db;
   --done: #2c6b3f;
   --done-soft: #e4f0e3;
+  --platinum: #1d6f80;
+  --platinum-soft: #dcf0f3;
+  --diamond: #5b3fb0;
+  --diamond-soft: #ebe4fa;
 
   /* Cores — tribunais e nível de risco (RG e Repetitivos) */
   --stf: #1f3a5f;
@@ -109,6 +113,10 @@
     --bronze-soft: #3a2818;
     --done: #9fd6ac;
     --done-soft: #1b3324;
+    --platinum: #7fd0e0;
+    --platinum-soft: #173a42;
+    --diamond: #b9a4f2;
+    --diamond-soft: #2b2247;
 
     --stf: #7fa6d9;
     --stj: #d3a86a;
@@ -149,6 +157,10 @@
   --bronze-soft: #3a2818;
   --done: #9fd6ac;
   --done-soft: #1b3324;
+  --platinum: #7fd0e0;
+  --platinum-soft: #173a42;
+  --diamond: #b9a4f2;
+  --diamond-soft: #2b2247;
 
   --stf: #7fa6d9;
   --stj: #d3a86a;
