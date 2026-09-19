@@ -413,7 +413,7 @@
   function renderMyPrizes() {
     if (!myPrizesEl || !GS) return;
     var codes = GS.readGroups().map(function (g) { return g.code; });
-    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "total", viewerId);
+    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidas", viewerId);
     GS.renderMyPrizes(myPrizesEl, tally, { hubHref: HUB_URL });
   }
 
@@ -631,8 +631,28 @@
       if (viewerId !== user.uid) bindUser(user.uid);
       renderAccountUI(user);
     });
-    firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
+    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão, não houver
+    // ninguém logado — assim não troca uma conta vinculada (e-mail ou Google) por outra.
+    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
+      offAnon();
+      if (!u) firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
+    });
   } else {
     dbReady = true;
   }
+})();
+
+/* Login com Google (conta-google.js, mesma pasta deste script) */
+(function () {
+  if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
+  if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+  var all = document.getElementsByTagName("script"), src = "";
+  for (var i = 0; i < all.length; i++) {
+    if (/diario-logic\.js/.test(all[i].src)) { src = all[i].src; break; }
+  }
+  if (!src) return;
+  var s = document.createElement("script");
+  s.id = "conta-google-js";
+  s.src = src.replace(/diario-logic\.js/, "conta-google.js");
+  document.head.appendChild(s);
 })();

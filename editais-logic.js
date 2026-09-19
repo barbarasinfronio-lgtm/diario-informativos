@@ -53,7 +53,15 @@
     return numero;
   }
 
+  function soonCard(ed) {
+    return '<article class="ed-card is-soon" id="ed-' + ed.id + '">' +
+      '<div class="ed-card-top"><span class="ed-sigla">EXAME</span><span class="ed-tag-soon">Aguardando edital</span></div>' +
+      "<h2>" + esc(ed.titulo) + "</h2>" +
+      '<p class="ed-meta">' + esc(ed.orgao) + "<br>O conteúdo programático entra aqui assim que o edital for mapeado.</p></article>";
+  }
+
   function card(ed, main, chooseMode) {
+    if (ed.emBreve) return soonCard(ed);
     var p = progress(ed);
     var pct = p.total ? Math.round((p.lidas / p.total) * 100) : 0;
     var mats = lawsByMateria(ed);
@@ -73,14 +81,15 @@
         '<p class="ed-note">Leis estaduais e resoluções do CNJ/CNMP: entram no Diário conforme forem incluídas.</p></div>'
       : "";
     var isCar = ed.tipo === "carreira";
+    var kw = isCar ? (ed.secao === "exame" ? "exame" : "carreira") : "edital";
     var action = "";
-    if (main) action = '<span class="ed-tag-main">' + (isCar ? "Carreira principal" : "Edital principal") + "</span>";
+    if (main) action = '<span class="ed-tag-main">' + kw.charAt(0).toUpperCase() + kw.slice(1) + " principal</span>";
     var button = "";
     if (!main && chooseMode) {
-      button = '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Definir como ' + (isCar ? "carreira" : "edital") + ' principal</button>';
+      button = '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Definir como ' + kw + ' principal</button>';
     }
     return '<article class="ed-card' + (main ? " is-main" : "") + (isCar ? " is-carreira" : "") + '" id="ed-' + ed.id + '">' +
-      '<div class="ed-card-top"><span class="ed-sigla">' + esc(isCar ? "CARREIRA" : ed.sigla) + "</span>" + action + "</div>" +
+      '<div class="ed-card-top"><span class="ed-sigla">' + esc(isCar ? kw.toUpperCase() : ed.sigla) + "</span>" + action + "</div>" +
       "<h2>" + esc(ed.titulo) + "</h2>" +
       '<p class="ed-meta">' + (isCar ? esc(ed.orgao) + "<br>" + esc(ed.cargo.replace("união dos editais: ", "Editais: "))
                                    : esc(ed.cargo) + " · " + esc(ed.orgao) + "<br>" + esc(ed.edital)) + "</p>" +
@@ -100,17 +109,21 @@
     var top;
     if (cur) {
       var curCar = cur.tipo === "carreira";
-      top = '<div class="ed-current"><p><span class="edital-kicker">' + (curCar ? "Carreira principal" : "Edital principal") + "</span>" +
+      var curKw = curCar ? (cur.secao === "exame" ? "exame" : "carreira") : "edital";
+      top = '<div class="ed-current"><p><span class="edital-kicker">' + (curKw.charAt(0).toUpperCase() + curKw.slice(1)) + " principal</span>" +
         (curCar ? "<strong>" + esc(cur.titulo) + "</strong> — " + esc(cur.cargo)
                 : "<strong>" + esc(cur.sigla) + "</strong> — " + esc(cur.titulo) + " · " + esc(cur.cargo)) + "</p>" +
         '<button type="button" class="edital-btn" id="ed-change" aria-expanded="' + (changing ? "true" : "false") + '">' +
-        (changing ? "Cancelar" : "Alterar " + (curCar ? "carreira" : "edital") + " principal") + "</button></div>";
+        (changing ? "Cancelar" : "Alterar " + curKw + " principal") + "</button></div>";
     } else {
       top = '<div class="ed-none">🎯 Você ainda não escolheu um edital ou carreira. Escolha o do seu concurso (ou a carreira inteira): o Diário de Leis passa a mostrar só as leis dele, e a escolha fica salva no seu progresso.</div>';
     }
     // o principal vem primeiro dentro da sua seção
+    function groupOf(e) {
+      return (e.tipo || "edital") === "carreira" ? (e.secao === "exame" ? "exame" : "carreira") : "edital";
+    }
     function section(tipo, titulo, sub) {
-      var items = list.filter(function (e) { return (e.tipo || "edital") === tipo; });
+      var items = list.filter(function (e) { return groupOf(e) === tipo; });
       items.sort(function (a, b) {
         return (b.id === (cur && cur.id) ? 1 : 0) - (a.id === (cur && cur.id) ? 1 : 0);
       });
@@ -121,6 +134,7 @@
     }
     root.innerHTML = top +
       section("carreira", "Por carreira", "Junta o conteúdo de todos os editais do mesmo tipo de cargo.") +
+      section("exame", "Exames nacionais", "Cada exame nacional tem o seu próprio conteúdo, separado das carreiras.") +
       section("edital", "Por edital", "O conteúdo programático de um concurso específico.") +
       '<p class="ed-foot">O conteúdo programático foi mapeado a partir dos editais oficiais. O número de leis é o que já existe no Diário de Leis; normas estaduais e resoluções aparecem à parte, como “fora do Diário”.</p>';
   }
@@ -151,4 +165,19 @@
     render();
     ES.bindCloud({ signIn: true });
   });
+})();
+
+/* Login com Google (conta-google.js, mesma pasta deste script) */
+(function () {
+  if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
+  if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+  var all = document.getElementsByTagName("script"), src = "";
+  for (var i = 0; i < all.length; i++) {
+    if (/editais-logic\.js/.test(all[i].src)) { src = all[i].src; break; }
+  }
+  if (!src) return;
+  var s = document.createElement("script");
+  s.id = "conta-google-js";
+  s.src = src.replace(/editais-logic\.js/, "conta-google.js");
+  document.head.appendChild(s);
 })();

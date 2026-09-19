@@ -12,7 +12,7 @@
   "use strict";
 
   var CFG = window.PREMIOS_CONFIG;
-  var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas", dec: "decisoes-lidas" };
+  var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
   var ORGS = ["stf", "stj", "tse", "cnj", "tst", "cnmp"];
@@ -85,8 +85,8 @@
     var currentYear = +today.slice(0, 4);
     var ctx = {
       today: today, todayDn: todayDn,
-      read: { inf: 0, lei: 0, sum: 0, dec: 0 },
-      total: { inf: 0, lei: 0, sum: 0, dec: 0 },
+      read: { inf: 0, lei: 0, sum: 0 },
+      total: { inf: 0, lei: 0, sum: 0 },
       points: 0,
       lag: { ouro: 0, prata: 0, bronze: 0, fita: 0 },
       onTimeByOrg: {}, infByOrg: {}, leisByMateria: {}, sumByOrg: {},
@@ -171,18 +171,7 @@
       });
     });
 
-    // ---- Decisões (Repercussão Geral & Repetitivos) ----
-    var decData = g("RG_REPETITIVOS_DATA") || [];
-    decData.forEach(function (row) {
-      var entry = readEntry((maps.dec || {})[String(row.id)]);
-      ctx.total.dec++;
-      if (!entry) return;
-      ctx.read.dec++;
-      ctx.points += CFG.pontosPorLeitura.dec || 1;
-      if (entry.lidaEm) events.push({ d: "dec", org: row.orgao, dn: dayNum(entry.lidaEm) });
-    });
-
-    ctx.totalRead = ctx.read.inf + ctx.read.lei + ctx.read.sum + ctx.read.dec;
+    ctx.totalRead = ctx.read.inf + ctx.read.lei + ctx.read.sum;
 
     // ---- Semanas de publicação (informativos de todos os tribunais) ----
     var pubWeeks = {};
@@ -217,11 +206,11 @@
     var perDay = {}, perWeek = {}, mdSet = {}, wdCount = {};
     var sexta13 = false, bissexto = false;
     events.forEach(function (e) {
-      var d = perDay[e.dn] || (perDay[e.dn] = { inf: 0, lei: 0, sum: 0, dec: 0, total: 0, orgs: {} });
+      var d = perDay[e.dn] || (perDay[e.dn] = { inf: 0, lei: 0, sum: 0, total: 0, orgs: {} });
       d[e.d]++; d.total++;
       if (e.d === "inf") d.orgs[e.org] = true;
       var wk = weekIdx(e.dn);
-      var w = perWeek[wk] || (perWeek[wk] = { inf: 0, lei: 0, sum: 0, dec: 0, total: 0, wds: {} });
+      var w = perWeek[wk] || (perWeek[wk] = { inf: 0, lei: 0, sum: 0, total: 0, wds: {} });
       w[e.d]++; w.total++;
       var wd = weekdayOf(e.dn);
       w.wds[wd] = true;
@@ -582,14 +571,61 @@
     var maps = {
       inf: remote.inf || load(KEYS.inf),
       lei: remote.lei || load(KEYS.lei),
-      sum: remote.sum || load(KEYS.sum),
-      dec: remote.dec || load(KEYS.dec)
+      sum: remote.sum || load(KEYS.sum)
     };
     state.data = computeAll(maps, todayIso());
+    guardarConquistas();
+  }
+
+  /* ---- Prêmios permanentes ----------------------------------------------
+     Um prêmio conquistado nunca se perde: guardamos {id: "AAAA-MM-DD"} neste
+     navegador (premios-conquistados) e na conta (progress-premios/<uid>,
+     campo "conquistados"). Se depois a leitura for desmarcada e o prêmio
+     deixar de ser calculado, ele continua aparecendo como conquistado. */
+  var CONQ_KEY = "premios-conquistados";
+  function readConq() {
+    var out = load(CONQ_KEY);
+    var rc = state.remote && state.remote.conq;
+    if (rc) Object.keys(rc).forEach(function (id) {
+      if (!out[id] || String(rc[id]) < String(out[id])) out[id] = rc[id];
+    });
+    return out;
+  }
+  function guardarConquistas() {
+    var conq = readConq(), added = {}, hasNew = false, today = todayIso();
+    var data = state.data;
+    data.awards.forEach(function (a) {
+      if (a.done && !conq[a.id]) { conq[a.id] = today; added[a.id] = today; hasNew = true; }
+      else if (!a.done && conq[a.id]) {
+        a.done = true; a.kept = true; a.value = a.target; a.pct = 1;
+      }
+    });
+    var pts = 0;
+    data.awards.forEach(function (a) { if (a.done) pts += a.pontos; });
+    data.ctx.awardPoints = pts;
+    data.ctx.score = data.ctx.readPoints + pts;
+    try { localStorage.setItem(CONQ_KEY, JSON.stringify(conq)); } catch (e) {}
+    state.conq = conq;
+    // sobe para a conta o que a conta ainda não tem
+    var rc = (state.remote && state.remote.conq) || {}, toPush = {}, any = false;
+    Object.keys(conq).forEach(function (id) { if (!rc[id]) { toPush[id] = conq[id]; any = true; } });
+    if (any) pushConq(toPush);
+  }
+  function pushConq(obj) {
+    var r = state.remote;
+    if (!r || !r.user) return;
+    try {
+      firebase.firestore().doc(PATHS.premios + r.user.uid)
+        .set({ conquistados: obj, updatedAt: new Date().toISOString() }, { merge: true })
+        .then(function () {
+          r.conq = r.conq || {};
+          Object.keys(obj).forEach(function (id) { r.conq[id] = obj[id]; });
+        }).catch(function () {});
+    } catch (e) {}
   }
 
   /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
-  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", dec: "progress-decisoes/", premios: "progress-premios/" };
+  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/" };
 
   function loadRemote() {
     return new Promise(function (resolve) {
@@ -615,7 +651,7 @@
             return db.doc(PATHS[k] + user.uid).get().then(function (snap) {
               if (!snap.exists) return;
               var d = snap.data() || {};
-              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; }
+              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; if (d.conquistados && typeof d.conquistados === "object") out.conq = d.conquistados; }
               else if (d.map) out.maps[k] = d.map;
             }).catch(function (err) { out.errors[k] = (err && err.code) || "erro"; });
           })).then(function () { fin(out); });
@@ -629,7 +665,7 @@
     if (!r || !r.user) return;
     try {
       firebase.firestore().doc(PATHS.premios + r.user.uid)
-        .set({ vistos: ids, updatedAt: new Date().toISOString() }).catch(function () {});
+        .set({ vistos: ids, updatedAt: new Date().toISOString() }, { merge: true }).catch(function () {});
     } catch (e) {}
   }
 
@@ -663,7 +699,7 @@
         "<p>" + (locked ? "Só aparece quando for conquistado. Dica: fique de olho no calendário." : esc(a.desc)) + "</p>" +
         (locked ? "" :
           '<div class="pz-bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + a.target + '" aria-valuenow="' + a.value + '"><i style="width:' + pct + '%"></i></div>' +
-          '<span class="pz-count">' + (a.done ? "Conquistado" : a.value.toLocaleString("pt-BR") + " / " + a.target.toLocaleString("pt-BR")) + "</span>") +
+          '<span class="pz-count">' + (a.done ? (a.kept ? "Conquistado \u00b7 guardado" : "Conquistado") : a.value.toLocaleString("pt-BR") + " / " + a.target.toLocaleString("pt-BR")) + "</span>") +
       "</div>" +
       '<span class="pz-tier" title="' + tier.label + " · " + a.pontos + ' pontos">' + tier.medalha + " " + a.pontos + "</span>" +
     "</article>";
@@ -829,7 +865,6 @@
     if (r.errors.inf) falhas.push("Informativos");
     if (r.errors.lei) falhas.push("Leis");
     if (r.errors.sum) falhas.push("Súmulas");
-    if (r.errors.dec) falhas.push("Decisões");
     if (falhas.length) {
       msg += " Não foi possível ler da nuvem: " + falhas.join(", ") + " (usando o que está neste navegador).";
     } else if (!r.maps.sum && (state.data.ctx.read.sum > 0)) {
@@ -867,4 +902,19 @@
     trackNovos();
     render();
   });
+})();
+
+/* Login com Google (conta-google.js, mesma pasta deste script) */
+(function () {
+  if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
+  if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+  var all = document.getElementsByTagName("script"), src = "";
+  for (var i = 0; i < all.length; i++) {
+    if (/premios-logic\.js/.test(all[i].src)) { src = all[i].src; break; }
+  }
+  if (!src) return;
+  var s = document.createElement("script");
+  s.id = "conta-google-js";
+  s.src = src.replace(/premios-logic\.js/, "conta-google.js");
+  document.head.appendChild(s);
 })();

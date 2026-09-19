@@ -139,8 +139,13 @@
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) subscribe();
     });
-    firebase.auth().signInAnonymously().catch(function () {
-      showEmpty("Não foi possível conectar agora. Recarregue a página em instantes.");
+    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
+      offAnon();
+      if (!u) {
+        firebase.auth().signInAnonymously().catch(function () {
+          showEmpty("Não foi possível conectar agora. Recarregue a página em instantes.");
+        });
+      }
     });
   } else {
     showEmpty("Não foi possível conectar agora. Recarregue a página em instantes.");
