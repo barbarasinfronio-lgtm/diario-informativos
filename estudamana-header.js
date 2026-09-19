@@ -9,7 +9,7 @@
  * Como usar: uma única vez, no tema do Blogger (Tema > Editar HTML, antes
  * de </body>):
  *   <script src=".../estudamana-header.js"></script>
- * O cabeçalho aparece sozinho só nas páginas de estudo (as que têm o
+ * O cabeçalho aparece sozinho na página inicial e nas páginas de estudo (as que têm o
  * bloco ".page" com "header.masthead" dos Diários, o "header.top" do RG ou um
  * <div id="estudamana-header">) e se encaixa no topo do conteúdo. Nas
  * demais páginas do site (inicial, posts) ele não faz nada. O visual dele fica
@@ -160,7 +160,7 @@
 
   // Onde encaixar: 1) um <div id="estudamana-header"> se a página tiver;
   // 2) o começo do ".page" (Diários, Ranking, Meus Grupos);
-  // 3) antes do "header.top" (RG e Repetitivos).
+  // 3) antes do "header.top" (RG e Repetitivos); 4) na página inicial.
   function mount(nav) {
     var old = document.querySelector("[data-em-header]");
     if (old) {
@@ -183,8 +183,14 @@
     } else if (top && top.parentNode) {
       nav.classList.add("em-header--wide");
       top.parentNode.insertBefore(nav, top);
+    } else if (normPath(location.pathname) === "/" && document.getElementById("Blog1")) {
+      // Página inicial do Blogger (sem postagens): o menu vira a navegação
+      // da home, dentro da área de conteúdo do tema.
+      var blog = document.getElementById("Blog1");
+      nav.classList.add("em-header--reading");
+      blog.insertBefore(nav, blog.firstChild);
     }
-    // Sem nenhum desses três encaixes, a página não é uma das páginas de
+    // Sem nenhum desses encaixes, a página não é uma das páginas de
     // estudo (ex.: página inicial ou posts do blog) e o menu não aparece.
     // É isso que permite colocar este script uma única vez no tema.
   }
