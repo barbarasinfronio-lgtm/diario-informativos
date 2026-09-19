@@ -562,26 +562,81 @@
   }
   var MEDAL_ICON = { ouro: "🥇", prata: "🥈", bronze: "🥉", fita: "🎖️" };
 
-  var state = { tab: "resumo", filter: "todos", data: null, novos: {}, firstVisit: false };
+  var state = { tab: "resumo", filter: "todos", data: null, novos: {}, firstVisit: false, remote: null, sync: "loading" };
 
+  // Para cada Diário: se a conta na nuvem tem as leituras, usa a nuvem;
+  // senão, usa o que estiver guardado neste navegador.
   function refresh() {
-    var maps = { inf: load(KEYS.inf), lei: load(KEYS.lei), sum: load(KEYS.sum) };
+    var remote = state.remote && state.remote.maps ? state.remote.maps : {};
+    var maps = {
+      inf: remote.inf || load(KEYS.inf),
+      lei: remote.lei || load(KEYS.lei),
+      sum: remote.sum || load(KEYS.sum)
+    };
     state.data = computeAll(maps, todayIso());
   }
 
-  // "Novos": prêmios conquistados desde a última visita a esta página.
+  /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
+  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/" };
+
+  function loadRemote() {
+    return new Promise(function (resolve) {
+      if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) { resolve(null); return; }
+      var finished = false, started = false, askedAnon = false;
+      function fin(v) { if (!finished) { finished = true; resolve(v); } }
+      setTimeout(function () { fin(null); }, 7000);
+      try {
+        if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+        var auth = firebase.auth();
+        auth.onAuthStateChanged(function (user) {
+          if (!user) {
+            // Só cria login anônimo se não houver ninguém logado (não troca
+            // uma conta já vinculada por outra).
+            if (!askedAnon) { askedAnon = true; auth.signInAnonymously().catch(function () { fin(null); }); }
+            return;
+          }
+          if (started) return;
+          started = true;
+          var db = firebase.firestore();
+          var out = { user: user, maps: {}, errors: {}, seen: null };
+          Promise.all(Object.keys(PATHS).map(function (k) {
+            return db.doc(PATHS[k] + user.uid).get().then(function (snap) {
+              if (!snap.exists) return;
+              var d = snap.data() || {};
+              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; }
+              else if (d.map) out.maps[k] = d.map;
+            }).catch(function (err) { out.errors[k] = (err && err.code) || "erro"; });
+          })).then(function () { fin(out); });
+        });
+      } catch (e) { fin(null); }
+    });
+  }
+
+  function pushSeen(ids) {
+    var r = state.remote;
+    if (!r || !r.user) return;
+    try {
+      firebase.firestore().doc(PATHS.premios + r.user.uid)
+        .set({ vistos: ids, updatedAt: new Date().toISOString() }).catch(function () {});
+    } catch (e) {}
+  }
+
+  // "Novos": prêmios conquistados desde a última visita a esta página
+  // (união do que este navegador e a sua conta já viram).
   function trackNovos() {
-    var seen = null;
-    try { var raw = localStorage.getItem(SEEN_KEY); seen = raw ? JSON.parse(raw) : null; } catch (e) {}
+    var localSeen = null;
+    try { var raw = localStorage.getItem(SEEN_KEY); localSeen = raw ? JSON.parse(raw) : null; } catch (e) {}
+    var remoteSeen = state.remote ? state.remote.seen : null;
     var doneIds = state.data.awards.filter(function (a) { return a.done; }).map(function (a) { return a.id; });
     state.novos = {};
-    state.firstVisit = !seen;
-    if (seen) {
+    state.firstVisit = !localSeen && !remoteSeen;
+    if (!state.firstVisit) {
       var set = {};
-      seen.forEach(function (id) { set[id] = true; });
+      (localSeen || []).concat(remoteSeen || []).forEach(function (id) { set[id] = true; });
       doneIds.forEach(function (id) { if (!set[id]) state.novos[id] = true; });
     }
     try { localStorage.setItem(SEEN_KEY, JSON.stringify(doneIds)); } catch (e) {}
+    pushSeen(doneIds);
   }
 
   function cardHtml(a) {
@@ -748,6 +803,28 @@
     return html;
   }
 
+  function syncNote() {
+    var r = state.remote;
+    if (state.sync === "loading") return "☁️ Sincronizando com a sua conta…";
+    if (!r) {
+      return "Mostrando as leituras guardadas neste navegador. Para ver as leituras de outros aparelhos, abra um dos Diários e vincule seu e-mail.";
+    }
+    var msg = "☁️ Prêmios calculados com as leituras da sua conta.";
+    if (r.user && r.user.isAnonymous) {
+      msg += " Atenção: sua conta ainda não tem e-mail vinculado, então outros aparelhos não enxergam este progresso. Vincule o e-mail em um dos Diários.";
+    }
+    var falhas = [];
+    if (r.errors.inf) falhas.push("Informativos");
+    if (r.errors.lei) falhas.push("Leis");
+    if (r.errors.sum) falhas.push("Súmulas");
+    if (falhas.length) {
+      msg += " Não foi possível ler da nuvem: " + falhas.join(", ") + " (usando o que está neste navegador).";
+    } else if (!r.maps.sum && (state.data.ctx.read.sum > 0)) {
+      msg += " Súmulas: usando as leituras deste navegador.";
+    }
+    return msg;
+  }
+
   function render() {
     var html = renderBanner() + renderTabs();
     if (state.tab === "resumo") {
@@ -755,8 +832,7 @@
     } else {
       html += renderList();
     }
-    html += '<p class="pz-foot">Os prêmios são calculados a partir das leituras marcadas nos Diários, guardadas neste navegador. ' +
-      "Se você leu em outro aparelho, abra os Diários aqui para sincronizar antes de conferir.</p>";
+    html += '<p class="pz-foot">' + syncNote() + "</p>";
     root.innerHTML = html;
   }
 
@@ -767,7 +843,15 @@
     else if (t.dataset.filter) { state.filter = t.dataset.filter; render(); }
   });
 
+  // 1) pinta na hora com o que este navegador já tem;
+  // 2) quando a nuvem responde, recalcula e mostra os prêmios novos.
   refresh();
-  trackNovos();
   render();
+  loadRemote().then(function (remote) {
+    state.remote = remote;
+    state.sync = "done";
+    refresh();
+    trackNovos();
+    render();
+  });
 })();
