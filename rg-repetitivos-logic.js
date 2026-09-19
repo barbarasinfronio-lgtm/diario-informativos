@@ -2,6 +2,16 @@
   var DATA = RG_REPETITIVOS_DATA;
   var state = { q:'', org:'all', risk:'all', area:null };
 
+  var LOCAL_KEY = 'rg-repetitivos-lidos';
+  function readLocal(){
+    try { var raw = localStorage.getItem(LOCAL_KEY); return raw ? JSON.parse(raw) : {}; }
+    catch(e){ return {}; }
+  }
+  function writeLocal(map){
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(map)); } catch(e){}
+  }
+  var lidos = readLocal();
+
   var areas = [...new Set(DATA.map(d=>d.area))].sort((a,b)=>{
     var ca = DATA.filter(d=>d.area===a).length, cb = DATA.filter(d=>d.area===b).length;
     return cb-ca;
@@ -85,10 +95,14 @@
     document.getElementById('empty').hidden = list.length>0;
 
     list.forEach(function(d){
+      var isRead = !!lidos[d.id];
       var card = document.createElement('div');
-      card.className = 'card';
+      card.className = 'card' + (isRead ? ' is-read' : '');
       card.innerHTML =
         '<div class="top-row">' +
+          '<label class="read-check" title="Marcar como lido">' +
+            '<input type="checkbox" class="read-checkbox"' + (isRead ? ' checked' : '') + '>' +
+          '</label>' +
           '<span class="tag-org ' + d.orgao + '">' + d.orgao + '</span>' +
           '<span class="badge risk-' + d.risco + '">Risco ' + d.risco + '</span>' +
           (d.tema ? '<span class="tag-tema">Tema ' + escapeHtml(d.tema) + '</span>' : '') +
@@ -98,6 +112,16 @@
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
         '<div class="destaque">' + escapeHtml(d.destaque||d.tese||'') + '</div>' +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
+
+      var checkbox = card.querySelector('.read-checkbox');
+      checkbox.addEventListener('click', function(e){ e.stopPropagation(); });
+      checkbox.addEventListener('change', function(){
+        if(checkbox.checked) lidos[d.id] = true; else delete lidos[d.id];
+        writeLocal(lidos);
+        card.classList.toggle('is-read', checkbox.checked);
+        renderStats();
+      });
+
       card.addEventListener('click', function(){ openModal(d); });
       grid.appendChild(card);
     });
@@ -142,9 +166,11 @@
     var stj = DATA.filter(d=>d.orgao==='STJ').length;
     var alta = DATA.filter(d=>d.risco==='Alta').length;
     var canc = DATA.filter(d=>d.status==='cancelado_superado').length;
+    var lidasCount = Object.keys(lidos).length;
     var el = document.getElementById('stats');
     el.innerHTML =
       '<div class="stat"><b>' + DATA.length + '</b><span>Teses no total</span></div>' +
+      '<div class="stat" style="color:var(--low-fg)"><b>' + lidasCount + '</b><span>Lidas</span></div>' +
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alta</span></div>' +

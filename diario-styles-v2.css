@@ -11,58 +11,77 @@
      para esse mesmo elemento. */
   [hidden] { display: none !important; }
 
+  /* Paleta e tipografia alinhadas ao Dossiê de Repercussão Geral &
+     Repetitivos: papel quente, navy de destaque, Source Serif 4 nos
+     títulos, IBM Plex Sans/Mono no resto (já usados aqui). */
   :root {
-    --ground: #eceeea;
+    --ground: #f6f3ec;
     --surface: #ffffff;
-    --surface-line: #dcdfd8;
-    --ink: #1c2233;
-    --ink-soft: #5b6376;
-    --ink-faint: #8a91a0;
-    --accent: #33418c;
-    --accent-soft: #e3e6f4;
-    --accent-ink: #ffffff;
-    --gold: #8f6f28;
-    --gold-soft: #f2e9d3;
-    --done: #5f7350;
-    --done-soft: #e6ebe0;
-    --focus: #33418c;
-    --shadow: 0 1px 2px rgba(28, 34, 51, 0.06);
+    --surface-2: #efeadd;
+    --surface-line: #e2dcca;
+    --ink: #1c2130;
+    --ink-soft: #4a5064;
+    --ink-faint: #767d8f;
+    --accent: #1f3a5f;
+    --accent-soft: #dde7f2;
+    --accent-ink: #eef3f9;
+    --gold: #8a5a12;
+    --gold-soft: #fbf0dc;
+    --silver: #5b6272;
+    --silver-soft: #eceef3;
+    --bronze: #8a4a2f;
+    --bronze-soft: #f5e6db;
+    --done: #2c6b3f;
+    --done-soft: #e4f0e3;
+    --focus: #1f3a5f;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(28, 33, 48, 0.06), 0 6px 18px -10px rgba(28, 33, 48, 0.18);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ground: #12151c;
-      --surface: #1a1e28;
-      --surface-line: #2b2f3b;
-      --ink: #e7e8ea;
-      --ink-soft: #9aa1b3;
-      --ink-faint: #6b7284;
-      --accent: #96a6f2;
-      --accent-soft: #262c47;
-      --accent-ink: #12151c;
-      --gold: #d4ac5f;
-      --gold-soft: #332a17;
-      --done: #93b481;
-      --done-soft: #212a1c;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --ground: #15171f;
+      --surface: #1c1f2a;
+      --surface-2: #232734;
+      --surface-line: #323748;
+      --ink: #eceef3;
+      --ink-soft: #c3c8d6;
+      --ink-faint: #8b91a3;
+      --accent: #7fa6d9;
+      --accent-soft: #243248;
+      --accent-ink: #0e1622;
+      --gold: #eec98a;
+      --gold-soft: #3a2f16;
+      --silver: #c3c8d6;
+      --silver-soft: #2a2e3a;
+      --bronze: #e0a980;
+      --bronze-soft: #3a2818;
+      --done: #9fd6ac;
+      --done-soft: #1b3324;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
     }
   }
 
   :root[data-theme="dark"] {
-    --ground: #12151c;
-    --surface: #1a1e28;
-    --surface-line: #2b2f3b;
-    --ink: #e7e8ea;
-    --ink-soft: #9aa1b3;
-    --ink-faint: #6b7284;
-    --accent: #96a6f2;
-    --accent-soft: #262c47;
-    --accent-ink: #12151c;
-    --gold: #d4ac5f;
-    --gold-soft: #332a17;
-    --done: #93b481;
-    --done-soft: #212a1c;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --ground: #15171f;
+    --surface: #1c1f2a;
+    --surface-2: #232734;
+    --surface-line: #323748;
+    --ink: #eceef3;
+    --ink-soft: #c3c8d6;
+    --ink-faint: #8b91a3;
+    --accent: #7fa6d9;
+    --accent-soft: #243248;
+    --accent-ink: #0e1622;
+    --gold: #eec98a;
+    --gold-soft: #3a2f16;
+    --silver: #c3c8d6;
+    --silver-soft: #2a2e3a;
+    --bronze: #e0a980;
+    --bronze-soft: #3a2818;
+    --done: #9fd6ac;
+    --done-soft: #1b3324;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   }
 
   * { box-sizing: border-box; }
@@ -121,7 +140,7 @@
   }
 
   h1 {
-    font-family: "IBM Plex Serif", Georgia, serif;
+    font-family: "Source Serif 4", Georgia, serif;
     font-weight: 700;
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     line-height: 1.15;
@@ -148,6 +167,11 @@
     color: var(--ink-soft);
     margin-bottom: 0.5rem;
     font-variant-numeric: tabular-nums;
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 0.55rem 0.9rem;
   }
 
   .stat-line strong {
@@ -202,12 +226,14 @@
     grid-template-columns: 2rem 1fr auto auto auto;
     align-items: center;
     gap: 0.9rem;
-    padding: 0.7rem 0.4rem;
-    border-bottom: 1px solid var(--surface-line);
-    border-radius: 6px;
+    padding: 0.7rem 0.8rem;
+    margin-bottom: 0.4rem;
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: 10px;
   }
 
-  .row:hover { background: var(--surface); }
+  .row:hover { box-shadow: var(--shadow); }
 
   .check-wrap {
     display: flex;
@@ -253,7 +279,7 @@
   }
 
   .edition .num {
-    font-family: "IBM Plex Serif", Georgia, serif;
+    font-family: "Source Serif 4", Georgia, serif;
     font-weight: 600;
     font-size: 0.98rem;
     color: var(--ink);
@@ -364,9 +390,10 @@
   .avatar-panel {
     margin-top: 0.6rem;
     padding: 0.85rem 0.9rem;
-    border-radius: 8px;
+    border-radius: var(--radius);
     border: 1px solid var(--surface-line);
     background: var(--surface);
+    box-shadow: var(--shadow);
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem 1.2rem;
@@ -662,7 +689,7 @@
   }
 
   .sumula-edition .num {
-    font-family: "IBM Plex Serif", Georgia, serif;
+    font-family: "Source Serif 4", Georgia, serif;
     font-weight: 600;
     font-size: 0.95rem;
     color: var(--ink);
@@ -691,3 +718,289 @@
     opacity: 0.4;
     cursor: default;
   }
+
+  /* ---- Meus prêmios: resumo pessoal, sem nomes de terceiros ------------ */
+  .my-prizes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0.9rem 0 0.2rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid var(--surface-line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .my-prizes-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .prize {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: var(--surface-line);
+  }
+
+  .prize-medal {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .prize.gold {
+    background: var(--gold-soft);
+    color: var(--gold);
+  }
+
+  .prize.silver {
+    background: var(--silver-soft);
+    color: var(--silver);
+  }
+
+  .prize.bronze {
+    background: var(--bronze-soft);
+    color: var(--bronze);
+  }
+
+  .my-prizes-link {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .my-prizes-link:hover { text-decoration: underline; }
+
+  /* ---- Mini-pódios: reservado para uso futuro (não usado nos diários) -- */
+  .podiums {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.9rem 0 0.2rem;
+  }
+
+  .mini-podium {
+    border: 1px solid var(--surface-line);
+    border-radius: 10px;
+    background: var(--surface);
+    padding: 0.55rem 0.7rem 0.65rem;
+    box-shadow: var(--shadow);
+  }
+
+  .mini-podium-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .mini-podium-name {
+    font-weight: 700;
+    font-size: 0.76rem;
+    color: var(--ink);
+  }
+
+  .mini-podium-link {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .mini-podium-link:hover { text-decoration: underline; }
+
+  .mini-podium-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mini-slot {
+    flex: 1 1 0;
+    min-width: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.4rem 0.3rem;
+    border-radius: 6px;
+    background: var(--surface-line);
+    text-align: center;
+  }
+
+  .mini-slot:first-child { background: var(--gold-soft); }
+
+  .mini-medal { font-size: 1.1rem; line-height: 1; }
+  .mini-avatar { font-size: 1rem; line-height: 1; }
+
+  .mini-name {
+    font-weight: 600;
+    font-size: 0.68rem;
+    color: var(--ink);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mini-count {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.65rem;
+    color: var(--ink-soft);
+  }
+
+  .mini-podium-empty {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    margin: 0.2rem 0 0;
+  }
+
+  /* ---- "Meus Grupos de Estudo" (página de gestão) ----------------------- */
+  .group-card {
+    border: 1px solid var(--surface-line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.9rem;
+    box-shadow: var(--shadow);
+  }
+
+  .group-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .group-card-title {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .group-card-code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  .group-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+  }
+
+  .group-metric-block { margin-top: 0.7rem; }
+
+  .group-metric-label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    margin: 0 0 0.35rem;
+  }
+
+  .group-me {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .groups-empty {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  /* ---- Página de ranking completo -------------------------------------- */
+  .rank-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    box-shadow: var(--shadow);
+  }
+
+  .rank-item.rank-top3 {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+  }
+
+  .rank-pos {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    width: 1.8rem;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .rank-item.rank-top3 .rank-pos { font-size: 1.15rem; }
+
+  .rank-avatar { font-size: 1.15rem; flex-shrink: 0; }
+
+  .rank-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--ink);
+    min-width: 6rem;
+    flex-shrink: 0;
+  }
+
+  .rank-emojis {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    min-width: 0;
+  }
+
+  .rank-count {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+
+  .rank-empty {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  .rank-empty a { color: var(--accent); }

@@ -257,33 +257,23 @@
     }
   }
 
-  // ---- Estudo coletivo -------------------------------------------------
-  // Grupo próprio desta página (coleção "groups"), independente do
-  // grupo do Diário dos Informativos — mesmo padrão, código separado.
-  var GROUP_KEY = "informativos-grupo"; // mesma chave do Diário dos Informativos — grupo compartilhado entre as duas páginas (mesmo domínio)
-  function readGroupPref() {
-    try {
-      var raw = localStorage.getItem(GROUP_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) { return null; }
-  }
-  function writeGroupPref(pref) {
-    try {
-      if (pref) localStorage.setItem(GROUP_KEY, JSON.stringify(pref));
-      else localStorage.removeItem(GROUP_KEY);
-    } catch (e) {}
-  }
-  var groupPref = readGroupPref();
-  var groupMembersUnsub = null;
+  // ---- Estudo coletivo (multi-grupo) -----------------------------------
+  // O MESMO código de grupo vale em todos os diários (Informativos, Leis,
+  // Súmulas) — aqui só mantemos o campo "lidasLeis" deste diário
+  // atualizado no documento do membro, em cada grupo que a pessoa
+  // participa, e mostramos um resumo PESSOAL (nunca os nomes dos outros
+  // membros): em quantos desses grupos a pessoa está em 1º/2º/3º lugar.
+  // A lista completa, grupo a grupo, com todo mundo, fica só em "Meus
+  // Grupos de Estudo" — e lá, cada pessoa só vê os grupos dela mesma.
+  // Criar, entrar ou sair de um grupo também acontece só lá
+  // (grupos-shared.js cuida do armazenamento local e da comunicação com
+  // o Firebase).
+  var GS = window.GruposShared;
+  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos-de-estudo.html";
+  var myPrizesEl = document.getElementById("my-prizes");
+  var groupUnsubs = {};      // code -> função de cancelar a inscrição
+  var groupSnapshots = {};   // code -> último snapshot de members
   var groupSyncTimer = null;
-  var groupCreatorId = null;
-
-  (function ensureJoinedAt() {
-    if (groupPref && !groupPref.joinedAt) {
-      groupPref.joinedAt = new Date().toISOString();
-      writeGroupPref(groupPref);
-    }
-  })();
 
   function computeTotals() {
     var lidas = 0;
@@ -293,222 +283,44 @@
     return { lidas: lidas };
   }
 
-  function genGroupCode() {
-    var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    var out = "";
-    for (var i = 0; i < 6; i++) out += chars[Math.floor(Math.random() * chars.length)];
-    return out;
-  }
-
-  var groupToggleBtn = document.getElementById("group-toggle");
-  var groupPanel = document.getElementById("group-panel");
-  var groupJoinBlock = document.getElementById("group-join-block");
-  var groupActiveBlock = document.getElementById("group-active-block");
-  var groupNameInput = document.getElementById("group-name-input");
-  var groupCodeInput = document.getElementById("group-code-input");
-  var groupCreateBtn = document.getElementById("group-create-btn");
-  var groupJoinBtn = document.getElementById("group-join-btn");
-  var groupErrorEl = document.getElementById("group-error");
-  var groupCodeDisplay = document.getElementById("group-code-display");
-  var groupCopyBtn = document.getElementById("group-copy-btn");
-  var groupLeaveBtn = document.getElementById("group-leave-btn");
-  var groupLeaderboard = document.getElementById("group-leaderboard");
-
-  function showGroupError(msg) {
-    if (!groupErrorEl) return;
-    groupErrorEl.textContent = msg;
-    groupErrorEl.className = "group-note is-error";
-    groupErrorEl.hidden = !msg;
-  }
-
-  function renderGroupUI() {
-    var active = !!groupPref;
-    if (groupJoinBlock) groupJoinBlock.hidden = active;
-    if (groupActiveBlock) groupActiveBlock.hidden = !active;
-    if (active && groupCodeDisplay) groupCodeDisplay.textContent = groupPref.code;
-  }
-
-  function memberDocRef(code) {
-    return dbCap ? dbCap.doc("groups/" + code + "/members/" + viewerId) : null;
+  function renderMyPrizes() {
+    if (!myPrizesEl || !GS) return;
+    var codes = GS.readGroups().map(function (g) { return g.code; });
+    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidasLeis", viewerId);
+    GS.renderMyPrizes(myPrizesEl, tally, { hubHref: HUB_URL });
   }
 
   function scheduleGroupSync() {
-    if (!groupPref) return;
     if (groupSyncTimer) clearTimeout(groupSyncTimer);
-    groupSyncTimer = setTimeout(updateMyMemberDoc, 700);
+    groupSyncTimer = setTimeout(pushProgressToGroups, 700);
   }
 
-  function updateMyMemberDoc() {
-    if (!dbCap || !groupPref) return;
+  function pushProgressToGroups() {
+    if (!GS || !viewerId) return;
     var totals = computeTotals();
-    var ref = memberDocRef(groupPref.code);
-    if (!ref) return;
-    // merge: true — este membro pode já ter um documento com os campos do
-    // Diário dos Informativos (lidas/estrelasOuro); só atualizamos os
-    // campos próprios do Diário das Leis, sem apagar os do outro.
-    ref.set({
-      name: groupPref.name,
-      lidasLeis: totals.lidas,
-      avatar: avatarPref,
-      joinedAt: groupPref.joinedAt,
-      updatedAt: new Date().toISOString()
-    }, { merge: true }).catch(function () { /* best-effort */ });
-  }
-
-  function fetchGroupCreator(code) {
-    if (!dbCap) return;
-    dbCap.doc("groups/" + code).get().then(function (snap) {
-      if (snap.exists) {
-        var data = snap.data();
-        groupCreatorId = (data && data.createdBy) || null;
-        if (groupMembersUnsub) renderCachedLeaderboard();
-      }
-    }).catch(function () {});
-  }
-
-  var lastGroupSnap = null;
-  function renderCachedLeaderboard() {
-    if (lastGroupSnap) renderLeaderboard(lastGroupSnap);
-  }
-
-  function renderLeaderboard(snap) {
-    if (!groupLeaderboard) return;
-    lastGroupSnap = snap;
-    var members = snap.docs.map(function (d) {
-      var data = d.data() || {};
-      return {
-        id: d.id,
-        name: data.name,
-        lidas: data.lidasLeis,
-        avatar: data.avatar,
-        joinedAt: data.joinedAt || ""
-      };
-    }).filter(function (m) { return m && m.name; });
-    members.sort(function (a, b) {
-      var aCreator = a.id === groupCreatorId, bCreator = b.id === groupCreatorId;
-      if (aCreator !== bCreator) return aCreator ? -1 : 1;
-      if (a.joinedAt !== b.joinedAt) return a.joinedAt < b.joinedAt ? -1 : 1;
-      return (a.name || "").localeCompare(b.name || "");
-    });
-    var maxLidas = 0;
-    members.forEach(function (m) { if ((m.lidas || 0) > maxLidas) maxLidas = m.lidas || 0; });
-    groupLeaderboard.innerHTML = "";
-    members.forEach(function (m) {
-      var li = document.createElement("li");
-      li.className = "group-member" + (maxLidas > 0 && m.lidas === maxLidas ? " is-leader" : "");
-
-      var nameEl = document.createElement("span");
-      nameEl.className = "member-name";
-      nameEl.textContent = m.name;
-
-      var emojisEl = document.createElement("span");
-      emojisEl.className = "member-emojis";
-      var emoji = avatarEmoji(m.avatar && GENDER_BASE[m.avatar.gender] && TONE_MOD[m.avatar.tone] ? m.avatar : AVATAR_DEFAULT);
-      var count = m.lidas || 0;
-      var CAP = 40;
-      emojisEl.textContent = emoji.repeat(Math.min(count, CAP)) + (count > CAP ? " +" + (count - CAP) : "");
-
-      var countEl = document.createElement("span");
-      countEl.className = "member-count";
-      countEl.textContent = count + (count === 1 ? " lida" : " lidas");
-
-      li.appendChild(nameEl);
-      li.appendChild(emojisEl);
-      li.appendChild(countEl);
-      groupLeaderboard.appendChild(li);
+    GS.readGroups().forEach(function (g) {
+      GS.updateMember(g.code, viewerId, {
+        name: g.name,
+        lidasLeis: totals.lidas,
+        avatar: avatarPref,
+        joinedAt: g.joinedAt
+      }).catch(function () { /* melhor esforço — segue salvo localmente */ });
     });
   }
 
-  function subscribeGroup(code) {
-    if (groupMembersUnsub) { groupMembersUnsub(); groupMembersUnsub = null; }
-    if (!dbCap) return;
-    groupMembersUnsub = dbCap.collection("groups/" + code + "/members").onSnapshot(
-      renderLeaderboard,
-      function () {}
-    );
-    fetchGroupCreator(code);
+  function subscribeAllGroups() {
+    if (!GS) return;
+    GS.readGroups().forEach(function (g) {
+      if (groupUnsubs[g.code]) return; // já inscrito
+      groupUnsubs[g.code] = GS.subscribeMembers(g.code, function (snap) {
+        groupSnapshots[g.code] = snap;
+        renderMyPrizes();
+      });
+    });
   }
 
-  function createGroup() {
-    showGroupError("");
-    var name = groupNameInput ? groupNameInput.value.trim() : "";
-    if (!name) { showGroupError("Informe seu nome para criar o grupo."); return; }
-    if (!dbCap || !viewerId) { showGroupError("Ainda carregando — aguarde um instante e tente de novo."); return; }
-    var code = genGroupCode();
-    dbCap.doc("groups/" + code).set({ createdAt: new Date().toISOString(), createdBy: viewerId })
-      .then(function () {
-        groupCreatorId = viewerId;
-        groupPref = { code: code, name: name, joinedAt: new Date().toISOString() };
-        writeGroupPref(groupPref);
-        renderGroupUI();
-        subscribeGroup(code);
-        updateMyMemberDoc();
-      })
-      .catch(function () { showGroupError("Não foi possível criar o grupo agora. Tente de novo."); });
-  }
+  renderMyPrizes();
 
-  function joinGroup() {
-    showGroupError("");
-    var name = groupNameInput ? groupNameInput.value.trim() : "";
-    var code = groupCodeInput ? groupCodeInput.value.trim().toUpperCase() : "";
-    if (!name) { showGroupError("Informe seu nome para entrar no grupo."); return; }
-    if (!code) { showGroupError("Informe o código do grupo."); return; }
-    if (!dbCap || !viewerId) { showGroupError("Ainda carregando — aguarde um instante e tente de novo."); return; }
-    dbCap.doc("groups/" + code).get().then(function (snap) {
-      if (!snap.exists) { showGroupError("Código não encontrado — confira com quem te convidou."); return; }
-      var data = snap.data();
-      groupCreatorId = (data && data.createdBy) || null;
-      groupPref = { code: code, name: name, joinedAt: new Date().toISOString() };
-      writeGroupPref(groupPref);
-      renderGroupUI();
-      subscribeGroup(code);
-      updateMyMemberDoc();
-    }).catch(function () { showGroupError("Não foi possível entrar agora. Tente de novo."); });
-  }
-
-  function leaveGroup() {
-    if (groupMembersUnsub) { groupMembersUnsub(); groupMembersUnsub = null; }
-    if (dbCap && groupPref) {
-      var ref = memberDocRef(groupPref.code);
-      if (ref) ref.delete().catch(function () {});
-    }
-    groupPref = null;
-    writeGroupPref(null);
-    groupCreatorId = null;
-    lastGroupSnap = null;
-    if (groupLeaderboard) groupLeaderboard.innerHTML = "";
-    renderGroupUI();
-  }
-
-  function copyInviteLink() {
-    if (!groupPref) return;
-    var url = location.origin + location.pathname + "?grupo=" + groupPref.code;
-    var done = function () { setNote("Link copiado — envie para seu amigo."); setTimeout(function () { setNote(""); }, 2000); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(done).catch(function () { window.prompt("Copie o link do convite:", url); });
-    } else {
-      window.prompt("Copie o link do convite:", url);
-    }
-  }
-
-  // Os botões de baixo (e os de personalizar boneco / vincular e-mail, mais
-  // adiante) usam delegação de clique — ver "Delegação de cliques" perto do
-  // fim do arquivo — em vez de addEventListener direto, para não depender
-  // da ordem em que o Blogger termina de inserir cada bloco no DOM.
-
-  (function prefillInviteCode() {
-    try {
-      var params = new URLSearchParams(location.search);
-      var invited = params.get("grupo");
-      if (invited && groupCodeInput && !groupPref) {
-        groupCodeInput.value = invited.toUpperCase();
-        if (groupPanel) groupPanel.hidden = false;
-        if (groupToggleBtn) groupToggleBtn.setAttribute("aria-expanded", "true");
-      }
-    } catch (e) {}
-  })();
-
-  renderGroupUI();
 
   // Painel de personalização do boneco
   var avatarToggleBtn = document.getElementById("avatar-toggle");
@@ -622,19 +434,12 @@
 
   document.addEventListener("click", function (e) {
     var t = e.target.closest(
-      "#avatar-toggle, #group-toggle, #account-toggle, " +
-      "#group-create-btn, #group-join-btn, #group-copy-btn, #group-leave-btn, " +
-      "#account-link-btn, #account-signin-btn"
+      "#avatar-toggle, #account-toggle, #account-link-btn, #account-signin-btn"
     );
     if (!t) return;
     switch (t.id) {
       case "avatar-toggle": togglePanel(t, document.getElementById("avatar-panel")); break;
-      case "group-toggle": togglePanel(t, document.getElementById("group-panel")); break;
       case "account-toggle": togglePanel(t, document.getElementById("account-panel")); break;
-      case "group-create-btn": createGroup(); break;
-      case "group-join-btn": joinGroup(); break;
-      case "group-copy-btn": copyInviteLink(); break;
-      case "group-leave-btn": leaveGroup(); break;
       case "account-link-btn": linkEmailAccount(); break;
       case "account-signin-btn": signInWithEmail(); break;
     }
@@ -668,10 +473,8 @@
       render();
       applyingRemote = false;
     }, function () {});
-    if (groupPref) {
-      subscribeGroup(groupPref.code);
-      updateMyMemberDoc();
-    }
+    subscribeAllGroups();
+    pushProgressToGroups();
   }
 
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
