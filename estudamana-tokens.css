@@ -1,0 +1,164 @@
+/* =====================================================================
+   estudamana-tokens.css — ARQUIVO ÚNICO DE LAYOUT DO ESTUDA MANA
+   =====================================================================
+   É aqui que ficam as decisões visuais compartilhadas por TODAS as
+   páginas (Informativos, Leis, Súmulas, Meus Grupos, Ranking, RG e
+   Repetitivos). Cada página continua com o seu próprio CSS (estrutura
+   e componentes); este arquivo só define os VALORES: cores, fontes,
+   tamanhos, raios, sombras e larguras.
+
+   Como usar:
+   - Mudar a cor da fonte      -> altere --ink (e --ink-soft / --ink-faint)
+   - Mudar o tamanho da letra  -> altere --fs-scale (1 = padrão; 1.1 = 10% maior)
+   - Mudar a fonte             -> altere --font-sans / --font-serif / --font-mono
+   - Mudar a cor de destaque   -> altere --accent
+   Cada valor tem duas versões: tema claro (bloco 1) e tema escuro
+   (blocos 2 e 3, que precisam ficar iguais entre si).
+
+   Cada CSS de página carrega este arquivo pela 1ª linha (@import),
+   então NÃO é preciso mexer no HTML das páginas do Blogger.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap");
+
+/* ---------------------------------------------------------------------
+   1) TEMA CLARO + valores que não mudam entre claro/escuro
+   --------------------------------------------------------------------- */
+:root {
+  /* Tipografia — famílias */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Tipografia — tamanho. Todos os tamanhos de texto das páginas são
+     multiplicados por este fator. 1 = como está hoje. */
+  --fs-scale: 1;
+
+  /* Formas e larguras */
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(28, 33, 48, 0.06), 0 6px 18px -10px rgba(28, 33, 48, 0.18);
+  --page-width-reading: 760px;  /* Diários (coluna de leitura) */
+  --page-width-wide: 1180px;    /* RG e Repetitivos (painel largo) */
+
+  /* Cores — base */
+  --ground: #f6f3ec;
+  --surface: #ffffff;
+  --surface-2: #efeadd;
+  --surface-line: #e2dcca;
+  --ink: #1c2130;
+  --ink-soft: #4a5064;
+  --ink-faint: #767d8f;
+  --accent: #1f3a5f;
+  --accent-soft: #dde7f2;
+  --accent-ink: #eef3f9;
+  --focus: #1f3a5f;
+
+  /* Cores — pódio e progresso (Diários) */
+  --gold: #8a5a12;
+  --gold-soft: #fbf0dc;
+  --silver: #5b6272;
+  --silver-soft: #eceef3;
+  --bronze: #8a4a2f;
+  --bronze-soft: #f5e6db;
+  --done: #2c6b3f;
+  --done-soft: #e4f0e3;
+
+  /* Cores — tribunais e nível de risco (RG e Repetitivos) */
+  --stf: #1f3a5f;
+  --stj: #6b4a1f;
+  --high-fg: #8a1f1f;
+  --high-bg: #fbe6e2;
+  --high-line: #e4b8ae;
+  --med-fg: #8a5a12;
+  --med-bg: #fbf0dc;
+  --med-line: #e6cd98;
+  --low-fg: #2c6b3f;
+  --low-bg: #e4f0e3;
+  --low-line: #b8d6bc;
+
+  /* Apelidos: nomes antigos usados pelo CSS de RG e Repetitivos.
+     Não altere aqui — mude o valor original acima. */
+  --bg: var(--ground);
+  --muted: var(--ink-faint);
+  --line: var(--surface-line);
+}
+
+/* ---------------------------------------------------------------------
+   2) TEMA ESCURO automático (preferência do sistema)
+   --------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+
+    --ground: #15171f;
+    --surface: #1c1f2a;
+    --surface-2: #232734;
+    --surface-line: #323748;
+    --ink: #eceef3;
+    --ink-soft: #c3c8d6;
+    --ink-faint: #8b91a3;
+    --accent: #7fa6d9;
+    --accent-soft: #243248;
+    --accent-ink: #0e1622;
+
+    --gold: #eec98a;
+    --gold-soft: #3a2f16;
+    --silver: #c3c8d6;
+    --silver-soft: #2a2e3a;
+    --bronze: #e0a980;
+    --bronze-soft: #3a2818;
+    --done: #9fd6ac;
+    --done-soft: #1b3324;
+
+    --stf: #7fa6d9;
+    --stj: #d3a86a;
+    --high-fg: #f3a8a0;
+    --high-bg: #3a1e1e;
+    --high-line: #5c2e2c;
+    --med-fg: #eec98a;
+    --med-bg: #3a2f16;
+    --med-line: #5c4a24;
+    --low-fg: #9fd6ac;
+    --low-bg: #1b3324;
+    --low-line: #2c5138;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   3) TEMA ESCURO manual (botão de tema) — mesmos valores do bloco 2
+   --------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+
+  --ground: #15171f;
+  --surface: #1c1f2a;
+  --surface-2: #232734;
+  --surface-line: #323748;
+  --ink: #eceef3;
+  --ink-soft: #c3c8d6;
+  --ink-faint: #8b91a3;
+  --accent: #7fa6d9;
+  --accent-soft: #243248;
+  --accent-ink: #0e1622;
+
+  --gold: #eec98a;
+  --gold-soft: #3a2f16;
+  --silver: #c3c8d6;
+  --silver-soft: #2a2e3a;
+  --bronze: #e0a980;
+  --bronze-soft: #3a2818;
+  --done: #9fd6ac;
+  --done-soft: #1b3324;
+
+  --stf: #7fa6d9;
+  --stj: #d3a86a;
+  --high-fg: #f3a8a0;
+  --high-bg: #3a1e1e;
+  --high-line: #5c2e2c;
+  --med-fg: #eec98a;
+  --med-bg: #3a2f16;
+  --med-line: #5c4a24;
+  --low-fg: #9fd6ac;
+  --low-bg: #1b3324;
+  --low-line: #2c5138;
+}
