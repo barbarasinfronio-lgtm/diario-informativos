@@ -118,3 +118,9 @@
 .ed-laws li.is-read::marker { content: "✓ "; }
 .ed-note { margin: 0.5rem 0 0; font-size: calc(0.75rem * var(--fs-scale)); color: var(--ink-faint); }
 .ed-foot { margin: 1.5rem 0 0; color: var(--ink-faint); font-size: calc(0.75rem * var(--fs-scale)); }
+
+/* ---- seções da página (carreira / edital) ------------------------------ */
+.ed-section { margin: 0 0 2rem; }
+.ed-section-title { font-family: var(--font-serif); font-size: calc(1.3rem * var(--fs-scale)); margin: 0 0 0.15rem; }
+.ed-section-sub { margin: 0 0 0.9rem; color: var(--ink-faint); font-size: calc(0.82rem * var(--fs-scale)); }
+.ed-card.is-carreira .ed-sigla { background: var(--gold-soft); color: var(--gold); }

@@ -164,13 +164,26 @@
       tabsRoot.parentNode.insertBefore(bar, tabsRoot);
     }
     var ed = activeEdital();
-    var options = ES.data().map(function (e) {
-      return '<option value="' + e.id + '"' + (ed && ed.id === e.id ? " selected" : "") + ">" +
-        escapeHtml(e.sigla + " — " + e.titulo) + "</option>";
-    }).join("");
+    function optionsFor(grupo) {
+      return ES.data().filter(function (e) {
+        if (e.emBreve) return false;
+        var g = (e.tipo || "edital") === "carreira" ? (e.secao === "exame" ? "exame" : "carreira") : "edital";
+        return g === grupo;
+      }).map(function (e) {
+        return '<option value="' + e.id + '"' + (ed && ed.id === e.id ? " selected" : "") + ">" +
+          escapeHtml(grupo === "edital" ? e.sigla + " — " + e.titulo : e.titulo) + "</option>";
+      }).join("");
+    }
+    var options = '<optgroup label="Por carreira (todos os editais do cargo)">' + optionsFor("carreira") + "</optgroup>" +
+      '<optgroup label="Exames nacionais">' + optionsFor("exame") + "</optgroup>" +
+      '<optgroup label="Por edital">' + optionsFor("edital") + "</optgroup>";
+    var isCar = ed && ed.tipo === "carreira";
+    var isExame = isCar && ed.secao === "exame";
+    var kw = isExame ? "exame" : (isCar ? "carreira" : "edital");
+    var kind = kw.charAt(0).toUpperCase() + kw.slice(1);
     var picker =
       '<div class="edital-picker" id="edital-picker"' + ((ed && !editPanelOpen) ? " hidden" : "") + ">" +
-      '<label class="edital-picker-label" for="edital-select">' + (ed ? "Escolha o novo edital principal" : "Escolha o seu edital") + "</label>" +
+      '<label class="edital-picker-label" for="edital-select">' + (ed ? "Escolha o novo edital, carreira ou exame principal" : "Escolha o seu edital, carreira ou exame") + "</label>" +
       '<div class="edital-picker-row">' +
       '<select id="edital-select" class="edital-select">' + (ed ? "" : '<option value="">Selecione…</option>') + options + "</select>" +
       '<button type="button" class="edital-btn edital-btn-primary" id="edital-save">' + (ed ? "Salvar" : "Definir como principal") + "</button>" +
@@ -179,7 +192,7 @@
 
     if (!ed) {
       bar.innerHTML =
-        '<p class="edital-empty">🎯 Escolha o edital do seu concurso e o Diário passa a mostrar só as leis dele. ' +
+        '<p class="edital-empty">🎯 Escolha o seu edital — ou a carreira inteira — e o Diário passa a mostrar só as leis dele. ' +
         '<a href="' + EDITAIS_URL + '">Ver os editais</a></p>' + picker;
       return;
     }
@@ -188,15 +201,16 @@
     ORG_ORDER.forEach(function (k) { allCount += stateByOrg[k].length; });
     bar.innerHTML =
       '<div class="edital-head">' +
-      '<div class="edital-title"><span class="edital-kicker">Edital principal</span>' +
-      '<strong>' + escapeHtml(ed.sigla) + '</strong> <span>' + escapeHtml(ed.titulo) + " · " + escapeHtml(ed.cargo) + "</span></div>" +
-      '<button type="button" class="edital-btn" id="edital-change" aria-expanded="' + (editPanelOpen ? "true" : "false") + '">Alterar edital principal</button>' +
+      '<div class="edital-title"><span class="edital-kicker">' + kind + ' principal</span>' +
+      (isCar ? '<strong>' + escapeHtml(ed.titulo) + '</strong> <span>' + escapeHtml(ed.cargo) + "</span>"
+             : '<strong>' + escapeHtml(ed.sigla) + '</strong> <span>' + escapeHtml(ed.titulo) + " · " + escapeHtml(ed.cargo) + "</span>") + "</div>" +
+      '<button type="button" class="edital-btn" id="edital-change" aria-expanded="' + (editPanelOpen ? "true" : "false") + '">Alterar ' + kw + ' principal</button>' +
       "</div>" + picker +
       '<div class="edital-modes" role="group" aria-label="Quais leis mostrar">' +
-      '<button type="button" class="edital-mode' + (filterMode === "edital" ? " active" : "") + '" data-mode="edital">Leis do meu edital <span class="count">' + t.total + "</span></button>" +
+      '<button type="button" class="edital-mode' + (filterMode === "edital" ? " active" : "") + '" data-mode="edital">' + (isExame ? "Leis do meu exame" : (isCar ? "Leis da minha carreira" : "Leis do meu edital")) + ' <span class="count">' + t.total + "</span></button>" +
       '<button type="button" class="edital-mode' + (filterMode === "todas" ? " active" : "") + '" data-mode="todas">Todas as leis <span class="count">' + allCount + "</span></button>" +
       "</div>" +
-      '<p class="edital-progress">' + t.lidas + " de " + t.total + " leis do edital lidas" +
+      '<p class="edital-progress">' + t.lidas + " de " + t.total + (isExame ? " leis do exame lidas" : (isCar ? " leis da carreira lidas" : " leis do edital lidas")) +
       (ed.extras && ed.extras.length ? ' · <a href="' + EDITAIS_URL + '">' + ed.extras.length + " normas do edital fora deste índice</a>" : "") + "</p>";
   }
 
@@ -243,7 +257,9 @@
     renderTabs();
     var edNow = activeEdital();
     ledeText.textContent = (edNow && filterMode === "edital")
-      ? "Leis do conteúdo programático do edital " + edNow.sigla + " (" + edNow.titulo + "). Marque conforme for lendo."
+      ? (edNow.tipo === "carreira"
+          ? (edNow.secao === "exame" ? "Leis do conteúdo programático do exame " + edNow.titulo + ". Marque conforme for lendo." : "Leis do conteúdo programático de todos os editais da carreira " + edNow.titulo + " (" + edNow.cargo.replace("união dos editais: ", "") + "). Marque conforme for lendo.")
+          : "Leis do conteúdo programático do edital " + edNow.sigla + " (" + edNow.titulo + "). Marque conforme for lendo.")
       : "Leis citadas no conteúdo programático dos editais mapeados (magistratura, Ministério Público e advocacia pública). Marque conforme for lendo.";
     footerSource.innerHTML = 'Índice montado a partir do conteúdo programático dos editais mapeados. Os links levam ao site oficial (Planalto ou portal do respectivo estado) — se algum link estiver quebrado ou desatualizado, avise para correção.';
 

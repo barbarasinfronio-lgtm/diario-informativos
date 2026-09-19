@@ -72,21 +72,23 @@
         ed.extras.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
         '<p class="ed-note">Leis estaduais e resoluções do CNJ/CNMP: entram no Diário conforme forem incluídas.</p></div>'
       : "";
+    var isCar = ed.tipo === "carreira";
     var action = "";
-    if (main) action = '<span class="ed-tag-main">Edital principal</span>';
+    if (main) action = '<span class="ed-tag-main">' + (isCar ? "Carreira principal" : "Edital principal") + "</span>";
     var button = "";
     if (!main && chooseMode) {
-      button = '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Definir como edital principal</button>';
+      button = '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Definir como ' + (isCar ? "carreira" : "edital") + ' principal</button>';
     }
-    return '<article class="ed-card' + (main ? " is-main" : "") + '" id="ed-' + ed.id + '">' +
-      '<div class="ed-card-top"><span class="ed-sigla">' + esc(ed.sigla) + "</span>" + action + "</div>" +
+    return '<article class="ed-card' + (main ? " is-main" : "") + (isCar ? " is-carreira" : "") + '" id="ed-' + ed.id + '">' +
+      '<div class="ed-card-top"><span class="ed-sigla">' + esc(isCar ? "CARREIRA" : ed.sigla) + "</span>" + action + "</div>" +
       "<h2>" + esc(ed.titulo) + "</h2>" +
-      '<p class="ed-meta">' + esc(ed.cargo) + " · " + esc(ed.orgao) + "<br>" + esc(ed.edital) + "</p>" +
+      '<p class="ed-meta">' + (isCar ? esc(ed.orgao) + "<br>" + esc(ed.cargo.replace("união dos editais: ", "Editais: "))
+                                   : esc(ed.cargo) + " · " + esc(ed.orgao) + "<br>" + esc(ed.edital)) + "</p>" +
       '<div class="ed-stats"><span><b>' + ed.leis.length + "</b> leis no Diário</span><span><b>" + mats.length + "</b> matérias</span>" +
       "<span><b>" + p.lidas + "/" + p.total + "</b> lidas</span></div>" +
       '<div class="ed-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
       '<div class="ed-actions">' + button + '<a class="ed-link" href="' + LEIS_URL + '">Abrir o Diário de Leis</a></div>' +
-      "<details><summary>Conteúdo programático e leis</summary>" + groups + laws + extras + "</details>" +
+      "<details><summary>" + (isCar ? "Disciplinas e leis da carreira" : "Conteúdo programático e leis") + "</summary>" + groups + laws + extras + "</details>" +
       "</article>";
   }
 
@@ -97,19 +99,29 @@
     var chooseMode = !cur || changing;
     var top;
     if (cur) {
-      top = '<div class="ed-current"><p><span class="edital-kicker">Edital principal</span><strong>' + esc(cur.sigla) + "</strong> — " + esc(cur.titulo) + " · " + esc(cur.cargo) + "</p>" +
+      var curCar = cur.tipo === "carreira";
+      top = '<div class="ed-current"><p><span class="edital-kicker">' + (curCar ? "Carreira principal" : "Edital principal") + "</span>" +
+        (curCar ? "<strong>" + esc(cur.titulo) + "</strong> — " + esc(cur.cargo)
+                : "<strong>" + esc(cur.sigla) + "</strong> — " + esc(cur.titulo) + " · " + esc(cur.cargo)) + "</p>" +
         '<button type="button" class="edital-btn" id="ed-change" aria-expanded="' + (changing ? "true" : "false") + '">' +
-        (changing ? "Cancelar" : "Alterar edital principal") + "</button></div>";
+        (changing ? "Cancelar" : "Alterar " + (curCar ? "carreira" : "edital") + " principal") + "</button></div>";
     } else {
-      top = '<div class="ed-none">🎯 Você ainda não escolheu um edital. Escolha o do seu concurso: o Diário de Leis passa a mostrar só as leis dele, e a escolha fica salva no seu progresso.</div>';
+      top = '<div class="ed-none">🎯 Você ainda não escolheu um edital ou carreira. Escolha o do seu concurso (ou a carreira inteira): o Diário de Leis passa a mostrar só as leis dele, e a escolha fica salva no seu progresso.</div>';
     }
-    // o principal vem primeiro
-    var sorted = list.slice().sort(function (a, b) {
-      return (b.id === (cur && cur.id) ? 1 : 0) - (a.id === (cur && cur.id) ? 1 : 0);
-    });
-    root.innerHTML = top + '<div class="ed-grid">' + sorted.map(function (e) {
-      return card(e, !!(cur && cur.id === e.id), chooseMode);
-    }).join("") + "</div>" +
+    // o principal vem primeiro dentro da sua seção
+    function section(tipo, titulo, sub) {
+      var items = list.filter(function (e) { return (e.tipo || "edital") === tipo; });
+      items.sort(function (a, b) {
+        return (b.id === (cur && cur.id) ? 1 : 0) - (a.id === (cur && cur.id) ? 1 : 0);
+      });
+      return '<section class="ed-section"><h2 class="ed-section-title">' + titulo + '</h2><p class="ed-section-sub">' + sub + "</p>" +
+        '<div class="ed-grid">' + items.map(function (e) {
+          return card(e, !!(cur && cur.id === e.id), chooseMode);
+        }).join("") + "</div></section>";
+    }
+    root.innerHTML = top +
+      section("carreira", "Por carreira", "Junta o conteúdo de todos os editais do mesmo tipo de cargo.") +
+      section("edital", "Por edital", "O conteúdo programático de um concurso específico.") +
       '<p class="ed-foot">O conteúdo programático foi mapeado a partir dos editais oficiais. O número de leis é o que já existe no Diário de Leis; normas estaduais e resoluções aparecem à parte, como “fora do Diário”.</p>';
   }
 
