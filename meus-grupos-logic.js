@@ -10,9 +10,11 @@
   var GS = window.GruposShared;
 
   var METRICS = [
+    { key: "total", label: "Pontuação geral (todos os diários)", unit: "pts" },
     { key: "lidas", label: "Diário dos Informativos" },
     { key: "lidasLeis", label: "Diário das Leis" },
-    { key: "lidasSumulas", label: "Diário das Súmulas" }
+    { key: "lidasSumulas", label: "Diário das Súmulas" },
+    { key: "lidasDecisoes", label: "Diário das Decisões" }
   ];
 
   var listRoot = document.getElementById("groups-list");
@@ -83,12 +85,12 @@
 
       METRICS.forEach(function (metric) {
         var ranked = members.slice().sort(function (a, b) {
-          var av = a.raw[metric.key] || 0, bv = b.raw[metric.key] || 0;
+          var av = GS.memberValue(a.raw, metric.key), bv = GS.memberValue(b.raw, metric.key);
           if (bv !== av) return bv - av;
           if (a.joinedAt !== b.joinedAt) return a.joinedAt < b.joinedAt ? -1 : 1;
           return (a.name || "").localeCompare(b.name || "");
         });
-        var anyValue = ranked.some(function (m) { return (m.raw[metric.key] || 0) > 0; });
+        var anyValue = ranked.some(function (m) { return GS.memberValue(m.raw, metric.key) > 0; });
 
         html += '<div class="group-metric-block">';
         html += '  <p class="group-metric-label">' + escapeHtml(metric.label) + '</p>';
@@ -99,14 +101,14 @@
         } else {
           html += '  <ol class="rank-list">';
           ranked.forEach(function (m, i) {
-            var value = m.raw[metric.key] || 0;
+            var value = GS.memberValue(m.raw, metric.key);
             var isMe = m.id === viewerId;
             var pref = GS.validAvatar(m.avatar);
             html += '<li class="rank-item' + (i < 3 ? ' rank-top3' : '') + (isMe ? ' group-me' : '') + '">';
             html += '  <span class="rank-pos">' + (i < 3 ? GS.MEDALS[i] : String(i + 1)) + '</span>';
             html += '  <span class="rank-avatar">' + GS.avatarEmoji(pref) + '</span>';
             html += '  <span class="rank-name">' + escapeHtml(m.name) + (isMe ? ' (você)' : '') + '</span>';
-            html += '  <span class="rank-count">' + value + (value === 1 ? ' lido' : ' lidos') + '</span>';
+            html += '  <span class="rank-count">' + value + (metric.unit ? ' ' + metric.unit : (value === 1 ? ' lido' : ' lidos')) + '</span>';
             html += '</li>';
           });
           html += '  </ol>';

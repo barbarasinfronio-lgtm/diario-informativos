@@ -23,7 +23,7 @@ window.PREMIOS_CONFIG = {
   },
 
   // Pontos ganhos a cada leitura (antes de qualquer prêmio).
-  pontosPorLeitura: { inf: 1, lei: 2, sum: 1 },
+  pontosPorLeitura: { inf: 1, lei: 2, sum: 1, dec: 1 },
   // Bônus para informativo lido logo depois de publicado.
   pontosBonusPontualidade: { ouro: 3, prata: 2, bronze: 1 },
 

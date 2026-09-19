@@ -179,6 +179,21 @@
   // ---- Ranking -------------------------------------------------------
   // metricField: nome do campo no documento do membro usado para ordenar
   // (ex.: "lidas" no Diário dos Informativos, "lidasLeis" no das Leis).
+  // Pontuação geral: soma o que a pessoa leu em TODOS os diários, com os
+  // mesmos pesos da página "Meus Prêmios" (premios-data.js › pontosPorLeitura:
+  // informativo 1, lei 2, súmula 1, decisão 1). O metricField especial
+  // "total" usa essa soma; qualquer outro nome usa o campo direto.
+  S.TOTAL_WEIGHTS = { lidas: 1, lidasLeis: 2, lidasSumulas: 1, lidasDecisoes: 1 };
+  S.memberValue = function (data, metricField) {
+    data = data || {};
+    if (metricField === "total") {
+      return Object.keys(S.TOTAL_WEIGHTS).reduce(function (acc, f) {
+        return acc + (Number(data[f]) || 0) * S.TOTAL_WEIGHTS[f];
+      }, 0);
+    }
+    return data[metricField] || 0;
+  };
+
   S.rankedMembers = function (snap, metricField) {
     var members = snap.docs.map(function (d) {
       var data = d.data() || {};
@@ -187,7 +202,7 @@
         name: data.name,
         avatar: data.avatar,
         joinedAt: data.joinedAt || "",
-        value: data[metricField] || 0,
+        value: S.memberValue(data, metricField),
         raw: data
       };
     }).filter(function (m) { return m && m.name; });

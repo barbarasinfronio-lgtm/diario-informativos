@@ -358,7 +358,7 @@
   function renderMyPrizes() {
     if (!myPrizesEl || !GS) return;
     var codes = GS.readGroups().map(function (g) { return g.code; });
-    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidasSumulas", viewerId);
+    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "total", viewerId);
     GS.renderMyPrizes(myPrizesEl, tally, { hubHref: HUB_URL });
   }
 

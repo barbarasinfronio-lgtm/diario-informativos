@@ -12,7 +12,7 @@
   "use strict";
 
   var CFG = window.PREMIOS_CONFIG;
-  var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas" };
+  var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas", dec: "decisoes-lidas" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
   var ORGS = ["stf", "stj", "tse", "cnj", "tst", "cnmp"];
@@ -85,8 +85,8 @@
     var currentYear = +today.slice(0, 4);
     var ctx = {
       today: today, todayDn: todayDn,
-      read: { inf: 0, lei: 0, sum: 0 },
-      total: { inf: 0, lei: 0, sum: 0 },
+      read: { inf: 0, lei: 0, sum: 0, dec: 0 },
+      total: { inf: 0, lei: 0, sum: 0, dec: 0 },
       points: 0,
       lag: { ouro: 0, prata: 0, bronze: 0, fita: 0 },
       onTimeByOrg: {}, infByOrg: {}, leisByMateria: {}, sumByOrg: {},
@@ -171,7 +171,18 @@
       });
     });
 
-    ctx.totalRead = ctx.read.inf + ctx.read.lei + ctx.read.sum;
+    // ---- Decisões (Repercussão Geral & Repetitivos) ----
+    var decData = g("RG_REPETITIVOS_DATA") || [];
+    decData.forEach(function (row) {
+      var entry = readEntry((maps.dec || {})[String(row.id)]);
+      ctx.total.dec++;
+      if (!entry) return;
+      ctx.read.dec++;
+      ctx.points += CFG.pontosPorLeitura.dec || 1;
+      if (entry.lidaEm) events.push({ d: "dec", org: row.orgao, dn: dayNum(entry.lidaEm) });
+    });
+
+    ctx.totalRead = ctx.read.inf + ctx.read.lei + ctx.read.sum + ctx.read.dec;
 
     // ---- Semanas de publicação (informativos de todos os tribunais) ----
     var pubWeeks = {};
@@ -206,11 +217,11 @@
     var perDay = {}, perWeek = {}, mdSet = {}, wdCount = {};
     var sexta13 = false, bissexto = false;
     events.forEach(function (e) {
-      var d = perDay[e.dn] || (perDay[e.dn] = { inf: 0, lei: 0, sum: 0, total: 0, orgs: {} });
+      var d = perDay[e.dn] || (perDay[e.dn] = { inf: 0, lei: 0, sum: 0, dec: 0, total: 0, orgs: {} });
       d[e.d]++; d.total++;
       if (e.d === "inf") d.orgs[e.org] = true;
       var wk = weekIdx(e.dn);
-      var w = perWeek[wk] || (perWeek[wk] = { inf: 0, lei: 0, sum: 0, total: 0, wds: {} });
+      var w = perWeek[wk] || (perWeek[wk] = { inf: 0, lei: 0, sum: 0, dec: 0, total: 0, wds: {} });
       w[e.d]++; w.total++;
       var wd = weekdayOf(e.dn);
       w.wds[wd] = true;
@@ -571,13 +582,14 @@
     var maps = {
       inf: remote.inf || load(KEYS.inf),
       lei: remote.lei || load(KEYS.lei),
-      sum: remote.sum || load(KEYS.sum)
+      sum: remote.sum || load(KEYS.sum),
+      dec: remote.dec || load(KEYS.dec)
     };
     state.data = computeAll(maps, todayIso());
   }
 
   /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
-  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/" };
+  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", dec: "progress-decisoes/", premios: "progress-premios/" };
 
   function loadRemote() {
     return new Promise(function (resolve) {
@@ -817,6 +829,7 @@
     if (r.errors.inf) falhas.push("Informativos");
     if (r.errors.lei) falhas.push("Leis");
     if (r.errors.sum) falhas.push("Súmulas");
+    if (r.errors.dec) falhas.push("Decisões");
     if (falhas.length) {
       msg += " Não foi possível ler da nuvem: " + falhas.join(", ") + " (usando o que está neste navegador).";
     } else if (!r.maps.sum && (state.data.ctx.read.sum > 0)) {
