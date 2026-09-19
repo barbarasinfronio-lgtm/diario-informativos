@@ -10,7 +10,7 @@
  * de </body>):
  *   <script src=".../estudamana-header.js"></script>
  * O cabeçalho aparece sozinho só nas páginas de estudo (as que têm o
- * bloco ".page" dos Diários, o "header.top" do RG ou um
+ * bloco ".page" com "header.masthead" dos Diários, o "header.top" do RG ou um
  * <div id="estudamana-header">) e se encaixa no topo do conteúdo. Nas
  * demais páginas do site (inicial, posts) ele não faz nada. O visual dele fica
  * em estudamana-header.css (que usa as cores/fontes de estudamana-tokens.css).
@@ -170,7 +170,10 @@
     }
 
     var slot = document.getElementById("estudamana-header");
-    var page = document.querySelector(".page");
+    // O tema do Blogger também tem um ".page" (a página inteira); o que nos
+    // interessa é o ".page" dos Diários, que tem o "header.masthead" dentro.
+    var mast = document.querySelector(".page > header.masthead");
+    var page = mast ? mast.parentNode : null;
     var top = document.querySelector("header.top");
     if (slot) {
       slot.appendChild(nav);
