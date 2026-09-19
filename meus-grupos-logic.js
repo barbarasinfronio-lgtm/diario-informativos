@@ -10,7 +10,7 @@
   var GS = window.GruposShared;
 
   var METRICS = [
-    { key: "total", label: "Pontuação geral (todos os diários)", unit: "pts" },
+    { key: "total", label: "Pontuação geral (todos os diários + bônus de pontualidade)", unit: "pts" },
     { key: "lidas", label: "Diário dos Informativos" },
     { key: "lidasLeis", label: "Diário das Leis" },
     { key: "lidasSumulas", label: "Diário das Súmulas" },
