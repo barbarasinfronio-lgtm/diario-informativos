@@ -1,6 +1,6 @@
 // Editais de concurso — dados (conteúdo programático mapeado).
 // Há dois tipos de item: tipo "carreira" (espécie de cargo — junta o conteúdo de todos os
-// editais daquela carreira, campo "editais"; secao "exame" = exames nacionais como o ENAM;
+// editais daquela carreira, campo "editais"; secao "exame" = exames nacionais como o ENAM e o ENAC;
 // emBreve:true = ainda sem edital mapeado) e tipo "edital" (um edital específico).
 // Cada edital tem: identificação, disciplinas por bloco/grupo e a lista de leis do
 // Diário de Leis que o programa cobre. Cada lei é [matéria, número] — a mesma chave
@@ -3740,16 +3740,275 @@ var EDITAIS_DATA = [
   "id": "exame-enac",
   "tipo": "carreira",
   "secao": "exame",
-  "emBreve": true,
   "sigla": "Exame",
-  "cargo": "aguardando o edital",
-  "orgao": "Exame Nacional dos Cartórios (CNJ)",
+  "cargo": "união dos editais: ENAC",
+  "orgao": "Reúne o conteúdo de 1 edital",
   "titulo": "ENAC — Exame Nacional dos Cartórios",
-  "edital": "Edital ainda não mapeado",
-  "grupos": [],
-  "leis": [],
-  "extras": [],
-  "editais": []
+  "edital": "ENAC: 4º Exame Nacional dos Cartórios",
+  "grupos": [
+   {
+    "nome": "Disciplinas (união dos editais)",
+    "disciplinas": [
+     "Direito Notarial e Registral",
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Tributário",
+     "Direito Processual Civil",
+     "Direito Civil",
+     "Direito Empresarial",
+     "Direito Penal",
+     "Direito Processual Penal",
+     "Direito do Trabalho",
+     "Direito Processual do Trabalho"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "civil",
+    "Lei nº 8.935/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 14.382/2022"
+   ],
+   [
+    "civil",
+    "Lei nº 9.492/1997"
+   ],
+   [
+    "civil",
+    "Lei nº 14.711/2023"
+   ],
+   [
+    "civil",
+    "Lei nº 6.766/1979"
+   ],
+   [
+    "civil",
+    "Lei nº 9.514/1997"
+   ],
+   [
+    "civil",
+    "Lei nº 4.591/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 8.245/1991"
+   ],
+   [
+    "civil",
+    "Lei nº 8.009/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 13.146/2015"
+   ],
+   [
+    "civil",
+    "Lei nº 13.874/2019"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 911/1969"
+   ],
+   [
+    "civil",
+    "Lei nº 4.380/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 10.931/2004"
+   ],
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "civil",
+    "Lei nº 14.063/2020"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 10.267/2001"
+   ],
+   [
+    "civil",
+    "Decreto nº 8.660/2016"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.307/1996"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.140/2015"
+   ],
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto-Lei nº 3.365/1941"
+   ],
+   [
+    "ambiental",
+    "Lei nº 13.465/2017"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.952/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.977/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 10.257/2001"
+   ],
+   [
+    "ambiental",
+    "Lei nº 13.089/2015"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 116/2003"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 10.169/2000"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.134/1990"
+   ],
+   [
+    "tributario",
+    "Lei nº 7.713/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "empresarial",
+    "Lei nº 8.934/1994"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "empresarial",
+    "Decreto nº 2.044/1908"
+   ],
+   [
+    "empresarial",
+    "Lei nº 7.357/1985"
+   ],
+   [
+    "empresarial",
+    "Lei nº 5.474/1968"
+   ],
+   [
+    "empresarial",
+    "Decreto-Lei nº 167/1967"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.807/1999"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.296/1996"
+   ],
+   [
+    "humanos",
+    "Lei nº 13.445/2017"
+   ],
+   [
+    "trabalhista",
+    "Decreto-Lei nº 5.452/1943"
+   ]
+  ],
+  "extras": [
+   "Provimento CNJ nº 149/2023 (Código Nacional de Normas — Foro Extrajudicial)",
+   "Resolução CNJ nº 228/2016 (Apostila de Haia)",
+   "Resolução CNJ nº 583/2024 (traslado de certidões do registro civil emitidas no exterior)",
+   "Resolução CNJ nº 402/2021 (preparação para o casamento civil)",
+   "Resolução CNJ nº 35/2007 (inventário, partilha, separação e divórcio por via administrativa)",
+   "Resolução CNJ nº 571/2024",
+   "Legislação agrária e SIGEF (imóveis rurais, georreferenciamento) — citados de forma geral no programa"
+  ],
+  "editais": [
+   "enac-2026-2"
+  ]
  },
  {
   "id": "exame-enap",
@@ -6949,6 +7208,275 @@ var EDITAIS_DATA = [
   ],
   "extras": [],
   "tipo": "edital"
+ },
+ {
+  "id": "enac-2026-2",
+  "sigla": "ENAC",
+  "cargo": "Exame Nacional dos Cartórios 2026.2",
+  "orgao": "CNJ / FGV",
+  "titulo": "4º Exame Nacional dos Cartórios",
+  "edital": "Edital de abertura nº 2/2026 (CNJ)",
+  "grupos": [
+   {
+    "nome": "Disciplinas da prova",
+    "disciplinas": [
+     "Direito Notarial e Registral",
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Tributário",
+     "Direito Processual Civil",
+     "Direito Civil",
+     "Direito Empresarial",
+     "Direito Penal",
+     "Direito Processual Penal",
+     "Direito do Trabalho",
+     "Direito Processual do Trabalho"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "civil",
+    "Lei nº 8.935/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 14.382/2022"
+   ],
+   [
+    "civil",
+    "Lei nº 9.492/1997"
+   ],
+   [
+    "civil",
+    "Lei nº 14.711/2023"
+   ],
+   [
+    "civil",
+    "Lei nº 6.766/1979"
+   ],
+   [
+    "civil",
+    "Lei nº 9.514/1997"
+   ],
+   [
+    "civil",
+    "Lei nº 4.591/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 8.245/1991"
+   ],
+   [
+    "civil",
+    "Lei nº 8.009/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 13.146/2015"
+   ],
+   [
+    "civil",
+    "Lei nº 13.874/2019"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 911/1969"
+   ],
+   [
+    "civil",
+    "Lei nº 4.380/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 10.931/2004"
+   ],
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "civil",
+    "Lei nº 14.063/2020"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 10.267/2001"
+   ],
+   [
+    "civil",
+    "Decreto nº 8.660/2016"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.307/1996"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.140/2015"
+   ],
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto-Lei nº 3.365/1941"
+   ],
+   [
+    "ambiental",
+    "Lei nº 13.465/2017"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.952/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.977/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 10.257/2001"
+   ],
+   [
+    "ambiental",
+    "Lei nº 13.089/2015"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 116/2003"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 10.169/2000"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.134/1990"
+   ],
+   [
+    "tributario",
+    "Lei nº 7.713/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "empresarial",
+    "Lei nº 8.934/1994"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "empresarial",
+    "Decreto nº 2.044/1908"
+   ],
+   [
+    "empresarial",
+    "Lei nº 7.357/1985"
+   ],
+   [
+    "empresarial",
+    "Lei nº 5.474/1968"
+   ],
+   [
+    "empresarial",
+    "Decreto-Lei nº 167/1967"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.807/1999"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.296/1996"
+   ],
+   [
+    "humanos",
+    "Lei nº 13.445/2017"
+   ],
+   [
+    "trabalhista",
+    "Decreto-Lei nº 5.452/1943"
+   ]
+  ],
+  "extras": [
+   "Provimento CNJ nº 149/2023 (Código Nacional de Normas — Foro Extrajudicial)",
+   "Resolução CNJ nº 228/2016 (Apostila de Haia)",
+   "Resolução CNJ nº 583/2024 (traslado de certidões do registro civil emitidas no exterior)",
+   "Resolução CNJ nº 402/2021 (preparação para o casamento civil)",
+   "Resolução CNJ nº 35/2007 (inventário, partilha, separação e divórcio por via administrativa)",
+   "Resolução CNJ nº 571/2024",
+   "Legislação agrária e SIGEF (imóveis rurais, georreferenciamento) — citados de forma geral no programa"
+  ]
  },
  {
   "id": "tjrs-2026",

@@ -44,7 +44,15 @@
 
     // Texto/endereço do primeiro item (a página inicial). Use null para
     // não mostrar.
-    home: { label: "In\u00edcio", href: "/" },
+    home: null,
+
+    // Página inicial: quem abre o endereço principal do site (sem nada
+    // depois da barra) é levado direto a esta página. Use null para
+    // voltar a mostrar a página inicial em branco do Blogger.
+    // (Como a inicial agora leva ao Diário de Informativos, o item
+    // "Início" saiu do menu; para trazê-lo de volta, troque "home: null"
+    // por  home: { label: "Início", href: "/" }.)
+    homePage: "/p/diario-dos-informativos.html",
 
     // Lista de segurança: só aparece se o Blogger não responder e ainda
     // não houver cópia guardada no navegador. Não precisa manter em dia.
@@ -55,6 +63,19 @@
       { path: "/p/meus-grupos.html", title: "Meus Grupos" }
     ]
   };
+
+  // ---- página inicial padrão ------------------------------------------------
+  (function goHome() {
+    try {
+      if (!CONFIG.homePage) return;
+      if (window.top !== window.self) return;                 // pré-visualização do Blogger
+      var p = location.pathname;
+      if (p !== "/" && p !== "/index.html") return;
+      if (location.search && !/^\?m=[01]$/.test(location.search)) return; // busca, marcadores, arquivo…
+      if (/[?&]view=/.test(location.search)) return;
+      location.replace(CONFIG.homePage + location.search);
+    } catch (e) {}
+  })();
 
   var CACHE_KEY = "estudamana-menu-v1";
 

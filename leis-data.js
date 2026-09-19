@@ -1,5 +1,5 @@
 // Diário das Leis — dados (índice de leis citadas nos conteúdos programáticos
-// dos editais mapeados: TJMG, TJSC, TJPR, TJSP, TJRS, TJGO, TJPE, TRF5, ENAM, MPSP, MPMG,
+// dos editais mapeados: TJMG, TJSC, TJPR, TJSP, TJRS, TJGO, TJPE, TRF5, ENAM, ENAC, MPSP, MPMG,
 // PGE-CE, AGU, PFN, DPU, PF, DPE-BA e DPE-SP). As leis acrescentadas depois usam links do LexML (resolve pelo
 // tipo/ano/número da norma).
 // Cada matéria é uma aba; cada lei tem nome, identificação e link para o
@@ -53,6 +53,9 @@ var LEIS_DATA = {
     { nome: "Marco Legal das Garantias", numero: "Lei nº 14.711/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14711" },
     { nome: "Assinaturas eletrônicas em interações com entes públicos", numero: "Lei nº 14.063/2020", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2020;14063" },
     { nome: "Lei de Terras", numero: "Lei nº 601/1850", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1850;601" },
+    { nome: "Lei de Georreferenciamento de imóveis rurais (altera Leis 4.947/66, 6.015/73 e 6.739/79)", numero: "Lei nº 10.267/2001", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2001;10267" },
+    { nome: "Convenção da Apostila de Haia — supressão da legalização de documentos públicos estrangeiros", numero: "Decreto nº 8.660/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2016;8660" },
+    { nome: "Altera a ementa da LINDB (Lei de Introdução às Normas do Direito Brasileiro)", numero: "Lei nº 12.376/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12376" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -249,6 +252,9 @@ var LEIS_DATA = {
     { nome: "Lei Orgânica da Procuradoria-Geral da Fazenda Nacional (PGFN)", numero: "Decreto-Lei nº 147/1967", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1967;147" },
     { nome: "Medida Cautelar Fiscal", numero: "Lei nº 8.397/1992", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1992;8397" },
     { nome: "Sigilo das operações de instituições financeiras", numero: "Lei Complementar nº 105/2001", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2001;105" },
+    { nome: "Normas gerais para a fixação de emolumentos dos serviços notariais e de registro", numero: "Lei nº 10.169/2000", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2000;10169" },
+    { nome: "Imposto de Renda — regime tributário das pessoas físicas (inclui notários e registradores)", numero: "Lei nº 8.134/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8134" },
+    { nome: "Imposto de Renda — ganho de capital na alienação de imóveis", numero: "Lei nº 7.713/1988", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1988;7713" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -291,6 +297,7 @@ var LEIS_DATA = {
     { nome: "Sistema Nacional de Habitação de Interesse Social", numero: "Lei nº 11.124/2005", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2005;11124" },
     { nome: "Programa Minha Casa Minha Vida e regularização fundiária", numero: "Lei nº 11.977/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;11977" },
     { nome: "Prevenção e combate a incêndio e desastres em estabelecimentos", numero: "Lei nº 13.425/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13425" },
+    { nome: "Regularização fundiária das ocupações em terras da União (Amazônia Legal e demais áreas rurais)", numero: "Lei nº 11.952/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;11952" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
