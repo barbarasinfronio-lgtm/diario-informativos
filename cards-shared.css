@@ -1,0 +1,256 @@
+/* =====================================================================
+   Estuda Mana — card padrão dos Diários (cards-shared.css)
+   Serve às 4 páginas:
+     - Informativos, Súmulas, Leis  -> transforma as linhas .row em cards
+       (carregar DEPOIS de diario-styles-v2.css; não muda nenhum JS)
+     - Decisões                     -> estilos do checkbox, ponto e riscado
+       (carregar DEPOIS de rg-repetitivos-styles.css, junto com decisoes-lidas.js)
+   Usa as variáveis de cor que cada página já define (claro/escuro),
+   com valores de reserva caso alguma não exista.
+   ===================================================================== */
+
+:root {
+  --em-surface: var(--surface, #ffffff);
+  --em-ink: var(--ink, #1c2130);
+  --em-muted: var(--ink-soft, var(--muted, #5d6475));
+  --em-faint: var(--ink-faint, #8b90a0);
+  --em-line: var(--surface-line, var(--line, #e2dcca));
+  --em-accent: var(--accent, #1f3a5f);
+  --em-done: var(--done, #4f6b45);
+  --em-gold: var(--gold, #8f6f28);
+  --em-gold-bg: var(--gold-soft, #f6ecd3);
+  --em-read-bg: color-mix(in srgb, var(--em-ink) 5%, var(--em-surface));
+  --em-radius: 14px;
+  --em-serif: 'Source Serif 4', Georgia, serif;
+  --em-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* ---------------------------------------------------------------------
+   1) Informativos, Súmulas e Leis: .list vira grade de cards
+   --------------------------------------------------------------------- */
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list > .row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "check badge star"
+    "edition edition edition"
+    "open open open";
+  align-items: center;
+  gap: 0.6rem 0.7rem;
+  padding: 14px 16px;
+  background: var(--em-surface);
+  border: 1px solid var(--em-line);
+  border-radius: var(--em-radius);
+  transition: background 0.2s, border-color 0.2s;
+  content-visibility: auto;          /* 1.227 cards: só desenha o que aparece */
+  contain-intrinsic-size: auto 150px;
+}
+.list > .row:hover { background: var(--em-surface); }
+
+.list > .row .check-wrap { grid-area: check; justify-content: flex-start; }
+.list > .row .badge      { grid-area: badge; justify-self: start; }
+.list > .row .star       { grid-area: star; }
+.list > .row .edition {
+  grid-area: edition;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--em-line);
+}
+.list > .row .open-link  { grid-area: open; justify-self: end; }
+
+/* título e detalhes do card */
+.list > .row .num {
+  font-family: var(--em-serif);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.32;
+  color: var(--em-ink);
+}
+.list > .row .date {
+  font-family: var(--em-mono);
+  font-size: 11px;
+  color: var(--em-faint);
+}
+.list > .row .sumula-texto {
+  margin: 0;
+  font-size: 13.2px;
+  line-height: 1.5;
+  color: var(--em-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ponto: a estrela vira uma pílula "1 ponto" / "+1 ponto" */
+.list > .row .star {
+  width: auto;
+  height: auto;
+  padding: 3px 9px;
+  font-size: 0;                      /* esconde o emoji, fica só o texto */
+  filter: none;
+  opacity: 1;
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid var(--em-line);
+  border-radius: 99px;
+}
+.list > .row .star::after {
+  content: "1 ponto";
+  font-family: var(--em-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--em-faint);
+}
+
+/* lido: card apagado, texto riscado, ponto dourado */
+.list > .row.is-read {
+  background: var(--em-read-bg);
+  border-color: transparent;
+}
+.list > .row.is-read .num,
+.list > .row.is-read .date,
+.list > .row.is-read .sumula-texto {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--em-faint);
+  color: var(--em-faint);
+}
+.list > .row.is-read .badge     { opacity: 0.55; }
+.list > .row.is-read .open-link { opacity: 0.6; }
+.list > .row.is-read .star {
+  background: var(--em-gold-bg);
+  border-color: transparent;
+}
+.list > .row.is-read .star::after {
+  content: "+1 ponto";
+  color: var(--em-gold);
+}
+
+/* ---------------------------------------------------------------------
+   2) Decisões: checkbox, ponto e riscado nos cards que já existem
+   --------------------------------------------------------------------- */
+.card .em-check {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px 0 0;
+  border: 1.5px solid var(--em-faint);
+  border-radius: 6px;
+  background: var(--em-surface);
+  cursor: pointer;
+}
+.card .em-check::after {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid var(--em-surface);
+  border-bottom: 2px solid var(--em-surface);
+  transform: rotate(-45deg) translate(1px, -1px) scale(0);
+  transition: transform 0.15s;
+}
+.card .em-check:checked {
+  background: var(--em-done);
+  border-color: var(--em-done);
+}
+.card .em-check:checked::after {
+  transform: rotate(-45deg) translate(1px, -1px) scale(1);
+}
+.card .em-check:focus-visible,
+.list > .row .check-box:focus-visible {
+  outline: 2px solid var(--em-accent);
+  outline-offset: 2px;
+}
+
+.card .em-pts {
+  margin-left: auto;
+  padding: 3px 9px;
+  border: 1px solid var(--em-line);
+  border-radius: 99px;
+  font-family: var(--em-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--em-faint);
+}
+
+.card.read {
+  background: var(--em-read-bg);
+  border-color: transparent;
+}
+.card.read h3,
+.card.read .destaque,
+.card.read .area-line,
+.card.read .tag-tema,
+.card.read .meta span {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--em-faint);
+  color: var(--em-faint);
+}
+.card.read .tag-org,
+.card.read .badge { opacity: 0.55; }
+.card.read .em-pts {
+  background: var(--em-gold-bg);
+  border-color: transparent;
+  color: var(--em-gold);
+}
+
+/* barra de pontos da página Decisões */
+.em-progress {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  background: var(--em-surface);
+  border: 1px solid var(--em-line);
+  border-radius: var(--em-radius);
+}
+.em-progress .em-prog-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  font-family: var(--em-mono);
+  font-size: 12px;
+  color: var(--em-muted);
+}
+.em-progress .em-prog-text b {
+  margin-right: 4px;
+  font-family: var(--em-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--em-gold);
+}
+.em-progress .em-bar {
+  height: 4px;
+  overflow: hidden;
+  background: var(--em-line);
+  border-radius: 2px;
+}
+.em-progress .em-bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--em-done);
+  transition: width 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list > .row, .card .em-check::after, .em-progress .em-bar i { transition: none; }
+}
