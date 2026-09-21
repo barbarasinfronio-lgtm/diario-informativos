@@ -114,6 +114,7 @@ var LEIS_DATA = {
     { nome: "Marco Legal da Primeira Infância", numero: "Lei nº 13.257/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13257.htm" },
     { nome: "Convenção sobre os Direitos da Criança", numero: "Decreto nº 99.710/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1990;99710" },
     { nome: "Programa de combate à intimidação sistemática (bullying)", numero: "Lei nº 13.185/2015", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2015;13185" },
+    { nome: "Lei Antibullying (criminaliza bullying e cyberbullying)", numero: "Lei nº 14.811/2024", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2024;14811" },
   ]},
 
   penal: { label: "Direito Penal", leis: [
@@ -229,6 +230,7 @@ var LEIS_DATA = {
     { nome: "Lei das Duplicatas", numero: "Lei nº 5.474/1968", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1968;5474" },
     { nome: "Cédula de crédito rural", numero: "Decreto-Lei nº 167/1967", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1967;167" },
     { nome: "Intervenção e liquidação extrajudicial de instituições financeiras", numero: "Lei nº 6.024/1974", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1974;6024" },
+    { nome: "Sociedades por quotas de responsabilidade limitada (antigo regime)", numero: "Decreto nº 3.708/1919", link: "https://www.planalto.gov.br/ccivil_03/decreto/antigos/d3708.htm" },
   ]},
 
   tributario: { label: "Direito Tributário", leis: [
@@ -255,6 +257,8 @@ var LEIS_DATA = {
     { nome: "Normas gerais para a fixação de emolumentos dos serviços notariais e de registro", numero: "Lei nº 10.169/2000", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2000;10169" },
     { nome: "Imposto de Renda — regime tributário das pessoas físicas (inclui notários e registradores)", numero: "Lei nº 8.134/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8134" },
     { nome: "Imposto de Renda — ganho de capital na alienação de imóveis", numero: "Lei nº 7.713/1988", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1988;7713" },
+    { nome: "Institui o Sistema Público de Escrituração Digital (SPED)", numero: "Decreto nº 6.022/2007", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2007;6022" },
+    { nome: "Estatuto Nacional da Simplificação de Obrigações Tributárias Acessórias (Simplifica Já)", numero: "Lei Complementar nº 199/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2023;199" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -298,6 +302,7 @@ var LEIS_DATA = {
     { nome: "Programa Minha Casa Minha Vida e regularização fundiária", numero: "Lei nº 11.977/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;11977" },
     { nome: "Prevenção e combate a incêndio e desastres em estabelecimentos", numero: "Lei nº 13.425/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13425" },
     { nome: "Regularização fundiária das ocupações em terras da União (Amazônia Legal e demais áreas rurais)", numero: "Lei nº 11.952/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;11952" },
+    { nome: "Lei dos Agrotóxicos (Lei de Pesticidas)", numero: "Lei nº 14.785/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14785" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -362,6 +367,7 @@ var LEIS_DATA = {
     { nome: "Estatuto da Segurança Privada e da Segurança das Instituições Financeiras", numero: "Lei nº 14.967/2024", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2024;14967" },
     { nome: "Participação da comunidade na gestão do SUS", numero: "Lei nº 8.142/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8142" },
     { nome: "Plano Nacional de Educação (PNE 2014-2024)", numero: "Lei nº 13.005/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2014;13005" },
+    { nome: "Processo Administrativo do Estado de São Paulo", numero: "Lei Estadual (SP) nº 10.177/1998", link: "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [

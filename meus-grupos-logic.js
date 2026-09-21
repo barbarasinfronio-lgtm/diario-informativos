@@ -14,7 +14,8 @@
     { key: "lidas", label: "Diário dos Informativos" },
     { key: "lidasLeis", label: "Diário das Leis" },
     { key: "lidasSumulas", label: "Diário das Súmulas" },
-    { key: "lidasDecisoes", label: "Diário das Decisões" }
+    { key: "lidasDecisoes", label: "Diário das Decisões" },
+    { key: "lidasNormas", label: "Diário das Resoluções" }
   ];
 
   var listRoot = document.getElementById("groups-list");
