@@ -583,7 +583,13 @@
 
 /* Login com Google (conta-google.js, mesma pasta deste script) */
 (function () {
-  var src = document.currentScript && document.currentScript.src;
+  // document.currentScript some vezes já não está mais disponível quando este
+  // bloco roda (script assíncrono, widget do Blogger etc.) — por isso varremos
+  // as tags <script> da página em vez de depender só dele.
+  var all0 = document.getElementsByTagName("script"), src = "";
+  for (var i = 0; i < all0.length; i++) {
+    if (/leis-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
+  }
   if (!src) return;
   function go() {
     if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
