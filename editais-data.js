@@ -18820,5 +18820,301 @@ var EDITAIS_DATA = [
    ]
   ],
   "tipo": "edital"
+ },
+ {
+  "id": "pc-ap-delegado-2026",
+  "sigla": "PC-AP",
+  "cargo": "Delegado de Polícia Civil",
+  "orgao": "Polícia Civil do Estado do Amapá",
+  "titulo": "Concurso Público para Delegado de Polícia Civil",
+  "edital": "Concurso Público da Polícia Civil do Amapá — Edital nº 1/2026 (Cesgranrio)",
+  "grupos": [
+   {
+    "nome": "Bloco I",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Tributário"
+    ]
+   },
+   {
+    "nome": "Bloco II",
+    "disciplinas": [
+     "Direito Civil",
+     "Direito Empresarial",
+     "Direito Ambiental"
+    ]
+   },
+   {
+    "nome": "Bloco III",
+    "disciplinas": [
+     "Direito Penal",
+     "Direito Processual Penal"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "administrativo",
+    "Decreto nº 6.017/2007"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.230/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.878/1965"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.112/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 10.936/2022"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 6.514/2008"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 99.274/1990"
+   ],
+   [
+    "ambiental",
+    "Lei Complementar nº 140/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.124/2005"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.187/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.305/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.334/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.587/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.608/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.651/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.755/2023"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.190/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.300/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.433/1997"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.795/1999"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "ambiental",
+    "Medida Provisória nº 1.308/2025"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 12.965/2014"
+   ],
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "constitucional",
+    "Emenda Constitucional nº 80/2014"
+   ],
+   [
+    "humanos",
+    "Lei nº 7.716/1989"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 3.688/1941"
+   ],
+   [
+    "penal",
+    "Lei nº 1.521/1951"
+   ],
+   [
+    "penal",
+    "Lei nº 10.826/2003"
+   ],
+   [
+    "penal",
+    "Lei nº 11.343/2006"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "penal",
+    "Lei nº 4.898/1965"
+   ],
+   [
+    "penal",
+    "Lei nº 7.492/1986"
+   ],
+   [
+    "penal",
+    "Lei nº 7.716/1989"
+   ],
+   [
+    "penal",
+    "Lei nº 8.072/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.176/1991"
+   ],
+   [
+    "penal",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "penal",
+    "Lei nº 9.455/1997"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.343/2006"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.037/2009"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.313/2010"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.830/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.960/1989"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 8.658/1993"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.296/1996"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.807/1999"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ]
+  ],
+  "tipo": "edital"
  }
 ];
