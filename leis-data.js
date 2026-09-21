@@ -60,6 +60,9 @@ var LEIS_DATA = {
     { nome: "Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista (Lei Berenice Piana)", numero: "Lei nº 12.764/2012", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2012;12764" },
     { nome: "Regula o direito dos companheiros a alimentos e à sucessão (união estável)", numero: "Lei nº 8.971/1994", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1994;8971" },
     { nome: "Parcelamento do solo urbano — Santa Catarina", numero: "Lei Estadual (SC) nº 17.492/2018", link: "https://leis.alesc.sc.gov.br/html/2018/17492_2018_lei.html" },
+    { nome: "Política Nacional do Idoso", numero: "Lei nº 8.842/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8842.htm" },
+    { nome: "Consolida atos normativos federais sobre a temática da pessoa idosa", numero: "Decreto nº 9.921/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D9921.htm" },
+    { nome: "Altera o Decreto nº 9.921/2019 (temática da pessoa idosa)", numero: "Decreto nº 10.604/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/decreto/D10604.htm" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -169,6 +172,11 @@ var LEIS_DATA = {
     { nome: "Lei dos Agrotóxicos (antiga, revogada pela Lei nº 14.785/2023)", numero: "Lei nº 7.802/1989", link: "https://www.planalto.gov.br/ccivil_03/leis/l7802.htm" },
     { nome: "Estelionato sentimental (golpe do amor) — altera o Código Penal", numero: "Lei nº 14.322/2022", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2022;14322" },
     { nome: "Convenção de Belém do Pará — prevenção, punição e erradicação da violência contra a mulher", numero: "Decreto nº 1.973/1996", link: "https://www.planalto.gov.br/ccivil_03/decreto/1996/d1973.htm" },
+    { nome: "Lei Antifacção — organizações criminosas armadas", numero: "Lei nº 15.358/2026", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2026;15358" },
+    { nome: "Feminicídio vicário — altera o Código Penal", numero: "Lei nº 15.384/2026", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2026;15384" },
+    { nome: "Altera a Lei de Drogas para tratar da internação voluntária e involuntária de pessoas com transtornos decorrentes do uso de drogas", numero: "Lei nº 13.840/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13840.htm" },
+    { nome: "Programa Sinal Vermelho contra a violência doméstica; tipifica a violência psicológica contra a mulher", numero: "Lei nº 14.188/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14188.htm" },
+    { nome: "Altera o Programa de Proteção a Vítimas e Testemunhas (Provita)", numero: "Lei nº 14.245/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14245.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -273,6 +281,7 @@ var LEIS_DATA = {
     { nome: "Estatuto Nacional da Simplificação de Obrigações Tributárias Acessórias (Simplifica Já)", numero: "Lei Complementar nº 199/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2023;199" },
     { nome: "Processo Administrativo Fiscal Federal", numero: "Decreto nº 70.235/1972", link: "https://www.planalto.gov.br/ccivil_03/decreto/d70235cons.htm" },
     { nome: "Código Tributário do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 3.938/1966", link: "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm" },
+    { nome: "Institui o Regime Fiscal Sustentável (novo arcabouço fiscal)", numero: "Lei Complementar nº 200/2023", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -322,6 +331,10 @@ var LEIS_DATA = {
     { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 2.406/2002", link: "https://www.legisweb.com.br/legislacao/?id=205025" },
     { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 4.555/2014", link: "https://www.legisweb.com.br/legislacao/?id=205026" },
     { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 5.235/2018", link: "https://www.legisweb.com.br/legislacao/?id=205027" },
+    { nome: "Zoneamento Industrial nas Áreas Críticas de Poluição", numero: "Lei nº 6.803/1980", link: "https://www.planalto.gov.br/ccivil_03/leis/l6803.htm" },
+    { nome: "Institui o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)", numero: "Lei nº 15.042/2024", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15042.htm" },
+    { nome: "Dispõe sobre o uso, a conservação, a proteção e a recuperação do bioma Pantanal", numero: "Lei nº 15.228/2025", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15228.htm" },
+    { nome: "Institui o sistema de logística reversa de embalagens plásticas", numero: "Decreto nº 12.688/2025", link: "https://www2.camara.leg.br/legin/fed/decret/2025/decreto-12688-21-outubro-2025-798174-publicacaooriginal-176787-pe.html" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -395,6 +408,12 @@ var LEIS_DATA = {
     { nome: "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal", numero: "Lei Complementar (DF) nº 840/2011", link: "https://www.legisweb.com.br/legislacao/?id=118158" },
     { nome: "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso do Sul", numero: "Lei Estadual (MS) nº 1.102/1990", link: "https://www.legisweb.com.br/legislacao/?id=205020" },
     { nome: "Norma administrativa do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 2.207/2000", link: "https://www.legisweb.com.br/legislacao/?id=205021" },
+    { nome: "Dispõe sobre a digitalização e a utilização de sistemas informatizados para a guarda, armazenamento e manuseio de prontuário de paciente", numero: "Lei nº 13.787/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13787.htm" },
+    { nome: "Regulamenta a telessaúde no Brasil", numero: "Lei nº 14.510/2022", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/L14510.htm" },
+    { nome: "Regulamenta o Fundeb (Fundo de Manutenção e Desenvolvimento da Educação Básica)", numero: "Lei nº 14.113/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14113.htm" },
+    { nome: "Institui o Sistema Nacional de Educação (SNE)", numero: "Lei Complementar nº 220/2025", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp220.htm" },
+    { nome: "Relações entre as instituições federais de ensino superior/pesquisa e as fundações de apoio", numero: "Lei nº 8.958/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8958.htm" },
+    { nome: "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul", numero: "Lei Complementar (MS) nº 72/1994", link: "https://www.mpms.mp.br/leiorganica" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
