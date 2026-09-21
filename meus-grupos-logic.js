@@ -9,6 +9,13 @@
   // diário, na hora em que a pessoa marca uma leitura.
   var GS = window.GruposShared;
 
+  // Garante o app do Firebase inicializado ANTES de qualquer leitura (a
+  // primeira renderAllCards(), mais abaixo, já tenta assinar os membros dos
+  // grupos salvos localmente). Sem isso, essa primeira tentativa lança
+  // "No Firebase App" de forma síncrona e interrompe o resto deste arquivo
+  // — inclusive o GS.onViewerReady() que inicializaria tudo certinho depois.
+  if (GS) GS.ensureFirebaseApp();
+
   var METRICS = [
     { key: "total", label: "Pontuação geral (todos os diários + bônus de pontualidade)", unit: "pts" },
     { key: "lidas", label: "Diário dos Informativos" },
