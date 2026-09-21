@@ -89,12 +89,21 @@
   var EDITAIS_URL = "https://www.estudamana.com.br/p/editais.html";
   var editPanelOpen = false;
 
+  // Legislação estadual/municipal específica de um edital fica de fora por
+  // padrão (a maioria das leis de um edital já é nacional/comum a todos) —
+  // a pessoa liga isso explicitamente se quiser ver também a parte local.
+  var LOCAL_KEY_PREF = "leis-incluir-local";
+  var includeLocal = false;
+  try { includeLocal = localStorage.getItem(LOCAL_KEY_PREF) === "sim"; } catch (e) {}
+
   function activeEdital() { return ES && ES.principal ? ES.principal() : null; }
+
+  function lawKeyOpts() { return { includeLocal: includeLocal }; }
 
   // chaves das leis do edital, ou null quando não há filtro ativo
   function activeKeys() {
     var ed = activeEdital();
-    return ed && filterMode === "edital" ? ES.lawKeys(ed) : null;
+    return ed && filterMode === "edital" ? ES.lawKeys(ed, lawKeyOpts()) : null;
   }
 
   function orgRows(orgKey, keys) {
@@ -109,7 +118,7 @@
   }
 
   function editalTotals(ed) {
-    var keys = ES.lawKeys(ed), total = 0, lidas = 0;
+    var keys = ES.lawKeys(ed, lawKeyOpts()), total = 0, lidas = 0;
     ORG_ORDER.forEach(function (k) {
       stateByOrg[k].forEach(function (r) {
         if (keys[rowKey(k, r)]) { total++; if (r.lida) lidas++; }
@@ -169,6 +178,7 @@
     var t = editalTotals(ed);
     var allCount = 0;
     ORG_ORDER.forEach(function (k) { allCount += stateByOrg[k].length; });
+    var showLocalToggle = !isCar && ES.hasLocalNormas(ed);
     bar.innerHTML =
       '<div class="edital-head">' +
       '<div class="edital-title"><span class="edital-kicker">' + kind + ' principal</span>' +
@@ -180,18 +190,27 @@
       '<button type="button" class="edital-mode' + (filterMode === "edital" ? " active" : "") + '" data-mode="edital">' + (isExame ? "Leis do meu exame" : (isCar ? "Leis da minha carreira" : "Leis do meu edital")) + ' <span class="count">' + t.total + "</span></button>" +
       '<button type="button" class="edital-mode' + (filterMode === "todas" ? " active" : "") + '" data-mode="todas">Todas as leis <span class="count">' + allCount + "</span></button>" +
       "</div>" +
+      (showLocalToggle
+        ? '<label class="edital-local-toggle"><input type="checkbox" id="edital-local-check"' + (includeLocal ? " checked" : "") + '> Incluir legislação estadual/local específica desse edital</label>'
+        : "") +
       '<p class="edital-progress">' + t.lidas + " de " + t.total + (isExame ? " leis do exame lidas" : (isCar ? " leis da carreira lidas" : " leis do edital lidas")) +
       (ed.extras && ed.extras.length ? ' · <a href="' + EDITAIS_URL + '">' + ed.extras.length + " normas do edital fora deste índice</a>" : "") + "</p>";
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("#edital-change, #edital-cancel, #edital-save, .edital-mode");
+    var t = e.target.closest("#edital-change, #edital-cancel, #edital-save, .edital-mode, #edital-local-check");
     if (!t || !ES) return;
     if (t.id === "edital-change") { editPanelOpen = !editPanelOpen; renderEditalBar(); return; }
     if (t.id === "edital-cancel") { editPanelOpen = false; renderEditalBar(); return; }
     if (t.id === "edital-save") {
       var sel = document.getElementById("edital-select");
       if (sel && sel.value) { editPanelOpen = false; ES.setPrincipal(sel.value); }
+      return;
+    }
+    if (t.id === "edital-local-check") {
+      includeLocal = t.checked;
+      try { localStorage.setItem(LOCAL_KEY_PREF, includeLocal ? "sim" : "não"); } catch (err) {}
+      render();
       return;
     }
     if (t.classList.contains("edital-mode")) {

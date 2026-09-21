@@ -50,6 +50,20 @@
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
 
+  // Normas estaduais/municipais trazem a sigla da unidade entre parênteses
+  // no próprio "numero" (ex.: "Lei Estadual (AC) nº 1.022/1992") — dá para
+  // detectar "é legislação local" sem precisar de um campo novo nos dados.
+  var LOCAL_TAG_RE = /\([A-Z]{2}\)/;
+  function isLocalNorma(numero) {
+    return LOCAL_TAG_RE.test(numero || "");
+  }
+
+  // Um edital "tem" legislação local quando pelo menos uma de suas leis é
+  // estadual/municipal — só então vale mostrar o botão de incluir/excluir.
+  function hasLocalNormas(edital) {
+    return ((edital && edital.leis) || []).some(function (p) { return isLocalNorma(p[1]); });
+  }
+
   function readLocal() {
     try { return localStorage.getItem(LOCAL_KEY) || ""; } catch (e) { return ""; }
   }
@@ -89,12 +103,21 @@
       if (!fromRemote) pushCloud(id);
     },
 
-    // conjunto de chaves "materia:slug(numero)" das leis do edital
-    lawKeys: function (edital) {
+    // conjunto de chaves "materia:slug(numero)" das leis do edital.
+    // opts.includeLocal (padrão false) — quando falso, deixa de fora as
+    // normas estaduais/municipais específicas daquele edital (a pessoa liga
+    // isso explicitamente na tela, via botão "incluir legislação local").
+    lawKeys: function (edital, opts) {
+      opts = opts || {};
       var out = {};
-      ((edital && edital.leis) || []).forEach(function (p) { out[p[0] + ":" + slug(p[1])] = true; });
+      ((edital && edital.leis) || []).forEach(function (p) {
+        if (!opts.includeLocal && isLocalNorma(p[1])) return;
+        out[p[0] + ":" + slug(p[1])] = true;
+      });
       return out;
     },
+    isLocalNorma: isLocalNorma,
+    hasLocalNormas: hasLocalNormas,
 
     // liga a sincronização com a conta. Na página "Editais" (signIn:true)
     // cria o login anônimo se ainda não houver; no Diário de Leis quem

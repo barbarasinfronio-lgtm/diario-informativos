@@ -11032,27 +11032,11 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
    ],
    [
     "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
     "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -11674,23 +11658,7 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -12440,26 +12408,6 @@ var EDITAIS_DATA = [
   "leis": [
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
-   ],
-   [
-    "administrativo",
     "Lei nº 11.079/2004"
    ],
    [
@@ -12914,18 +12862,6 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 769/2008"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
    ],
    [
@@ -12935,14 +12871,6 @@ var EDITAIS_DATA = [
    [
     "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
    ],
    [
     "administrativo",
@@ -13672,18 +13600,6 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 769/2008"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
    ],
    [
@@ -13701,14 +13617,6 @@ var EDITAIS_DATA = [
    [
     "administrativo",
     "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -14527,27 +14435,7 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -14805,19 +14693,7 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 769/2008"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
     "Lei Complementar (SC) nº 491/2010"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
    ],
    [
     "administrativo",
@@ -14830,18 +14706,6 @@ var EDITAIS_DATA = [
    [
     "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -15699,10 +15563,6 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
     "Lei Complementar (SE) nº 33/1996"
    ],
    [
@@ -15716,18 +15576,6 @@ var EDITAIS_DATA = [
    [
     "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -16544,15 +16392,7 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
     "Lei Complementar (SC) nº 491/2010"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
    ],
    [
     "administrativo",
@@ -17317,23 +17157,11 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
    ],
    [
     "administrativo",
     "Lei Complementar nº 75/1993"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 2.207/2000"
    ],
    [
     "administrativo",
@@ -17958,14 +17786,6 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
    ],
    [
@@ -18323,27 +18143,7 @@ var EDITAIS_DATA = [
    ],
    [
     "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
-   ],
-   [
-    "administrativo",
     "Lei Complementar nº 101/2000"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (BA) nº 6.677/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MA) nº 6.107/1994"
-   ],
-   [
-    "administrativo",
-    "Lei Estadual (MS) nº 1.102/1990"
    ],
    [
     "administrativo",
@@ -18757,14 +18557,6 @@ var EDITAIS_DATA = [
    [
     "administrativo",
     "Decreto nº 7.746/2012"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (DF) nº 840/2011"
-   ],
-   [
-    "administrativo",
-    "Lei Complementar (SE) nº 33/1996"
    ],
    [
     "administrativo",

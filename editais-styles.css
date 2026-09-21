@@ -58,6 +58,12 @@
 .edital-mode:hover { background: var(--surface-2); color: var(--ink); }
 .edital-mode.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
 .edital-mode .count { font-family: var(--font-mono); font-size: 0.85em; opacity: 0.85; margin-left: 0.25rem; }
+.edital-local-toggle {
+  display: flex; align-items: center; gap: 0.45rem;
+  margin: 0.6rem 0 0; font-size: calc(0.8rem * var(--fs-scale));
+  color: var(--ink-soft); cursor: pointer;
+}
+.edital-local-toggle input { cursor: pointer; }
 .edital-progress { margin: 0.6rem 0 0; font-size: calc(0.78rem * var(--fs-scale)); color: var(--ink-faint); }
 
 /* ---- página "Editais" -------------------------------------------------- */
