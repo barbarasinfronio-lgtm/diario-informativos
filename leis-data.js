@@ -56,6 +56,10 @@ var LEIS_DATA = {
     { nome: "Lei de Georreferenciamento de imóveis rurais (altera Leis 4.947/66, 6.015/73 e 6.739/79)", numero: "Lei nº 10.267/2001", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2001;10267" },
     { nome: "Convenção da Apostila de Haia — supressão da legalização de documentos públicos estrangeiros", numero: "Decreto nº 8.660/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2016;8660" },
     { nome: "Altera a ementa da LINDB (Lei de Introdução às Normas do Direito Brasileiro)", numero: "Lei nº 12.376/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12376" },
+    { nome: "Lei da Alienação Parental", numero: "Lei nº 12.318/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12318" },
+    { nome: "Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista (Lei Berenice Piana)", numero: "Lei nº 12.764/2012", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2012;12764" },
+    { nome: "Regula o direito dos companheiros a alimentos e à sucessão (união estável)", numero: "Lei nº 8.971/1994", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1994;8971" },
+    { nome: "Parcelamento do solo urbano — Santa Catarina", numero: "Lei Estadual (SC) nº 17.492/2018", link: "https://leis.alesc.sc.gov.br/html/2018/17492_2018_lei.html" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -162,6 +166,9 @@ var LEIS_DATA = {
     { nome: "Convenção sobre o Crime Cibernético (Budapeste)", numero: "Decreto nº 11.491/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2023;11491" },
     { nome: "Tipificação criminal de delitos informáticos", numero: "Lei nº 12.737/2012", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2012;12737" },
     { nome: "Regulamenta o Estatuto do Desarmamento (armas e munições)", numero: "Decreto nº 9.847/2019", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2019;9847" },
+    { nome: "Lei dos Agrotóxicos (antiga, revogada pela Lei nº 14.785/2023)", numero: "Lei nº 7.802/1989", link: "https://www.planalto.gov.br/ccivil_03/leis/l7802.htm" },
+    { nome: "Estelionato sentimental (golpe do amor) — altera o Código Penal", numero: "Lei nº 14.322/2022", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2022;14322" },
+    { nome: "Convenção de Belém do Pará — prevenção, punição e erradicação da violência contra a mulher", numero: "Decreto nº 1.973/1996", link: "https://www.planalto.gov.br/ccivil_03/decreto/1996/d1973.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -191,6 +198,8 @@ var LEIS_DATA = {
     { nome: "Infrações de repercussão interestadual ou internacional", numero: "Lei nº 10.446/2002", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2002;10446" },
     { nome: "Investigação criminal conduzida pelo delegado de polícia", numero: "Lei nº 12.830/2013", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2013;12830" },
     { nome: "Assistência jurídica ao preso — altera a Lei de Execução Penal", numero: "Lei nº 12.313/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12313" },
+    { nome: "Altera o CPP — resposta à acusação, absolvição sumária e sentença", numero: "Lei nº 11.719/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11719" },
+    { nome: "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)", numero: "Lei nº 11.697/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11697" },
   ]},
 
   constitucional: { label: "Direito Constitucional", leis: [
@@ -211,6 +220,7 @@ var LEIS_DATA = {
     { nome: "Lei de Inelegibilidade", numero: "Lei Complementar nº 64/1990", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp64.htm" },
     { nome: "Acrescenta dispositivo ao Código Eleitoral (ação rescisória)", numero: "Lei Complementar nº 86/1996", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp86.htm" },
     { nome: "Lei dos Partidos Políticos", numero: "Lei nº 9.096/1995", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1995;9096" },
+    { nome: "Lei da Ficha Limpa", numero: "Lei Complementar nº 135/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2010;135" },
   ]},
 
   empresarial: { label: "Direito Empresarial", leis: [
@@ -231,6 +241,8 @@ var LEIS_DATA = {
     { nome: "Cédula de crédito rural", numero: "Decreto-Lei nº 167/1967", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1967;167" },
     { nome: "Intervenção e liquidação extrajudicial de instituições financeiras", numero: "Lei nº 6.024/1974", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1974;6024" },
     { nome: "Sociedades por quotas de responsabilidade limitada (antigo regime)", numero: "Decreto nº 3.708/1919", link: "https://www.planalto.gov.br/ccivil_03/decreto/antigos/d3708.htm" },
+    { nome: "Atualiza a legislação de recuperação judicial, extrajudicial e falência (altera a Lei nº 11.101/2005)", numero: "Lei nº 14.112/2020", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2020;14112" },
+    { nome: "Títulos de Crédito Comercial", numero: "Lei nº 6.840/1980", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1980;6840" },
   ]},
 
   tributario: { label: "Direito Tributário", leis: [
@@ -259,6 +271,8 @@ var LEIS_DATA = {
     { nome: "Imposto de Renda — ganho de capital na alienação de imóveis", numero: "Lei nº 7.713/1988", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1988;7713" },
     { nome: "Institui o Sistema Público de Escrituração Digital (SPED)", numero: "Decreto nº 6.022/2007", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2007;6022" },
     { nome: "Estatuto Nacional da Simplificação de Obrigações Tributárias Acessórias (Simplifica Já)", numero: "Lei Complementar nº 199/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2023;199" },
+    { nome: "Processo Administrativo Fiscal Federal", numero: "Decreto nº 70.235/1972", link: "https://www.planalto.gov.br/ccivil_03/decreto/d70235cons.htm" },
+    { nome: "Código Tributário do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 3.938/1966", link: "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -303,6 +317,11 @@ var LEIS_DATA = {
     { nome: "Prevenção e combate a incêndio e desastres em estabelecimentos", numero: "Lei nº 13.425/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13425" },
     { nome: "Regularização fundiária das ocupações em terras da União (Amazônia Legal e demais áreas rurais)", numero: "Lei nº 11.952/2009", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2009;11952" },
     { nome: "Lei dos Agrotóxicos (Lei de Pesticidas)", numero: "Lei nº 14.785/2023", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2023;14785" },
+    { nome: "Promulga a Convenção de Nova Iorque sobre Prestação de Alimentos no Estrangeiro", numero: "Decreto nº 56.826/1965", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1965;56826" },
+    { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 2.257/2001", link: "https://www.legisweb.com.br/legislacao/?id=205024" },
+    { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 2.406/2002", link: "https://www.legisweb.com.br/legislacao/?id=205025" },
+    { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 4.555/2014", link: "https://www.legisweb.com.br/legislacao/?id=205026" },
+    { nome: "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 5.235/2018", link: "https://www.legisweb.com.br/legislacao/?id=205027" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -368,6 +387,14 @@ var LEIS_DATA = {
     { nome: "Participação da comunidade na gestão do SUS", numero: "Lei nº 8.142/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8142" },
     { nome: "Plano Nacional de Educação (PNE 2014-2024)", numero: "Lei nº 13.005/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2014;13005" },
     { nome: "Processo Administrativo do Estado de São Paulo", numero: "Lei Estadual (SP) nº 10.177/1998", link: "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado do Maranhão", numero: "Lei Estadual (MA) nº 6.107/1994", link: "https://sapl.al.ma.leg.br/norma/2358" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado da Bahia", numero: "Lei Estadual (BA) nº 6.677/1994", link: "https://www.legisweb.com.br/legislacao/?id=180730" },
+    { nome: "Norma administrativa do Estado da Bahia (citada no edital do concurso)", numero: "Lei Estadual (BA) nº 11.357/2009", link: "https://www.legisweb.com.br/legislacao/?id=180830" },
+    { nome: "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe", numero: "Lei Complementar (SE) nº 33/1996", link: "https://www.legisweb.com.br/legislacao/?id=204500" },
+    { nome: "Regime Próprio de Previdência Social do Distrito Federal", numero: "Lei Complementar (DF) nº 769/2008", link: "https://www.legisweb.com.br/legislacao/?id=108988" },
+    { nome: "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal", numero: "Lei Complementar (DF) nº 840/2011", link: "https://www.legisweb.com.br/legislacao/?id=118158" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso do Sul", numero: "Lei Estadual (MS) nº 1.102/1990", link: "https://www.legisweb.com.br/legislacao/?id=205020" },
+    { nome: "Norma administrativa do Estado de Mato Grosso do Sul (citada no edital do concurso)", numero: "Lei Estadual (MS) nº 2.207/2000", link: "https://www.legisweb.com.br/legislacao/?id=205021" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -422,6 +449,7 @@ var LEIS_DATA = {
   trabalhista: { label: "Direito do Trabalho", leis: [
     { nome: "Contribuições previdenciárias na Justiça do Trabalho", numero: "Lei nº 10.035/2000", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2000;10035" },
     { nome: "Consolidação das Leis do Trabalho (CLT)", numero: "Decreto-Lei nº 5.452/1943", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1943;5452" },
+    { nome: "Lei do Aeronauta — regulamenta a profissão", numero: "Lei nº 13.475/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13475" },
   ]},
 
 };
