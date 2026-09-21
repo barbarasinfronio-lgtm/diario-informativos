@@ -45,7 +45,8 @@
 .edital-picker-label { display: block; font-size: calc(0.78rem * var(--fs-scale)); color: var(--ink-faint); margin-bottom: 0.3rem; }
 .edital-picker-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .edital-select {
-  flex: 1 1 260px; font: inherit; font-size: calc(0.85rem * var(--fs-scale));
+  flex: 1 1 260px; min-width: 0; max-width: 100%; box-sizing: border-box;
+  font: inherit; font-size: calc(0.85rem * var(--fs-scale));
   padding: 0.45rem 0.6rem; border-radius: 10px;
   border: 1px solid var(--surface-line); background: var(--surface); color: var(--ink);
 }

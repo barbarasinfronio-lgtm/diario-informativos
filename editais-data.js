@@ -244,7 +244,8 @@ var EDITAIS_DATA = [
   ],
   "extras": [],
   "editais": [
-   "trf5-xvi"
+   "trf5-xvi",
+   "trf2-154-2025"
   ]
  },
  {
@@ -1069,7 +1070,14 @@ var EDITAIS_DATA = [
   "editais": [
    "tjgo-59",
    "tjpe-2026",
-   "tjrs-2026"
+   "tjrs-2026",
+   "tjsp-192",
+   "tjma-1-2022",
+   "tjdft-1-2022",
+   "tjms-2023",
+   "tjba-2026",
+   "tjsc-11-2025",
+   "tjse-2024"
   ]
  },
  {
@@ -1804,7 +1812,10 @@ var EDITAIS_DATA = [
   ],
   "editais": [
    "mpsp-97",
-   "mpmg-61"
+   "mpmg-61",
+   "mp-mt-promotor-2026",
+   "mp-go-promotor-2025",
+   "mp-ms-xxxi-promotor-2026"
   ]
  },
  {
@@ -2395,7 +2406,8 @@ var EDITAIS_DATA = [
    "Lei nº 5.250/1967"
   ],
   "editais": [
-   "pf-delegado-2025"
+   "pf-delegado-2025",
+   "pc-ap-delegado-2026"
   ]
  },
  {
@@ -3062,7 +3074,9 @@ var EDITAIS_DATA = [
   "editais": [
    "dpu-2017",
    "dpeba-2026",
-   "dpesp-ix"
+   "dpesp-ix",
+   "dpe-sc-defensor-2026",
+   "dpe-rj-xxix-defensor-2026"
   ]
  },
  {
@@ -3733,7 +3747,9 @@ var EDITAIS_DATA = [
   "editais": [
    "pgece-2021",
    "agu-adv-2022",
-   "pfn-2022"
+   "pfn-2022",
+   "pge-al-procurador-2026",
+   "pge-ac-procurador-2026"
   ]
  },
  {
@@ -7476,7 +7492,8 @@ var EDITAIS_DATA = [
    "Resolução CNJ nº 35/2007 (inventário, partilha, separação e divórcio por via administrativa)",
    "Resolução CNJ nº 571/2024",
    "Legislação agrária e SIGEF (imóveis rurais, georreferenciamento) — citados de forma geral no programa"
-  ]
+  ],
+  "tipo": "edital"
  },
  {
   "id": "tjrs-2026",
