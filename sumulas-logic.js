@@ -16,36 +16,14 @@
   var pagerNext = document.getElementById("lote-next");
   var pagerLabel = document.getElementById("lote-label");
 
-  // Boneco personalizável — mesmo esquema dos outros Diários.
+  // Base comum do "Estudo coletivo" (grupos, ranking, boneco/avatar) —
+  // grupos-shared.js roda antes deste arquivo em toda página de diário.
+  var GS = window.GruposShared;
+
+  // Boneco personalizável — mesmo esquema dos outros Diários
+  // (grupos-shared.js), guardado sob uma chave própria.
   var AVATAR_KEY = "sumulas-avatar";
-  var AVATAR_DEFAULT = { gender: "f", tone: "3" };
-  var GENDER_BASE = { f: "\u{1F469}", m: "\u{1F468}", x: "\u{1F9D1}" };
-  var TONE_MOD = {
-    "1": "\u{1F3FB}", "2": "\u{1F3FC}", "3": "\u{1F3FD}", "4": "\u{1F3FE}", "5": "\u{1F3FF}"
-  };
-  var JUDGE_SUFFIX = "‍⚖️";
-
-  function avatarEmoji(pref) {
-    var base = GENDER_BASE[pref.gender] || GENDER_BASE.f;
-    var tone = TONE_MOD[pref.tone] || "";
-    return base + tone + JUDGE_SUFFIX;
-  }
-
-  function readAvatarPref() {
-    try {
-      var raw = localStorage.getItem(AVATAR_KEY);
-      if (!raw) return Object.assign({}, AVATAR_DEFAULT);
-      var parsed = JSON.parse(raw);
-      return {
-        gender: GENDER_BASE[parsed.gender] ? parsed.gender : AVATAR_DEFAULT.gender,
-        tone: TONE_MOD[parsed.tone] ? parsed.tone : AVATAR_DEFAULT.tone
-      };
-    } catch (e) { return Object.assign({}, AVATAR_DEFAULT); }
-  }
-  function writeAvatarPref(pref) {
-    try { localStorage.setItem(AVATAR_KEY, JSON.stringify(pref)); } catch (e) {}
-  }
-  var avatarPref = readAvatarPref();
+  var avatarPref = GS.readAvatarPref(AVATAR_KEY);
 
   var ORG_ORDER = SUMULAS_ORG_ORDER;
 
@@ -285,7 +263,7 @@
       var totalLidasGeral = 0;
       ORG_ORDER.forEach(function (k) { stateByOrg[k].forEach(function (r) { if (r.lida) totalLidasGeral++; }); });
       starLine.textContent = totalLidasGeral
-        ? avatarEmoji(avatarPref) + " " + totalLidasGeral + " súmula" + (totalLidasGeral === 1 ? "" : "s") + " no total"
+        ? GS.avatarEmoji(avatarPref) + " " + totalLidasGeral + " súmula" + (totalLidasGeral === 1 ? "" : "s") + " no total"
         : "";
     }
   }
@@ -342,7 +320,6 @@
   // Criar, entrar ou sair de um grupo também acontece só lá
   // (grupos-shared.js cuida do armazenamento local e da comunicação com
   // o Firebase).
-  var GS = window.GruposShared;
   var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos-de-estudo.html";
   var myPrizesEl = document.getElementById("my-prizes");
   var groupUnsubs = {};      // code -> função de cancelar a inscrição
@@ -387,9 +364,17 @@
       groupUnsubs[g.code] = GS.subscribeMembers(g.code, function (snap) {
         groupSnapshots[g.code] = snap;
         renderMyPrizes();
-      });
+      }, null, avatarPref);
     });
   }
+
+  // Se a pessoa fechar a aba dentro da janela de espera do debounce (700ms),
+  // grava agora em vez de perder a última marcação (ao menos localmente —
+  // o envio ao Firestore, se der tempo, também é disparado).
+  window.addEventListener("beforeunload", function () {
+    if (publishTimer) { clearTimeout(publishTimer); doSync(); }
+    if (groupSyncTimer) { clearTimeout(groupSyncTimer); pushProgressToGroups(); }
+  });
 
   renderMyPrizes();
 
@@ -404,7 +389,7 @@
   function syncAvatarControls() {
     if (avatarToggleGenderSelect) avatarToggleGenderSelect.value = avatarPref.gender;
     if (avatarToneSelect) avatarToneSelect.value = avatarPref.tone;
-    if (avatarPreview) avatarPreview.textContent = avatarEmoji(avatarPref);
+    if (avatarPreview) avatarPreview.textContent = GS.avatarEmoji(avatarPref);
   }
 
   function onAvatarPrefChange() {
@@ -412,7 +397,7 @@
       gender: avatarToggleGenderSelect ? avatarToggleGenderSelect.value : avatarPref.gender,
       tone: avatarToneSelect ? avatarToneSelect.value : avatarPref.tone
     };
-    writeAvatarPref(avatarPref);
+    GS.writeAvatarPref(avatarPref, AVATAR_KEY);
     syncAvatarControls();
     render();
     if (!applyingRemote) { scheduleSync(); scheduleGroupSync(); }
@@ -422,73 +407,15 @@
   if (avatarToneSelect) avatarToneSelect.addEventListener("change", onAvatarPrefChange);
   syncAvatarControls();
 
-  // ---- Vincular e-mail (opcional) — mesma lógica dos outros Diários -----
-  var accountToggleBtn = document.getElementById("account-toggle");
-  var accountPanel = document.getElementById("account-panel");
-  var accountLinkBlock = document.getElementById("account-link-block");
-  var accountLinkedBlock = document.getElementById("account-linked-block");
-  var accountEmailInput = document.getElementById("account-email-input");
-  var accountPasswordInput = document.getElementById("account-password-input");
-  var accountErrorEl = document.getElementById("account-error");
-  var accountLinkedEmailEl = document.getElementById("account-linked-email");
-
-  function showAccountError(msg) {
-    if (!accountErrorEl) return;
-    accountErrorEl.textContent = msg;
-    accountErrorEl.className = "group-note is-error";
-    accountErrorEl.hidden = !msg;
-  }
-
-  function accountErrorMessage(err) {
-    var code = err && err.code;
-    if (code === "auth/email-already-in-use" || code === "auth/credential-already-in-use") {
-      return "Esse e-mail já está vinculado a outro progresso salvo. Use \"Já ativei — entrar neste aparelho\" para entrar com ele em vez de vinculá-lo de novo.";
-    }
-    if (code === "auth/weak-password") return "Senha muito curta — use pelo menos 6 caracteres.";
-    if (code === "auth/invalid-email") return "E-mail inválido.";
-    if (code === "auth/wrong-password") return "Senha incorreta para esse e-mail.";
-    if (code === "auth/user-not-found") return "Não encontramos esse e-mail vinculado.";
-    if (code === "auth/requires-recent-login") return "Por segurança, é preciso recarregar a página e tentar de novo.";
-    return "Não foi possível concluir agora. Tente de novo em um instante.";
-  }
-
-  function renderAccountUI(user) {
-    var linked = !!(user && user.email);
-    if (accountLinkBlock) accountLinkBlock.hidden = linked;
-    if (accountLinkedBlock) accountLinkedBlock.hidden = !linked;
-    if (linked && accountLinkedEmailEl) accountLinkedEmailEl.textContent = user.email;
-  }
-
-  function linkEmailAccount() {
-    showAccountError("");
-    var email = accountEmailInput ? accountEmailInput.value.trim() : "";
-    var password = accountPasswordInput ? accountPasswordInput.value : "";
-    if (!email || !password) { showAccountError("Informe e-mail e senha."); return; }
-    if (!window.firebase || !firebase.auth().currentUser) { showAccountError("Ainda carregando — aguarde um instante e tente de novo."); return; }
-    var cred = firebase.auth.EmailAuthProvider.credential(email, password);
-    firebase.auth().currentUser.linkWithCredential(cred)
-      .then(function (result) {
-        renderAccountUI(result.user);
-        setNote("E-mail vinculado — seu progresso está protegido.");
-        setTimeout(function () { setNote(""); }, 2600);
-      })
-      .catch(function (err) { showAccountError(accountErrorMessage(err)); });
-  }
-
-  function signInWithEmail() {
-    showAccountError("");
-    var email = accountEmailInput ? accountEmailInput.value.trim() : "";
-    var password = accountPasswordInput ? accountPasswordInput.value : "";
-    if (!email || !password) { showAccountError("Informe e-mail e senha."); return; }
-    if (!window.firebase) { showAccountError("Ainda carregando — aguarde um instante e tente de novo."); return; }
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(function (result) {
-        renderAccountUI(result.user);
-        setNote("Progresso recuperado.");
-        setTimeout(function () { setNote(""); }, 2600);
-      })
-      .catch(function (err) { showAccountError(accountErrorMessage(err)); });
-  }
+  // ---- Vincular e-mail (opcional) -------------------------------------
+  // Lógica compartilhada — ver conta-email.js (precisa estar incluído na
+  // página ANTES deste script). Se faltar (ex.: template ainda não
+  // atualizado), o painel de e-mail só fica inativo — o resto da página
+  // continua funcionando normalmente.
+  var contaEmail = window.ContaEmail
+    ? window.ContaEmail.attach({ setNote: setNote, recoverHint: "Já ativei — entrar neste aparelho" })
+    : { renderAccountUI: function () {} };
+  var renderAccountUI = contaEmail.renderAccountUI;
 
   // ---- Controles de tribunal / matéria / tamanho do lote -----------------
   if (tribunalSelect) {
@@ -520,7 +447,7 @@
   if (pagerPrev) pagerPrev.addEventListener("click", function () { loteAtual--; render(); });
   if (pagerNext) pagerNext.addEventListener("click", function () { loteAtual++; render(); });
 
-  // ---- Delegação de cliques (bonequinho / grupo / e-mail) ----------------
+  // ---- Delegação de cliques (bonequinho) ---------------------------------
   function togglePanel(btn, panel) {
     if (!btn || !panel) return;
     var open = panel.hidden;
@@ -529,16 +456,9 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest(
-      "#avatar-toggle, #account-toggle, #account-link-btn, #account-signin-btn"
-    );
+    var t = e.target.closest("#avatar-toggle");
     if (!t) return;
-    switch (t.id) {
-      case "avatar-toggle": togglePanel(t, document.getElementById("avatar-panel")); break;
-      case "account-toggle": togglePanel(t, document.getElementById("account-panel")); break;
-      case "account-link-btn": linkEmailAccount(); break;
-      case "account-signin-btn": signInWithEmail(); break;
-    }
+    togglePanel(t, document.getElementById("avatar-panel"));
   });
 
   // 1) pintura instantânea com o que já está salvo neste navegador
@@ -560,9 +480,9 @@
       if (!data) return;
       applyingRemote = true;
       if (data.map) { applyMap(data.map); writeLocal(data.map); }
-      if (data.avatar && GENDER_BASE[data.avatar.gender] && TONE_MOD[data.avatar.tone]) {
+      if (data.avatar && GS.GENDER_BASE[data.avatar.gender] && GS.TONE_MOD[data.avatar.tone]) {
         avatarPref = { gender: data.avatar.gender, tone: data.avatar.tone };
-        writeAvatarPref(avatarPref);
+        GS.writeAvatarPref(avatarPref, AVATAR_KEY);
         syncAvatarControls();
       }
       render();
@@ -592,17 +512,14 @@
 
 /* Login com Google (conta-google.js, mesma pasta deste script) */
 (function () {
-  var all0 = document.getElementsByTagName("script"), src = "";
-  for (var i = 0; i < all0.length; i++) {
-    if (/sumulas-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
-  }
+  var src = document.currentScript && document.currentScript.src;
   if (!src) return;
   function go() {
     if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
     var s = document.createElement("script");
     s.id = "conta-google-js";
-    s.src = src.replace(/sumulas-logic\.js/, "conta-google.js");
+    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
     document.head.appendChild(s);
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);

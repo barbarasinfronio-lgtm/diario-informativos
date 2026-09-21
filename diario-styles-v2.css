@@ -428,7 +428,7 @@
     line-height: 1.5;
   }
 
-  .group-note.is-error { color: #b3432f; }
+  .group-note.is-error { color: var(--high-fg, #b3432f); }
 
   .group-invite {
     display: flex;

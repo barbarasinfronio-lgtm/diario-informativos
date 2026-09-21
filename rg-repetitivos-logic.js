@@ -152,8 +152,8 @@
           '<label class="read-check" title="Marcar como lido">' +
             '<input type="checkbox" class="read-checkbox"' + (isReadNow ? ' checked' : '') + '>' +
           '</label>' +
-          '<span class="tag-org ' + d.orgao + '">' + d.orgao + '</span>' +
-          '<span class="badge risk-' + d.risco + '">Risco ' + d.risco + '</span>' +
+          '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
+          '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
           (d.tema ? '<span class="tag-tema">Tema ' + escapeHtml(d.tema) + '</span>' : '') +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         '</div>' +
@@ -183,8 +183,8 @@
     modal.innerHTML =
       '<button class="close" aria-label="Fechar">✕</button>' +
       '<div class="top-row">' +
-        '<span class="tag-org ' + d.orgao + '">' + d.orgao + '</span>' +
-        '<span class="badge risk-' + d.risco + '">Risco ' + d.risco + '</span>' +
+        '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
+        '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
         (d.tema ? '<span class="tag-tema">Tema ' + escapeHtml(d.tema) + '</span>' : '') +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
       '</div>' +
@@ -199,7 +199,7 @@
         '<div><b>Julgamento</b>' + escapeHtml(d.data||'—') + '</div>' +
         '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>' +
       '</div>' +
-      '<div class="risk-box risk-' + d.risco + '"><b>Por que risco ' + d.risco + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
+      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(d.risco) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -226,6 +226,13 @@
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alta</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
   }
+
+  // Se a pessoa fechar a aba dentro da janela de espera do debounce (700ms),
+  // grava agora em vez de perder a última marcação (ao menos localmente —
+  // o envio ao Firestore, se der tempo, também é disparado).
+  window.addEventListener('beforeunload', function(){
+    if(syncTimer){ clearTimeout(syncTimer); pushProgress(); }
+  });
 
   renderStats();
   render();

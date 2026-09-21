@@ -152,7 +152,11 @@
   function pushCloud(id) {
     if (!docRef) return;
     docRef.set({ edital: id || "", editalEm: new Date().toISOString() }, { merge: true })
-      .catch(function () { /* melhor esforço — segue salvo neste navegador */ });
+      .catch(function (err) {
+        // melhor esforço — segue salvo neste navegador; loga para ajudar a
+        // diferenciar "offline" de um problema real nas regras do Firestore
+        if (window.console && err) console.warn("[editais-shared] pushCloud", err.code || err);
+      });
   }
 
   // ---- carregamento dos dados e do CSS ---------------------------------

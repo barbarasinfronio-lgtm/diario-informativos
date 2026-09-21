@@ -40,15 +40,21 @@
     return avatar && S.GENDER_BASE[avatar.gender] && S.TONE_MOD[avatar.tone] ? avatar : S.AVATAR_DEFAULT;
   };
 
-  // Leitura do boneco escolhido pela pessoa (gravado por cada diário, em
-  // "Personalizar boneco" — aqui é só leitura, para exibir corretamente
-  // nas telas de grupo).
-  S.readAvatarPref = function () {
+  // Leitura/gravação do boneco escolhido pela pessoa, em "Personalizar
+  // boneco". Cada diário guarda sua própria preferência sob sua própria
+  // chave (ex.: "leis-avatar", "sumulas-avatar") — por isso `key` é
+  // opcional e cai em S.AVATAR_KEY só quando o chamador não tem uma chave
+  // própria (ex.: as telas de grupo, que só leem, nunca gravam).
+  S.readAvatarPref = function (key) {
     try {
-      var raw = localStorage.getItem(S.AVATAR_KEY);
+      var raw = localStorage.getItem(key || S.AVATAR_KEY);
       if (!raw) return Object.assign({}, S.AVATAR_DEFAULT);
       return S.validAvatar(JSON.parse(raw));
     } catch (e) { return Object.assign({}, S.AVATAR_DEFAULT); }
+  };
+
+  S.writeAvatarPref = function (pref, key) {
+    try { localStorage.setItem(key || S.AVATAR_KEY, JSON.stringify(pref)); } catch (e) {}
   };
 
   // ---- Grupos dos quais a pessoa participa (lista, não mais um só) ------
@@ -139,7 +145,11 @@
   // nome, avatar e data de entrada que ela mesma já escolheu). Sem isso, na
   // hora de entrar num grupo a escuta poderia começar antes da gravação e
   // ser recusada. Devolve a função de cancelar a escuta, como antes.
-  S.subscribeMembers = function (code, onData, onError) {
+  //
+  // avatarPref (opcional): o boneco já resolvido pelo diário que está
+  // chamando (cada diário tem sua própria chave de avatar — ver
+  // readAvatarPref). Sem isso, cai no avatar padrão de S.AVATAR_KEY.
+  S.subscribeMembers = function (code, onData, onError, avatarPref) {
     var cancelled = false;
     var unsub = null;
     var pref = S.findGroup ? S.findGroup(code) : null;
@@ -147,7 +157,7 @@
     var ready = Promise.resolve();
     if (pref && user) {
       ready = S.updateMember(code, user.uid, {
-        name: pref.name, avatar: S.readAvatarPref(), joinedAt: pref.joinedAt
+        name: pref.name, avatar: avatarPref || S.readAvatarPref(), joinedAt: pref.joinedAt
       }).catch(function () {});
     }
     ready.then(function () {
@@ -180,6 +190,12 @@
   };
 
   // ---- Ranking -------------------------------------------------------
+  // Lê um campo de pontuação do documento do membro, com fallback para 0
+  // quando o diário ainda não gravou nada nesse campo para essa pessoa.
+  S.memberValue = function (raw, metricField) {
+    return (raw && raw[metricField]) || 0;
+  };
+
   // metricField: nome do campo no documento do membro usado para ordenar
   // (ex.: "lidas" no Diário dos Informativos, "lidasLeis" no das Leis).
   S.rankedMembers = function (snap, metricField) {
@@ -190,7 +206,7 @@
         name: data.name,
         avatar: data.avatar,
         joinedAt: data.joinedAt || "",
-        value: data[metricField] || 0,
+        value: S.memberValue(data, metricField),
         raw: data
       };
     }).filter(function (m) { return m && m.name; });

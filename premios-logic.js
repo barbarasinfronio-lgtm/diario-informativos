@@ -587,6 +587,7 @@
     var out = load(CONQ_KEY);
     var rc = state.remote && state.remote.conq;
     if (rc) Object.keys(rc).forEach(function (id) {
+      if (!rc[id]) return; // ignora entradas remotas sem data válida
       if (!out[id] || String(rc[id]) < String(out[id])) out[id] = rc[id];
     });
     return out;
@@ -906,17 +907,14 @@
 
 /* Login com Google (conta-google.js, mesma pasta deste script) */
 (function () {
-  var all0 = document.getElementsByTagName("script"), src = "";
-  for (var i = 0; i < all0.length; i++) {
-    if (/premios-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
-  }
+  var src = document.currentScript && document.currentScript.src;
   if (!src) return;
   function go() {
     if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
     var s = document.createElement("script");
     s.id = "conta-google-js";
-    s.src = src.replace(/premios-logic\.js/, "conta-google.js");
+    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
     document.head.appendChild(s);
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);

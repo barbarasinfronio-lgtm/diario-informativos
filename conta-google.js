@@ -82,6 +82,17 @@
     return out;
   }
 
+  // compara duas listas de grupos pelo conjunto de códigos (ignora ordem) —
+  // usado para saber se a lista mudou de fato, e não só de tamanho (por
+  // exemplo, trocar um grupo por outro mantém o total igual).
+  function sameGroupCodes(a, b) {
+    var ac = (a || []).map(function (g) { return g.code; }).sort();
+    var bc = (b || []).map(function (g) { return g.code; }).sort();
+    if (ac.length !== bc.length) return false;
+    for (var i = 0; i < ac.length; i++) if (ac[i] !== bc[i]) return false;
+    return true;
+  }
+
   // lê todos os documentos da conta (progresso + prêmios) — tudo o que vamos juntar
   function readAccount(db, uid) {
     var out = { maps: {}, avatars: {}, conquistados: {}, vistos: [], edital: "", grupos: [] };
@@ -242,7 +253,7 @@
     var loc = readLocal();
     return db.doc("progress-leis/" + uid).set(
       { grupos: loc.grupos, edital: loc.edital || "", updatedAt: new Date().toISOString() }, { merge: true })
-      .catch(function () {});
+      .catch(function (err) { if (window.console && err) console.warn("[conta-google] afterLink", err.code || err); });
   }
 
   function switchToExisting(credential, oldUser) {
@@ -338,7 +349,7 @@
         var loc = readLocal();
         var groups = mergeGroups(d.grupos, loc.grupos);
         if (groups.length) lsSet("informativos-grupo", JSON.stringify(groups));
-        if (groups.length !== (d.grupos || []).length) ref.set({ grupos: groups }, { merge: true }).catch(function () {});
+        if (!sameGroupCodes(groups, d.grupos)) ref.set({ grupos: groups }, { merge: true }).catch(function () {});
       }).catch(function () {});
     } catch (e) {}
   }
