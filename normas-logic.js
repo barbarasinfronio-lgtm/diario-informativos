@@ -234,7 +234,7 @@
   // cada grupo que a pessoa participa, e mostramos um resumo PESSOAL (nunca
   // os nomes dos outros membros). A lista completa, grupo a grupo, fica só
   // em "Meus Grupos de Estudo".
-  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos-de-estudo.html";
+  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos.html";
   var myPrizesEl = document.getElementById("my-prizes");
   var groupUnsubs = {};      // code -> função de cancelar a inscrição
   var groupSnapshots = {};   // code -> último snapshot de members

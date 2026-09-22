@@ -320,7 +320,7 @@
   // Criar, entrar ou sair de um grupo também acontece só lá
   // (grupos-shared.js cuida do armazenamento local e da comunicação com
   // o Firebase).
-  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos-de-estudo.html";
+  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos.html";
   var myPrizesEl = document.getElementById("my-prizes");
   var groupUnsubs = {};      // code -> função de cancelar a inscrição
   var groupSnapshots = {};   // code -> último snapshot de members
