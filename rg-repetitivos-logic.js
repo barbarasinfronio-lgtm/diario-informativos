@@ -2,6 +2,18 @@
   var DATA = RG_REPETITIVOS_DATA;
   var state = { q:'', org:'all', risk:'all', area:null };
 
+  // Nem todo precedente qualificado do STJ é "Tema": também há IAC
+  // (Incidente de Assunção de Competência) e PUIL (Pedido de Uniformização
+  // de Interpretação de Lei), que não podem ser rotulados como "Tema" nem
+  // como "Recurso Repetitivo" sem incorrer em erro técnico.
+  var PRECEDENTE_NOME = { IAC: 'Incidente de Assunção de Competência', PUIL: 'Pedido de Uniformização de Interpretação de Lei' };
+  function precedenteBadge(d){ return (d.precedenteLabel || 'Tema') + ' ' + d.tema; }
+  function precedenteAreaLine(d){
+    if (d.tipo === 'rg') return ' · Repercussão Geral';
+    var lbl = d.precedenteLabel;
+    return ' · ' + (lbl && PRECEDENTE_NOME[lbl] ? PRECEDENTE_NOME[lbl] : 'Recurso Repetitivo');
+  }
+
   // Progresso no mesmo formato dos outros diários: { "<id>": { lida:true, lidaEm:"AAAA-MM-DD" } }
   // (a página "Meus Prêmios" lê esta chave: "decisoes-lidas").
   var LOCAL_KEY = 'decisoes-lidas';
@@ -154,10 +166,10 @@
           '</label>' +
           '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
           '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
-          (d.tema ? '<span class="tag-tema">Tema ' + escapeHtml(d.tema) + '</span>' : '') +
+          (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         '</div>' +
-        '<div class="area-line">' + escapeHtml(d.area) + (d.tipo==='rg' ? ' · Repercussão Geral' : ' · Recurso Repetitivo') + '</div>' +
+        '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
         '<div class="destaque">' + escapeHtml(d.destaque||d.tese||'') + '</div>' +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
@@ -185,10 +197,10 @@
       '<div class="top-row">' +
         '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
         '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
-        (d.tema ? '<span class="tag-tema">Tema ' + escapeHtml(d.tema) + '</span>' : '') +
+        (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
       '</div>' +
-      '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + (d.tipo==='rg' ? ' · Repercussão Geral' : ' · Recurso Repetitivo') + '</div>' +
+      '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       '<div class="section-label">Tese fixada</div>' +
       '<div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>' +
