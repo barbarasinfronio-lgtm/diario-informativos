@@ -63,6 +63,7 @@ var LEIS_DATA = {
     { nome: "Política Nacional do Idoso", numero: "Lei nº 8.842/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8842.htm" },
     { nome: "Consolida atos normativos federais sobre a temática da pessoa idosa", numero: "Decreto nº 9.921/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D9921.htm" },
     { nome: "Altera o Decreto nº 9.921/2019 (temática da pessoa idosa)", numero: "Decreto nº 10.604/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/decreto/D10604.htm" },
+    { nome: "Altera o Código Civil quanto à gestação por substituição e reprodução assistida", numero: "Lei nº 14.443/2022", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14443.htm" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -177,6 +178,10 @@ var LEIS_DATA = {
     { nome: "Altera a Lei de Drogas para tratar da internação voluntária e involuntária de pessoas com transtornos decorrentes do uso de drogas", numero: "Lei nº 13.840/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13840.htm" },
     { nome: "Programa Sinal Vermelho contra a violência doméstica; tipifica a violência psicológica contra a mulher", numero: "Lei nº 14.188/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14188.htm" },
     { nome: "Altera o Programa de Proteção a Vítimas e Testemunhas (Provita)", numero: "Lei nº 14.245/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14245.htm" },
+    { nome: "Promulga a Convenção de Viena sobre o Direito dos Tratados", numero: "Decreto nº 7.030/2009", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d7030.htm" },
+    { nome: "Código Penal Militar", numero: "Decreto-Lei nº 1.001/1969", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del1001.htm" },
+    { nome: "Institui o Sistema Único de Segurança Pública (SUSP)", numero: "Lei nº 13.675/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13675.htm" },
+    { nome: "Promulga o Estatuto de Roma do Tribunal Penal Internacional", numero: "Decreto nº 4.388/2002", link: "https://www.planalto.gov.br/ccivil_03/decreto/2002/d4388.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -251,6 +256,7 @@ var LEIS_DATA = {
     { nome: "Sociedades por quotas de responsabilidade limitada (antigo regime)", numero: "Decreto nº 3.708/1919", link: "https://www.planalto.gov.br/ccivil_03/decreto/antigos/d3708.htm" },
     { nome: "Atualiza a legislação de recuperação judicial, extrajudicial e falência (altera a Lei nº 11.101/2005)", numero: "Lei nº 14.112/2020", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2020;14112" },
     { nome: "Títulos de Crédito Comercial", numero: "Lei nº 6.840/1980", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1980;6840" },
+    { nome: "Marco Legal das Garantias / Certificado de Recebíveis", numero: "Lei nº 14.430/2022", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14430.htm" },
   ]},
 
   tributario: { label: "Direito Tributário", leis: [
