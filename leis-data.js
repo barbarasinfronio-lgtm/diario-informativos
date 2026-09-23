@@ -91,6 +91,7 @@ var LEIS_DATA = {
     { nome: "Fundo de Defesa de Direitos Difusos", numero: "Lei nº 9.008/1995", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1995;9008" },
     { nome: "Regulamenta o julgamento de recursos especiais repetitivos no STJ (CPC/1973)", numero: "Lei nº 11.672/2008", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11672.htm" },
     { nome: "Regulamenta a repercussão geral no recurso extraordinário (CPC/1973)", numero: "Lei nº 11.418/2006", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11418.htm" },
+    { nome: "Institui a relevância da questão federal como requisito de admissibilidade do recurso especial", numero: "Emenda Constitucional nº 125/2022", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc125.htm" },
   ]},
 
   consumidor: { label: "Consumidor", leis: [
@@ -188,6 +189,7 @@ var LEIS_DATA = {
     { nome: "Altera dispositivos da Lei de Contravenções Penais", numero: "Decreto-Lei nº 6.259/1944", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/1937-1946/del6259.htm" },
     { nome: "Apresentação e uso de documentos de identificação pessoal", numero: "Lei nº 5.553/1968", link: "https://www.planalto.gov.br/ccivil_03/leis/l5553.htm" },
     { nome: "Altera o IR das pessoas jurídicas; art. 34 trata da extinção da punibilidade nos crimes tributários pelo pagamento do débito", numero: "Lei nº 9.249/1995", link: "https://www.planalto.gov.br/ccivil_03/leis/l9249.htm" },
+    { nome: "Crimes de discriminação na relação jurídica de trabalho", numero: "Lei nº 9.020/1995", link: "https://www.planalto.gov.br/ccivil_03/leis/l9020.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -232,6 +234,8 @@ var LEIS_DATA = {
     { nome: "Defensoria Pública na Constituição", numero: "Emenda Constitucional nº 80/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2014;80" },
     { nome: "Lei Orgânica Nacional das Polícias Civis", numero: "Lei nº 14.735/2023", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14735.htm" },
     { nome: "Dispõe sobre o processo e julgamento da ADI e da ADC perante o STF", numero: "Lei nº 9.868/1999", link: "https://www.planalto.gov.br/ccivil_03/leis/l9868.htm" },
+    { nome: "Código de Organização Judiciária do Estado do Pará", numero: "Lei Estadual (PA) nº 5.008/1981", link: "https://www.legisweb.com.br/legislacao/?id=176266" },
+    { nome: "Código de Organização e Divisão Judiciárias do Estado do Paraná", numero: "Lei Estadual (PR) nº 14.277/2003", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9128" },
   ]},
 
   eleitoral: { label: "Direito Eleitoral", leis: [
@@ -300,6 +304,7 @@ var LEIS_DATA = {
     { nome: "Institui o Regime Fiscal Sustentável (novo arcabouço fiscal)", numero: "Lei Complementar nº 200/2023", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" },
     { nome: "Refis da Crise — parcelamento especial de débitos tributários federais", numero: "Lei nº 11.941/2009", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11941.htm" },
     { nome: "Lei de Transação Tributária", numero: "Lei nº 13.988/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm" },
+    { nome: "ICMS do Estado do Paraná", numero: "Lei Estadual (PR) nº 11.580/1996", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9464" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -354,6 +359,26 @@ var LEIS_DATA = {
     { nome: "Dispõe sobre o uso, a conservação, a proteção e a recuperação do bioma Pantanal", numero: "Lei nº 15.228/2025", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15228.htm" },
     { nome: "Institui o sistema de logística reversa de embalagens plásticas", numero: "Decreto nº 12.688/2025", link: "https://www2.camara.leg.br/legin/fed/decret/2025/decreto-12688-21-outubro-2025-798174-publicacaooriginal-176787-pe.html" },
     { nome: "Cria o Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)", numero: "Lei nº 11.516/2007", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/lei/l11516.htm" },
+    { nome: "Preservação e proteção do patrimônio histórico, artístico, natural e cultural do Pará", numero: "Lei Estadual (PA) nº 5.629/1990", link: "https://www.legisweb.com.br/legislacao/?id=176253" },
+    { nome: "Compensação financeira estadual pela exploração de recursos minerais", numero: "Lei Estadual (PA) nº 8.001/1990", link: "https://www.legisweb.com.br/legislacao/?id=176254" },
+    { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 9.593/2022", link: "https://www.legisweb.com.br/legislacao/?id=436812" },
+    { nome: "Norma sobre mineração do Estado do Pará", numero: "Lei Estadual (PA) nº 7.031/2007", link: "https://www.legisweb.com.br/legislacao/?id=176255" },
+    { nome: "Compensação financeira estadual sobre exploração minerária (CFEM)", numero: "Lei Estadual (PA) nº 6.710/2005", link: "https://www.legisweb.com.br/legislacao/?id=176256" },
+    { nome: "Norma fundiária/ambiental do Estado do Pará", numero: "Lei Estadual (PA) nº 5.295/1985", link: "https://www.legisweb.com.br/legislacao/?id=176257" },
+    { nome: "Lei Agrícola, Agrária e Fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 5.849/1994", link: "https://www.legisweb.com.br/legislacao/?id=176258" },
+    { nome: "Participação do proprietário do solo na lavra de recursos minerais", numero: "Lei nº 8.901/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8901.htm" },
+    { nome: "Código de Mineração", numero: "Decreto-Lei nº 227/1967", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0227.htm" },
+    { nome: "Macrozoneamento Ecológico-Econômico do Estado do Pará", numero: "Lei Estadual (PA) nº 6.745/2005", link: "https://www.legisweb.com.br/legislacao/?id=176259" },
+    { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 7.731/2013", link: "https://www.legisweb.com.br/legislacao/?id=176260" },
+    { nome: "Compensação financeira pela exploração de recursos minerais (CFEM)", numero: "Lei nº 7.990/1989", link: "https://www.planalto.gov.br/ccivil_03/leis/l7990.htm" },
+    { nome: "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)", numero: "Decreto-Lei nº 25/1937", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0025.htm" },
+    { nome: "Regulamenta a Lei de Terras (Lei nº 601/1850)", numero: "Decreto nº 1.318/1854", link: "https://www.planalto.gov.br/ccivil_03/decreto/historicos/dpl/dpl1318.htm" },
+    { nome: "Regularização fundiária no Estado do Pará", numero: "Lei Estadual (PA) nº 8.878/2019", link: "https://www.legisweb.com.br/legislacao/?id=176261" },
+    { nome: "Legitimação de terras públicas do Estado do Pará", numero: "Lei Estadual (PA) nº 4.835/1979", link: "https://www.legisweb.com.br/legislacao/?id=176262" },
+    { nome: "Norma ambiental/minerária do Estado do Pará", numero: "Lei Estadual (PA) nº 6.376/2001", link: "https://www.legisweb.com.br/legislacao/?id=176263" },
+    { nome: "Norma fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 4.884/1979", link: "https://www.legisweb.com.br/legislacao/?id=176264" },
+    { nome: "Política Estadual sobre Mudanças Climáticas do Pará", numero: "Lei Estadual (PA) nº 9.048/2020", link: "https://www.legisweb.com.br/legislacao/?id=406522" },
+    { nome: "Norma fundiária histórica do Estado do Pará", numero: "Lei Estadual (PA) nº 82/1892", link: "https://www.legisweb.com.br/legislacao/?id=176265" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -448,6 +473,10 @@ var LEIS_DATA = {
     { nome: "Usucapião especial de imóveis rurais", numero: "Lei nº 6.969/1981", link: "https://www.planalto.gov.br/ccivil_03/leis/l6969.htm" },
     { nome: "Marco Legal de Ciência, Tecnologia e Inovação", numero: "Lei nº 13.243/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13243.htm" },
     { nome: "Lei de Inovação Tecnológica", numero: "Lei nº 10.973/2004", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.973.htm" },
+    { nome: "Estatuto da Terra", numero: "Lei nº 4.504/1964", link: "https://www.planalto.gov.br/ccivil_03/leis/l4504.htm" },
+    { nome: "Contratos de integração vertical no agronegócio", numero: "Lei nº 13.288/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13288.htm" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso", numero: "Lei Complementar (MT) nº 04/1990", link: "https://www.legisweb.com.br/legislacao/?id=185274" },
+    { nome: "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará", numero: "Lei Estadual (PA) nº 5.810/1994", link: "https://www.legisweb.com.br/legislacao/?id=176267" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -464,6 +493,7 @@ var LEIS_DATA = {
     { nome: "Institui o regime de previdência complementar dos servidores públicos federais (Funpresp)", numero: "Lei nº 12.618/2012", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12618.htm" },
     { nome: "Aposentadoria da pessoa com deficiência segurada do RGPS", numero: "Lei Complementar nº 142/2013", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp142.htm" },
     { nome: "Regulamenta o seguro-defeso do pescador artesanal", numero: "Decreto nº 8.424/2015", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8424.htm" },
+    { nome: "Regime Próprio de Previdência dos servidores do Estado de Mato Grosso", numero: "Lei Complementar (MT) nº 670/2020", link: "https://www.legisweb.com.br/legislacao/?id=402471" },
   ]},
 
   humanos: { label: "Direitos Humanos", leis: [
@@ -501,6 +531,7 @@ var LEIS_DATA = {
     { nome: "Política Nacional de Povos e Comunidades Tradicionais", numero: "Decreto nº 6.040/2007", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2007;6040" },
     { nome: "Titulação das terras de quilombos", numero: "Decreto nº 4.887/2003", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:2003;4887" },
     { nome: "Sistema Nacional de Prevenção e Combate à Tortura", numero: "Lei nº 12.847/2013", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2013;12847" },
+    { nome: "Estatuto da Igualdade Racial do Estado do Pará", numero: "Lei Estadual (PA) nº 9.341/2021", link: "https://www.legisweb.com.br/legislacao/?id=418728" },
   ]},
 
   trabalhista: { label: "Direito do Trabalho", leis: [
