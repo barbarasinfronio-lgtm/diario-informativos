@@ -89,6 +89,8 @@ var LEIS_DATA = {
     { nome: "Processos perante o STJ e o STF (recursos)", numero: "Lei nº 8.038/1990", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1990;8038" },
     { nome: "Altera a Lei de Arbitragem", numero: "Lei nº 13.129/2015", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2015;13129" },
     { nome: "Fundo de Defesa de Direitos Difusos", numero: "Lei nº 9.008/1995", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1995;9008" },
+    { nome: "Regulamenta o julgamento de recursos especiais repetitivos no STJ (CPC/1973)", numero: "Lei nº 11.672/2008", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11672.htm" },
+    { nome: "Regulamenta a repercussão geral no recurso extraordinário (CPC/1973)", numero: "Lei nº 11.418/2006", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11418.htm" },
   ]},
 
   consumidor: { label: "Consumidor", leis: [
@@ -185,6 +187,7 @@ var LEIS_DATA = {
     { nome: "Lei de Introdução ao Código Penal", numero: "Decreto-Lei nº 3.914/1941", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3914.htm" },
     { nome: "Altera dispositivos da Lei de Contravenções Penais", numero: "Decreto-Lei nº 6.259/1944", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/1937-1946/del6259.htm" },
     { nome: "Apresentação e uso de documentos de identificação pessoal", numero: "Lei nº 5.553/1968", link: "https://www.planalto.gov.br/ccivil_03/leis/l5553.htm" },
+    { nome: "Altera o IR das pessoas jurídicas; art. 34 trata da extinção da punibilidade nos crimes tributários pelo pagamento do débito", numero: "Lei nº 9.249/1995", link: "https://www.planalto.gov.br/ccivil_03/leis/l9249.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -228,6 +231,7 @@ var LEIS_DATA = {
     { nome: "Crimes de responsabilidade", numero: "Lei nº 1.079/1950", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1950;1079" },
     { nome: "Defensoria Pública na Constituição", numero: "Emenda Constitucional nº 80/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2014;80" },
     { nome: "Lei Orgânica Nacional das Polícias Civis", numero: "Lei nº 14.735/2023", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14735.htm" },
+    { nome: "Dispõe sobre o processo e julgamento da ADI e da ADC perante o STF", numero: "Lei nº 9.868/1999", link: "https://www.planalto.gov.br/ccivil_03/leis/l9868.htm" },
   ]},
 
   eleitoral: { label: "Direito Eleitoral", leis: [
@@ -295,6 +299,7 @@ var LEIS_DATA = {
     { nome: "Código Tributário do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 3.938/1966", link: "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm" },
     { nome: "Institui o Regime Fiscal Sustentável (novo arcabouço fiscal)", numero: "Lei Complementar nº 200/2023", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" },
     { nome: "Refis da Crise — parcelamento especial de débitos tributários federais", numero: "Lei nº 11.941/2009", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11941.htm" },
+    { nome: "Lei de Transação Tributária", numero: "Lei nº 13.988/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -430,6 +435,19 @@ var LEIS_DATA = {
     { nome: "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul", numero: "Lei Complementar (MS) nº 72/1994", link: "https://www.mpms.mp.br/leiorganica" },
     { nome: "Regime Disciplinar da Polícia Federal e da Polícia Civil do Distrito Federal", numero: "Lei nº 15.047/2024", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15047.htm" },
     { nome: "Lei Orgânica da Polícia Civil do Estado da Bahia", numero: "Lei Estadual (BA) nº 11.370/2009", link: "https://www.legisweb.com.br/legislacao/?id=112160" },
+    { nome: "Gestão de recursos humanos das agências reguladoras", numero: "Lei nº 9.986/2000", link: "https://www.planalto.gov.br/ccivil_03/leis/l9986.htm" },
+    { nome: "Relicitação e prorrogação antecipada de contratos de parceria", numero: "Lei nº 13.448/2017", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13448.htm" },
+    { nome: "Prorrogação das concessões de energia elétrica", numero: "Lei nº 12.783/2013", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12783.htm" },
+    { nome: "Novo marco regulatório dos portos", numero: "Lei nº 12.815/2013", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12815.htm" },
+    { nome: "Dispõe sobre a estrutura da Procuradoria-Geral Federal", numero: "Lei nº 10.480/2002", link: "https://www.planalto.gov.br/ccivil_03/leis/2002/l10480.htm" },
+    { nome: "Regulamenta dispositivos constitucionais da reforma agrária", numero: "Lei nº 8.629/1993", link: "https://www.planalto.gov.br/ccivil_03/leis/l8629.htm" },
+    { nome: "Procedimento de desapropriação para fins de reforma agrária", numero: "Lei Complementar nº 76/1993", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp76.htm" },
+    { nome: "Regulamenta a vistoria e avaliação de imóveis rurais para reforma agrária", numero: "Decreto nº 9.311/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/D9311.htm" },
+    { nome: "Ratificação de registros de imóveis rurais na faixa de fronteira", numero: "Lei nº 13.178/2015", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13178.htm" },
+    { nome: "Regulamenta a regularização fundiária de imóveis rurais", numero: "Decreto nº 10.592/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/D10592.htm" },
+    { nome: "Usucapião especial de imóveis rurais", numero: "Lei nº 6.969/1981", link: "https://www.planalto.gov.br/ccivil_03/leis/l6969.htm" },
+    { nome: "Marco Legal de Ciência, Tecnologia e Inovação", numero: "Lei nº 13.243/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13243.htm" },
+    { nome: "Lei de Inovação Tecnológica", numero: "Lei nº 10.973/2004", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.973.htm" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -442,6 +460,10 @@ var LEIS_DATA = {
     { nome: "Reforma da Previdência", numero: "Emenda Constitucional nº 103/2019", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2019;103" },
     { nome: "Plano de Benefícios da Previdência Social", numero: "Lei nº 8.213/1991", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1991;8213" },
     { nome: "Regulamento da Previdência Social", numero: "Decreto nº 3.048/1999", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto:1999;3048" },
+    { nome: "Seguro-defeso do pescador profissional artesanal", numero: "Lei nº 10.779/2003", link: "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.779.htm" },
+    { nome: "Institui o regime de previdência complementar dos servidores públicos federais (Funpresp)", numero: "Lei nº 12.618/2012", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12618.htm" },
+    { nome: "Aposentadoria da pessoa com deficiência segurada do RGPS", numero: "Lei Complementar nº 142/2013", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp142.htm" },
+    { nome: "Regulamenta o seguro-defeso do pescador artesanal", numero: "Decreto nº 8.424/2015", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8424.htm" },
   ]},
 
   humanos: { label: "Direitos Humanos", leis: [
@@ -485,6 +507,7 @@ var LEIS_DATA = {
     { nome: "Contribuições previdenciárias na Justiça do Trabalho", numero: "Lei nº 10.035/2000", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2000;10035" },
     { nome: "Consolidação das Leis do Trabalho (CLT)", numero: "Decreto-Lei nº 5.452/1943", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1943;5452" },
     { nome: "Lei do Aeronauta — regulamenta a profissão", numero: "Lei nº 13.475/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13475" },
+    { nome: "Regras para execução indireta de serviços continuados na Administração Pública federal", numero: "Decreto nº 9.507/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9507.htm" },
   ]},
 
 };
