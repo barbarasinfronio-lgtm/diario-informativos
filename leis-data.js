@@ -182,6 +182,9 @@ var LEIS_DATA = {
     { nome: "Código Penal Militar", numero: "Decreto-Lei nº 1.001/1969", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del1001.htm" },
     { nome: "Institui o Sistema Único de Segurança Pública (SUSP)", numero: "Lei nº 13.675/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13675.htm" },
     { nome: "Promulga o Estatuto de Roma do Tribunal Penal Internacional", numero: "Decreto nº 4.388/2002", link: "https://www.planalto.gov.br/ccivil_03/decreto/2002/d4388.htm" },
+    { nome: "Lei de Introdução ao Código Penal", numero: "Decreto-Lei nº 3.914/1941", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del3914.htm" },
+    { nome: "Altera dispositivos da Lei de Contravenções Penais", numero: "Decreto-Lei nº 6.259/1944", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/1937-1946/del6259.htm" },
+    { nome: "Apresentação e uso de documentos de identificação pessoal", numero: "Lei nº 5.553/1968", link: "https://www.planalto.gov.br/ccivil_03/leis/l5553.htm" },
   ]},
 
   processual_penal: { label: "Processual Penal", leis: [
@@ -223,6 +226,7 @@ var LEIS_DATA = {
     { nome: "Mandado de Injunção", numero: "Lei nº 13.300/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2016;13300" },
     { nome: "Crimes de responsabilidade", numero: "Lei nº 1.079/1950", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1950;1079" },
     { nome: "Defensoria Pública na Constituição", numero: "Emenda Constitucional nº 80/2014", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:emenda.constitucional:2014;80" },
+    { nome: "Lei Orgânica Nacional das Polícias Civis", numero: "Lei nº 14.735/2023", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14735.htm" },
   ]},
 
   eleitoral: { label: "Direito Eleitoral", leis: [
@@ -341,6 +345,7 @@ var LEIS_DATA = {
     { nome: "Institui o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)", numero: "Lei nº 15.042/2024", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15042.htm" },
     { nome: "Dispõe sobre o uso, a conservação, a proteção e a recuperação do bioma Pantanal", numero: "Lei nº 15.228/2025", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15228.htm" },
     { nome: "Institui o sistema de logística reversa de embalagens plásticas", numero: "Decreto nº 12.688/2025", link: "https://www2.camara.leg.br/legin/fed/decret/2025/decreto-12688-21-outubro-2025-798174-publicacaooriginal-176787-pe.html" },
+    { nome: "Cria o Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)", numero: "Lei nº 11.516/2007", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/lei/l11516.htm" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -420,6 +425,8 @@ var LEIS_DATA = {
     { nome: "Institui o Sistema Nacional de Educação (SNE)", numero: "Lei Complementar nº 220/2025", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp220.htm" },
     { nome: "Relações entre as instituições federais de ensino superior/pesquisa e as fundações de apoio", numero: "Lei nº 8.958/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8958.htm" },
     { nome: "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul", numero: "Lei Complementar (MS) nº 72/1994", link: "https://www.mpms.mp.br/leiorganica" },
+    { nome: "Regime Disciplinar da Polícia Federal e da Polícia Civil do Distrito Federal", numero: "Lei nº 15.047/2024", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15047.htm" },
+    { nome: "Lei Orgânica da Polícia Civil do Estado da Bahia", numero: "Lei Estadual (BA) nº 11.370/2009", link: "https://www.legisweb.com.br/legislacao/?id=112160" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
