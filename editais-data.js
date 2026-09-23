@@ -245,7 +245,10 @@ var EDITAIS_DATA = [
   "extras": [],
   "editais": [
    "trf5-xvi",
-   "trf2-154-2025"
+   "trf2-154-2025",
+   "trf1-xviii-2025",
+   "trf3-xxi-2024",
+   "trf6-1-2025"
   ]
  },
  {
@@ -30880,6 +30883,1776 @@ var EDITAIS_DATA = [
    [
     "tributario",
     "Lei nº 5.172/1966"
+   ]
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "trf1-xviii-2025",
+  "sigla": "TRF1",
+  "cargo": "Juiz Federal Substituto",
+  "orgao": "Tribunal Regional Federal da 1ª Região",
+  "titulo": "XVIII Concurso Público para Provimento de Cargos de Juiz Federal Substituto da 1ª Região",
+  "edital": "Edital de Abertura (retificado em 29/04/2025)",
+  "grupos": [
+   {
+    "nome": "Bloco I",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Penal",
+     "Direito Processual Penal"
+    ]
+   },
+   {
+    "nome": "Bloco II",
+    "disciplinas": [
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Previdenciário",
+     "Direito Financeiro e Tributário"
+    ]
+   },
+   {
+    "nome": "Bloco III",
+    "disciplinas": [
+     "Direito Ambiental",
+     "Direito Internacional Público e Privado",
+     "Direito Empresarial",
+     "Direito Econômico e Proteção ao Consumidor",
+     "Noções Gerais de Direito e Formação Humanística",
+     "Direitos Humanos"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "administrativo",
+    "Decreto nº 9.311/2018"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (DF) nº 840/2011"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (MT) nº 04/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (SE) nº 33/1996"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar nº 76/1993"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (BA) nº 6.677/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MA) nº 6.107/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MS) nº 1.102/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (PA) nº 5.810/1994"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.848/2019"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.230/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.878/1965"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.112/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.629/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.637/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.986/2000"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 10.936/2022"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 99.274/1990"
+   ],
+   [
+    "ambiental",
+    "Lei Complementar nº 140/2011"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 9.048/2020"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 14.675/2009"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 16.342/2014"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.124/2005"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.187/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.305/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.334/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.587/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.608/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.755/2023"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.190/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.300/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.433/1997"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.795/1999"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "ambiental",
+    "Medida Provisória nº 1.308/2025"
+   ],
+   [
+    "civil",
+    "Decreto nº 3.413/2000"
+   ],
+   [
+    "civil",
+    "Decreto nº 3.691/2000"
+   ],
+   [
+    "civil",
+    "Decreto nº 5.296/2004"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Lei nº 10.048/2000"
+   ],
+   [
+    "civil",
+    "Lei nº 10.741/2003"
+   ],
+   [
+    "civil",
+    "Lei nº 11.126/2005"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 12.965/2014"
+   ],
+   [
+    "civil",
+    "Lei nº 13.146/2015"
+   ],
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "civil",
+    "Lei nº 14.010/2020"
+   ],
+   [
+    "civil",
+    "Lei nº 14.382/2022"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "civil",
+    "Lei nº 8.160/1991"
+   ],
+   [
+    "civil",
+    "Lei nº 8.899/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 8.935/1994"
+   ],
+   [
+    "civil",
+    "Resolução CNJ nº 452/2022"
+   ],
+   [
+    "constitucional",
+    "Emenda Constitucional nº 80/2014"
+   ],
+   [
+    "crianca",
+    "Lei nº 8.069/1990"
+   ],
+   [
+    "empresarial",
+    "Decreto nº 2.044/1908"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.112/2020"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.193/2021"
+   ],
+   [
+    "empresarial",
+    "Lei nº 4.886/1965"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.024/1974"
+   ],
+   [
+    "empresarial",
+    "Lei nº 9.279/1996"
+   ],
+   [
+    "humanos",
+    "Decreto nº 3.298/1999"
+   ],
+   [
+    "humanos",
+    "Decreto nº 678/1992"
+   ],
+   [
+    "humanos",
+    "Decreto nº 7.037/2009"
+   ],
+   [
+    "humanos",
+    "Decreto nº 9.571/2018"
+   ],
+   [
+    "humanos",
+    "Lei nº 10.098/2000"
+   ],
+   [
+    "humanos",
+    "Lei nº 12.852/2013"
+   ],
+   [
+    "humanos",
+    "Lei nº 7.853/1989"
+   ],
+   [
+    "penal",
+    "Decreto nº 154/1991"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.015/2004"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.687/2006"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 1.001/1969"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 3.914/1941"
+   ],
+   [
+    "penal",
+    "Lei nº 1.521/1951"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 14.322/2022"
+   ],
+   [
+    "penal",
+    "Lei nº 15.358/2026"
+   ],
+   [
+    "penal",
+    "Lei nº 15.384/2026"
+   ],
+   [
+    "penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "penal",
+    "Lei nº 7.492/1986"
+   ],
+   [
+    "penal",
+    "Lei nº 8.072/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.176/1991"
+   ],
+   [
+    "penal",
+    "Lei nº 9.249/1995"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "previdenciario",
+    "Decreto nº 3.048/1999"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 12.435/2011"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 13.876/2019"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.212/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.213/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.742/1993"
+   ],
+   [
+    "processual_civil",
+    "Emenda Constitucional nº 125/2022"
+   ],
+   [
+    "processual_civil",
+    "Lei Complementar (MG) nº 59/2001"
+   ],
+   [
+    "processual_civil",
+    "Lei Complementar (SC) nº 339/2006"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 10.259/2001"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 11.418/2006"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 12.153/2009"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 4.717/1965"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 7.347/1985"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.494/1997"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.507/1997"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 1.002/1969"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.931/1941"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.313/2010"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 8.658/1993"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "tributario",
+    "Decreto Estadual (MG) nº 44.747/2008"
+   ],
+   [
+    "tributario",
+    "Decreto nº 70.235/1972"
+   ],
+   [
+    "tributario",
+    "Lei Complementar (SC) nº 465/2009"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 118/2005"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (PR) nº 18.877/2016"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (SC) nº 13.136/2004"
+   ],
+   [
+    "tributario",
+    "Lei nº 10.169/2000"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.134/1990"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.397/1992"
+   ]
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "trf3-xxi-2024",
+  "sigla": "TRF3",
+  "cargo": "Juiz Federal Substituto",
+  "orgao": "Tribunal Regional Federal da 3ª Região",
+  "titulo": "XXI Concurso para Provimento de Cargos de Juiz Federal Substituto da 3ª Região",
+  "edital": "Edital de Abertura Consolidado",
+  "grupos": [
+   {
+    "nome": "Bloco I",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Penal",
+     "Direito Processual Penal"
+    ]
+   },
+   {
+    "nome": "Bloco II",
+    "disciplinas": [
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Previdenciário",
+     "Direito Financeiro e Tributário"
+    ]
+   },
+   {
+    "nome": "Bloco III",
+    "disciplinas": [
+     "Direito Ambiental",
+     "Direito Internacional Público e Privado",
+     "Direito Empresarial",
+     "Direito Econômico e Proteção ao Consumidor",
+     "Noções Gerais de Direito e Formação Humanística",
+     "Direitos Humanos"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "administrativo",
+    "Decreto nº 9.311/2018"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (DF) nº 840/2011"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (MT) nº 04/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (SC) nº 491/2010"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (SE) nº 33/1996"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar nº 76/1993"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (BA) nº 6.677/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MA) nº 6.107/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MS) nº 1.102/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (PA) nº 5.810/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (SP) nº 10.177/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.848/2019"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.230/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.878/1965"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.112/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.629/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.637/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.986/2000"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 10.936/2022"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 56.826/1965"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 7.217/2010"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 99.274/1990"
+   ],
+   [
+    "ambiental",
+    "Decreto-Lei nº 25/1937"
+   ],
+   [
+    "ambiental",
+    "Lei Complementar nº 140/2011"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 5.629/1990"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 9.048/2020"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 14.675/2009"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 16.342/2014"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.105/2005"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.124/2005"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.445/2007"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.187/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.305/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.334/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.587/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.608/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.026/2020"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.755/2023"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.785/2023"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.190/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.300/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.433/1997"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.795/1999"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "ambiental",
+    "Medida Provisória nº 1.308/2025"
+   ],
+   [
+    "civil",
+    "Decreto nº 20.910/1932"
+   ],
+   [
+    "civil",
+    "Decreto nº 3.413/2000"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 911/1969"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 14.010/2020"
+   ],
+   [
+    "civil",
+    "Lei nº 14.382/2022"
+   ],
+   [
+    "civil",
+    "Lei nº 4.380/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "civil",
+    "Lei nº 8.935/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 8.971/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 9.278/1996"
+   ],
+   [
+    "civil",
+    "Lei nº 9.514/1997"
+   ],
+   [
+    "constitucional",
+    "Emenda Constitucional nº 80/2014"
+   ],
+   [
+    "empresarial",
+    "Decreto-Lei nº 167/1967"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "empresarial",
+    "Lei nº 12.529/2011"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.112/2020"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.193/2021"
+   ],
+   [
+    "empresarial",
+    "Lei nº 4.886/1965"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.024/1974"
+   ],
+   [
+    "empresarial",
+    "Lei nº 7.913/1989"
+   ],
+   [
+    "empresarial",
+    "Lei nº 9.279/1996"
+   ],
+   [
+    "humanos",
+    "Lei nº 7.716/1989"
+   ],
+   [
+    "penal",
+    "Decreto nº 11.491/2023"
+   ],
+   [
+    "penal",
+    "Decreto nº 154/1991"
+   ],
+   [
+    "penal",
+    "Decreto nº 4.388/2002"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.015/2004"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.016/2004"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.687/2006"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 1.001/1969"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 3.914/1941"
+   ],
+   [
+    "penal",
+    "Lei nº 1.521/1951"
+   ],
+   [
+    "penal",
+    "Lei nº 11.343/2006"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 13.260/2016"
+   ],
+   [
+    "penal",
+    "Lei nº 13.344/2016"
+   ],
+   [
+    "penal",
+    "Lei nº 13.675/2018"
+   ],
+   [
+    "penal",
+    "Lei nº 14.322/2022"
+   ],
+   [
+    "penal",
+    "Lei nº 15.384/2026"
+   ],
+   [
+    "penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "penal",
+    "Lei nº 7.492/1986"
+   ],
+   [
+    "penal",
+    "Lei nº 7.716/1989"
+   ],
+   [
+    "penal",
+    "Lei nº 7.802/1989"
+   ],
+   [
+    "penal",
+    "Lei nº 8.072/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.176/1991"
+   ],
+   [
+    "penal",
+    "Lei nº 9.459/1997"
+   ],
+   [
+    "penal",
+    "Lei nº 9.503/1997"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "previdenciario",
+    "Decreto nº 3.048/1999"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 12.435/2011"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 13.876/2019"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.212/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.213/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.742/1993"
+   ],
+   [
+    "processual_civil",
+    "Emenda Constitucional nº 125/2022"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 10.259/2001"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 11.418/2006"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 12.153/2009"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.494/1997"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 1.002/1969"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.931/1941"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.343/2006"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.037/2009"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.313/2010"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.830/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 13.256/2016"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.960/1989"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 8.457/1992"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 8.658/1993"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.807/1999"
+   ],
+   [
+    "tributario",
+    "Decreto Estadual (MG) nº 44.747/2008"
+   ],
+   [
+    "tributario",
+    "Decreto nº 70.235/1972"
+   ],
+   [
+    "tributario",
+    "Emenda Constitucional nº 132/2023"
+   ],
+   [
+    "tributario",
+    "Lei Complementar (SC) nº 465/2009"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 118/2005"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 200/2023"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (PR) nº 18.877/2016"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (SC) nº 13.136/2004"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (SC) nº 3.938/1966"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.397/1992"
+   ],
+   [
+    "tributario",
+    "Lei nº 9.703/1998"
+   ]
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "trf6-1-2025",
+  "sigla": "TRF6",
+  "cargo": "Juiz Federal Substituto",
+  "orgao": "Tribunal Regional Federal da 6ª Região",
+  "titulo": "I Concurso Público para Provimento de Cargos de Juiz Federal Substituto da 6ª Região",
+  "edital": "Edital de Abertura nº 1, de 22 de agosto de 2025",
+  "grupos": [
+   {
+    "nome": "Bloco I",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Penal",
+     "Direito Processual Penal"
+    ]
+   },
+   {
+    "nome": "Bloco II",
+    "disciplinas": [
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Previdenciário",
+     "Direito Financeiro e Tributário"
+    ]
+   },
+   {
+    "nome": "Bloco III",
+    "disciplinas": [
+     "Direito Ambiental",
+     "Direito Internacional Público e Privado",
+     "Direito Empresarial",
+     "Direito Econômico e Proteção ao Consumidor",
+     "Noções Gerais de Direito e Formação Humanística",
+     "Direitos Humanos"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "administrativo",
+    "Decreto nº 9.311/2018"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (DF) nº 840/2011"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (MT) nº 04/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar (SE) nº 33/1996"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar nº 76/1993"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (BA) nº 6.677/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MA) nº 6.107/1994"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (MS) nº 1.102/1990"
+   ],
+   [
+    "administrativo",
+    "Lei Estadual (PA) nº 5.810/1994"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.848/2019"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.230/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.878/1965"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.112/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.629/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.637/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.986/2000"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 10.936/2022"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 56.826/1965"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 6.514/2008"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 7.217/2010"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 99.274/1990"
+   ],
+   [
+    "ambiental",
+    "Lei Complementar nº 140/2011"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (MS) nº 2.257/2001"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (MS) nº 2.406/2002"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (MS) nº 4.555/2014"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (MS) nº 5.235/2018"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 5.295/1985"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 5.629/1990"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 6.745/2005"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 7.731/2013"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 9.048/2020"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (PA) nº 9.593/2022"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 14.675/2009"
+   ],
+   [
+    "ambiental",
+    "Lei Estadual (SC) nº 16.342/2014"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.124/2005"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.445/2007"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.187/2009"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.305/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.334/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.587/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.608/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.026/2020"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.119/2021"
+   ],
+   [
+    "ambiental",
+    "Lei nº 14.755/2023"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.190/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 15.300/2025"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.433/1997"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.795/1999"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "ambiental",
+    "Medida Provisória nº 1.308/2025"
+   ],
+   [
+    "civil",
+    "Decreto nº 20.910/1932"
+   ],
+   [
+    "civil",
+    "Decreto nº 3.413/2000"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 911/1969"
+   ],
+   [
+    "civil",
+    "Lei nº 12.376/2010"
+   ],
+   [
+    "civil",
+    "Lei nº 14.010/2020"
+   ],
+   [
+    "civil",
+    "Lei nº 14.382/2022"
+   ],
+   [
+    "civil",
+    "Lei nº 4.380/1964"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "civil",
+    "Lei nº 8.935/1994"
+   ],
+   [
+    "civil",
+    "Lei nº 9.514/1997"
+   ],
+   [
+    "constitucional",
+    "Emenda Constitucional nº 80/2014"
+   ],
+   [
+    "consumidor",
+    "Decreto nº 7.962/2013"
+   ],
+   [
+    "empresarial",
+    "Decreto nº 2.044/1908"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "empresarial",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.112/2020"
+   ],
+   [
+    "empresarial",
+    "Lei nº 14.193/2021"
+   ],
+   [
+    "empresarial",
+    "Lei nº 4.886/1965"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.024/1974"
+   ],
+   [
+    "empresarial",
+    "Lei nº 7.913/1989"
+   ],
+   [
+    "empresarial",
+    "Lei nº 9.279/1996"
+   ],
+   [
+    "humanos",
+    "Decreto nº 678/1992"
+   ],
+   [
+    "humanos",
+    "Decreto nº 7.037/2009"
+   ],
+   [
+    "humanos",
+    "Decreto nº 9.571/2018"
+   ],
+   [
+    "penal",
+    "Decreto nº 154/1991"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.015/2004"
+   ],
+   [
+    "penal",
+    "Decreto nº 5.687/2006"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 1.001/1969"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 2.848/1940"
+   ],
+   [
+    "penal",
+    "Decreto-Lei nº 3.914/1941"
+   ],
+   [
+    "penal",
+    "Lei nº 1.521/1951"
+   ],
+   [
+    "penal",
+    "Lei nº 14.322/2022"
+   ],
+   [
+    "penal",
+    "Lei nº 15.384/2026"
+   ],
+   [
+    "penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "penal",
+    "Lei nº 7.492/1986"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "penal",
+    "Lei nº 8.176/1991"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "previdenciario",
+    "Decreto nº 3.048/1999"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 12.435/2011"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 13.876/2019"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.212/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.213/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.742/1993"
+   ],
+   [
+    "processual_civil",
+    "Emenda Constitucional nº 125/2022"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 10.259/2001"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 11.418/2006"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 12.153/2009"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 9.494/1997"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 1.002/1969"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.689/1941"
+   ],
+   [
+    "processual_penal",
+    "Decreto-Lei nº 3.931/1941"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.037/2009"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.313/2010"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.830/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 13.256/2016"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.210/1984"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 7.960/1989"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 8.658/1993"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.099/1995"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 9.807/1999"
+   ],
+   [
+    "tributario",
+    "Decreto Estadual (MG) nº 44.747/2008"
+   ],
+   [
+    "tributario",
+    "Decreto nº 70.235/1972"
+   ],
+   [
+    "tributario",
+    "Emenda Constitucional nº 132/2023"
+   ],
+   [
+    "tributario",
+    "Lei Complementar (SC) nº 465/2009"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 118/2005"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 214/2025"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (PR) nº 18.877/2016"
+   ],
+   [
+    "tributario",
+    "Lei Estadual (SC) nº 13.136/2004"
+   ],
+   [
+    "tributario",
+    "Lei nº 10.169/2000"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.134/1990"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.397/1992"
    ]
   ],
   "tipo": "edital"

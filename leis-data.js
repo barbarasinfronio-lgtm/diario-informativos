@@ -64,6 +64,12 @@ var LEIS_DATA = {
     { nome: "Consolida atos normativos federais sobre a temática da pessoa idosa", numero: "Decreto nº 9.921/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D9921.htm" },
     { nome: "Altera o Decreto nº 9.921/2019 (temática da pessoa idosa)", numero: "Decreto nº 10.604/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/decreto/D10604.htm" },
     { nome: "Altera o Código Civil quanto à gestação por substituição e reprodução assistida", numero: "Lei nº 14.443/2022", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14443.htm" },
+    { nome: "Prioridade de atendimento às pessoas com deficiência, idosos, gestantes e lactantes", numero: "Lei nº 10.048/2000", link: "https://www.planalto.gov.br/ccivil_03/leis/l10048.htm" },
+    { nome: "Regulamenta as Leis nº 10.048/2000 e nº 10.098/2000 (acessibilidade)", numero: "Decreto nº 5.296/2004", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5296.htm" },
+    { nome: "Reserva de assentos em transporte coletivo para idosos e pessoas com deficiência", numero: "Lei nº 8.899/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8899.htm" },
+    { nome: "Regulamenta a Lei nº 8.899/1994 (passe livre no transporte coletivo interestadual)", numero: "Decreto nº 3.691/2000", link: "https://www.planalto.gov.br/ccivil_03/decreto/D3691.htm" },
+    { nome: "Símbolo de identificação de pessoas com deficiência auditiva", numero: "Lei nº 8.160/1991", link: "https://www.planalto.gov.br/ccivil_03/leis/l8160.htm" },
+    { nome: "Cão-guia em locais públicos e transporte coletivo para pessoas com deficiência visual", numero: "Lei nº 11.126/2005", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11126.htm" },
   ]},
 
   processual_civil: { label: "Processual Civil", leis: [
@@ -305,6 +311,7 @@ var LEIS_DATA = {
     { nome: "Refis da Crise — parcelamento especial de débitos tributários federais", numero: "Lei nº 11.941/2009", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11941.htm" },
     { nome: "Lei de Transação Tributária", numero: "Lei nº 13.988/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm" },
     { nome: "ICMS do Estado do Paraná", numero: "Lei Estadual (PR) nº 11.580/1996", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9464" },
+    { nome: "Regulamenta a Reforma Tributária sobre o consumo (IBS, CBS e Imposto Seletivo)", numero: "Lei Complementar nº 214/2025", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
