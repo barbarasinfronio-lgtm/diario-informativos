@@ -216,6 +216,7 @@ var LEIS_DATA = {
     { nome: "Assistência jurídica ao preso — altera a Lei de Execução Penal", numero: "Lei nº 12.313/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2010;12313" },
     { nome: "Altera o CPP — resposta à acusação, absolvição sumária e sentença", numero: "Lei nº 11.719/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11719" },
     { nome: "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)", numero: "Lei nº 11.697/2008", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2008;11697" },
+    { nome: "Altera a Lei nº 13.105/2015 quanto ao juízo de admissibilidade dos recursos especial e extraordinário", numero: "Lei nº 13.256/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13256.htm" },
   ]},
 
   constitucional: { label: "Direito Constitucional", leis: [
@@ -238,6 +239,7 @@ var LEIS_DATA = {
     { nome: "Acrescenta dispositivo ao Código Eleitoral (ação rescisória)", numero: "Lei Complementar nº 86/1996", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp86.htm" },
     { nome: "Lei dos Partidos Políticos", numero: "Lei nº 9.096/1995", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1995;9096" },
     { nome: "Lei da Ficha Limpa", numero: "Lei Complementar nº 135/2010", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2010;135" },
+    { nome: "Combate à violência política contra a mulher", numero: "Lei nº 14.192/2021", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14192.htm" },
   ]},
 
   empresarial: { label: "Direito Empresarial", leis: [
@@ -292,6 +294,7 @@ var LEIS_DATA = {
     { nome: "Processo Administrativo Fiscal Federal", numero: "Decreto nº 70.235/1972", link: "https://www.planalto.gov.br/ccivil_03/decreto/d70235cons.htm" },
     { nome: "Código Tributário do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 3.938/1966", link: "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm" },
     { nome: "Institui o Regime Fiscal Sustentável (novo arcabouço fiscal)", numero: "Lei Complementar nº 200/2023", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp200.htm" },
+    { nome: "Refis da Crise — parcelamento especial de débitos tributários federais", numero: "Lei nº 11.941/2009", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11941.htm" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
