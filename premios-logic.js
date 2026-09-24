@@ -228,10 +228,11 @@
     var days = Object.keys(perDay).map(Number).sort(function (a, b) { return a - b; });
     ctx.distinctDays = days.length;
 
-    ctx.maxDay = 0; ctx.triDays = 0; ctx.maxOrgsDay = 0;
+    ctx.maxDay = 0; ctx.maxDayLei = 0; ctx.triDays = 0; ctx.maxOrgsDay = 0;
     days.forEach(function (dn) {
       var d = perDay[dn];
       ctx.maxDay = Math.max(ctx.maxDay, d.total);
+      ctx.maxDayLei = Math.max(ctx.maxDayLei, d.lei);
       if (d.inf && d.lei && d.sum) ctx.triDays++;
       ctx.maxOrgsDay = Math.max(ctx.maxOrgsDay, Object.keys(d.orgs).length);
     });
@@ -364,6 +365,9 @@
     });
     ladder("volume", "lei-sem", E.leisSemana, ctx.maxWeek.lei, function (n) {
       return "Leia " + n + " leis numa mesma semana.";
+    });
+    ladder("volume", "lei-dia", E.leisDia, ctx.maxDayLei, function (n) {
+      return "Leia " + n + " leis num mesmo dia.";
     });
     ladder("volume", "sum-sem", E.sumulasSemana, ctx.maxWeek.sum, function (n) {
       return "Leia " + n + " súmulas numa mesma semana.";

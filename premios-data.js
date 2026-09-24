@@ -144,6 +144,12 @@ window.PREMIOS_CONFIG = {
       [20, "🏛️", "Rato de Planalto"],
       [40, "📜", "Devorador de Leis"]
     ],
+    leisDia: [       // leis lidas num mesmo dia
+      [5,  "📖", "Leitor Relâmpago"],
+      [10, "⚡", "Turbo Leitor de Leis"],
+      [20, "🌪️", "Redemoinho Normativo"],
+      [40, "🔥", "Overdose de Lei Seca"]
+    ],
     sumulasSemana: [
       [5,  "📌", "Caçador de Súmulas"],
       [10, "📎", "Colecionador de Verbetes"],
@@ -169,12 +175,18 @@ window.PREMIOS_CONFIG = {
       [2500, "🏔️", "Montanha de Ementas"],
       [5000, "🌌", "Lenda Viva"]
     ],
-    totalLeis: [
+    totalLeis: [     // o teto de cada faixa só aparece quando o Diário de
+                     // Leis já tiver leis suficientes para alcançá-la
+                     // (a lista tem hoje pouco mais de 750 leis ao todo)
       [1,   "📕", "Primeira Lei"],
       [10,  "📘", "Dez Leis"],
       [25,  "📗", "Legislador Aprendiz"],
       [50,  "📙", "Metade do Caminho"],
-      [100, "📚", "Biblioteca do Planalto"]
+      [100, "📚", "Biblioteca do Planalto"],
+      [200, "🗄️", "Acervo Jurídico"],
+      [350, "🏦", "Cofre de Leis"],
+      [500, "📖", "Vade Mecum Ambulante"],
+      [700, "👑", "Enciclopédia Jurídica Viva"]
     ],
     totalSumulas: [
       [1,   "📌", "Primeira Súmula"],
