@@ -4,8 +4,14 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - run: npm i playwright@1 && npx playwright install --with-deps chromium
-      - run: node scripts/verificar-site.mjs
+      - name: LexML - busca por leis federais recentes
+        run: |
+          echo "== tentativa 1: SRU =="
+          curl -sSL -A "Mozilla/5.0" "https://www.lexml.gov.br/busca/SRU?operation=searchRetrieve&query=urn%3Dlei%20and%20date%3D2026&maximumRecords=5" -o r1.xml -w "HTTP %{http_code}\n" || true
+          echo "tamanho: $(wc -c < r1.xml 2>/dev/null || echo 0)"
+          head -c 2000 r1.xml 2>/dev/null; echo
+          echo
+          echo "== tentativa 2: pagina de busca normal =="
+          curl -sSL -A "Mozilla/5.0" "https://www.lexml.gov.br/busca/search?keyword=&f1-tipoDocumento=Lei&f1-localidade=br" -o r2.html -w "HTTP %{http_code}\n" || true
+          echo "tamanho: $(wc -c < r2.html 2>/dev/null || echo 0)"
+          grep -oiE '(rss|atom|feed)[^"'"'"'>]*' r2.html | sort -u | head -20
