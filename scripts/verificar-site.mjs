@@ -1,16 +1,13 @@
-const ORIGIN = 'https://www.estudamana.com.br';
-const pages = (process.env.PAGES || '').split(',').filter(Boolean);
-for (const slug of pages) {
-  const url = `${ORIGIN}/p/${slug}.html`;
-  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36', 'Accept-Language': 'pt-BR,pt;q=0.9' } });
-  const html = await res.text();
-  if (res.status === 429) { await new Promise(r => setTimeout(r, 8000)); continue; }
-  console.log('\n==== ' + url + ' status=' + res.status + ' len=' + html.length);
-  const marks = ['account-panel', 'cg-box', 'Entrar com Google', 'avatar-toggle', 'avatar-panel',
-    'my-prizes', 'list-root', 'org-tabs', 'meus-grupos', 'ContaGoogle', 'ContaEmail',
-    'conta-google.js', 'conta-email.js', 'grupos-shared.js', 'editais-shared.js',
-    'DIARIO_FIREBASE_CONFIG', 'select-edital', 'grid-leis-federais'];
-  for (const m of marks) {
-    console.log((html.includes(m) ? 'SIM ' : 'nao ') + m);
-  }
-}
+const url = process.env.URL || 'https://www4.planalto.gov.br/legislacao/portal-legis/resenha-diaria';
+const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+const html = await res.text();
+console.log('STATUS', res.status, 'LEN', html.length);
+console.log('--- <link> tags ---');
+console.log((html.match(/<link[^>]*>/gi) || []).join('\n'));
+console.log('--- RSS/atom mentions ---');
+console.log((html.match(/[^"'>]*\.(rss|xml|atom)[^"'<]*/gi) || []).slice(0,20).join('\n'));
+console.log('--- trecho do body (2000 chars a partir de "resenha" case-insensitive) ---');
+const idx = html.toLowerCase().indexOf('resenha');
+console.log(html.slice(Math.max(0, idx-200), idx+2500));
+console.log('--- primeiros 1500 chars ---');
+console.log(html.slice(0, 1500));
