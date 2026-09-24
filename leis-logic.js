@@ -1,603 +1,331 @@
-
+/*
+ * leis-logic.js — Diário de Leis (filtro por edital / carreira)
+ *
+ * Usa o HTML da página no Blogger com estes elementos:
+ *   #select-edital, #select-estado (dentro de #wrapper-filtro-estado),
+ *   #input-busca-lei, #grid-leis-federais, #grid-leis-estaduais,
+ *   #titulo-leis-estaduais
+ *
+ * Regras:
+ *   - Edital específico de um estado (ex.: TJSP, MPMG, PGE-GO): mostra todas as
+ *     leis federais e, das estaduais, só as daquele estado.
+ *   - Carreira estadual (ex.: Magistratura Estadual): mostra todas as federais e
+ *     um menu para escolher de qual estado incluir as leis estaduais.
+ *   - Concurso federal ou exame nacional (TRF, MPF, AGU, ENAM…): só as federais.
+ *
+ * Os dados vêm de leis-data.js (LEIS_DATA, a mesma base usada por Editais e
+ * Prêmios) e a lista de editais/carreiras de editais-data.js (EDITAIS_DATA).
+ * Uma lei é estadual quando o "numero" traz a sigla da UF entre parênteses,
+ * ex.: "Lei Estadual (SC) nº 17.492/2018".
+ *
+ * Funciona carregado tanto com <script src> quanto com <script type="module">:
+ * se os dados ainda não estiverem na página, este arquivo os busca na mesma
+ * pasta de onde ele próprio veio.
+ */
 (function () {
   "use strict";
 
-  // (dados carregados de leis-data.js, que roda antes deste arquivo)
-  var LOCAL_KEY = "leis-lidas";
-  var listRoot = document.getElementById("list-root");
-  var syncNote = document.getElementById("sync-note");
-  var tabsRoot = document.getElementById("org-tabs");
-  var ledeText = document.getElementById("lede-text");
-  var footerSource = document.getElementById("footer-source");
+  if (window.__leisLogic) return;
+  window.__leisLogic = true;
 
-  // Base comum do "Estudo coletivo" (grupos, ranking, boneco/avatar) —
-  // grupos-shared.js roda antes deste arquivo em toda página de diário.
-  var GS = window.GruposShared;
+  var STORAGE_EDITAL = "estudamana_edital_selecionado";
+  var STORAGE_ESTADO = "estudamana_estado_selecionado";
+  var CDN_BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
 
-  // Boneco personalizável — mesmo esquema do Diário dos Informativos
-  // (grupos-shared.js), guardado sob uma chave própria para não
-  // interferir na outra página.
-  var AVATAR_KEY = "leis-avatar";
-  var avatarPref = GS.readAvatarPref(AVATAR_KEY);
+  var ESTADOS = [
+    ["AC", "Acre"], ["AL", "Alagoas"], ["AP", "Amapá"], ["AM", "Amazonas"],
+    ["BA", "Bahia"], ["CE", "Ceará"], ["DF", "Distrito Federal"],
+    ["ES", "Espírito Santo"], ["GO", "Goiás"], ["MA", "Maranhão"],
+    ["MT", "Mato Grosso"], ["MS", "Mato Grosso do Sul"], ["MG", "Minas Gerais"],
+    ["PA", "Pará"], ["PB", "Paraíba"], ["PR", "Paraná"], ["PE", "Pernambuco"],
+    ["PI", "Piauí"], ["RJ", "Rio de Janeiro"], ["RN", "Rio Grande do Norte"],
+    ["RS", "Rio Grande do Sul"], ["RO", "Rondônia"], ["RR", "Roraima"],
+    ["SC", "Santa Catarina"], ["SP", "São Paulo"], ["SE", "Sergipe"],
+    ["TO", "Tocantins"]
+  ];
+  var UF_NOME = {};
+  ESTADOS.forEach(function (e) { UF_NOME[e[0]] = e[1]; });
 
-  var ORG_ORDER = LEIS_ORG_ORDER;
-  var currentOrg = ORG_ORDER[0];
-
-  var stateByOrg = {};
-  ORG_ORDER.forEach(function (key) {
-    stateByOrg[key] = LEIS_DATA[key].leis.map(function (d) {
-      return { nome: d.nome, numero: d.numero, link: d.link, lida: false, lidaEm: null };
-    });
-  });
-
-  function slug(text) {
-    return (text || "").toLowerCase()
-      .normalize("NFD").replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  // ---- carregamento dos dados ---------------------------------------------
+  function scriptBase() {
+    var all = document.getElementsByTagName("script");
+    for (var i = 0; i < all.length; i++) {
+      var src = all[i].src || "";
+      if (/leis-logic\.js/.test(src)) return src.replace(/leis-logic\.js(\?.*)?$/, "");
+    }
+    return CDN_BASE;
   }
 
-  function rowKey(orgKey, row) { return orgKey + ":" + slug(row.numero); }
-
-  function todayIso() {
-    var now = new Date();
-    var m = String(now.getMonth() + 1).padStart(2, "0");
-    var d = String(now.getDate()).padStart(2, "0");
-    return now.getFullYear() + "-" + m + "-" + d;
-  }
-
-  function readLocal() {
-    try {
-      var raw = localStorage.getItem(LOCAL_KEY);
-      return raw ? JSON.parse(raw) : {};
-    } catch (e) { return {}; }
-  }
-
-  function writeLocal(map) {
-    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(map)); } catch (e) {}
-  }
-
-  function applyMap(map) {
-    ORG_ORDER.forEach(function (orgKey) {
-      stateByOrg[orgKey].forEach(function (row) {
-        var k = rowKey(orgKey, row);
-        if (Object.prototype.hasOwnProperty.call(map, k)) {
-          var v = map[k];
-          row.lida = !!(v && v.lida);
-          row.lidaEm = (v && v.lidaEm) || null;
-        }
-      });
+  function ensure(globalName, file) {
+    return new Promise(function (resolve) {
+      if (window[globalName]) { resolve(); return; }
+      var s = document.createElement("script");
+      s.src = scriptBase() + file;
+      s.charset = "utf-8";
+      s.onload = s.onerror = function () { resolve(); };
+      document.head.appendChild(s);
     });
   }
 
-  function stateToMap() {
-    var map = {};
-    ORG_ORDER.forEach(function (orgKey) {
-      stateByOrg[orgKey].forEach(function (row) {
-        map[rowKey(orgKey, row)] = { lida: row.lida, lidaEm: row.lidaEm };
-      });
-    });
-    return map;
-  }
-
-  // ---- Edital principal ---------------------------------------------------
-  // O edital escolhido (página "Editais") filtra as leis mostradas aqui. O
-  // código do edital fica em editais-shared.js (salvo no navegador e na conta).
-  var FILTER_KEY = "leis-filtro"; // "edital" | "todas"
-  var ES = null;                  // EditaisShared, quando carregado
-  var filterMode = "edital";
-  try { if (localStorage.getItem(FILTER_KEY) === "todas") filterMode = "todas"; } catch (e) {}
-  var EDITAIS_URL = "https://www.estudamana.com.br/p/editais.html";
-  var editPanelOpen = false;
-
-  // Legislação estadual/municipal específica de um edital fica de fora por
-  // padrão (a maioria das leis de um edital já é nacional/comum a todos) —
-  // a pessoa liga isso explicitamente se quiser ver também a parte local.
-  var LOCAL_KEY_PREF = "leis-incluir-local";
-  var includeLocal = false;
-  try { includeLocal = localStorage.getItem(LOCAL_KEY_PREF) === "sim"; } catch (e) {}
-
-  function activeEdital() { return ES && ES.principal ? ES.principal() : null; }
-
-  function lawKeyOpts() { return { includeLocal: includeLocal }; }
-
-  // chaves das leis do edital, ou null quando não há filtro ativo
-  function activeKeys() {
-    var ed = activeEdital();
-    return ed && filterMode === "edital" ? ES.lawKeys(ed, lawKeyOpts()) : null;
-  }
-
-  function orgRows(orgKey, keys) {
-    var rows = stateByOrg[orgKey];
-    if (!keys) return rows;
-    return rows.filter(function (r) { return keys[rowKey(orgKey, r)]; });
-  }
-
-  function visibleOrgs(keys) {
-    if (!keys) return ORG_ORDER;
-    return ORG_ORDER.filter(function (k) { return orgRows(k, keys).length > 0; });
-  }
-
-  function editalTotals(ed) {
-    var keys = ES.lawKeys(ed, lawKeyOpts()), total = 0, lidas = 0;
-    ORG_ORDER.forEach(function (k) {
-      stateByOrg[k].forEach(function (r) {
-        if (keys[rowKey(k, r)]) { total++; if (r.lida) lidas++; }
-      });
-    });
-    return { total: total, lidas: lidas };
-  }
-
-  function escapeHtml(t) {
-    return String(t).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  }
-
-  function renderEditalBar() {
-    if (!ES || !tabsRoot || !ES.data().length) return;
-    var bar = document.getElementById("edital-bar");
-    if (!bar) {
-      bar = document.createElement("div");
-      bar.id = "edital-bar";
-      bar.className = "edital-bar";
-      tabsRoot.parentNode.insertBefore(bar, tabsRoot);
-    }
-    var ed = activeEdital();
-    function optionsFor(grupo) {
-      return ES.data().filter(function (e) {
-        if (e.emBreve) return false;
-        var g = (e.tipo || "edital") === "carreira" ? (e.secao === "exame" ? "exame" : "carreira") : "edital";
-        return g === grupo;
-      }).map(function (e) {
-        return '<option value="' + e.id + '"' + (ed && ed.id === e.id ? " selected" : "") + ">" +
-          escapeHtml(grupo === "edital" ? e.sigla + " — " + e.titulo : e.titulo) + "</option>";
-      }).join("");
-    }
-    var options = '<optgroup label="Por carreira (todos os editais do cargo)">' + optionsFor("carreira") + "</optgroup>" +
-      '<optgroup label="Exames nacionais">' + optionsFor("exame") + "</optgroup>" +
-      '<optgroup label="Por edital">' + optionsFor("edital") + "</optgroup>";
-    var isCar = ed && ed.tipo === "carreira";
-    var isExame = isCar && ed.secao === "exame";
-    var kw = isExame ? "exame" : (isCar ? "carreira" : "edital");
-    var kind = kw.charAt(0).toUpperCase() + kw.slice(1);
-    var picker =
-      '<div class="edital-picker" id="edital-picker"' + ((ed && !editPanelOpen) ? " hidden" : "") + ">" +
-      '<label class="edital-picker-label" for="edital-select">' + (ed ? "Escolha o novo edital, carreira ou exame principal" : "Escolha o seu edital, carreira ou exame") + "</label>" +
-      '<div class="edital-picker-row">' +
-      '<select id="edital-select" class="edital-select">' + (ed ? "" : '<option value="">Selecione…</option>') + options + "</select>" +
-      '<button type="button" class="edital-btn edital-btn-primary" id="edital-save">' + (ed ? "Salvar" : "Definir como principal") + "</button>" +
-      (ed ? '<button type="button" class="edital-btn" id="edital-cancel">Cancelar</button>' : "") +
-      "</div></div>";
-
-    if (!ed) {
-      bar.innerHTML =
-        '<p class="edital-empty">🎯 Escolha o seu edital — ou a carreira inteira — e o Diário passa a mostrar só as leis dele. ' +
-        '<a href="' + EDITAIS_URL + '">Ver os editais</a></p>' + picker;
-      return;
-    }
-    var t = editalTotals(ed);
-    var allCount = 0;
-    ORG_ORDER.forEach(function (k) { allCount += stateByOrg[k].length; });
-    var showLocalToggle = !isCar && ES.hasLocalNormas(ed);
-    bar.innerHTML =
-      '<div class="edital-head">' +
-      '<div class="edital-title"><span class="edital-kicker">' + kind + ' principal</span>' +
-      (isCar ? '<strong>' + escapeHtml(ed.titulo) + '</strong> <span>' + escapeHtml(ed.cargo) + "</span>"
-             : '<strong>' + escapeHtml(ed.sigla) + '</strong> <span>' + escapeHtml(ed.titulo) + " · " + escapeHtml(ed.cargo) + "</span>") + "</div>" +
-      '<button type="button" class="edital-btn" id="edital-change" aria-expanded="' + (editPanelOpen ? "true" : "false") + '">Alterar ' + kw + ' principal</button>' +
-      "</div>" + picker +
-      '<div class="edital-modes" role="group" aria-label="Quais leis mostrar">' +
-      '<button type="button" class="edital-mode' + (filterMode === "edital" ? " active" : "") + '" data-mode="edital">' + (isExame ? "Leis do meu exame" : (isCar ? "Leis da minha carreira" : "Leis do meu edital")) + ' <span class="count">' + t.total + "</span></button>" +
-      '<button type="button" class="edital-mode' + (filterMode === "todas" ? " active" : "") + '" data-mode="todas">Todas as leis <span class="count">' + allCount + "</span></button>" +
-      "</div>" +
-      (showLocalToggle
-        ? '<label class="edital-local-toggle"><input type="checkbox" id="edital-local-check"' + (includeLocal ? " checked" : "") + '> Incluir legislação estadual/local específica desse edital</label>'
-        : "") +
-      '<p class="edital-progress">' + t.lidas + " de " + t.total + (isExame ? " leis do exame lidas" : (isCar ? " leis da carreira lidas" : " leis do edital lidas")) +
-      (ed.extras && ed.extras.length ? ' · <a href="' + EDITAIS_URL + '">' + ed.extras.length + " normas do edital fora deste índice</a>" : "") + "</p>";
-  }
-
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("#edital-change, #edital-cancel, #edital-save, .edital-mode, #edital-local-check");
-    if (!t || !ES) return;
-    if (t.id === "edital-change") { editPanelOpen = !editPanelOpen; renderEditalBar(); return; }
-    if (t.id === "edital-cancel") { editPanelOpen = false; renderEditalBar(); return; }
-    if (t.id === "edital-save") {
-      var sel = document.getElementById("edital-select");
-      if (sel && sel.value) { editPanelOpen = false; ES.setPrincipal(sel.value); }
-      return;
-    }
-    if (t.id === "edital-local-check") {
-      includeLocal = t.checked;
-      try { localStorage.setItem(LOCAL_KEY_PREF, includeLocal ? "sim" : "não"); } catch (err) {}
-      render();
-      return;
-    }
-    if (t.classList.contains("edital-mode")) {
-      filterMode = t.getAttribute("data-mode") === "todas" ? "todas" : "edital";
-      try { localStorage.setItem(FILTER_KEY, filterMode); } catch (err) {}
-      render();
-    }
-  });
-
-  function renderTabs() {
-    tabsRoot.innerHTML = "";
-    var keys = activeKeys();
-    var orgs = visibleOrgs(keys);
-    if (orgs.indexOf(currentOrg) === -1) currentOrg = orgs[0] || ORG_ORDER[0];
-    orgs.forEach(function (key) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "org-tab" + (key === currentOrg ? " active" : "");
-      btn.setAttribute("role", "tab");
-      btn.setAttribute("aria-selected", key === currentOrg ? "true" : "false");
-      btn.innerHTML = LEIS_DATA[key].label + '<span class="count">' + orgRows(key, keys).length + "</span>";
-      btn.addEventListener("click", function () {
-        if (currentOrg === key) return;
-        currentOrg = key;
-        render();
-      });
-      tabsRoot.appendChild(btn);
-    });
-  }
-
-  function render() {
-    renderEditalBar();
-    renderTabs();
-    var edNow = activeEdital();
-    ledeText.textContent = (edNow && filterMode === "edital")
-      ? (edNow.tipo === "carreira"
-          ? (edNow.secao === "exame" ? "Leis do conteúdo programático do exame " + edNow.titulo + ". Marque conforme for lendo." : "Leis do conteúdo programático de todos os editais da carreira " + edNow.titulo + " (" + edNow.cargo.replace("união dos editais: ", "") + "). Marque conforme for lendo.")
-          : "Leis do conteúdo programático do edital " + edNow.sigla + " (" + edNow.titulo + "). Marque conforme for lendo.")
-      : "Leis citadas no conteúdo programático dos editais mapeados (magistratura, Ministério Público e advocacia pública). Marque conforme for lendo.";
-    footerSource.innerHTML = 'Índice montado a partir do conteúdo programático dos editais mapeados. Os links levam ao site oficial (Planalto ou portal do respectivo estado) — se algum link estiver quebrado ou desatualizado, avise para correção.';
-
-    var state = orgRows(currentOrg, activeKeys());
-
-    listRoot.innerHTML = "";
-    var section = document.createElement("section");
-    section.className = "year-group";
-    var ul = document.createElement("ul");
-    ul.className = "list";
-
-    state.forEach(function (row) {
-      var li = document.createElement("li");
-      li.className = "row" + (row.lida ? " is-read" : "");
-
-      var checkWrap = document.createElement("div");
-      checkWrap.className = "check-wrap";
-      var input = document.createElement("input");
-      input.type = "checkbox";
-      input.className = "check-box";
-      input.checked = row.lida;
-      input.setAttribute("aria-label", "Marcar " + row.nome + " como lida");
-      input.addEventListener("change", function () { toggle(currentOrg, row, input.checked); });
-      checkWrap.appendChild(input);
-
-      var edition = document.createElement("div");
-      edition.className = "edition";
-      var num = document.createElement("span");
-      num.className = "num";
-      num.textContent = row.nome;
-      var date = document.createElement("span");
-      date.className = "date";
-      date.textContent = row.numero;
-      edition.appendChild(num);
-      edition.appendChild(date);
-
-      var star = document.createElement("span");
-      if (row.lida) {
-        star.textContent = "📗";
-        star.className = "star star-gold";
-        star.title = "Lida";
+  function domReady() {
+    return new Promise(function (resolve) {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", resolve);
       } else {
-        star.textContent = "📕";
-        star.className = "star star-empty";
-        star.title = "Ainda não lida";
+        resolve();
       }
-
-      var link = document.createElement("a");
-      link.className = "open-link";
-      link.href = row.link;
-      link.target = "_blank";
-      link.rel = "noopener";
-      link.setAttribute("aria-label", "Abrir " + row.nome + " no site oficial");
-      link.title = "Abrir no site oficial";
-      link.textContent = "Abrir";
-
-      li.appendChild(checkWrap);
-      li.appendChild(edition);
-      li.appendChild(star);
-      li.appendChild(link);
-      ul.appendChild(li);
     });
-
-    section.appendChild(ul);
-    listRoot.appendChild(section);
-
-    var total = state.length;
-    var lidas = state.filter(function (r) { return r.lida; }).length;
-    document.getElementById("stat-count").textContent = lidas;
-    document.getElementById("stat-total").textContent = total;
-    document.getElementById("stat-pct").textContent = total ? Math.round((lidas / total) * 100) + "%" : "0%";
-    document.getElementById("progress-fill").style.width = (total ? (lidas / total) * 100 : 0) + "%";
-    var starLine = document.getElementById("stat-stars");
-    if (starLine) {
-      starLine.textContent = lidas
-        ? GS.avatarEmoji(avatarPref) + " " + lidas + " le" + (lidas === 1 ? "i" : "is")
-        : "";
-    }
   }
 
-  var viewerId = null;
-  var dbCap = null;
-  var dbReady = false;
-  var progressDoc = null;
-  var publishTimer = null;
-  var applyingRemote = false;
-
-  function setNote(text) { syncNote.textContent = text || " "; }
-
-  function scheduleSync() {
-    if (publishTimer) clearTimeout(publishTimer);
-    publishTimer = setTimeout(doSync, 700);
+  // ---- utilidades ----------------------------------------------------------
+  function escapeHtml(t) {
+    return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
   }
 
-  function doSync() {
-    var map = stateToMap();
-    writeLocal(map);
-    if (!dbReady || !progressDoc) {
-      setNote("Salvo neste navegador.");
+  function semAcento(t) {
+    return String(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function lerStorage(k) {
+    try { return localStorage.getItem(k) || ""; } catch (e) { return ""; }
+  }
+
+  function gravarStorage(k, v) {
+    try { localStorage.setItem(k, v); } catch (e) {}
+  }
+
+  // ---- leis ----------------------------------------------------------------
+  var UF_RE = /\(([A-Z]{2})\)/;
+
+  function montarLeis() {
+    var dados = window.LEIS_DATA || {};
+    var lista = [];
+    Object.keys(dados).forEach(function (mat) {
+      var bloco = dados[mat];
+      (bloco.leis || []).forEach(function (l) {
+        var m = String(l.numero || "").match(UF_RE) || String(l.nome || "").match(UF_RE);
+        var uf = m && UF_NOME[m[1]] ? m[1] : null;
+        lista.push({
+          materia: bloco.label || mat,
+          nome: l.nome,
+          numero: l.numero,
+          link: l.link,
+          uf: uf,
+          busca: semAcento(l.nome + " " + l.numero + " " + (bloco.label || "")),
+          digitos: String(l.numero || "").replace(/\D/g, "")
+        });
+      });
+    });
+    return lista;
+  }
+
+  // ---- editais e carreiras -------------------------------------------------
+  // UF de um edital pela sigla: TJSP, MPMG, DPE-BA, PGE-GO, PC-AP, PCPR…
+  function ufDaSigla(sigla) {
+    var s = String(sigla || "").toUpperCase().replace(/[^A-Z]/g, "");
+    if (s === "TJDFT" || s === "MPDFT" || s === "PCDF") return "DF";
+    var m = s.match(/^(TJ|MP|DPE|PGE|PC)([A-Z]{2})$/);
+    return m && UF_NOME[m[2]] ? m[2] : null;
+  }
+
+  // Cada opção: { id, nome, grupo, modo: "uf" | "escolher" | "federal", uf }
+  function montarOpcoes() {
+    var editais = window.EDITAIS_DATA || [];
+    var carreiras = [], federais = [], porEdital = [];
+    editais.forEach(function (e) {
+      if (e.emBreve) return;
+      if (e.tipo === "carreira") {
+        var soFederal = e.secao === "exame" || /federal/.test(e.id);
+        (soFederal ? federais : carreiras).push({
+          id: e.id,
+          nome: e.titulo,
+          modo: soFederal ? "federal" : "escolher"
+        });
+        return;
+      }
+      var uf = ufDaSigla(e.sigla);
+      porEdital.push({
+        id: e.id,
+        nome: e.sigla + " — " + e.titulo,
+        modo: uf ? "uf" : "federal",
+        uf: uf
+      });
+    });
+    porEdital.sort(function (a, b) { return a.nome.localeCompare(b.nome, "pt-BR"); });
+    return [
+      { label: "Carreiras estaduais (você escolhe o estado)", itens: carreiras },
+      { label: "Carreiras federais e exames nacionais", itens: federais },
+      { label: "Por edital", itens: porEdital }
+    ];
+  }
+
+  // ---- visual dos cards ----------------------------------------------------
+  function card(lei) {
+    var federal = !lei.uf;
+    var badge = federal ? "FEDERAL" : "ESTADUAL (" + lei.uf + ")";
+    var fundo = federal ? "#e7f1ff" : "#e6f4ea";
+    var cor = federal ? "#0d6efd" : "#198754";
+    return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">' +
+      '<h3 style="margin:0;font-size:15px;font-weight:600;color:#1e293b;line-height:1.4;">' + escapeHtml(lei.nome) + "</h3>" +
+      '<span style="font-size:11px;font-weight:700;background:' + fundo + ";color:" + cor + ';padding:3px 8px;border-radius:12px;white-space:nowrap;">' + badge + "</span>" +
+      "</div>" +
+      '<p style="margin:6px 0 10px;font-size:13px;color:#64748b;">' + escapeHtml(lei.numero) + "</p>" +
+      (lei.link
+        ? '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>'
+        : "") +
+      "</div>";
+  }
+
+  // Agrupa por matéria em blocos que abrem e fecham (a lista federal é longa).
+  function porMateria(leis, abrir) {
+    var ordem = [], grupos = {};
+    leis.forEach(function (l) {
+      if (!grupos[l.materia]) { grupos[l.materia] = []; ordem.push(l.materia); }
+      grupos[l.materia].push(l);
+    });
+    return ordem.map(function (mat) {
+      return '<details style="margin-bottom:10px;"' + (abrir ? " open" : "") + ">" +
+        '<summary style="cursor:pointer;font-weight:600;font-size:15px;color:#334155;padding:8px 0;">' +
+        escapeHtml(mat) + ' <span style="color:#94a3b8;font-weight:400;">(' + grupos[mat].length + ")</span></summary>" +
+        '<div style="padding-top:6px;">' + grupos[mat].map(card).join("") + "</div>" +
+        "</details>";
+    }).join("");
+  }
+
+  function aviso(texto) {
+    return '<p style="color:#94a3b8;font-style:italic;">' + texto + "</p>";
+  }
+
+  // ---- página --------------------------------------------------------------
+  function iniciar() {
+    var selectEdital = document.getElementById("select-edital");
+    var selectEstado = document.getElementById("select-estado");
+    var inputBusca = document.getElementById("input-busca-lei");
+    var wrapperEstado = document.getElementById("wrapper-filtro-estado");
+    var gridFederais = document.getElementById("grid-leis-federais");
+    var gridEstaduais = document.getElementById("grid-leis-estaduais");
+    var tituloEstaduais = document.getElementById("titulo-leis-estaduais");
+    if (!selectEdital || !gridFederais || !gridEstaduais) return;
+
+    var leis = montarLeis();
+    if (!leis.length) {
+      gridFederais.innerHTML = aviso("Não foi possível carregar as leis. Recarregue a página.");
+      gridEstaduais.innerHTML = "";
       return;
     }
-    setNote("Salvando…");
-    progressDoc.set({ map: map, avatar: avatarPref, updatedAt: new Date().toISOString() }, { merge: true })
-      .then(function () {
-        setNote("Salvo — só para você.");
-        setTimeout(function () { setNote(""); }, 1600);
-      })
-      .catch(function (err) {
-        if (err && err.code === "permission-denied") {
-          dbCap = null;
-          progressDoc = null;
-          setNote("Sem sincronização aqui — salvo neste navegador.");
+
+    var grupos = montarOpcoes();
+    var opcoes = {};
+    var html = '<option value="">Selecione o edital ou a carreira…</option>';
+    grupos.forEach(function (g) {
+      if (!g.itens.length) return;
+      html += '<optgroup label="' + escapeHtml(g.label) + '">';
+      g.itens.forEach(function (o) {
+        opcoes[o.id] = o;
+        html += '<option value="' + escapeHtml(o.id) + '">' + escapeHtml(o.nome) + "</option>";
+      });
+      html += "</optgroup>";
+    });
+    selectEdital.innerHTML = html;
+
+    // quantas leis estaduais há em cada estado (para mostrar no menu)
+    var porUf = {};
+    leis.forEach(function (l) { if (l.uf) porUf[l.uf] = (porUf[l.uf] || 0) + 1; });
+    if (selectEstado) {
+      selectEstado.innerHTML = '<option value="">Escolha o estado…</option>' +
+        ESTADOS.map(function (e) {
+          var n = porUf[e[0]] || 0;
+          return '<option value="' + e[0] + '">' + e[0] + " — " + escapeHtml(e[1]) +
+            (n ? " (" + n + ")" : " (nenhuma ainda)") + "</option>";
+        }).join("") +
+        '<option value="TODOS">Todos os estados</option>';
+    }
+
+    // escolha salva; senão, o edital principal da página "Editais"
+    var salvo = lerStorage(STORAGE_EDITAL) || lerStorage("editais-principal");
+    if (salvo && opcoes[salvo]) selectEdital.value = salvo;
+    var estadoSalvo = lerStorage(STORAGE_ESTADO);
+    if (selectEstado && estadoSalvo) selectEstado.value = estadoSalvo;
+
+    function atendeBusca(lei, termo, digitos) {
+      if (!termo) return true;
+      if (digitos && lei.digitos.indexOf(digitos) !== -1) return true;
+      return lei.busca.indexOf(termo) !== -1;
+    }
+
+    function render() {
+      var opcao = opcoes[selectEdital.value] || null;
+      var termo = semAcento(inputBusca ? inputBusca.value.trim() : "");
+      var digitos = /\d/.test(termo) ? termo.replace(/\D/g, "") : "";
+      var buscando = !!termo;
+
+      if (wrapperEstado) wrapperEstado.style.display = opcao && opcao.modo === "escolher" ? "" : "none";
+
+      // Federais: sempre todas (filtradas pela busca)
+      var federais = leis.filter(function (l) { return !l.uf && atendeBusca(l, termo, digitos); });
+      gridFederais.innerHTML = federais.length
+        ? porMateria(federais, buscando)
+        : aviso("Nenhuma lei federal encontrada.");
+
+      // Estaduais: depende do edital/carreira
+      var uf = null, titulo = "🏛️ Leis Estaduais";
+      if (!opcao) {
+        if (tituloEstaduais) tituloEstaduais.textContent = titulo;
+        gridEstaduais.innerHTML = aviso("Escolha acima o edital ou a carreira para ver as leis estaduais.");
+        return;
+      }
+      if (opcao.modo === "federal") {
+        if (tituloEstaduais) tituloEstaduais.textContent = titulo;
+        gridEstaduais.innerHTML = aviso("Este é um concurso federal ou exame nacional: só as leis federais se aplicam.");
+        return;
+      }
+      if (opcao.modo === "uf") {
+        uf = opcao.uf;
+      } else {
+        uf = selectEstado ? selectEstado.value : "";
+        if (!uf) {
+          if (tituloEstaduais) tituloEstaduais.textContent = titulo;
+          gridEstaduais.innerHTML = aviso("Escolha no menu acima de qual estado você quer incluir as leis estaduais.");
           return;
         }
-        setNote("Não foi possível salvar agora — salvo neste navegador.");
-      });
-  }
-
-  function toggle(orgKey, row, value) {
-    row.lida = value;
-    row.lidaEm = value ? todayIso() : null;
-    render();
-    if (!applyingRemote) {
-      scheduleSync();
-      scheduleGroupSync();
-    }
-  }
-
-  // ---- Estudo coletivo (multi-grupo) -----------------------------------
-  // O MESMO código de grupo vale em todos os diários (Informativos, Leis,
-  // Súmulas) — aqui só mantemos o campo "lidasLeis" deste diário
-  // atualizado no documento do membro, em cada grupo que a pessoa
-  // participa, e mostramos um resumo PESSOAL (nunca os nomes dos outros
-  // membros): em quantos desses grupos a pessoa está em 1º/2º/3º lugar.
-  // A lista completa, grupo a grupo, com todo mundo, fica só em "Meus
-  // Grupos de Estudo" — e lá, cada pessoa só vê os grupos dela mesma.
-  // Criar, entrar ou sair de um grupo também acontece só lá
-  // (grupos-shared.js cuida do armazenamento local e da comunicação com
-  // o Firebase).
-  var HUB_URL = "https://www.estudamana.com.br/p/meus-grupos.html";
-  var myPrizesEl = document.getElementById("my-prizes");
-  var groupUnsubs = {};      // code -> função de cancelar a inscrição
-  var groupSnapshots = {};   // code -> último snapshot de members
-  var groupSyncTimer = null;
-
-  function computeTotals() {
-    var lidas = 0;
-    ORG_ORDER.forEach(function (orgKey) {
-      stateByOrg[orgKey].forEach(function (r) { if (r.lida) lidas++; });
-    });
-    return { lidas: lidas };
-  }
-
-  function renderMyPrizes() {
-    if (!myPrizesEl || !GS) return;
-    var codes = GS.readGroups().map(function (g) { return g.code; });
-    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidasLeis", viewerId);
-    GS.renderMyPrizes(myPrizesEl, tally, { hubHref: HUB_URL });
-  }
-
-  function scheduleGroupSync() {
-    if (groupSyncTimer) clearTimeout(groupSyncTimer);
-    groupSyncTimer = setTimeout(pushProgressToGroups, 700);
-  }
-
-  function pushProgressToGroups() {
-    if (!GS || !viewerId) return;
-    var totals = computeTotals();
-    GS.readGroups().forEach(function (g) {
-      GS.updateMember(g.code, viewerId, {
-        name: g.name,
-        lidasLeis: totals.lidas,
-        avatar: avatarPref,
-        joinedAt: g.joinedAt
-      }).catch(function () { /* melhor esforço — segue salvo localmente */ });
-    });
-  }
-
-  function subscribeAllGroups() {
-    if (!GS) return;
-    GS.readGroups().forEach(function (g) {
-      if (groupUnsubs[g.code]) return; // já inscrito
-      groupUnsubs[g.code] = GS.subscribeMembers(g.code, function (snap) {
-        groupSnapshots[g.code] = snap;
-        renderMyPrizes();
-      }, null, avatarPref);
-    });
-  }
-
-  // Se a pessoa fechar a aba dentro da janela de espera do debounce (700ms),
-  // grava agora em vez de perder a última marcação (ao menos localmente —
-  // o envio ao Firestore, se der tempo, também é disparado).
-  window.addEventListener("beforeunload", function () {
-    if (publishTimer) { clearTimeout(publishTimer); doSync(); }
-    if (groupSyncTimer) { clearTimeout(groupSyncTimer); pushProgressToGroups(); }
-  });
-
-  renderMyPrizes();
-
-
-  // Painel de personalização do boneco
-  var avatarToggleBtn = document.getElementById("avatar-toggle");
-  var avatarToggleGenderSelect = document.getElementById("avatar-gender");
-  var avatarToneSelect = document.getElementById("avatar-tone");
-  var avatarPreview = document.getElementById("avatar-toggle-preview");
-  var avatarPanel = document.getElementById("avatar-panel");
-
-  function syncAvatarControls() {
-    if (avatarToggleGenderSelect) avatarToggleGenderSelect.value = avatarPref.gender;
-    if (avatarToneSelect) avatarToneSelect.value = avatarPref.tone;
-    if (avatarPreview) avatarPreview.textContent = GS.avatarEmoji(avatarPref);
-  }
-
-  function onAvatarPrefChange() {
-    avatarPref = {
-      gender: avatarToggleGenderSelect ? avatarToggleGenderSelect.value : avatarPref.gender,
-      tone: avatarToneSelect ? avatarToneSelect.value : avatarPref.tone
-    };
-    GS.writeAvatarPref(avatarPref, AVATAR_KEY);
-    syncAvatarControls();
-    render();
-    if (!applyingRemote) scheduleSync();
-  }
-
-  if (avatarToggleGenderSelect) avatarToggleGenderSelect.addEventListener("change", onAvatarPrefChange);
-  if (avatarToneSelect) avatarToneSelect.addEventListener("change", onAvatarPrefChange);
-
-  syncAvatarControls();
-
-  // ---- Vincular e-mail (opcional) -------------------------------------
-  // Lógica compartilhada — ver conta-email.js (precisa estar incluído na
-  // página ANTES deste script). Se faltar (ex.: template ainda não
-  // atualizado), o painel de e-mail só fica inativo — o resto da página
-  // continua funcionando normalmente.
-  var contaEmail = window.ContaEmail
-    ? window.ContaEmail.attach({ setNote: setNote, recoverHint: "Já vinculei — recuperar aqui" })
-    : { renderAccountUI: function () {} };
-  var renderAccountUI = contaEmail.renderAccountUI;
-
-  // ---- Delegação de cliques (bonequinho) --------------------------------
-  // Um único listener no "document", em vez de um addEventListener por
-  // botão — evita depender da ordem/tempo em que o Blogger termina de
-  // inserir cada bloco de HTML no DOM.
-  function togglePanel(btn, panel) {
-    if (!btn || !panel) return;
-    var open = panel.hidden;
-    panel.hidden = !open;
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-  }
-
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("#avatar-toggle");
-    if (!t) return;
-    togglePanel(t, document.getElementById("avatar-panel"));
-  });
-
-  // 1) pintura instantânea com o que já está salvo neste navegador
-  applyMap(readLocal());
-  render();
-
-  // 2) login anônimo no Firebase (própria coleção "progress-leis",
-  // independente do progresso do Diário dos Informativos)
-  var progressUnsub = null;
-
-  function bindUser(uid) {
-    viewerId = uid;
-    dbCap = firebase.firestore();
-    progressDoc = dbCap.doc("progress-leis/" + viewerId);
-    dbReady = true;
-    if (progressUnsub) { progressUnsub(); progressUnsub = null; }
-    progressUnsub = progressDoc.onSnapshot(function (snap) {
-      if (!snap.exists) return;
-      var data = snap.data();
-      if (!data) return;
-      applyingRemote = true;
-      if (data.map) { applyMap(data.map); writeLocal(data.map); }
-      if (data.avatar && GS.GENDER_BASE[data.avatar.gender] && GS.TONE_MOD[data.avatar.tone]) {
-        avatarPref = { gender: data.avatar.gender, tone: data.avatar.tone };
-        GS.writeAvatarPref(avatarPref, AVATAR_KEY);
-        syncAvatarControls();
       }
+
+      var estaduais = leis.filter(function (l) {
+        return l.uf && (uf === "TODOS" || l.uf === uf) && atendeBusca(l, termo, digitos);
+      });
+      if (tituloEstaduais) {
+        tituloEstaduais.textContent = uf === "TODOS"
+          ? "🏛️ Leis Estaduais (todos os estados)"
+          : "🏛️ Leis Estaduais — " + UF_NOME[uf] + " (" + uf + ")";
+      }
+      gridEstaduais.innerHTML = estaduais.length
+        ? porMateria(estaduais, true)
+        : aviso(buscando
+            ? "Nenhuma lei estadual encontrada para essa busca."
+            : "Ainda não há leis estaduais de " + escapeHtml(UF_NOME[uf] || uf) + " cadastradas.");
+    }
+
+    selectEdital.addEventListener("change", function () {
+      gravarStorage(STORAGE_EDITAL, selectEdital.value);
       render();
-      applyingRemote = false;
-    }, function () {});
-    subscribeAllGroups();
-    pushProgressToGroups();
-  }
-
-  // Edital principal: carrega editais-shared.js da mesma pasta deste script
-  // (nenhuma mudança no HTML da página é necessária).
-  (function loadEditais() {
-    var me = document.currentScript;
-    if (!me) {
-      var all = document.getElementsByTagName("script");
-      for (var i = 0; i < all.length; i++) {
-        if (/leis-logic\.js/.test(all[i].src)) { me = all[i]; break; }
-      }
-    }
-    if (!me || !me.src) return;
-    var url = me.src.replace(/leis-logic\.js(\?.*)?$/, "editais-shared.js$1");
-    var tag = document.createElement("script");
-    tag.src = url;
-    tag.onload = function () {
-      if (!window.EditaisShared) return;
-      window.EditaisShared.load(function (shared) {
-        ES = shared;
-        ES.onChange(function () { render(); });
+    });
+    if (selectEstado) {
+      selectEstado.addEventListener("change", function () {
+        gravarStorage(STORAGE_ESTADO, selectEstado.value);
         render();
-        ES.bindCloud({ signIn: false });
       });
-    };
-    document.head.appendChild(tag);
-  })();
+    }
+    if (inputBusca) inputBusca.addEventListener("input", render);
 
-  if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
-    if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (!user) return;
-      if (viewerId !== user.uid) bindUser(user.uid);
-      renderAccountUI(user);
-    });
-    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão, não houver
-    // ninguém logado — assim não troca uma conta vinculada (e-mail ou Google) por outra.
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
-    });
-  } else {
-    dbReady = true;
+    render();
   }
-})();
 
-/* Login com Google (conta-google.js, mesma pasta deste script) */
-(function () {
-  // document.currentScript some vezes já não está mais disponível quando este
-  // bloco roda (script assíncrono, widget do Blogger etc.) — por isso varremos
-  // as tags <script> da página em vez de depender só dele.
-  var all0 = document.getElementsByTagName("script"), src = "";
-  for (var i = 0; i < all0.length; i++) {
-    if (/leis-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
-  }
-  if (!src) return;
-  function go() {
-    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
-    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
-    var s = document.createElement("script");
-    s.id = "conta-google-js";
-    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
-    document.head.appendChild(s);
-  }
-  if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+  Promise.all([
+    ensure("LEIS_DATA", "leis-data.js"),
+    ensure("EDITAIS_DATA", "editais-data.js"),
+    domReady()
+  ]).then(iniciar);
 })();
