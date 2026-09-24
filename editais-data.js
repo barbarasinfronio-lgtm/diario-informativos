@@ -47116,3 +47116,8 @@ var EDITAIS_DATA = [
   ]
  }
 ];
+
+// Deixa os dados visíveis para os outros arquivos do site mesmo quando esta
+// página carrega o arquivo com <script type="module"> (nesse modo, "var" não
+// cria variável global).
+window.EDITAIS_DATA = EDITAIS_DATA;

@@ -1,4 +1,4 @@
-@import url("estudamana-tokens.css");
+@import url("https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estudamana-tokens.css");
 
   *{box-sizing:border-box;}
   html,body{background:var(--bg);}
