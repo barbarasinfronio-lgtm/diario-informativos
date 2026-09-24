@@ -6,6 +6,9 @@ on:
     - cron: '0 9 * * 1'
   workflow_dispatch: # Permite que você clique num botão para testar manualmente quando quiser
 
+permissions:
+  contents: write # precisa para o commit/push automático no fim
+
 jobs:
   verificar-e-atualizar:
     runs-on: ubuntu-latest
@@ -19,19 +22,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Instalar dependências
-        run: |
-          npm install @google/genai
-
-      - name: Executar verificação e catalogação
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          node scripts/atualizar_informativos.mjs
+      - name: Verificar e catalogar novas edições
+        run: node scripts/atualizar_informativos.mjs
 
       - name: Gravar alterações no repositório (Commit & Push)
         run: |
           git config --global user.name "Robô Estuda Mana"
           git config --global user.email "bot@estudamana.com.br"
-          git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto: novos informativos adicionados [skip ci]" && git push)
+          git add diario-data.js
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto: novos informativos do STF adicionados [skip ci]" && git push)
