@@ -20,10 +20,20 @@
  * cima de tudo, inclusive das janelas que abrem por cima da página (ex.: o
  * card aberto do Diário das Decisões); a escolha fica salva no navegador.
  *
+ * Para as mudanças aparecerem sem esperar o cache do navegador, o tema
+ * carrega este arquivo com fetch(..., { cache: "no-cache" }) em vez de
+ * <script src>; o CSS (estudamana-tokens.css + estudamana-header.css) é
+ * buscado do mesmo jeito por loadStyles(), lá embaixo.
+ *
  * Ajustes opcionais, todos aqui embaixo, em CONFIG.
  */
 (function () {
   "use strict";
+
+  // Se o script estiver na página mais de uma vez (no tema e na página),
+  // só a primeira cópia roda.
+  if (window.__estudamanaHeader) return;
+  window.__estudamanaHeader = true;
 
   var CONFIG = {
     // Ordem preferida (pelo final do endereço da página, sem "/p/" e sem
@@ -335,8 +345,12 @@
     // É isso que permite colocar este script uma única vez no tema.
   }
 
-  // ---- CSS do cabeçalho: carregado da mesma pasta deste script --------
-  function loadStyles() {
+  // ---- CSS do cabeçalho -----------------------------------------------
+  // Endereço dos arquivos: a pasta deste script, quando ele foi carregado
+  // por <script src>; senão (carregado por fetch), o jsDelivr.
+  var CDN_BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+
+  function assetBase() {
     var script = document.currentScript;
     if (!script) {
       var all = document.getElementsByTagName("script");
@@ -344,13 +358,42 @@
         if (/estudamana-header\.js/.test(all[i].src)) { script = all[i]; break; }
       }
     }
-    if (!script || !script.src) return;
-    var href = script.src.replace(/estudamana-header\.js(\?.*)?$/, "estudamana-header.css$1");
-    if (document.querySelector('link[href="' + href + '"]')) return;
-    var link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = href;
-    document.head.appendChild(link);
+    return script && script.src
+      ? script.src.replace(/estudamana-header\.js(\?.*)?$/, "")
+      : CDN_BASE;
+  }
+
+  // Busca os CSS com "no-cache" (o navegador confere com o servidor se o
+  // arquivo mudou; se não mudou, a resposta é mínima) e põe numa <style>.
+  // O @import do tokens é trocado pelo conteúdo do próprio tokens, que
+  // também vem sempre atualizado. Se o fetch falhar, volta ao <link>.
+  function loadStyles() {
+    if (document.querySelector("[data-em-header-css]")) return;
+    var base = assetBase();
+    var style = document.createElement("style");
+    style.setAttribute("data-em-header-css", "");
+    document.head.appendChild(style);
+
+    function get(file) {
+      return fetch(base + file, { cache: "no-cache" }).then(function (r) {
+        if (!r.ok) throw new Error(file + " " + r.status);
+        return r.text();
+      });
+    }
+
+    Promise.all([get("estudamana-tokens.css"), get("estudamana-header.css")])
+      .then(function (css) {
+        style.textContent = css.map(function (t) {
+          return t.replace(/@import\s+url\(["']?estudamana-tokens\.css["']?\)\s*;?/g, "");
+        }).join("\n");
+      })
+      .catch(function () {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = base + "estudamana-header.css";
+        link.setAttribute("data-em-header-css", "");
+        style.parentNode.replaceChild(link, style);
+      });
   }
 
   function signature(list) {
