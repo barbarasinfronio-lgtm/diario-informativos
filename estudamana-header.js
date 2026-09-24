@@ -199,8 +199,13 @@
       if (window.top !== window.self) return;                 // pré-visualização do Blogger
       var p = location.pathname;
       if (p !== "/" && p !== "/index.html") return;
-      if (location.search && !/^\?m=[01]$/.test(location.search)) return; // busca, marcadores, arquivo…
-      if (/[?&]view=/.test(location.search)) return;
+      // Só NÃO redireciona quando a busca é de verdade (marcador/arquivo do
+      // Blogger, "?q=", "?view=", paginação "?updated-max="); qualquer outro
+      // parâmetro (ex.: "?m=1", ou de um link compartilhado/rastreado) ainda
+      // vai para o Diário — antes, só "?m=0"/"?m=1" eram aceitos, e um link
+      // com qualquer outro parâmetro fazia a pessoa cair na página em
+      // branco do Blogger em vez do Diário.
+      if (/[?&](q|view|updated-max|max-results|by-date)=/.test(location.search)) return;
       location.replace(CONFIG.homePage + location.search);
     } catch (e) {}
   })();
