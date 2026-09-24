@@ -1,0 +1,37 @@
+name: Atualizacao Semanal de Informativos
+
+on:
+  schedule:
+    # Executa todas as segundas-feiras às 09:00 UTC (06:00 de Brasília)
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Permite que você clique num botão para testar manualmente quando quiser
+
+jobs:
+  verificar-e-atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descarregar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: |
+          npm install @google/genai
+
+      - name: Executar verificação e catalogação
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          node scripts/atualizar_informativos.mjs
+
+      - name: Gravar alterações no repositório (Commit & Push)
+        run: |
+          git config --global user.name "Robô Estuda Mana"
+          git config --global user.email "bot@estudamana.com.br"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto: novos informativos adicionados [skip ci]" && git push)
