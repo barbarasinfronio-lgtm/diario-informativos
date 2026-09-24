@@ -65,6 +65,23 @@
     border:0; background:none; outline:none; color:var(--ink); font:500 calc(13.5px * var(--fs-scale)) var(--font-sans); width:100%;
   }
   .search input::placeholder{color:var(--muted);}
+  /* O tema do Blogger tem uma caixa de busca própria com a classe ".search"
+     (24px de largura, posição absoluta) que espremia esta busca até sumir.
+     Estas regras, mais específicas, devolvem o tamanho certo. */
+  .toolbar .search{
+    position:static; float:none; width:auto; line-height:normal; z-index:auto;
+    transition:none; margin:0;
+  }
+
+  /* botão "Minimizar" dos filtros (criado pelo rg-repetitivos-logic.js) */
+  .toolbar-toggle{
+    margin-left:auto; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft);
+    border-radius:9px; padding:8px 12px; font:600 calc(12.5px * var(--fs-scale)) var(--font-sans);
+    cursor:pointer; white-space:nowrap;
+  }
+  .toolbar-toggle:hover{background:var(--surface-2); color:var(--ink);}
+  .toolbar-toggle:focus-visible{outline:2px solid var(--focus, var(--accent)); outline-offset:2px;}
+  .toolbar.is-collapsed .toolbar-inner > :not(:first-child){display:none;}
   .seg{display:flex; border:1px solid var(--line); border-radius:9px; overflow:hidden;}
   .seg button{
     border:0; background:var(--surface); color:var(--ink-soft); font:600 calc(12.5px * var(--fs-scale)) var(--font-sans);
