@@ -4,11 +4,13 @@ fs.mkdirSync('prints', { recursive: true });
 const ORIGIN = 'https://www.estudamana.com.br';
 const feed = await (await fetch(ORIGIN + '/feeds/pages/default?alt=json&max-results=100')).json();
 const pages = feed.feed.entry.map(e => e.link.find(l => l.rel === 'alternate').href);
-console.log('PAGINAS', pages.length);
+const only = (process.env.PAGES || '').split(',').filter(Boolean);
+const lista = only.length ? pages.filter(u => only.some(o => u.includes(o))) : pages;
+console.log('PAGINAS', lista.length);
 const b = await chromium.launch();
 const LOCAL = process.env.LOCAL === '1';
 console.log('USANDO ARQUIVOS DO BRANCH:', LOCAL);
-for (const url of pages) {
+for (const url of lista) {
   const p = await b.newPage({ viewport: { width: 1200, height: 1400 } });
   const errs = [], fails = [], scripts = [];
   if (LOCAL) await p.route(/cdn\.jsdelivr\.net\/gh\/barbarasinfronio-lgtm\/diario-informativos@main\//, async route => {
@@ -42,6 +44,6 @@ for (const url of pages) {
   console.log('ERROS', errs.join('\n  ') || '-');
   console.log('FALHAS', [...new Set(fails)].filter(f => !/google|doubleclick|blogger\.com\/img/.test(f)).join('\n  ') || '-');
   await p.close();
-  await new Promise(r => setTimeout(r, 20000));
+  await new Promise(r => setTimeout(r, 60000));
 }
 await b.close();
