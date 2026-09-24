@@ -664,3 +664,9 @@ var NORMAS_DATA = {
 };
 
 var NORMAS_ORG_ORDER = ["cnj", "cnmp", "conama", "conanda"];
+
+// Deixa os dados visíveis para os outros arquivos do site mesmo quando esta
+// página carrega o arquivo com <script type="module"> (nesse modo, "var" não
+// cria variável global).
+window.NORMAS_DATA = NORMAS_DATA;
+window.NORMAS_ORG_ORDER = NORMAS_ORG_ORDER;

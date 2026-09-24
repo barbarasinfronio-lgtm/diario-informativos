@@ -810,3 +810,9 @@ var LEIS_DATA = {
 };
 
 var LEIS_ORG_ORDER = ["civil", "processual_civil", "consumidor", "crianca", "penal", "processual_penal", "constitucional", "eleitoral", "empresarial", "tributario", "ambiental", "administrativo", "previdenciario", "humanos", "trabalhista"];
+
+// Deixa os dados visíveis para os outros arquivos do site mesmo quando esta
+// página carrega o arquivo com <script type="module"> (nesse modo, "var" não
+// cria variável global).
+window.LEIS_DATA = LEIS_DATA;
+window.LEIS_ORG_ORDER = LEIS_ORG_ORDER;

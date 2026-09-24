@@ -2631,3 +2631,24 @@ var SUMULAS_ORG_ORDER = [
   "tjma", "tjmg", "tjms", "tjmt", "tjpa", "tjpb", "tjpe", "tjpi", "tjpr",
   "tjrj", "tjrn", "tjro", "tjrr", "tjrs", "tjsc", "tjse", "tjsp", "tjto"
 ];
+
+// Deixa os dados visíveis para os outros arquivos do site mesmo quando esta
+// página carrega o arquivo com <script type="module"> (nesse modo, "var" não
+// cria variável global).
+window.SUMULAS_LINK_SV = SUMULAS_LINK_SV;
+window.SUMULAS_LINK_TJMG = SUMULAS_LINK_TJMG;
+window.SUMULAS_LINK_TJRS = SUMULAS_LINK_TJRS;
+window.SUMULAS_LINK_TJSP = SUMULAS_LINK_TJSP;
+window.SUMULAS_LINK_TJSC = SUMULAS_LINK_TJSC;
+window.SUMULAS_LINK_STF = SUMULAS_LINK_STF;
+window.SUMULAS_LINK_STJ = SUMULAS_LINK_STJ;
+window.SUMULAS_LINK_TST = SUMULAS_LINK_TST;
+window.SUMULAS_LINK_TSE = SUMULAS_LINK_TSE;
+window.SUMULAS_LINK_TJCE = SUMULAS_LINK_TJCE;
+window.SUMULAS_LINK_TJBA = SUMULAS_LINK_TJBA;
+window.SUMULAS_LINK_TJMT = SUMULAS_LINK_TJMT;
+window.SUMULAS_LINK_TJPA = SUMULAS_LINK_TJPA;
+window.SUMULAS_LINK_TJAC = SUMULAS_LINK_TJAC;
+window.SUMULAS_LINK_TJDFT_UJ = SUMULAS_LINK_TJDFT_UJ;
+window.SUMULAS_DATA = SUMULAS_DATA;
+window.SUMULAS_ORG_ORDER = SUMULAS_ORG_ORDER;

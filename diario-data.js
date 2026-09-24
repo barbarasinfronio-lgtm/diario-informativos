@@ -3542,3 +3542,12 @@
     { edicao: 2, ano: 2017, data: "2017-11-28", sumula: null, link: "https://www.cnmp.mp.br/portal/images/Boletim_Jurisprudencia/Edio-n-2-Ano-2017.pdf" }
   ];
 
+// Deixa os dados visíveis para os outros arquivos do site mesmo quando esta
+// página carrega o arquivo com <script type="module"> (nesse modo, "var" não
+// cria variável global).
+window.STF_DATA = STF_DATA;
+window.STJ_DATA = STJ_DATA;
+window.TSE_DATA = TSE_DATA;
+window.CNJ_DATA = CNJ_DATA;
+window.TST_DATA = TST_DATA;
+window.CNMP_DATA = CNMP_DATA;
