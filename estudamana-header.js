@@ -15,6 +15,11 @@
  * demais páginas do site (inicial, posts) ele não faz nada. O visual dele fica
  * em estudamana-header.css (que usa as cores/fontes de estudamana-tokens.css).
  *
+ * Ele também põe, no canto de baixo à direita de toda página de estudo, os
+ * botões "A− A A+" de tamanho da letra (ver CONFIG.fontSize). Eles ficam por
+ * cima de tudo, inclusive das janelas que abrem por cima da página (ex.: o
+ * card aberto do Diário das Decisões); a escolha fica salva no navegador.
+ *
  * Ajustes opcionais, todos aqui embaixo, em CONFIG.
  */
 (function () {
@@ -61,8 +66,121 @@
       { path: "/p/diario-de-leis.html", title: "Di\u00e1rio de Leis" },
       { path: "/p/diario-das-sumulas.html", title: "Di\u00e1rio das S\u00famulas" },
       { path: "/p/meus-grupos.html", title: "Meus Grupos" }
-    ]
+    ],
+
+    // Botões "A− A A+" flutuantes, para a pessoa aumentar ou reduzir a
+    // letra. Cada clique muda a escala (--fs-scale de estudamana-tokens.css)
+    // em "step", entre "min" e "max" (1 = tamanho padrão). A escolha fica
+    // salva no navegador. Use fontSize: null para esconder os botões.
+    // Aparecem em toda página de estudo (as mesmas onde o menu aparece) e
+    // em qualquer página com um elemento data-em-font.
+    fontSize: { min: 0.85, max: 1.5, step: 0.1 }
   };
+
+  // ---- tamanho da letra -----------------------------------------------------
+  // Aplicado já aqui, antes de montar o menu, para a página não aparecer
+  // primeiro no tamanho padrão e depois "pular" para o tamanho escolhido.
+  var FONT_KEY = "estudamana-fonte";
+
+  function clampScale(v) {
+    var f = CONFIG.fontSize;
+    v = Math.round(v * 100) / 100;
+    return Math.min(f.max, Math.max(f.min, v));
+  }
+
+  function readScale() {
+    try {
+      var v = parseFloat(localStorage.getItem(FONT_KEY));
+      return isFinite(v) ? clampScale(v) : 1;
+    } catch (e) { return 1; }
+  }
+
+  function applyScale(v) {
+    var root = document.documentElement;
+    if (v === 1) root.style.removeProperty("--fs-scale");
+    else root.style.setProperty("--fs-scale", String(v));
+  }
+
+  var fontScale = CONFIG.fontSize ? readScale() : 1;
+  applyScale(fontScale);
+
+  function setScale(v) {
+    fontScale = clampScale(v);
+    applyScale(fontScale);
+    try {
+      if (fontScale === 1) localStorage.removeItem(FONT_KEY);
+      else localStorage.setItem(FONT_KEY, String(fontScale));
+    } catch (e) {}
+    updateFontButtons();
+  }
+
+  var fontBox = null;
+
+  function updateFontButtons() {
+    var f = CONFIG.fontSize;
+    if (!fontBox) return;
+    fontBox.querySelector("[data-font=down]").disabled = fontScale <= f.min;
+    fontBox.querySelector("[data-font=up]").disabled = fontScale >= f.max;
+    var reset = fontBox.querySelector("[data-font=reset]");
+    reset.disabled = fontScale === 1;
+    reset.title = "Tamanho padr\u00e3o da letra (agora: " + Math.round(fontScale * 100) + "%)";
+  }
+
+  function buildFontControls() {
+    var f = CONFIG.fontSize;
+    var box = document.createElement("div");
+    box.className = "em-font";
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", "Tamanho da letra");
+
+    [
+      { key: "down", text: "A\u2212", label: "Diminuir a letra", delta: -f.step },
+      { key: "reset", text: "A", label: "Tamanho padr\u00e3o da letra", delta: 0 },
+      { key: "up", text: "A+", label: "Aumentar a letra", delta: f.step }
+    ].forEach(function (b) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "em-font__btn em-font__btn--" + b.key;
+      btn.textContent = b.text;
+      btn.title = b.label;
+      btn.setAttribute("aria-label", b.label);
+      btn.setAttribute("data-font", b.key);
+      btn.addEventListener("click", function () {
+        setScale(b.delta ? fontScale + b.delta : 1);
+      });
+      box.appendChild(btn);
+    });
+    return box;
+  }
+
+  // Uma janela <dialog> aberta com showModal() fica numa camada acima de
+  // tudo e bloqueia o resto da página; nesse caso os botões entram nela
+  // enquanto estiver aberta, e voltam para o <body> quando ela fecha.
+  function placeFontControls() {
+    var open = null;
+    try { open = document.querySelector("dialog[open]:modal"); }
+    catch (e) { open = null; } // navegador antigo, sem :modal
+    var parent = open || document.body;
+    if (fontBox.parentNode !== parent) parent.appendChild(fontBox);
+  }
+
+  function isStudyPage() {
+    return !!(document.getElementById("estudamana-header") ||
+      document.querySelector(".page > header.masthead, header.top, [data-em-font]"));
+  }
+
+  function startFontControls() {
+    if (!CONFIG.fontSize || fontBox || !isStudyPage()) return;
+    fontBox = buildFontControls();
+    document.documentElement.classList.add("em-has-font");
+    placeFontControls();
+    updateFontButtons();
+    try {
+      new MutationObserver(placeFontControls).observe(document.body, {
+        subtree: true, attributes: true, attributeFilter: ["open"]
+      });
+    } catch (e) {}
+  }
 
   // ---- página inicial padrão ------------------------------------------------
   (function goHome() {
@@ -242,6 +360,7 @@
   function start() {
     var shown = readCache() || CONFIG.fallback;
     mount(buildNav(shown));
+    startFontControls();
 
     fetchPages().then(function (fresh) {
       if (!fresh.length) return;
