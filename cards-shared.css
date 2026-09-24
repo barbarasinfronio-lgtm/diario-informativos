@@ -73,19 +73,19 @@
 /* título e detalhes do card */
 .list > .row .num {
   font-family: var(--em-serif);
-  font-size: 15.5px;
+  font-size: calc(15.5px * var(--fs-scale, 1));
   font-weight: 600;
   line-height: 1.32;
   color: var(--em-ink);
 }
 .list > .row .date {
   font-family: var(--em-mono);
-  font-size: 11px;
+  font-size: calc(11px * var(--fs-scale, 1));
   color: var(--em-faint);
 }
 .list > .row .sumula-texto {
   margin: 0;
-  font-size: 13.2px;
+  font-size: calc(13.2px * var(--fs-scale, 1));
   line-height: 1.5;
   color: var(--em-muted);
   display: -webkit-box;
@@ -110,7 +110,7 @@
 .list > .row .star::after {
   content: "1 ponto";
   font-family: var(--em-mono);
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--fs-scale, 1));
   font-weight: 500;
   color: var(--em-faint);
 }
@@ -184,7 +184,7 @@
   border: 1px solid var(--em-line);
   border-radius: 99px;
   font-family: var(--em-mono);
-  font-size: 10.5px;
+  font-size: calc(10.5px * var(--fs-scale, 1));
   font-weight: 500;
   color: var(--em-faint);
 }
@@ -227,13 +227,13 @@
   align-items: baseline;
   gap: 4px 14px;
   font-family: var(--em-mono);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs-scale, 1));
   color: var(--em-muted);
 }
 .em-progress .em-prog-text b {
   margin-right: 4px;
   font-family: var(--em-serif);
-  font-size: 22px;
+  font-size: calc(22px * var(--fs-scale, 1));
   font-weight: 600;
   color: var(--em-gold);
 }

@@ -10,6 +10,8 @@
    Como usar:
    - Mudar a cor da fonte      -> altere --ink (e --ink-soft / --ink-faint)
    - Mudar o tamanho da letra  -> altere --fs-scale (1 = padrão; 1.1 = 10% maior)
+                                  (é o tamanho inicial; cada pessoa ainda pode
+                                  ajustar pelos botões A− A A+ do menu)
    - Mudar a fonte             -> altere --font-sans / --font-serif / --font-mono
    - Mudar a cor de destaque   -> altere --accent
    Cada valor tem duas versões: tema claro (bloco 1) e tema escuro
