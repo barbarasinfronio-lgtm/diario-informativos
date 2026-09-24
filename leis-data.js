@@ -365,7 +365,19 @@ var LEIS_DATA = {
     { nome: "Procedimento Tributário Administrativo do Rio Grande do Sul", numero: "Lei nº 6.537/1973", link: "https://leisestaduais.com.br/rs/lei-ordinaria-n-6537-1973-rio-grande-do-sul-dispoe-sobre-o-processo-administrativo-tributario-do-estado-do-rio-grande-do-sul-e-da-outras-providencias" },
     { nome: "Lei de Execução Fiscal", numero: "Lei nº 6.830/1980", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1980;6830" },
     { nome: "Imposto Sobre Serviços (ISS)", numero: "Lei Complementar nº 116/2003", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2003;116" },
-    { nome: "Regime de Recuperação Fiscal", numero: "Lei Complementar nº 159/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2016;159" },
+    { nome: "Regime de Recuperação Fiscal dos Estados", numero: "Lei Complementar nº 159/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2017;159" },
+    { nome: "Refinanciamento das dívidas dos Estados e do Distrito Federal com a União", numero: "Lei Complementar nº 156/2016", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2016;156" },
+    { nome: "Programa de Acompanhamento e Transparência Fiscal (novo Regime de Recuperação Fiscal)", numero: "Lei Complementar nº 178/2021", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2021;178" },
+    { nome: "Lei Kandir (desonera de ICMS as exportações e regula o imposto)", numero: "Lei Complementar nº 87/1996", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm" },
+    { nome: "Programa de Apoio à Reestruturação e ao Ajuste Fiscal dos Estados", numero: "Lei nº 9.496/1997", link: "https://www.planalto.gov.br/ccivil_03/leis/l9496.htm" },
+    { nome: "Lei da Reforma Bancária (Sistema Financeiro Nacional)", numero: "Lei nº 4.595/1964", link: "https://www.planalto.gov.br/ccivil_03/leis/l4595.htm" },
+    { nome: "Prorroga a Desvinculação de Receitas da União (DRU)", numero: "Emenda Constitucional nº 68/2011", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc68.htm" },
+    { nome: "Orçamento impositivo — emendas parlamentares individuais", numero: "Emenda Constitucional nº 86/2015", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc86.htm" },
+    { nome: "Reformula o FUNDEB e o torna permanente", numero: "Emenda Constitucional nº 108/2020", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc108.htm" },
+    { nome: "Institui regras fiscais emergenciais (Programa de Acompanhamento Fiscal)", numero: "Emenda Constitucional nº 109/2021", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc109.htm" },
+    { nome: "Institui regime especial de pagamento de precatórios", numero: "Emenda Constitucional nº 113/2021", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc113.htm" },
+    { nome: "PEC das Bondades — desoneração de combustíveis e benefícios sociais emergenciais", numero: "Emenda Constitucional nº 126/2022", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc126.htm" },
+    { nome: "Altera regras de cálculo e pagamento de precatórios", numero: "Emenda Constitucional nº 127/2022", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc127.htm" },
     { nome: "Altera o CTN (prescrição, execução fiscal)", numero: "Lei Complementar nº 118/2005", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei.complementar:2005;118" },
     { nome: "Depósitos judiciais e extrajudiciais de tributos federais", numero: "Lei nº 9.703/1998", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:1998;9703" },
     { nome: "Cadastro Informativo de Créditos não Quitados (CADIN)", numero: "Lei nº 10.522/2002", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2002;10522" },
@@ -384,6 +396,8 @@ var LEIS_DATA = {
     { nome: "Lei de Transação Tributária", numero: "Lei nº 13.988/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm" },
     { nome: "ICMS do Estado do Paraná", numero: "Lei Estadual (PR) nº 11.580/1996", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9464" },
     { nome: "Regulamenta a Reforma Tributária sobre o consumo (IBS, CBS e Imposto Seletivo)", numero: "Lei Complementar nº 214/2025", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm" },
+    { nome: "ICMS — Minas Gerais (Consolida a legislação tributária do Estado)", numero: "Lei Estadual (MG) nº 6.763/1975", link: "https://www.legisweb.com.br/legislacao/?id=97879" },
+    { nome: "Código Tributário do Estado do Tocantins", numero: "Lei Estadual (TO) nº 1.287/2001", link: "https://www.legisweb.com.br/legislacao/?id=170950" },
   ]},
 
   ambiental: { label: "Direito Ambiental", leis: [
@@ -462,6 +476,13 @@ var LEIS_DATA = {
     { nome: "Política Estadual de Recursos Hídricos do Rio Grande do Sul", numero: "Lei Estadual (RS) nº 10.350/1994", link: "https://www.legisweb.com.br/legislacao/?id=222001" },
     { nome: "Código Estadual do Meio Ambiente do Rio Grande do Sul", numero: "Lei Estadual (RS) nº 15.434/2020", link: "https://www.legisweb.com.br/legislacao/?id=395001" },
     { nome: "Política Energética Nacional (Lei do Petróleo)", numero: "Lei nº 9.478/1997", link: "https://www.planalto.gov.br/ccivil_03/leis/l9478.htm" },
+    { nome: "Licenciamento Ambiental do Estado do Tocantins", numero: "Lei Estadual (TO) nº 3.804/2021", link: "https://www.legisweb.com.br/legislacao/?id=417970" },
+    { nome: "Política Florestal do Estado do Tocantins (Código Florestal Estadual)", numero: "Lei Estadual (TO) nº 771/1995", link: "https://central3.to.gov.br/arquivo/345072/" },
+    { nome: "Sistema Estadual de Unidades de Conservação do Tocantins (SEUC)", numero: "Lei Estadual (TO) nº 1.560/2005", link: "https://central3.to.gov.br/arquivo/225866/" },
+    { nome: "Política Estadual de Recursos Hídricos do Tocantins", numero: "Lei Estadual (TO) nº 1.307/2002", link: "https://www.al.to.leg.br/arquivos/lei_1307-2002_43542.PDF" },
+    { nome: "Código Estadual de Proteção à Fauna do Tocantins", numero: "Lei Estadual (TO) nº 3.530/2019", link: "https://www.legisweb.com.br/legislacao/?id=381574" },
+    { nome: "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)", numero: "Lei Estadual (TO) nº 3.614/2019", link: "https://www.legisweb.com.br/legislacao/?id=388053" },
+    { nome: "Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins", numero: "Lei Estadual (TO) nº 1.917/2008", link: "https://www.legisweb.com.br/legislacao/?id=171295" },
   ]},
 
   administrativo: { label: "Direito Administrativo", leis: [
@@ -570,6 +591,9 @@ var LEIS_DATA = {
     { nome: "Contratação de bens e serviços de informática e automação pela Administração Pública federal", numero: "Decreto nº 7.174/2010", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/decreto/d7174.htm" },
     { nome: "Organizações Sociais do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 12.929/2004", link: "https://www.legisweb.com.br/legislacao/?id=190001" },
     { nome: "Normas gerais para licitação e contratação de serviços de publicidade por agências de propaganda", numero: "Lei nº 12.232/2010", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12232.htm" },
+    { nome: "Reorganiza os processos de trabalho e o Sistema de Proteção Social dos Militares das Forças Armadas", numero: "Lei nº 13.954/2019", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13954.htm" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado do Tocantins", numero: "Lei Estadual (TO) nº 1.818/2007", link: "https://www.al.to.leg.br/arquivos/lei_1818-2007_67187.PDF" },
+    { nome: "Estatuto dos Policiais Militares e Bombeiros Militares do Estado do Tocantins", numero: "Lei Estadual (TO) nº 2.578/2012", link: "https://www.al.to.leg.br/arquivos/lei_2578-2012_66938.PDF" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -587,6 +611,16 @@ var LEIS_DATA = {
     { nome: "Aposentadoria da pessoa com deficiência segurada do RGPS", numero: "Lei Complementar nº 142/2013", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp142.htm" },
     { nome: "Regulamenta o seguro-defeso do pescador artesanal", numero: "Decreto nº 8.424/2015", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8424.htm" },
     { nome: "Regime Próprio de Previdência dos servidores do Estado de Mato Grosso", numero: "Lei Complementar (MT) nº 670/2020", link: "https://www.legisweb.com.br/legislacao/?id=402471" },
+    { nome: "Reforma administrativa e tributária de 1993 (bases constitucionais do RPPS)", numero: "Emenda Constitucional nº 3/1993", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc03.htm" },
+    { nome: "Reforma da Previdência de 1998", numero: "Emenda Constitucional nº 20/1998", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc20.htm" },
+    { nome: "Reforma da Previdência de 2003", numero: "Emenda Constitucional nº 41/2003", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc41.htm" },
+    { nome: "PEC Paralela da Previdência", numero: "Emenda Constitucional nº 47/2005", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc47.htm" },
+    { nome: "Aposentadoria por invalidez de servidores com proventos proporcionais/paridade", numero: "Emenda Constitucional nº 70/2012", link: "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc70.htm" },
+    { nome: "Normas Gerais para os Regimes Próprios de Previdência Social (RPPS)", numero: "Lei nº 9.717/1998", link: "https://www.planalto.gov.br/ccivil_03/leis/l9717.htm" },
+    { nome: "Disciplina a aplicação de dispositivos da EC nº 41/2003 (cálculo de proventos e pensões do RPPS)", numero: "Lei nº 10.887/2004", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.887.htm" },
+    { nome: "Compensação Financeira entre Regimes Previdenciários", numero: "Lei nº 9.796/1999", link: "https://www.planalto.gov.br/ccivil_03/leis/l9796.htm" },
+    { nome: "Reorganiza as Polícias Militares e os Corpos de Bombeiros Militares", numero: "Decreto-Lei nº 667/1969", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0667.htm" },
+    { nome: "Modelo de gestão do Sistema de Proteção Social dos Militares do Estado do Tocantins", numero: "Lei Estadual (TO) nº 4.129/2023", link: "https://sapl.al.to.leg.br/media/sapl/public/normajuridica/2023/566/lei_4129-2023.pdf" },
   ]},
 
   humanos: { label: "Direitos Humanos", leis: [
@@ -669,6 +703,7 @@ var LEIS_DATA = {
     { nome: "Consolidação das Leis do Trabalho (CLT)", numero: "Decreto-Lei nº 5.452/1943", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:decreto-lei:1943;5452" },
     { nome: "Lei do Aeronauta — regulamenta a profissão", numero: "Lei nº 13.475/2017", link: "https://www.lexml.gov.br/urn/urn:lex:br:federal:lei:2017;13475" },
     { nome: "Regras para execução indireta de serviços continuados na Administração Pública federal", numero: "Decreto nº 9.507/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9507.htm" },
+    { nome: "Reforma Trabalhista (altera a CLT)", numero: "Lei nº 13.467/2017", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm" },
   ]},
 
 };
