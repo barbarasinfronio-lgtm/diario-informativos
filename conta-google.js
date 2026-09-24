@@ -26,11 +26,13 @@
   var MAP_DOCS = [
     { path: "progress/", local: "informativos-lidos" },
     { path: "progress-leis/", local: "leis-lidas" },
-    { path: "progress-sumulas/", local: "sumulas-lidas" }
+    { path: "progress-sumulas/", local: "sumulas-lidas" },
+    { path: "progress-normas/", local: "normas-lidas" },
+    { path: "progress-decisoes/", local: "decisoes-lidas" }
   ];
   var LOCAL_CLEAR = [
-    "informativos-lidos", "leis-lidas", "sumulas-lidas",
-    "informativos-avatar", "leis-avatar", "sumulas-avatar",
+    "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "decisoes-lidas",
+    "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar",
     "informativos-grupo", "premios-vistos", "premios-conquistados",
     "editais-principal", "leis-filtro", "estudamana-menu-v1"
   ];
