@@ -304,4 +304,31 @@
       pushToGroups();
     });
   }
+
+  // ---- conta Google ---------------------------------------------------
+  // Esta página não tem o painel "Acessar de qualquer aparelho" no HTML
+  // (conta-google.js procura por #account-panel) — criamos um antes das
+  // estatísticas, e carregamos conta-google.js da mesma pasta deste
+  // script (o login anônimo já é cuidado pelo GS.onViewerReady acima).
+  if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
+    if (!document.getElementById('account-panel')) {
+      var panel = document.createElement('div');
+      panel.id = 'account-panel';
+      var statsEl = document.getElementById('stats');
+      if (statsEl && statsEl.parentNode) statsEl.parentNode.insertBefore(panel, statsEl);
+      else document.body.insertBefore(panel, document.body.firstChild);
+    }
+    if (!window.ContaGoogle && !document.getElementById('conta-google-js')) {
+      var all0 = document.getElementsByTagName('script'), src = '';
+      for (var i = 0; i < all0.length; i++) {
+        if (/rg-repetitivos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
+      }
+      if (src) {
+        var s = document.createElement('script');
+        s.id = 'conta-google-js';
+        s.src = src.replace(/[^/]+\.js(\?.*)?$/, 'conta-google.js$1');
+        document.head.appendChild(s);
+      }
+    }
+  }
 })();
