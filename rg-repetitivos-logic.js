@@ -110,6 +110,40 @@
   var qInput = document.getElementById('q');
   qInput.addEventListener('input', function(){ state.q = this.value.trim().toLowerCase(); render(); });
 
+  // Botão "Minimizar": recolhe o painel de filtros (fixo no topo ao rolar)
+  // para só a linha da busca + STF/STJ, liberando espaço para ler. Criado
+  // aqui para não precisar mexer no HTML da página no Blogger. A escolha
+  // fica salva no navegador.
+  var TOOLBAR_KEY = 'decisoes-filtros-minimizados';
+  var toolbar = document.querySelector('.toolbar');
+  var firstRow = toolbar && toolbar.querySelector('.toolbar-inner > .row');
+  if(firstRow){
+    var toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = 'toolbar-toggle';
+    firstRow.appendChild(toggleBtn);
+
+    var setCollapsed = function(collapsed){
+      toolbar.classList.toggle('is-collapsed', collapsed);
+      toggleBtn.setAttribute('aria-expanded', String(!collapsed));
+      // Minimizado com filtro de risco/matéria ativo: o botão avisa quantos,
+      // já que esses filtros ficam escondidos.
+      var hidden = (state.risk !== 'all' ? 1 : 0) + (state.area ? 1 : 0);
+      toggleBtn.textContent = collapsed
+        ? '▾ Filtros' + (hidden ? ' (' + hidden + ')' : '')
+        : '▴ Minimizar';
+      toggleBtn.title = collapsed ? 'Mostrar todos os filtros' : 'Recolher os filtros';
+      try { localStorage.setItem(TOOLBAR_KEY, collapsed ? '1' : '0'); } catch(e){}
+    };
+
+    var startCollapsed = false;
+    try { startCollapsed = localStorage.getItem(TOOLBAR_KEY) === '1'; } catch(e){}
+    setCollapsed(startCollapsed);
+    toggleBtn.addEventListener('click', function(){
+      setCollapsed(!toolbar.classList.contains('is-collapsed'));
+    });
+  }
+
   document.getElementById('clearBtn').addEventListener('click', function(){
     state = { q:'', org:'all', risk:'all', area:null };
     qInput.value = '';
