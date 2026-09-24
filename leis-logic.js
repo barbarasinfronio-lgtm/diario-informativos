@@ -328,4 +328,41 @@
     ensure("EDITAIS_DATA", "editais-data.js"),
     domReady()
   ]).then(iniciar);
+
+  // ---- conta Google -----------------------------------------------------
+  // Esta página não tem mais o painel "Acessar de qualquer aparelho" no
+  // HTML (layout novo), então criamos um: conta-google.js procura por
+  // #account-panel e insere o botão sozinho ali dentro. Sem isso, ninguém
+  // conseguia entrar com a conta Google nesta página.
+  function ensureAccountPanel() {
+    var panel = document.getElementById("account-panel");
+    if (panel) return panel;
+    panel = document.createElement("div");
+    panel.id = "account-panel";
+    var anchor = document.getElementById("select-edital");
+    var block = anchor && (anchor.closest("section, article") || anchor.parentElement);
+    if (block && block.parentNode) block.parentNode.insertBefore(panel, block);
+    else document.body.insertBefore(panel, document.body.firstChild);
+    return panel;
+  }
+
+  function startContaGoogle() {
+    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    ensureAccountPanel();
+    if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão,
+    // não houver ninguém logado — assim não troca uma conta já vinculada
+    // (Google) por outra.
+    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
+      offAnon();
+      if (!u) firebase.auth().signInAnonymously().catch(function () {});
+    });
+    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
+    var s = document.createElement("script");
+    s.id = "conta-google-js";
+    s.src = scriptBase() + "conta-google.js";
+    document.head.appendChild(s);
+  }
+
+  domReady().then(startContaGoogle);
 })();
