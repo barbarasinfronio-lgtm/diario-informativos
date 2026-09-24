@@ -1,0 +1,13 @@
+const url = process.env.URL || 'https://www4.planalto.gov.br/legislacao/portal-legis/resenha-diaria';
+const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+const html = await res.text();
+console.log('STATUS', res.status, 'LEN', html.length);
+console.log('--- <link> tags ---');
+console.log((html.match(/<link[^>]*>/gi) || []).join('\n'));
+console.log('--- RSS/atom mentions ---');
+console.log((html.match(/[^"'>]*\.(rss|xml|atom)[^"'<]*/gi) || []).slice(0,20).join('\n'));
+console.log('--- trecho do body (2000 chars a partir de "resenha" case-insensitive) ---');
+const idx = html.toLowerCase().indexOf('resenha');
+console.log(html.slice(Math.max(0, idx-200), idx+2500));
+console.log('--- primeiros 1500 chars ---');
+console.log(html.slice(0, 1500));
