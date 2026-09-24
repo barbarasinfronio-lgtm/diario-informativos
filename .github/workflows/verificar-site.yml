@@ -4,21 +4,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixar página
-        run: |
-          curl -sSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
-            -H "Accept-Language: pt-BR,pt;q=0.9" \
-            "https://www4.planalto.gov.br/legislacao/portal-legis/resenha-diaria" \
-            -o pagina.html -w "HTTP %{http_code}\n" || echo "curl falhou com código $?"
-      - name: Inspecionar
-        run: |
-          echo "tamanho: $(wc -c < pagina.html 2>/dev/null || echo 0)"
-          echo "--- tags <link> ---"
-          grep -oE '<link[^>]*>' pagina.html || true
-          echo "--- mencoes a rss/xml/atom ---"
-          grep -oiE '[^"'"'"'>]*\.(rss|xml|atom)[^"'"'"'<]*' pagina.html | sort -u | head -30 || true
-          echo "--- primeiros 2000 caracteres ---"
-          head -c 2000 pagina.html || true
-          echo
-          echo "--- trecho perto de 'resenha' ---"
-          grep -oi -A5 -B2 "resenha" pagina.html | head -100 || true
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm i playwright@1 && npx playwright install --with-deps chromium
+      - run: node scripts/verificar-site.mjs
