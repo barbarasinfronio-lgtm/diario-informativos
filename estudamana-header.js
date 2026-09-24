@@ -15,6 +15,9 @@
  * demais páginas do site (inicial, posts) ele não faz nada. O visual dele fica
  * em estudamana-header.css (que usa as cores/fontes de estudamana-tokens.css).
  *
+ * No fim do menu ficam os botões "A− A A+" de tamanho da letra (ver
+ * CONFIG.fontSize); a escolha de cada pessoa fica salva no navegador dela.
+ *
  * Ajustes opcionais, todos aqui embaixo, em CONFIG.
  */
 (function () {
@@ -61,8 +64,89 @@
       { path: "/p/diario-de-leis.html", title: "Di\u00e1rio de Leis" },
       { path: "/p/diario-das-sumulas.html", title: "Di\u00e1rio das S\u00famulas" },
       { path: "/p/meus-grupos.html", title: "Meus Grupos" }
-    ]
+    ],
+
+    // Botões "A− A A+" no fim do menu, para a pessoa aumentar ou reduzir a
+    // letra. Cada clique muda a escala (--fs-scale de estudamana-tokens.css)
+    // em "step", entre "min" e "max" (1 = tamanho padrão). A escolha fica
+    // salva no navegador. Use fontSize: null para esconder os botões.
+    fontSize: { min: 0.85, max: 1.5, step: 0.1 }
   };
+
+  // ---- tamanho da letra -----------------------------------------------------
+  // Aplicado já aqui, antes de montar o menu, para a página não aparecer
+  // primeiro no tamanho padrão e depois "pular" para o tamanho escolhido.
+  var FONT_KEY = "estudamana-fonte";
+
+  function clampScale(v) {
+    var f = CONFIG.fontSize;
+    v = Math.round(v * 100) / 100;
+    return Math.min(f.max, Math.max(f.min, v));
+  }
+
+  function readScale() {
+    try {
+      var v = parseFloat(localStorage.getItem(FONT_KEY));
+      return isFinite(v) ? clampScale(v) : 1;
+    } catch (e) { return 1; }
+  }
+
+  function applyScale(v) {
+    var root = document.documentElement;
+    if (v === 1) root.style.removeProperty("--fs-scale");
+    else root.style.setProperty("--fs-scale", String(v));
+  }
+
+  var fontScale = CONFIG.fontSize ? readScale() : 1;
+  applyScale(fontScale);
+
+  function setScale(v) {
+    fontScale = clampScale(v);
+    applyScale(fontScale);
+    try {
+      if (fontScale === 1) localStorage.removeItem(FONT_KEY);
+      else localStorage.setItem(FONT_KEY, String(fontScale));
+    } catch (e) {}
+    updateFontButtons();
+  }
+
+  function updateFontButtons() {
+    var f = CONFIG.fontSize;
+    var box = document.querySelector("[data-em-header] .em-header__font");
+    if (!box) return;
+    box.querySelector("[data-font=down]").disabled = fontScale <= f.min;
+    box.querySelector("[data-font=up]").disabled = fontScale >= f.max;
+    var reset = box.querySelector("[data-font=reset]");
+    reset.disabled = fontScale === 1;
+    reset.title = "Tamanho padrão da letra (agora: " + Math.round(fontScale * 100) + "%)";
+  }
+
+  function buildFontControls() {
+    var f = CONFIG.fontSize;
+    var li = document.createElement("li");
+    li.className = "em-header__font";
+    li.setAttribute("role", "group");
+    li.setAttribute("aria-label", "Tamanho da letra");
+
+    [
+      { key: "down", text: "A−", label: "Diminuir a letra", delta: -f.step },
+      { key: "reset", text: "A", label: "Tamanho padrão da letra", delta: 0 },
+      { key: "up", text: "A+", label: "Aumentar a letra", delta: f.step }
+    ].forEach(function (b) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "em-header__font-btn em-header__font-btn--" + b.key;
+      btn.textContent = b.text;
+      btn.title = b.label;
+      btn.setAttribute("aria-label", b.label);
+      btn.setAttribute("data-font", b.key);
+      btn.addEventListener("click", function () {
+        setScale(b.delta ? fontScale + b.delta : 1);
+      });
+      li.appendChild(btn);
+    });
+    return li;
+  }
 
   // ---- página inicial padrão ------------------------------------------------
   (function goHome() {
@@ -175,6 +259,7 @@
       var label = CONFIG.labels[slugOf(p.path)] || p.title;
       addItem(label, p.path, current === normPath(p.path));
     });
+    if (CONFIG.fontSize) ul.appendChild(buildFontControls());
 
     nav.appendChild(ul);
     return nav;
@@ -242,11 +327,13 @@
   function start() {
     var shown = readCache() || CONFIG.fallback;
     mount(buildNav(shown));
+    updateFontButtons();
 
     fetchPages().then(function (fresh) {
       if (!fresh.length) return;
       if (signature(fresh) !== signature(shown)) {
         mount(buildNav(fresh));
+        updateFontButtons();
       }
       writeCache(fresh);
     }).catch(function () { /* mantém o que já está na tela */ });
