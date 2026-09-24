@@ -1,0 +1,32 @@
+name: Limpar cache do jsDelivr
+
+# O site carrega os arquivos por cdn.jsdelivr.net/gh/...@main/, e o jsDelivr
+# guarda uma cópia por até 12h (ou mais). Sem isso, uma correção enviada ao
+# main demora horas para aparecer. Este robô pede ao jsDelivr para buscar de
+# novo todos os .js e .css da raiz sempre que o main muda.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # botão "Run workflow" para limpar na mão quando quiser
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Limpar cache de cada arquivo
+        run: |
+          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
+          falhas=0
+          for f in *.js *.css; do
+            status=$(curl -sS -o resposta.json -w '%{http_code}' "$base/$f" || echo 000)
+            echo "$f -> HTTP $status"
+            if [ "$status" != "200" ]; then
+              cat resposta.json 2>/dev/null; echo
+              falhas=$((falhas + 1))
+            fi
+          done
+          if [ "$falhas" -gt 0 ]; then
+            echo "::warning::$falhas arquivo(s) não foram limpos do cache"
+          fi
