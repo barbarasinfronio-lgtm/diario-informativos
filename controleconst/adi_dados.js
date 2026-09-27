@@ -1,40 +1,41 @@
-// controleconst/adi_dados.js
-const DADOS_ADIS = [
+window.CONSTITUCIONALIDADES_DATA = [
   {
-    numero: 7300,
+    id: "STF_ADI_7000",
+    classe: "ADI",
+    numero: "7000",
+    processo: "ADI 7000",
     ano: 2026,
-    data: "20 fev 2026",
-    tema: "Reforma tributária sobre bens e serviços e repartição constitucional de receitas",
-    relator: "Min. Luís Roberto Barroso",
-    resultado: "Improcedente", // ou "Procedente", "Parcialmente Procedente"
-    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=6543210"
-  },
-  {
-    numero: 6341,
-    ano: 2020,
-    data: "15 abr 2020",
-    tema: "Competência concorrente de Estados e Municípios para medidas sanitárias e restritivas",
-    relator: "Min. Marco Aurélio",
-    resultado: "Parcialmente Procedente",
-    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=5880765"
-  },
-  {
-    numero: 4275,
-    ano: 2018,
-    data: "01 mar 2018",
-    tema: "Alteração de prenome e gênero de pessoa transgênero no registro civil sem necessidade de cirurgia",
-    relator: "Min. Edson Fachin",
-    resultado: "Procedente",
-    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=3723382"
-  },
-  {
-    numero: 4439,
-    ano: 2017,
-    data: "27 set 2017",
-    tema: "Constitucionalidade do ensino religioso confessional nas escolas públicas da rede oficial",
     relator: "Min. Roberto Barroso",
-    resultado: "Improcedente",
-    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=3921764"
+    dataJulgamento: "15/09/2026",
+    ramo: "Direito Constitucional",
+    tema: "Poder regulamentar das agências reguladoras e limites da delegação legislativa.",
+    tese: "É constitucional a fixação de padrões técnicos por agências reguladoras desde que observadas as balizas estabelecidas na lei instituidora.",
+    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=6123456"
+  },
+  {
+    id: "STF_ADPF_787",
+    classe: "ADPF",
+    numero: "787",
+    processo: "ADPF 787",
+    ano: 2024,
+    relator: "Min. Gilmar Mendes",
+    dataJulgamento: "17/10/2024",
+    ramo: "Direito à Saúde",
+    tema: "Acesso de pessoas transexuais e travestis aos serviços de saúde e Declaração de Nascido Vivo.",
+    tese: "O SUS deve garantir acesso a consultas e exames de acordo com as necessidades biológicas, independentemente do gênero autodeclarado no registro civil.",
+    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=6093095"
+  },
+  {
+    id: "STF_ADC_4",
+    classe: "ADC",
+    numero: "4",
+    processo: "ADC 4",
+    ano: 2008,
+    relator: "Min. Sydney Sanches",
+    dataJulgamento: "01/10/2008",
+    ramo: "Direito Administrativo",
+    tema: "Antecipação de tutela contra a Fazenda Pública (Art. 1º da Lei nº 9.494/1997).",
+    tese: "Constitucionalidade das restrições à concessão de liminares e antecipações de tutela contra a Fazenda Pública.",
+    url: "https://portal.stf.jus.br/processos/detalhe.asp?incidente=1689599"
   }
-  // Adicione as demais ADIs seguindo a mesma estrutura
 ];
