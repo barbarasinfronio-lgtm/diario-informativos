@@ -1,32 +1,4 @@
-/*
- * estudamana-header.js — CABEÇALHO ÚNICO DO ESTUDA MANA
- *
- * Monta o menu de navegação de todas as páginas. A lista de páginas vem
- * automaticamente do Blogger (feed de "Páginas" do próprio site): toda
- * página nova que você publicar aparece aqui sozinha, no fim do menu, sem
- * editar nada. Páginas em rascunho não aparecem.
- *
- * Como usar: uma única vez, no tema do Blogger (Tema > Editar HTML, antes
- * de </body>):
- *   <script src=".../estudamana-header.js"></script>
- * O cabeçalho aparece sozinho na página inicial e nas páginas de estudo (as que têm o
- * bloco ".page" com "header.masthead" dos Diários, o "header.top" do RG ou um
- * <div id="estudamana-header">) e se encaixa no topo do conteúdo. Nas
- * demais páginas do site (inicial, posts) ele não faz nada. O visual dele fica
- * em estudamana-header.css (que usa as cores/fontes de estudamana-tokens.css).
- *
- * Ele também põe, no canto de baixo à direita de toda página de estudo, os
- * botões "A− A A+" de tamanho da letra (ver CONFIG.fontSize). Eles ficam por
- * cima de tudo, inclusive das janelas que abrem por cima da página (ex.: o
- * card aberto do Diário das Decisões); a escolha fica salva no navegador.
- *
- * Para as mudanças aparecerem sem esperar o cache do navegador, o tema
- * carrega este arquivo com fetch(..., { cache: "no-cache" }) em vez de
- * <script src>; o CSS (estudamana-tokens.css + estudamana-header.css) é
- * buscado do mesmo jeito por loadStyles(), lá embaixo.
- *
- * Ajustes opcionais, todos aqui embaixo, em CONFIG.
- */
+
 (function () {
   "use strict";
 
