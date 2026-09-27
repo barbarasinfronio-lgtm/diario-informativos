@@ -34,48 +34,40 @@
   // só a primeira cópia roda.
   if (window.__estudamanaHeader) return;
   window.__estudamanaHeader = true;
-
+//variável de configuraçao da ordem do menu superior
   var CONFIG = {
-    // Ordem preferida (pelo final do endereço da página, sem "/p/" e sem
-    // ".html"). Páginas que não estão nesta lista entram DEPOIS dessas,
-    // da mais antiga para a mais nova — então páginas novas caem no fim.
     order: [
       "editais",
       "diario-dos-informativos",
       "diario-das-decisoes",
       "diario-de-leis",
       "diario-das-sumulas",
+      "diario-das-constitucionalidades",
+      "diario-das-reclamacoes",
       "ranking-de-informativos",
       "meus-grupos",
       "meus-premios"
     ],
 
     // Páginas que NÃO devem aparecer no menu (mesmo formato de "order").
-    hide: [],
-
-    // Nomes mais curtos para o menu (opcional). Formato: "endereco": "Nome".
-    // Sem entrada aqui, vale o título da página no Blogger.
+   hide: [],
     labels: {},
 
-    // Texto/endereço do primeiro item (a página inicial). Use null para
-    // não mostrar.
-    home: null,
+    // Mostra o link "Início" levando à página principal
+    home: { label: "Início", href: "/" },
 
-    // Página inicial: quem abre o endereço principal do site (sem nada
-    // depois da barra) é levado direto a esta página. Use null para
-    // voltar a mostrar a página inicial em branco do Blogger.
-    // (Como a inicial agora leva ao Diário de Informativos, o item
-    // "Início" saiu do menu; para trazê-lo de volta, troque "home: null"
-    // por  home: { label: "Início", href: "/" }.)
+    // null desativa o redirecionamento automático para o Diário dos Informativos
     homePage: null,
-    // Lista de segurança: só aparece se o Blogger não responder e ainda
-    // não houver cópia guardada no navegador. Não precisa manter em dia.
+
     fallback: [
-      { path: "/p/diario-dos-informativos.html", title: "Di\u00e1rio de Informativos" },
-      { path: "/p/diario-de-leis.html", title: "Di\u00e1rio de Leis" },
-      { path: "/p/diario-das-sumulas.html", title: "Di\u00e1rio das S\u00famulas" },
+      { path: "/p/diario-dos-informativos.html", title: "Diário de Informativos" },
+      { path: "/p/diario-de-leis.html", title: "Diário de Leis" },
+      { path: "/p/diario-das-sumulas.html", title: "Diário das Súmulas" },
       { path: "/p/meus-grupos.html", title: "Meus Grupos" }
     ],
+
+    fontSize: { min: 0.85, max: 1.5, step: 0.1 }
+  };
 
     // Botões "A− A A+" flutuantes, para a pessoa aumentar ou reduzir a
     // letra. Cada clique muda a escala (--fs-scale de estudamana-tokens.css)
