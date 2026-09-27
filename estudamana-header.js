@@ -166,8 +166,13 @@
   }
 
   function isStudyPage() {
-    return !!(document.getElementById("estudamana-header") ||
-      document.querySelector(".page > header.masthead, header.top, [data-em-font]"));
+  return !!(
+    location.pathname === "/" ||
+    location.pathname === "/index.html" ||
+    document.getElementById("estudamana-header") ||
+    document.querySelector(".page > header.masthead, header.top, [data-em-font]")
+  );
+}
   }
 
   function startFontControls() {
