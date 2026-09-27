@@ -67,8 +67,7 @@
     // (Como a inicial agora leva ao Diário de Informativos, o item
     // "Início" saiu do menu; para trazê-lo de volta, troque "home: null"
     // por  home: { label: "Início", href: "/" }.)
-    homePage: "/p/diario-dos-informativos.html",
-
+    homePage: null,
     // Lista de segurança: só aparece se o Blogger não responder e ainda
     // não houver cópia guardada no navegador. Não precisa manter em dia.
     fallback: [
