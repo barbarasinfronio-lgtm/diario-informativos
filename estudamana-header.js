@@ -59,7 +59,6 @@ labels: {},
 
 // Texto/endereço do primeiro item (a página inicial). Use null para
 // não mostrar.
-home: null,
 homePage: "/p/diario-dos-informativos.html",
 // Página inicial: quem abre o endereço principal do site (sem nada
 // depois da barra) é levado direto a esta página. Use null para
