@@ -1,0 +1,69 @@
+name: Atualizar jurisprudência do TST
+
+# Toda segunda-feira de manhã, traz do TST as Súmulas (Diário das Súmulas) e
+# as OJs, Precedentes Normativos e temas de Recursos Repetitivos (Diário das
+# Decisões) — ver scripts/atualizar_tst.py. São só 4 consultas por semana.
+# Se uma fonte falhar, o que veio certo é salvo e o robô termina em erro
+# (aparece em vermelho na aba Actions); o que falhou fica na versão anterior.
+on:
+  schedule:
+    - cron: "0 9 * * 1" # segunda, 6h de Brasília
+  workflow_dispatch: # botão "Run workflow" para atualizar na mão
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-tst
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Buscar no TST
+        id: tst
+        run: |
+          if python3 scripts/atualizar_tst.py; then
+            echo "falhou=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "falhou=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Salvar o que mudou
+        id: salvar
+        run: |
+          git add sumulas-data.js tst
+          if git diff --cached --quiet; then
+            echo "Nada mudou no TST."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git diff --cached --name-only > alterados.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Atualiza jurisprudência do TST (automático)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "mudou=1" >> "$GITHUB_OUTPUT"
+
+      # Envios feitos por robô não disparam o robô de limpeza; limpa aqui,
+      # com a mesma espera (ver limpar-cache-jsdelivr.yml).
+      - name: Limpar cache do jsDelivr
+        if: steps.salvar.outputs.mudou == '1'
+        run: |
+          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
+          for espera in 60 120; do
+            sleep "$espera"
+            while read -r f; do
+              [ -z "$f" ] && continue
+              status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
+              echo "$f -> HTTP $status"
+            done < alterados.txt
+          done
+
+      - name: Avisar se alguma fonte falhou
+        if: steps.tst.outputs.falhou == '1'
+        run: |
+          echo "::error::Alguma fonte do TST falhou (ver o passo 'Buscar no TST'); essa parte ficou na versão anterior."
+          exit 1

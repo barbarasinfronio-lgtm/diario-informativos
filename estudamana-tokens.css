@@ -72,6 +72,7 @@
   /* Cores — tribunais e nível de risco (RG e Repetitivos) */
   --stf: #1f3a5f;
   --stj: #6b4a1f;
+  --tst: #7a2e4e;
   --high-fg: #8a1f1f;
   --high-bg: #fbe6e2;
   --high-line: #e4b8ae;
@@ -122,6 +123,7 @@
 
     --stf: #7fa6d9;
     --stj: #d3a86a;
+    --tst: #c98aa6;
     --high-fg: #f3a8a0;
     --high-bg: #3a1e1e;
     --high-line: #5c2e2c;
@@ -166,6 +168,7 @@
 
   --stf: #7fa6d9;
   --stj: #d3a86a;
+  --tst: #c98aa6;
   --high-fg: #f3a8a0;
   --high-bg: #3a1e1e;
   --high-line: #5c2e2c;
