@@ -31,7 +31,7 @@
   var RE_LEI = /\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*\/\s*(\d{4}|\d{2})\b/gi;
   // Resolução CNJ nº 547/2024 · Recomendação do CNJ 123/2022 · Resolução nº 9/2019 do CNMP
   // (sem o órgão, "Resolução nº X" pode ser do Senado, de agência etc. — fica de fora)
-  var RE_NORMA = /\b(Resolu[çc][ãa]o|Res\.|Recomenda[çc][ãa]o)\s+(?:(?:do|da)\s+)?(CNJ|CSJT|CNMP|CONAMA|CONANDA)?\s*(?:n[ºo°.]*\s*)?(\d{1,4}(?:\.\d{3})*)\s*\/\s*(\d{4}|\d{2})\b(?:\s*,?\s*(?:do|da)\s+(CNJ|CSJT|CNMP|CONAMA|CONANDA))?/gi;
+  var RE_NORMA = /\b(Resolu[çc][ãa]o|Res\.|Recomenda[çc][ãa]o)\s+(?:(?:do|da)\s+)?(CNJ|CSJT|CNMP|CSMPT|CONAMA|CONANDA)?\s*(?:n[ºo°.]*\s*)?(\d{1,4}(?:\.\d{3})*)\s*\/\s*(\d{4}|\d{2})\b(?:\s*,?\s*(?:do|da)\s+(CNJ|CSJT|CNMP|CSMPT|CONAMA|CONANDA))?/gi;
 
   var NOME_TIPO_LEI = { lei: "Lei", lc: "Lei Complementar", dl: "Decreto-Lei", decreto: "Decreto" };
 
