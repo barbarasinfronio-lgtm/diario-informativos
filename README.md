@@ -24,10 +24,10 @@ O arquivo de dados precisa ser carregado **antes** do de lógica.
 | Diário dos Informativos      | `diario-data.js`        | `diario-logic.js`               | `diario-styles-v2.css`       |
 | Diário de Leis               | `leis-data.js` + `editais-data.js` | `leis-logic.js`       | (embutido pela página)       |
 | Diário das Súmulas           | `sumulas-data.js`       | `sumulas-logic.js`              | `diario-styles-v2.css`       |
-| Diário das Resoluções        | `normas-data.js`        | `normas-logic.js`               | `diario-styles-v2.css`       |
-| Diário das Decisões (RG e Repetitivos) | `rg-repetitivos-data.js` | `rg-repetitivos-logic.js` | `rg-repetitivos-styles.css` |
+| Diário das Resoluções (CNJ, CSJT, CNMP, CSMPT, CONAMA, CONANDA) | `normas-data.js` | `normas-logic.js` | `diario-styles-v2.css` |
+| Diário das Decisões — "Precedentes Qualificados" (STF, STJ, TST) | `rg-repetitivos-data.js` + `tst/decisoes.json` | `rg-repetitivos-logic.js` | `rg-repetitivos-styles.css` |
 | Editais                      | `editais-data.js`       | `editais-logic.js`              | `editais-styles.css`         |
-| Meus Prêmios                 | `premios-data.js`       | `premios-logic.js`              | `diario-styles-v2.css` + `premios-styles.css` |
+| Meu Progresso (endereço `/p/meus-premios.html`) | `premios-data.js` | `premios-logic.js` | `diario-styles-v2.css` + `premios-styles.css` |
 | Meus Grupos                  | —                       | `meus-grupos-logic.js`          | `diario-styles-v2.css`       |
 | Ranking de Informativos      | —                       | `ranking-informativos-logic.js` | `diario-styles-v2.css`       |
 
@@ -68,12 +68,15 @@ Cada arquivo traz no topo um comentário explicando o funcionamento e as opçõe
 
 ## Automação
 
-Dois workflows do GitHub Actions (pasta `.github/workflows/`):
+Workflows do GitHub Actions (pasta `.github/workflows/`):
 
-- **`limpar-cache-jsdelivr.yml`**: a cada push no `main` (ou pelo botão
-  "Run workflow"), pede ao jsDelivr para buscar de novo todos os `.js`/`.css`
-  da raiz. Sem isso, uma correção enviada ao `main` podia demorar horas para
-  aparecer no site.
+- **`limpar-cache-jsdelivr.yml`**: a cada push no `main`, pede ao jsDelivr
+  para buscar de novo **só os arquivos alterados** (.js/.css/.json), 1 e 3
+  minutos depois do envio (limpar tudo a cada envio fazia o jsDelivr recusar
+  por excesso). Pelo botão "Run workflow", limpa todos.
+- **`dividir-dados-por-ano.yml`**: a cada envio de `controleconst/adi_dados.js`
+  ou `reclamacoes/reclamacoes-data.js`, gera as pastas `anos/` (um arquivo
+  por ano) com `scripts/dividir_por_ano.py`.
 - **`atualizar_informativos.yml`**: roda toda segunda-feira de manhã (ou pelo
   botão "Run workflow") e chama `scripts/atualizar_informativos.mjs`, que
   confere se saiu um novo Informativo do STF (pelo número seguinte ao último
@@ -82,6 +85,24 @@ Dois workflows do GitHub Actions (pasta `.github/workflows/`):
   registra um comentário no topo de `diario-data.js`** avisando da nova
   edição — não chega a acrescentar a edição de verdade na lista (isso ainda
   precisa ser feito à mão, como sempre foi). Só cobre o STF por enquanto.
+
+### Robôs que rodam no Mac (conexão no Brasil)
+
+O TST (e a JusLaboris, que é do TST) não responde aos servidores do GitHub.
+Por isso estes robôs rodam no Mac, toda segunda às 9h
+(`~/Library/LaunchAgents/br.com.estudamana.atualizar-tst.plist` →
+`~/EstudaMana/atualizar-tst.sh` → `scripts/rodar_no_mac.sh`):
+
+- **`scripts/atualizar_tst.py`**: Súmulas do TST (bloco `tst` de
+  `sumulas-data.js`) e OJs, Precedentes Normativos e temas de IRR
+  (`tst/decisoes.json`, Diário das Decisões).
+- **`scripts/atualizar_csjt.py`**: Resoluções e Recomendações do CSJT em vigor
+  (bloco `csjt` de `normas-data.js`).
+- **`scripts/atualizar_csmpt.py`**: Resoluções do CSMPT/MPT (bloco `csmpt` de
+  `normas-data.js`).
+
+Para incluir outra fonte que precise de conexão no Brasil, acrescente o robô
+em `scripts/rodar_no_mac.sh`. Log: `~/EstudaMana/atualizar-tst.log`.
 
 ## Backups
 
