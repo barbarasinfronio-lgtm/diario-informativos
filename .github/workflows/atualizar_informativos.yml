@@ -46,6 +46,21 @@ jobs:
           openssl verify -CApath /etc/ssl/certs -untrusted inter.pem folha.pem
           echo "NODE_EXTRA_CA_CERTS=$PWD/inter.pem" >> "$GITHUB_ENV"
 
+      - name: DIAGNOSTICO TEMPORARIO
+        continue-on-error: true
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
+          for u in https://www.stf.jus.br/arquivo/cms/informativoSTF/anexo/Informativo_PDF/Informativo_stf_1229.pdf \
+                   https://www.stf.jus.br/arquivo/informativo/documento/informativo.htm \
+                   https://www.stf.jus.br/ \
+                   "https://portal.stf.jus.br/textos/verTexto.asp?servico=informativoSTF"; do
+            echo "== $u"
+            curl -s -o r.bin -w 'curl-simples %{http_code} %{content_type}\n' --max-time 30 "$u" || true
+            curl -s -o r.bin -w 'curl-navegador %{http_code} %{content_type}\n' --max-time 30 --compressed -H "User-Agent: $UA" -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: pt-BR,pt;q=0.9' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Dest: document' -H 'Upgrade-Insecure-Requests: 1' "$u" || true
+            head -c 400 r.bin | tr -c '[:print:]\n' '.'; echo
+            curl -sI --max-time 30 -H "User-Agent: $UA" "$u" | grep -iE '^(server|x-|cf-|set-cookie|via)' || true
+          done
+
       - name: Verificar novas edições do STF
         run: node scripts/atualizar_informativos.mjs
 
