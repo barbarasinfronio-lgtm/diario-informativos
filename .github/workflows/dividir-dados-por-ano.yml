@@ -1,0 +1,57 @@
+name: Dividir dados por ano
+
+# Quando você sobe um arquivo de dados grande (Constitucionalidade ou
+# Reclamações), este robô roda scripts/dividir_por_ano.py, que gera a pasta
+# "anos/" ao lado dele (index.json + um arquivo por ano). As páginas carregam
+# só os anos que precisam mostrar. Depois ele limpa o cache do jsDelivr dos
+# arquivos gerados (envios feitos por robôs não disparam o outro robô de
+# limpeza, então a limpeza é feita aqui mesmo).
+on:
+  push:
+    branches: [main]
+    paths:
+      - controleconst/adi_dados.js
+      - reclamacoes/reclamacoes-data.js
+      - scripts/dividir_por_ano.py
+  workflow_dispatch: # botão "Run workflow" para dividir na mão
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dividir-dados
+  cancel-in-progress: false
+
+jobs:
+  dividir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dividir por ano
+        run: python3 scripts/dividir_por_ano.py
+
+      - name: Salvar os arquivos gerados
+        id: salvar
+        run: |
+          git add -A controleconst/anos reclamacoes/anos
+          if git diff --cached --quiet; then
+            echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git diff --cached --name-only > alterados.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Divide dados por ano (automático)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "mudou=1" >> "$GITHUB_OUTPUT"
+
+      - name: Limpar cache do jsDelivr dos arquivos gerados
+        if: steps.salvar.outputs.mudou == '1'
+        run: |
+          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
+          while read -r f; do
+            [ -z "$f" ] && continue
+            status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
+            echo "$f -> HTTP $status"
+          done < alterados.txt
