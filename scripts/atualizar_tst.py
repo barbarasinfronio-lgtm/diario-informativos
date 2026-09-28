@@ -318,6 +318,9 @@ def main():
         erros.append(f"IRR: {e}")
 
     if not erros:
+        # Ordem fixa: a pesquisa do TST devolve os itens em ordem variável, o
+        # que faria o arquivo "mudar" (e ser publicado) sem nada ter mudado.
+        decisoes.sort(key=lambda x: (x["tipo"], x["precedenteLabel"], int(x["tema"]) if x["tema"].isdigit() else 0))
         pasta = os.path.join(RAIZ, "tst")
         os.makedirs(pasta, exist_ok=True)
         with open(os.path.join(pasta, "decisoes.json"), "w", encoding="utf-8") as f:
