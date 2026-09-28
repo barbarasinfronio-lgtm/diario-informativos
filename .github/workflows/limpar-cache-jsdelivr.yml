@@ -24,24 +24,34 @@ jobs:
       - name: Listar arquivos
         run: |
           ls *.js *.css > arquivos.txt
-          if git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git ls-files '*.js' '*.css' >> arquivos.txt   # na mão: todas as pastas
+          elif git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
             git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '*.js' '*.css' >> arquivos.txt
           fi
           sort -u arquivos.txt -o arquivos.txt
 
+      # Limpar logo depois do envio não basta: nos primeiros segundos o
+      # jsDelivr ainda enxerga a versão anterior do main e volta a guardá-la
+      # por horas. Por isso espera 1 minuto, limpa, e limpa de novo 2 minutos
+      # depois, por garantia.
       - name: Limpar cache de cada arquivo
         run: |
           base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
           falhas=0
-          while read -r f; do
-            [ -z "$f" ] && continue
-            status=$(curl -sS -o resposta.json -w '%{http_code}' "$base/$f" || echo 000)
-            echo "$f -> HTTP $status"
-            if [ "$status" != "200" ]; then
-              cat resposta.json 2>/dev/null; echo
-              falhas=$((falhas + 1))
-            fi
-          done < arquivos.txt
+          for rodada in 1 2; do
+            if [ "$rodada" = 1 ]; then sleep 60; else sleep 120; fi
+            echo "== rodada $rodada"
+            while read -r f; do
+              [ -z "$f" ] && continue
+              status=$(curl -sS -o resposta.json -w '%{http_code}' "$base/$f" || echo 000)
+              echo "$f -> HTTP $status"
+              if [ "$status" != "200" ] && [ "$rodada" = 2 ]; then
+                cat resposta.json 2>/dev/null; echo
+                falhas=$((falhas + 1))
+              fi
+            done < arquivos.txt
+          done
           if [ "$falhas" -gt 0 ]; then
             echo "::warning::$falhas arquivo(s) não foram limpos do cache"
           fi
