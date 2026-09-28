@@ -223,7 +223,7 @@ def item_irr(c):
     movimento = c[3]["texto"].split("\n")[0].strip()
     suspensao = re.sub(r"\s*\n\s*", " ", c[4]["texto"]).strip()
     relator = re.sub(r"^Ministr[oa]\s+", "", c[5]["texto"].strip())
-    julgado = bool(re.search(r"transitad|acórdão publicado|acordo", movimento, re.I))
+    julgado_formal = bool(re.search(r"transitad|acórdão publicado|acordo", movimento, re.I))
 
     processo = (re.search(r"(?:IRR|RR|E-RR|IncJulgRREmbRep|Ag)[^\n]*?\d{4,7}-\d{2}\.\d{4}\.\d\.\d{2}\.\d{4}", representativos) or [None])[0]
     pub = re.search(r"[Pp]ublicad[oa] em (\d{1,2})[/.](\d{1,2})[/.](\d{4})", representativos)
@@ -233,14 +233,24 @@ def item_irr(c):
     base = re.sub(r"^(Tese Jur[ií]dica|Quest[ãa]o Jur[ií]dica)\s*(\([^)]*\))?\s*[:\-–]?\s*", "", tese)
     titulo = base if len(base) <= 150 else base[:150].rsplit(" ", 1)[0] + "…"
 
-    if julgado:
+    # A coluna "último movimento" do TST demora a mudar: a tese aparece na
+    # tabela assim que é fixada, antes do acórdão ser publicado. Por isso o
+    # que decide é o texto: pergunta (ou "Definir…", "Em quais…") = ainda em
+    # julgamento; afirmação = tese já fixada.
+    questao = ("?" in base or movimento.lower() == "tema afetado" or bool(re.match(
+        r"(Definir|Saber se|Discute-se|Em qu(e|ais)|Qual|Quais|Quando|Como|Se |Quest[ãa]o)", base, re.I)))
+    julgado = not questao
+
+    if questao:
+        risco, motivo = "Média", "tema afetado e ainda sem tese: a questão está em julgamento no TST"
+    elif not julgado_formal:
+        risco, motivo = "Alta", "tese recém-fixada pelo TST (acórdão ainda não publicado)"
+    else:
         a = ano(data)
         if a and a >= HOJE.year - 1:
             risco, motivo = "Alta", f"tese vinculante fixada em {a} (muito recente)"
         else:
             risco, motivo = "Média", "tese vinculante do TST em recurso de revista repetitivo"
-    else:
-        risco, motivo = "Média", "tema afetado e ainda sem tese: a questão está em julgamento no TST"
 
     historico = "\n".join(p for p in [f"Último movimento: {movimento}" if movimento else "",
                                       f"Suspensão: {suspensao}" if suspensao else ""] if p)
