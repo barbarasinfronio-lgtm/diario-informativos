@@ -58,14 +58,16 @@ hide: [],
 labels: {},
 
 // Texto/endereço do primeiro item (a página inicial). Use null para
-// não mostrar.
-homePage: "/p/diario-dos-informativos.html",
-// Página inicial: quem abre o endereço principal do site (sem nada
-// depois da barra) é levado direto a esta página. Use null para
-// voltar a mostrar a página inicial em branco do Blogger.
-// (Como a inicial agora leva ao Diário de Informativos, o item
-// "Início" saiu do menu; para trazê-lo de volta, troque "home: null"
-// por  home: { label: "Início", href: "/" }.)
+// não mostrar; para mostrar: home: { label: "Início", href: "/" }.
+home: null,
+
+// Página inicial (endereço principal do site, sem nada depois da barra):
+// mostra, inteira, a postagem de apresentação cujo número está em
+// homePost (o número que aparece no endereço de edição da postagem no
+// Blogger), com o menu em cima. Se ela não puder ser carregada (ex.:
+// ainda é rascunho), a pessoa é levada para homePage. Com homePost: null,
+// a inicial sempre leva direto para homePage.
+homePost: "2209247404048971902",
 homePage: "/p/diario-dos-informativos.html",
 
 // Lista de segurança: só aparece se o Blogger não responder e ainda
@@ -191,23 +193,62 @@ subtree: true, attributes: true, attributeFilter: ["open"]
 } catch (e) {}
 }
 
-// ---- página inicial padrão ------------------------------------------------
+// ---- página inicial ---------------------------------------------------------
+// É a inicial "de verdade" (e não busca, marcador, arquivo, pré-visualização)?
+function ehInicial() {
+try {
+if (window.top !== window.self) return false;           // pré-visualização do Blogger
+var p = location.pathname;
+if (p !== "/" && p !== "/index.html") return false;
+if (location.search && !/^\?m=[01]$/.test(location.search)) return false; // busca, marcadores, arquivo…
+return !/[?&](q|view|updated-max|max-results|by-date)=/.test(location.search);
+} catch (e) { return false; }
+}
+
+function irParaHomePage() {
+if (CONFIG.homePage) location.replace(CONFIG.homePage + location.search);
+}
+
+var NA_INICIAL = ehInicial();
+// Na inicial, a lista de postagens do Blogger (que só mostraria um resumo
+// da apresentação), o título "Postagens" e a paginação ficam escondidos
+// desde já, para não piscarem antes da apresentação aparecer.
+var estiloInicial = null;
+if (NA_INICIAL && CONFIG.homePost) {
+estiloInicial = document.createElement("style");
+estiloInicial.textContent =
+"#Blog1 .blog-posts, #Blog1 .blog-pager, .main-heading, #FeaturedPost1 { display: none !important; }";
+document.head.appendChild(estiloInicial);
+}
+
+// Busca a postagem de apresentação inteira pelo feed do Blogger e a põe no
+// lugar da lista de postagens (que só mostraria um resumo dela).
+function mostrarApresentacao() {
+var url = location.origin + "/feeds/posts/default/" + CONFIG.homePost + "?alt=json";
+return fetch(url, { credentials: "omit" })
+.then(function (r) {
+if (!r.ok) throw new Error("apresentação " + r.status);
+return r.json();
+})
+.then(function (json) {
+var html = json && json.entry && json.entry.content && json.entry.content.$t;
+if (!html) throw new Error("apresentação vazia");
+var blog = document.getElementById("Blog1");
+if (!blog) throw new Error("sem #Blog1");
+var box = document.createElement("div");
+box.className = "em-apresentacao";
+// o lugar do menu na postagem não é preciso aqui: o menu já fica em cima
+box.innerHTML = html.replace(/<div id="estudamana-header"><\/div>/g, "");
+var nav = blog.querySelector("[data-em-header]");
+blog.insertBefore(box, nav ? nav.nextSibling : blog.firstChild);
+});
+}
+
 (function goHome() {
 try {
-if (!CONFIG.homePage) return;
-if (window.top !== window.self) return;                 // pré-visualização do Blogger
-var p = location.pathname;
-if (p !== "/" && p !== "/index.html") return;
-      if (location.search && !/^\?m=[01]$/.test(location.search)) return; // busca, marcadores, arquivo…
-      if (/[?&]view=/.test(location.search)) return;
-      // Só NÃO redireciona quando a busca é de verdade (marcador/arquivo do
-      // Blogger, "?q=", "?view=", paginação "?updated-max="); qualquer outro
-      // parâmetro (ex.: "?m=1", ou de um link compartilhado/rastreado) ainda
-      // vai para o Diário — antes, só "?m=0"/"?m=1" eram aceitos, e um link
-      // com qualquer outro parâmetro fazia a pessoa cair na página em
-      // branco do Blogger em vez do Diário.
-      if (/[?&](q|view|updated-max|max-results|by-date)=/.test(location.search)) return;
-location.replace(CONFIG.homePage + location.search);
+if (!NA_INICIAL || !CONFIG.homePage) return;
+if (CONFIG.homePost) return; // a apresentação é mostrada em start()
+irParaHomePage();
 } catch (e) {}
 })();
 
@@ -410,6 +451,13 @@ function start() {
 var shown = readCache() || CONFIG.fallback;
 mount(buildNav(shown));
 startFontControls();
+
+if (NA_INICIAL && CONFIG.homePost) {
+mostrarApresentacao().catch(function () {
+if (estiloInicial) estiloInicial.remove();
+irParaHomePage();
+});
+}
 
 fetchPages().then(function (fresh) {
 if (!fresh.length) return;
