@@ -69,28 +69,101 @@
     return indice.anos.filter((a) => filtroAno === "todos" || a.ano === String(filtroAno));
   }
 
-  function combina(item) {
-    return filtroClasse === "todas" || item.classe === filtroClasse;
+
+  // ---- busca (a mesma do Diário das Decisões) ---------------------------
+  // Caixa criada aqui, logo acima da lista (sem mexer no HTML do Blogger).
+  // Não diferencia maiúsculas nem acentos; cada palavra digitada precisa
+  // aparecer no item. Os contadores de progresso não mudam com a busca.
+  var termosBusca = [];
+  var listRoot = null;
+  var buscaInfo = null;
+
+  function semAcentoBusca(t) {
+    return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+  // Singular e plural contam igual: "execucao" acha "execuções", "fiscal"
+  // acha "fiscais", "lei" acha "leis".
+  var PLURAIS = [["coes", "cao"], ["cao", "coes"], ["oes", "ao"], ["ao", "oes"], ["ais", "al"], ["al", "ais"], ["eis", "el"], ["el", "eis"], ["s", ""]];
+  function variantes(t) {
+    var v = [t];
+    PLURAIS.forEach(function (r) {
+      if (t.length > 3 && t.slice(-r[0].length) === r[0]) v.push(t.slice(0, t.length - r[0].length) + r[1]);
+    });
+    return v;
+  }
+  function combinaBusca(texto) {
+    if (!termosBusca.length) return true;
+    var h = semAcentoBusca(texto);
+    return termosBusca.every(function (t) {
+      return variantes(t).some(function (x) { return h.indexOf(x) !== -1; });
+    });
+  }
+  function mostrarResultadoBusca(n, rotulo) {
+    if (!buscaInfo) return;
+    buscaInfo.hidden = !termosBusca.length;
+    buscaInfo.textContent = n === 1 ? "1 resultado" : n + " resultados";
+  }
+  function criarBusca(placeholder, aoMudar) {
+    listRoot = document.getElementById("list-root");
+    if (!listRoot || !listRoot.parentNode) return;
+    var box = document.createElement("div");
+    box.className = "busca-diario";
+    box.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>' +
+      '<input type="search" autocomplete="off">' +
+      '<button type="button" class="busca-limpar" hidden>Limpar</button>';
+    var input = box.querySelector("input");
+    var limpar = box.querySelector(".busca-limpar");
+    input.placeholder = placeholder;
+    input.setAttribute("aria-label", placeholder);
+    buscaInfo = document.createElement("p");
+    buscaInfo.className = "busca-resultado";
+    buscaInfo.hidden = true;
+    function mudou() {
+      limpar.hidden = !input.value;
+      termosBusca = semAcentoBusca(input.value).split(/\s+/).filter(Boolean);
+      aoMudar();
+    }
+    input.addEventListener("input", mudou);
+    limpar.addEventListener("click", function () { input.value = ""; mudou(); input.focus(); });
+    listRoot.parentNode.insertBefore(box, listRoot);
+    listRoot.parentNode.insertBefore(buscaInfo, listRoot);
   }
 
-  function totalFiltrado() {
+  // Texto em que a busca procura.
+  function textoBusca(item) {
+    return [item.processo, item.classe, formatarData(item.data), item.data, item.ano, item.relator, limparTexto(item.tema || item.tese || item.resumo)].join(" ");
+  }
+
+  // comBusca = false: só os filtros do topo (base dos contadores de progresso).
+  function combina(item, comBusca) {
+    return (filtroClasse === "todas" || item.classe === filtroClasse) && (!comBusca || combinaBusca(textoBusca(item)));
+  }
+
+  // Total do filtro do topo, sem a busca (base dos contadores de progresso).
+  function totalSemBusca() {
     return anosRelevantes().reduce((s, a) =>
       s + (filtroClasse === "todas" ? a.total : (a.grupos[filtroClasse] || 0)), 0);
   }
 
+  function totalFiltrado() {
+    // Com busca, o total só se sabe depois de carregar todos os anos.
+    if (termosBusca.length) return filtradosCarregados(true).length;
+    return totalSemBusca();
+  }
+
   // Itens já carregados, na ordem da lista (para no primeiro ano que falta).
-  function filtradosCarregados() {
+  function filtradosCarregados(comBusca) {
     const out = [];
     for (const a of anosRelevantes()) {
       if (!carregados[a.ano]) break;
-      carregados[a.ano].forEach((it) => { if (combina(it)) out.push(it); });
+      carregados[a.ano].forEach((it) => { if (combina(it, comBusca)) out.push(it); });
     }
     return out;
   }
 
   async function garantir(quantos) {
     for (const a of anosRelevantes()) {
-      if (filtradosCarregados().length >= quantos) return;
+      if (filtradosCarregados(true).length >= quantos) return;
       await carregarAno(a.ano);
     }
   }
@@ -101,7 +174,7 @@
   function contarLidos() {
     const rel = anosRelevantes();
     if (rel.every((a) => carregados[a.ano])) {
-      return filtradosCarregados().filter((d) => lidos[d.id]).length;
+      return filtradosCarregados(false).filter((d) => lidos[d.id]).length;
     }
     return Object.keys(lidos).filter((id) => {
       const p = id.split("_");
@@ -160,6 +233,7 @@
   }
 
   function init() {
+    criarBusca("Buscar por processo ou palavra (ex.: ADI 7641, piso salarial)", function () { loteAtual = 0; render(); });
     bindEvents();
     render();
     carregarIndice()
@@ -249,12 +323,25 @@
       return;
     }
 
+    // Busca: carrega todos os anos do filtro antes (o índice não sabe o texto).
+    if (termosBusca.length && !anosRelevantes().every((a) => carregados[a.ano])) {
+      aviso(root, "Buscando em todos os anos…");
+      try {
+        await Promise.all(anosRelevantes().map((a) => carregarAno(a.ano)));
+      } catch (e) {
+        if (seq === renderSeq) aviso(root, "Não foi possível carregar todos os anos para a busca. Tente de novo.");
+        return;
+      }
+      if (seq !== renderSeq) return;
+    }
+
     const totalItens = totalFiltrado();
+    mostrarResultadoBusca(totalItens, ["julgado", "julgados"]);
     const inicio = loteAtual * loteTamanho;
     const fim = Math.min(inicio + loteTamanho, totalItens);
 
     // Busca os anos que faltam para mostrar este lote.
-    if (filtradosCarregados().length < fim) {
+    if (filtradosCarregados(true).length < fim) {
       aviso(root, "Carregando julgados…");
       try {
         await garantir(fim);
@@ -269,13 +356,14 @@
 
     // Atualiza contadores
     document.getElementById("stat-count").textContent = lidosCount;
-    document.getElementById("stat-total").textContent = totalItens;
-    const pct = totalItens > 0 ? Math.round((lidosCount / totalItens) * 100) : 0;
+    const totalBase = totalSemBusca();
+    document.getElementById("stat-total").textContent = totalBase;
+    const pct = totalBase > 0 ? Math.round((lidosCount / totalBase) * 100) : 0;
     document.getElementById("stat-pct").textContent = pct + "%";
     document.getElementById("progress-fill").style.width = pct + "%";
 
     // Paginação
-    const pagina = filtradosCarregados().slice(inicio, fim);
+    const pagina = filtradosCarregados(true).slice(inicio, fim);
 
     const lbl = document.getElementById("lote-label");
     if (lbl) {

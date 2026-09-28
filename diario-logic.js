@@ -6,6 +6,63 @@
   // (dados carregados de diario-data.js, que roda antes deste arquivo)
   var LOCAL_KEY = "informativos-lidos";
   var listRoot = document.getElementById("list-root");
+
+  // ---- busca (a mesma do Diário das Decisões) ---------------------------
+  // Caixa criada aqui, logo acima da lista (sem mexer no HTML do Blogger).
+  // Não diferencia maiúsculas nem acentos; cada palavra digitada precisa
+  // aparecer no item. Os contadores de progresso não mudam com a busca.
+  var termosBusca = [];
+  var buscaInfo = null;
+
+  function semAcentoBusca(t) {
+    return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+  // Singular e plural contam igual: "execucao" acha "execuções", "fiscal"
+  // acha "fiscais", "lei" acha "leis".
+  var PLURAIS = [["coes", "cao"], ["cao", "coes"], ["oes", "ao"], ["ao", "oes"], ["ais", "al"], ["al", "ais"], ["eis", "el"], ["el", "eis"], ["s", ""]];
+  function variantes(t) {
+    var v = [t];
+    PLURAIS.forEach(function (r) {
+      if (t.length > 3 && t.slice(-r[0].length) === r[0]) v.push(t.slice(0, t.length - r[0].length) + r[1]);
+    });
+    return v;
+  }
+  function combinaBusca(texto) {
+    if (!termosBusca.length) return true;
+    var h = semAcentoBusca(texto);
+    return termosBusca.every(function (t) {
+      return variantes(t).some(function (x) { return h.indexOf(x) !== -1; });
+    });
+  }
+  function mostrarResultadoBusca(n, rotulo) {
+    if (!buscaInfo) return;
+    buscaInfo.hidden = !termosBusca.length;
+    buscaInfo.textContent = n === 1 ? "1 resultado" : n + " resultados";
+  }
+  function criarBusca(placeholder, aoMudar) {
+    if (!listRoot || !listRoot.parentNode) return;
+    var box = document.createElement("div");
+    box.className = "busca-diario";
+    box.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>' +
+      '<input type="search" autocomplete="off">' +
+      '<button type="button" class="busca-limpar" hidden>Limpar</button>';
+    var input = box.querySelector("input");
+    var limpar = box.querySelector(".busca-limpar");
+    input.placeholder = placeholder;
+    input.setAttribute("aria-label", placeholder);
+    buscaInfo = document.createElement("p");
+    buscaInfo.className = "busca-resultado";
+    buscaInfo.hidden = true;
+    function mudou() {
+      limpar.hidden = !input.value;
+      termosBusca = semAcentoBusca(input.value).split(/\s+/).filter(Boolean);
+      aoMudar();
+    }
+    input.addEventListener("input", mudou);
+    limpar.addEventListener("click", function () { input.value = ""; mudou(); input.focus(); });
+    listRoot.parentNode.insertBefore(box, listRoot);
+    listRoot.parentNode.insertBefore(buscaInfo, listRoot);
+  }
   var syncNote = document.getElementById("sync-note");
   var tabsRoot = document.getElementById("org-tabs");
   var ledeText = document.getElementById("lede-text");
@@ -187,7 +244,12 @@
     ledeText.textContent = ORGS[currentOrg].lede;
     footerSource.innerHTML = ORGS[currentOrg].footer;
 
-    var state = stateByOrg[currentOrg];
+    var state = stateByOrg[currentOrg].filter(function (r) {
+      var d = /^(\d{4})-(\d{2})-(\d{2})/.exec(r.data || "");
+      var dataBr = d ? d[3] + "/" + d[2] + "/" + d[1] : "";
+      return combinaBusca("nº " + r.edicao + "/" + r.ano + " " + r.edicao + " " + fmtDate(r.data) + " " + dataBr + " " + r.ano);
+    });
+    mostrarResultadoBusca(state.length, ["informativo", "informativos"]);
     var linkFn = ORGS[currentOrg].linkFn;
 
     var years = [];
@@ -491,6 +553,7 @@
 
   // 1) instant paint from whatever this browser has locally
   applyMap(readLocal());
+  criarBusca("Buscar pelo número ou data do informativo (ex.: 1228, 09/2026)", function () { render(); });
   render();
 
   // 2) login anônimo no Firebase (nenhum cadastro visível para a pessoa,
