@@ -275,13 +275,11 @@
   function carregarNormasCitadas(){
     if (window.NormasCitadas) return Promise.resolve();
     if (!normasJs) {
-      normasJs = new Promise(function(resolve, reject){
-        var s = document.createElement('script');
-        s.src = NORMAS_JS;
-        s.onload = resolve;
-        s.onerror = function(){ normasJs = null; reject(); };
-        document.head.appendChild(s);
-      });
+      // fetch "no-cache" em vez de <script src>, que o navegador guarda por dias
+      normasJs = fetch(NORMAS_JS, { cache: 'no-cache' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(code){ (0, eval)(code + '\n//# sourceURL=' + NORMAS_JS); })
+        .catch(function(e){ normasJs = null; throw e; });
     }
     return normasJs;
   }

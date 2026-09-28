@@ -86,15 +86,15 @@
   }
 
   // ---- bases dos Diários ---------------------------------------------------
+  // Com fetch "no-cache" (e não <script src>, que o navegador guarda por até
+  // 7 dias): o navegador sempre confere se o arquivo mudou, então uma norma
+  // nova nos Diários aparece aqui logo depois de publicada.
   function carregarScript(globalName, arquivo) {
-    return new Promise(function (resolve) {
-      if (window[globalName]) { resolve(); return; }
-      var s = document.createElement("script");
-      s.src = CDN_BASE + arquivo;
-      s.charset = "utf-8";
-      s.onload = s.onerror = function () { resolve(); };
-      document.head.appendChild(s);
-    });
+    if (window[globalName]) return Promise.resolve();
+    return fetch(CDN_BASE + arquivo, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(arquivo + " " + r.status); return r.text(); })
+      .then(function (code) { (0, eval)(code + "\n//# sourceURL=" + CDN_BASE + arquivo); })
+      .catch(function () { /* sem a base, as normas aparecem como "fora dos Diários" */ });
   }
 
   var carregando = null;
