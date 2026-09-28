@@ -97,7 +97,10 @@ function dataDoCabecalho(texto) {
   return `${m[3]}-${p(mes + 1)}-${p(m[1])}`;
 }
 
-// Devolve null se a edição ainda não saiu, ou { data } se saiu.
+// Devolve { data } se a edição existe, ou null se não achou (nem HTML nem
+// PDF). O STF responde 403 (e não 404) para arquivo que não existe, então
+// "não achou" pode ser "ainda não saiu" OU "o STF bloqueou" — quem decide
+// é main(), conferindo antes uma edição que com certeza existe.
 async function conferirEdicao(numero) {
   const urlHtml = STF.htmlDe(numero);
   const html = await buscar(urlHtml);
@@ -107,10 +110,9 @@ async function conferirEdicao(numero) {
     if (new RegExp(`N\\S{0,2}\\s*${numero}\\b`).test(texto)) {
       return { data: dataDoCabecalho(texto) };
     }
-    console.log(`  (página sem "Nº ${numero}" — tratada como inexistente)`);
-  } else if (html.status !== 404) {
+    console.log(`  (página sem "Nº ${numero}")`);
+  } else {
     await html.body?.cancel().catch(() => {});
-    throw new ErroDeAcesso(`${urlHtml} → HTTP ${html.status} (o STF recusou o pedido)`);
   }
 
   const urlPdf = STF.pdfDe(numero);
@@ -119,8 +121,7 @@ async function conferirEdicao(numero) {
   const tipo = pdf.headers.get('content-type') || '';
   console.log(`  PDF  ${urlPdf} → HTTP ${pdf.status} (${tipo})`);
   if (pdf.status === 200 && /pdf|octet-stream/i.test(tipo)) return { data: null };
-  if (pdf.status === 200 || pdf.status === 404) return null;
-  throw new ErroDeAcesso(`${urlPdf} → HTTP ${pdf.status} (o STF recusou o pedido)`);
+  return null;
 }
 
 function hojeIso() {
@@ -158,6 +159,14 @@ async function main() {
   const ultimo = ultimoRegistrado(conteudo, STF.variavel);
   if (ultimo === null) throw new Error(`Não achei o último número em ${STF.variavel}.`);
   console.log(`Último registrado: nº ${ultimo}.`);
+
+  // Controle: a última edição registrada com certeza existe. Se nem ela
+  // abre, o problema é acesso ao site, não "nada novo".
+  console.log(`Conferindo o acesso com a edição nº ${ultimo} (já registrada):`);
+  if (!(await conferirEdicao(ultimo))) {
+    throw new ErroDeAcesso(`Nem a edição nº ${ultimo}, que já saiu, abriu — o STF está recusando o acesso (veja os códigos HTTP acima).`);
+  }
+  console.log('  → acesso OK.');
 
   const novas = [];
   // limite de segurança: no máximo 20 números de uma vez
