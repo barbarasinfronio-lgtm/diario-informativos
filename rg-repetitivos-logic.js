@@ -98,6 +98,11 @@
     });
   }
 
+  // Nos dados o nível fica "Alta" / "Média" / "Baixa" (usado nos filtros e
+  // nas cores); na tela concorda com "risco": alto, médio, baixo.
+  var ROTULO_RISCO = { 'Alta': 'alto', 'Média': 'médio', 'Baixa': 'baixo' };
+  function rotuloRisco(r){ return ROTULO_RISCO[r] || String(r||'').toLowerCase(); }
+
   document.getElementById('orgSeg').addEventListener('click', function(e){
     var btn = e.target.closest('button'); if(!btn) return;
     state.org = btn.dataset.org;
@@ -164,11 +169,6 @@
     document.querySelectorAll('.risk-btn').forEach(b=>b.classList.toggle('active', b.dataset.r==='all'));
     render();
   });
-
-  // Nos dados o nível fica "Alta" / "Média" / "Baixa" (usado nos filtros e
-  // nas cores); na tela concorda com "risco": alto, médio, baixo.
-  var ROTULO_RISCO = { 'Alta': 'alto', 'Média': 'médio', 'Baixa': 'baixo' };
-  function rotuloRisco(r){ return ROTULO_RISCO[r] || String(r||'').toLowerCase(); }
 
   function escapeHtml(s){
     return String(s||'').replace(/[&<>"']/g, function(c){
