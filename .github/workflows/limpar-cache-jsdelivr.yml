@@ -8,6 +8,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch: # botão "Run workflow" para limpar na mão quando quiser
+    inputs:
+      arquivos:
+        description: "Arquivos a limpar, separados por espaço (vazio = todos)"
+        required: false
+        default: ""
 
 jobs:
   purge:
@@ -24,7 +29,9 @@ jobs:
       - name: Listar arquivos
         run: |
           : > arquivos.txt
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.arquivos }}" ]; then
+            printf '%s\n' ${{ inputs.arquivos }} > arquivos.txt
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             git ls-files '*.js' '*.css' '*.json' > arquivos.txt
           elif git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
             git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '*.js' '*.css' '*.json' > arquivos.txt
