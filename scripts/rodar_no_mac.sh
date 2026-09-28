@@ -13,6 +13,7 @@
 ROBOS=(
   scripts/atualizar_tst.py    # TST: súmulas, OJs, PNs, recursos repetitivos
   scripts/atualizar_csjt.py   # CSJT: resoluções e recomendações
+  scripts/atualizar_csmpt.py  # CSMPT (MPT): resoluções
 )
 ARQUIVOS=(sumulas-data.js tst normas-data.js)
 
@@ -26,7 +27,7 @@ git add "${ARQUIVOS[@]}"
 if git diff --cached --quiet; then
   echo "Nada mudou."
 else
-  git commit -q -m "Atualiza TST/CSJT (automático, do Mac)" \
+  git commit -q -m "Atualiza TST/CSJT/CSMPT (automático, do Mac)" \
     && git push -q origin main \
     && echo "Publicado: $(git diff --name-only HEAD~1 HEAD | tr '\n' ' ')" \
     || { echo "ERRO: não consegui publicar no GitHub"; resultado=1; }
