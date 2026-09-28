@@ -1,33 +1,59 @@
-name: Atualizacao Semanal de Informativos
+name: Atualizar Informativos do STF
 
+# Só roda quando alguém aperta "Run workflow" (aba Actions → "Atualizar
+# Informativos do STF"), uma vez por semana — não há agendamento.
+# Confere se saíram Informativos novos do STF, acrescenta em diario-data.js,
+# envia para o main e limpa o cache do jsDelivr para o site mostrar na hora.
 on:
-  schedule:
-    # Executa todas as segundas-feiras às 09:00 UTC (06:00 de Brasília)
-    - cron: '0 9 * * 1'
-  workflow_dispatch: # Permite que você clique num botão para testar manualmente quando quiser
+  workflow_dispatch:
 
 permissions:
-  contents: write # precisa para o commit/push automático no fim
+  contents: write # commit/push no fim
+
+concurrency:
+  group: atualizar-informativos
+  cancel-in-progress: false
 
 jobs:
-  verificar-e-atualizar:
+  verificar-e-enviar:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Descarregar código do repositório
+      - name: Baixar o repositório
         uses: actions/checkout@v4
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
-      - name: Verificar e catalogar novas edições
+      - name: Verificar novas edições do STF
         run: node scripts/atualizar_informativos.mjs
 
-      - name: Gravar alterações no repositório (Commit & Push)
+      - name: Enviar para o main
+        id: enviar
         run: |
-          git config --global user.name "Robô Estuda Mana"
-          git config --global user.email "bot@estudamana.com.br"
+          if git diff --quiet -- diario-data.js; then
+            echo "Nada novo para enviar."
+            echo "enviado=nao" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "Robô Estuda Mana"
+          git config user.email "bot@estudamana.com.br"
           git add diario-data.js
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto: novos informativos do STF adicionados [skip ci]" && git push)
+          git commit -m "Informativos: novas edições do STF (robô)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "enviado=sim" >> "$GITHUB_OUTPUT"
+
+      # O push feito pelo robô não dispara o limpar-cache-jsdelivr.yml
+      # (o GitHub não encadeia workflows a partir do token do robô), então
+      # a limpeza é feita aqui mesmo: agora, e de novo depois de 1 minuto.
+      - name: Limpar cache do jsDelivr
+        if: steps.enviar.outputs.enviado == 'sim'
+        run: |
+          url="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/diario-data.js"
+          for espera in 30 60; do
+            sleep "$espera"
+            curl -sS "$url" || true
+            echo
+          done

@@ -77,14 +77,15 @@ Workflows do GitHub Actions (pasta `.github/workflows/`):
 - **`dividir-dados-por-ano.yml`**: a cada envio de `controleconst/adi_dados.js`
   ou `reclamacoes/reclamacoes-data.js`, gera as pastas `anos/` (um arquivo
   por ano) com `scripts/dividir_por_ano.py`.
-- **`atualizar_informativos.yml`**: roda toda segunda-feira de manhã (ou pelo
-  botão "Run workflow") e chama `scripts/atualizar_informativos.mjs`, que
-  confere se saiu um novo Informativo do STF (pelo número seguinte ao último
-  registrado em `diario-data.js`) e usa a API do Gemini (`GEMINI_API_KEY`,
-  segredo do repositório) para gerar um resumo preliminar. **Hoje ele só
-  registra um comentário no topo de `diario-data.js`** avisando da nova
-  edição — não chega a acrescentar a edição de verdade na lista (isso ainda
-  precisa ser feito à mão, como sempre foi). Só cobre o STF por enquanto.
+- **`atualizar_informativos.yml`** ("Atualizar Informativos do STF"): **só roda
+  quando alguém aperta "Run workflow"** (aba Actions), uma vez por semana, sem
+  agendamento. Chama `scripts/atualizar_informativos.mjs`, que confere os
+  números seguintes ao último registrado em `STF_DATA` (`diario-data.js`),
+  pega a data do cabeçalho da página oficial de cada edição e acrescenta as
+  novas com súmula "a confirmar". Depois envia para o `main` e limpa o cache
+  do jsDelivr de `diario-data.js`. Se o site do STF recusar o acesso, a
+  execução fica **vermelha** com o motivo (antes ela terminava verde dizendo
+  "nada novo"). Só cobre o STF por enquanto.
 
 ### Robôs que rodam no Mac (conexão no Brasil)
 

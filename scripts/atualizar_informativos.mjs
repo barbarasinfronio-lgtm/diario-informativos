@@ -1,88 +1,137 @@
 /*
- * atualizar_informativos.mjs — verifica e ACRESCENTA sozinho os novos
- * Informativos do STF em diario-data.js, sem precisar de ninguém abrindo
- * o Diário para conferir manualmente.
+ * atualizar_informativos.mjs — verifica e ACRESCENTA os novos Informativos
+ * do STF em diario-data.js. Roda só quando alguém aperta "Run workflow"
+ * em .github/workflows/atualizar_informativos.yml (sem agendamento).
  *
  * Como funciona:
- *   1. Lê o último número de Informativo do STF já registrado em
- *      diario-data.js (o primeiro item de STF_DATA — a lista vem do
- *      mais novo para o mais antigo).
- *   2. Confere, um por um, se o PDF do próximo número já foi publicado
- *      (HEAD/GET no endereço oficial do STF). Continua conferindo os
- *      números seguintes até achar um que ainda não saiu — assim, se o
- *      robô ficar uma ou duas semanas sem rodar, ele recupera todos os
- *      números que faltam de uma vez, não só o próximo.
+ *   1. Lê o último número do STF já registrado em diario-data.js (o
+ *      primeiro item de STF_DATA — a lista vem do mais novo para o mais
+ *      antigo).
+ *   2. Para cada número seguinte, abre a página HTML oficial da edição
+ *      (informativo<N>.htm). Se ela existe e traz "Nº <N>", a edição saiu,
+ *      e a data vem do cabeçalho da própria página ("Brasília, 21 de
+ *      setembro de 2026"). Se a página HTML não existir, tenta o PDF.
+ *      Continua até achar um número que ainda não saiu — então recupera
+ *      várias semanas de uma vez se o robô ficar sem rodar.
  *   3. Cada número novo entra em STF_DATA como
- *      { edicao, ano, data, sumula: null } — "sumula: null" é o mesmo
- *      "a confirmar" que as edições recém-saídas já usam, porque ainda
- *      não dá para saber se aquela edição cita alguma súmula sem ler o
- *      PDF (isso continua sendo conferido à mão, depois).
- *   4. O workflow (.github/workflows/atualizar_informativos.yml) faz o
- *      commit e o push das mudanças.
+ *      { edicao, ano, data, sumula: null } — "sumula: null" é o
+ *      "a confirmar" (isso continua sendo conferido à mão, depois).
+ *   4. O workflow faz o commit, o push e limpa o cache do jsDelivr.
+ *
+ * Por que o robô antigo "não funcionava": ele tratava QUALQUER resposta
+ * diferente de 200 (bloqueio do site, 403, tempo esgotado) como "ainda não
+ * publicada" e terminava verde, sem avisar. Agora só 404 (ou página sem o
+ * número) conta como "não saiu"; qualquer outra resposta faz o robô
+ * terminar em ERRO (vermelho), dizendo o que o STF respondeu. Também manda
+ * um User-Agent de navegador, porque o STF recusa pedidos sem ele.
  *
  * Só cobre o STF por enquanto — os outros tribunais (STJ, TSE, CNJ, TST,
- * CNMP) têm cada um seu próprio jeito de publicar (nem todos têm PDF
- * previsível pelo número), então precisam do mesmo tratamento um dia,
- * mas cada um por si. Para acrescentar um, copie o objeto "STF" abaixo
- * (FONTES) com o endereço e o texto certos daquele tribunal.
+ * CNMP) não têm um endereço previsível pelo número.
  */
 import fs from 'fs/promises';
 
 const ARQUIVO_DADOS = './diario-data.js';
+const RESUMO = process.env.GITHUB_STEP_SUMMARY; // resumo na página da Action
 
-// Cada fonte sabe montar o endereço do PDF/HTML de uma edição e onde
-// ela entra no arquivo de dados. Adicionar um tribunal novo é criar um
-// objeto igual a este.
-const FONTES = {
-  STF: {
-    variavel: 'STF_DATA',
-    urlDe: (numero) =>
-      numero < 1000
-        ? `https://www.stf.jus.br/arquivo/informativo/documento/informativo${numero}.htm`
-        : `https://www.stf.jus.br/arquivo/cms/informativoSTF/anexo/Informativo_PDF/Informativo_stf_${numero}.pdf`
-  }
+const CABECALHOS = {
+  'User-Agent':
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36',
+  'Accept': 'text/html,application/pdf,*/*;q=0.8',
+  'Accept-Language': 'pt-BR,pt;q=0.9'
 };
 
-// Testa se o endereço responde (200 OK). Tenta HEAD primeiro (mais leve);
-// se o servidor não aceitar HEAD, cai para GET e cancela o corpo assim
-// que confirma o status, para não baixar o arquivo à toa.
-async function urlExiste(url) {
-  try {
-    const head = await fetch(url, { method: 'HEAD' });
-    if (head.status === 200) return true;
-    if (head.status === 404) return false;
-    // status incomum (405, 403…) — tenta GET antes de desistir
-  } catch {
-    // segue para o GET
-  }
-  try {
-    const res = await fetch(url, { method: 'GET' });
-    if (res.body && typeof res.body.cancel === 'function') {
-      await res.body.cancel().catch(() => {});
+const STF = {
+  variavel: 'STF_DATA',
+  htmlDe: (n) => `https://www.stf.jus.br/arquivo/informativo/documento/informativo${n}.htm`,
+  pdfDe: (n) => `https://www.stf.jus.br/arquivo/cms/informativoSTF/anexo/Informativo_PDF/Informativo_stf_${n}.pdf`
+};
+
+const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+// Erro de acesso (não é "ainda não saiu"): faz o robô terminar em vermelho.
+class ErroDeAcesso extends Error {}
+
+async function buscar(url, metodo = 'GET') {
+  for (let tentativa = 1; tentativa <= 3; tentativa++) {
+    try {
+      const res = await fetch(url, {
+        method: metodo,
+        headers: CABECALHOS,
+        redirect: 'follow',
+        signal: AbortSignal.timeout(30000)
+      });
+      if (res.status >= 500 && tentativa < 3) {
+        await new Promise((r) => setTimeout(r, 3000 * tentativa));
+        continue;
+      }
+      return res;
+    } catch (err) {
+      if (tentativa === 3) {
+        throw new ErroDeAcesso(`${url} → sem resposta (${err.cause?.code || err.name}: ${err.message})`);
+      }
+      await new Promise((r) => setTimeout(r, 3000 * tentativa));
     }
-    return res.status === 200;
-  } catch {
-    return false;
   }
 }
 
-function todayIso() {
-  const d = new Date();
-  const p = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+// O STF às vezes serve as páginas em windows-1252; decodifica certo.
+async function textoDe(res) {
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  const tipo = (res.headers.get('content-type') || '').toLowerCase();
+  const utf8 = new TextDecoder('utf-8').decode(bytes);
+  if (/charset=(windows-1252|iso-8859-1|latin1)/.test(tipo) || utf8.includes('�')) {
+    return new TextDecoder('windows-1252').decode(bytes);
+  }
+  return utf8;
 }
 
-// Acha o maior número já registrado numa lista "var NOME_DATA = [ {edicao: N, ...}, ... ];"
-// (o primeiro item da lista, já que ela vem do mais novo para o mais antigo).
+// "Brasília, 21 de setembro de 2026" → "2026-09-21"
+function dataDoCabecalho(texto) {
+  const m = texto.match(/Bras\S{0,3}lia,?\s*(\d{1,2})\s+de\s+(\S+)\s+de\s+(\d{4})/i);
+  if (!m) return null;
+  const mes = MESES.indexOf(m[2].toLowerCase().normalize('NFD').replace(/[^a-z]/g, '').slice(0, 3));
+  if (mes < 0) return null;
+  const p = (n) => String(n).padStart(2, '0');
+  return `${m[3]}-${p(mes + 1)}-${p(m[1])}`;
+}
+
+// Devolve null se a edição ainda não saiu, ou { data } se saiu.
+async function conferirEdicao(numero) {
+  const urlHtml = STF.htmlDe(numero);
+  const html = await buscar(urlHtml);
+  console.log(`  HTML ${urlHtml} → HTTP ${html.status}`);
+  if (html.status === 200) {
+    const texto = await textoDe(html);
+    if (new RegExp(`N\\S{0,2}\\s*${numero}\\b`).test(texto)) {
+      return { data: dataDoCabecalho(texto) };
+    }
+    console.log(`  (página sem "Nº ${numero}" — tratada como inexistente)`);
+  } else if (html.status !== 404) {
+    await html.body?.cancel().catch(() => {});
+    throw new ErroDeAcesso(`${urlHtml} → HTTP ${html.status} (o STF recusou o pedido)`);
+  }
+
+  const urlPdf = STF.pdfDe(numero);
+  const pdf = await buscar(urlPdf);
+  await pdf.body?.cancel().catch(() => {});
+  const tipo = pdf.headers.get('content-type') || '';
+  console.log(`  PDF  ${urlPdf} → HTTP ${pdf.status} (${tipo})`);
+  if (pdf.status === 200 && /pdf|octet-stream/i.test(tipo)) return { data: null };
+  if (pdf.status === 200 || pdf.status === 404) return null;
+  throw new ErroDeAcesso(`${urlPdf} → HTTP ${pdf.status} (o STF recusou o pedido)`);
+}
+
+function hojeIso() {
+  return new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
+}
+
 function ultimoRegistrado(conteudo, variavel) {
-  const re = new RegExp(`var\\s+${variavel}\\s*=\\s*\\[\\s*\\{[^}]*edicao:\\s*(\\d+)`);
-  const m = conteudo.match(re);
+  const m = conteudo.match(new RegExp(`var\\s+${variavel}\\s*=\\s*\\[\\s*\\{[^}]*edicao:\\s*(\\d+)`));
   return m ? parseInt(m[1], 10) : null;
 }
 
-// Insere as novas edições logo depois de "var NOME_DATA = [", da mais
-// nova para a mais antiga (para a lista continuar com a mais recente
-// no topo).
+// Insere as novas edições logo depois de "var NOME_DATA = [", da mais nova
+// para a mais antiga.
 function inserirEdicoes(conteudo, variavel, edicoes) {
   const linhas = edicoes
     .slice()
@@ -96,60 +145,55 @@ function inserirEdicoes(conteudo, variavel, edicoes) {
   return conteudo.replace(re, `$1${linhas}\n`);
 }
 
-async function checarNovasEdicoes(fonte, ultimoNumero) {
-  const novas = [];
-  let numero = ultimoNumero;
-  const hoje = todayIso();
-  const ano = new Date().getFullYear();
-  // limite de segurança: nunca confere mais de 20 números de uma vez
-  // (evita ficar preso em loop se algo no site mudar de formato)
-  for (let i = 0; i < 20; i++) {
-    const proximo = numero + 1;
-    const url = fonte.urlDe(proximo);
-    console.log(`Verificando edição nº ${proximo}: ${url}`);
-    const publicado = await urlExiste(url);
-    if (!publicado) {
-      console.log(`  → ainda não publicada.`);
-      break;
-    }
-    console.log(`  → publicada! Registrando.`);
-    novas.push({ edicao: proximo, ano, data: hoje });
-    numero = proximo;
-  }
-  return novas;
+async function resumo(linhas) {
+  console.log('\n' + linhas.join('\n'));
+  if (RESUMO) await fs.appendFile(RESUMO, linhas.join('\n') + '\n').catch(() => {});
 }
 
 async function main() {
-  console.log('--- Início da verificação de novos Informativos ---');
+  console.log('--- Verificação de novos Informativos do STF ---');
   let conteudo = await fs.readFile(ARQUIVO_DADOS, 'utf-8');
-  let totalNovas = 0;
+  const ultimo = ultimoRegistrado(conteudo, STF.variavel);
+  if (ultimo === null) throw new Error(`Não achei o último número em ${STF.variavel}.`);
+  console.log(`Último registrado: nº ${ultimo}.`);
 
-  for (const [nome, fonte] of Object.entries(FONTES)) {
-    const ultimo = ultimoRegistrado(conteudo, fonte.variavel);
-    if (ultimo === null) {
-      console.log(`${nome}: não encontrei o último número registrado — pulando.`);
-      continue;
+  const novas = [];
+  // limite de segurança: no máximo 20 números de uma vez
+  for (let numero = ultimo + 1; numero <= ultimo + 20; numero++) {
+    console.log(`Edição nº ${numero}:`);
+    const achou = await conferirEdicao(numero);
+    if (!achou) {
+      console.log('  → ainda não publicada.');
+      break;
     }
-    console.log(`${nome}: último registrado é o nº ${ultimo}.`);
-    const novas = await checarNovasEdicoes(fonte, ultimo);
-    if (!novas.length) {
-      console.log(`${nome}: nenhuma edição nova.`);
-      continue;
-    }
-    conteudo = inserirEdicoes(conteudo, fonte.variavel, novas);
-    totalNovas += novas.length;
-    console.log(`${nome}: ${novas.length} edição(ões) nova(s) adicionada(s) (${novas.map((n) => n.edicao).join(', ')}).`);
+    const data = achou.data || hojeIso();
+    if (!achou.data) console.log(`  (data não encontrada na página; usando a de hoje, ${data})`);
+    console.log(`  → publicada em ${data}.`);
+    novas.push({ edicao: numero, ano: Number(data.slice(0, 4)), data });
   }
 
-  if (totalNovas > 0) {
-    await fs.writeFile(ARQUIVO_DADOS, conteudo, 'utf-8');
-    console.log(`\n${ARQUIVO_DADOS} atualizado com ${totalNovas} edição(ões) nova(s).`);
-  } else {
-    console.log('\nNenhuma edição nova em nenhuma fonte — nada para gravar.');
+  if (!novas.length) {
+    await resumo([`### Informativos do STF`, `Nenhuma edição nova. Último registrado: nº ${ultimo}.`]);
+    return;
   }
+  conteudo = inserirEdicoes(conteudo, STF.variavel, novas);
+  await fs.writeFile(ARQUIVO_DADOS, conteudo, 'utf-8');
+  await resumo([
+    `### Informativos do STF`,
+    `${novas.length} edição(ões) nova(s) acrescentada(s) a \`${ARQUIVO_DADOS}\`:`,
+    ...novas.map((e) => `- nº ${e.edicao} — ${e.data} (súmula: a confirmar)`)
+  ]);
 }
 
-main().catch((err) => {
-  console.error(err);
+main().catch(async (err) => {
+  if (err instanceof ErroDeAcesso) {
+    await resumo([
+      `### ❌ Não consegui acessar o site do STF`,
+      err.message,
+      `Nada foi gravado. Tente rodar de novo mais tarde; se continuar, o STF está bloqueando os servidores do GitHub.`
+    ]);
+  } else {
+    console.error(err);
+  }
   process.exitCode = 1;
 });
