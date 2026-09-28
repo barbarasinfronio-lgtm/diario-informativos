@@ -106,6 +106,13 @@
   });
 
   document.querySelectorAll('.risk-btn').forEach(function(btn){
+    if (ROTULO_RISCO[btn.dataset.r]) {
+      var ultimo = btn.lastChild;
+      if (ultimo && ultimo.nodeType === 3) {
+        var t = ROTULO_RISCO[btn.dataset.r];
+        ultimo.nodeValue = t.charAt(0).toUpperCase() + t.slice(1);
+      }
+    }
     btn.addEventListener('click', function(){
       state.risk = btn.dataset.r;
       document.querySelectorAll('.risk-btn').forEach(b=>b.classList.toggle('active', b===btn));
@@ -158,6 +165,11 @@
     render();
   });
 
+  // Nos dados o nível fica "Alta" / "Média" / "Baixa" (usado nos filtros e
+  // nas cores); na tela concorda com "risco": alto, médio, baixo.
+  var ROTULO_RISCO = { 'Alta': 'alto', 'Média': 'médio', 'Baixa': 'baixo' };
+  function rotuloRisco(r){ return ROTULO_RISCO[r] || String(r||'').toLowerCase(); }
+
   function escapeHtml(s){
     return String(s||'').replace(/[&<>"']/g, function(c){
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
@@ -205,7 +217,7 @@
             '<input type="checkbox" class="read-checkbox"' + (isReadNow ? ' checked' : '') + '>' +
           '</label>' +
           '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
-          '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
+          '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
           (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
           (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
@@ -237,7 +249,7 @@
       '<button class="close" aria-label="Fechar">✕</button>' +
       '<div class="top-row">' +
         '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
-        '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
+        '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
         (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
@@ -257,7 +269,7 @@
       (d.historico ? '<div class="section-label">Histórico</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
-      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(d.risco) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
+      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -356,7 +368,7 @@
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
       (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
-      '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alta</span></div>' +
+      '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
   }
 
