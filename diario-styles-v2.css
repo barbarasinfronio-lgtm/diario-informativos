@@ -955,6 +955,13 @@
 
   /* ---- busca (a mesma do Diário das Decisões) ---------------------------
      A caixa é criada pelo JS de cada Diário, logo acima da lista. */
+  /* Mesma largura da lista (ver ".page > main" acima): centralizada e no
+     máximo --page-width-reading, senão a caixa se esticava na tela larga. */
+  .busca-diario,
+  .busca-resultado{
+    box-sizing:border-box; max-width:var(--page-width-reading);
+    margin-left:auto !important; margin-right:auto !important;
+  }
   .busca-diario{
     display:flex; align-items:center; gap:8px; margin:0 0 12px;
     background:var(--surface-2); border:1px solid var(--surface-line); border-radius:9px; padding:8px 12px;
