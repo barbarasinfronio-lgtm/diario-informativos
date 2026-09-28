@@ -5,10 +5,14 @@ name: Atualizar jurisprudência do TST
 # Decisões) — ver scripts/atualizar_tst.py. São só 4 consultas por semana.
 # Se uma fonte falhar, o que veio certo é salvo e o robô termina em erro
 # (aparece em vermelho na aba Actions); o que falhou fica na versão anterior.
+#
+# ATENÇÃO: o TST não responde a acessos vindos dos servidores do GitHub (fora
+# do Brasil) — testado em 28/09/2026: a pesquisa não responde e a tabela de
+# IRR vem sem a tabela. Por isso o agendamento semanal está desligado; a
+# atualização é feita rodando scripts/atualizar_tst.py a partir de uma
+# conexão no Brasil. O botão abaixo continua aqui para testar de novo.
 on:
-  schedule:
-    - cron: "0 9 * * 1" # segunda, 6h de Brasília
-  workflow_dispatch: # botão "Run workflow" para atualizar na mão
+  workflow_dispatch: # botão "Run workflow"
 
 permissions:
   contents: write
