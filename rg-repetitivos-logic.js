@@ -245,15 +245,91 @@
         '<div><b>Julgamento</b>' + escapeHtml(d.data||'—') + '</div>' +
         '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>' +
       '</div>' +
+      '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(d.risco) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    modalAtual = d;
+    normasAtuais = null;
+    mostrarNormas(d);
   }
   function closeModal(){
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+    modalAtual = null;
+    normasAtuais = null;
   }
+
+  // ---- normas do julgado --------------------------------------------------
+  // Leis e resoluções citadas pelo número na tese/destaque (ex.: "Lei nº
+  // 11.340/2006", "Resolução CNJ nº 547/2024"). Cada uma mostra se já foi
+  // lida e uma setinha que abre a norma no Diário de Leis / Diário das
+  // Resoluções, onde a pessoa marca a leitura. A lógica de achar e conferir
+  // fica em normas-citadas.js, carregado só quando um card é aberto.
+  var NORMAS_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/normas-citadas.js';
+  var normasJs = null;
+  var modalAtual = null;
+  var normasAtuais = null;
+
+  function carregarNormasCitadas(){
+    if (window.NormasCitadas) return Promise.resolve();
+    if (!normasJs) {
+      normasJs = new Promise(function(resolve, reject){
+        var s = document.createElement('script');
+        s.src = NORMAS_JS;
+        s.onload = resolve;
+        s.onerror = function(){ normasJs = null; reject(); };
+        document.head.appendChild(s);
+      });
+    }
+    return normasJs;
+  }
+
+  function mostrarNormas(d){
+    carregarNormasCitadas().then(function(){
+      if (modalAtual !== d) return;
+      var achadas = NormasCitadas.encontrar([d.titulo, d.tese, d.destaque].join(' '));
+      if (!achadas.length) return;
+      var box = modal.querySelector('.normas-box');
+      box.hidden = false;
+      box.innerHTML = '<div class="section-label">Normas do julgado</div><p class="normas-aviso">Carregando…</p>';
+      return NormasCitadas.carregar().then(function(){
+        if (modalAtual !== d) return;
+        normasAtuais = achadas;
+        preencherNormas();
+      });
+    }).catch(function(){});
+  }
+
+  function resumirTexto(t, max){
+    t = String(t || '');
+    return t.length > max ? t.slice(0, max).replace(/\s+\S*$/, '') + '…' : t;
+  }
+
+  function preencherNormas(){
+    var box = modal.querySelector('.normas-box');
+    if (!box || !normasAtuais) return;
+    var itens = normasAtuais.map(NormasCitadas.resolver);
+    box.innerHTML = '<div class="section-label">Normas do julgado</div>' +
+      '<ul class="normas-list">' + itens.map(function(n){
+        var status = n.lida ? '✅ Lida' : (n.noDiario ? 'Ainda não lida' : 'Fora dos Diários');
+        var titulo = n.noDiario
+          ? 'Abrir no ' + (/^Resolu|^Recomenda/.test(n.rotulo) ? 'Diário das Resoluções' : 'Diário de Leis') + ' para marcar a leitura'
+          : 'Ainda não está nos Diários — abrir o texto oficial';
+        return '<li class="norma-item' + (n.lida ? ' is-lida' : '') + (n.noDiario ? '' : ' is-fora') + '">' +
+          '<div class="norma-info"><span class="norma-rotulo">' + escapeHtml(n.rotulo) + '</span>' +
+            (n.nome ? '<span class="norma-nome">' + escapeHtml(resumirTexto(n.nome, 110)) + '</span>' : '') + '</div>' +
+          '<span class="norma-status">' + status + '</span>' +
+          '<a class="norma-link" href="' + escapeHtml(n.href) + '" target="_blank" rel="noopener" title="' + escapeHtml(titulo) + '" aria-label="' + escapeHtml(n.rotulo + ': ' + titulo) + '">' + (n.noDiario ? '➡️' : '↗') + '</a>' +
+        '</li>';
+      }).join('') + '</ul>';
+  }
+
+  // A pessoa marca a leitura em outra aba; ao voltar, o card atualiza.
+  function atualizarNormas(){ if (normasAtuais && !document.hidden) preencherNormas(); }
+  window.addEventListener('focus', atualizarNormas);
+  document.addEventListener('visibilitychange', atualizarNormas);
   overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 

@@ -459,6 +459,36 @@
     });
 
     render();
+
+    // Link vindo de outra página (ex.: card do Diário das Decisões):
+    // /p/diario-de-leis.html#lei=<matéria>:<número-em-slug> abre direto a
+    // lei pedida — busca pelo número dela, rola até o card e o destaca por
+    // alguns segundos, para a pessoa marcar a leitura.
+    function abrirLeiDoLink() {
+      var m = /[#&]lei=([^&]+)/.exec(location.hash);
+      if (!m) return;
+      var chave;
+      try { chave = decodeURIComponent(m[1]); } catch (e) { return; }
+      var lei = leis.filter(function (l) { return l.chave === chave; })[0];
+      if (!lei) return;
+      if (inputBusca) { inputBusca.value = lei.numero; render(); }
+      var cards = document.querySelectorAll(".lei-card");
+      for (var i = 0; i < cards.length; i++) {
+        if (cards[i].getAttribute("data-chave") === chave) { destacar(cards[i]); return; }
+      }
+    }
+
+    function destacar(el) {
+      var details = el.closest("details");
+      if (details) details.open = true;
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
+      el.style.transition = "box-shadow .3s";
+      el.style.boxShadow = "0 0 0 3px #f59e0b";
+      setTimeout(function () { el.style.boxShadow = "0 1px 3px rgba(0,0,0,.04)"; }, 4000);
+    }
+
+    abrirLeiDoLink();
+    window.addEventListener("hashchange", abrirLeiDoLink);
   }
 
   Promise.all([
