@@ -8,6 +8,51 @@
 
   const dados = window.RECLAMACOES_DATA || [];
 
+
+  // ---- tratamento dos textos vindos do STF ------------------------------
+  // Os textos vêm de planilhas/raspagem e trazem sujeira: "_x000D_" (quebra
+  // de linha do Excel), quebras e espaços repetidos, e cortes no meio da
+  // frase (o resumo é limitado a LIMITE_TEXTO letras). Tudo é tratado aqui,
+  // na hora de mostrar, para valer também quando os dados forem trocados.
+  const LIMITE_TEXTO = 320;
+
+  function limparTexto(t) {
+    const original = String(t == null ? "" : t);
+    let s = original
+      .replace(/_x([0-9A-Fa-f]{4})_/g, (m, hex) => String.fromCharCode(parseInt(hex, 16)))
+      .replace(/">\.\./g, '"...')
+      .replace(/[\s\u00a0]+/g, " ")
+      .trim();
+    if (/^sem descri[cç][aã]o$/i.test(s)) return "";
+    // Cortado no limite: termina na última palavra inteira, com "…".
+    if (original.length >= LIMITE_TEXTO - 5 && !/[.!?…"”)]$/.test(s)) {
+      s = s.replace(/\s+\S*$/, "").replace(/[,;:\s]+$/, "");
+      s += /[.!?]$/.test(s) ? " …" : "…";
+    }
+    return s;
+  }
+
+  // Todo texto entra na página escapado: um "<" ou "&" no resumo aparece
+  // como texto, em vez de ser lido como código HTML.
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+    ));
+  }
+
+  // Só aceita links http(s); qualquer outra coisa vira um link vazio.
+  function safeUrl(u) {
+    const s = String(u || "");
+    if (!/^https?:\/\//i.test(s)) return "#";
+    try { return encodeURI(decodeURI(s)); } catch (e) { return encodeURI(s); }
+  }
+
+  // "2026-09-25" -> "25/09/2026". Sem data válida, devolve "".
+  function formatarData(d) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || ""));
+    return m ? `${m[3]}/${m[2]}/${m[1]}` : "";
+  }
+
   function init() {
     popularFiltroAno();
     bindEvents();
@@ -142,11 +187,11 @@
           <span class="star ${isLido ? "star-gold" : "star-empty"}">${isLido ? "📖" : "📘"}</span>
         </button>
         <div class="edition-content">
-          <span class="edition-num">${item.processo}</span>
-          <span class="edition-date">${item.dataJulgamento || ""} — ${item.relator || "STF"} · <strong>${item.ramo || "Geral"}</strong></span>
-          <span class="edition-topic" style="display:block;margin-top:4px;">${item.resumo || ""}</span>
+          <span class="edition-num">${escapeHtml(item.processo)}</span>
+          <span class="edition-date">${escapeHtml(formatarData(item.dataJulgamento) || "data não informada")} — ${escapeHtml(item.relator || "STF")} · <strong>${escapeHtml(item.ramo || "Geral")}</strong></span>
+          <span class="edition-topic" style="display:block;margin-top:4px;">${escapeHtml(limparTexto(item.resumo) || "Sem resumo disponível — abra o processo no STF.")}</span>
         </div>
-        <a class="action-btn" href="${item.url}" target="_blank" rel="noopener">Abrir</a>
+        <a class="action-btn" href="${escapeHtml(safeUrl(item.url))}" target="_blank" rel="noopener">Abrir</a>
       `;
       div.querySelector(".check-btn").addEventListener("click", () => alternarLeitura(item.id));
       root.appendChild(div);
