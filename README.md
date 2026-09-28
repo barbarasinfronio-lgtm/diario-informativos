@@ -77,16 +77,6 @@ Workflows do GitHub Actions (pasta `.github/workflows/`):
 - **`dividir-dados-por-ano.yml`**: a cada envio de `controleconst/adi_dados.js`
   ou `reclamacoes/reclamacoes-data.js`, gera as pastas `anos/` (um arquivo
   por ano) com `scripts/dividir_por_ano.py`.
-- **`atualizar_informativos.yml`** ("Atualizar Informativos do STF"): **só roda
-  quando alguém aperta "Run workflow"** (aba Actions), uma vez por semana, sem
-  agendamento. Chama `scripts/atualizar_informativos.mjs`, que confere os
-  números seguintes ao último registrado em `STF_DATA` (`diario-data.js`),
-  pega a data do cabeçalho da página oficial de cada edição e acrescenta as
-  novas com súmula "a confirmar". Depois envia para o `main` e limpa o cache
-  do jsDelivr de `diario-data.js`. Se o site do STF recusar o acesso, a
-  execução fica **vermelha** com o motivo (antes ela terminava verde dizendo
-  "nada novo"). Só cobre o STF por enquanto.
-
 ### Robôs que rodam no Mac (conexão no Brasil)
 
 O TST (e a JusLaboris, que é do TST) não responde aos servidores do GitHub.
@@ -101,6 +91,23 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
   (bloco `csjt` de `normas-data.js`).
 - **`scripts/atualizar_csmpt.py`**: Resoluções do CSMPT/MPT (bloco `csmpt` de
   `normas-data.js`).
+
+### Informativos do STF (no Mac, só quando você manda)
+
+O site do STF também recusa os servidores do GitHub (responde 403 até para
+edições que existem; testado em 28/09/2026). Por isso a verificação dos
+Informativos do STF roda no Mac, **sem agendamento**: uma vez por semana,
+dê dois cliques em **`Atualizar Informativos STF.command`** (raiz do
+repositório, no Finder). Ele atualiza o repositório com o `main`, roda
+`scripts/atualizar_informativos_stf.py` e, se houver edição nova, grava em
+`diario-data.js` e envia para o `main` (o que já dispara a limpeza do cache
+do jsDelivr). As edições novas entram com a data do cabeçalho da página
+oficial e súmula "a confirmar". Se o STF recusar o acesso, a janela mostra
+ERRO e nada é gravado.
+
+O script também completa a cadeia de certificados HTTPS do STF (o servidor
+não manda o certificado intermediário; o Python, diferente do navegador,
+recusaria a conexão).
 
 Para incluir outra fonte que precise de conexão no Brasil, acrescente o robô
 em `scripts/rodar_no_mac.sh`. Log: `~/EstudaMana/atualizar-tst.log`.
