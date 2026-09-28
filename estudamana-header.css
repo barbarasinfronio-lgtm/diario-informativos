@@ -143,3 +143,62 @@ html.em-has-font body {
 @media print {
   .em-font { display: none; }
 }
+
+/* ---- apresentação da página inicial ------------------------------------
+   A postagem "O que é o Estuda Mana?" traz o próprio CSS com cores fixas
+   (fundo branco). Na inicial ela é mostrada dentro de .em-apresentacao
+   (ver homePost em estudamana-header.js); estas regras, mais específicas,
+   trocam essas cores pelas do site, que seguem o tema claro/escuro, e
+   fazem as letras seguirem os botões A− A A+. */
+.em-apresentacao .em-about-section {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--surface-line);
+  box-shadow: var(--shadow);
+}
+.em-apresentacao .em-about-badge {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: calc(12px * var(--fs-scale));
+}
+.em-apresentacao .em-about-title {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  font-size: calc(28px * var(--fs-scale));
+}
+.em-apresentacao .em-about-subtitle {
+  color: var(--ink-soft);
+  font-size: calc(16px * var(--fs-scale));
+}
+.em-apresentacao .em-about-intro {
+  color: var(--ink-soft);
+  font-size: calc(15px * var(--fs-scale));
+}
+.em-apresentacao .em-feature-card {
+  background: var(--surface-2);
+  border-color: var(--surface-line);
+}
+.em-apresentacao .em-feature-icon {
+  background: var(--surface);
+  border-color: var(--surface-line);
+}
+.em-apresentacao .em-feature-content h3 {
+  color: var(--ink);
+  font-size: calc(15px * var(--fs-scale));
+}
+.em-apresentacao .em-feature-content p {
+  color: var(--ink-soft);
+  font-size: calc(13.5px * var(--fs-scale));
+}
+.em-apresentacao .em-about-footer {
+  border-top-color: var(--surface-line);
+  color: var(--ink-soft);
+  font-size: calc(14px * var(--fs-scale));
+}
+.em-apresentacao .em-about-footer strong {
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .em-apresentacao .em-about-title { font-size: calc(24px * var(--fs-scale)); }
+}
