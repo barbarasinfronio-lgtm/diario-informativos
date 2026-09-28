@@ -2140,9 +2140,10 @@
   ];
 
   var TSE_DATA = [
+    { edicao: 12, ano: 2026, data: "2026-08-31", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-12-ano-28-de-16-a-31-de-agosto-de-2026" },
     { edicao: 11, ano: 2026, data: "2026-08-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-11-ano-28-de-1o-a-15-de-agosto-de-2026" },
     { edicao: 10, ano: 2026, data: "2026-06-30", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-10-ano-28-de-16-a-30-de-junho-de-2026" },
-    { edicao: 9, ano: 2026, data: "2026-05-31", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-9-ano-28-de-1o-a-15-de-junho-de-2026" },
+    { edicao: 9, ano: 2026, data: "2026-06-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-9-ano-28-de-1o-a-15-de-junho-de-2026" },
     { edicao: 8, ano: 2026, data: "2026-05-31", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-08-ano-xxviii-de-16-a-31-de-maio-de-2026" },
     { edicao: 7, ano: 2026, data: "2026-05-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-07-ano-xxviii-de-1-a-15-de-maio-de-2026" },
     { edicao: 6, ano: 2026, data: "2026-04-30", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no06-ano-28-de-16-a-30-de-abril-de-2026" },
