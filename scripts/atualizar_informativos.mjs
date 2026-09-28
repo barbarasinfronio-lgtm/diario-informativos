@@ -18,9 +18,11 @@
  *      "a confirmar" (isso continua sendo conferido à mão, depois).
  *   4. O workflow faz o commit, o push e limpa o cache do jsDelivr.
  *
- * Por que o robô antigo "não funcionava": ele tratava QUALQUER resposta
- * diferente de 200 (bloqueio do site, 403, tempo esgotado) como "ainda não
- * publicada" e terminava verde, sem avisar. Agora só 404 (ou página sem o
+ * Por que o robô antigo "não funcionava": o servidor do STF manda o
+ * certificado HTTPS sem o intermediário da cadeia, o Node recusava a conexão
+ * (UNABLE_TO_VERIFY_LEAF_SIGNATURE) e o script tratava QUALQUER falha como
+ * "ainda não publicada", terminando verde. O workflow agora completa a
+ * cadeia (NODE_EXTRA_CA_CERTS) antes de rodar este script. Agora só 404 (ou página sem o
  * número) conta como "não saiu"; qualquer outra resposta faz o robô
  * terminar em ERRO (vermelho), dizendo o que o STF respondeu. Também manda
  * um User-Agent de navegador, porque o STF recusa pedidos sem ele.

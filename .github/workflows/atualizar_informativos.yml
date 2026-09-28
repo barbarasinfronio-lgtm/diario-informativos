@@ -26,6 +26,26 @@ jobs:
         with:
           node-version: '22'
 
+      # O servidor do STF manda o certificado HTTPS sem o intermediário da
+      # cadeia. Navegadores completam sozinhos; o Node não, e dava
+      # UNABLE_TO_VERIFY_LEAF_SIGNATURE (era isso que fazia o robô antigo
+      # achar que a edição "ainda não saiu"). Aqui baixamos o intermediário
+      # do endereço indicado no próprio certificado (AIA), conferimos que ele
+      # é assinado por uma autoridade confiável do sistema, e só então o
+      # entregamos ao Node.
+      - name: Completar a cadeia de certificados do STF
+        run: |
+          set -e
+          echo | openssl s_client -connect www.stf.jus.br:443 -servername www.stf.jus.br -showcerts 2>/dev/null \
+            | awk '/BEGIN CERT/{c++} c==1{print} /END CERT/&&c==1{exit}' > folha.pem
+          aia=$(openssl x509 -in folha.pem -noout -ext authorityInfoAccess | sed -n 's/.*CA Issuers - URI:\(.*\)/\1/p' | head -1)
+          echo "Intermediário: $aia"
+          curl -sSfL "$aia" -o inter.bin
+          openssl x509 -inform DER -in inter.bin -out inter.pem 2>/dev/null || cp inter.bin inter.pem
+          openssl verify -CApath /etc/ssl/certs inter.pem
+          openssl verify -CApath /etc/ssl/certs -untrusted inter.pem folha.pem
+          echo "NODE_EXTRA_CA_CERTS=$PWD/inter.pem" >> "$GITHUB_ENV"
+
       - name: Verificar novas edições do STF
         run: node scripts/atualizar_informativos.mjs
 
