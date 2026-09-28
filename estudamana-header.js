@@ -210,6 +210,19 @@ if (CONFIG.homePage) location.replace(CONFIG.homePage + location.search);
 }
 
 var NA_INICIAL = ehInicial();
+
+// Título repetido: o tema do Blogger mostra o título da página (o mesmo do
+// menu) em cima do conteúdo, e as páginas de estudo já têm o próprio título
+// (<h1>) dentro do conteúdo. Nessas páginas, o do Blogger fica escondido; o
+// título continua valendo para o menu e para a aba do navegador.
+(function esconderTituloRepetido() {
+try {
+if (!document.querySelector(".post-body h1")) return;
+var st = document.createElement("style");
+st.textContent = ".post-outer .post-title.entry-title { display: none !important; }";
+document.head.appendChild(st);
+} catch (e) {}
+})();
 // Na inicial, a lista de postagens do Blogger (que só mostraria um resumo
 // da apresentação), o título "Postagens" e a paginação ficam escondidos
 // desde já, para não piscarem antes da apresentação aparecer.
