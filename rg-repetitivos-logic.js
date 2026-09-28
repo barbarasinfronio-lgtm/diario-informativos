@@ -1,5 +1,9 @@
 (function(){
-  var DATA = RG_REPETITIVOS_DATA;
+  // STF/STJ vêm de rg-repetitivos-data.js; as OJs, Precedentes Normativos e
+  // temas de IRR do TST vêm de tst/decisoes.json (gerado toda semana por
+  // scripts/atualizar_tst.py) e entram na lista assim que chegam.
+  var DATA = RG_REPETITIVOS_DATA.slice();
+  var TST_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/tst/decisoes.json';
   var state = { q:'', org:'all', risk:'all', area:null };
 
   // Nem todo precedente qualificado do STJ é "Tema": também há IAC
@@ -9,6 +13,7 @@
   var PRECEDENTE_NOME = { IAC: 'Incidente de Assunção de Competência', PUIL: 'Pedido de Uniformização de Interpretação de Lei' };
   function precedenteBadge(d){ return (d.precedenteLabel || 'Tema') + ' ' + d.tema; }
   function precedenteAreaLine(d){
+    if (d.tipoNome) return ' · ' + d.tipoNome;
     if (d.tipo === 'rg') return ' · Repercussão Geral';
     var lbl = d.precedenteLabel;
     return ' · ' + (lbl && PRECEDENTE_NOME[lbl] ? PRECEDENTE_NOME[lbl] : 'Recurso Repetitivo');
@@ -73,24 +78,25 @@
     syncTimer = setTimeout(pushProgress, 700);
   }
 
-  var areas = [...new Set(DATA.map(d=>d.area))].sort((a,b)=>{
-    var ca = DATA.filter(d=>d.area===a).length, cb = DATA.filter(d=>d.area===b).length;
-    return cb-ca;
-  });
-
   var areaChips = document.getElementById('areaChips');
-  areas.forEach(function(a){
-    var n = DATA.filter(d=>d.area===a).length;
-    var el = document.createElement('button');
-    el.className = 'chip';
-    el.innerHTML = a + ' <span class="n">' + n + '</span>';
-    el.addEventListener('click', function(){
-      state.area = (state.area === a) ? null : a;
-      render();
+  // Chips de matéria (refeitos quando os dados do TST chegam).
+  function montarChips(){
+    var cont = {};
+    DATA.forEach(function(d){ cont[d.area] = (cont[d.area] || 0) + 1; });
+    var areas = Object.keys(cont).sort(function(a,b){ return cont[b]-cont[a]; });
+    areaChips.innerHTML = '';
+    areas.forEach(function(a){
+      var el = document.createElement('button');
+      el.className = 'chip';
+      el.innerHTML = escapeHtml(a) + ' <span class="n">' + cont[a] + '</span>';
+      el.addEventListener('click', function(){
+        state.area = (state.area === a) ? null : a;
+        render();
+      });
+      el.dataset.area = a;
+      areaChips.appendChild(el);
     });
-    el.dataset.area = a;
-    areaChips.appendChild(el);
-  });
+  }
 
   document.getElementById('orgSeg').addEventListener('click', function(e){
     var btn = e.target.closest('button'); if(!btn) return;
@@ -153,7 +159,7 @@
   });
 
   function escapeHtml(s){
-    return (s||'').replace(/[&<>"']/g, function(c){
+    return String(s||'').replace(/[&<>"']/g, function(c){
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
   }
@@ -163,7 +169,7 @@
     if(state.risk !== 'all' && d.risco !== state.risk) return false;
     if(state.area && d.area !== state.area) return false;
     if(state.q){
-      var hay = [d.titulo,d.tese,d.destaque,d.processo,d.relator,d.tema,d.area].join(' ').toLowerCase();
+      var hay = [d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,d.precedenteLabel,d.orgao].join(' ').toLowerCase();
       if(hay.indexOf(state.q) === -1) return false;
     }
     return true;
@@ -202,10 +208,11 @@
           '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
           (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
+          (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
         '</div>' +
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
-        '<div class="destaque">' + escapeHtml(d.destaque||d.tese||'') + '</div>' +
+        '<div class="destaque">' + escapeHtml(d.destaque||d.tese||d.questao||'') + '</div>' +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
       var checkbox = card.querySelector('.read-checkbox');
@@ -233,18 +240,22 @@
         '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(d.risco) + '</span>' +
         (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
+        (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
-      '<div class="section-label">Tese fixada</div>' +
-      '<div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>' +
+      (d.questao && !d.tese
+        ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
       (d.destaque && d.destaque!==d.tese ? '<div class="section-label">Destaque</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>Processo</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
-        '<div><b>Julgamento</b>' + escapeHtml(d.data||'—') + '</div>' +
+        '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
         '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>' +
       '</div>' +
+      (d.historico ? '<div class="section-label">Histórico</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
+      (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(d.risco) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
@@ -287,7 +298,7 @@
   function mostrarNormas(d){
     carregarNormasCitadas().then(function(){
       if (modalAtual !== d) return;
-      var achadas = NormasCitadas.encontrar([d.titulo, d.tese, d.destaque].join(' '));
+      var achadas = NormasCitadas.encontrar([d.titulo, d.tese, d.questao, d.destaque].join(' '));
       if (!achadas.length) return;
       var box = modal.querySelector('.normas-box');
       box.hidden = false;
@@ -334,6 +345,7 @@
   function renderStats(){
     var stf = DATA.filter(d=>d.orgao==='STF').length;
     var stj = DATA.filter(d=>d.orgao==='STJ').length;
+    var tst = DATA.filter(d=>d.orgao==='TST').length;
     var alta = DATA.filter(d=>d.risco==='Alta').length;
     var canc = DATA.filter(d=>d.status==='cancelado_superado').length;
     var lidasCount = totalLidos();
@@ -343,6 +355,7 @@
       '<div class="stat" style="color:var(--low-fg)"><b>' + lidasCount + '</b><span>Lidas</span></div>' +
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
+      (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alta</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
   }
@@ -354,8 +367,35 @@
     if(syncTimer){ clearTimeout(syncTimer); pushProgress(); }
   });
 
+  // Botão "TST" no filtro de tribunal (o HTML da página só tem STF e STJ).
+  function garantirBotaoTST(){
+    var seg = document.getElementById('orgSeg');
+    if (!seg || seg.querySelector('[data-org="TST"]')) return;
+    var b = document.createElement('button');
+    b.dataset.org = 'TST';
+    b.textContent = 'TST';
+    seg.appendChild(b);
+  }
+
+  function carregarTST(){
+    fetch(TST_JSON, { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var itens = (j && j.itens) || [];
+        if (!itens.length) return;
+        DATA = DATA.concat(itens);
+        garantirBotaoTST();
+        montarChips();
+        renderStats();
+        render();
+      })
+      .catch(function(){ /* sem o TST, a página segue só com STF e STJ */ });
+  }
+
+  montarChips();
   renderStats();
   render();
+  carregarTST();
 
   if(GS && window.firebase && window.DIARIO_FIREBASE_CONFIG){
     GS.onViewerReady(function(uid){
