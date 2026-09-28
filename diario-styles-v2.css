@@ -952,3 +952,23 @@
   }
 
   .rank-empty a { color: var(--accent); }
+
+  /* ---- busca (a mesma do Diário das Decisões) ---------------------------
+     A caixa é criada pelo JS de cada Diário, logo acima da lista. */
+  .busca-diario{
+    display:flex; align-items:center; gap:8px; margin:0 0 12px;
+    background:var(--surface-2); border:1px solid var(--surface-line); border-radius:9px; padding:8px 12px;
+  }
+  .busca-diario svg{flex:none; color:var(--ink-faint);}
+  .busca-diario input{
+    flex:1; min-width:0; border:0; background:none; outline:none; color:var(--ink);
+    font:500 calc(13.5px * var(--fs-scale)) var(--font-sans);
+  }
+  .busca-diario input::placeholder{color:var(--ink-faint);}
+  .busca-diario:focus-within{border-color:var(--accent);}
+  .busca-diario .busca-limpar{
+    flex:none; border:0; background:none; color:var(--ink-faint); cursor:pointer;
+    font:600 calc(12px * var(--fs-scale)) var(--font-sans); padding:0 2px;
+  }
+  .busca-diario .busca-limpar[hidden]{display:none;}
+  .busca-resultado{margin:-4px 2px 10px; font-size:calc(12px * var(--fs-scale)); color:var(--ink-faint);}

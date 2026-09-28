@@ -5,6 +5,63 @@
   // (dados carregados de sumulas-data.js, que roda antes deste arquivo)
   var LOCAL_KEY = "sumulas-lidas";
   var listRoot = document.getElementById("list-root");
+
+  // ---- busca (a mesma do Diário das Decisões) ---------------------------
+  // Caixa criada aqui, logo acima da lista (sem mexer no HTML do Blogger).
+  // Não diferencia maiúsculas nem acentos; cada palavra digitada precisa
+  // aparecer no item. Os contadores de progresso não mudam com a busca.
+  var termosBusca = [];
+  var buscaInfo = null;
+
+  function semAcentoBusca(t) {
+    return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+  // Singular e plural contam igual: "execucao" acha "execuções", "fiscal"
+  // acha "fiscais", "lei" acha "leis".
+  var PLURAIS = [["coes", "cao"], ["cao", "coes"], ["oes", "ao"], ["ao", "oes"], ["ais", "al"], ["al", "ais"], ["eis", "el"], ["el", "eis"], ["s", ""]];
+  function variantes(t) {
+    var v = [t];
+    PLURAIS.forEach(function (r) {
+      if (t.length > 3 && t.slice(-r[0].length) === r[0]) v.push(t.slice(0, t.length - r[0].length) + r[1]);
+    });
+    return v;
+  }
+  function combinaBusca(texto) {
+    if (!termosBusca.length) return true;
+    var h = semAcentoBusca(texto);
+    return termosBusca.every(function (t) {
+      return variantes(t).some(function (x) { return h.indexOf(x) !== -1; });
+    });
+  }
+  function mostrarResultadoBusca(n, rotulo) {
+    if (!buscaInfo) return;
+    buscaInfo.hidden = !termosBusca.length;
+    buscaInfo.textContent = n === 1 ? "1 resultado" : n + " resultados";
+  }
+  function criarBusca(placeholder, aoMudar) {
+    if (!listRoot || !listRoot.parentNode) return;
+    var box = document.createElement("div");
+    box.className = "busca-diario";
+    box.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>' +
+      '<input type="search" autocomplete="off">' +
+      '<button type="button" class="busca-limpar" hidden>Limpar</button>';
+    var input = box.querySelector("input");
+    var limpar = box.querySelector(".busca-limpar");
+    input.placeholder = placeholder;
+    input.setAttribute("aria-label", placeholder);
+    buscaInfo = document.createElement("p");
+    buscaInfo.className = "busca-resultado";
+    buscaInfo.hidden = true;
+    function mudou() {
+      limpar.hidden = !input.value;
+      termosBusca = semAcentoBusca(input.value).split(/\s+/).filter(Boolean);
+      aoMudar();
+    }
+    input.addEventListener("input", mudou);
+    limpar.addEventListener("click", function () { input.value = ""; mudou(); input.focus(); });
+    listRoot.parentNode.insertBefore(box, listRoot);
+    listRoot.parentNode.insertBefore(buscaInfo, listRoot);
+  }
   var syncNote = document.getElementById("sync-note");
   var ledeText = document.getElementById("lede-text");
   var footerSource = document.getElementById("footer-source");
@@ -131,9 +188,16 @@
     currentMateria = "todas";
   }
 
-  function filteredState() {
+  // Sem a busca: é a base dos contadores de progresso.
+  function filteredBase() {
     return stateByOrg[currentOrg].filter(function (r) {
       return currentMateria === "todas" || r.materia === currentMateria;
+    });
+  }
+
+  function filteredState() {
+    return filteredBase().filter(function (r) {
+      return combinaBusca("súmula nº " + r.numero + " " + r.texto + " " + (r.materia || ""));
     });
   }
 
@@ -248,7 +312,8 @@
 
     listRoot.appendChild(ul);
     renderPager(full);
-    updateStats(full);
+    mostrarResultadoBusca(full.length, ["súmula", "súmulas"]);
+    updateStats(filteredBase());
   }
 
   function updateStats(full) {
@@ -463,6 +528,7 @@
 
   // 1) pintura instantânea com o que já está salvo neste navegador
   applyMap(readLocal());
+  criarBusca("Buscar súmula por número ou palavra (ex.: 331, horas extras)", function () { loteAtual = 0; render(); });
   render();
 
   // 2) login anônimo no Firebase (própria coleção "progress-sumulas")
