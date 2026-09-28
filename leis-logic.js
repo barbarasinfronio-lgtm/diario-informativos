@@ -471,7 +471,8 @@
       try { chave = decodeURIComponent(m[1]); } catch (e) { return; }
       var lei = leis.filter(function (l) { return l.chave === chave; })[0];
       if (!lei) return;
-      if (inputBusca) { inputBusca.value = lei.numero; render(); }
+      // "CF/1988" também acharia as leis de 1988; sem "nº", busca pelo nome.
+      if (inputBusca) { inputBusca.value = /n[ºo°]/.test(lei.numero) ? lei.numero : lei.nome; render(); }
       var cards = document.querySelectorAll(".lei-card");
       for (var i = 0; i < cards.length; i++) {
         if (cards[i].getAttribute("data-chave") === chave) { destacar(cards[i]); return; }
