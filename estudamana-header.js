@@ -58,8 +58,8 @@ hide: [],
 labels: {},
 
 // Texto/endereço do primeiro item (a página inicial). Use null para
-// não mostrar; para mostrar: home: { label: "Início", href: "/" }.
-home: null,
+// não mostrar.
+home: { label: "In\u00edcio", href: "/" },
 
 // Página inicial (endereço principal do site, sem nada depois da barra):
 // mostra, inteira, a postagem de apresentação cujo número está em
