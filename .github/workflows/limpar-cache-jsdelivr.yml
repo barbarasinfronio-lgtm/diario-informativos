@@ -45,7 +45,13 @@ jobs:
             while read -r f; do
               [ -z "$f" ] && continue
               status=$(curl -sS -o resposta.json -w '%{http_code}' "$base/$f" || echo 000)
-              echo "$f -> HTTP $status"
+              # O jsDelivr responde 200 mesmo quando recusa a limpeza por
+              # excesso de pedidos ("throttled": true); mostra isso no log.
+              if grep -q '"throttled": *true' resposta.json 2>/dev/null; then
+                echo "$f -> HTTP $status (RECUSADO: muitos pedidos, jsDelivr limitou)"
+              else
+                echo "$f -> HTTP $status"
+              fi
               if [ "$status" != "200" ] && [ "$rodada" = 2 ]; then
                 cat resposta.json 2>/dev/null; echo
                 falhas=$((falhas + 1))
