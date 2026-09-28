@@ -50,8 +50,13 @@ jobs:
         if: steps.salvar.outputs.mudou == '1'
         run: |
           base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
-          while read -r f; do
-            [ -z "$f" ] && continue
-            status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
-            echo "$f -> HTTP $status"
-          done < alterados.txt
+          # espera o jsDelivr enxergar o envio novo; limpa duas vezes (ver
+          # limpar-cache-jsdelivr.yml)
+          for espera in 60 120; do
+            sleep "$espera"
+            while read -r f; do
+              [ -z "$f" ] && continue
+              status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
+              echo "$f -> HTTP $status"
+            done < alterados.txt
+          done
