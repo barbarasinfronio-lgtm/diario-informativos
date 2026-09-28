@@ -35,7 +35,9 @@
         if (/editais-shared\.js/.test(all[i].src)) { s = all[i]; break; }
       }
     }
-    if (!s || !s.src) return "";
+    // Carregado por fetch (sem <script src>, como fazem as páginas do
+    // Blogger): não há de onde tirar a pasta, então usa o jsDelivr.
+    if (!s || !s.src) return "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
     return s.src.replace(/editais-shared\.js(\?.*)?$/, "");
   })();
   var QUERY = (function () {
@@ -201,11 +203,19 @@
     }
     if (window.EDITAIS_DATA) { done(); return; }
     if (!BASE) { done(); return; }
-    var s = document.createElement("script");
-    s.src = BASE + "editais-data.js" + QUERY;
-    s.onload = done;
-    s.onerror = done;
-    document.head.appendChild(s);
+    // fetch "no-cache" (o navegador confere se o arquivo mudou) em vez de
+    // <script src>, que fica guardado até 7 dias; se falhar, usa <script>.
+    var url = BASE + "editais-data.js" + QUERY;
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (code) { (0, eval)(code); done(); })
+      .catch(function () {
+        var s = document.createElement("script");
+        s.src = url;
+        s.onload = done;
+        s.onerror = done;
+        document.head.appendChild(s);
+      });
   };
 
   window.EditaisShared = api;
