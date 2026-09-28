@@ -118,6 +118,11 @@
     list.forEach(function (row) {
       var li = document.createElement("li");
       li.className = "row sumula-row" + (row.lida ? " is-read" : "");
+      li.setAttribute("data-norma", currentOrg + ":" + row.tipo + ":" + row.numero);
+      if (destaque === currentOrg + ":" + row.tipo + ":" + row.numero) {
+        li.style.boxShadow = "0 0 0 3px #f59e0b";
+        li.style.borderRadius = "10px";
+      }
 
       var checkWrap = document.createElement("div");
       checkWrap.className = "check-wrap";
@@ -355,7 +360,40 @@
 
   // 1) pintura instantânea com o que já está salvo neste navegador
   applyMap(readLocal());
-  render();
+
+  // Link vindo de outra página (ex.: card do Diário das Decisões):
+  // /p/diario-das-resolucoes.html#norma=<órgão>:<tipo>:<número> abre o órgão
+  // certo, destaca a norma por alguns segundos e rola até ela, para a pessoa
+  // marcar a leitura.
+  var destaque = null;
+  var destaqueTimer = null;
+  function abrirNormaDoLink() {
+    var m = /[#&]norma=([^&]+)/.exec(location.hash);
+    if (!m) return false;
+    var alvo;
+    try { alvo = decodeURIComponent(m[1]); } catch (e) { return false; }
+    var p = alvo.split(":");
+    if (p.length !== 3 || !stateByOrg[p[0]]) return false;
+    currentOrg = p[0];
+    destaque = alvo;
+    render();
+    var lis = listRoot.querySelectorAll("li[data-norma]");
+    for (var i = 0; i < lis.length; i++) {
+      if (lis[i].getAttribute("data-norma") === alvo) {
+        lis[i].scrollIntoView({ block: "center", behavior: "smooth" });
+        break;
+      }
+    }
+    clearTimeout(destaqueTimer);
+    destaqueTimer = setTimeout(function () {
+      destaque = null;
+      var el = listRoot.querySelector('li[style*="box-shadow"]');
+      if (el) el.style.boxShadow = "";
+    }, 4000);
+    return true;
+  }
+  if (!abrirNormaDoLink()) render();
+  window.addEventListener("hashchange", abrirNormaDoLink);
 
   // 2) login anônimo no Firebase (própria coleção "progress-normas")
   var progressUnsub = null;
