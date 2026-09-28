@@ -7,6 +7,7 @@
   let filtroAno = "todos";
 
   // ---- dados: um arquivo por ano ----------------------------------------
+  // (A página do Blogger não carrega mais o arquivo grande: tudo vem daqui.)
   // O arquivo grande (reclamacoes-data.js) é dividido em reclamacoes/anos/
   // pelo scripts/dividir_por_ano.py: index.json (quantos itens por ano e por
   // tribunal) + um AAAA.json por ano. A página carrega o índice e depois só os

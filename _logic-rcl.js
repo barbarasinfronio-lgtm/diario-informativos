@@ -1,23 +1,22 @@
 (function () {
-  const STORAGE_KEY = "em_lidos_constitucionalidades";
+  const STORAGE_KEY = "em_lidos_reclamacoes";
   let lidos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   let loteTamanho = 10;
   let loteAtual = 0;
-  let filtroClasse = "todas";
+  let filtroTribunal = "todos";
   let filtroAno = "todos";
 
   // ---- dados: um arquivo por ano ----------------------------------------
-  // (A página do Blogger não carrega mais o arquivo grande: tudo vem daqui.)
-  // O arquivo grande (adi_dados.js) é dividido em controleconst/anos/ pelo
-  // scripts/dividir_por_ano.py: index.json (quantos itens por ano e por
-  // classe) + um AAAA.json por ano. A página carrega o índice e depois só os
+  // O arquivo grande (reclamacoes-data.js) é dividido em reclamacoes/anos/
+  // pelo scripts/dividir_por_ano.py: index.json (quantos itens por ano e por
+  // tribunal) + um AAAA.json por ano. A página carrega o índice e depois só os
   // anos que precisa mostrar, com "no-cache" (o navegador só baixa de novo
   // o que mudou). Se a página ainda carregar o arquivo inteiro, usa ele.
-  const BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/anos/";
+  const BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@1808db3e2159a2c6017846b4e22979d6cb7f9f96/reclamacoes/anos/";
   const URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo=";
-  const legado = window.CONSTITUCIONALIDADES_DATA;
+  const legado = window.RECLAMACOES_DATA;
 
-  let indice = null;      // { total, anos: [{ ano, total, grupos: { ADI: n, ... } }] }
+  let indice = null;      // { total, anos: [{ ano, total, grupos: { STF: n, ... } }] }
   const carregados = {};  // "2026" -> itens daquele ano
   const pedidos = {};     // "2026" -> fetch em andamento
 
@@ -29,10 +28,10 @@
   function montarIndiceLegado(lista) {
     const anos = {};
     lista.forEach((it) => {
-      const ano = anoDaData(it.data);
+      const ano = anoDaData(it.dataJulgamento);
       const a = anos[ano] || (anos[ano] = { ano: ano, total: 0, grupos: {} });
       a.total++;
-      a.grupos[it.classe] = (a.grupos[it.classe] || 0) + 1;
+      a.grupos[it.tribunal] = (a.grupos[it.tribunal] || 0) + 1;
       (carregados[ano] || (carregados[ano] = [])).push(it);
     });
     const chaves = Object.keys(anos).filter((k) => k !== "sem-ano").sort().reverse();
@@ -70,12 +69,12 @@
   }
 
   function combina(item) {
-    return filtroClasse === "todas" || item.classe === filtroClasse;
+    return filtroTribunal === "todos" || item.tribunal === filtroTribunal;
   }
 
   function totalFiltrado() {
     return anosRelevantes().reduce((s, a) =>
-      s + (filtroClasse === "todas" ? a.total : (a.grupos[filtroClasse] || 0)), 0);
+      s + (filtroTribunal === "todos" ? a.total : (a.grupos[filtroTribunal] || 0)), 0);
   }
 
   // Itens já carregados, na ordem da lista (para no primeiro ano que falta).
@@ -96,19 +95,15 @@
   }
 
   // Lidos dentro do filtro. Com todos os anos do filtro carregados, conta
-  // pelos itens; senão, pelo código do processo, que traz a classe e a data
-  // (ex.: "STF_ADI_7641_20260925_15066").
+  // pelos itens; senão (só acontece em "Todos os Anos"), pelo código do
+  // processo, que começa pelo tribunal (ex.: "STF_Rcl_100475").
   function contarLidos() {
     const rel = anosRelevantes();
     if (rel.every((a) => carregados[a.ano])) {
       return filtradosCarregados().filter((d) => lidos[d.id]).length;
     }
-    return Object.keys(lidos).filter((id) => {
-      const p = id.split("_");
-      const ano = /^\d{8}$/.test(p[3] || "") ? p[3].slice(0, 4) : "sem-ano";
-      return (filtroClasse === "todas" || p[1] === filtroClasse) &&
-        (filtroAno === "todos" || ano === String(filtroAno));
-    }).length;
+    return Object.keys(lidos).filter((id) =>
+      filtroTribunal === "todos" || id.split("_")[0] === filtroTribunal).length;
   }
 
   // ---- tratamento dos textos vindos do STF ------------------------------
@@ -116,7 +111,7 @@
   // de linha do Excel), quebras e espaços repetidos, e cortes no meio da
   // frase (o resumo é limitado a LIMITE_TEXTO letras). Tudo é tratado aqui,
   // na hora de mostrar, para valer também quando os dados forem trocados.
-  const LIMITE_TEXTO = 250;
+  const LIMITE_TEXTO = 320;
 
   function limparTexto(t) {
     const original = String(t == null ? "" : t);
@@ -166,7 +161,7 @@
       .then(() => { popularFiltroAno(); render(); })
       .catch(() => {
         const root = document.getElementById("list-root");
-        if (root) aviso(root, "Não foi possível carregar os julgados. Recarregue a página.");
+        if (root) aviso(root, "Não foi possível carregar as reclamações. Recarregue a página.");
       });
   }
 
@@ -182,11 +177,11 @@
   }
 
   function bindEvents() {
-    const selClasse = document.getElementById("classe-select");
+    const selTrib = document.getElementById("tribunal-select");
     const selAno = document.getElementById("ano-select");
-    if (selClasse) {
-      selClasse.addEventListener("change", (e) => {
-        filtroClasse = e.target.value;
+    if (selTrib) {
+      selTrib.addEventListener("change", (e) => {
+        filtroTribunal = e.target.value;
         loteAtual = 0;
         render();
       });
@@ -245,7 +240,7 @@
     const seq = ++renderSeq;
 
     if (!indice) {
-      aviso(root, "Carregando julgados…");
+      aviso(root, "Carregando reclamações…");
       return;
     }
 
@@ -255,11 +250,11 @@
 
     // Busca os anos que faltam para mostrar este lote.
     if (filtradosCarregados().length < fim) {
-      aviso(root, "Carregando julgados…");
+      aviso(root, "Carregando reclamações…");
       try {
         await garantir(fim);
       } catch (e) {
-        if (seq === renderSeq) aviso(root, "Não foi possível carregar os julgados. Recarregue a página.");
+        if (seq === renderSeq) aviso(root, "Não foi possível carregar as reclamações. Recarregue a página.");
         return;
       }
       if (seq !== renderSeq) return; // outro filtro foi escolhido enquanto carregava
@@ -290,7 +285,7 @@
     root.innerHTML = "";
 
     if (pagina.length === 0) {
-      aviso(root, "Nenhum julgado encontrado para este filtro.");
+      aviso(root, "Nenhuma reclamação encontrada para este filtro.");
       return;
     }
 
@@ -298,9 +293,6 @@
       const isLido = !!lidos[item.id];
       const div = document.createElement("div");
       div.className = "edition-row" + (isLido ? " is-read" : "");
-      // A data vem no campo "data" (AAAA-MM-DD); alguns itens vêm com "-".
-      const data = formatarData(item.data || item.dataJulgamento) || (item.ano ? String(item.ano) : "data não informada");
-      const texto = limparTexto(item.tema || item.tese || item.resumo) || "Sem resumo disponível — abra o processo no STF.";
       const url = item.url || URL_STF + item.processo;
       div.innerHTML = `
         <button type="button" class="check-btn" aria-label="Marcar como lido">
@@ -308,8 +300,8 @@
         </button>
         <div class="edition-content">
           <span class="edition-num">${escapeHtml(item.processo)}</span>
-          <span class="edition-date">${escapeHtml(data)} — ${escapeHtml(item.relator || "STF")}</span>
-          <span class="edition-topic" style="display:block;margin-top:4px;">${escapeHtml(texto)}</span>
+          <span class="edition-date">${escapeHtml(formatarData(item.dataJulgamento) || "data não informada")} — ${escapeHtml(item.relator || "STF")} · <strong>${escapeHtml(item.ramo || "Geral")}</strong></span>
+          <span class="edition-topic" style="display:block;margin-top:4px;">${escapeHtml(limparTexto(item.resumo) || "Sem resumo disponível — abra o processo no STF.")}</span>
         </div>
         <a class="action-btn" href="${escapeHtml(safeUrl(url))}" target="_blank" rel="noopener">Abrir</a>
       `;

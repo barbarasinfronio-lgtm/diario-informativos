@@ -1,0 +1,187 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+<div class="page">
+  <header class="masthead">
+    <p class="eyebrow">STF — Controle Concentrado e Abstrato de Constitucionalidade</p>
+    <h1>Diário das Constitucionalidades</h1>
+    <p class="lede" id="lede-text">Ações de controle concentrado (ADI, ADC, ADPF e ADO), marcadas conforme você lê.</p>
+
+    <!-- Filtros de Classe e Busca -->
+    <div class="sumula-filters">
+      <label class="avatar-field">
+        Ação Constitucional
+        <select id="classe-select">
+          <option value="todas">Todas as Ações</option>
+          <option value="ADI">ADI (Ação Direta de Inconstitucionalidade)</option>
+          <option value="ADC">ADC (Ação Declaratória de Constitucionalidade)</option>
+          <option value="ADPF">ADPF (Arguição de Descumprimento de Preceito Fundamental)</option>
+          <option value="ADO">ADO (Ação Direta de Inconstitucionalidade por Omissão)</option>
+        </select>
+      </label>
+      <label class="avatar-field">
+        Ano do Julgamento
+        <select id="ano-select">
+          <option value="todos">Todos os Anos</option>
+        </select>
+      </label>
+      <div class="avatar-field">
+        Tamanho do lote
+        <div id="lote-toggle" class="lote-toggle">
+          <button type="button" class="lote-btn is-active" data-lote-size="10">10 em 10</button>
+          <button type="button" class="lote-btn" data-lote-size="20">20 em 20</button>
+          <button type="button" class="lote-btn" data-lote-size="50">50 em 50</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Progresso e Estatísticas -->
+    <div class="stat-line">
+      <span><strong id="stat-count">0</strong> de <span id="stat-total">0</span> lidas</span>
+      <span id="stat-pct">0%</span>
+      <span id="stat-stars" class="stat-stars"></span>
+    </div>
+    <div class="progress-track"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+
+    <div class="my-prizes" id="my-prizes" hidden></div>
+    <a class="avatar-toggle" href="https://www.estudamana.com.br/p/meus-grupos.html">
+      <span aria-hidden="true">👯</span>
+      Meus grupos de estudo
+    </a>
+
+    <!-- Painel de Login e Sincronização -->
+    <button type="button" id="account-toggle" class="avatar-toggle avatar-toggle-primary" aria-expanded="false">
+      <span aria-hidden="true">📱</span>
+      Acessar de qualquer aparelho
+    </button>
+    <div id="account-panel" class="avatar-panel" hidden>
+      <p class="avatar-note" id="account-status-text">Seu progresso já é salvo automaticamente neste navegador. Para continuar de qualquer outro celular ou computador, crie uma senha com seu e-mail — é rápido e opcional.</p>
+      <div id="account-link-block">
+        <div class="group-row">
+          <label class="avatar-field group-name-field">
+            E-mail
+            <input type="email" id="account-email-input" placeholder="seu@email.com">
+          </label>
+          <label class="avatar-field group-name-field">
+            Senha (mín. 6 caracteres)
+            <input type="password" id="account-password-input" placeholder="••••••">
+          </label>
+        </div>
+        <div class="group-row">
+          <button type="button" id="account-link-btn" class="group-btn group-btn-primary">Ativar acesso em qualquer aparelho</button>
+          <button type="button" id="account-signin-btn" class="group-btn">Já ativei — entrar neste aparelho</button>
+        </div>
+        <p class="group-note" id="account-error" hidden></p>
+      </div>
+      <div id="account-linked-block" hidden>
+        <p class="avatar-note">E-mail vinculado: <strong id="account-linked-email"></strong>.</p>
+      </div>
+    </div>
+
+    <!-- Personalização do Avatar -->
+    <button type="button" id="avatar-toggle" class="avatar-toggle" aria-expanded="false">
+      <span id="avatar-toggle-preview" class="avatar-toggle-preview">🧑🏽‍⚖️</span>
+      Personalizar boneco
+    </button>
+    <div id="avatar-panel" class="avatar-panel" hidden>
+      <label class="avatar-field">
+        Gênero
+        <select id="avatar-gender">
+          <option value="f">Mulher</option>
+          <option value="m">Homem</option>
+          <option value="x">Não binário</option>
+        </select>
+      </label>
+      <label class="avatar-field">
+        Tom de pele
+        <select id="avatar-tone">
+          <option value="1">Clara</option>
+          <option value="2">Morena clara</option>
+          <option value="3">Parda</option>
+          <option value="4">Morena escura</option>
+          <option value="5">Negra</option>
+        </select>
+      </label>
+      <p class="avatar-note">O emoji padrão só varia gênero e tom de pele.</p>
+    </div>
+
+    <p class="sync-note" id="sync-note" aria-live="polite">&nbsp;</p>
+  </header>
+
+  <!-- Lista Dinâmica de Julgados -->
+  <main id="list-root"></main>
+
+  <!-- Paginação por Lotes -->
+  <nav class="sumula-pager">
+    <button type="button" id="lote-prev" class="group-btn">‹ Lote anterior</button>
+    <span id="lote-label" class="group-note"></span>
+    <button type="button" id="lote-next" class="group-btn">Lote seguinte ›</button>
+  </nav>
+
+  <footer class="colophon">
+    <div id="footer-source"></div>
+    <div class="legend">
+      <span><span class="star star-gold" style="font-size:0.9rem;width:1.4rem;height:1.4rem">📖</span> lida</span>
+      <span><span class="star star-empty" style="font-size:0.9rem;width:1.4rem;height:1.4rem">📘</span> ainda não lida</span>
+    </div>
+  </footer>
+</div>
+
+<!-- Firebase SDKs compatíveis com o projeto Estuda Mana -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<script>
+  window.DIARIO_FIREBASE_CONFIG = {
+    apiKey: "AIzaSyAe0g7Ps4d_uXvh1IiFTtDICwZ91YOUto0",
+    authDomain: "diariodeinformativos.firebaseapp.com",
+    projectId: "diariodeinformativos",
+    storageBucket: "diariodeinformativos.firebasestorage.app",
+    messagingSenderId: "390710055357",
+    appId: "1:390710055357:web:8bd7223ea97c9e468042d4"
+  };
+</script>
+
+<script>
+  (function () {
+    var thisScript = document.currentScript;
+    var styles = [
+      "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/diario-styles-v2.css"
+    ];
+    var scripts = [
+      "/controleconst/adi_dados.js",
+      "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/grupos-shared.js",
+      "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/conta-email.js",
+      "/_logic-adi.js"
+    ];
+
+    function loadStyle(i) {
+      if (i >= styles.length) return;
+      fetch(styles[i], { cache: "reload" })
+        .then(function (r) { return r.text(); })
+        .then(function (css) {
+          var style = document.createElement("style");
+          style.textContent = css;
+          (thisScript.parentNode || document.head).insertBefore(style, thisScript);
+          loadStyle(i + 1);
+        })
+        .catch(function () { loadStyle(i + 1); });
+    }
+    loadStyle(0);
+
+    function loadScript(i) {
+      if (i >= scripts.length) return;
+      fetch(scripts[i], { cache: "reload" })
+        .then(function (r) { return r.text(); })
+        .then(function (code) {
+          (0, eval)(code);
+          loadScript(i + 1);
+        })
+        .catch(function () { loadScript(i + 1); });
+    }
+    loadScript(0);
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estudamana-header.js"></script></body></html>

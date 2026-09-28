@@ -7,13 +7,12 @@
   let filtroAno = "todos";
 
   // ---- dados: um arquivo por ano ----------------------------------------
-  // (A página do Blogger não carrega mais o arquivo grande: tudo vem daqui.)
   // O arquivo grande (adi_dados.js) é dividido em controleconst/anos/ pelo
   // scripts/dividir_por_ano.py: index.json (quantos itens por ano e por
   // classe) + um AAAA.json por ano. A página carrega o índice e depois só os
   // anos que precisa mostrar, com "no-cache" (o navegador só baixa de novo
   // o que mudou). Se a página ainda carregar o arquivo inteiro, usa ele.
-  const BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/anos/";
+  const BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@1808db3e2159a2c6017846b4e22979d6cb7f9f96/controleconst/anos/";
   const URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo=";
   const legado = window.CONSTITUCIONALIDADES_DATA;
 
