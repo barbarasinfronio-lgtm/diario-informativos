@@ -3,8 +3,7 @@ name: Limpar cache do jsDelivr
 # O site carrega os arquivos por cdn.jsdelivr.net/gh/...@main/, e o jsDelivr
 # guarda uma cópia por até 12h (ou mais). Sem isso, uma correção enviada ao
 # main demora horas para aparecer. Este robô pede ao jsDelivr para buscar de
-# novo todos os .js e .css da raiz, e os alterados em subpastas, sempre
-# que o main muda.
+# novo os arquivos alterados sempre que o main muda.
 on:
   push:
     branches: [main]
@@ -18,18 +17,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Todos os .js/.css da raiz + os .js/.css alterados neste envio em
-      # qualquer pasta (ex.: controleconst/, reclamacoes/), que antes ficavam
-      # de fora e podiam demorar horas para aparecer.
+      # Só os arquivos alterados neste envio (.js/.css/.json, em qualquer
+      # pasta). Limpar todos a cada envio fazia o jsDelivr recusar os pedidos
+      # por excesso ("throttled", visto em 28/09/2026). Rodando na mão, limpa
+      # todos.
       - name: Listar arquivos
         run: |
-          ls *.js *.css > arquivos.txt
+          : > arquivos.txt
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            git ls-files '*.js' '*.css' >> arquivos.txt   # na mão: todas as pastas
+            git ls-files '*.js' '*.css' '*.json' > arquivos.txt
           elif git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
-            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '*.js' '*.css' >> arquivos.txt
+            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '*.js' '*.css' '*.json' > arquivos.txt
+          else
+            ls *.js *.css > arquivos.txt
           fi
           sort -u arquivos.txt -o arquivos.txt
+          echo "Arquivos:"; cat arquivos.txt
 
       # Limpar logo depois do envio não basta: nos primeiros segundos o
       # jsDelivr ainda enxerga a versão anterior do main e volta a guardá-la
