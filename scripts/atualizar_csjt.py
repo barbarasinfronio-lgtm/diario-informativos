@@ -131,7 +131,9 @@ def main():
     linhas = ["    { tipo: %s, numero: %s, ementa: %s, link: %s }," % tuple(
         json.dumps(n[k], ensure_ascii=False) for k in ("tipo", "numero", "ementa", "link")) for n in unicas]
     bloco = ("  // >>> csjt (gerado por scripts/atualizar_csjt.py a partir da JusLaboris — não editar à mão)\n"
-             '  csjt: { label: "CSJT — Conselho Superior da Justiça do Trabalho", status: "disponivel", normas: [\n'
+             '  csjt: { label: "CSJT — Conselho Superior da Justiça do Trabalho", status: "disponivel",\n'
+             '    descricao: "Todas as Resoluções e Recomendações do CSJT em vigor, conforme a biblioteca digital do TST (JusLaboris), atualizadas toda semana. As revogadas ficam de fora.",\n'
+             '    normas: [\n'
              + "\n".join(linhas) + "\n  ]},\n  // <<< csjt\n")
 
     caminho = os.path.join(RAIZ, "normas-data.js")

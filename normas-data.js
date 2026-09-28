@@ -1,4 +1,11 @@
-// Diário das Resoluções — dados (CNJ, CNMP, CONAMA, CONANDA).
+// Diário das Resoluções — dados (CNJ, CSJT, CNMP, CSMPT, CONAMA, CONANDA).
+//
+// Cada órgão pode ter "descricao" (texto que aparece no topo do Diário quando
+// ele está escolhido) e "aviso" (nota extra). Sem "descricao", vale o texto
+// padrão de lista curada (normas-logic.js).
+//
+// CSJT e CSMPT: blocos gerados pelos robôs scripts/atualizar_csjt.py e
+// scripts/atualizar_csmpt.py (rodam toda semana no Mac) — não editar à mão.
 //
 // CNJ: lista EXAUSTIVA de todas as Resoluções e Recomendações "Vigente" no
 // site oficial (atos.cnj.jus.br), extraída em 21/09/2026 — a pessoa que
@@ -14,7 +21,9 @@
 
 var NORMAS_DATA = {
 
-  cnj: { label: "CNJ — Conselho Nacional de Justiça", status: "disponivel", normas: [
+  cnj: { label: "CNJ — Conselho Nacional de Justiça", status: "disponivel",
+    descricao: "Todas as Resoluções e Recomendações do CNJ em vigor, conforme o buscador oficial do CNJ (atos.cnj.jus.br). Vá marcando conforme for lendo.",
+    normas: [
     { tipo: "Recomendação", numero: "80/2005", ementa: "Recomenda aos Tribunais e outros órgãos do Poder Judiciário com atuação direta ou indireta sobre os Juizados Especiais a adoção de diversas medidas de aperfeiçoamento dos Juizados Especiais.", link: "https://atos.cnj.jus.br/atos?atos=sim&numero=80&ano=2005" },
     { tipo: "Recomendação", numero: "2/2006", ementa: "Recomenda aos Tribunais de Justiça a implantação de equipe interprofissional em todas as comarcas do Estado, de acordo com o que prevêem os arts. 150 e 151 do Estatuto da Criança e do Adolescente (Lei nº 8.069/90).", link: "https://atos.cnj.jus.br/atos?atos=sim&numero=2&ano=2006" },
     { tipo: "Recomendação", numero: "3/2006", ementa: "Recomenda a especialização de varas criminais para processar e julgar delitos praticados por organizações criminosas e dá outras providências.", link: "https://atos.cnj.jus.br/atos?atos=sim&numero=3&ano=2006" },
@@ -664,7 +673,9 @@ var NORMAS_DATA = {
 
 
   // >>> csjt (gerado por scripts/atualizar_csjt.py a partir da JusLaboris — não editar à mão)
-  csjt: { label: "CSJT — Conselho Superior da Justiça do Trabalho", status: "disponivel", normas: [
+  csjt: { label: "CSJT — Conselho Superior da Justiça do Trabalho", status: "disponivel",
+    descricao: "Todas as Resoluções e Recomendações do CSJT em vigor, conforme a biblioteca digital do TST (JusLaboris), atualizadas toda semana. As revogadas ficam de fora.",
+    normas: [
     { tipo: "Resolução", numero: "1/2000", ementa: "Determina a realização de eleição para preenchimento dos cargos de Presidente e Vice-Presidente do Tribunal Regional do Trabalho da Décima Terceira Região e a posse dos eleitos.", link: "https://hdl.handle.net/20.500.12178/24829" },
     { tipo: "Resolução", numero: "2/2000", ementa: "Determina que os Tribunais Regionais do Trabalho distribuam a totalidade dos processos pendentes de distribuição de acordo com as peculiaridades de cada Tribunal.", link: "https://hdl.handle.net/20.500.12178/24835" },
     { tipo: "Resolução", numero: "4/2002", ementa: "Recomenda aos Tribunais Regionais do Trabalho que observem rigorosamente a vedação contida nos incisos V e VI do art. 167 da Constituição Federal e se abstenham de promover descentralizações de créditos orçamentários não amparadas nas hipóteses do Decreto n. 825, de 28 de maio de 1993.", link: "https://hdl.handle.net/20.500.12178/29997" },
@@ -1073,7 +1084,10 @@ var NORMAS_DATA = {
   // <<< csjt
 
   // >>> csmpt (gerado por scripts/atualizar_csmpt.py a partir do site do MPT — não editar à mão)
-  csmpt: { label: "CSMPT — Conselho Superior do Ministério Público do Trabalho", status: "disponivel", aviso: "Lista completa do site do MPT, que não indica quais resoluções foram revogadas.", normas: [
+  csmpt: { label: "CSMPT — Conselho Superior do Ministério Público do Trabalho", status: "disponivel", 
+    descricao: "Todas as Resoluções do Conselho Superior do MPT publicadas no site do MPT, atualizadas toda semana.",
+    aviso: "Atenção: o site do MPT não indica quais foram revogadas, então todas aparecem aqui.",
+    normas: [
     { tipo: "Resolução", numero: "4/1993", ementa: "Dispõe sobre Lista de antiguidade", link: "http://midia-ext.mpt.mp.br/pgt/csmpt/resolucoes/resolu04.pdf" },
     { tipo: "Resolução", numero: "5/1993", ementa: "Autorizar, por unanimidade, a remoção temporária de procuradores.", link: "http://midia-ext.mpt.mp.br/pgt/csmpt/resolucoes/resolu05.pdf" },
     { tipo: "Resolução", numero: "8/1994", ementa: "põe sobre a lista de antiguidade dos Membros do MPT até 31 de dezembro de 1993.", link: "http://midia-ext.mpt.mp.br/pgt/csmpt/resolucoes/resolu08.pdf" },

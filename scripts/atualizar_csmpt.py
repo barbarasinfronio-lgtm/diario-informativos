@@ -111,7 +111,8 @@ def main():
         json.dumps(n[k], ensure_ascii=False) for k in ("tipo", "numero", "ementa", "link")) for n in normas]
     bloco = ("  // >>> csmpt (gerado por scripts/atualizar_csmpt.py a partir do site do MPT — não editar à mão)\n"
              f'  csmpt: {{ label: {json.dumps(LABEL, ensure_ascii=False)}, status: "disponivel", '
-             'aviso: "Lista completa do site do MPT, que não indica quais resoluções foram revogadas.", normas: [\n'
+             '\n    descricao: "Todas as Resoluções do Conselho Superior do MPT publicadas no site do MPT, atualizadas toda semana.",'
+             '\n    aviso: "Atenção: o site do MPT não indica quais foram revogadas, então todas aparecem aqui.",\n    normas: [\n'
              + "\n".join(linhas) + "\n  ]},\n  // <<< csmpt\n")
 
     caminho = os.path.join(RAIZ, "normas-data.js")

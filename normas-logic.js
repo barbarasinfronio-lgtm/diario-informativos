@@ -97,7 +97,7 @@
 
     var info = NORMAS_DATA[currentOrg];
     ledeText.textContent = info.status === "disponivel"
-      ? "Escolha o órgão no menu acima e vá marcando conforme for lendo. Lista curada a partir dos editais mapeados, mais um conjunto mínimo de normas estruturais de cada órgão — não é um catálogo exaustivo de tudo o que está vigente."
+      ? info.descricao || "Escolha o órgão no menu acima e vá marcando conforme for lendo. Lista curada a partir dos editais mapeados, mais um conjunto mínimo de normas estruturais de cada órgão — não é um catálogo exaustivo de tudo o que está vigente."
       : "Esse órgão ainda está em preparação — as normas dele entram em breve.";
     if (info.status === "disponivel" && info.aviso) ledeText.textContent += " " + info.aviso;
     footerSource.innerHTML = info.status === "disponivel"
