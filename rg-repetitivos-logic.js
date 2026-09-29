@@ -469,6 +469,8 @@
       for (var i = 0; i < all0.length; i++) {
         if (/rg-repetitivos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
       }
+      // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
+      if (!src) src = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/rg-repetitivos-logic.js';
       if (src) {
         var s = document.createElement('script');
         s.id = 'conta-google-js';

@@ -510,7 +510,8 @@
   for (var i = 0; i < all0.length; i++) {
     if (/normas-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
   }
-  if (!src) return;
+  // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
+  if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/normas-logic.js";
   function go() {
     if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
