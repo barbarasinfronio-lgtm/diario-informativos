@@ -67,7 +67,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Advogado Público",
-  "editais": ["pgece-2021", "agu-adv-2022", "pfn-2022", "pge-al-procurador-2026", "pge-ac-procurador-2026", "agu-procurador-federal-2022"]
+  "editais": ["pgece-2021", "agu-adv-2022", "pfn-2022", "pge-al-procurador-2026", "pge-ac-procurador-2026", "agu-procurador-federal-2022", "pge-es-1-2025", "pge-mg-1-2022", "pge-to-1-2025", "pge-pi-2025", "pge-mt-9-2025", "pge-rn-23", "pge-pr-24-2024", "pge-pa-23", "pge-go-15-2024"]
  },
  {
   "id": "exame-enac",
