@@ -123,6 +123,17 @@ histórico de uma vez (demora, pode passar de uma hora):
 `python3 scripts/atualizar_informativos.py TESES --tudo` e depois o `.command`
 para enviar.
 
+**Leis alteradas depois de lidas**: o mesmo comando confere, no texto
+compilado do Planalto, as leis mais cobradas (lista `LEIS_MONITORADAS` em
+`scripts/atualizar_informativos.py`: CF, CP, CPP, CC, CPC, CLT, CTN, CDC, ECA,
+LEP, 8.112, LIA, 14.133, 9.784, LINDB, Drogas, Maria da Penha, Hediondos,
+LRF, 9.099, ACP, MS, LGPD, 8.213, LEF e Orcrim). Cada norma alteradora nova
+("Redação dada pela…", "Incluído pela…", "Revogado pela…") é gravada em
+`leis/alteracoes.json` com a data em que foi percebida. A página **Meu
+Progresso** mostra um aviso quando uma lei marcada como lida no Diário de
+Leis foi alterada depois da leitura ("Já revisei" esconde o aviso neste
+navegador). Na primeira execução o robô só anota o que já existe.
+
 Alguns endereços (o `scon.stj.jus.br` das Teses, em 09/2026) barram até o
 Chrome invisível. Nesse caso o script usa o **Chrome de verdade** do Mac, por
 AppleScript: abre uma janela, lê a página e fecha no fim. Precisa, uma vez só,
