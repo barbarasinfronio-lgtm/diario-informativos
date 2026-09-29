@@ -113,6 +113,16 @@ consulta só. STJ e TSE recusam (403) qualquer programa, mesmo do Brasil: para e
 script abre a página pelo **Google Chrome do Mac**, em modo invisível e com
 um perfil temporário (não mexe no Chrome que estiver aberto).
 
+**Jurisprudência em Teses (STJ)**: o mesmo comando lê o feed das edições e,
+de cada edição, a página com as teses (`doc.jsp?livre='285' INPATH(TIT)`).
+Cada tese vira um card no Diário das Decisões, com o texto completo, a matéria,
+o julgado mais recente e a legislação citada — tudo em `stj/teses.json`, que a
+página carrega junto com o TST. Edições novas entram na hora; o histórico
+(~285 edições) entra aos poucos, 30 edições por execução. Para trazer todo o
+histórico de uma vez (demora, pode passar de uma hora):
+`python3 scripts/atualizar_informativos.py TESES --tudo` e depois o `.command`
+para enviar.
+
 O script também completa a cadeia de certificados HTTPS quando o servidor
 não manda o intermediário (caso do STF).
 
