@@ -174,14 +174,15 @@
   .row:hover { box-shadow: var(--shadow); }
 
   /* Tela larga: tudo numa linha (caixa · número/data · selo · jornal · Abrir).
-     O empilhado acima fica só para o celular, onde o selo espremia o número. */
+     O empilhado acima fica só para o celular, onde o selo espremia o número.
+     Súmulas e Resoluções (.sumula-row) têm layout próprio. */
   @media (min-width: 640px) {
-    .row {
+    .row:not(.sumula-row) {
       grid-template-columns: auto minmax(0, 1fr) auto auto auto;
       grid-template-areas: "check edition badge star open";
       gap: 0.9rem;
     }
-    .row .badge { justify-self: end; }
+    .row:not(.sumula-row) .badge { justify-self: end; }
   }
 
   .check-wrap {
