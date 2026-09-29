@@ -4,7 +4,7 @@ uso: python3 montar.py <pasta-das-saidas> <itens.json>
 itens.json: [{"nome": "tjac", "id": ..., "sigla": ..., "cargo": ..., "orgao": ..., "titulo": ..., "edital": ...,
               "carreira": "carreira-magistratura-estadual" (opcional), "corrigir": {"errado": "certo"} (opcional)}]
 Lê <pasta>/<nome>-saida.json (mapear.js) e <nome>-entrada.json (grupos). Corrige erros de digitação dos
-editais (CORRIGIR + "corrigir" do item): se a forma certa está no Diário de Leis, vai para "leis".
+editais (CORRIGIR + "corrigir" do item). "grupos" no item substitui os grupos achados: se a forma certa está no Diário de Leis, vai para "leis".
 """
 import json, re, sys, os
 
@@ -13,6 +13,9 @@ CORRIGIR = {  # erros de digitação vistos em editais oficiais
   'Lei nº 6.015/1978': 'Lei nº 6.015/1973', 'Lei nº 911/1969': 'Decreto-Lei nº 911/1969',
   'Lei nº 3.365/1941': 'Decreto-Lei nº 3.365/1941', 'Lei nº 13.303/2006': 'Lei nº 13.303/2016',
   'Lei nº 16.105/2015': 'Lei nº 13.105/2015', 'Lei nº 9.985/2005': None,
+  'Lei nº 11.343/2016': 'Lei nº 11.343/2006', 'Lei nº 11.340/2016': 'Lei nº 11.340/2006',
+  'Lei nº 9.565/1998': 'Lei nº 9.656/1998', 'Lei nº 15.343/2006': 'Lei nº 11.343/2006',
+  'Lei nº 16.869/2019': 'Lei nº 13.869/2019', 'Lei nº 9.513/1997': 'Lei nº 9.503/1997',
 }
 HUMANISTICA = {'Sociologia do Direito', 'Psicologia Judiciária', 'Ética e Estatuto Jurídico da Magistratura Nacional',
                'Filosofia do Direito', 'Teoria Geral do Direito e da Política'}
@@ -65,7 +68,7 @@ def main(pasta, itens_path):
     for it in itens:
         sai = json.load(open(os.path.join(pasta, it['nome'] + '-saida.json'), encoding='utf-8'))
         ent_p = os.path.join(pasta, it['nome'] + '-entrada.json')
-        grupos = sai.get('grupos') or json.load(open(ent_p, encoding='utf-8')).get('grupos') or []
+        grupos = it.get('grupos') or sai.get('grupos') or json.load(open(ent_p, encoding='utf-8')).get('grupos') or []
         for g in grupos:
             if any('Formação Humanística' in d for d in g['disciplinas']):
                 g['disciplinas'] = [d for d in g['disciplinas'] if d not in HUMANISTICA]
