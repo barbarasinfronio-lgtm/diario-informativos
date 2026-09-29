@@ -24,6 +24,9 @@ Object.keys(LEIS_DATA).forEach(function (m) {
 function comPontos(n) { return String(+n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 ENT.secoes.forEach(function (s) {
   var t = s.texto.replace(/\s+/g, ' ');
+  // "Lei nº 11.343, de 23 de agosto de 2006" -> "Lei nº 11.343/2006"
+  t = t.replace(/\b(Lei Complementar|Lei|Decreto[- ][Ll]ei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*),?\s*de\s+\d{1,2}[ºo°]?\s+de\s+[a-zçãéêô]+\s+de\s+(\d)\.?(\d{3})\b/gi,
+    function (_, tp, n, a, b) { return tp + ' nº ' + n + '/' + a + b; });
   // "Lei Distrital nº 4.567/2011", "Lei Complementar Estadual nº 58/2006", "Decreto Distrital nº ..."
   t = t.replace(/\b(Lei Complementar|Lei|Decreto)\s+(Distrital|Estadual)\s*(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.?\d{3})*)\s*\/\s*(\d{4}|\d{2})\b/gi, function (_, tipo, esfera, num, ano) {
     ano = ano.length === 2 ? (+ano > 30 ? '19' : '20') + ano : ano;
