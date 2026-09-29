@@ -2965,6 +2965,7 @@
   ];
 
   var CNJ_DATA = [
+    { edicao: 13, ano: 2026, data: "2026-09-14", sumula: null, link: "https://atos.cnj.jus.br/files/original214336202609146aa86a88879c5.pdf" },
     { edicao: 12, ano: 2026, data: "2026-09-04", sumula: false, link: "https://atos.cnj.jus.br/files/original211412202609046a9b34a42f24f.pdf" },
     { edicao: 11, ano: 2026, data: "2026-08-24", sumula: false, link: "https://atos.cnj.jus.br/files/original220357202608246a8cbfcd25262.pdf" },
     { edicao: 10, ano: 2026, data: "2026-07-07", sumula: false, link: "https://atos.cnj.jus.br/files/original150034202607076a4d1492dc1d8.pdf" },
