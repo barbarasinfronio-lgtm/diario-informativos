@@ -17,12 +17,14 @@
   if (GS) GS.ensureFirebaseApp();
 
   var METRICS = [
-    { key: "total", label: "Pontuação geral (todos os diários + bônus de pontualidade)", unit: "pts" },
+    { key: "total", label: "Total geral (soma de todos os diários)", unit: "leituras" },
     { key: "lidas", label: "Diário dos Informativos" },
     { key: "lidasLeis", label: "Diário das Leis" },
     { key: "lidasSumulas", label: "Diário das Súmulas" },
     { key: "lidasDecisoes", label: "Diário das Decisões" },
-    { key: "lidasNormas", label: "Diário das Resoluções" }
+    { key: "lidasNormas", label: "Diário das Resoluções" },
+    { key: "lidasAdi", label: "Diário de Constitucionalidade" },
+    { key: "lidasRcl", label: "Diário das Reclamações" }
   ];
 
   var listRoot = document.getElementById("groups-list");

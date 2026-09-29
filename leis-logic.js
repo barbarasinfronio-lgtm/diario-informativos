@@ -254,8 +254,22 @@
     syncTimer = setTimeout(doSync, 700);
   }
 
+  // Total de leis lidas vira o campo "lidasLeis" em cada grupo de estudo
+  // (ranking de "Meus Grupos").
+  function pushGrupos() {
+    var GS = window.GruposShared;
+    if (!GS || !viewerId) return;
+    var n = Object.keys(lidos).filter(isLida).length;
+    GS.readGroups().forEach(function (g) {
+      GS.updateMember(g.code, viewerId, {
+        name: g.name, lidasLeis: n, avatar: GS.readAvatarPref(), joinedAt: g.joinedAt
+      }).catch(function () {});
+    });
+  }
+
   function doSync() {
     gravarLidos();
+    pushGrupos();
     if (!dbReady || !progressDoc) return;
     progressDoc.set({ map: lidos, updatedAt: new Date().toISOString() }, { merge: true })
       .catch(function (err) {
@@ -286,7 +300,9 @@
       applyingRemote = true;
       if (aplicarRemoto(data.map)) { gravarLidos(); if (window.__leisRender) window.__leisRender(); }
       applyingRemote = false;
+      pushGrupos();
     }, function () {});
+    pushGrupos();
   }
 
   // ---- página --------------------------------------------------------------
@@ -519,7 +535,18 @@
   }
 
   function startContaGoogle() {
-    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) { dbReady = true; return; }
+    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG && window.GruposShared)) {
+      // A página no Blogger não traz o Firebase: baixa tudo (nuvem-shared.js)
+      // e tenta de novo. Sem internet, segue só com o que está neste navegador.
+      if (window.EstudaManaNuvem || startContaGoogle.tentou) { dbReady = true; return; }
+      startContaGoogle.tentou = true;
+      var n = document.createElement("script");
+      n.src = scriptBase() + "nuvem-shared.js";
+      n.onload = function () { window.EstudaManaNuvem.preparar().then(function (uid) { if (uid) startContaGoogle(); else dbReady = true; }); };
+      n.onerror = function () { dbReady = true; };
+      document.head.appendChild(n);
+      return;
+    }
     ensureAccountPanel();
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
     firebase.auth().onAuthStateChanged(function (user) {

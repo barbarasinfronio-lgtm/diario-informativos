@@ -192,7 +192,13 @@
   // ---- Ranking -------------------------------------------------------
   // Lê um campo de pontuação do documento do membro, com fallback para 0
   // quando o diário ainda não gravou nada nesse campo para essa pessoa.
+  // "total" = soma das leituras de todos os diários (nenhuma página grava
+  // esse campo; ele é calculado aqui a partir dos campos de cada diário).
+  S.METRIC_FIELDS = ["lidas", "lidasLeis", "lidasSumulas", "lidasDecisoes", "lidasNormas", "lidasAdi", "lidasRcl"];
   S.memberValue = function (raw, metricField) {
+    if (metricField === "total") {
+      return S.METRIC_FIELDS.reduce(function (soma, f) { return soma + ((raw && +raw[f]) || 0); }, 0);
+    }
     return (raw && raw[metricField]) || 0;
   };
 
