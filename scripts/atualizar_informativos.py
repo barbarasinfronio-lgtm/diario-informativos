@@ -17,8 +17,9 @@ certo é gravado; no fim aparece ERRO para o que falhou.
 Como cada um é conferido:
   STF   número seguinte ao último registrado: página HTML oficial da edição
         (data no cabeçalho "Brasília, 21 de setembro de 2026") ou o PDF.
-  STJ   número seguinte: PDF em scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0902
-        (data = data de criação gravada dentro do PDF).
+  STJ   número seguinte: página da edição em processo.stj.jus.br (título
+        "Informativo de Jurisprudência n. 902 - 22 de setembro de 2026");
+        o link gravado é o PDF (scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0902).
   TSE   páginas de listagem do Informativo TSE; o endereço de cada edição
         traz número e período ("...-no-12-ano-28-de-16-a-31-de-agosto-de-2026";
         data = fim do período).
@@ -27,6 +28,9 @@ Como cada um é conferido:
         (data = fim do período do título; não inclui o "TST Execução").
   CNMP  lista "Boletim de Sessão - 11ª Sessão Ordinária 06/08/2026 - Edição
         nº 11/2026" (sessões canceladas ficam de fora, como no Diário).
+
+STJ e TSE recusam (403) qualquer programa, mesmo do Brasil; para eles a
+página é aberta pelo Google Chrome do Mac, em modo invisível.
 
 Para STF e STJ, antes de procurar edições novas o robô abre a última já
 registrada, que com certeza existe: se nem ela abrir, é bloqueio, não
@@ -44,8 +48,10 @@ import html
 import re
 import socket
 import ssl
+import shutil
 import subprocess
 import sys
+import tempfile
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -136,10 +142,71 @@ def buscar(url):
     raise Falha(f"{url} → sem resposta")
 
 
+# Alguns sites (STJ e TSE) têm proteção anti-robô: recusam (403) qualquer
+# programa, mesmo do Brasil, mas aceitam um navegador de verdade. Para esses,
+# quando vier 403, a página é aberta pelo Google Chrome do Mac, em modo
+# invisível (headless), com um perfil temporário — não mexe no Chrome aberto.
+CHROMES = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+]
+_via_navegador = set()  # hosts que já recusaram o acesso direto nesta rodada
+_chrome = {}
+
+
+def _achar_chrome():
+    if "caminho" not in _chrome:
+        caminho = next((c for c in CHROMES if Path(c).exists()), None)
+        caminho = caminho or shutil.which("google-chrome") or shutil.which("chromium")
+        ua = UA
+        if caminho:
+            try:
+                v = subprocess.run([caminho, "--version"], capture_output=True,
+                                   text=True, timeout=30).stdout
+                m = re.search(r"(\d+)\.\d+\.\d+\.\d+", v)
+                if m:  # User-Agent igual ao do Chrome normal (sem "Headless")
+                    ua = re.sub(r"Chrome/[\d.]+", f"Chrome/{m.group(1)}.0.0.0", UA)
+            except Exception:
+                pass
+        _chrome.update(caminho=caminho, ua=ua)
+    return _chrome["caminho"], _chrome["ua"]
+
+
+def pagina_navegador(url):
+    caminho, ua = _achar_chrome()
+    if not caminho:
+        raise Falha("o site recusou o acesso direto e não achei o Google Chrome "
+                    "neste Mac para abrir a página")
+    with tempfile.TemporaryDirectory() as perfil:
+        try:
+            r = subprocess.run(
+                [caminho, "--headless=new", "--disable-gpu", "--no-first-run",
+                 "--no-default-browser-check", "--disable-extensions",
+                 f"--user-data-dir={perfil}", f"--user-agent={ua}", "--lang=pt-BR",
+                 "--virtual-time-budget=15000", "--dump-dom", url],
+                capture_output=True, text=True, timeout=120)
+        except subprocess.TimeoutExpired:
+            raise Falha(f"{url} → o Chrome não terminou de abrir a página em 2 minutos")
+    texto = r.stdout or ""
+    print(f"  {url} → pelo Chrome ({len(texto)} caracteres)")
+    if len(texto) < 500 or re.search(r"Access Denied|Request Rejected|acesso negado", texto[:3000], re.I):
+        raise Falha(f"{url} → o site recusou até o Chrome")
+    return texto
+
+
 def pagina(url):
-    """Texto de uma página HTML; qualquer coisa diferente de 200 → Falha."""
+    """Texto de uma página HTML; qualquer coisa diferente de 200 → Falha.
+    Se o site responder 403, tenta de novo pelo Chrome do Mac."""
+    host = urllib.parse.urlsplit(url).hostname
+    if host in _via_navegador:
+        return pagina_navegador(url)
     status, tipo, corpo = buscar(url)
     print(f"  {url} → HTTP {status}")
+    if status == 403:
+        _via_navegador.add(host)
+        return pagina_navegador(url)
     if status != 200:
         raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
     return texto_de(corpo, tipo)
@@ -294,12 +361,19 @@ def stj(dados):
     ultimo = dados.registradas(var)[0][0]
 
     def conferir(n):
-        url = f"https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}"
-        status, tipo, corpo = buscar(url)
-        print(f"  PDF nº {n} → HTTP {status} ({tipo}, {len(corpo)} bytes)")
-        if status == 200 and eh_pdf(tipo, corpo):
-            return {"edicao": n, "data": data_do_pdf(corpo), "link": url}
-        return None
+        # Página da edição: o título traz "Informativo de Jurisprudência
+        # n. 902 - 22 de setembro de 2026". O link gravado é o PDF oficial.
+        url = ("https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
+               f"?acao=pesquisarumaedicao&livre={n:04d}.cod.")
+        t = re.sub(r"<[^>]+>|\s+", " ", html.unescape(pagina(url)))
+        m = re.search(rf"Informativo de Jurisprud\S*\s+n\.?\s*0*{n}\s*[-–—]\s*"
+                      r"(\d{1,2})[º°o]?\s+de\s+(\S+)\s+de\s+(\d{4})", t, re.I)
+        if not m:
+            print(f"  nº {n}: não está na página")
+            return None
+        mes = mes_num(m.group(2))
+        return {"edicao": n, "data": iso(m.group(3), mes, m.group(1)) if mes else None,
+                "link": f"https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}"}
 
     return por_numero(dados, var, ultimo, conferir, com_link=True)
 
