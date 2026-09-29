@@ -1,0 +1,33 @@
+name: tmp investigar fontes
+on:
+  push:
+    branches: [ccr-ff185eee-he0tot]
+    paths: ['.github/workflows/tmp-investigar.yml']
+jobs:
+  i:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
+          g() { echo; echo "######## $1"; curl -sSL --max-time 40 -A "$UA" -H 'Accept-Language: pt-BR' -o p.html -w 'HTTP %{http_code} %{content_type} %{size_download}b final=%{url_effective}\n' "$1" || echo FALHOU; }
+          g "https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
+          grep -oiE 'href="[^"]*"' p.html | grep -iE 'informativo|edicao|INFJ' | sort -u | head -40
+          grep -oiE '[^<>]{0,80}(901|902|903)[^<>]{0,80}' p.html | head -20
+          g "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0902"
+          g "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0901"
+          g "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0999"
+          head -c 300 p.html; echo
+          g "https://www.tse.jus.br/jurisprudencia/informativo-tse"
+          grep -oiE 'href="[^"]*informativo-tse[^"]*"' p.html | sort -u | head -40
+          g "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026"
+          grep -oiE 'href="[^"]*informativo-tse-no[^"]*"' p.html | sort -u | head -40
+          g "https://www.cnj.jus.br/jurisprudencia/informativo-de-jurisprudencia/"
+          grep -oiE 'href="[^"]*"' p.html | grep -iE 'informativo|atos.cnj|\.pdf' | sort -u | head -40
+          g "https://atos.cnj.jus.br/jurisprudencia"
+          grep -oiE 'href="[^"]*"' p.html | grep -iE 'informativo|files|\.pdf' | sort -u | head -40
+          grep -oiE '[^<>]{0,120}Informativo[^<>]{0,120}' p.html | head -20
+          g "https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao"
+          grep -oiE 'href="[^"]*Boletim[^"]*"' p.html | sort -u | head -40
+          grep -oiE '<a [^>]*Boletim[^>]*>[^<]{0,120}' p.html | head -20
+          g "https://juslaboris.tst.jus.br/handle/20.500.12178/269695"
+          grep -oiE 'href="[^"]*handle[^"]*"' p.html | sort -u | head -20
