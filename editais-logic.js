@@ -143,14 +143,15 @@
     return '<div class="ed-row' + (main ? " is-main" : "") + (isUniao ? " is-uniao" : "") + '" id="ed-' + ed.id + '">' +
       '<div class="ed-row-main">' +
         '<span class="ed-sigla' + (isUniao ? " is-uniao" : "") + '">' + esc(isUniao ? "TODOS" : ed.sigla) + "</span>" +
-        '<div class="ed-row-text"><b>' + esc(titulo) + '</b><span class="ed-row-meta">' + esc(meta) + "</span>" +
-          '<span class="ed-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></span></div>' +
+        '<div class="ed-row-text"><b>' + esc(titulo) + "</b>" +
+          '<div class="ed-row-sub"><span class="ed-row-meta">' + esc(meta) + "</span>" +
+            '<span class="ed-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></span>' +
+            '<details class="ed-more" data-ed="' + ed.id + '"' + (maisAbertos[ed.id] ? " open" : "") + "><summary>" +
+              (isUniao ? "Disciplinas e leis" : "Ver conteúdo") + "</summary>" +
+              '<div class="ed-more-body">' + (maisAbertos[ed.id] ? conteudo(ed) : "") + "</div></details>" +
+          "</div></div>" +
         acao +
-      "</div>" +
-      '<details class="ed-more" data-ed="' + ed.id + '"' + (maisAbertos[ed.id] ? " open" : "") + "><summary>" +
-        (isUniao ? "Disciplinas e leis" : "Conteúdo programático e leis") + "</summary>" +
-        '<div class="ed-more-body">' + (maisAbertos[ed.id] ? conteudo(ed) : "") + "</div></details>" +
-    "</div>";
+      "</div></div>";
   }
 
   // o conteúdo (disciplinas e leis) só é montado quando a pessoa abre
