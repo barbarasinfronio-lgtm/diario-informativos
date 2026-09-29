@@ -259,6 +259,18 @@
 
   renderAllCards();
 
+  // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
+  // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
+  // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.
+  function carregarContaGoogle(url) {
+    if ((window.ContaGoogle && window.ContaGoogle.iniciar) || window.EstudaManaContaCarregando) return;
+    window.EstudaManaContaCarregando = true;
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+      .then(function (code) { (0, eval)(code); })
+      .catch(function () { window.EstudaManaContaCarregando = false; });
+  }
+
   // Quadro de login (conta-google.js): esta página não tem #account-panel no
   // HTML, então criamos um no topo e carregamos o script da mesma pasta.
   (function contaGoogle() {
@@ -269,16 +281,12 @@
       var main = (listRoot && listRoot.closest("main")) || document.querySelector("main");
       if (main) main.insertBefore(panel, main.firstChild);
     }
-    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     var all0 = document.getElementsByTagName("script"), src = "";
     for (var i = 0; i < all0.length; i++) {
       if (/meus-grupos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
     }
     if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/meus-grupos-logic.js";
-    var s = document.createElement("script");
-    s.id = "conta-google-js";
-    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
-    document.head.appendChild(s);
+    carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   })();
 
   if (GS) {

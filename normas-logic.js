@@ -512,13 +512,20 @@
   }
   // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
   if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/normas-logic.js";
+  // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
+  // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
+  // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.
+  function carregarContaGoogle(url) {
+    if ((window.ContaGoogle && window.ContaGoogle.iniciar) || window.EstudaManaContaCarregando) return;
+    window.EstudaManaContaCarregando = true;
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+      .then(function (code) { (0, eval)(code); })
+      .catch(function () { window.EstudaManaContaCarregando = false; });
+  }
   function go() {
-    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
-    var s = document.createElement("script");
-    s.id = "conta-google-js";
-    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
-    document.head.appendChild(s);
+    carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);
 })();

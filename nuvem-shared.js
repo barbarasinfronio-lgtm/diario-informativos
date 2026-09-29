@@ -102,11 +102,13 @@
         });
       }
       if (window.ContaGoogle && window.ContaGoogle.iniciar) { window.ContaGoogle.iniciar(); return; }
-      if (document.getElementById("conta-google-js")) return;
-      var s = document.createElement("script");
-      s.id = "conta-google-js";
-      s.src = BASE + "conta-google.js";
-      document.head.appendChild(s);
+      // fetch sem cache: uma cópia antiga guardada pelo navegador não serve
+      if (window.EstudaManaContaCarregando) return;
+      window.EstudaManaContaCarregando = true;
+      return fetch(BASE + "conta-google.js", { cache: "no-cache" })
+        .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+        .then(function (code) { (0, eval)(code); })
+        .catch(function () { window.EstudaManaContaCarregando = false; });
     });
   }
 
