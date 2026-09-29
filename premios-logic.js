@@ -716,7 +716,7 @@
 
   /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
   var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/",
-                norma: "progress-normas/", dec: "progress-decisoes/" };
+                norma: "progress-normas/", dec: "progress-decisoes/", adi: "progress-adi/", rcl: "progress-rcl/" };
 
   function loadRemote() {
     return new Promise(function (resolve) {

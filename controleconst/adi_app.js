@@ -309,11 +309,41 @@
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lidos));
     render();
+    salvarNuvem();
     enviarGrupos();
   }
 
-  // Total lido vira o campo "lidasAdi" em cada grupo de estudo (Meus Grupos).
-  // nuvem-shared.js baixa o Firebase e faz o login só quando precisa.
+  // A conta (nuvem-shared.js): as leituras ficam salvas em progress-adi/<uid> para
+  // quem entrou com Google ou e-mail e senha, e o total lido vira o campo
+  // "lidasAdi" em cada grupo de estudo (Meus Grupos).
+  let nuvemP = null;
+  function nuvem() {
+    if (window.EstudaManaNuvem) return Promise.resolve(window.EstudaManaNuvem);
+    if (!nuvemP) {
+      nuvemP = new Promise(function (ok, erro) {
+        const s = document.createElement("script");
+        s.src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/nuvem-shared.js";
+        s.onload = function () { ok(window.EstudaManaNuvem); };
+        s.onerror = erro;
+        document.head.appendChild(s);
+      });
+    }
+    return nuvemP;
+  }
+
+  let salvarNuvem = function () {};
+  function ligarConta() {
+    nuvem().then(function (N) {
+      N.mostrarLogin(document.getElementById("list-root"));
+      salvarNuvem = N.sincronizarLidos({
+        caminho: "progress-adi/",
+        ler: function () { return lidos; },
+        gravar: function (novo) { lidos = novo; localStorage.setItem(STORAGE_KEY, JSON.stringify(lidos)); },
+        aoMudar: function () { render(); enviarGrupos(); }
+      });
+    }).catch(function () { /* sem internet: segue neste navegador */ });
+  }
+
   let grupoTimer = null;
   function enviarGrupos() {
     clearTimeout(grupoTimer);
@@ -322,12 +352,7 @@
     if (!temGrupo) return; // sem grupo, nada a enviar
     grupoTimer = setTimeout(function () {
       const total = Object.keys(lidos).length;
-      const enviar = function () { window.EstudaManaNuvem.enviarGrupos("lidasAdi", total); };
-      if (window.EstudaManaNuvem) return enviar();
-      const s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/nuvem-shared.js";
-      s.onload = enviar;
-      document.head.appendChild(s);
+      nuvem().then(function (N) { N.enviarGrupos("lidasAdi", total); }).catch(function () {});
     }, 800);
   }
 
@@ -431,5 +456,6 @@
   } else {
     init();
   }
+  ligarConta();
   enviarGrupos();
 })();

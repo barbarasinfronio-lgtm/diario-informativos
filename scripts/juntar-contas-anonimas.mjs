@@ -36,8 +36,9 @@ initializeApp({ credential: cert(JSON.parse(readFileSync(keyPath, "utf8"))) });
 const db = getFirestore();
 
 const MAPS = { "progress/": "lidas", "progress-leis/": "lidasLeis", "progress-sumulas/": "lidasSumulas",
-               "progress-normas/": "lidasNormas", "progress-decisoes/": "lidasDecisoes" };
-const SO_LOCAIS = ["lidasAdi", "lidasRcl", "estrelasOuro"]; // não ficam na nuvem: vale o maior
+               "progress-normas/": "lidasNormas", "progress-decisoes/": "lidasDecisoes",
+               "progress-adi/": "lidasAdi", "progress-rcl/": "lidasRcl" };
+const SO_LOCAIS = ["estrelasOuro"]; // não fica na nuvem: vale o maior
 
 const lida = (v) => v === true || !!(v && v.lida);
 const norm = (s) => String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
@@ -166,7 +167,7 @@ for (const p of planos) {
       n.vistos = union(n.vistos, pa.vistos);
       if (pa.revisoes) n.revisoes = mergeRevisoes(n.revisoes, pa.revisoes);
     }
-    for (const g of porUid.get(a).grupos) for (const f of SO_LOCAIS) locais[f] = Math.max(locais[f] || 0, +g.data[f] || 0);
+    for (const g of porUid.get(a).grupos) for (const f of [...SO_LOCAIS, ...Object.values(MAPS)]) locais[f] = Math.max(locais[f] || 0, +g.data[f] || 0);
   }
   for (const path of Object.keys(MAPS)) depois[path] = contar(novo[path] && novo[path].map);
   console.log(`\n  ${p.nome}: leituras ` + Object.keys(MAPS).map((k) => `${MAPS[k]} ${antes[k]}→${depois[k]}`).join(", "));
@@ -196,7 +197,11 @@ for (const p of planos) {
   for (const g of gruposAlvo.values()) {
     const atual = g.data || {};
     guardar(g.ref.path, porUid.get(p.alvo)?.grupos.find((x) => x.code === g.code)?.data || null);
-    const campos = { ...contagens, updatedAt: agora };
+    // nunca diminui uma contagem: vale o maior entre a união calculada, o que
+    // a conta já tinha no grupo e o que as anônimas tinham (páginas que ainda
+    // guardavam só no navegador mandavam o total direto para o grupo)
+    const campos = { updatedAt: agora };
+    for (const f of Object.values(MAPS)) campos[f] = Math.max(contagens[f] || 0, +atual[f] || 0, locais[f] || 0);
     for (const f of SO_LOCAIS) campos[f] = Math.max(+atual[f] || 0, locais[f] || 0);
     batch.set(g.ref, { ...atual, ...campos }, { merge: true });
   }

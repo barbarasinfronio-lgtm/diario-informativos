@@ -32,10 +32,14 @@
     { path: "progress-leis/", local: "leis-lidas" },
     { path: "progress-sumulas/", local: "sumulas-lidas" },
     { path: "progress-normas/", local: "normas-lidas" },
-    { path: "progress-decisoes/", local: "decisoes-lidas" }
+    { path: "progress-decisoes/", local: "decisoes-lidas" },
+    // estas duas guardam { id: "data ISO" } no navegador (iso: true)
+    { path: "progress-adi/", local: "em_lidos_constitucionalidades", iso: true },
+    { path: "progress-rcl/", local: "em_lidos_reclamacoes", iso: true }
   ];
   var LOCAL_CLEAR = [
     "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "decisoes-lidas",
+    "em_lidos_constitucionalidades", "em_lidos_reclamacoes",
     "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar",
     "informativos-grupo", "premios-vistos", "premios-conquistados",
     "editais-principal", "leis-filtro", "estudamana-menu-v1"
@@ -123,11 +127,26 @@
     return Promise.all(jobs).then(function () { return out; });
   }
 
+  // { id: "data ISO" } (navegador) <-> { id: { lida, lidaEm } } (conta)
+  function isoParaMap(o) {
+    var out = {};
+    Object.keys(o || {}).forEach(function (id) { if (o[id]) out[id] = { lida: true, lidaEm: typeof o[id] === "string" ? o[id] : null }; });
+    return out;
+  }
+  function mapParaIso(map) {
+    var out = {};
+    Object.keys(map || {}).forEach(function (id) {
+      var v = map[id];
+      if (v && v.lida !== false) out[id] = (v && v.lidaEm) || new Date().toISOString();
+    });
+    return out;
+  }
+
   // o que este aparelho tem guardado localmente (pode ter coisa ainda não enviada)
   function readLocal() {
     var out = { maps: {}, conquistados: lsJson("premios-conquistados", {}), vistos: lsJson("premios-vistos", []),
                 edital: lsGet("editais-principal") || "", grupos: lsJson("informativos-grupo", []) };
-    MAP_DOCS.forEach(function (m) { out.maps[m.path] = lsJson(m.local, {}); });
+    MAP_DOCS.forEach(function (m) { out.maps[m.path] = m.iso ? isoParaMap(lsJson(m.local, {})) : lsJson(m.local, {}); });
     if (!Array.isArray(out.grupos)) out.grupos = out.grupos && out.grupos.code ? [out.grupos] : [];
     return out;
   }
@@ -157,7 +176,10 @@
   }
 
   function writeLocal(data) {
-    MAP_DOCS.forEach(function (m) { lsSet(m.local, JSON.stringify(data.maps[m.path] || {})); });
+    MAP_DOCS.forEach(function (m) {
+      var map = data.maps[m.path] || {};
+      lsSet(m.local, JSON.stringify(m.iso ? mapParaIso(map) : map));
+    });
     lsSet("premios-conquistados", JSON.stringify(data.conquistados || {}));
     lsSet("premios-vistos", JSON.stringify(data.vistos || []));
     if (data.edital) lsSet("editais-principal", data.edital);
@@ -430,8 +452,10 @@
   }
 
   // ---- início ---------------------------------------------------------------
+  var iniciado = false;
   function start() {
-    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    if (iniciado || !(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    iniciado = true;
     try {
       if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
       firebase.auth().onAuthStateChanged(function (user) {
@@ -441,6 +465,8 @@
     } catch (e) {}
   }
 
-  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine, logado: logado };
+  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine, logado: logado,
+    // páginas que só carregam o Firebase depois (nuvem-shared.js) chamam de novo
+    iniciar: function () { if (iniciado) { try { render(firebase.auth().currentUser); } catch (e) {} } else start(); } };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

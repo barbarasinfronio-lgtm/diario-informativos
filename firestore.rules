@@ -1,0 +1,79 @@
+rules_version = '2';
+// Regras do Firestore do Estuda Mana (cópia do que está publicado no console
+// do Firebase: Firestore Database > Regras). Ao mudar aqui, cole lá e publique.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Quem já é membro do grupo (tem o próprio documento em members).
+    function isMember(code) {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/groups/$(code)/members/$(request.auth.uid));
+    }
+
+    // Progresso pessoal: cada pessoa só lê e grava o próprio documento.
+    // Gravar exige conta de verdade (Google ou e-mail e senha) — não há mais
+    // login anônimo. Ler continua valendo para a conta anônima antiga, para
+    // o site juntar o que estava nela quando a pessoa entra.
+    function dono(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    function contaDeVerdade() {
+      return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
+    // Diários: Informativos, Leis, Súmulas, Decisões, Resoluções,
+    // Constitucionalidade, Reclamações; e Meus Prêmios.
+    match /progress/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-leis/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-sumulas/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-decisoes/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-normas/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-adi/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-rcl/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+    match /progress-premios/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
+
+    // Grupos de estudo coletivo
+    match /groups/{code} {
+      // Abrir um grupo específico exige saber o código (é assim que se entra).
+      // Listar todos os grupos não é permitido a ninguém.
+      allow get: if request.auth != null;
+      allow list: if false;
+      allow create: if contaDeVerdade()
+                    && request.resource.data.createdBy == request.auth.uid;
+
+      match /members/{memberId} {
+        // Só quem é membro do grupo lê a lista e ranking.
+        allow read: if isMember(code);
+        // Entrar/atualizar exige conta de verdade; sair (apagar o próprio
+        // documento) vale também para a conta anônima antiga — é assim que
+        // ela deixa o grupo quando a pessoa entra com Google ou e-mail.
+        allow create, update: if request.auth != null && request.auth.uid == memberId && contaDeVerdade();
+        allow delete: if request.auth != null && request.auth.uid == memberId;
+      }
+    }
+  }
+}
