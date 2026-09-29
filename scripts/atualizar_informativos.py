@@ -55,6 +55,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -237,20 +238,128 @@ def pagina_navegador(url):
     return texto
 
 
-def pagina(url):
-    """Texto de uma página HTML; qualquer coisa diferente de 200 → Falha.
-    Se o site responder 403, tenta de novo pelo Chrome do Mac."""
+# Último recurso: o Google Chrome de verdade da pessoa (com janela), comandado
+# por AppleScript. Alguns endereços (scon.stj.jus.br, em 09/2026) barram até o
+# Chrome invisível, mas abrem normalmente no Chrome de todo dia. O robô abre
+# uma janela, carrega a página, copia o conteúdo e, no fim, fecha a janela.
+# Precisa, uma vez só: no Chrome, menu Visualizar > Opções do desenvolvedor >
+# "Permitir JavaScript de eventos da Apple"; e, na primeira vez, deixar o
+# Terminal controlar o Chrome (o macOS pergunta).
+_APPLESCRIPT = r"""
+on run argv
+  set modo to item 1 of argv
+  set u to item 2 of argv
+  set wid to item 3 of argv
+  tell application "Google Chrome"
+    set w to missing value
+    if wid is not "" then
+      try
+        set w to window id (wid as integer)
+      end try
+    end if
+    if w is missing value then set w to make new window
+    if modo is "abrir" then
+      set URL of active tab of w to u
+      delay 1
+      set t0 to current date
+      repeat while (loading of active tab of w) and ((current date) - t0 < 60)
+        delay 0.5
+      end repeat
+      delay 1
+    end if
+    if modo is "fechar" then
+      close w
+      return ""
+    end if
+    set h to execute active tab of w javascript "document.documentElement.outerHTML"
+    return (id of w as text) & linefeed & h
+  end tell
+end run
+"""
+_janela_chrome = {"id": ""}
+
+
+def _osascript(modo, url=""):
+    r = subprocess.run(["osascript", "-", modo, url, _janela_chrome["id"]],
+                       input=_APPLESCRIPT, capture_output=True, text=True, timeout=120)
+    if r.returncode != 0:
+        erro = (r.stderr or r.stdout).strip()
+        dica = ""
+        if "JavaScript" in erro or "Apple" in erro:
+            dica = (" — no Chrome, ative: Visualizar > Opções do desenvolvedor > "
+                    "Permitir JavaScript de eventos da Apple, e rode de novo")
+        elif "-1743" in erro or "autoriz" in erro.lower() or "not allowed" in erro.lower():
+            dica = (" — permita que o Terminal controle o Chrome em Ajustes do Sistema > "
+                    "Privacidade e Segurança > Automação")
+        raise Falha(f"não consegui usar o Chrome desta Mac ({erro[:200]}){dica}")
+    if modo == "fechar":
+        return ""
+    wid, _, htmltxt = r.stdout.partition("\n")
+    _janela_chrome["id"] = wid.strip()
+    return htmltxt
+
+
+def _fechar_janela_chrome():
+    if _janela_chrome["id"]:
+        try:
+            _osascript("fechar")
+        except Exception:
+            pass
+
+
+import atexit  # noqa: E402
+atexit.register(_fechar_janela_chrome)
+
+
+def pagina_chrome_real(url, valida=None):
+    if sys.platform != "darwin":
+        raise Falha(f"{url} → o site só abre no Chrome do Mac")
+    texto = _osascript("abrir", url)
+    # Páginas com verificação anti-robô ("Just a moment...") trocam sozinhas
+    # depois de alguns segundos: espera até o conteúdo certo aparecer.
+    for _ in range(12):
+        if not valida or valida(texto):
+            break
+        time.sleep(2)
+        texto = _osascript("ler")
+    print(f"  {url} → pelo seu Chrome ({len(texto)} caracteres)")
+    return texto
+
+
+_via_chrome_real = set()
+
+
+def _titulo(texto):
+    m = re.search(r"<title[^>]*>(.*?)</title>", texto, re.S | re.I)
+    return re.sub(r"\s+", " ", html.unescape(m.group(1))).strip()[:80] if m else "?"
+
+
+def pagina(url, valida=None):
+    """Texto de uma página; qualquer coisa diferente de 200 → Falha.
+    Se o site responder 403, tenta pelo Chrome invisível; se esse também for
+    barrado (ou trouxer uma página que não é a esperada — "valida" diz o que
+    esperar), tenta pelo Chrome de verdade do Mac."""
     host = urllib.parse.urlsplit(url).hostname
-    if host in _via_navegador:
-        return pagina_navegador(url)
-    status, tipo, corpo = buscar(url)
-    print(f"  {url} → HTTP {status}")
-    if status == 403:
+    if host in _via_chrome_real:
+        return pagina_chrome_real(url, valida)
+    if host not in _via_navegador:
+        status, tipo, corpo = buscar(url)
+        print(f"  {url} → HTTP {status}")
+        if status == 200:
+            return texto_de(corpo, tipo)
+        if status != 403:
+            raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
         _via_navegador.add(host)
-        return pagina_navegador(url)
-    if status != 200:
-        raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
-    return texto_de(corpo, tipo)
+    try:
+        texto = pagina_navegador(url)
+        if not valida or valida(texto):
+            return texto
+        print(f"  (o Chrome invisível recebeu outra página: \"{_titulo(texto)}\")")
+    except Falha as e:
+        if "recusou" not in str(e):
+            raise
+    _via_chrome_real.add(host)
+    return pagina_chrome_real(url, valida)
 
 
 def texto_de(corpo, tipo):
@@ -405,7 +514,7 @@ def stj_pelo_feed(ultimo):
     ficam de fora, como no Diário). None se o feed não abrir ou não trouxer
     nada reconhecível — aí o robô confere página por página."""
     try:
-        t = pagina(STJ_FEED)
+        t = pagina(STJ_FEED, valida=lambda x: "INFJ0" in x)
     except Falha as e:
         print(f"  (feed indisponível: {e}; conferindo página por página)")
         return None
@@ -479,7 +588,7 @@ def tse(dados):
     achadas, erros = {}, []
     for url in urls:
         try:
-            t = pagina(url)
+            t = pagina(url, valida=lambda x: "informativo-tse-no" in x)
         except Falha as e:
             erros.append(str(e))
             continue
@@ -638,7 +747,7 @@ def titulo_bonito(t):
 
 def teses_do_feed():
     """[(edicao, tema, 'aaaa-mm-dd')], da mais nova para a mais antiga."""
-    t = pagina(TESES_FEED)
+    t = pagina(TESES_FEED, valida=lambda x: "JT=" in x)
     # Serve para o XML cru e para o que o Chrome devolve (XML "escapado").
     t = texto_limpo(texto_limpo(t))
     achadas = {}
@@ -673,7 +782,7 @@ def _risco(data_iso, tese):
 
 def teses_da_edicao(n, tema, data_feed):
     url = TESES_DOC.format(n=n)
-    t = pagina(url)
+    t = pagina(url, valida=lambda x: "clsTemasJT" in x or "clsSubmitPesquisaTema" in x)
     materia = re.search(r'class="clsMateriaJT">(.*?)</div>', t, re.S)
     area = _area(texto_limpo(materia.group(1)) if materia else "")
     d = re.search(r"disponibilizada em:\s*<b[^>]*>(\d{2})/(\d{2})/(\d{4})", t)

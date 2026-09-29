@@ -123,6 +123,13 @@ histórico de uma vez (demora, pode passar de uma hora):
 `python3 scripts/atualizar_informativos.py TESES --tudo` e depois o `.command`
 para enviar.
 
+Alguns endereços (o `scon.stj.jus.br` das Teses, em 09/2026) barram até o
+Chrome invisível. Nesse caso o script usa o **Chrome de verdade** do Mac, por
+AppleScript: abre uma janela, lê a página e fecha no fim. Precisa, uma vez só,
+ativar no Chrome o menu **Visualizar > Opções do desenvolvedor > Permitir
+JavaScript de eventos da Apple** e deixar o Terminal controlar o Chrome
+(o macOS pergunta na primeira vez).
+
 O script também completa a cadeia de certificados HTTPS quando o servidor
 não manda o intermediário (caso do STF).
 
