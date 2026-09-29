@@ -1,5 +1,6 @@
 /*
- * premios-logic.js — motor e tela da página "Meus Prêmios".
+ * premios-logic.js — motor e tela da página "Meu Progresso" (prêmios; as
+ * abas Revisões e Histórico ficam em revisoes.js, baixado sob demanda).
  *
  * Lê as leituras que os três Diários (Informativos, Leis, Súmulas) já
  * guardam no navegador, calcula todos os prêmios do catálogo
@@ -13,6 +14,8 @@
 
   var CFG = window.PREMIOS_CONFIG;
   var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas" };
+  // só para as abas Histórico e Revisões (revisoes.js); não contam nos prêmios
+  var KEYS_EXTRA = { norma: "normas-lidas", dec: "decisoes-lidas", adi: "em_lidos_constitucionalidades", rcl: "em_lidos_reclamacoes" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
   var ORGS = ["stf", "stj", "tse", "cnj", "tst", "cnmp"];
@@ -578,6 +581,8 @@
       sum: remote.sum || load(KEYS.sum)
     };
     state.data = computeAll(maps, todayIso());
+    Object.keys(KEYS_EXTRA).forEach(function (k) { maps[k] = remote[k] || load(KEYS_EXTRA[k]); });
+    state.maps = maps;
     guardarConquistas();
   }
 
@@ -630,7 +635,8 @@
   }
 
   /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
-  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/" };
+  var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/",
+                norma: "progress-normas/", dec: "progress-decisoes/" };
 
   function loadRemote() {
     return new Promise(function (resolve) {
@@ -656,13 +662,42 @@
             return db.doc(PATHS[k] + user.uid).get().then(function (snap) {
               if (!snap.exists) return;
               var d = snap.data() || {};
-              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; if (d.conquistados && typeof d.conquistados === "object") out.conq = d.conquistados; }
+              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; if (d.conquistados && typeof d.conquistados === "object") out.conq = d.conquistados; if (d.revisoes && typeof d.revisoes === "object") out.rev = d.revisoes; }
               else if (d.map) out.maps[k] = d.map;
             }).catch(function (err) { out.errors[k] = (err && err.code) || "erro"; });
           })).then(function () { fin(out); });
         });
       } catch (e) { fin(null); }
     });
+  }
+
+  // "Revisei hoje" (revisoes.js): guarda as datas na conta
+  function pushRev(id, datas) {
+    var r = state.remote;
+    if (!r || !r.user) return;
+    var obj = {};
+    obj[id] = datas;
+    try {
+      firebase.firestore().doc(PATHS.premios + r.user.uid)
+        .set({ revisoes: obj, updatedAt: new Date().toISOString() }, { merge: true })
+        .then(function () { r.rev = r.rev || {}; r.rev[id] = datas; }).catch(function () {});
+    } catch (e) {}
+  }
+
+  // revisoes.js: baixado só quando precisa, sem cache velho
+  var extraJs = null;
+  function carregarExtra() {
+    if (window.ProgressoRevisoes) return Promise.resolve(window.ProgressoRevisoes);
+    if (!extraJs) {
+      extraJs = fetch("https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/revisoes.js", { cache: "no-cache" })
+        .then(function (r) { if (!r.ok) throw new Error("revisoes.js"); return r.text(); })
+        .then(function (code) { (0, eval)(code); return window.ProgressoRevisoes; })
+        .catch(function (e) { extraJs = null; throw e; });
+    }
+    return extraJs;
+  }
+  function extraOpts() {
+    return { tab: state.tab, maps: state.maps || {}, rev: (state.remote && state.remote.rev) || {}, salvarRev: pushRev };
   }
 
   function pushSeen(ids) {
@@ -817,7 +852,8 @@
   }
 
   function renderTabs() {
-    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }].concat(CATS.map(function (c) {
+    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }, { id: "revisoes", label: "Revisões", icon: "🔁" },
+      { id: "historico", label: "Histórico", icon: "🕘" }].concat(CATS.map(function (c) {
       return { id: c.id, label: c.label, icon: c.icon };
     })).concat([{ id: "todas", label: "Todas", icon: "🗂️" }]);
     return '<nav class="pz-tabs" aria-label="Categorias de prêmios">' + tabs.map(function (t) {
@@ -880,13 +916,25 @@
 
   function render() {
     var html = renderBanner() + renderTabs();
+    var extra = state.tab === "revisoes" || state.tab === "historico";
     if (state.tab === "resumo") {
-      html += renderHero() + renderShelf() + renderWeek() + renderNext() + renderBest() + renderCatTiles();
+      var cartao = window.ProgressoRevisoes ? ProgressoRevisoes.resumo(extraOpts()) : "";
+      html += cartao + renderHero() + renderShelf() + renderWeek() + renderNext() + renderBest() + renderCatTiles();
+    } else if (extra) {
+      html += '<section class="pz-section" id="pz-extra"><p class="pz-empty">Carregando…</p></section>';
     } else {
       html += renderList();
     }
     html += '<p class="pz-foot">' + syncNote() + "</p>";
     root.innerHTML = html;
+    if (extra) {
+      carregarExtra().then(function (m) {
+        if (state.tab === "revisoes" || state.tab === "historico") m.render(document.getElementById("pz-extra"), extraOpts());
+      }).catch(function () {
+        var el = document.getElementById("pz-extra");
+        if (el) el.innerHTML = '<p class="pz-empty">Não foi possível carregar agora. Tente recarregar a página.</p>';
+      });
+    }
   }
 
   root.addEventListener("click", function (e) {
@@ -906,6 +954,10 @@
     refresh();
     trackNovos();
     render();
+    // prepara as revisões em segundo plano para o cartão do Resumo
+    carregarExtra().then(function (m) { return m.preparar(); }).then(function () {
+      if (state.tab === "resumo") render();
+    }).catch(function () {});
   });
 })();
 
