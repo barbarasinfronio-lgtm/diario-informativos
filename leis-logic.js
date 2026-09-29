@@ -555,11 +555,19 @@
       if (!user || user.isAnonymous) return;
       if (viewerId !== user.uid) bindUser(user.uid);
     });
-    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
-    var s = document.createElement("script");
-    s.id = "conta-google-js";
-    s.src = scriptBase() + "conta-google.js";
-    document.head.appendChild(s);
+    carregarContaGoogle(scriptBase() + "conta-google.js");
+  }
+
+  // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
+  // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
+  // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.
+  function carregarContaGoogle(url) {
+    if ((window.ContaGoogle && window.ContaGoogle.iniciar) || window.EstudaManaContaCarregando) return;
+    window.EstudaManaContaCarregando = true;
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+      .then(function (code) { (0, eval)(code); })
+      .catch(function () { window.EstudaManaContaCarregando = false; });
   }
 
   domReady().then(startContaGoogle);

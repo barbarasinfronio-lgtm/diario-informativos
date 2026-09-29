@@ -24,7 +24,11 @@
  */
 (function () {
   "use strict";
-  if (window.ContaGoogle) return;
+  // Uma cópia antiga deste arquivo (guardada pelo navegador ou carregada
+  // pelo HTML do Blogger) não tem "iniciar": nesse caso esta versão assume.
+  // Os ids daqui (cg2-*) são outros para os cliques da cópia antiga não
+  // dispararem junto, e o quadro antigo (#cg-box) é escondido.
+  if (window.ContaGoogle && window.ContaGoogle.iniciar) return;
 
   // ---- o que é juntado / limpo -------------------------------------------
   var MAP_DOCS = [
@@ -32,10 +36,14 @@
     { path: "progress-leis/", local: "leis-lidas" },
     { path: "progress-sumulas/", local: "sumulas-lidas" },
     { path: "progress-normas/", local: "normas-lidas" },
-    { path: "progress-decisoes/", local: "decisoes-lidas" }
+    { path: "progress-decisoes/", local: "decisoes-lidas" },
+    // estas duas guardam { id: "data ISO" } no navegador (iso: true)
+    { path: "progress-adi/", local: "em_lidos_constitucionalidades", iso: true },
+    { path: "progress-rcl/", local: "em_lidos_reclamacoes", iso: true }
   ];
   var LOCAL_CLEAR = [
     "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "decisoes-lidas",
+    "em_lidos_constitucionalidades", "em_lidos_reclamacoes",
     "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar",
     "informativos-grupo", "premios-vistos", "premios-conquistados",
     "editais-principal", "leis-filtro", "estudamana-menu-v1"
@@ -123,11 +131,26 @@
     return Promise.all(jobs).then(function () { return out; });
   }
 
+  // { id: "data ISO" } (navegador) <-> { id: { lida, lidaEm } } (conta)
+  function isoParaMap(o) {
+    var out = {};
+    Object.keys(o || {}).forEach(function (id) { if (o[id]) out[id] = { lida: true, lidaEm: typeof o[id] === "string" ? o[id] : null }; });
+    return out;
+  }
+  function mapParaIso(map) {
+    var out = {};
+    Object.keys(map || {}).forEach(function (id) {
+      var v = map[id];
+      if (v && v.lida !== false) out[id] = (v && v.lidaEm) || new Date().toISOString();
+    });
+    return out;
+  }
+
   // o que este aparelho tem guardado localmente (pode ter coisa ainda não enviada)
   function readLocal() {
     var out = { maps: {}, conquistados: lsJson("premios-conquistados", {}), vistos: lsJson("premios-vistos", []),
                 edital: lsGet("editais-principal") || "", grupos: lsJson("informativos-grupo", []) };
-    MAP_DOCS.forEach(function (m) { out.maps[m.path] = lsJson(m.local, {}); });
+    MAP_DOCS.forEach(function (m) { out.maps[m.path] = m.iso ? isoParaMap(lsJson(m.local, {})) : lsJson(m.local, {}); });
     if (!Array.isArray(out.grupos)) out.grupos = out.grupos && out.grupos.code ? [out.grupos] : [];
     return out;
   }
@@ -157,7 +180,10 @@
   }
 
   function writeLocal(data) {
-    MAP_DOCS.forEach(function (m) { lsSet(m.local, JSON.stringify(data.maps[m.path] || {})); });
+    MAP_DOCS.forEach(function (m) {
+      var map = data.maps[m.path] || {};
+      lsSet(m.local, JSON.stringify(m.iso ? mapParaIso(map) : map));
+    });
     lsSet("premios-conquistados", JSON.stringify(data.conquistados || {}));
     lsSet("premios-vistos", JSON.stringify(data.vistos || []));
     if (data.edital) lsSet("editais-principal", data.edital);
@@ -183,15 +209,15 @@
     ".cg-ok{color:var(--done,#2c6b3f);font-weight:600}",
     ".cg-bar{max-width:var(--page-width-reading,760px);margin:0 auto 1rem}",
     // o antigo bloco "vincular e-mail" do HTML dos Diários foi trocado por este quadro
-    "#account-status-text,#account-link-block,#account-linked-block{display:none!important}"
+    "#account-status-text,#account-link-block,#account-linked-block,#cg-box{display:none!important}"
   ].join("");
 
   var boxEl = null, msgEl = null, busy = false;
 
   function injectStyle() {
-    if (document.getElementById("cg-style")) return;
+    if (document.getElementById("cg2-style")) return;
     var st = document.createElement("style");
-    st.id = "cg-style";
+    st.id = "cg2-style";
     st.textContent = STYLE;
     document.head.appendChild(st);
   }
@@ -242,7 +268,7 @@
     injectStyle();
     if (!boxEl) {
       boxEl = document.createElement("div");
-      boxEl.id = "cg-box";
+      boxEl.id = "cg2-box";
       boxEl.className = "cg-box" + (host.mode === "bar" ? " cg-bar" : "");
       if (host.mode === "panel") host.el.insertBefore(boxEl, host.el.firstChild);
       else host.el.parentNode.insertBefore(boxEl, host.el);
@@ -253,25 +279,25 @@
       boxEl.innerHTML =
         '<p class="cg-title">Você entrou com ' + como + ' <span class="cg-ok">✓</span></p>' +
         "<p>" + esc(user.email || "") + " — seu progresso, seus prêmios e seus grupos ficam salvos na conta e acompanham você em qualquer aparelho.</p>" +
-        '<div class="cg-row"><button type="button" class="cg-btn" id="cg-out">Sair deste aparelho</button></div>' +
-        '<p class="cg-msg" id="cg-msg" hidden></p>';
+        '<div class="cg-row"><button type="button" class="cg-btn" id="cg2-out">Sair deste aparelho</button></div>' +
+        '<p class="cg-msg" id="cg2-msg" hidden></p>';
       if (toggle) toggle.innerHTML = '<span aria-hidden="true">👤</span> Minha conta';
     } else {
       boxEl.innerHTML =
         '<p class="cg-title">Entre para salvar seu progresso</p>' +
         "<p>Sem entrar, o que você marca fica só neste navegador e não conta nos grupos de estudo. Entre com o Google ou com e-mail e senha: o que já está marcado aqui vai junto para a sua conta.</p>" +
-        '<div class="cg-row"><button type="button" class="cg-btn cg-btn-google" id="cg-google">' +
+        '<div class="cg-row"><button type="button" class="cg-btn cg-btn-google" id="cg2-google">' +
         '<span aria-hidden="true">G</span> Entrar com Google</button></div>' +
         '<p class="cg-or">ou com e-mail e senha:</p>' +
-        '<div class="cg-fields"><input type="email" id="cg-email" placeholder="seu@email.com" autocomplete="email" aria-label="E-mail">' +
-        '<input type="password" id="cg-senha" placeholder="Senha (mín. 6 caracteres)" autocomplete="current-password" aria-label="Senha"></div>' +
-        '<div class="cg-row"><button type="button" class="cg-btn cg-btn-main" id="cg-entrar">Entrar</button>' +
-        '<button type="button" class="cg-btn" id="cg-criar">Criar conta</button>' +
-        '<button type="button" class="cg-link" id="cg-esqueci">Esqueci a senha</button></div>' +
-        '<p class="cg-msg" id="cg-msg" hidden></p>';
+        '<div class="cg-fields"><input type="email" id="cg2-email" placeholder="seu@email.com" autocomplete="email" aria-label="E-mail">' +
+        '<input type="password" id="cg2-senha" placeholder="Senha (mín. 6 caracteres)" autocomplete="current-password" aria-label="Senha"></div>' +
+        '<div class="cg-row"><button type="button" class="cg-btn cg-btn-main" id="cg2-entrar">Entrar</button>' +
+        '<button type="button" class="cg-btn" id="cg2-criar">Criar conta</button>' +
+        '<button type="button" class="cg-link" id="cg2-esqueci">Esqueci a senha</button></div>' +
+        '<p class="cg-msg" id="cg2-msg" hidden></p>';
       if (toggle) toggle.innerHTML = '<span aria-hidden="true">💾</span> Entrar para salvar seu progresso';
     }
-    msgEl = boxEl.querySelector("#cg-msg");
+    msgEl = boxEl.querySelector("#cg2-msg");
   }
 
   function esc(t) {
@@ -337,7 +363,7 @@
   }
 
   function signInGoogle() {
-    if (!comecar("cg-google")) return;
+    if (!comecar("cg2-google")) return;
     var auth = firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
@@ -360,14 +386,14 @@
   }
 
   function lerCampos() {
-    var e = document.getElementById("cg-email"), s = document.getElementById("cg-senha");
+    var e = document.getElementById("cg2-email"), s = document.getElementById("cg2-senha");
     return { email: e ? e.value.trim() : "", senha: s ? s.value : "" };
   }
 
   function signInEmail(criar) {
     var f = lerCampos();
     if (!f.email || !f.senha) { setMsg("Informe e-mail e senha.", true); return; }
-    if (!comecar(criar ? "cg-criar" : "cg-entrar")) return;
+    if (!comecar(criar ? "cg2-criar" : "cg2-entrar")) return;
     var auth = firebase.auth();
     var cur = auth.currentUser;
     var work;
@@ -400,17 +426,17 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("#cg-google, #cg-out, #cg-entrar, #cg-criar, #cg-esqueci");
+    var t = e.target.closest("#cg2-google, #cg2-out, #cg2-entrar, #cg2-criar, #cg2-esqueci");
     if (!t) return;
-    if (t.id === "cg-google") signInGoogle();
-    else if (t.id === "cg-out") signOut();
-    else if (t.id === "cg-entrar") signInEmail(false);
-    else if (t.id === "cg-criar") signInEmail(true);
+    if (t.id === "cg2-google") signInGoogle();
+    else if (t.id === "cg2-out") signOut();
+    else if (t.id === "cg2-entrar") signInEmail(false);
+    else if (t.id === "cg2-criar") signInEmail(true);
     else esqueci();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && e.target && (e.target.id === "cg-email" || e.target.id === "cg-senha")) signInEmail(false);
+    if (e.key === "Enter" && e.target && (e.target.id === "cg2-email" || e.target.id === "cg2-senha")) signInEmail(false);
   });
 
   // ---- sincroniza a lista de grupos/edital de quem já está logado -----------
@@ -430,8 +456,10 @@
   }
 
   // ---- início ---------------------------------------------------------------
+  var iniciado = false;
   function start() {
-    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    if (iniciado || !(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    iniciado = true;
     try {
       if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
       firebase.auth().onAuthStateChanged(function (user) {
@@ -441,6 +469,8 @@
     } catch (e) {}
   }
 
-  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine, logado: logado };
+  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine, logado: logado,
+    // páginas que só carregam o Firebase depois (nuvem-shared.js) chamam de novo
+    iniciar: function () { if (iniciado) { try { render(firebase.auth().currentUser); } catch (e) {} } else start(); } };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

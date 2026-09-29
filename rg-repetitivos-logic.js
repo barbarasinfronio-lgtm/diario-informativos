@@ -451,6 +451,18 @@
     });
   }
 
+  // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
+  // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
+  // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.
+  function carregarContaGoogle(url) {
+    if ((window.ContaGoogle && window.ContaGoogle.iniciar) || window.EstudaManaContaCarregando) return;
+    window.EstudaManaContaCarregando = true;
+    fetch(url, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+      .then(function (code) { (0, eval)(code); })
+      .catch(function () { window.EstudaManaContaCarregando = false; });
+  }
+
   // ---- conta Google ---------------------------------------------------
   // Esta página não tem o painel "Acessar de qualquer aparelho" no HTML
   // (conta-google.js procura por #account-panel) — criamos um antes das
@@ -464,17 +476,12 @@
       if (statsEl && statsEl.parentNode) statsEl.parentNode.insertBefore(panel, statsEl);
       else document.body.insertBefore(panel, document.body.firstChild);
     }
-    if (!window.ContaGoogle && !document.getElementById('conta-google-js')) {
-      var all0 = document.getElementsByTagName('script'), src = '';
-      for (var i = 0; i < all0.length; i++) {
-        if (/rg-repetitivos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
-      }
-      if (src) {
-        var s = document.createElement('script');
-        s.id = 'conta-google-js';
-        s.src = src.replace(/[^/]+\.js(\?.*)?$/, 'conta-google.js$1');
-        document.head.appendChild(s);
-      }
+    var all0 = document.getElementsByTagName('script'), src = '';
+    for (var i = 0; i < all0.length; i++) {
+      if (/rg-repetitivos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
     }
+    // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
+    if (!src) src = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/rg-repetitivos-logic.js';
+    carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, 'conta-google.js'));
   }
 })();

@@ -33,11 +33,12 @@
     });
   }
 
-  var pronto = null, uidAtual = null;
+  var base = null, pronto = null, uidAtual = null;
 
-  function preparar() {
-    if (pronto) return pronto;
-    pronto = Promise.resolve()
+  // Firebase + configuração + grupos-shared.js, prontos para uso (sem login)
+  function carregarFirebase() {
+    if (base) return base;
+    base = Promise.resolve()
       .then(function () {
         if (!window.DIARIO_FIREBASE_CONFIG) window.DIARIO_FIREBASE_CONFIG = CONFIG;
         if (window.firebase && firebase.firestore && firebase.auth) return;
@@ -54,16 +55,99 @@
       })
       .then(function () {
         if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
-        // só quem entrou com Google ou e-mail e senha (não há login anônimo)
-        return new Promise(function (ok) {
-          var off = firebase.auth().onAuthStateChanged(function (user) {
-            off();
-            if (user && !user.isAnonymous) { uidAtual = user.uid; ok(user.uid); } else ok(null);
-          });
-        });
+        return true;
       })
-      .catch(function () { pronto = null; return null; });
+      .catch(function () { base = null; return false; });
+    return base;
+  }
+
+  // Resolve com o uid de quem entrou (Google ou e-mail e senha), ou null.
+  // Não há login anônimo.
+  function preparar() {
+    if (pronto) return pronto;
+    pronto = carregarFirebase().then(function (ok) {
+      if (!ok) { pronto = null; return null; }
+      return new Promise(function (resolve) {
+        var off = firebase.auth().onAuthStateChanged(function (user) {
+          off();
+          if (user && !user.isAnonymous) { uidAtual = user.uid; resolve(user.uid); } else resolve(null);
+        });
+      });
+    });
     return pronto;
+  }
+
+  // Quadro "Entre para salvar seu progresso" (conta-google.js) antes do
+  // elemento indicado, para páginas que não trazem o painel no HTML.
+  function mostrarLogin(antesDe) {
+    return carregarFirebase().then(function (ok) {
+      if (!ok) return;
+      if (!document.getElementById("account-panel")) {
+        var panel = document.createElement("div");
+        panel.id = "account-panel";
+        if (antesDe && antesDe.parentNode) antesDe.parentNode.insertBefore(panel, antesDe);
+        else document.body.insertBefore(panel, document.body.firstChild);
+      }
+      // botão "#account-toggle" do HTML abre/fecha o painel (nos Diários quem
+      // faz isso é conta-email.js; a marca global evita ligar duas vezes)
+      if (!window.EstudaManaBotaoConta) {
+        window.EstudaManaBotaoConta = true;
+        document.addEventListener("click", function (e) {
+          var t = e.target.closest("#account-toggle");
+          var p = document.getElementById("account-panel");
+          if (!t || !p) return;
+          var abrir = p.hidden;
+          p.hidden = !abrir;
+          t.setAttribute("aria-expanded", abrir ? "true" : "false");
+        });
+      }
+      if (window.ContaGoogle && window.ContaGoogle.iniciar) { window.ContaGoogle.iniciar(); return; }
+      // fetch sem cache: uma cópia antiga guardada pelo navegador não serve
+      if (window.EstudaManaContaCarregando) return;
+      window.EstudaManaContaCarregando = true;
+      return fetch(BASE + "conta-google.js", { cache: "no-cache" })
+        .then(function (r) { if (!r.ok) throw new Error("conta-google.js"); return r.text(); })
+        .then(function (code) { (0, eval)(code); })
+        .catch(function () { window.EstudaManaContaCarregando = false; });
+    });
+  }
+
+  // Leituras de uma página que guarda { id: "data ISO" } no navegador
+  // (Constitucionalidade, Reclamações) passam a ficar também na conta, em
+  // <caminho><uid> = { map: { id: { lida: true, lidaEm } } } — o mesmo
+  // formato dos outros Diários. Junta nuvem + navegador (nunca perde leitura).
+  //   opts: { caminho, ler() -> lidos, gravar(lidos), aoMudar() }
+  // Devolve salvar(): chame depois de cada marcação.
+  function sincronizarLidos(opts) {
+    var ref = null;
+    function paraNuvem(lidos) {
+      var map = {};
+      Object.keys(lidos || {}).forEach(function (id) {
+        var v = lidos[id];
+        if (v) map[id] = { lida: true, lidaEm: typeof v === "string" ? v : null };
+      });
+      return map;
+    }
+    function salvar() {
+      if (!ref) return;
+      ref.set({ map: paraNuvem(opts.ler()), updatedAt: new Date().toISOString() }).catch(function () {});
+    }
+    preparar().then(function (uid) {
+      if (!uid) return;
+      ref = firebase.firestore().doc(opts.caminho + uid);
+      ref.onSnapshot(function (snap) {
+        var remoto = snap.exists && snap.data() && snap.data().map ? snap.data().map : {};
+        var lidos = opts.ler(), mudou = false, falta = false;
+        Object.keys(remoto).forEach(function (id) {
+          var v = remoto[id];
+          if (v && v.lida !== false && !lidos[id]) { lidos[id] = (v && v.lidaEm) || new Date().toISOString(); mudou = true; }
+        });
+        Object.keys(lidos).forEach(function (id) { if (lidos[id] && !remoto[id]) falta = true; });
+        if (mudou) { opts.gravar(lidos); if (opts.aoMudar) opts.aoMudar(); }
+        if (falta) salvar(); // o que só estava neste navegador sobe para a conta
+      }, function () { ref = null; });
+    });
+    return salvar;
   }
 
   // Grava o campo (ex.: "lidasLeis") no documento desta pessoa em cada grupo.
@@ -79,5 +163,5 @@
     });
   }
 
-  window.EstudaManaNuvem = { preparar: preparar, enviarGrupos: enviarGrupos };
+  window.EstudaManaNuvem = { preparar: preparar, enviarGrupos: enviarGrupos, mostrarLogin: mostrarLogin, sincronizarLidos: sincronizarLidos };
 })();
