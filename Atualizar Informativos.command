@@ -21,22 +21,32 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 echo "=== Atualizar Informativos — $(date '+%d/%m/%Y %H:%M') ==="
 echo
 ARQUIVOS=(diario-data.js stj/teses.json)
+# Mudanças que o robô deixou neste Mac sem enviar (por exemplo, a importação
+# das Teses rodada pelo Terminal): guarda num commit, para irem junto.
+git checkout -q main 2>/dev/null
 if [ -n "$(git status --porcelain -- "${ARQUIVOS[@]}")" ]; then
-  echo "ERRO: ${ARQUIVOS[*]} tem mudanças não enviadas neste Mac. Resolva antes."
-  fim 1
+  echo "Havia atualizações neste Mac ainda não enviadas; vão junto agora."
+  for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
+  git commit -q -m "Informativos/Teses: atualização pendente (do Mac)" \
+    || { echo "ERRO: não consegui guardar as atualizações pendentes."; fim 1; }
 fi
-git fetch -q origin main && git checkout -q main && git pull -q --ff-only origin main \
-  || { echo "ERRO: não consegui atualizar o repositório com o main."; fim 1; }
+git fetch -q origin main && git pull -q --rebase --autostash origin main \
+  || { git rebase --abort 2>/dev/null
+       echo "ERRO: não consegui juntar este Mac com o main (conflito). Cole esta janela para a Claude."; fim 1; }
 
 python3 scripts/atualizar_informativos.py
 resultado=$?
 
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
-if git diff --cached --quiet -- "${ARQUIVOS[@]}"; then
+if ! git diff --cached --quiet -- "${ARQUIVOS[@]}"; then
+  git commit -q -m "Informativos: novas edições (do Mac)" \
+    || { echo; echo "ERRO: não consegui guardar as novidades."; fim 1; }
+fi
+if [ -z "$(git log origin/main..main --oneline)" ]; then
   echo; echo "Nada para enviar."
   fim "$resultado"
 fi
-if git commit -q -m "Informativos: novas edições (do Mac)" && git push -q origin main; then
+if git push -q origin main; then
   echo; echo "✅ Enviado para o site."
 else
   echo; echo "ERRO: não consegui enviar para o GitHub (a mudança ficou salva neste Mac)."
