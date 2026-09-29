@@ -18,6 +18,7 @@ CORRIGIR = {  # erros de digitação vistos em editais oficiais
   'Lei nº 16.869/2019': 'Lei nº 13.869/2019', 'Lei nº 9.513/1997': 'Lei nº 9.503/1997',
   'Lei nº 3.688/1941': 'Decreto-Lei nº 3.688/1941', 'Lei nº 11.340/2003': 'Lei nº 11.340/2006',
   'Lei nº 13.964/2023': 'Lei nº 13.964/2019', 'Lei nº 9.099/2015': 'Lei nº 9.099/1995',
+  'Lei nº 1.060/1959': 'Lei nº 1.060/1950',
 }
 HUMANISTICA = {'Sociologia do Direito', 'Psicologia Judiciária', 'Ética e Estatuto Jurídico da Magistratura Nacional',
                'Filosofia do Direito', 'Teoria Geral do Direito e da Política'}
