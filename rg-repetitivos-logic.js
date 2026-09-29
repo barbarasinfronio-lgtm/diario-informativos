@@ -4,6 +4,9 @@
   // scripts/atualizar_tst.py) e entram na lista assim que chegam.
   var DATA = RG_REPETITIVOS_DATA.slice();
   var TST_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/tst/decisoes.json';
+  // Jurisprudência em Teses do STJ: uma tese por card, com o texto completo
+  // (gerado pelo robô do Mac, scripts/atualizar_informativos.py → stj/teses.json).
+  var TESES_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/teses.json';
   var state = { q:'', org:'all', risk:'all', area:null };
 
   // Nem todo precedente qualificado do STJ é "Tema": também há IAC
@@ -258,15 +261,15 @@
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
       (d.destaque && d.destaque!==d.tese ? '<div class="section-label">Destaque</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
-        '<div><b>Processo</b>' + escapeHtml(d.processo||'—') + '</div>' +
+        '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
-        '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
-        '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>' +
+        '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn' || d.tipo==='teses') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
+        (d.tipo==='teses' ? '' : '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>') +
       '</div>' +
-      (d.historico ? '<div class="section-label">Histórico</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
+      (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
@@ -357,7 +360,8 @@
 
   function renderStats(){
     var stf = DATA.filter(d=>d.orgao==='STF').length;
-    var stj = DATA.filter(d=>d.orgao==='STJ').length;
+    var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses').length;
+    var teses = DATA.filter(d=>d.tipo==='teses').length;
     var tst = DATA.filter(d=>d.orgao==='TST').length;
     var alta = DATA.filter(d=>d.risco==='Alta').length;
     var canc = DATA.filter(d=>d.status==='cancelado_superado').length;
@@ -368,6 +372,7 @@
       '<div class="stat" style="color:var(--low-fg)"><b>' + lidasCount + '</b><span>Lidas</span></div>' +
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
+      (teses ? '<div class="stat"><b>' + teses + '</b><span>STJ · Jurisprudência em Teses</span></div>' : '') +
       (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
@@ -404,11 +409,25 @@
       })
       .catch(function(){ /* sem o TST, a página segue só com STF e STJ */ });
   }
+  function carregarTeses(){
+    fetch(TESES_JSON, { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var itens = (j && j.itens) || [];
+        if (!itens.length) return;
+        DATA = DATA.concat(itens);
+        montarChips();
+        renderStats();
+        render();
+      })
+      .catch(function(){ /* sem as Teses, a página segue com o resto */ });
+  }
 
   montarChips();
   renderStats();
   render();
   carregarTST();
+  carregarTeses();
 
   if(GS && window.firebase && window.DIARIO_FIREBASE_CONFIG){
     GS.onViewerReady(function(uid){

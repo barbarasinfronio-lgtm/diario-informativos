@@ -3,9 +3,9 @@
 # Finder, na pasta do repositório) uma vez por semana.
 #
 # Ele: 1) pega a versão mais nova do main; 2) confere nos sites oficiais se
-# saíram Informativos novos de STF, STJ, TSE, CNJ, TST e CNMP
-# (scripts/atualizar_informativos.py); 3) grava o que achou em
-# diario-data.js e envia para o main. O envio dispara sozinho a limpeza do
+# saíram Informativos novos de STF, STJ, TSE, CNJ, TST e CNMP e teses novas
+# da Jurisprudência em Teses do STJ (scripts/atualizar_informativos.py);
+# 3) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a limpeza do
 # cache do jsDelivr, então o site mostra a novidade em minutos.
 #
 # Se um tribunal falhar, os outros são gravados e enviados assim mesmo; a
@@ -20,8 +20,9 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Informativos — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-if [ -n "$(git status --porcelain -- diario-data.js)" ]; then
-  echo "ERRO: diario-data.js tem mudanças não enviadas neste Mac. Resolva antes."
+ARQUIVOS=(diario-data.js stj/teses.json)
+if [ -n "$(git status --porcelain -- "${ARQUIVOS[@]}")" ]; then
+  echo "ERRO: ${ARQUIVOS[*]} tem mudanças não enviadas neste Mac. Resolva antes."
   fim 1
 fi
 git fetch -q origin main && git checkout -q main && git pull -q --ff-only origin main \
@@ -30,11 +31,11 @@ git fetch -q origin main && git checkout -q main && git pull -q --ff-only origin
 python3 scripts/atualizar_informativos.py
 resultado=$?
 
-if git diff --quiet -- diario-data.js; then
+for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
+if git diff --cached --quiet -- "${ARQUIVOS[@]}"; then
   echo; echo "Nada para enviar."
   fim "$resultado"
 fi
-git add diario-data.js
 if git commit -q -m "Informativos: novas edições (do Mac)" && git push -q origin main; then
   echo; echo "✅ Enviado para o site."
 else

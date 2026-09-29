@@ -201,6 +201,14 @@ def pagina_navegador(url):
                  "--no-default-browser-check", "--disable-extensions",
                  f"--user-data-dir={Path(pasta) / 'perfil'}", f"--user-agent={ua}",
                  "--lang=pt-BR", "--virtual-time-budget=15000",
+                 # rastreadores e plugins que só atrasam (e às vezes nunca
+                 # terminam de carregar): o Chrome nem tenta abri-los
+                 "--host-resolver-rules=" + ", ".join(
+                     f"MAP {h} 0.0.0.0" for h in (
+                         "*.googletagmanager.com", "*.google-analytics.com",
+                         "vlibras.gov.br", "*.vlibras.gov.br",
+                         "static.cloudflareinsights.com", "www.google.com",
+                         "www.gstatic.com")),
                  f"--timeout={(ESPERA_CHROME - 15) * 1000}", "--dump-dom", url],
                 stdout=f, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
                 start_new_session=True)
@@ -579,18 +587,186 @@ def cnmp(dados):
     return novas
 
 
-TRIBUNAIS = [("STF", stf), ("STJ", stj), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp)]
+# ================================================================ Teses do STJ
+#
+# Jurisprudência em Teses do STJ → stj/teses.json (Diário das Decisões).
+# Cada TESE vira um card, com o texto completo. De onde vem cada coisa:
+#   - lista de edições: feed JurisprudenciaEmTesesFeed (número, tema, data);
+#   - teses de uma edição: página doc.jsp?livre='285' INPATH(TIT). Cada tese
+#     fica num <div class="clsTemasJT redacaoAtual">, com o texto em
+#     <div class="clsSubmitPesquisaTema"><a>1) ...</a>, a legislação citada
+#     (quando há) num <i> logo depois, e os julgados em "clsJulgadosJT";
+#     o ramo do Direito vem em <div class="clsMateriaJT">.
+# O arquivo guarda tudo; a cada execução o robô lê as edições novas e, para
+# completar o histórico aos poucos, até TESES_POR_VEZ edições antigas ainda
+# não lidas (com "--tudo", lê todas de uma vez — demora).
+
+TESES_ARQ = RAIZ / "stj" / "teses.json"
+TESES_FEED = "https://scon.stj.jus.br/SCON/JurisprudenciaEmTesesFeed"
+TESES_DOC = "https://scon.stj.jus.br/SCON/jt/doc.jsp?livre=%27{n}%27%20INPATH(TIT)"
+TESES_POR_VEZ = 30
+_MINUSCULAS = {"a", "à", "ao", "aos", "as", "às", "com", "da", "das", "de", "do",
+               "dos", "e", "em", "na", "nas", "no", "nos", "o", "os", "ou", "para",
+               "pela", "pelo", "por", "sem", "sob", "sobre"}
+_SIGLAS = {"ICMS", "IPI", "ISS", "PIS", "COFINS", "DPVAT", "TEA", "OAB", "FGTS",
+           "SFH", "ECA", "CPC", "CDC", "CTN", "CLT", "PAD", "IR", "N."}
 
 
-def main(so=None):
+def texto_limpo(fragmento):
+    # Marcação dentro da frase (itálico, negrito...) some sem deixar espaço:
+    # "(<i>in re ipsa</i>)" → "(in re ipsa)".
+    t = re.sub(r"</?(?:i|b|em|strong|u|span|sup|sub|a)\b[^>]*>", "", fragmento, flags=re.I)
+    t = re.sub(r"<[^>]+>", " ", t)
+    return re.sub(r"\s+", " ", html.unescape(t)).strip()
+
+
+def titulo_bonito(t):
+    """'DIREITO À EDUCAÇÃO III' → 'Direito à Educação III'."""
+    saida = []
+    for i, p in enumerate(t.split()):
+        base = p.strip("().,:-")
+        if p.upper() in ("N.", "Nº"):
+            saida.append(p.lower())
+        elif re.fullmatch(r"(?=[IVXLC])(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})", base) or base.upper() in _SIGLAS or re.search(r"\d", p):
+            saida.append(p)
+        elif i and p.lower() in _MINUSCULAS:
+            saida.append(p.lower())
+        else:  # primeira letra maiúscula, mesmo depois de "(": "(LEI" → "(Lei"
+            saida.append(re.sub(r"[^\W\d_]", lambda m: m.group().upper(), p.lower(), count=1))
+    return " ".join(saida)
+
+
+def teses_do_feed():
+    """[(edicao, tema, 'aaaa-mm-dd')], da mais nova para a mais antiga."""
+    t = pagina(TESES_FEED)
+    # Serve para o XML cru e para o que o Chrome devolve (XML "escapado").
+    t = texto_limpo(texto_limpo(t))
+    achadas = {}
+    for m in re.finditer(r"JT=(\d+)\.\S+ \S+ \d+ [\d:]+ \S+ \d{4} EDI\S* N\.\s*\d+\s*:\s*(.+?)\s+"
+                         r"(\d{4})-(\d{2})-(\d{2})T", t):
+        achadas.setdefault(int(m.group(1)),
+                           (titulo_bonito(m.group(2)), iso(m.group(3), m.group(4), m.group(5))))
+    if not achadas:
+        raise Falha("não achei nenhuma edição no feed da Jurisprudência em Teses — o feed mudou?")
+    return [(n, *achadas[n]) for n in sorted(achadas, reverse=True)]
+
+
+def _area(materia):
+    m = titulo_bonito(materia or "").replace("Tributario", "Tributário") \
+        .replace("Previdenciario", "Previdenciário").replace("Crianca", "Criança")
+    if m == "Direito Penal e Processual Penal":
+        return "Direito Penal"
+    return m or "Outros ramos"
+
+
+def _risco(data_iso, tese):
+    idade = (datetime.now(timezone.utc).date()
+             - datetime.strptime(data_iso, "%Y-%m-%d").date()).days
+    qualificada = re.search(r"\bTema n\.|\bSúmula n\.|rito do art\. (543-C|1\.036)", tese)
+    if idade <= 365:
+        return "Alta", "edição publicada há menos de um ano (tese recente)"
+    if idade <= 3 * 365 or qualificada:
+        return "Média", ("tese ligada a repetitivo/súmula" if qualificada and idade > 3 * 365
+                         else "edição publicada nos últimos três anos")
+    return "Baixa", "edição publicada há mais de três anos"
+
+
+def teses_da_edicao(n, tema, data_feed):
+    url = TESES_DOC.format(n=n)
+    t = pagina(url)
+    materia = re.search(r'class="clsMateriaJT">(.*?)</div>', t, re.S)
+    area = _area(texto_limpo(materia.group(1)) if materia else "")
+    d = re.search(r"disponibilizada em:\s*<b[^>]*>(\d{2})/(\d{2})/(\d{4})", t)
+    data_iso = iso(d.group(3), d.group(2), d.group(1)) if d else data_feed
+    data_br = f"{data_iso[8:10]}/{data_iso[5:7]}/{data_iso[:4]}"
+    blocos = re.split(r'<div class="clsTemasJT redacaoAtual"', t)[1:]
+    itens = []
+    for bloco in blocos:
+        tese_m = re.search(r'class="clsSubmitPesquisaTema">\s*<a[^>]*>(.*?)</a>', bloco, re.S)
+        if not tese_m:
+            continue
+        tese = texto_limpo(tese_m.group(1))
+        num = re.match(r"(\d+)\)\s*", tese)
+        if not num:
+            continue
+        tese = tese[num.end():]
+        k = int(num.group(1))
+        antes = bloco.split('class="clsBotoesJT', 1)[0]
+        nota = re.search(r"</form>\s*</div>\s*(?:<div>\s*<i>(.*?)</i>\s*</div>)", antes, re.S)
+        julg = re.search(r'class="link">([^<]+)</a>,\s*Rel\. Min\. ([^,]+),', bloco)
+        risco, motivo = _risco(data_iso, tese)
+        item = {
+            "id": f"stj-jt-{n}-{k}", "tema": f"{n} · tese {k}", "area": area,
+            "orgao": "STJ", "tipo": "teses", "precedenteLabel": "Edição",
+            "tipoNome": "Jurisprudência em Teses", "titulo": tema, "tese": tese,
+            "processo": texto_limpo(julg.group(1)) if julg else "",
+            "relator": titulo_bonito(texto_limpo(julg.group(2))) if julg else "",
+            "data": data_br, "status": "vigente", "risco": risco,
+            "motivo": f"Jurisprudência em Teses do STJ, edição n. {n}: {motivo}.",
+            "link": f"{url}#TEMA{k}",
+        }
+        if nota and texto_limpo(nota.group(1)):
+            item["historico"] = texto_limpo(nota.group(1))
+        itens.append(item)
+    if not itens:
+        raise Falha(f"a página da edição n. {n} não trouxe nenhuma tese — a página mudou?")
+    print(f"  edição n. {n} ({tema}): {len(itens)} tese(s)")
+    return itens
+
+
+def teses(dados, tudo=False):
+    import json
+    atual = {"itens": [], "edicoes": []}
+    if TESES_ARQ.exists():
+        atual = json.loads(TESES_ARQ.read_text(encoding="utf-8"))
+    feitas = set(atual.get("edicoes", []))
+    edicoes = teses_do_feed()
+    novas = [e for e in edicoes if feitas and e[0] > max(feitas)]
+    antigas = [e for e in edicoes if e[0] not in feitas and e not in novas]
+    fila = novas + (antigas if tudo else antigas[:TESES_POR_VEZ])
+    print(f"  {len(edicoes)} edições no feed; {len(feitas)} já no Diário; "
+          f"lendo agora {len(fila)} ({len(novas)} nova(s))")
+    itens, lidas, erros = list(atual.get("itens", [])), [], []
+    for n, tema, data in fila:
+        try:
+            itens += teses_da_edicao(n, tema, data)
+            lidas.append(n)
+        except Falha as e:
+            erros.append(str(e))
+            if "recusou" in str(e):
+                break  # site bloqueou: não adianta insistir nas outras
+    if lidas:
+        itens.sort(key=lambda i: (-int(i["id"].split("-")[2]), int(i["id"].split("-")[3])))
+        TESES_ARQ.parent.mkdir(exist_ok=True)
+        TESES_ARQ.write_text(json.dumps({
+            "fonte": "STJ — Jurisprudência em Teses (scon.stj.jus.br/SCON/jt)",
+            "total": len(itens), "edicoes": sorted(feitas | set(lidas), reverse=True),
+            "itens": itens}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        dados.teses_mudou = True
+    faltam = len(edicoes) - len(feitas) - len(lidas)
+    if faltam > 0:
+        print(f"  (faltam {faltam} edições antigas; entram nas próximas execuções)")
+    if erros and not lidas:
+        raise Falha("; ".join(dict.fromkeys(erros)))
+    for e in dict.fromkeys(erros):
+        print(f"  ATENÇÃO: {e}")
+    return [{"edicao": n, "data": next(d for m, _, d in edicoes if m == n)} for n in lidas]
+
+
+TRIBUNAIS = [("STF", stf), ("STJ", stj), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
+             ("TESES", teses)]
+
+
+def main(so=None, tudo=False):
     dados = Dados(ARQUIVO)
+    dados.teses_mudou = False
     resumo, falhas = [], []
     for nome, funcao in TRIBUNAIS:
         if so and nome not in so:
             continue
         print(f"\n=== {nome}")
         try:
-            novas = funcao(dados)
+            novas = funcao(dados, tudo=tudo) if nome == "TESES" else funcao(dados)
         except Falha as e:
             print(f"  ERRO: {e}")
             falhas.append(nome)
@@ -601,7 +777,10 @@ def main(so=None):
             falhas.append(nome)
             resumo.append(f"  {nome}: ERRO inesperado — {e!r}")
             continue
-        if novas:
+        if novas and nome == "TESES":
+            resumo.append(f"  TESES (STJ): {len(novas)} edição(ões) lida(s) — "
+                          + ", ".join(f"n. {n['edicao']}" for n in novas))
+        elif novas:
             lista = ", ".join(f"nº {n['edicao']} ({n['data']})"
                               for n in sorted(novas, key=lambda n: n["data"]))
             resumo.append(f"  {nome}: {len(novas)} nova(s) — {lista}")
@@ -612,6 +791,8 @@ def main(so=None):
     print("\n".join(resumo))
     if dados.mudou:
         print("\nEdições novas gravadas em diario-data.js (súmula: a confirmar).")
+    if dados.teses_mudou:
+        print("Teses do STJ gravadas em stj/teses.json (Diário das Decisões).")
     if falhas:
         print(f"\nATENÇÃO: {', '.join(falhas)} falhou(aram) — essa parte ficou como estava.")
         return 1
@@ -619,5 +800,7 @@ def main(so=None):
 
 
 if __name__ == "__main__":
-    # Opcional: só alguns tribunais, ex.: python3 scripts/atualizar_informativos.py STJ TSE
-    sys.exit(main({a.upper() for a in sys.argv[1:]} or None))
+    # Opcional: só alguns, ex.: python3 scripts/atualizar_informativos.py STJ TESES
+    # "--tudo": lê de uma vez todas as edições da Jurisprudência em Teses.
+    args = [a for a in sys.argv[1:] if a != "--tudo"]
+    sys.exit(main({a.upper() for a in args} or None, tudo="--tudo" in sys.argv[1:]))
