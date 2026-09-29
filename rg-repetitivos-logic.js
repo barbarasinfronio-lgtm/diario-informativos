@@ -310,7 +310,7 @@
   function mostrarNormas(d){
     carregarNormasCitadas().then(function(){
       if (modalAtual !== d) return;
-      var achadas = NormasCitadas.encontrar([d.titulo, d.tese, d.questao, d.destaque].join(' '));
+      var achadas = NormasCitadas.encontrar([d.titulo, d.tese, d.questao, d.destaque].join(' '), { data: d.data });
       if (!achadas.length) return;
       var box = modal.querySelector('.normas-box');
       box.hidden = false;
@@ -340,6 +340,7 @@
           : 'Ainda não está nos Diários — abrir o texto oficial';
         return '<li class="norma-item' + (n.lida ? ' is-lida' : '') + (n.noDiario ? '' : ' is-fora') + '">' +
           '<div class="norma-info"><span class="norma-rotulo">' + escapeHtml(n.rotulo) + '</span>' +
+            (n.artigos && n.artigos.length ? '<span class="norma-artigos">' + escapeHtml(n.artigos.join(' · ')) + '</span>' : '') +
             (n.nome ? '<span class="norma-nome">' + escapeHtml(resumirTexto(n.nome, 110)) + '</span>' : '') + '</div>' +
           '<span class="norma-status">' + status + '</span>' +
           '<a class="norma-link" href="' + escapeHtml(n.href) + '" target="_blank" rel="noopener" title="' + escapeHtml(titulo) + '" aria-label="' + escapeHtml(n.rotulo + ': ' + titulo) + '">' + (n.noDiario ? '➡️' : '↗') + '</a>' +
