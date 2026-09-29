@@ -146,7 +146,7 @@
 
   // ---- revisões ---------------------------------------------------------------
   function regraDaLei(numero) {
-    if (PRINCIPAIS[numero]) return { meses: PRINCIPAL_MESES, motivo: "lei principal (" + PRINCIPAIS[numero] + ")" };
+    if (PRINCIPAIS[numero]) return { meses: PRINCIPAL_MESES, motivo: "lei principal: " + PRINCIPAIS[numero] };
     var c = citacoesDaLei(numero);
     for (var i = 0; i < FAIXAS.length; i++) {
       if (c >= FAIXAS[i].min) return { meses: FAIXAS[i].meses, motivo: c ? plural(c, "decisão cita", "decisões citam") + " esta lei" : FAIXAS[i].nome };
