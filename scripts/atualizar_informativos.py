@@ -17,7 +17,8 @@ certo é gravado; no fim aparece ERRO para o que falhou.
 Como cada um é conferido:
   STF   número seguinte ao último registrado: página HTML oficial da edição
         (data no cabeçalho "Brasília, 21 de setembro de 2026") ou o PDF.
-  STJ   número seguinte: página da edição em processo.stj.jus.br (título
+  STJ   feed oficial (InformativoFeed: número e data de todas as edições);
+        se o feed falhar, número seguinte pela página da edição (título
         "Informativo de Jurisprudência n. 902 - 22 de setembro de 2026");
         o link gravado é o PDF (scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0902).
   TSE   páginas de listagem do Informativo TSE; o endereço de cada edição
@@ -388,9 +389,42 @@ def stf(dados):
     return por_numero(dados, var, ultimo, conferir, com_link=False)
 
 
+STJ_FEED = "https://processo.stj.jus.br/jurisprudencia/externo/InformativoFeed"
+
+
+def stj_pelo_feed(ultimo):
+    """Edições regulares do feed do STJ (as extraordinárias, "INFJ0033E",
+    ficam de fora, como no Diário). None se o feed não abrir ou não trouxer
+    nada reconhecível — aí o robô confere página por página."""
+    try:
+        t = pagina(STJ_FEED)
+    except Falha as e:
+        print(f"  (feed indisponível: {e}; conferindo página por página)")
+        return None
+    # Serve tanto para o XML cru quanto para o que o Chrome devolve.
+    t = html.unescape(re.sub(r"<[^>]+>", " ", t))
+    achadas = {}
+    for m in re.finditer(r"INFJ(\d{4})(E?)\b.*?(\d{4})-(\d{2})-(\d{2})T", t, re.S):
+        if not m.group(2):
+            n = int(m.group(1))
+            achadas.setdefault(n, iso(m.group(3), m.group(4), m.group(5)))
+    if ultimo not in achadas:
+        print(f"  (o feed não trouxe o nº {ultimo}; conferindo página por página)")
+        return None
+    return [{"edicao": n, "data": d,
+             "link": f"https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}"}
+            for n, d in sorted(achadas.items()) if n > ultimo]
+
+
 def stj(dados):
     var = "STJ_DATA"
     ultimo = dados.registradas(var)[0][0]
+    novas = stj_pelo_feed(ultimo)
+    if novas is not None:
+        print(f"  feed lido; último registrado: nº {ultimo}")
+        if novas:
+            dados.inserir(var, novas, com_link=True)
+        return novas
 
     def conferir(n):
         # Página da edição: o título traz "Informativo de Jurisprudência

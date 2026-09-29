@@ -108,7 +108,8 @@ explica de onde vem cada um). Se um falhar, os outros são gravados e
 enviados e a janela diz qual falhou. Para rodar só alguns:
 `python3 scripts/atualizar_informativos.py STJ TSE`.
 
-STJ e TSE recusam (403) qualquer programa, mesmo do Brasil: para eles o
+O STJ é lido pelo feed oficial (InformativoFeed), com todas as edições numa
+consulta só. STJ e TSE recusam (403) qualquer programa, mesmo do Brasil: para eles o
 script abre a página pelo **Google Chrome do Mac**, em modo invisível e com
 um perfil temporário (não mexe no Chrome que estiver aberto).
 
