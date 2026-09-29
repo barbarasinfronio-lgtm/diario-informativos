@@ -13,8 +13,9 @@
   var ligado = false;
 
   window.ContaEmail.attach = function () {
-    if (!ligado) {
+    if (!ligado && !window.EstudaManaBotaoConta) {
       ligado = true;
+      window.EstudaManaBotaoConta = true; // nuvem-shared.js usa a mesma marca
       document.addEventListener("click", function (e) {
         var t = e.target.closest("#account-toggle");
         if (!t) return;
