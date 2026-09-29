@@ -24,6 +24,28 @@
   font-size: calc(0.95rem * var(--fs-scale));
 }
 
+/* leis alteradas depois de lidas */
+.pz-aviso-leis {
+  background: var(--high-bg);
+  color: var(--high-fg);
+  border: 1px solid var(--high-line);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: calc(0.92rem * var(--fs-scale));
+}
+.pz-aviso-leis h2 { font-size: calc(1rem * var(--fs-scale)); margin: 0 0 0.5rem; }
+.pz-aviso-leis ul { margin: 0; padding-left: 1.1rem; }
+.pz-aviso-leis li { margin: 0.5rem 0; line-height: 1.45; }
+.pz-aviso-num { opacity: 0.8; font-size: 0.9em; }
+.pz-aviso-acoes { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; margin-top: 0.3rem; }
+.pz-aviso-acoes a { color: inherit; font-weight: 600; }
+.pz-aviso-acoes button {
+  font: inherit; font-size: 0.85em; cursor: pointer;
+  padding: 0.2rem 0.7rem; border-radius: 999px;
+  border: 1px solid var(--high-line); background: transparent; color: inherit;
+}
+
 .pz-tabs {
   display: flex;
   flex-wrap: wrap;

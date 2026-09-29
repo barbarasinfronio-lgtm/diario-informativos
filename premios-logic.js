@@ -569,7 +569,71 @@
   }
   var MEDAL_ICON = { ouro: "🥇", prata: "🥈", bronze: "🥉", fita: "🎖️" };
 
-  var state = { tab: "resumo", filter: "todos", data: null, novos: {}, firstVisit: false, remote: null, sync: "loading" };
+  var state = { tab: "resumo", filter: "todos", data: null, novos: {}, firstVisit: false, remote: null, sync: "loading", alteracoes: null };
+
+  /* ==================================================================
+     Leis alteradas depois de lidas
+     O robô do Mac (scripts/atualizar_informativos.py, etapa LEIS) confere as
+     leis mais cobradas no Planalto e grava em leis/alteracoes.json cada
+     alteração nova, com a data em que a percebeu. Aqui: se a pessoa marcou a
+     lei como lida ANTES dessa data, mostra um aviso. "Já revisei" esconde o
+     aviso neste navegador (até a próxima alteração).
+     ================================================================== */
+  var ALTERACOES_JSON = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leis/alteracoes.json";
+  var VISTAS_KEY = "leis-alteracoes-vistas";
+
+  function carregarAlteracoes() {
+    if (!window.fetch) return;
+    fetch(ALTERACOES_JSON, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { state.alteracoes = (j && j.leis) || {}; render(); })
+      .catch(function () { /* sem o arquivo, a página segue sem os avisos */ });
+  }
+
+  function fmtBr(iso) { return iso ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : ""; }
+
+  function avisosLeis() {
+    if (!state.alteracoes || !state.maps) return [];
+    var lidas = state.maps.lei || {};
+    var vistas = load(VISTAS_KEY);
+    var out = [];
+    Object.keys(state.alteracoes).forEach(function (chave) {
+      var lei = state.alteracoes[chave];
+      var mud = lei.mudancas || [];
+      if (!mud.length) return;
+      // a mesma lei pode estar em mais de uma matéria do Diário de Leis
+      var lida = false, lidaEm = null;
+      Object.keys(lidas).forEach(function (k) {
+        if (k.split(":").slice(1).join(":") !== chave) return;
+        var e = readEntry(lidas[k]);
+        if (!e) return;
+        lida = true;
+        if (e.lidaEm && (!lidaEm || e.lidaEm > lidaEm)) lidaEm = e.lidaEm;
+      });
+      if (!lida) return;
+      var corte = [lidaEm || "", vistas[chave] || ""].sort().pop();
+      var pend = mud.filter(function (m) { return m.detectadoEm > corte; });
+      if (!pend.length) return;
+      var normas = [];
+      pend.forEach(function (m) { (m.normas || []).forEach(function (n) { if (normas.indexOf(n) < 0) normas.push(n); }); });
+      out.push({ chave: chave, lei: lei, lidaEm: lidaEm, normas: normas, ultima: pend[pend.length - 1].detectadoEm });
+    });
+    return out;
+  }
+
+  function renderAvisosLeis() {
+    var av = avisosLeis();
+    if (!av.length) return "";
+    return '<section class="pz-aviso-leis" aria-label="Leis alteradas depois da sua leitura">' +
+      "<h2>⚠️ " + (av.length > 1 ? av.length + " leis que você leu foram alteradas" : "Uma lei que você leu foi alterada") + "</h2><ul>" +
+      av.map(function (a) {
+        return "<li><b>" + esc(a.lei.nome) + "</b> <span class=\"pz-aviso-num\">(" + esc(a.lei.numero) + ")</span><br>" +
+          (a.lidaEm ? "Você leu em " + fmtBr(a.lidaEm) + "; depois disso, foi" : "Foi") +
+          " alterada por <b>" + esc(a.normas.join(", ")) + "</b> <span class=\"pz-aviso-num\">(percebido em " + fmtBr(a.ultima) + ")</span>." +
+          '<div class="pz-aviso-acoes"><a href="' + esc(a.lei.link) + '" target="_blank" rel="noopener">Ver o texto atualizado ↗</a>' +
+          '<button type="button" data-visto="' + esc(a.chave) + '" data-visto-em="' + esc(a.ultima) + '">Já revisei</button></div></li>';
+      }).join("") + "</ul></section>";
+  }
 
   // Para cada Diário: se a conta na nuvem tem as leituras, usa a nuvem;
   // senão, usa o que estiver guardado neste navegador.
@@ -915,7 +979,7 @@
   }
 
   function render() {
-    var html = renderBanner() + renderTabs();
+    var html = renderAvisosLeis() + renderBanner() + renderTabs();
     var extra = state.tab === "revisoes" || state.tab === "historico";
     if (state.tab === "resumo") {
       var cartao = window.ProgressoRevisoes ? ProgressoRevisoes.resumo(extraOpts()) : "";
@@ -938,6 +1002,14 @@
   }
 
   root.addEventListener("click", function (e) {
+    var v = e.target.closest("[data-visto]");
+    if (v) {
+      var vistas = load(VISTAS_KEY);
+      vistas[v.dataset.visto] = v.dataset.vistoEm;
+      try { localStorage.setItem(VISTAS_KEY, JSON.stringify(vistas)); } catch (err) {}
+      render();
+      return;
+    }
     var t = e.target.closest("[data-tab],[data-filter]");
     if (!t) return;
     if (t.dataset.tab) { state.tab = t.dataset.tab; state.filter = "todos"; render(); window.scrollTo({ top: 0 }); }
@@ -948,6 +1020,7 @@
   // 2) quando a nuvem responde, recalcula e mostra os prêmios novos.
   refresh();
   render();
+  carregarAlteracoes();
   loadRemote().then(function (remote) {
     state.remote = remote;
     state.sync = "done";

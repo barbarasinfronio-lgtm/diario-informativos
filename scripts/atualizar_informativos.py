@@ -862,13 +862,140 @@ def teses(dados, tudo=False):
     return [{"edicao": n, "data": next(d for m, _, d in edicoes if m == n)} for n in lidas]
 
 
+# ================================================================ Leis alteradas
+#
+# Para as leis mais cobradas, confere no texto compilado do Planalto quais
+# normas já alteraram cada uma — as notas "(Redação dada pela Lei nº 14.994,
+# de 2024)", "(Incluído pela ...)", "(Revogado pela ...)". Quando aparece uma
+# alteradora que ainda não estava registrada, grava a mudança com a data em
+# que o robô a percebeu, em leis/alteracoes.json. A página "Meu Progresso"
+# compara essa data com a data em que a pessoa marcou a lei como lida no
+# Diário de Leis e, se a lei mudou depois, mostra um aviso.
+# Na primeira vez, o robô só anota o que já existe (sem avisos).
+#
+# "numero" tem de ser IGUAL ao de leis-data.js (é por ele que a página liga a
+# lei lida à lei monitorada). Para monitorar outra lei, acrescente uma linha.
+
+LEIS_ARQ = RAIZ / "leis" / "alteracoes.json"
+_P = "https://www.planalto.gov.br/ccivil_03/"
+LEIS_MONITORADAS = [
+    ("CF/1988", "Constituição Federal", _P + "constituicao/constituicao.htm"),
+    ("Decreto-Lei nº 2.848/1940", "Código Penal", _P + "decreto-lei/del2848compilado.htm"),
+    ("Decreto-Lei nº 3.689/1941", "Código de Processo Penal", _P + "decreto-lei/del3689compilado.htm"),
+    ("Lei nº 10.406/2002", "Código Civil", _P + "leis/2002/l10406compilada.htm"),
+    ("Lei nº 13.105/2015", "Código de Processo Civil", _P + "_ato2015-2018/2015/lei/l13105.htm"),
+    ("Decreto-Lei nº 5.452/1943", "CLT", _P + "decreto-lei/del5452.htm"),
+    ("Lei nº 5.172/1966", "Código Tributário Nacional", _P + "leis/l5172compilado.htm"),
+    ("Lei nº 8.078/1990", "Código de Defesa do Consumidor", _P + "leis/l8078compilado.htm"),
+    ("Lei nº 8.069/1990", "Estatuto da Criança e do Adolescente", _P + "leis/l8069.htm"),
+    ("Lei nº 7.210/1984", "Lei de Execução Penal", _P + "leis/l7210.htm"),
+    ("Lei nº 8.112/1990", "Estatuto dos Servidores Públicos Federais", _P + "leis/l8112cons.htm"),
+    ("Lei nº 8.429/1992", "Lei de Improbidade Administrativa", _P + "leis/l8429.htm"),
+    ("Lei nº 14.133/2021", "Nova Lei de Licitações", _P + "_ato2019-2022/2021/lei/l14133.htm"),
+    ("Lei nº 9.784/1999", "Lei do Processo Administrativo Federal", _P + "leis/l9784.htm"),
+    ("Decreto-Lei nº 4.657/1942", "LINDB", _P + "decreto-lei/del4657compilado.htm"),
+    ("Lei nº 11.343/2006", "Lei de Drogas", _P + "_ato2004-2006/2006/lei/l11343.htm"),
+    ("Lei nº 11.340/2006", "Lei Maria da Penha", _P + "_ato2004-2006/2006/lei/l11340.htm"),
+    ("Lei nº 8.072/1990", "Lei dos Crimes Hediondos", _P + "leis/l8072.htm"),
+    ("Lei Complementar nº 101/2000", "Lei de Responsabilidade Fiscal", _P + "leis/lcp/lcp101.htm"),
+    ("Lei nº 9.099/1995", "Lei dos Juizados Especiais", _P + "leis/l9099.htm"),
+    ("Lei nº 7.347/1985", "Lei da Ação Civil Pública", _P + "leis/l7347compilada.htm"),
+    ("Lei nº 12.016/2009", "Lei do Mandado de Segurança", _P + "_ato2007-2010/2009/lei/l12016.htm"),
+    ("Lei nº 13.709/2018", "LGPD", _P + "_ato2015-2018/2018/lei/l13709.htm"),
+    ("Lei nº 8.213/1991", "Lei de Benefícios da Previdência Social", _P + "leis/l8213cons.htm"),
+    ("Lei nº 6.830/1980", "Lei de Execução Fiscal", _P + "leis/l6830.htm"),
+    ("Lei nº 12.850/2013", "Lei das Organizações Criminosas", _P + "_ato2011-2014/2013/lei/l12850.htm"),
+]
+_TIPOS = [("Emenda Constitucional de Revisão", "ECR"), ("Emenda Constitucional", "EC"),
+          ("Lei Complementar", "LC"), ("Medida Provisória", "MP"), ("Decreto-Lei", "DL"), ("Lei", "Lei")]
+_RE_ALTERADORA = re.compile(
+    r"(?:Reda[çc][ãa]o\s+dada|Inclu[íi]d[oa]s?|Acrescid[oa]s?|Acrescentad[oa]s?|Revogad[oa]s?|"
+    r"Renumerad[oa]s?|Alterad[oa]s?|Suprimid[oa]s?|Transformad[oa]s?)\s+(?:pel[oa]s?|por)\s+"
+    r"(Emenda\s+Constitucional\s+de\s+Revis[ãa]o|Emenda\s+Constitucional|Lei\s+Complementar|"
+    r"Medida\s+Provis[óo]ria|Decreto-Lei|Lei)\s+n[ºo°.]*\s*(\d[\d.]*)"
+    r"(?:\s*,\s*de\s+(?:\d{1,2}[º°o]?\s*(?:de\s+)?[a-zç]+\s+de\s+)?(\d{4}))?", re.I)
+
+
+def _slug(t):
+    t = unicodedata.normalize("NFD", t.lower())
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    return re.sub(r"(^-|-$)", "", re.sub(r"[^a-z0-9]+", "-", t))
+
+
+def alteradoras(texto):
+    """{id: rótulo} das normas que alteraram a lei, a partir das notas do Planalto."""
+    t = texto_limpo(texto)
+    achadas = {}
+    for m in _RE_ALTERADORA.finditer(t):
+        tipo = re.sub(r"\s+", " ", m.group(1)).lower()
+        sigla = next(s for nome, s in _TIPOS if nome.lower().replace("ã", "a") == tipo.replace("ã", "a"))
+        num = m.group(2).replace(".", "").rstrip(".")
+        if not num.isdigit():
+            continue
+        rotulo_tipo = next(nome for nome, s in _TIPOS if s == sigla)
+        rotulo = f"{rotulo_tipo} nº {int(num):,}".replace(",", ".") + (f"/{m.group(3)}" if m.group(3) else "")
+        chave = f"{sigla} {int(num)}"
+        if chave not in achadas or (m.group(3) and "/" not in achadas[chave]):
+            achadas[chave] = rotulo
+    return achadas
+
+
+def leis(dados, tudo=False):
+    import json
+    atual = json.loads(LEIS_ARQ.read_text(encoding="utf-8")) if LEIS_ARQ.exists() else {"leis": {}}
+    registro = atual.get("leis", {})
+    hoje_iso = hoje()
+    mudou, avisos, erros = False, [], []
+    for numero, nome, url in LEIS_MONITORADAS:
+        chave = _slug(numero)
+        try:
+            t = pagina(url, valida=lambda x: "Reda" in x or "Inclu" in x)
+            achadas = alteradoras(t)
+        except Falha as e:
+            erros.append(f"{nome}: {e}")
+            continue
+        antigo = registro.get(chave)
+        if not achadas:
+            erros.append(f"{nome}: a página não trouxe nenhuma nota de alteração — mudou?")
+            continue
+        if antigo is None:
+            registro[chave] = {"numero": numero, "nome": nome, "link": url,
+                               "alteradoras": sorted(achadas), "mudancas": [], "desde": hoje_iso}
+            print(f"  {nome}: {len(achadas)} normas alteradoras anotadas (primeira conferência)")
+            mudou = True
+            continue
+        novas = [k for k in achadas if k not in set(antigo.get("alteradoras", []))]
+        antigo.update({"numero": numero, "nome": nome, "link": url})
+        if novas:
+            antigo["alteradoras"] = sorted(set(antigo["alteradoras"]) | set(novas))
+            antigo.setdefault("mudancas", []).append(
+                {"normas": [achadas[k] for k in sorted(novas)], "detectadoEm": hoje_iso})
+            antigo["mudancas"] = antigo["mudancas"][-20:]
+            avisos.append(f"{nome}: alterada por " + ", ".join(achadas[k] for k in sorted(novas)))
+            print(f"  {nome}: NOVA ALTERAÇÃO — " + ", ".join(achadas[k] for k in sorted(novas)))
+            mudou = True
+        else:
+            print(f"  {nome}: sem alteração nova ({len(achadas)} alteradoras conhecidas)")
+    if mudou:
+        LEIS_ARQ.parent.mkdir(exist_ok=True)
+        LEIS_ARQ.write_text(json.dumps({"atualizado": hoje_iso, "leis": registro},
+                                       ensure_ascii=False, indent=1), encoding="utf-8")
+        dados.leis_mudou = True
+    for e in erros:
+        print(f"  ATENÇÃO: {e}")
+    if erros and len(erros) == len(LEIS_MONITORADAS):
+        raise Falha("não consegui conferir nenhuma lei (" + erros[0] + ")")
+    return [{"edicao": a, "data": hoje_iso} for a in avisos]
+
+
 TRIBUNAIS = [("STF", stf), ("STJ", stj), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
-             ("TESES", teses)]
+             ("TESES", teses), ("LEIS", leis)]
 
 
 def main(so=None, tudo=False):
     dados = Dados(ARQUIVO)
     dados.teses_mudou = False
+    dados.leis_mudou = False
     resumo, falhas = [], []
     for nome, funcao in TRIBUNAIS:
         if so and nome not in so:
@@ -886,6 +1013,10 @@ def main(so=None, tudo=False):
             falhas.append(nome)
             resumo.append(f"  {nome}: ERRO inesperado — {e!r}")
             continue
+        if nome == "LEIS":
+            resumo.append("  LEIS: " + ("; ".join(n["edicao"] for n in novas) if novas
+                                        else "nenhuma lei monitorada mudou"))
+            continue
         if novas and nome == "TESES":
             resumo.append(f"  TESES (STJ): {len(novas)} edição(ões) lida(s) — "
                           + ", ".join(f"n. {n['edicao']}" for n in novas))
@@ -900,6 +1031,8 @@ def main(so=None, tudo=False):
     print("\n".join(resumo))
     if dados.mudou:
         print("\nEdições novas gravadas em diario-data.js (súmula: a confirmar).")
+    if dados.leis_mudou:
+        print("Leis monitoradas: registro gravado em leis/alteracoes.json (avisos no Meu Progresso).")
     if dados.teses_mudou:
         print("Teses do STJ gravadas em stj/teses.json (Diário das Decisões).")
     if falhas:
