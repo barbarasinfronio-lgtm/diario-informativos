@@ -363,6 +363,12 @@ def pagina(url, valida=None):
 
 
 def texto_de(corpo, tipo):
+    # Algumas páginas do Planalto (ex.: Lei Maria da Penha, feita no FrontPage)
+    # vêm em UTF-16, com a marca "BOM" no começo.
+    if corpo[:2] in (b"\xff\xfe", b"\xfe\xff"):
+        return corpo.decode("utf-16", "replace")
+    if corpo[:3] == b"\xef\xbb\xbf":
+        return corpo[3:].decode("utf-8", "replace")
     if re.search(r"charset=(windows-1252|iso-8859-1|latin-?1)", tipo, re.I):
         return corpo.decode("cp1252", "replace")
     try:
