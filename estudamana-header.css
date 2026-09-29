@@ -210,3 +210,15 @@ html.em-has-font body {
   :root:not([data-theme="light"]) .post-outer-container { background: var(--ground); }
 }
 :root[data-theme="dark"] .post-outer-container { background: var(--ground); }
+
+/* Texto dos cards justificado em todas as páginas (Súmulas, Resoluções, Leis,
+   Decisões, Constitucionalidade, Reclamações e Revisões). */
+.sumula-texto,
+.lei-card h3, .lei-card p,
+.card h3, .card .destaque,
+.edition-row .edition-topic,
+.rv-texto {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
