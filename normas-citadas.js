@@ -95,7 +95,13 @@
     ["Lei nº 8.112/1990", "Estatuto dos Servidores Federais — Lei nº 8.112/1990", null, "Estatuto dos Servidores Públicos (?:Civis )?(?:da União|Federais)|Regime Jurídico Único dos Servidores"],
     ["Lei nº 9.784/1999", "Lei do Processo Administrativo — Lei nº 9.784/1999", null, "Lei (?:do|de) Processo Administrativo(?: Federal)?"],
     ["Lei nº 13.964/2019", "Pacote Anticrime — Lei nº 13.964/2019", null, "Pacote Anticrime|Lei Anticrime"],
-    ["Lei nº 9.605/1998", "Lei dos Crimes Ambientais — Lei nº 9.605/1998", null, "Lei (?:de|dos) Crimes Ambientais"]
+    ["Lei nº 9.605/1998", "Lei dos Crimes Ambientais — Lei nº 9.605/1998", null, "Lei (?:de|dos) Crimes Ambientais"],
+    ["Lei nº 13.445/2017", "Lei de Migração — Lei nº 13.445/2017", null, "Lei de Migração"],
+    ["Lei nº 8.625/1993", "Lei Orgânica Nacional do MP — Lei nº 8.625/1993", "LONMP", "Lei Orgânica Nacional do Ministério Público"],
+    ["Lei Complementar nº 75/1993", "Lei Orgânica do MPU — Lei Complementar nº 75/1993", "LOMPU", "Lei Orgânica do Ministério Público da União|Estatuto do Ministério Público da União"],
+    ["Lei nº 13.874/2019", "Lei de Liberdade Econômica — Lei nº 13.874/2019", null, "Lei de Liberdade Econômica|Declaração de Direitos de Liberdade Econômica"],
+    ["Lei nº 14.785/2023", "Lei dos Agrotóxicos — Lei nº 14.785/2023", null, "Lei (?:de|dos) Agrotóxicos|Lei (?:de|dos) Pesticidas"],
+    ["Lei nº 13.467/2017", "Reforma Trabalhista — Lei nº 13.467/2017", null, "Reforma Trabalhista"]
   ];
 
   // Código revogado ("CPC/73", "Código Civil de 1916") ou sigla seguida de
