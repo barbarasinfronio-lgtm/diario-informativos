@@ -341,3 +341,77 @@
   .pz-week li { grid-template-columns: 1fr auto; }
   .pz-wk-date { grid-column: 1; }
 }
+
+/* ---- abas Revisões e Histórico (revisoes.js) -------------------------- */
+.rv-cartao {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; width: 100%;
+  font: inherit; font-size: calc(0.92rem * var(--fs-scale)); text-align: left; cursor: pointer;
+  background: var(--accent-soft); color: var(--ink); border: 1px solid var(--accent);
+  border-radius: var(--radius); padding: 0.75rem 1rem; margin: 0 0 1rem;
+}
+.rv-cartao span { margin-left: auto; color: var(--accent); font-weight: 600; font-size: calc(0.82rem * var(--fs-scale)); }
+.rv-resumo { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 0.9rem; }
+.rv-pilula {
+  font-size: calc(0.82rem * var(--fs-scale)); color: var(--ink-soft);
+  background: var(--surface); border: 1px solid var(--surface-line); border-radius: 999px; padding: 0.35rem 0.8rem;
+}
+.rv-pilula b { color: var(--ink); font-size: calc(0.95rem * var(--fs-scale)); }
+.rv-pilula.rv-agora { border-color: var(--gold); background: var(--gold-soft); }
+.rv-regra { margin: 0 0 1rem; font-size: calc(0.84rem * var(--fs-scale)); color: var(--ink-soft); }
+.rv-regra summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.rv-regra ul { margin: 0.5rem 0 0; padding-left: 1.2rem; line-height: 1.5; }
+.rv-bloco {
+  background: var(--surface); border: 1px solid var(--surface-line); border-radius: var(--radius);
+  margin: 0 0 0.7rem;
+}
+.rv-bloco > summary {
+  cursor: pointer; display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1rem;
+  font-family: var(--font-serif); font-weight: 700; font-size: calc(1.02rem * var(--fs-scale)); color: var(--ink);
+}
+.rv-n { margin-left: auto; font-family: var(--font-sans); font-weight: 600; font-size: calc(0.8rem * var(--fs-scale)); color: var(--ink-faint); }
+.rv-lista { list-style: none; margin: 0; padding: 0 1rem 0.6rem; border-top: 1px solid var(--surface-line); }
+.rv-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--surface-line); }
+.rv-item:last-child { border-bottom: 0; }
+.rv-tipo {
+  flex-shrink: 0; font-family: var(--font-mono); font-size: calc(0.66rem * var(--fs-scale)); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+  border-radius: 6px; padding: 0.2rem 0.45rem; margin-top: 0.1rem;
+}
+.rv-texto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+.rv-texto b { font-weight: 600; font-size: calc(0.88rem * var(--fs-scale)); color: var(--ink); line-height: 1.35; }
+.rv-meta { font-size: calc(0.75rem * var(--fs-scale)); color: var(--ink-faint); }
+.rv-item.rv-agora .rv-meta { color: var(--gold); }
+.rv-acoes { display: flex; gap: 0.4rem; flex-shrink: 0; align-items: center; }
+.rv-abrir, .rv-feito {
+  font: inherit; font-size: calc(0.76rem * var(--fs-scale)); font-weight: 600; white-space: nowrap;
+  border-radius: 999px; padding: 0.3rem 0.75rem; cursor: pointer; text-decoration: none;
+}
+.rv-abrir { color: var(--accent); border: 1px solid var(--surface-line); background: var(--surface); }
+.rv-feito { color: var(--accent-ink); background: var(--accent); border: 1px solid var(--accent); }
+.rv-feito:hover, .rv-abrir:hover { filter: brightness(1.08); }
+.rv-mais {
+  display: block; margin: 0.4rem auto 0.8rem; font: inherit; font-size: calc(0.8rem * var(--fs-scale));
+  color: var(--accent); background: none; border: 1px solid var(--surface-line); border-radius: 999px; padding: 0.35rem 0.9rem; cursor: pointer;
+}
+.rv-vazio, .rv-nota { color: var(--ink-faint); font-size: calc(0.84rem * var(--fs-scale)); margin: 0.4rem 1rem 0.8rem; }
+.rv-chips { margin-bottom: 0.8rem; }
+.rv-mes {
+  margin: 1.1rem 0 0.4rem; font-family: var(--font-mono); font-size: calc(0.72rem * var(--fs-scale));
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600;
+}
+.rv-hist { list-style: none; margin: 0; padding: 0; }
+.rv-hist li {
+  display: flex; align-items: baseline; gap: 0.6rem; padding: 0.4rem 0;
+  border-bottom: 1px solid var(--surface-line); font-size: calc(0.86rem * var(--fs-scale)); color: var(--ink);
+}
+.rv-hist li > a, .rv-hist li > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rv-hist a { color: var(--ink); text-decoration: none; }
+.rv-hist a:hover { color: var(--accent); text-decoration: underline; }
+.rv-dia { flex-shrink: 0; font-family: var(--font-mono); font-size: calc(0.76rem * var(--fs-scale)); color: var(--ink-faint); width: 3rem; }
+.rv-hist .rv-tipo { min-width: 6.5rem; text-align: center; }
+.rv-hist .t-rev { color: var(--gold); background: var(--gold-soft); }
+@media (max-width: 560px) {
+  .rv-item { flex-wrap: wrap; }
+  .rv-acoes { width: 100%; justify-content: flex-end; }
+  .rv-hist .rv-tipo { min-width: 0; }
+}
