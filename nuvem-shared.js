@@ -88,6 +88,19 @@
         if (antesDe && antesDe.parentNode) antesDe.parentNode.insertBefore(panel, antesDe);
         else document.body.insertBefore(panel, document.body.firstChild);
       }
+      // botão "#account-toggle" do HTML abre/fecha o painel (nos Diários quem
+      // faz isso é conta-email.js, que estas páginas não carregam)
+      if (!window.ContaEmail && !mostrarLogin.botao) {
+        mostrarLogin.botao = true;
+        document.addEventListener("click", function (e) {
+          var t = e.target.closest("#account-toggle");
+          var p = document.getElementById("account-panel");
+          if (!t || !p) return;
+          var abrir = p.hidden;
+          p.hidden = !abrir;
+          t.setAttribute("aria-expanded", abrir ? "true" : "false");
+        });
+      }
       if (window.ContaGoogle && window.ContaGoogle.iniciar) { window.ContaGoogle.iniciar(); return; }
       if (document.getElementById("conta-google-js")) return;
       var s = document.createElement("script");
