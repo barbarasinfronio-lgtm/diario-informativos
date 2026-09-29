@@ -114,17 +114,15 @@
     }
   };
 
-  // onReady(viewerId, user) é chamado sempre que o login anônimo confirma
-  // (ou troca de conta, no caso de "já vinculei — entrar neste aparelho").
-  S.onViewerReady = function (onReady) {
+  // onReady(viewerId, user) é chamado quando a pessoa está numa conta de
+  // verdade (Google ou e-mail e senha — não há mais login anônimo).
+  // onLoggedOut (opcional) é chamado quando ninguém entrou.
+  S.onViewerReady = function (onReady, onLoggedOut) {
     if (!window.firebase || !window.DIARIO_FIREBASE_CONFIG) return;
     S.ensureFirebaseApp();
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) onReady(user.uid, user);
-    });
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) firebase.auth().signInAnonymously().catch(function () {});
+      if (user && !user.isAnonymous) onReady(user.uid, user);
+      else if (onLoggedOut) onLoggedOut();
     });
   };
 
@@ -155,7 +153,7 @@
     var pref = S.findGroup ? S.findGroup(code) : null;
     var user = firebase.auth().currentUser;
     var ready = Promise.resolve();
-    if (pref && user) {
+    if (pref && user && !user.isAnonymous) {
       ready = S.updateMember(code, user.uid, {
         name: pref.name, avatar: avatarPref || S.readAvatarPref(), joinedAt: pref.joinedAt
       }).catch(function () {});

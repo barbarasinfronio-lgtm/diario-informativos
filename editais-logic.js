@@ -293,7 +293,7 @@
       render();
     });
     render();
-    ES.bindCloud({ signIn: true });
+    ES.bindCloud();
   });
 })();
 

@@ -2,8 +2,8 @@
    nuvem-shared.js — liga a página à conta (Firebase) e aos grupos de estudo
    Para páginas cujo HTML no Blogger não traz os scripts do Firebase
    (Diário de Leis, Constitucionalidade, Reclamações): baixa o Firebase,
-   a configuração e o grupos-shared.js, faz o login (anônimo, se ninguém
-   estiver logado) e manda a contagem de leituras para cada grupo.
+   a configuração e o grupos-shared.js e, se a pessoa entrou (Google ou
+   e-mail e senha), manda a contagem de leituras para cada grupo.
    Uso:
      EstudaManaNuvem.preparar().then(function (uid) { ... });
      EstudaManaNuvem.enviarGrupos("lidasLeis", 12);
@@ -54,12 +54,11 @@
       })
       .then(function () {
         if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+        // só quem entrou com Google ou e-mail e senha (não há login anônimo)
         return new Promise(function (ok) {
-          var pediuAnonimo = false;
-          firebase.auth().onAuthStateChanged(function (user) {
-            if (user) { uidAtual = user.uid; ok(user.uid); return; }
-            // só cria login anônimo se ninguém estiver logado (não troca a conta Google)
-            if (!pediuAnonimo) { pediuAnonimo = true; firebase.auth().signInAnonymously().catch(function () {}); }
+          var off = firebase.auth().onAuthStateChanged(function (user) {
+            off();
+            if (user && !user.isAnonymous) { uidAtual = user.uid; ok(user.uid); } else ok(null);
           });
         });
       })

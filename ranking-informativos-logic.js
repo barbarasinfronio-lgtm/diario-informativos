@@ -137,15 +137,8 @@
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) subscribe();
-    });
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) {
-        firebase.auth().signInAnonymously().catch(function () {
-          showEmpty("Não foi possível conectar agora. Recarregue a página em instantes.");
-        });
-      }
+      if (user && !user.isAnonymous) subscribe();
+      else showEmpty("Entre com o Google ou com e-mail e senha (no botão da sua conta, nos Diários) para ver o ranking do grupo.");
     });
   } else {
     showEmpty("Não foi possível conectar agora. Recarregue a página em instantes.");

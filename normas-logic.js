@@ -459,7 +459,7 @@
   if (!abrirNormaDoLink()) render();
   window.addEventListener("hashchange", abrirNormaDoLink);
 
-  // 2) login anônimo no Firebase (própria coleção "progress-normas")
+  // 2) progresso na conta de quem entrou (própria coleção "progress-normas")
   var progressUnsub = null;
 
   function bindUser(uid) {
@@ -489,16 +489,12 @@
 
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+    // Só salva na nuvem quem entrou com Google ou e-mail e senha (sem login
+    // anônimo). Sem entrar, tudo fica salvo neste navegador.
     firebase.auth().onAuthStateChanged(function (user) {
-      if (!user) return;
+      if (!user || user.isAnonymous) return;
       if (viewerId !== user.uid) bindUser(user.uid);
       renderAccountUI(user);
-    });
-    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão, não houver
-    // ninguém logado — assim não troca uma conta vinculada (e-mail ou Google) por outra.
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
     });
   } else {
     dbReady = true;

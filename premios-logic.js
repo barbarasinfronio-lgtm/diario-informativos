@@ -721,19 +721,15 @@
   function loadRemote() {
     return new Promise(function (resolve) {
       if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) { resolve(null); return; }
-      var finished = false, started = false, askedAnon = false;
+      var finished = false, started = false;
       function fin(v) { if (!finished) { finished = true; resolve(v); } }
       setTimeout(function () { fin(null); }, 7000);
       try {
         if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
         var auth = firebase.auth();
         auth.onAuthStateChanged(function (user) {
-          if (!user) {
-            // Só cria login anônimo se não houver ninguém logado (não troca
-            // uma conta já vinculada por outra).
-            if (!askedAnon) { askedAnon = true; auth.signInAnonymously().catch(function () { fin(null); }); }
-            return;
-          }
+          // só lê da nuvem quem entrou com Google ou e-mail e senha
+          if (!user || user.isAnonymous) { fin(null); return; }
           if (started) return;
           started = true;
           var db = firebase.firestore();
@@ -976,12 +972,9 @@
     var r = state.remote;
     if (state.sync === "loading") return "☁️ Sincronizando com a sua conta…";
     if (!r) {
-      return "Mostrando as leituras guardadas neste navegador. Para ver as leituras de outros aparelhos, abra um dos Diários e vincule seu e-mail.";
+      return "Mostrando as leituras guardadas neste navegador. Para salvar o progresso e ver as leituras de outros aparelhos, entre com o Google ou com e-mail e senha (quadro no topo da página).";
     }
     var msg = "☁️ Prêmios calculados com as leituras da sua conta.";
-    if (r.user && r.user.isAnonymous) {
-      msg += " Atenção: sua conta ainda não tem e-mail vinculado, então outros aparelhos não enxergam este progresso. Vincule o e-mail em um dos Diários.";
-    }
     var falhas = [];
     if (r.errors.inf) falhas.push("Informativos");
     if (r.errors.lei) falhas.push("Leis");
