@@ -262,6 +262,7 @@
     if (b.id === "ed-change") { changing = !changing; render(); return; }
     changing = false;
     ES.setPrincipal(b.getAttribute("data-choose"));
+    render();
   });
 
   // "toggle" não sobe na árvore: escuta na fase de captura
