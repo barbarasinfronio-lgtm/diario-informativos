@@ -92,22 +92,24 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
 - **`scripts/atualizar_csmpt.py`**: Resoluções do CSMPT/MPT (bloco `csmpt` de
   `normas-data.js`).
 
-### Informativos do STF (no Mac, só quando você manda)
+### Informativos (STF, STJ, TSE, CNJ, TST, CNMP) — no Mac, só quando você manda
 
-O site do STF também recusa os servidores do GitHub (responde 403 até para
-edições que existem; testado em 28/09/2026). Por isso a verificação dos
-Informativos do STF roda no Mac, **sem agendamento**: uma vez por semana,
-dê dois cliques em **`Atualizar Informativos STF.command`** (raiz do
-repositório, no Finder). Ele atualiza o repositório com o `main`, roda
-`scripts/atualizar_informativos_stf.py` e, se houver edição nova, grava em
-`diario-data.js` e envia para o `main` (o que já dispara a limpeza do cache
-do jsDelivr). As edições novas entram com a data do cabeçalho da página
-oficial e súmula "a confirmar". Se o STF recusar o acesso, a janela mostra
-ERRO e nada é gravado.
+STF, STJ, TSE e TST recusam os servidores do GitHub (403 ou sem resposta;
+testado em 28-29/09/2026). Por isso a verificação dos Informativos roda no
+Mac, **sem agendamento**: uma vez por semana, dê dois cliques em
+**`Atualizar Informativos.command`** (raiz do repositório, no Finder). Ele
+atualiza o repositório com o `main`, roda `scripts/atualizar_informativos.py`
+e, se houver edição nova, grava em `diario-data.js` e envia para o `main` (o
+que já dispara a limpeza do cache do jsDelivr). As edições novas entram com
+súmula "a confirmar".
 
-O script também completa a cadeia de certificados HTTPS do STF (o servidor
-não manda o certificado intermediário; o Python, diferente do navegador,
-recusaria a conexão).
+Cada tribunal é conferido separadamente (o comentário no topo do script
+explica de onde vem cada um). Se um falhar, os outros são gravados e
+enviados e a janela diz qual falhou. Para rodar só alguns:
+`python3 scripts/atualizar_informativos.py STJ TSE`.
+
+O script também completa a cadeia de certificados HTTPS quando o servidor
+não manda o intermediário (caso do STF).
 
 Para incluir outra fonte que precise de conexão no Brasil, acrescente o robô
 em `scripts/rodar_no_mac.sh`. Log: `~/EstudaMana/atualizar-tst.log`.
