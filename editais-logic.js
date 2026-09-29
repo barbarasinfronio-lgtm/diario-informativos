@@ -82,7 +82,7 @@
       { titulo: "Polícia Federal", teste: /^PF$/ }
     ] },
     { titulo: "Defensoria Pública", uniao: "carreira-defensor", grupos: [
-      { titulo: "Estadual", teste: /^DPE/ },
+      { titulo: "Estadual e do DF", teste: /^DP(E|DF)/ },
       { titulo: "Federal (DPU)", teste: /^DPU$/ }
     ] },
     { titulo: "Exames nacionais", grupos: [
