@@ -61,12 +61,12 @@
   // Edital que não se encaixa em nenhum grupo aparece em "Outros".
   var AREAS = [
     { titulo: "Magistratura", grupos: [
-      { titulo: "Estadual", uniao: "carreira-magistratura-estadual", teste: /^TJ/ },
-      { titulo: "Federal", uniao: "carreira-magistratura-federal", teste: /^TRF/ },
+      { titulo: "Estadual", uniao: "carreira-magistratura-estadual", nome: "Magistratura Estadual", teste: /^TJ/ },
+      { titulo: "Federal", uniao: "carreira-magistratura-federal", nome: "Magistratura Federal", teste: /^TRF/ },
       { titulo: "do Trabalho", teste: /^(CSJT|TRT)/ }
     ] },
     { titulo: "Ministério Público", grupos: [
-      { titulo: "Estadual e do DF", uniao: "carreira-promotor", teste: /^MP(?!F$|T$|M$)/ },
+      { titulo: "Estadual e do DF", uniao: "carreira-promotor", nome: "Promotor de Justiça", teste: /^MP(?!F$|T$|M$)/ },
       { titulo: "Federal (MPF)", teste: /^MPF$/ },
       { titulo: "do Trabalho (MPT)", teste: /^MPT$/ }
     ] },
@@ -74,7 +74,7 @@
       { titulo: "Advogado da União (AGU)", teste: function (e) { return e.sigla === "AGU" && !/Procurador Federal/i.test(e.titulo); } },
       { titulo: "Procurador da Fazenda Nacional (PFN)", teste: /^PFN$/ },
       { titulo: "Procurador Federal", teste: function (e) { return /Procurador Federal/i.test(e.titulo); } },
-      { titulo: "Procurador do Estado", uniao: "carreira-procurador-estado", teste: /^PGE/ },
+      { titulo: "Procurador do Estado", uniao: "carreira-procurador-estado", nome: "Procurador do Estado", teste: /^PGE/ },
       { titulo: "Procurador do DF", teste: /^PG-?DF/ }
     ] },
     { titulo: "Delegado de Polícia", uniao: "carreira-delegado", grupos: [
@@ -116,7 +116,7 @@
         var eds = list.filter(function (e) { return e.tipo !== "carreira" && !usados[e.id] && atende(e, g.teste); });
         eds.forEach(function (e) { usados[e.id] = true; });
         eds.sort(function (x, y) { return String(x.sigla).localeCompare(String(y.sigla), "pt"); });
-        return { titulo: g.titulo, uniao: g.uniao && porId[g.uniao], editais: eds };
+        return { titulo: g.titulo, nome: g.nome || g.titulo, uniao: g.uniao && porId[g.uniao], editais: eds };
       });
       return { titulo: a.titulo, uniao: a.uniao && porId[a.uniao], grupos: grupos };
     });
@@ -208,8 +208,9 @@
         if (g.uniao && cur && g.uniao.id === cur.id) temPrincipal = true;
         if (buscando && !eds.length) return;
         var linhas = "";
-        if (g.uniao && !buscando && (g.uniao.emBreve || g.editais.length > 1 || a.titulo === "Exames nacionais")) {
-          linhas += linha(g.uniao, { escolher: escolher, rotuloUniao: "Todos os editais — " + a.titulo + (g.titulo ? " " + g.titulo : "") });
+        // com um edital só, a linha "Todos os editais" repetiria o mesmo conteúdo
+        if (g.uniao && !buscando && (g.uniao.emBreve || g.editais.length > 1 || (cur && cur.id === g.uniao.id))) {
+          linhas += linha(g.uniao, { escolher: escolher, rotuloUniao: g.uniao.emBreve ? g.uniao.titulo : "Todos os editais de " + g.nome });
         }
         linhas += eds.map(function (e) { return linha(e, { escolher: escolher }); }).join("");
         if (!linhas) linhas = '<p class="ed-vazio">Nenhum edital mapeado ainda.</p>';
