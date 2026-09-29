@@ -173,6 +173,18 @@
 
   .row:hover { box-shadow: var(--shadow); }
 
+  /* Tela larga: tudo numa linha (caixa · número/data · selo · jornal · Abrir).
+     O empilhado acima fica só para o celular, onde o selo espremia o número.
+     Súmulas e Resoluções (.sumula-row) têm layout próprio. */
+  @media (min-width: 640px) {
+    .row:not(.sumula-row) {
+      grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+      grid-template-areas: "check edition badge star open";
+      gap: 0.9rem;
+    }
+    .row:not(.sumula-row) .badge { justify-self: end; }
+  }
+
   .check-wrap {
     grid-area: check;
     display: flex;
@@ -979,3 +991,49 @@
   }
   .busca-diario .busca-limpar[hidden]{display:none;}
   .busca-resultado{margin:-4px 2px 10px; font-size:calc(12px * var(--fs-scale)); color:var(--ink-faint);}
+
+  /* ---- Constitucionalidade e Reclamações (.edition-row) ----------------
+     Mesmo visual das linhas do Diário de Informativos: marcador de leitura,
+     número/data/resumo e botão "Abrir". */
+  .edition-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.4rem 0.9rem;
+    padding: 0.75rem 0.9rem;
+    margin-bottom: 0.45rem;
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: 10px;
+  }
+  .edition-row:hover { box-shadow: var(--shadow); }
+  .edition-row .check-btn {
+    appearance: none; -webkit-appearance: none;
+    background: none; border: 0; padding: 0; margin: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .edition-row .check-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 999px; }
+  .edition-row .star { grid-area: auto; justify-self: auto; }
+  .edition-content { min-width: 0; }
+  .edition-num {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: calc(0.98rem * var(--fs-scale)); color: var(--ink);
+  }
+  .edition-date {
+    display: block; margin-top: 0.1rem;
+    font-family: var(--font-mono); font-size: calc(0.76rem * var(--fs-scale));
+    color: var(--ink-soft); font-variant-numeric: tabular-nums;
+  }
+  .edition-topic {
+    font-size: calc(0.86rem * var(--fs-scale)); line-height: 1.5; color: var(--ink-soft);
+    display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+  }
+  .edition-row.is-read .edition-num,
+  .edition-row.is-read .edition-date { text-decoration: line-through; text-decoration-thickness: 1px; }
+  .edition-row .action-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 4.2rem; height: 1.7rem; padding: 0 0.7rem;
+    border-radius: 5px; border: 1px solid var(--accent); color: var(--accent);
+    text-decoration: none; font-size: calc(0.78rem * var(--fs-scale)); font-weight: 600; white-space: nowrap;
+  }
+  .edition-row .action-btn:hover { background: var(--accent); color: var(--surface, #fff); }

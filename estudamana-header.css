@@ -202,3 +202,11 @@ html.em-has-font body {
 @media (max-width: 600px) {
   .em-apresentacao .em-about-title { font-size: calc(24px * var(--fs-scale)); }
 }
+
+/* Modo escuro: o tema do Blogger pinta de branco a caixa em volta do
+   conteúdo (.post-outer-container), e as páginas escuras ficavam como
+   caixas escuras sobre um fundo branco. Usa o fundo do site no lugar. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .post-outer-container { background: var(--ground); }
+}
+:root[data-theme="dark"] .post-outer-container { background: var(--ground); }
