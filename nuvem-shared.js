@@ -89,9 +89,9 @@
         else document.body.insertBefore(panel, document.body.firstChild);
       }
       // botão "#account-toggle" do HTML abre/fecha o painel (nos Diários quem
-      // faz isso é conta-email.js, que estas páginas não carregam)
-      if (!window.ContaEmail && !mostrarLogin.botao) {
-        mostrarLogin.botao = true;
+      // faz isso é conta-email.js; a marca global evita ligar duas vezes)
+      if (!window.EstudaManaBotaoConta) {
+        window.EstudaManaBotaoConta = true;
         document.addEventListener("click", function (e) {
           var t = e.target.closest("#account-toggle");
           var p = document.getElementById("account-panel");
