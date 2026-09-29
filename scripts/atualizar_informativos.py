@@ -45,7 +45,9 @@ Sai com código 0 (tudo certo, com ou sem novidade) ou 1 (algum tribunal
 falhou).
 """
 import html
+import os
 import re
+import signal
 import socket
 import ssl
 import shutil
@@ -174,25 +176,55 @@ def _achar_chrome():
     return _chrome["caminho"], _chrome["ua"]
 
 
+_host_recusado = {}  # host → motivo; não insiste depois da 1ª recusa do Chrome
+ESPERA_CHROME = 60  # segundos por página
+
+
 def pagina_navegador(url):
+    host = urllib.parse.urlsplit(url).hostname
+    if host in _host_recusado:
+        raise Falha(_host_recusado[host])
     caminho, ua = _achar_chrome()
     if not caminho:
         raise Falha("o site recusou o acesso direto e não achei o Google Chrome "
                     "neste Mac para abrir a página")
-    with tempfile.TemporaryDirectory() as perfil:
-        try:
-            r = subprocess.run(
+    # O Chrome abre processos auxiliares; se ele passar do tempo, é preciso
+    # fechar o grupo inteiro (senão o robô fica esperando para sempre — foi
+    # o que travou no TSE em 29/09/2026). A saída vai para um arquivo, não
+    # para um "pipe", pelo mesmo motivo.
+    with tempfile.TemporaryDirectory() as pasta:
+        saida = Path(pasta) / "pagina.html"
+        with open(saida, "wb") as f:
+            proc = subprocess.Popen(
                 [caminho, "--headless=new", "--disable-gpu", "--no-first-run",
                  "--no-default-browser-check", "--disable-extensions",
-                 f"--user-data-dir={perfil}", f"--user-agent={ua}", "--lang=pt-BR",
-                 "--virtual-time-budget=15000", "--dump-dom", url],
-                capture_output=True, text=True, timeout=120)
-        except subprocess.TimeoutExpired:
-            raise Falha(f"{url} → o Chrome não terminou de abrir a página em 2 minutos")
-    texto = r.stdout or ""
-    print(f"  {url} → pelo Chrome ({len(texto)} caracteres)")
+                 f"--user-data-dir={Path(pasta) / 'perfil'}", f"--user-agent={ua}",
+                 "--lang=pt-BR", "--virtual-time-budget=15000",
+                 f"--timeout={(ESPERA_CHROME - 15) * 1000}", "--dump-dom", url],
+                stdout=f, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+                start_new_session=True)
+            try:
+                proc.wait(timeout=ESPERA_CHROME)
+                estourou = False
+            except subprocess.TimeoutExpired:
+                estourou = True
+            finally:
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)
+                except (ProcessLookupError, PermissionError):
+                    pass
+                try:
+                    proc.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    pass
+        texto = saida.read_bytes().decode("utf-8", "replace")
+    print(f"  {url} → pelo Chrome ({len(texto)} caracteres"
+          + (", passou do tempo" if estourou else "") + ")")
     if len(texto) < 500 or re.search(r"Access Denied|Request Rejected|acesso negado", texto[:3000], re.I):
-        raise Falha(f"{url} → o site recusou até o Chrome")
+        motivo = (f"{host} recusou o acesso até pelo Chrome"
+                  + (f" (a página não terminou de abrir em {ESPERA_CHROME} s)" if estourou else ""))
+        _host_recusado[host] = motivo
+        raise Falha(motivo)
     return texto
 
 
@@ -423,7 +455,7 @@ def tse(dados):
             achadas.setdefault((n, data[:4]), {"edicao": n, "data": data, "link": link})
     if not achadas:
         raise Falha("não achei nenhuma edição nas páginas do TSE"
-                    + (f" ({'; '.join(erros)})" if erros else " — a página mudou?"))
+                    + (f" ({'; '.join(dict.fromkeys(erros))})" if erros else " — a página mudou?"))
     novas = filtrar_novas(list(achadas.values()), dados.registradas(var))
     if novas:
         dados.inserir(var, novas, com_link=True)
@@ -479,7 +511,7 @@ def tst(dados):
                                    "data": iso(tit.group(5), mes_num(tit.group(4)), tit.group(3))})
     if not achadas:
         raise Falha("não achei nenhum Informativo TST na busca do JusLaboris"
-                    + (f" ({'; '.join(erros)})" if erros else " — a página mudou?"))
+                    + (f" ({'; '.join(dict.fromkeys(erros))})" if erros else " — a página mudou?"))
     registradas = dados.registradas(var)
     ultimo = registradas[0][0]  # numeração contínua
     novas = [a for a in achadas.values() if a["edicao"] > ultimo]
