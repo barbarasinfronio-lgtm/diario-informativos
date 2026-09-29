@@ -585,6 +585,7 @@
       }
       render();
       applyingRemote = false;
+      scheduleGroupSync(); // o total da conta (não só deste aparelho) vai para os grupos
     }, function () {
       // assinatura perdida; local + gravações "melhor esforço" continuam
     });

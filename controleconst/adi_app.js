@@ -309,6 +309,26 @@
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lidos));
     render();
+    enviarGrupos();
+  }
+
+  // Total lido vira o campo "lidasAdi" em cada grupo de estudo (Meus Grupos).
+  // nuvem-shared.js baixa o Firebase e faz o login só quando precisa.
+  let grupoTimer = null;
+  function enviarGrupos() {
+    clearTimeout(grupoTimer);
+    let temGrupo = false;
+    try { const g = JSON.parse(localStorage.getItem("informativos-grupo") || "null"); temGrupo = !!(g && (g.length || g.code)); } catch (e) {}
+    if (!temGrupo) return; // sem grupo, nada a enviar
+    grupoTimer = setTimeout(function () {
+      const total = Object.keys(lidos).length;
+      const enviar = function () { window.EstudaManaNuvem.enviarGrupos("lidasAdi", total); };
+      if (window.EstudaManaNuvem) return enviar();
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/nuvem-shared.js";
+      s.onload = enviar;
+      document.head.appendChild(s);
+    }, 800);
   }
 
   let renderSeq = 0;
@@ -411,4 +431,5 @@
   } else {
     init();
   }
+  enviarGrupos();
 })();

@@ -481,6 +481,7 @@
       }
       render();
       applyingRemote = false;
+      scheduleGroupSync(); // o total da conta (não só deste aparelho) vai para os grupos
     }, function () {});
     subscribeAllGroups();
     pushProgressToGroups();

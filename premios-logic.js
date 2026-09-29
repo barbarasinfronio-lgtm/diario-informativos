@@ -646,6 +646,22 @@
     };
     state.data = computeAll(maps, todayIso());
     Object.keys(KEYS_EXTRA).forEach(function (k) { maps[k] = remote[k] || load(KEYS_EXTRA[k]); });
+    // Decisões, Resoluções, Constitucionalidade e Reclamações também dão
+    // pontos (1 por leitura, ou o valor de pontosPorLeitura em premios-data.js).
+    var ctx = state.data.ctx, extra = 0;
+    Object.keys(KEYS_EXTRA).forEach(function (k) {
+      var m = maps[k] || {}, n = 0;
+      Object.keys(m).forEach(function (id) {
+        var v = m[id];
+        if (v && !(typeof v === "object" && v.lida === false)) n++;
+      });
+      ctx.read[k] = n;
+      ctx.totalRead += n;
+      extra += n * (CFG.pontosPorLeitura[k] || 1);
+    });
+    ctx.points += extra;
+    ctx.readPoints += extra;
+    ctx.score += extra;
     state.maps = maps;
     guardarConquistas();
   }
