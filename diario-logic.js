@@ -357,9 +357,9 @@
     }
   }
 
-  // Identidade do visitante: vem do login anônimo do Firebase (nenhum
-  // cadastro visível — a pessoa só digita um nome). Fica null até o
-  // Firebase confirmar o login, lá no fim deste arquivo.
+  // Identidade do visitante: a conta (Google ou e-mail e senha) em que a
+  // pessoa entrou. Fica null enquanto ela não entrar — aí tudo é salvo só
+  // neste navegador.
   var viewerId = null;
 
   var dbCap = null;
@@ -556,14 +556,11 @@
   criarBusca("Buscar pelo número ou data do informativo (ex.: 1228, 09/2026)", function () { render(); });
   render();
 
-  // 2) login anônimo no Firebase (nenhum cadastro visível para a pessoa,
-  // a menos que ela mesma escolha vincular um e-mail acima), depois
+  // 2) se a pessoa entrou (Google ou e-mail e senha — ver conta-google.js),
   // reconcilia com o progresso salvo dela e liga a escuta em tempo real.
   // O documento de cada visitante vive em progress/<uid> — ninguém mais lê
   // ou escreve nele, e o Firestore garante isso pelas regras de segurança
-  // do projeto. bindUser() é chamada de novo sempre que o UID muda (por
-  // exemplo, quando a pessoa usa "Já vinculei — recuperar aqui" e o
-  // Firebase troca da conta anônima para a conta vinculada antiga).
+  // do projeto. bindUser() é chamada de novo sempre que o UID muda.
   var progressUnsub = null;
 
   function bindUser(uid) {
@@ -595,16 +592,12 @@
 
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+    // Só salva na nuvem quem entrou com Google ou e-mail e senha (sem login
+    // anônimo). Sem entrar, tudo fica salvo neste navegador.
     firebase.auth().onAuthStateChanged(function (user) {
-      if (!user) return;
+      if (!user || user.isAnonymous) return;
       if (viewerId !== user.uid) bindUser(user.uid);
       renderAccountUI(user);
-    });
-    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão, não houver
-    // ninguém logado — assim não troca uma conta vinculada (e-mail ou Google) por outra.
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
     });
   } else {
     dbReady = true;

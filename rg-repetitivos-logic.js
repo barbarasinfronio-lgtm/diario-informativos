@@ -455,7 +455,7 @@
   // Esta página não tem o painel "Acessar de qualquer aparelho" no HTML
   // (conta-google.js procura por #account-panel) — criamos um antes das
   // estatísticas, e carregamos conta-google.js da mesma pasta deste
-  // script (o login anônimo já é cuidado pelo GS.onViewerReady acima).
+  // script (só quem entra com Google ou e-mail e senha salva na nuvem).
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {
     if (!document.getElementById('account-panel')) {
       var panel = document.createElement('div');

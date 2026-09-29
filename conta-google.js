@@ -1,21 +1,25 @@
 /*
- * conta-google.js — login com Google para guardar o progresso em qualquer aparelho
+ * conta-google.js — entrar (Google ou e-mail e senha) para guardar o progresso
  *
  * Como funciona:
- *  - Quem já usa o site tem uma conta anônima do Firebase. "Entrar com Google"
- *    VINCULA o Google a essa mesma conta (o código do usuário não muda), então
- *    nada do que já foi marcado se perde.
- *  - Se o Google escolhido já tem progresso salvo (de outro aparelho), o progresso
- *    deste aparelho é JUNTADO ao dele — nunca se perde uma leitura nem um prêmio:
- *    vale "lida" se estiver lida em qualquer um dos dois, com a data mais antiga.
- *  - "Sair deste aparelho" desconecta e limpa os dados locais daqui (o progresso
- *    continua salvo na conta), para que outra pessoa possa usar o aparelho.
+ *  - Não existe mais login anônimo: só quem entra com Google ou com e-mail e
+ *    senha tem o progresso salvo na nuvem e participa dos grupos. Sem entrar,
+ *    o que a pessoa marca fica só no navegador.
+ *  - Ao entrar, tudo o que está neste navegador é JUNTADO à conta — nunca se
+ *    perde uma leitura nem um prêmio: vale "lida" se estiver lida em qualquer
+ *    lugar, com a data mais antiga.
+ *  - Quem ainda tem a conta anônima antiga neste aparelho: "Entrar com Google"
+ *    ou "Criar conta" transformam essa conta anônima na conta de verdade (o
+ *    código do usuário não muda). Se o Google/e-mail já tinha conta, o que
+ *    estava na anônima é juntado nela, e a anônima sai dos grupos.
+ *  - "Sair deste aparelho" desconecta e limpa os dados locais daqui (o
+ *    progresso continua salvo na conta).
  *
- * O botão aparece sozinho: dentro do painel "Acessar de qualquer aparelho" dos
- * Diários (#account-panel) ou numa barrinha no topo de Meus Prêmios / Editais.
+ * O quadro aparece sozinho: dentro do painel #account-panel (Diários, Meus
+ * Grupos) ou numa barrinha no topo de Meus Prêmios / Editais.
  *
- * Requisitos no Firebase (uma vez): Authentication > Sign-in method > Google
- * ativado; e, em Authentication > Settings > Authorized domains, incluir
+ * Requisitos no Firebase: Authentication > Sign-in method > Google e
+ * E-mail/senha ativados; em Authentication > Settings > Authorized domains,
  * estudamana.com.br e www.estudamana.com.br.
  */
 (function () {
@@ -162,18 +166,24 @@
 
   // ---- interface ----------------------------------------------------------
   var STYLE = [
-    ".cg-box{margin:0 0 .9rem;padding:.8rem .95rem;border:1px solid var(--surface-line,#e2dcca);border-radius:12px;background:var(--surface,#fff);color:var(--ink,#1c2130);font-family:var(--font-sans,system-ui,sans-serif);font-size:.9rem;line-height:1.4}",
+    ".cg-box{margin:0 0 .9rem;padding:.8rem .95rem;border:1px solid var(--surface-line,#e2dcca);border-radius:12px;background:var(--surface,#fff);color:var(--ink,#1c2130);font-family:var(--font-sans,system-ui,sans-serif);font-size:.9rem;line-height:1.4;text-align:left}",
     ".cg-box p{margin:0 0 .55rem}",
     ".cg-title{font-weight:700}",
     ".cg-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}",
     ".cg-btn{font:inherit;font-size:.85rem;padding:.5rem .95rem;border-radius:999px;border:1px solid var(--surface-line,#e2dcca);background:var(--surface,#fff);color:var(--ink,#1c2130);cursor:pointer;display:inline-flex;gap:.45rem;align-items:center}",
     ".cg-btn:hover{background:var(--surface-2,#efeadd)}",
-    ".cg-btn-google{font-weight:600;border-color:var(--accent,#1f3a5f)}",
+    ".cg-btn-google,.cg-btn-main{font-weight:600;border-color:var(--accent,#1f3a5f)}",
     ".cg-btn:disabled{opacity:.6;cursor:wait}",
+    ".cg-or{margin:.7rem 0 .45rem;font-size:.8rem;color:var(--ink-soft,#4a5064)}",
+    ".cg-fields{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem}",
+    ".cg-fields input{font:inherit;font-size:.85rem;padding:.45rem .7rem;border:1px solid var(--surface-line,#e2dcca);border-radius:8px;background:var(--surface,#fff);color:var(--ink,#1c2130);flex:1 1 11rem;min-width:0}",
+    ".cg-link{font:inherit;font-size:.8rem;background:none;border:0;padding:0;color:var(--accent,#1f3a5f);text-decoration:underline;cursor:pointer}",
     ".cg-msg{margin:.5rem 0 0;font-size:.8rem;color:var(--ink-soft,#4a5064)}",
     ".cg-msg.is-error{color:var(--high-fg,#8a1f1f)}",
     ".cg-ok{color:var(--done,#2c6b3f);font-weight:600}",
-    ".cg-bar{max-width:var(--page-width-reading,760px);margin:0 auto 1rem}"
+    ".cg-bar{max-width:var(--page-width-reading,760px);margin:0 auto 1rem}",
+    // o antigo bloco "vincular e-mail" do HTML dos Diários foi trocado por este quadro
+    "#account-status-text,#account-link-block,#account-linked-block{display:none!important}"
   ].join("");
 
   var boxEl = null, msgEl = null, busy = false;
@@ -198,6 +208,11 @@
     return !!(user && user.providerData && user.providerData.some(function (p) { return p.providerId === "google.com"; }));
   }
 
+  // Só conta como "entrou" quem usa Google ou e-mail e senha. Contas anônimas
+  // antigas (de antes desta mudança) valem como "não entrou": o progresso fica
+  // só neste navegador até a pessoa entrar — e aí é juntado à conta dela.
+  function logado(user) { return !!(user && !user.isAnonymous); }
+
   function setMsg(text, isError) {
     if (!msgEl) return;
     msgEl.textContent = text || "";
@@ -210,9 +225,15 @@
     if (c === "auth/popup-closed-by-user" || c === "auth/cancelled-popup-request") return "";
     if (c === "auth/popup-blocked") return "O navegador bloqueou a janela do Google. Permita pop-ups para este site e tente de novo.";
     if (c === "auth/unauthorized-domain") return "Este endereço ainda não foi autorizado no Firebase (Authentication > Settings > Authorized domains).";
-    if (c === "auth/operation-not-allowed") return "O login com Google ainda não foi ativado no Firebase (Authentication > Sign-in method).";
+    if (c === "auth/operation-not-allowed") return "Esse tipo de login ainda não foi ativado no Firebase (Authentication > Sign-in method).";
     if (c === "auth/network-request-failed") return "Sem conexão agora. Tente de novo em instantes.";
-    return "Não foi possível entrar com o Google agora. Tente de novo em instantes.";
+    if (c === "auth/email-already-in-use" || c === "auth/credential-already-in-use") return "Esse e-mail já tem conta. Use \"Entrar\".";
+    if (c === "auth/weak-password") return "Senha muito curta — use pelo menos 6 caracteres.";
+    if (c === "auth/invalid-email") return "E-mail inválido.";
+    if (c === "auth/wrong-password" || c === "auth/invalid-credential" || c === "auth/invalid-login-credentials") return "E-mail ou senha incorretos.";
+    if (c === "auth/user-not-found") return "Não existe conta com esse e-mail. Use \"Criar conta\".";
+    if (c === "auth/too-many-requests") return "Muitas tentativas seguidas. Espere alguns minutos e tente de novo.";
+    return "Não foi possível entrar agora. Tente de novo em instantes.";
   }
 
   function render(user) {
@@ -226,20 +247,29 @@
       if (host.mode === "panel") host.el.insertBefore(boxEl, host.el.firstChild);
       else host.el.parentNode.insertBefore(boxEl, host.el);
     }
-    var linked = hasGoogle(user);
-    if (linked) {
+    var toggle = document.getElementById("account-toggle");
+    if (logado(user)) {
+      var como = hasGoogle(user) ? "conta Google" : "e-mail e senha";
       boxEl.innerHTML =
-        '<p class="cg-title">Conta Google conectada <span class="cg-ok">✓</span></p>' +
-        "<p>" + esc(user.email || "") + " — seu progresso e seus prêmios ficam salvos e acompanham você em qualquer aparelho.</p>" +
+        '<p class="cg-title">Você entrou com ' + como + ' <span class="cg-ok">✓</span></p>' +
+        "<p>" + esc(user.email || "") + " — seu progresso, seus prêmios e seus grupos ficam salvos na conta e acompanham você em qualquer aparelho.</p>" +
         '<div class="cg-row"><button type="button" class="cg-btn" id="cg-out">Sair deste aparelho</button></div>' +
         '<p class="cg-msg" id="cg-msg" hidden></p>';
+      if (toggle) toggle.innerHTML = '<span aria-hidden="true">👤</span> Minha conta';
     } else {
       boxEl.innerHTML =
-        '<p class="cg-title">Guarde tudo com a sua conta Google</p>' +
-        "<p>Suas leituras, prêmios e edital escolhido ficam salvos na sua conta e voltam em qualquer celular ou computador. O que você já marcou aqui é mantido.</p>" +
+        '<p class="cg-title">Entre para salvar seu progresso</p>' +
+        "<p>Sem entrar, o que você marca fica só neste navegador e não conta nos grupos de estudo. Entre com o Google ou com e-mail e senha: o que já está marcado aqui vai junto para a sua conta.</p>" +
         '<div class="cg-row"><button type="button" class="cg-btn cg-btn-google" id="cg-google">' +
         '<span aria-hidden="true">G</span> Entrar com Google</button></div>' +
+        '<p class="cg-or">ou com e-mail e senha:</p>' +
+        '<div class="cg-fields"><input type="email" id="cg-email" placeholder="seu@email.com" autocomplete="email" aria-label="E-mail">' +
+        '<input type="password" id="cg-senha" placeholder="Senha (mín. 6 caracteres)" autocomplete="current-password" aria-label="Senha"></div>' +
+        '<div class="cg-row"><button type="button" class="cg-btn cg-btn-main" id="cg-entrar">Entrar</button>' +
+        '<button type="button" class="cg-btn" id="cg-criar">Criar conta</button>' +
+        '<button type="button" class="cg-link" id="cg-esqueci">Esqueci a senha</button></div>' +
         '<p class="cg-msg" id="cg-msg" hidden></p>';
+      if (toggle) toggle.innerHTML = '<span aria-hidden="true">💾</span> Entrar para salvar seu progresso';
     }
     msgEl = boxEl.querySelector("#cg-msg");
   }
@@ -250,79 +280,114 @@
 
   // ---- fluxo de login -----------------------------------------------------
   function afterLink() {
-    // mesmo usuário: só garante que a lista de grupos/edital deste aparelho vá para a conta
-    var auth = firebase.auth(), db = firebase.firestore(), uid = auth.currentUser.uid;
-    var loc = readLocal();
-    return db.doc("progress-leis/" + uid).set(
-      { grupos: loc.grupos, edital: loc.edital || "", updatedAt: new Date().toISOString() }, { merge: true })
-      .catch(function (err) { if (window.console && err) console.warn("[conta-google] afterLink", err.code || err); });
+    // mesmo usuário (a conta anônima antiga virou conta de verdade): junta o
+    // que está neste aparelho com o que já estava salvo nela
+    var db = firebase.firestore(), uid = firebase.auth().currentUser.uid;
+    return readAccount(db, uid).then(function (acc) {
+      var merged = combine(acc, readLocal());
+      return writeAccount(db, uid, merged).then(function () { writeLocal(merged); });
+    });
   }
 
-  function switchToExisting(credential, oldUser) {
+  // Entra numa conta (Google/e-mail) e junta nela tudo deste aparelho: o que
+  // está no navegador e, se havia uma conta anônima antiga aqui, o que estava
+  // salvo nela. A conta anônima sai dos grupos (a conta nova entra no lugar,
+  // com o mesmo nome) — assim a pessoa não aparece repetida no ranking.
+  function entrarEJuntar(entrar) {
     var auth = firebase.auth(), db = firebase.firestore();
-    var oldUid = oldUser.uid;
-    var localSnap = readLocal();
-    setMsg("Essa conta Google já tem progresso salvo. Juntando com o deste aparelho…");
-    return readAccount(db, oldUid).then(function (oldAcc) {
-      var carry = combine(oldAcc, localSnap); // tudo deste aparelho (conta anônima + local)
-      // sai dos grupos com o código antigo; o novo código entra sozinho na próxima abertura
-      var leaves = (carry.grupos || []).map(function (g) {
-        return db.doc("groups/" + g.code + "/members/" + oldUid).delete().catch(function () {});
-      });
-      return Promise.all(leaves).then(function () {
-        return auth.signInWithCredential(credential);
-      }).then(function (res) {
+    var old = auth.currentUser && auth.currentUser.isAnonymous ? auth.currentUser : null;
+    var carryP = old
+      ? readAccount(db, old.uid).then(function (acc) { return combine(acc, readLocal()); })
+      : Promise.resolve(readLocal());
+    return carryP.then(function (carry) {
+      // enquanto ainda é a conta anônima (só ela pode apagar o próprio documento)
+      var saidas = old ? (carry.grupos || []).map(function (g) {
+        return db.doc("groups/" + g.code + "/members/" + old.uid).delete().catch(function () {});
+      }) : [];
+      return Promise.all(saidas).then(entrar).then(function (res) {
         var newUid = res.user.uid;
-        return readAccount(db, newUid).then(function (newAcc) {
-          var merged = combine(newAcc, carry);
+        return readAccount(db, newUid).then(function (acc) {
+          var merged = combine(acc, carry);
           return writeAccount(db, newUid, merged).then(function () { writeLocal(merged); });
         });
       });
     });
   }
 
-  function signIn() {
-    if (busy) return;
+  function comecar(btnId) {
+    if (busy) return false;
     busy = true;
-    var btn = document.getElementById("cg-google");
-    if (btn) btn.disabled = true;
+    var b = document.getElementById(btnId);
+    if (b) b.disabled = true;
     setMsg("");
+    return true;
+  }
+
+  function terminar(p, okMsg) {
+    p.then(function () {
+      setMsg(okMsg || "Pronto! Progresso salvo na sua conta. Recarregando…");
+      setTimeout(function () { location.reload(); }, 700);
+    }).catch(function (err) {
+      busy = false;
+      if (boxEl) Array.prototype.forEach.call(boxEl.querySelectorAll("button"), function (b) { b.disabled = false; });
+      var m = friendlyError(err);
+      setMsg(m, !!m);
+      if (window.console && err) console.warn("[conta]", err.code || err);
+    });
+  }
+
+  function signInGoogle() {
+    if (!comecar("cg-google")) return;
     var auth = firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
     var cur = auth.currentUser;
     var work;
-    if (cur && !hasGoogle(cur)) {
-      work = cur.linkWithPopup(provider).then(function () { return afterLink().then(function () { return "linked"; }); })
-        .catch(function (err) {
-          var c = err && err.code;
-          if ((c === "auth/credential-already-in-use" || c === "auth/email-already-in-use") && err.credential) {
-            return switchToExisting(err.credential, cur).then(function () { return "switched"; });
-          }
-          throw err;
-        });
-    } else {
-      work = auth.signInWithPopup(provider).then(function (res) {
-        var acc = readLocal();
-        var db = firebase.firestore();
-        return readAccount(db, res.user.uid).then(function (remote) {
-          var merged = combine(remote, acc);
-          return writeAccount(db, res.user.uid, merged).then(function () { writeLocal(merged); return "switched"; });
-        });
+    if (cur && cur.isAnonymous) {
+      // conta anônima antiga deste aparelho: vira conta Google (mesmo código, nada se perde)
+      work = cur.linkWithPopup(provider).then(afterLink).catch(function (err) {
+        var c = err && err.code;
+        if ((c === "auth/credential-already-in-use" || c === "auth/email-already-in-use") && err.credential) {
+          setMsg("Essa conta Google já tem progresso salvo. Juntando com o deste aparelho…");
+          return entrarEJuntar(function () { return auth.signInWithCredential(err.credential); });
+        }
+        throw err;
       });
+    } else {
+      work = entrarEJuntar(function () { return auth.signInWithPopup(provider); });
     }
-    work.then(function (how) {
-      busy = false;
-      if (how === "switched") { setMsg("Pronto! Progresso juntado. Recarregando…"); setTimeout(function () { location.reload(); }, 700); }
-      else { render(firebase.auth().currentUser); setMsg("Conta Google conectada. Tudo o que você já tinha foi mantido."); }
-    }).catch(function (err) {
-      busy = false;
-      var b2 = document.getElementById("cg-google");
-      if (b2) b2.disabled = false;
-      var m = friendlyError(err);
-      setMsg(m, !!m);
-      if (window.console && err) console.warn("[conta-google]", err.code || err);
-    });
+    terminar(work);
+  }
+
+  function lerCampos() {
+    var e = document.getElementById("cg-email"), s = document.getElementById("cg-senha");
+    return { email: e ? e.value.trim() : "", senha: s ? s.value : "" };
+  }
+
+  function signInEmail(criar) {
+    var f = lerCampos();
+    if (!f.email || !f.senha) { setMsg("Informe e-mail e senha.", true); return; }
+    if (!comecar(criar ? "cg-criar" : "cg-entrar")) return;
+    var auth = firebase.auth();
+    var cur = auth.currentUser;
+    var work;
+    if (criar && cur && cur.isAnonymous) {
+      var cred = firebase.auth.EmailAuthProvider.credential(f.email, f.senha);
+      work = cur.linkWithCredential(cred).then(afterLink);
+    } else if (criar) {
+      work = entrarEJuntar(function () { return auth.createUserWithEmailAndPassword(f.email, f.senha); });
+    } else {
+      work = entrarEJuntar(function () { return auth.signInWithEmailAndPassword(f.email, f.senha); });
+    }
+    terminar(work);
+  }
+
+  function esqueci() {
+    var f = lerCampos();
+    if (!f.email) { setMsg("Escreva seu e-mail no campo acima e clique de novo em \"Esqueci a senha\".", true); return; }
+    firebase.auth().sendPasswordResetEmail(f.email).then(function () {
+      setMsg("Se existir conta com esse e-mail, enviamos um link para criar uma senha nova. Confira a caixa de entrada e o spam.");
+    }).catch(function (err) { setMsg(friendlyError(err), true); });
   }
 
   function signOut() {
@@ -335,14 +400,22 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("#cg-google, #cg-out");
+    var t = e.target.closest("#cg-google, #cg-out, #cg-entrar, #cg-criar, #cg-esqueci");
     if (!t) return;
-    if (t.id === "cg-google") signIn(); else signOut();
+    if (t.id === "cg-google") signInGoogle();
+    else if (t.id === "cg-out") signOut();
+    else if (t.id === "cg-entrar") signInEmail(false);
+    else if (t.id === "cg-criar") signInEmail(true);
+    else esqueci();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target && (e.target.id === "cg-email" || e.target.id === "cg-senha")) signInEmail(false);
   });
 
   // ---- sincroniza a lista de grupos/edital de quem já está logado -----------
   function syncExtras(user) {
-    if (!user || user.isAnonymous) return;
+    if (!logado(user)) return;
     try {
       var db = firebase.firestore();
       var ref = db.doc("progress-leis/" + user.uid);
@@ -362,13 +435,12 @@
     try {
       if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
       firebase.auth().onAuthStateChanged(function (user) {
-        if (!user) return;
         render(user);
         syncExtras(user);
       });
     } catch (e) {}
   }
 
-  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine };
+  window.ContaGoogle = { merge: { maps: mergeMaps, dates: mergeDates, groups: mergeGroups }, combine: combine, logado: logado };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

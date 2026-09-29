@@ -12,7 +12,7 @@
  *   EditaisShared.load(function (S) { ... });   // carrega editais-data.js se preciso
  *   S.principalId(), S.principal(), S.setPrincipal(id), S.onChange(fn)
  *   S.lawKeys(edital) -> { "materia:slug(numero)": true }
- *   S.bindCloud({ signIn: true|false })          // liga a sincronização com a conta
+ *   S.bindCloud()                                // liga a sincronização com a conta (se a pessoa entrou)
  */
 (function () {
   "use strict";
@@ -121,30 +121,22 @@
     isLocalNorma: isLocalNorma,
     hasLocalNormas: hasLocalNormas,
 
-    // liga a sincronização com a conta. Na página "Editais" (signIn:true)
-    // cria o login anônimo se ainda não houver; no Diário de Leis quem
-    // faz o login é o próprio diário.
-    bindCloud: function (opts) {
-      opts = opts || {};
+    // liga a sincronização com a conta de quem entrou (Google ou e-mail e
+    // senha); sem entrar, a escolha de edital fica só neste navegador.
+    bindCloud: function () {
       if (cloudBound) return;
       if (!window.firebase || !window.DIARIO_FIREBASE_CONFIG) return;
       cloudBound = true;
       try {
         if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
         var auth = firebase.auth();
+        // só quem entrou com Google ou e-mail e senha sincroniza com a conta
         auth.onAuthStateChanged(function (user) {
-          if (!user) return;
+          if (!user || user.isAnonymous) return;
           if (uid === user.uid) return;
           uid = user.uid;
           attach();
         });
-        if (opts.signIn) {
-          // só cria login anônimo se, após o Firebase restaurar a sessão, não houver ninguém
-          var off = auth.onAuthStateChanged(function (user) {
-            off();
-            if (!user) auth.signInAnonymously().catch(function () {});
-          });
-        }
       } catch (e) { cloudBound = false; }
     },
 

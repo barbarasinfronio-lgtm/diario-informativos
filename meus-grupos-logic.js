@@ -49,6 +49,7 @@
   }
 
   var viewerId = null;
+  var PRECISA_ENTRAR = "Para criar ou entrar em um grupo, entre primeiro com o Google ou com e-mail e senha (quadro no topo da página).";
   var unsubs = {};     // code -> unsubscribe
   var snapshots = {};  // code -> último snapshot de members
 
@@ -142,7 +143,9 @@
       snapshots[g.code] = snap;
       renderGroupCard(g);
     }, function () {
-      // assinatura perdida; deixa o card como estava
+      // sem permissão (ainda não entrou) ou assinatura perdida: deixa o card
+      // como estava e tenta de novo na próxima renderização
+      if (unsubs[g.code]) { unsubs[g.code](); delete unsubs[g.code]; }
     });
     // também busca o nome oficial do grupo (groups/<code>.name), caso
     // tenha sido criado com um nome diferente do que está salvo localmente
@@ -178,7 +181,7 @@
     var yourName = createYouInput ? createYouInput.value.trim() : "";
     if (!groupName) { showError("Dê um nome para o grupo (ex: “Turma TJCE 2026”)."); return; }
     if (!yourName) { showError("Informe seu nome nesse grupo."); return; }
-    if (!viewerId) { showError("Ainda carregando — aguarde um instante e tente de novo."); return; }
+    if (!viewerId) { showError(PRECISA_ENTRAR); return; }
     var code = GS.genGroupCode();
     GS.createGroupDoc(code, groupName, viewerId).then(function () {
       var pref = { code: code, name: yourName, joinedAt: new Date().toISOString() };
@@ -198,7 +201,7 @@
     var yourName = joinYouInput ? joinYouInput.value.trim() : "";
     if (!code) { showError("Informe o código do grupo."); return; }
     if (!yourName) { showError("Informe seu nome nesse grupo."); return; }
-    if (!viewerId) { showError("Ainda carregando — aguarde um instante e tente de novo."); return; }
+    if (!viewerId) { showError(PRECISA_ENTRAR); return; }
     if (GS.findGroup(code)) { showError("Você já está nesse grupo."); return; }
     GS.fetchGroupMeta(code).then(function (meta) {
       if (!meta) { showError("Código não encontrado — confira com quem te convidou."); return; }
@@ -256,10 +259,35 @@
 
   renderAllCards();
 
+  // Quadro de login (conta-google.js): esta página não tem #account-panel no
+  // HTML, então criamos um no topo e carregamos o script da mesma pasta.
+  (function contaGoogle() {
+    if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) return;
+    if (!document.getElementById("account-panel")) {
+      var panel = document.createElement("div");
+      panel.id = "account-panel";
+      var main = (listRoot && listRoot.closest("main")) || document.querySelector("main");
+      if (main) main.insertBefore(panel, main.firstChild);
+    }
+    if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
+    var all0 = document.getElementsByTagName("script"), src = "";
+    for (var i = 0; i < all0.length; i++) {
+      if (/meus-grupos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
+    }
+    if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/meus-grupos-logic.js";
+    var s = document.createElement("script");
+    s.id = "conta-google-js";
+    s.src = src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js$1");
+    document.head.appendChild(s);
+  })();
+
   if (GS) {
     GS.onViewerReady(function (uid) {
       viewerId = uid;
       renderAllCards();
+    }, function () {
+      viewerId = null;
+      setNote("Você ainda não entrou: os grupos e o ranking só funcionam para quem entra com o Google ou com e-mail e senha.");
     });
   } else {
     showError("Não foi possível carregar. Recarregue a página em instantes.");

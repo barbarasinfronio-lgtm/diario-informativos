@@ -520,7 +520,7 @@
   // HTML (layout novo), então criamos um: conta-google.js procura por
   // #account-panel e insere o botão sozinho ali dentro. Sem isso, ninguém
   // conseguia entrar com a conta Google nesta página. Aproveitamos o mesmo
-  // login (anônimo ou com Google) para sincronizar as leis marcadas como
+  // login (Google ou e-mail e senha) para sincronizar as leis marcadas como
   // lidas com a conta (função bindUser, acima).
   function ensureAccountPanel() {
     var panel = document.getElementById("account-panel");
@@ -542,23 +542,18 @@
       startContaGoogle.tentou = true;
       var n = document.createElement("script");
       n.src = scriptBase() + "nuvem-shared.js";
-      n.onload = function () { window.EstudaManaNuvem.preparar().then(function (uid) { if (uid) startContaGoogle(); else dbReady = true; }); };
+      n.onload = function () { window.EstudaManaNuvem.preparar().then(function () { if (window.GruposShared && window.firebase) startContaGoogle(); else dbReady = true; }); };
       n.onerror = function () { dbReady = true; };
       document.head.appendChild(n);
       return;
     }
     ensureAccountPanel();
     if (!firebase.apps.length) firebase.initializeApp(window.DIARIO_FIREBASE_CONFIG);
+    // Só salva na nuvem quem entrou com Google ou e-mail e senha (sem login
+    // anônimo). Sem entrar, tudo fica salvo neste navegador.
     firebase.auth().onAuthStateChanged(function (user) {
-      if (!user) return;
+      if (!user || user.isAnonymous) return;
       if (viewerId !== user.uid) bindUser(user.uid);
-    });
-    // Só cria o login anônimo se, depois de o Firebase restaurar a sessão,
-    // não houver ninguém logado — assim não troca uma conta já vinculada
-    // (Google) por outra.
-    var offAnon = firebase.auth().onAuthStateChanged(function (u) {
-      offAnon();
-      if (!u) firebase.auth().signInAnonymously().catch(function () { dbReady = true; });
     });
     if (window.ContaGoogle || document.getElementById("conta-google-js")) return;
     var s = document.createElement("script");
