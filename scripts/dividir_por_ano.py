@@ -28,7 +28,9 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # campo_grupo: filtro principal da página (classe da ação / tribunal).
 CONJUNTOS = [
     {"fonte": "controleconst/adi_dados.js", "campo_data": "data", "campo_grupo": "classe"},
-    {"fonte": "reclamacoes/reclamacoes-data.js", "campo_data": "dataJulgamento", "campo_grupo": "tribunal"},
+    {"fonte": "reclamacoes/reclamacoes-data.js", "campo_data": "dataJulgamento", "campo_grupo": "tribunal",
+     # contagem extra por resultado (Procedente...), usada pelos filtros do Diário das Decisões
+     "campo_extra": "tipo"},
 ]
 
 URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo="
@@ -79,7 +81,14 @@ def dividir(conj):
             g = str(it.get(conj["campo_grupo"]) or "")
             grupos[g] = grupos.get(g, 0) + 1
         escrever_json(os.path.join(pasta, chave + ".json"), lista)
-        anos.append({"ano": chave, "total": len(lista), "grupos": grupos})
+        entrada = {"ano": chave, "total": len(lista), "grupos": grupos}
+        if conj.get("campo_extra"):
+            extra = {}
+            for it in lista:
+                g = str(it.get(conj["campo_extra"]) or "")
+                extra[g] = extra.get(g, 0) + 1
+            entrada["porTipo"] = extra
+        anos.append(entrada)
 
     # Apaga arquivos de anos que sumiram dos dados.
     validos = {a["ano"] + ".json" for a in anos} | {"index.json"}
