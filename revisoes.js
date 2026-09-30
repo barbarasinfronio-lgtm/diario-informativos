@@ -11,6 +11,9 @@
  *   - Leis principais (CF, CC, CPC, CP, CPP e ECA): a cada 6 meses.
  *   - Demais leis: pelo número de decisões do Diário das Decisões que as
  *     citam (normas-citadas.js) — veja FAIXAS abaixo.
+ *   - Leis do acervo alteradas nos 30 dias anteriores ao acesso (leis/
+ *     alteracoes.json, gerado pelo robô do Mac): aparecem como sugestão de
+ *     revisão MESMO que a pessoa nunca tenha marcado a lei como lida.
  * A contagem começa na data da leitura (ou da última revisão). "Revisei hoje"
  * guarda a data neste navegador ("revisoes-feitas") e na conta
  * (progress-premios/<uid>, campo "revisoes").
@@ -78,6 +81,7 @@
     if (v && typeof v === "object" && v.lida) return { em: dia(v.lidaEm) };
     return null;
   }
+  var lida_ = lida;   // (alias: "lida" também é nome de variável em alguns pontos)
   function g(nome) { return typeof window[nome] !== "undefined" ? window[nome] : undefined; }
 
   function lerRevLocal() {
@@ -111,6 +115,48 @@
       .catch(function () { tst = []; });
   }
 
+  // ---- leis alteradas nos últimos 30 dias ---------------------------------------
+  // leis/alteracoes.json: por lei (chave = slug do número), "ultimaAlteracao"
+  // (data da norma que alterou por último, lida das notas do Planalto) e
+  // "mudancas" (alterações novas, com a data em que o robô as percebeu).
+  var JANELA_ALTERACAO = 30;
+  var VISTAS_ALT_KEY = "revisoes-alteracoes-vistas";
+  var alteracoes = null;
+  function carregarAlteracoes() {
+    if (alteracoes) return Promise.resolve();
+    return fetch(CDN + "leis/alteracoes.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (j) { alteracoes = (j && j.leis) || {}; })
+      .catch(function () { alteracoes = {}; });
+  }
+  function lerVistasAlt() {
+    try { return JSON.parse(localStorage.getItem(VISTAS_ALT_KEY) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function leisAlteradas(maps) {
+    if (!alteracoes) return [];
+    var hojeN = diaNum(hoje()), vistas = lerVistasAlt(), lidas = (maps && maps.lei) || {}, out = [];
+    Object.keys(alteracoes).forEach(function (chave) {
+      var l = alteracoes[chave], datas = [], normas = [];
+      if (dia(l.ultimaAlteracao)) { datas.push(dia(l.ultimaAlteracao)); if (l.ultimaNorma) normas.push(l.ultimaNorma); }
+      (l.mudancas || []).forEach(function (m) {
+        if (dia(m.detectadoEm)) { datas.push(dia(m.detectadoEm)); (m.normas || []).forEach(function (n) { if (normas.indexOf(n) < 0) normas.push(n); }); }
+      });
+      // só datas dentro dos 30 dias anteriores a hoje (não futuras)
+      var recentes = datas.filter(function (d) { var n = hojeN - diaNum(d); return n >= 0 && n <= JANELA_ALTERACAO; }).sort();
+      if (!recentes.length) return;
+      var quando = recentes[recentes.length - 1];
+      if (vistas[chave] && vistas[chave] >= quando) return;      // "Já vi": só volta se houver alteração mais nova
+      var lida = null;
+      Object.keys(lidas).forEach(function (k) {
+        if (k.split(":").slice(1).join(":") !== chave) return;
+        var e = lida_(lidas[k]);
+        if (e && (!lida || (e.em && (!lida.em || e.em > lida.em)))) lida = e;
+      });
+      out.push({ chave: chave, nome: l.nome, numero: l.numero, link: l.link, quando: quando, normas: normas, lida: lida });
+    });
+    return out.sort(function (a, b) { return a.quando < b.quando ? 1 : a.quando > b.quando ? -1 : 0; });
+  }
+
   var citacoes = null;   // id da lei (normas-citadas) -> nº de decisões que a citam
   var decisoesPorId = null;
   var preparando = null;
@@ -121,6 +167,7 @@
         carregarJs("LEIS_DATA", "leis-data.js"),
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
         carregarJs("RG_REPETITIVOS_DATA", "rg-repetitivos-data.js"),
+        carregarAlteracoes(),
         carregarTst()
       ]).then(function () {
         var todas = (g("RG_REPETITIVOS_DATA") || []).concat(tst || []);
@@ -278,6 +325,26 @@
     "</li>";
   }
 
+  function linhaAlt(a) {
+    var leitura = a.lida ? (a.lida.em ? "você leu em " + fmt(a.lida.em) : "você já leu") : "você ainda não leu";
+    return '<li class="rv-item rv-agora">' +
+      '<span class="rv-tipo">Lei alterada</span>' +
+      '<div class="rv-texto"><b>' + esc(a.nome) + "</b>" +
+        '<span class="rv-meta">' + esc(a.numero + " · alterada em " + fmt(a.quando) +
+          (a.normas.length ? " por " + a.normas.join(", ") : "") + " · " + leitura) + "</span></div>" +
+      '<div class="rv-acoes">' + (a.link ? '<a class="rv-abrir" href="' + esc(a.link) + '" target="_blank" rel="noopener">Ver texto atualizado</a>' : "") +
+        '<button type="button" class="rv-feito" data-alt-visto="' + esc(a.chave) + '" data-alt-em="' + esc(a.quando) + '">✔ Já vi</button></div>' +
+    "</li>";
+  }
+
+  function blocoAlteradas(alts) {
+    return '<details class="rv-bloco" open><summary><span>📢 Leis alteradas nos últimos ' + JANELA_ALTERACAO + ' dias</span><span class="rv-n">' + alts.length + "</span></summary>" +
+      (alts.length ? '<ul class="rv-lista">' + alts.map(linhaAlt).join("") + "</ul>" +
+        '<p class="rv-nota">Aparecem mesmo que você nunca tenha marcado a lei como lida. “Já vi” esconde o aviso até uma nova alteração.</p>'
+        : '<p class="rv-vazio">Nenhuma lei do acervo foi alterada nos últimos ' + JANELA_ALTERACAO + " dias.</p>") +
+      "</details>";
+  }
+
   function listaRev(titulo, itens, id, aberto, vazio) {
     var LIM = 40, todos = ui.verTodos[id], mostrar = todos ? itens : itens.slice(0, LIM);
     return '<details class="rv-bloco"' + (aberto ? " open" : "") + '><summary><span>' + titulo + '</span><span class="rv-n">' + itens.length + "</span></summary>" +
@@ -288,23 +355,26 @@
   }
 
   function telaRevisoes(o) {
-    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens);
+    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps);
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return a.dias - b.dias; }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
       "<li><b>Súmulas:</b> a cada " + SUMULA_MESES + " meses.</li>" +
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada " + PRINCIPAL_MESES + " meses.</li>" +
       "<li><b>Demais leis</b>, pelo número de decisões do Diário das Decisões que as citam: " +
         FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + ".</li>" +
+      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada nos " + JANELA_ALTERACAO + " dias anteriores a hoje aparece como sugestão, mesmo que você nunca a tenha lido. A data é a da norma que alterou a lei (lida do Planalto pelo robô semanal) ou, na falta dela, o dia em que o robô percebeu a mudança.</li>" +
       "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo recomeça.</li>" +
       "</ul></details>";
     if (!itens.length) {
-      return regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
+      return blocoAlteradas(alts) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
     }
     return '<div class="rv-resumo">' +
+        '<span class="rv-pilula rv-agora"><b>' + alts.length + "</b> leis alteradas em " + JANELA_ALTERACAO + " dias</span>" +
         '<span class="rv-pilula rv-agora"><b>' + c.agora + "</b> para revisar agora</span>" +
         '<span class="rv-pilula rv-breve"><b>' + c.breve + "</b> nos próximos 30 dias</span>" +
         '<span class="rv-pilula"><b>' + c.emdia + "</b> em dia</span></div>" +
       regra +
+      blocoAlteradas(alts) +
       listaRev("Para revisar agora", por("agora"), "agora", true, "Nada para revisar agora. 🎉") +
       listaRev("Nos próximos 30 dias", por("breve"), "breve", c.agora === 0, "Nenhuma revisão nos próximos 30 dias.") +
       (c.semdata ? listaRev("Lidas antes de o site guardar a data", itens.filter(function (i) { return i.estado === "semdata"; }), "semdata", false, "") +
@@ -352,9 +422,13 @@
     o.rev = juntarRev(o.rev);
     el.innerHTML = o.tab === "historico" ? telaHistorico(o) : telaRevisoes(o);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto]");
       if (!b) return;
-      if (b.dataset.rev) {
+      if (b.dataset.altVisto) {
+        var vistas = lerVistasAlt();
+        vistas[b.dataset.altVisto] = b.dataset.altEm;
+        try { localStorage.setItem(VISTAS_ALT_KEY, JSON.stringify(vistas)); } catch (e) {}
+      } else if (b.dataset.rev) {
         var id = b.dataset.rev, d = hoje(), local = lerRevLocal();
         local[id] = (local[id] || []).filter(function (x) { return x !== d; }).concat([d]).sort();
         try { localStorage.setItem(REV_KEY, JSON.stringify(local)); } catch (e) {}
@@ -374,10 +448,11 @@
   // cartão curto para a aba "Resumo" ("" enquanto os dados não chegam)
   function resumo(o) {
     if (!pronto()) return "";
-    var c = contar(itensDeRevisao(o.maps, juntarRev(o.rev)));
-    if (!c.agora && !c.breve) return "";
+    var c = contar(itensDeRevisao(o.maps, juntarRev(o.rev))), na = leisAlteradas(o.maps).length;
+    if (!c.agora && !c.breve && !na) return "";
     return '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(c.agora, "revisão", "revisões") + "</b> para fazer agora" +
-      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") + " <span>Ver revisões →</span></button>";
+      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") +
+      (na ? " · 📢 " + plural(na, "lei alterada", "leis alteradas") + " em " + JANELA_ALTERACAO + " dias" : "") + " <span>Ver revisões →</span></button>";
   }
 
   window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo };

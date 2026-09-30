@@ -949,13 +949,89 @@ def alteradoras(texto):
     return achadas
 
 
+_MESES_NUM = {"janeiro": 1, "fevereiro": 2, "marco": 3, "março": 3, "abril": 4, "maio": 5, "junho": 6,
+              "julho": 7, "agosto": 8, "setembro": 9, "outubro": 10, "novembro": 11, "dezembro": 12}
+# "(Redação dada pela Lei nº 14.994, de 9.10.2024)" · "(Incluído pela Lei nº 13.964, de 24 de dezembro de 2019)"
+_RE_NOTA_DATA = re.compile(
+    r"(?:Reda[çc][ãa]o\s+dada|Inclu[íi]d[oa]s?|Acrescid[oa]s?|Acrescentad[oa]s?|Revogad[oa]s?|"
+    r"Renumerad[oa]s?|Alterad[oa]s?|Suprimid[oa]s?|Transformad[oa]s?)\s+(?:pel[oa]s?|por)\s+"
+    r"(Emenda\s+Constitucional\s+de\s+Revis[ãa]o|Emenda\s+Constitucional|Lei\s+Complementar|"
+    r"Medida\s+Provis[óo]ria|Decreto-Lei|Lei)\s+n[ºo°.]*\s*(\d[\d.]*)\s*,\s*de\s+"
+    r"(?:(\d{1,2})[º°o]?\s*\.\s*(\d{1,2})\s*\.\s*(\d{4})|"
+    r"(\d{1,2})[º°o]?\s+de\s+([a-zç]+)\s+de\s+(\d{4}))", re.I)
+
+
+def ultima_alteracao(texto):
+    """(data ISO, rótulo) da norma mais recente citada nas notas do Planalto
+    com data completa; (None, None) se nenhuma nota traz a data inteira."""
+    t = texto_limpo(texto)
+    melhor = (None, None)
+    for m in _RE_NOTA_DATA.finditer(t):
+        try:
+            if m.group(3):
+                d, mo, a = int(m.group(3)), int(m.group(4)), int(m.group(5))
+            else:
+                d, a = int(m.group(6)), int(m.group(8))
+                mo = _MESES_NUM.get(m.group(7).lower())
+                if not mo:
+                    continue
+            if not (1 <= d <= 31 and 1 <= mo <= 12 and 1900 <= a <= 2100):
+                continue
+        except ValueError:
+            continue
+        iso_d = f"{a:04d}-{mo:02d}-{d:02d}"
+        if melhor[0] is None or iso_d > melhor[0]:
+            tipo = re.sub(r"\s+", " ", m.group(1)).title().replace("Dl", "DL")
+            num = int(m.group(2).replace(".", "").rstrip(".") or 0)
+            melhor = (iso_d, f"{tipo} nº {num:,}".replace(",", ".") + f"/{a}")
+    return melhor
+
+
+def leis_do_acervo():
+    """(numero, nome, url) de cada lei do leis-data.js com texto no Planalto."""
+    import json as _json
+    try:
+        t = (RAIZ / "leis-data.js").read_text(encoding="utf-8")
+    except OSError:
+        return []
+    out, vistos = [], set()
+    for m in re.finditer(r'\{\s*nome:\s*("(?:[^"\\]|\\.)*"),\s*numero:\s*("(?:[^"\\]|\\.)*"),\s*link:\s*"(https://www\.planalto\.gov\.br[^"]*)"', t):
+        try:
+            nome, numero = _json.loads(m.group(1)), _json.loads(m.group(2))
+        except ValueError:
+            continue
+        if numero not in vistos:
+            vistos.add(numero)
+            out.append((numero, nome, m.group(3)))
+    return out
+
+
+# tempo máximo (segundos) só para conferir leis nesta rodada; o que sobrar fica
+# para a próxima (as mais antigas na fila vão primeiro)
+LEIS_ORCAMENTO = 1200
+
+
 def leis(dados, tudo=False):
     import json
+    import time
     atual = json.loads(LEIS_ARQ.read_text(encoding="utf-8")) if LEIS_ARQ.exists() else {"leis": {}}
     registro = atual.get("leis", {})
     hoje_iso = hoje()
     mudou, avisos, erros = False, [], []
-    for numero, nome, url in LEIS_MONITORADAS:
+    # as 26 mais cobradas + todas as leis do acervo com texto no Planalto,
+    # as menos recentemente conferidas primeiro
+    lista, ja = [], set()
+    for numero, nome, url in LEIS_MONITORADAS + leis_do_acervo():
+        if numero not in ja:
+            ja.add(numero)
+            lista.append((numero, nome, url))
+    lista.sort(key=lambda x: (registro.get(_slug(x[0])) or {}).get("conferidaEm", ""))
+    inicio, conferidas = time.monotonic(), 0
+    for numero, nome, url in lista:
+        if conferidas and time.monotonic() - inicio > LEIS_ORCAMENTO:
+            print(f"  (tempo desta rodada esgotado: faltam {len(lista) - conferidas} leis para a próxima vez)")
+            break
+        conferidas += 1
         chave = _slug(numero)
         try:
             t = pagina(url, valida=lambda x: "Reda" in x or "Inclu" in x)
@@ -964,17 +1040,31 @@ def leis(dados, tudo=False):
             erros.append(f"{nome}: {e}")
             continue
         antigo = registro.get(chave)
+        ult_data, ult_norma = ultima_alteracao(t)
         if not achadas:
-            erros.append(f"{nome}: a página não trouxe nenhuma nota de alteração — mudou?")
+            # lei sem nenhuma alteração ainda (ou página sem notas): só anota que conferiu
+            if antigo is None:
+                registro[chave] = {"numero": numero, "nome": nome, "link": url, "alteradoras": [],
+                                   "mudancas": [], "desde": hoje_iso, "conferidaEm": hoje_iso}
+                mudou = True
+            else:
+                antigo["conferidaEm"] = hoje_iso
+                mudou = True
             continue
         if antigo is None:
             registro[chave] = {"numero": numero, "nome": nome, "link": url,
-                               "alteradoras": sorted(achadas), "mudancas": [], "desde": hoje_iso}
+                               "alteradoras": sorted(achadas), "mudancas": [], "desde": hoje_iso,
+                               "conferidaEm": hoje_iso}
+            if ult_data:
+                registro[chave].update({"ultimaAlteracao": ult_data, "ultimaNorma": ult_norma})
             print(f"  {nome}: {len(achadas)} normas alteradoras anotadas (primeira conferência)")
             mudou = True
             continue
         novas = [k for k in achadas if k not in set(antigo.get("alteradoras", []))]
-        antigo.update({"numero": numero, "nome": nome, "link": url})
+        antigo.update({"numero": numero, "nome": nome, "link": url, "conferidaEm": hoje_iso})
+        if ult_data and (antigo.get("ultimaAlteracao") != ult_data or antigo.get("ultimaNorma") != ult_norma):
+            antigo.update({"ultimaAlteracao": ult_data, "ultimaNorma": ult_norma})
+            mudou = True
         if novas:
             antigo["alteradoras"] = sorted(set(antigo["alteradoras"]) | set(novas))
             antigo.setdefault("mudancas", []).append(
@@ -985,6 +1075,7 @@ def leis(dados, tudo=False):
             mudou = True
         else:
             print(f"  {nome}: sem alteração nova ({len(achadas)} alteradoras conhecidas)")
+            mudou = True   # (a data da conferência mudou)
     if mudou:
         LEIS_ARQ.parent.mkdir(exist_ok=True)
         LEIS_ARQ.write_text(json.dumps({"atualizado": hoje_iso, "leis": registro},
@@ -992,7 +1083,7 @@ def leis(dados, tudo=False):
         dados.leis_mudou = True
     for e in erros:
         print(f"  ATENÇÃO: {e}")
-    if erros and len(erros) == len(LEIS_MONITORADAS):
+    if erros and len(erros) == conferidas:
         raise Falha("não consegui conferir nenhuma lei (" + erros[0] + ")")
     return [{"edicao": a, "data": hoje_iso} for a in avisos]
 
@@ -1128,7 +1219,7 @@ TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_e
 # que está rodando. Um site pendurado (ex.: JusLaboris
 # lento, Chrome esperando uma página que não termina) não trava o resto:
 # a parte é interrompida, aparece como ERRO no Resumo e as outras seguem.
-LIMITE = {"TESES": 1800, "LEIS": 900}
+LIMITE = {"TESES": 1800, "LEIS": 1500}
 LIMITE_PADRAO = 300
 
 

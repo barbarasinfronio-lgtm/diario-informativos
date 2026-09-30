@@ -229,6 +229,18 @@ html.em-has-font body {
    classe "sidebar-invisible" e ela volta a aparecer normalmente. */
 .sidebar-container.sidebar-invisible { visibility: hidden; }
 
+/* Fundo das páginas (tema Contempo do Blogger). Em telas largas o tema:
+     - pinta o corpo da página de cinza claro (#eee) sob a imagem do topo;
+     - abre uma coluna lateral de 284px com fundo branco (a "barra lateral",
+       que o site não usa) e empurra o conteúdo para a direita.
+   Aqui o fundo passa a ser o do site (claro ou escuro) e a coluna some. */
+html, body { background-color: var(--ground, #f6f3ec) !important; }
+.sidebar-container,
+.hamburger-menu { display: none !important; }
+.page_body { margin-left: 0 !important; }
+.sticky,
+body.collapsed-header .page_body .centered-top-container { padding-left: 0 !important; }
+
 /* Título da página (o do próprio conteúdo) legível no modo escuro: em algumas
    páginas (ex.: Diário de Leis) ele vinha numa cor escura sobre fundo escuro. */
 @media (prefers-color-scheme: dark) {
