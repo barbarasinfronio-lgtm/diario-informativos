@@ -228,3 +228,10 @@ html.em-has-font body {
    ao lado do conteúdo. Fechada, fica invisível; quando o tema a abre, tira a
    classe "sidebar-invisible" e ela volta a aparecer normalmente. */
 .sidebar-container.sidebar-invisible { visibility: hidden; }
+
+/* Título da página (o do próprio conteúdo) legível no modo escuro: em algumas
+   páginas (ex.: Diário de Leis) ele vinha numa cor escura sobre fundo escuro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .em-titulo-pagina { color: var(--ink) !important; }
+}
+:root[data-theme="dark"] .em-titulo-pagina { color: var(--ink) !important; }
