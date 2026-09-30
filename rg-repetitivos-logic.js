@@ -9,6 +9,19 @@
   var TESES_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/teses.json';
   var state = { q:'', org:'all', risk:'all', area:null };
 
+  // O rótulo acima do título ("Dossiê de jurisprudência · Magistratura") está
+  // no HTML da página do Blogger; como o Diário deixou de ser só da
+  // magistratura, tira o " · Magistratura" daqui (vale mesmo sem editar o HTML).
+  (function(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) {
+      if (/Dossiê de jurisprudência\s*·\s*Magistratura/i.test(n.nodeValue)) {
+        n.nodeValue = n.nodeValue.replace(/\s*·\s*Magistratura/i, '');
+        break;
+      }
+    }
+  })();
+
   // Nem todo precedente qualificado do STJ é "Tema": também há IAC
   // (Incidente de Assunção de Competência) e PUIL (Pedido de Uniformização
   // de Interpretação de Lei), que não podem ser rotulados como "Tema" nem
