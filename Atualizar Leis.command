@@ -47,7 +47,16 @@ if [ -z "$(git log origin/main..main --oneline)" ]; then
   echo; echo "Nada para enviar."
   fim "$resultado"
 fi
-if git push -q origin main; then
+# A rodada demora; nesse tempo o main pode ter recebido outras mudanças. Se o
+# envio for recusado, junta de novo com o main e tenta outra vez.
+enviado=0
+for tentativa in 1 2 3; do
+  if git push -q origin main; then enviado=1; break; fi
+  echo "Envio recusado (o main mudou); juntando e tentando de novo ($tentativa/3)..."
+  git fetch -q origin main && git pull -q --rebase --autostash origin main \
+    || { git rebase --abort 2>/dev/null; break; }
+done
+if [ "$enviado" = 1 ]; then
   echo; echo "✅ Enviado para o site."
 else
   echo; echo "ERRO: não consegui enviar para o GitHub (a mudança ficou salva neste Mac)."
