@@ -76,6 +76,20 @@
   padding: 0.9rem 1.1rem; margin-bottom: 1.25rem;
 }
 .ed-current p { margin: 0; font-size: calc(0.95rem * var(--fs-scale)); }
+/* combinação de editais: principal + até 2 secundários */
+.ed-current { flex-direction: column; align-items: stretch; }
+.ed-combo { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.ed-combo-item { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; }
+.ed-combo-item .edital-kicker { min-width: 8.2rem; }
+.ed-combo-nome { flex: 1 1 14rem; font-size: calc(0.95rem * var(--fs-scale)); }
+.ed-combo-acoes { display: inline-flex; gap: 0.4rem; }
+.ed-current > .ed-hint { margin: 0; color: var(--ink-soft); }
+.ed-tag-sec {
+  font-family: var(--font-mono); font-size: calc(0.66rem * var(--fs-scale)); letter-spacing: 0.06em;
+  background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 0.15rem 0.55rem; flex-shrink: 0;
+}
+.ed-row-main > .ed-tag-sec { margin-top: 0.1rem; }
 .ed-current .edital-kicker { color: var(--accent); }
 .ed-none {
   background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold);

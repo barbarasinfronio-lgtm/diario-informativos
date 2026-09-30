@@ -338,6 +338,22 @@
       });
       html += "</optgroup>";
     });
+    // Combinação de editais (página "Editais": principal + até 2 secundários):
+    // uma opção junta os estados de todos eles.
+    var idsCombo = [];
+    (function () {
+      var sec = [];
+      try { sec = JSON.parse(lerStorage("editais-secundarios") || "[]"); } catch (e) {}
+      [lerStorage("editais-principal")].concat(Array.isArray(sec) ? sec : []).forEach(function (id) {
+        if (id && opcoes[id] && idsCombo.indexOf(id) === -1) idsCombo.push(id);
+      });
+    })();
+    var COMBO_ID = "__meus__";
+    if (idsCombo.length > 1) {
+      var siglas = idsCombo.map(function (id) { return String(opcoes[id].nome).split(" — ")[0]; });
+      opcoes[COMBO_ID] = { id: COMBO_ID, nome: "Meus editais", modo: "multi", ids: idsCombo };
+      html = html.replace('</option>', '</option><option value="' + COMBO_ID + '">⭐ Meus editais: ' + escapeHtml(siglas.join(" + ")) + "</option>");
+    }
     selectEdital.innerHTML = html;
 
     // quantas leis estaduais há em cada estado (para mostrar no menu)
@@ -354,7 +370,8 @@
     }
 
     // escolha salva; senão, o edital principal da página "Editais"
-    var salvo = lerStorage(STORAGE_EDITAL) || lerStorage("editais-principal");
+    var salvo = lerStorage(STORAGE_EDITAL) || (idsCombo.length > 1 ? COMBO_ID : lerStorage("editais-principal"));
+    if (!(salvo && opcoes[salvo])) salvo = lerStorage("editais-principal");
     if (salvo && opcoes[salvo]) selectEdital.value = salvo;
     var estadoSalvo = lerStorage(STORAGE_ESTADO);
     if (selectEstado && estadoSalvo) selectEstado.value = estadoSalvo;
@@ -418,7 +435,8 @@
       var digitos = /\d/.test(termo) ? termo.replace(/\D/g, "") : "";
       var buscando = !!termo;
 
-      if (wrapperEstado) wrapperEstado.style.display = opcao && opcao.modo === "escolher" ? "" : "none";
+      var comboEscolhe = !!(opcao && opcao.modo === "multi" && opcao.ids.some(function (id) { return opcoes[id] && opcoes[id].modo === "escolher"; }));
+      if (wrapperEstado) wrapperEstado.style.display = opcao && (opcao.modo === "escolher" || comboEscolhe) ? "" : "none";
 
       // Federais: sempre todas (filtradas pela busca)
       renderIncluidas(termo, digitos);
@@ -439,7 +457,22 @@
         gridEstaduais.innerHTML = aviso("Este é um concurso federal ou exame nacional: só as leis federais se aplicam.");
         return;
       }
-      if (opcao.modo === "uf") {
+      var ufsCombo = null;
+      if (opcao.modo === "multi") {
+        // junta os estados de todos os editais da combinação
+        ufsCombo = [];
+        opcao.ids.forEach(function (id) {
+          var o = opcoes[id];
+          var u = o.modo === "uf" ? o.uf : (o.modo === "escolher" && selectEstado ? selectEstado.value : "");
+          if (u && u !== "TODOS" && ufsCombo.indexOf(u) === -1) ufsCombo.push(u);
+        });
+        if (!ufsCombo.length) {
+          if (tituloEstaduais) tituloEstaduais.textContent = titulo;
+          gridEstaduais.innerHTML = aviso("Nenhum dos seus editais é estadual" + (comboEscolhe ? " — escolha o estado no menu acima" : "") + ": só as leis federais se aplicam.");
+          return;
+        }
+        uf = ufsCombo.join(", ");
+      } else if (opcao.modo === "uf") {
         uf = opcao.uf;
       } else {
         uf = selectEstado ? selectEstado.value : "";
@@ -451,12 +484,15 @@
       }
 
       var estaduais = leis.filter(function (l) {
-        return l.uf && (uf === "TODOS" || l.uf === uf) && atendeBusca(l, termo, digitos);
+        var doEstado = ufsCombo ? ufsCombo.indexOf(l.uf) !== -1 : (uf === "TODOS" || l.uf === uf);
+        return l.uf && doEstado && atendeBusca(l, termo, digitos);
       });
       if (tituloEstaduais) {
-        tituloEstaduais.textContent = uf === "TODOS"
-          ? "🏛️ Leis Estaduais (todos os estados)"
-          : "🏛️ Leis Estaduais — " + UF_NOME[uf] + " (" + uf + ")";
+        tituloEstaduais.textContent = ufsCombo
+          ? "🏛️ Leis Estaduais — " + ufsCombo.map(function (u) { return UF_NOME[u] + " (" + u + ")"; }).join(" + ")
+          : uf === "TODOS"
+            ? "🏛️ Leis Estaduais (todos os estados)"
+            : "🏛️ Leis Estaduais — " + UF_NOME[uf] + " (" + uf + ")";
       }
       gridEstaduais.innerHTML = estaduais.length
         ? resumo(estaduais) + porMateria(estaduais, true)
