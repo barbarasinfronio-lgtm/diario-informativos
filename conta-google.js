@@ -43,7 +43,7 @@
   ];
   var LOCAL_CLEAR = [
     "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "decisoes-lidas",
-    "em_lidos_constitucionalidades", "em_lidos_reclamacoes",
+    "em_lidos_constitucionalidades", "em_lidos_reclamacoes", "leis-incluidas",
     "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar",
     "informativos-grupo", "premios-vistos", "premios-conquistados",
     "editais-principal", "leis-filtro", "estudamana-menu-v1"

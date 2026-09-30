@@ -14,6 +14,30 @@
   var readMap = {};            // chaves lidas: "materia:slug" -> true (Diário de Leis)
   var LEIS_URL = "https://www.estudamana.com.br/p/diario-de-leis.html";
 
+  // leis-incluidas.js: normas fora do Diário de Leis que a pessoa incluiu
+  var INCLUIDAS_JS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leis-incluidas.js";
+  function carregarIncluidas() {
+    if (window.LeisIncluidas) return Promise.resolve();
+    return fetch(INCLUIDAS_JS, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (code) { (0, eval)(code); });
+  }
+  function linkOficial(rotulo) {
+    return "https://www.lexml.gov.br/busca/search?keyword=" + encodeURIComponent(rotulo);
+  }
+  // lista "Incluídas por você" (as do edital indicado; "" = sem edital)
+  function incluidasHtml(editalId, titulo) {
+    var LI = window.LeisIncluidas;
+    if (!LI) return "";
+    var itens = LI.lista().filter(function (it) { return (it.edital || "") === (editalId || ""); });
+    if (!itens.length) return "";
+    return '<div class="ed-extras ed-incluidas"><h3>' + esc(titulo) + " (" + itens.length + ")</h3><ul>" +
+      itens.map(function (it) {
+        return '<li class="' + (LI.lida(it.chave) ? "is-read" : "") + '">' + esc(it.rotulo) +
+          (it.href ? ' <a href="' + esc(it.href) + '" target="_blank" rel="noopener">↗</a>' : "") + "</li>";
+      }).join("") + '</ul><p class="ed-note">Marque a leitura no <a href="' + LEIS_URL + '">Diário de Leis</a>.</p></div>';
+  }
+
   function esc(t) {
     return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
   }
@@ -167,12 +191,23 @@
           return '<li class="' + (readMap[m.key + ":" + ES.slug(n)] ? "is-read" : "") + '">' + esc(nameOf(m.key, n)) + "</li>";
         }).join("") + "</ul></div>";
     }).join("");
+    var LI = window.LeisIncluidas;
     var extras = ed.extras && ed.extras.length
       ? '<div class="ed-extras"><h3>Normas citadas no edital, ainda fora do Diário de Leis (' + ed.extras.length + ")</h3><ul>" +
-        ed.extras.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>"
+        ed.extras.map(function (x) {
+          var botao = "";
+          if (LI) {
+            botao = LI.tem(LI.chave(x))
+              ? ' <button type="button" class="ed-incluir is-incluida" data-remover="' + esc(LI.chave(x)) + '" title="Tirar do meu Diário de Leis">📌 no meu Diário</button>'
+              : ' <button type="button" class="ed-incluir" data-incluir="' + esc(x) + '" title="Incluir no meu Diário de Leis">➕ incluir</button>';
+          }
+          return "<li>" + esc(x) + botao + "</li>";
+        }).join("") + '</ul><p class="ed-note ed-incluir-msg" hidden></p></div>'
       : "";
+    var cur = ES.principal();
+    var minhas = cur && cur.id === ed.id ? incluidasHtml(ed.id, "Incluídas por você") : "";
     var fonte = ed.tipo === "carreira" ? "" : '<p class="ed-note">' + esc(ed.cargo) + " · " + esc(ed.orgao) + "<br>" + esc(ed.edital) + "</p>";
-    return fonte + groups + laws + extras;
+    return fonte + groups + laws + minhas + extras;
   }
 
   function render() {
@@ -194,6 +229,8 @@
       top = '<div class="ed-none">🎯 Escolha o edital do seu concurso (ou todos os editais de uma carreira): o Diário de Leis passa a mostrar só as leis dele, e a escolha fica salva no seu progresso.</div>';
     }
     if (changing) top += '<p class="ed-hint">Abra uma carreira e clique em “Escolher” no edital desejado.</p>';
+    // incluídas sem edital principal na hora: "Leis importantes para jurisprudência"
+    if (window.LeisIncluidas) top += incluidasHtml("", LeisIncluidas.SEM_EDITAL);
 
     var buscando = termos.length > 0, achados = 0;
     var html = montarAreas(list).map(function (a, ai) {
@@ -255,6 +292,24 @@
   inputBusca.addEventListener("input", mudouBusca);
   limparBusca.addEventListener("click", function () { inputBusca.value = ""; mudouBusca(); inputBusca.focus(); });
 
+  // "➕ incluir" / "📌 no meu Diário" nas normas fora do Diário de Leis
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".ed-incluir");
+    if (!b || !window.LeisIncluidas) return;
+    var msg = b.closest(".ed-extras") && b.closest(".ed-extras").querySelector(".ed-incluir-msg");
+    function aviso(t) { if (msg) { msg.textContent = t; msg.hidden = !t; } }
+    if (!LeisIncluidas.logado()) {
+      aviso("Para incluir normas no seu Diário de Leis, entre com o Google ou com e-mail e senha (quadro no topo da página).");
+      return;
+    }
+    b.disabled = true;
+    var rotulo = b.getAttribute("data-incluir");
+    var p = rotulo
+      ? LeisIncluidas.incluir({ rotulo: rotulo, nome: "", href: linkOficial(rotulo) })
+      : LeisIncluidas.remover(b.getAttribute("data-remover"));
+    p.catch(function () { b.disabled = false; aviso("Não foi possível salvar agora. Tente de novo em instantes."); });
+  });
+
   document.addEventListener("click", function (e) {
     if (!ES) return;
     var b = e.target.closest("#ed-change, [data-choose]");
@@ -294,6 +349,18 @@
     });
     render();
     ES.bindCloud();
+    carregarIncluidas().then(function () {
+      // redesenha a lista e o conteúdo já aberto de cada edital
+      LeisIncluidas.onChange(function () {
+        render();
+        Array.prototype.forEach.call(root.querySelectorAll(".ed-more[open] .ed-more-body"), function (body) {
+          var d = body.closest(".ed-more");
+          var ed = ES.data().filter(function (x) { return x.id === d.getAttribute("data-ed"); })[0];
+          if (ed) body.innerHTML = conteudo(ed);
+        });
+      });
+      render();
+    }).catch(function () {});
   });
 })();
 
