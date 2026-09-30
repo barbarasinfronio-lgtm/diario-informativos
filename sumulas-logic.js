@@ -84,12 +84,42 @@
 
   var ORG_ORDER = SUMULAS_ORG_ORDER;
 
+  // ---- Classificação por matéria -----------------------------------------
+  // Os dados vêm com materia = null; aqui a matéria é inferida do texto por
+  // palavras-chave (a matéria com mais acertos vence; empate segue a ordem da
+  // lista). Se o dado já trouxer uma matéria, ela é respeitada. Súmulas sem
+  // nenhuma pista ficam em "Outras".
+  var MATERIAS = [
+    ["Direito Eleitoral", ["eleitor", "eleicao", "eleicoes", "candidat", "partido", "inelegib", "mandato eletivo", "propaganda eleitoral", "justica eleitoral", "coligacao", "diplomacao"]],
+    ["Direito do Trabalho", ["empregad", "trabalhista", "justica do trabalho", "fgts", "clt", "horas extras", "hora extra", "reclamante", "reclamada", "adicional de insalubridade", "adicional de periculosidade", "aviso previo", "salario", "sindicat", "rescisao", "vinculo empregaticio", "jornada de trabalho", "ferias", "13o", "dissidio", "gratificacao natalina"]],
+    ["Direito Tributário", ["tribut", "imposto", "icms", "iss ", "issqn", "ipi", "iptu", "ipva", "itbi", "itcmd", "irpf", "irpj", "imposto de renda", "pis", "cofins", "csll", "contribuicao social", "contribuicao de melhoria", "taxa de", "execucao fiscal", "credito fiscal", "divida ativa", "fisco", "fazenda publica", "lancamento", "decadencia", "cda", "certidao de divida", "contribuinte", "sonegac", "isencao", "aliquota", "base de calculo", "compensacao", "repeticao do indebito", "ctn"]],
+    ["Direito Previdenciário", ["previdenci", "inss", "aposentadoria", "auxilio", "aposentadoria por", "beneficio", "auxilio-doenca", "auxilio doenca", "auxilio-acidente", "pensao por morte", "segurado", "loas", "rgps", "salario-maternidade", "tempo de contribuicao", "tempo de servico rural", "regime proprio de previdencia", "beneficio de prestacao continuada"]],
+    ["Direito do Consumidor", ["consumidor", "cdc", "codigo de defesa", "plano de saude", "operadora de saude", "seguro-saude", "fornecedor", "relacao de consumo", "instituicao financeira", "cartao de credito", "banco de dados", "cadastro de inadimplentes", "spc", "serasa", "negativacao", "telefonia", "energia eletrica", "transporte aereo", "bagagem", "cobranca indevida", "contrato bancario", "tarifa bancaria", "juros remuneratorios", "capitalizacao de juros"]],
+    ["Direito Penal", ["crime", "penal", "pena", "reu", "condenad", "delito", "furto", "roubo", "homicidio", "trafico", "estelionato", "receptacao", "pena privativa", "regime prisional", "regime inicial", "regime fechado", "regime semiaberto", "livramento condicional", "prescricao da pretensao punitiva", "prescricao retroativa", "circunstancia agravante", "atenuante", "reincid", "dosimetria", "medida de seguranca", "sursis", "conduta tipica", "tipicidade", "lei de drogas", "lei maria da penha", "violencia domestica", "contravencao", "falta grave", "execucao penal", "progressao de regime", "concurso de crimes", "continuidade delitiva", "crime hediondo"]],
+    ["Processo Penal", ["processo penal", "inquerito", "denuncia", "acao penal", "prisao", "habeas corpus", "juri", "tribunal do juri", "pronuncia", "queixa-crime", "audiencia de custodia", "interrogatorio", "nulidade", "revisao criminal", "prisao preventiva", "liberdade provisoria", "fianca", "juiz das garantias", "ministerio publico", "acordo de nao persecucao", "suspensao condicional do processo", "transacao penal", "juizado especial criminal", "corrupcao de menores", "vara de execucoes penais"]],
+    ["Direito Processual Civil", ["processo civil", "cpc", "reconvencao", "monitoria", "honorarios advocaticios", "honorarios de sucumbencia", "sucumbencia", "recurso especial", "recurso extraordinario", "agravo", "apelacao", "embargos de declaracao", "embargos", "cumprimento de sentenca", "coisa julgada", "litispendencia", "competencia", "foro", "citacao", "intimacao", "prazo processual", "tutela provisoria", "tutela de urgencia", "liminar", "legitimidade", "legitimidade ativa", "legitimidade passiva", "interesse de agir", "mandado de seguranca", "acao rescisoria", "penhora", "arresto", "execucao", "titulo executivo", "custas", "gratuidade de justica", "assistencia judiciaria", "reexame necessario", "ação civil publica", "acao civil publica", "acao popular", "mandado de injuncao", "conflito de competencia", "juizado especial", "prequestionamento", "reclamacao", "dano moral", "prova pericial", "revelia", "litisconsorcio", "denunciacao da lide", "ilegitimidade", "impugnacao"]],
+    ["Direito Administrativo", ["servidor publico", "servidores publicos", "administracao publica", "licitacao", "concurso publico", "improbidade", "ato administrativo", "poder de policia", "desapropriacao", "autarquia", "empresa publica", "sociedade de economia mista", "concessionaria", "agente publico", "cargo publico", "estatutario", "vencimentos", "remuneracao de servidor", "contrato administrativo", "responsabilidade civil do estado", "responsabilidade objetiva do estado", "policial militar", "militar", "bombeiro", "professor", "tribunal de contas", "tcu", "servico publico", "regime juridico unico", "pensao de servidor", "estabilidade", "reajuste de servidor", "gratificacao", "adicional", "municipio", "estado-membro", "servidores"]],
+    ["Direito Constitucional", ["inconstitucion", "constituicao", "constitucional", "inconstitucionalidade", "repercussao geral", "adi ", "adpf", "controle de constitucionalidade", "direitos fundamentais", "clausula de reserva de plenario", "poder constituinte", "emenda constitucional", "supremo tribunal federal", "iniciativa de lei", "reserva legal", "separacao de poderes", "principio da", "federacao", "competencia legislativa", "lei complementar", "medida provisoria", "sumula vinculante"]],
+    ["Direito Civil", ["civil", "vizinh", "janela", "contrato", "locacao", "aluguel", "inquilino", "locador", "locatario", "fianca locaticia", "compra e venda", "imovel", "usucapiao", "posse", "propriedade", "condominio", "seguro", "seguradora", "dpvat", "acidente de transito", "indenizacao", "responsabilidade civil", "prescricao", "alimentos", "familia", "casamento", "divorcio", "uniao estavel", "guarda", "paternidade", "investigacao de paternidade", "heranca", "inventario", "sucessao", "testamento", "alienacao fiduciaria", "hipoteca", "penhor", "registro publico", "cartorio", "empreitada", "mandato", "doacao", "cheque", "nota promissoria", "duplicata", "titulo de credito", "falencia", "recuperacao judicial", "sociedade", "sociedade empresaria", "empresario", "direito autoral", "marca", "patente", "arrendamento", "bem de familia", "adocao", "menor", "crianca", "adolescente", "eca", "interdicao", "curatela", "usufruto", "clausula penal", "juros", "correcao monetaria", "mora", "compromisso de compra", "incorporacao", "loteamento"]],
+  ];
+
+  function classificarMateria(row) {
+    var h = " " + semAcentoBusca(row.texto).replace(/[^a-z0-9]+/g, " ") + " ";
+    var melhor = "Outras", pontos = 0;
+    MATERIAS.forEach(function (m) {
+      var n = 0;
+      m[1].forEach(function (k) { if (h.indexOf(" " + k) !== -1) n++; });
+      if (n > pontos) { pontos = n; melhor = m[0]; }
+    });
+    return melhor;
+  }
+
   // Estado por tribunal: cada súmula ganha lida/lidaEm, igual aos outros
   // Diários. Tribunais "em_breve" ficam com a lista vazia mesmo.
   var stateByOrg = {};
   ORG_ORDER.forEach(function (key) {
     stateByOrg[key] = SUMULAS_DATA[key].sumulas.map(function (d) {
-      return { numero: d.numero, texto: d.texto, materia: d.materia, link: d.link, org: key, lida: false, lidaEm: null };
+      return { numero: d.numero, texto: d.texto, materia: d.materia || classificarMateria(d), link: d.link, org: key, lida: false, lidaEm: null };
     });
   });
 
