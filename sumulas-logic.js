@@ -89,12 +89,13 @@
   var stateByOrg = {};
   ORG_ORDER.forEach(function (key) {
     stateByOrg[key] = SUMULAS_DATA[key].sumulas.map(function (d) {
-      return { numero: d.numero, texto: d.texto, materia: d.materia, link: d.link, lida: false, lidaEm: null };
+      return { numero: d.numero, texto: d.texto, materia: d.materia, link: d.link, org: key, lida: false, lidaEm: null };
     });
   });
 
   // Só tribunais com conteúdo real entram no <select>; os demais aparecem
   // desabilitados com "(em preparação)" para deixar claro que virão.
+  var TODOS = "__todos__"; // busca em todos os tribunais, separados por tribunal
   var currentOrg = ORG_ORDER.filter(function (k) { return SUMULAS_DATA[k].status === "disponivel"; })[0] || ORG_ORDER[0];
   var currentMateria = "todas";
   var loteSize = 10;
@@ -146,6 +147,11 @@
   function renderTribunalSelect() {
     if (!tribunalSelect) return;
     tribunalSelect.innerHTML = "";
+    var optTodos = document.createElement("option");
+    optTodos.value = TODOS;
+    optTodos.textContent = "Todos os tribunais — busca geral";
+    if (currentOrg === TODOS) optTodos.selected = true;
+    tribunalSelect.appendChild(optTodos);
     ORG_ORDER.forEach(function (key) {
       var info = SUMULAS_DATA[key];
       var opt = document.createElement("option");
@@ -163,9 +169,18 @@
   // ---- Seletor de matéria -------------------------------------------------
   // Enquanto a classificação por matéria não estiver pronta (materia ===
   // null em todo mundo), só existe a opção "Todas as matérias".
+  function rowsAtuais() {
+    if (currentOrg !== TODOS) return stateByOrg[currentOrg];
+    var all = [];
+    ORG_ORDER.forEach(function (k) {
+      if (SUMULAS_DATA[k].status === "disponivel") all = all.concat(stateByOrg[k]);
+    });
+    return all;
+  }
+
   function materiasDisponiveis() {
     var set = {};
-    stateByOrg[currentOrg].forEach(function (r) { if (r.materia) set[r.materia] = true; });
+    rowsAtuais().forEach(function (r) { if (r.materia) set[r.materia] = true; });
     return Object.keys(set).sort();
   }
 
@@ -190,7 +205,7 @@
 
   // Sem a busca: é a base dos contadores de progresso.
   function filteredBase() {
-    return stateByOrg[currentOrg].filter(function (r) {
+    return rowsAtuais().filter(function (r) {
       return currentMateria === "todas" || r.materia === currentMateria;
     });
   }
@@ -231,7 +246,7 @@
     renderTribunalSelect();
     renderMateriaSelect();
 
-    var info = SUMULAS_DATA[currentOrg];
+    var info = currentOrg === TODOS ? { status: "disponivel", label: "Todos os tribunais" } : SUMULAS_DATA[currentOrg];
     ledeText.textContent = info.status === "disponivel"
       ? "Escolha o tribunal, a matéria (quando disponível) e o tamanho do lote — vá lendo sem se sobrecarregar."
       : "Esse tribunal ainda está em preparação — as súmulas dele entram em breve.";
@@ -259,7 +274,15 @@
     var ul = document.createElement("ul");
     ul.className = "list";
 
+    var ultimoOrg = null;
     pageItems.forEach(function (row) {
+      if (currentOrg === TODOS && row.org !== ultimoOrg) {
+        ultimoOrg = row.org;
+        var h = document.createElement("li");
+        h.className = "sumula-grupo-titulo";
+        h.textContent = SUMULAS_DATA[row.org].label.replace(/\s*\(\d+\)$/, "");
+        ul.appendChild(h);
+      }
       var li = document.createElement("li");
       li.className = "row sumula-row" + (row.lida ? " is-read" : "");
 
@@ -277,7 +300,7 @@
       edition.className = "edition sumula-edition";
       var num = document.createElement("span");
       num.className = "num";
-      num.textContent = (currentOrg === "stf_vinculante" ? "Súmula Vinculante nº " : "Súmula nº ") + row.numero;
+      num.textContent = (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : "Súmula nº ") + row.numero;
       var texto = document.createElement("p");
       texto.className = "sumula-texto";
       texto.textContent = row.texto;

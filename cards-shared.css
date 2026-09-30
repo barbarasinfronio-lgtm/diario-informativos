@@ -94,6 +94,22 @@
   overflow: hidden;
 }
 
+/* Súmulas: linha única (check | texto | ponto | Abrir), não card empilhado */
+.list > .row.sumula-row {
+  grid-template-columns: 2rem 1fr auto auto;
+  grid-template-areas: "check edition star open";
+  align-items: start;
+}
+.list > .row.sumula-row .edition { padding-bottom: 0; border-bottom: 0; }
+.list > .row.sumula-row .sumula-texto { -webkit-line-clamp: unset; display: block; overflow: visible; }
+.list:has(> .sumula-row) { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  .list > .row.sumula-row {
+    grid-template-columns: 2rem 1fr auto;
+    grid-template-areas: "check edition star" "open open open";
+  }
+}
+
 /* ponto: a estrela vira uma pílula "1 ponto" / "+1 ponto" */
 .list > .row .star {
   width: auto;
@@ -253,4 +269,15 @@
 
 @media (prefers-reduced-motion: reduce) {
   .list > .row, .card .em-check::after, .em-progress .em-bar i { transition: none; }
+}
+
+/* Busca geral das súmulas: título de cada tribunal, sem misturar os estados */
+.list > .sumula-grupo-titulo {
+  grid-column: 1 / -1;
+  margin: 0.8rem 0 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--em-accent);
+  font-family: var(--em-serif);
+  font-weight: 600;
+  color: var(--em-accent);
 }
