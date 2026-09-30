@@ -107,6 +107,12 @@
       linkFn: function (row) { return row.link; },
       footer: 'Fonte oficial: <a href="https://scon.stj.jus.br/jurisprudencia/externo/informativo/" target="_blank" rel="noopener">scon.stj.jus.br</a> — cobre as edições 1 a 900 (1998 a 2026). Súmulas conferidas apenas nas edições mais recentes; as demais aparecem como "a confirmar".'
     },
+    stjbp: {
+      label: "STJ Precedentes", key: "stjbp", data: STJBP_DATA,
+      lede: "Boletim de Precedentes do STJ: consulta unificada dos processos que ensejam precedentes qualificados (RISTJ, art. 121-A), dos recursos indicados como representativos da controvérsia e dos pedidos de suspensão nacional em IRDR. Edição quinzenal a mensal, desde 2017.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://processo.stj.jus.br/processo/precedentes" target="_blank" rel="noopener">processo.stj.jus.br/processo/precedentes</a> — cobre as edições 1 a 145 (2017 a 2026), numeração contínua. O botão "Abrir" leva ao PDF oficial. Este boletim não traz súmulas.'
+    },
     stjx: {
       label: "STJ Extra", key: "stjx", data: STJX_DATA,
       lede: "Edições extraordinárias do Informativo do STJ: os principais julgados do semestre por área (Público, Privado e Penal) e edições especiais.",
@@ -138,7 +144,7 @@
       footer: 'Fonte oficial: <a href="https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao" target="_blank" rel="noopener">cnmp.mp.br</a> — o CNMP descontinuou o "Informativo de Jurisprudência" (até 2019) e passou a publicar o "Boletim da Sessão", aqui tratado como equivalente; cobre de 2017 a 2026. Numeração contínua até 2022 (edições 1 a 89), reiniciada a cada ano a partir de 2023. Sessões canceladas (sem boletim) não entram na lista. Súmulas não verificadas — o índice não traz as ementas.'
     }
   };
-  var ORG_ORDER = ["stf", "stfpv", "stj", "stjx", "tse", "cnj", "tst", "cnmp"];
+  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp"];
   var currentOrg = "stf";
 
   var stateByOrg = {};
@@ -147,7 +153,7 @@
       return { edicao: d.edicao, ano: d.ano, data: d.data, sumula: d.sumula, tema: d.tema, link: d.link, lida: false, lidaEm: null };
     });
     // Séries que o robô completa aos poucos (histórico entra depois): mais nova primeiro.
-    if (key === "stjx" || key === "stfpv") {
+    if (key === "stjx" || key === "stfpv" || key === "stjbp") {
       stateByOrg[key].sort(function (a, b) {
         return (b.ano - a.ano) || String(b.data || "").localeCompare(String(a.data || "")) || (b.edicao - a.edicao);
       });

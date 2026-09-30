@@ -18,8 +18,8 @@
   var KEYS_EXTRA = { norma: "normas-lidas", dec: "decisoes-lidas", adi: "em_lidos_constitucionalidades", rcl: "em_lidos_reclamacoes" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
-  var ORGS = ["stf", "stfpv", "stj", "stjx", "tse", "cnj", "tst", "cnmp"];
-  var ORG_LABEL = { stfpv: "STF (Plenário Virtual)", stjx: "STJ (extraordinárias)" };
+  var ORGS = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp"];
+  var ORG_LABEL = { stfpv: "STF (Plenário Virtual)", stjx: "STJ (extraordinárias)", stjbp: "STJ (Boletim de Precedentes)" };
   var TIER_ORDER = ["bronze", "prata", "ouro", "platina", "diamante"];
   var WD_NAMES = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
   var FAIXA_ICONS = ["🔍", "🎓", "🧠", "🏅", "👑"];
