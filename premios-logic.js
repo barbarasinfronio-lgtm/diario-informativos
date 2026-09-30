@@ -18,7 +18,8 @@
   var KEYS_EXTRA = { norma: "normas-lidas", dec: "decisoes-lidas", adi: "em_lidos_constitucionalidades", rcl: "em_lidos_reclamacoes" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
-  var ORGS = ["stf", "stj", "tse", "cnj", "tst", "cnmp"];
+  var ORGS = ["stf", "stfpv", "stj", "stjx", "tse", "cnj", "tst", "cnmp"];
+  var ORG_LABEL = { stfpv: "STF (Plenário Virtual)", stjx: "STJ (extraordinárias)" };
   var TIER_ORDER = ["bronze", "prata", "ouro", "platina", "diamante"];
   var WD_NAMES = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
   var FAIXA_ICONS = ["🔍", "🎓", "🧠", "🏅", "👑"];
@@ -342,7 +343,7 @@
       return "Leia " + plural(n, "informativo", "informativos") + " em até 6 dias depois de publicado (🎖️ ou melhor).";
     });
     ORGS.forEach(function (org) {
-      var label = org.toUpperCase();
+      var label = ORG_LABEL[org] || org.toUpperCase();
       ladder("pontualidade", "ouro-" + org, E.pontualPorOrg, ctx.onTimeByOrg[org], function (n) {
         return "Leia " + plural(n, "informativo do " + label, "informativos do " + label) + " no dia da publicação.";
       }, { titleFn: function (r) { return r[2] + " · " + label; } });
@@ -409,7 +410,7 @@
     ORGS.forEach(function (org) {
       var info = ctx.infByOrg[org];
       if (!info.total) return;
-      var label = org.toUpperCase();
+      var label = ORG_LABEL[org] || org.toUpperCase();
       CFG.faixasCobertura.forEach(function (f, i) {
         var target = Math.max(1, Math.ceil(info.total * f.pct / 100));
         single("tribunais", "cob-" + org + "-" + f.pct, FAIXA_ICONS[i] || CFG.emojiOrg[org],
@@ -872,7 +873,7 @@
       rows = '<li class="pz-empty">Nenhum informativo novo nos últimos 7 dias. Aproveite para adiantar a leitura de algum antigo.</li>';
     } else {
       rows = rec.map(function (r) {
-        var label = r.org.toUpperCase() + " nº " + r.edicao + (r.ano ? "/" + r.ano : "");
+        var label = (ORG_LABEL[r.org] || r.org.toUpperCase()) + " nº " + r.edicao + (r.ano ? "/" + r.ano : "");
         var status;
         if (r.read) status = '<span class="pz-ok">' + (r.medal ? MEDAL_ICON[r.medal] + " lido" : "✅ lido") + "</span>";
         else if (r.medalHoje) status = '<span class="pz-todo">Ler hoje vale ' + MEDAL_ICON[r.medalHoje] + "</span>";

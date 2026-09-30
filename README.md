@@ -92,7 +92,7 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
 - **`scripts/atualizar_csmpt.py`**: Resoluções do CSMPT/MPT (bloco `csmpt` de
   `normas-data.js`).
 
-### Informativos (STF, STJ, TSE, CNJ, TST, CNMP) — no Mac, só quando você manda
+### Informativos (STF, STF PV, STJ, STJ Extra, TSE, CNJ, TST, CNMP) — no Mac, só quando você manda
 
 STF, STJ, TSE e TST recusam os servidores do GitHub (403 ou sem resposta;
 testado em 28-29/09/2026). Por isso a verificação dos Informativos roda no
@@ -112,6 +112,14 @@ O STJ é lido pelo feed oficial (InformativoFeed), com todas as edições numa
 consulta só. STJ e TSE recusam (403) qualquer programa, mesmo do Brasil: para eles o
 script abre a página pelo **Google Chrome do Mac**, em modo invisível e com
 um perfil temporário (não mexe no Chrome que estiver aberto).
+
+**STF PV** (Plenário Virtual em Evidência) e **STJ Extra** (edições
+extraordinárias do Informativo do STJ, "33E") têm abas próprias no Diário
+(`STFPV_DATA` e `STJX_DATA`). O PV é lido da página da série no portal do STF
+(os PDFs têm nomes variados; número e ano vêm do nome do arquivo). As
+extraordinárias são conferidas pela página de cada edição; na primeira
+execução o robô completa o histórico que faltar. Para rodar só elas:
+`python3 scripts/atualizar_informativos.py STF-PV STJ-EXTRA`.
 
 **Jurisprudência em Teses (STJ)**: o mesmo comando lê o feed das edições e,
 de cada edição, a página com as teses (`doc.jsp?livre='285' INPATH(TIT)`).

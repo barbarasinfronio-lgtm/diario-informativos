@@ -424,7 +424,7 @@ class Dados:
         self.mudou = False
 
     def bloco(self, var):
-        m = re.search(rf"var\s+{var}\s*=\s*\[\n(.*?)\n\s*\];", self.texto, re.S)
+        m = re.search(rf"var\s+{var}\s*=\s*\[(.*?)\];", self.texto, re.S)
         if not m:
             raise Falha(f'não achei "var {var} = [" em diario-data.js')
         return m.group(1)
@@ -442,12 +442,15 @@ class Dados:
 
     def inserir(self, var, novas, com_link):
         """novas: lista de dicts {edicao, data, link?}, em qualquer ordem."""
-        novas = sorted(novas, key=lambda n: (n["data"], n["edicao"]), reverse=True)
+        novas = sorted(novas, key=lambda n: (str(n.get("ano") or n["data"][:4]), n["data"] or "", n["edicao"]), reverse=True)
         linhas = ""
         for n in novas:
-            extra = f', link: "{n["link"]}"' if com_link else ""
-            linhas += (f'    {{ edicao: {n["edicao"]}, ano: {n["data"][:4]}, '
-                       f'data: "{n["data"]}", sumula: null{extra} }},\n')
+            extra = f', tema: "{n["tema"]}"' if n.get("tema") else ""
+            extra += f', link: "{n["link"]}"' if com_link else ""
+            ano = n.get("ano") or n["data"][:4]
+            data = f'"{n["data"]}"' if n["data"] else "null"
+            linhas += (f'    {{ edicao: {n["edicao"]}, ano: {ano}, '
+                       f'data: {data}, sumula: null{extra} }},\n')
         self.texto, k = re.subn(rf"(var\s+{var}\s*=\s*\[\n)",
                                 lambda m: m.group(1) + linhas, self.texto, count=1)
         if not k:
@@ -994,7 +997,90 @@ def leis(dados, tudo=False):
     return [{"edicao": a, "data": hoje_iso} for a in avisos]
 
 
-TRIBUNAIS = [("STF", stf), ("STJ", stj), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
+def stj_extra(dados):
+    """Edições extraordinárias do Informativo do STJ ("33E"). Na primeira vez
+    completa o histórico (da nº 1 em diante); depois só procura as novas."""
+    var = "STJX_DATA"
+    vistas = {e for e, _, _ in dados.registradas(var)}
+    ultimo = max(vistas, default=0)
+
+    def conferir(n):
+        url = ("https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
+               f"?acao=pesquisarumaedicao&livre=%27{n:04d}E%27.cod.")
+        t = re.sub(r"<[^>]+>|\s+", " ", html.unescape(
+            pagina(url, valida=lambda x: "Informativo" in x)))
+        m = re.search(rf"Extraordin\S*\s+n[º°.]*\s*0*{n}\b\s*[-–—]?\s*(.{{0,160}}?)\s*[-–—]?\s*"
+                      r"(\d{1,2})[º°o]?\s+de\s+([a-zç]+)\s+de\s+(\d{4})", t, re.I)
+        if not m or not mes_num(m.group(3)):
+            print(f"  extraordinária nº {n}: não está na página")
+            return None
+        tema = re.sub(r"\s*[-–—]\s*$", "", m.group(1)).strip().replace('"', "'")
+        return {"edicao": n, "data": iso(m.group(4), mes_num(m.group(3)), m.group(2)),
+                "tema": tema[:120] or None,
+                "link": f"https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}E"}
+
+    if ultimo and not conferir(ultimo):
+        raise Falha(f"nem a extraordinária nº {ultimo}, que já saiu, abriu — o site está recusando o acesso")
+    novas = []
+    for n in [n for n in range(1, ultimo) if n not in vistas][:40]:  # histórico que falta
+        achou = conferir(n)
+        if achou:
+            novas.append(achou)
+    for n in range(ultimo + 1, ultimo + 11):
+        achou = conferir(n)
+        if not achou:
+            break
+        novas.append(achou)
+    if novas:
+        dados.inserir(var, novas, com_link=True)
+    return novas
+
+
+STF_PV = "https://portal.stf.jus.br/textos/verTexto.asp?servico=codi&pagina=Plenario_Virtual"
+_RE_PV = re.compile(r"(?:PVE|PV_?em_?Evid[a-zê]*)_?0*(\d{1,3})_(\d{4})", re.I)
+
+
+def stf_pv(dados):
+    """Plenário Virtual em Evidência (STF): lê a página da série e registra os
+    PDFs que ainda não estão no Diário (na primeira vez, todos)."""
+    var = "STFPV_DATA"
+    t = pagina(STF_PV, valida=lambda x: re.search(r"PV_?EM_?EVID|PVE\d", x, re.I))
+    vistas = {(e, a) for e, a, _ in dados.registradas(var)}
+    achadas = {}
+    for m in re.finditer(r'<a\b[^>]*href="([^"]+?\.pdf)"[^>]*>(.*?)</a>', t, re.S | re.I):
+        href = html.unescape(m.group(1))
+        f = _RE_PV.search(href.rsplit("/", 1)[-1])
+        if not f:
+            continue
+        n, ano = int(f.group(1)), int(f.group(2))
+        if (n, ano) in vistas or (n, ano) in achadas:
+            continue
+        d = None
+        for trecho in (m.group(2), t[m.end():m.end() + 120]):  # texto do link; senão, logo depois
+            d = re.search(r"(\d{1,2})[./](\d{1,2})[./](\d{4})",
+                          html.unescape(re.sub(r"<[^>]+>", " ", trecho)))
+            if d:
+                break
+        data = iso(d.group(3), d.group(2), d.group(1)) if d else None
+        achadas[(n, ano)] = {"edicao": n, "ano": ano, "data": data,
+                             "link": urllib.parse.urljoin(STF_PV, href)}
+    if not achadas and not vistas:
+        raise Falha("não achei nenhuma edição na página do Plenário Virtual em Evidência — a página mudou?")
+    for a in achadas.values():
+        if not a["data"]:
+            try:
+                status, tipo, corpo = buscar(a["link"])
+                if status == 200 and eh_pdf(tipo, corpo):
+                    a["data"] = data_do_pdf(corpo)
+            except Exception:
+                pass
+    novas = list(achadas.values())
+    if novas:
+        dados.inserir(var, novas, com_link=True)
+    return novas
+
+
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
              ("TESES", teses), ("LEIS", leis)]
 
 
@@ -1027,8 +1113,8 @@ def main(so=None, tudo=False):
             resumo.append(f"  TESES (STJ): {len(novas)} edição(ões) lida(s) — "
                           + ", ".join(f"n. {n['edicao']}" for n in novas))
         elif novas:
-            lista = ", ".join(f"nº {n['edicao']} ({n['data']})"
-                              for n in sorted(novas, key=lambda n: n["data"]))
+            lista = ", ".join(f"nº {n['edicao']} ({n['data'] or n.get('ano')})"
+                              for n in sorted(novas, key=lambda n: (n["data"] or "", n["edicao"])))
             resumo.append(f"  {nome}: {len(novas)} nova(s) — {lista}")
         else:
             resumo.append(f"  {nome}: nada novo")
