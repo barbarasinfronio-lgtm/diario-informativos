@@ -298,6 +298,24 @@
   var modalAtual = null;
   var normasAtuais = null;
 
+  // leis-incluidas.js: botão "Incluir no meu Diário" nas normas fora dos Diários
+  var INCLUIDAS_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leis-incluidas.js';
+  var incluidasJs = null;
+  function carregarIncluidas(){
+    if (window.LeisIncluidas) return Promise.resolve();
+    if (!incluidasJs) {
+      incluidasJs = fetch(INCLUIDAS_JS, { cache: 'no-cache' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(code){
+          (0, eval)(code + '\n//# sourceURL=' + INCLUIDAS_JS);
+          LeisIncluidas.onChange(function(){ if (normasAtuais) preencherNormas(); });
+        })
+        .catch(function(e){ incluidasJs = null; throw e; });
+    }
+    return incluidasJs;
+  }
+  carregarIncluidas().catch(function(){});
+
   function carregarNormasCitadas(){
     if (window.NormasCitadas) return Promise.resolve();
     if (!normasJs) {
@@ -335,9 +353,22 @@
     var box = modal.querySelector('.normas-box');
     if (!box || !normasAtuais) return;
     var itens = normasAtuais.map(NormasCitadas.resolver);
+    var LI = window.LeisIncluidas;
     box.innerHTML = '<div class="section-label">Normas do julgado</div>' +
       '<ul class="normas-list">' + itens.map(function(n){
-        var status = n.lida ? '✅ Lida' : (n.noDiario ? 'Ainda não lida' : 'Fora dos Diários');
+        // fora dos Diários: a pessoa pode incluir no próprio Diário de Leis
+        var incluir = '';
+        if (!n.noDiario && LI) {
+          var ch = LI.chave(n.rotulo);
+          if (LI.tem(ch)) {
+            n.lida = LI.lida(ch);
+            n.incluida = true;
+            incluir = '<button type="button" class="norma-incluir is-incluida" data-remover="' + escapeHtml(ch) + '" title="Tirar do meu Diário de Leis">📌 No meu Diário</button>';
+          } else {
+            incluir = '<button type="button" class="norma-incluir" data-incluir="' + escapeHtml(n.rotulo) + '" data-nome="' + escapeHtml(n.nome || '') + '" data-href="' + escapeHtml(n.href) + '" title="Incluir esta norma no meu Diário de Leis">➕ Incluir no meu Diário</button>';
+          }
+        }
+        var status = n.lida ? '✅ Lida' : (n.noDiario ? 'Ainda não lida' : (n.incluida ? 'Ainda não lida' : 'Fora dos Diários'));
         var titulo = n.noDiario
           ? 'Abrir no ' + (/^Resolu|^Recomenda/.test(n.rotulo) ? 'Diário das Resoluções' : 'Diário de Leis') + ' para marcar a leitura'
           : 'Ainda não está nos Diários — abrir o texto oficial';
@@ -345,11 +376,30 @@
           '<div class="norma-info"><span class="norma-rotulo">' + escapeHtml(n.rotulo) + '</span>' +
             (n.artigos && n.artigos.length ? '<span class="norma-artigos">' + escapeHtml(n.artigos.join(' · ')) + '</span>' : '') +
             (n.nome ? '<span class="norma-nome">' + escapeHtml(resumirTexto(n.nome, 110)) + '</span>' : '') + '</div>' +
-          '<span class="norma-status">' + status + '</span>' +
+          '<span class="norma-status">' + status + '</span>' + incluir +
           '<a class="norma-link" href="' + escapeHtml(n.href) + '" target="_blank" rel="noopener" title="' + escapeHtml(titulo) + '" aria-label="' + escapeHtml(n.rotulo + ': ' + titulo) + '">' + (n.noDiario ? '➡️' : '↗') + '</a>' +
         '</li>';
-      }).join('') + '</ul>';
+      }).join('') + '</ul>' + '<p class="normas-aviso normas-incluir-msg" hidden></p>';
   }
+
+  // "Incluir no meu Diário" / "No meu Diário" (tirar): só para quem entrou
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.norma-incluir');
+    if (!b || !window.LeisIncluidas) return;
+    var msg = modal.querySelector('.normas-incluir-msg');
+    function aviso(t){ if (msg) { msg.textContent = t; msg.hidden = !t; } }
+    if (!LeisIncluidas.logado()) {
+      aviso('Para incluir leis no seu Diário, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página).');
+      return;
+    }
+    b.disabled = true;
+    var p = b.hasAttribute('data-remover')
+      ? LeisIncluidas.remover(b.getAttribute('data-remover'))
+      : LeisIncluidas.incluir({ rotulo: b.getAttribute('data-incluir'), nome: b.getAttribute('data-nome'), href: b.getAttribute('data-href') });
+    p.then(function(){
+      aviso(b.hasAttribute('data-remover') ? '' : 'Incluída no seu Diário de Leis — marque a leitura por lá.');
+    }).catch(function(){ b.disabled = false; aviso('Não foi possível salvar agora. Tente de novo em instantes.'); });
+  });
 
   // A pessoa marca a leitura em outra aba; ao voltar, o card atualiza.
   function atualizarNormas(){ if (normasAtuais && !document.hidden) preencherNormas(); }

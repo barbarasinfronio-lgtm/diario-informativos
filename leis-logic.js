@@ -198,9 +198,9 @@
   // ---- visual dos cards ----------------------------------------------------
   function card(lei) {
     var federal = !lei.uf;
-    var badge = federal ? "FEDERAL" : "ESTADUAL (" + lei.uf + ")";
-    var fundo = federal ? "#e7f1ff" : "#e6f4ea";
-    var cor = federal ? "#0d6efd" : "#198754";
+    var badge = lei.badge || (federal ? "FEDERAL" : "ESTADUAL (" + lei.uf + ")");
+    var fundo = lei.badge ? "#fff4e5" : federal ? "#e7f1ff" : "#e6f4ea";
+    var cor = lei.badge ? "#b45309" : federal ? "#0d6efd" : "#198754";
     var lida = isLida(lei.chave);
     return '<div class="lei-card" data-chave="' + escapeHtml(lei.chave) + '" style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">' +
@@ -212,6 +212,9 @@
       (lei.link
         ? '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>'
         : "<span></span>") +
+      (lei.removivel
+        ? '<button type="button" class="lei-remover" data-chave="' + escapeHtml(lei.chave) + '" style="font-size:12px;background:none;border:0;color:#94a3b8;text-decoration:underline;cursor:pointer;padding:0;">Tirar do meu Diário</button>'
+        : "") +
       '<label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#334155;cursor:pointer;user-select:none;">' +
       '<input type="checkbox" class="lei-check" data-chave="' + escapeHtml(lei.chave) + '"' + (lida ? " checked" : "") + ' style="width:17px;height:17px;cursor:pointer;">' +
       (lida ? "Lida ✓" : "Já li esta lei") +
@@ -362,6 +365,53 @@
       return lei.busca.indexOf(termo) !== -1;
     }
 
+    // ---- leis que a pessoa incluiu (leis-incluidas.js) --------------------
+    // Normas "fora dos Diários" que ela incluiu a partir das Decisões ou dos
+    // Editais: ficam num bloco próprio, acima das federais, agrupadas pelo
+    // edital principal que ela tinha na hora (ou "Leis importantes para
+    // jurisprudência", se não tinha nenhum).
+    var blocoFed = gridFederais.parentNode;
+    var blocoInc = document.createElement("div");
+    blocoInc.id = "bloco-leis-incluidas";
+    blocoInc.style.cssText = blocoFed.style.cssText;
+    var h3Fed = blocoFed.querySelector("h3");
+    var h3Inc = h3Fed ? h3Fed.cloneNode(false) : document.createElement("h3");
+    h3Inc.textContent = "📌 Leis que você incluiu";
+    var gridIncluidas = document.createElement("div");
+    gridIncluidas.id = "grid-leis-incluidas";
+    blocoInc.appendChild(h3Inc);
+    blocoInc.appendChild(gridIncluidas);
+    blocoInc.hidden = true;
+    if (blocoFed.parentNode) blocoFed.parentNode.insertBefore(blocoInc, blocoFed);
+
+    function renderIncluidas(termo, digitos) {
+      var LI = window.LeisIncluidas;
+      var itens = LI ? LI.lista() : [];
+      var cards = itens.map(function (it) {
+        return {
+          chave: it.chave, nome: it.rotulo, numero: it.nome || "Incluída por você",
+          link: it.href, uf: null, badge: "INCLUÍDA", removivel: true,
+          materia: LI.titulo(it.edital), edital: it.edital,
+          busca: semAcento(it.rotulo + " " + (it.nome || "")), digitos: String(it.rotulo).replace(/\D/g, "")
+        };
+      }).filter(function (l) { return atendeBusca(l, termo, digitos); });
+      blocoInc.hidden = !cards.length;
+      if (!cards.length) { gridIncluidas.innerHTML = ""; return; }
+      // o edital principal atual primeiro, depois "Leis importantes…", depois os outros
+      var principal = lerStorage("editais-principal") || "";
+      function peso(l) { return l.edital && l.edital === principal ? 0 : !l.edital ? 1 : 2; }
+      cards.sort(function (a, b) { return peso(a) - peso(b) || a.materia.localeCompare(b.materia, "pt-BR"); });
+      gridIncluidas.innerHTML = resumo(cards) + porMateria(cards, true);
+    }
+    if (window.LeisIncluidas) LeisIncluidas.onChange(function () { render(); });
+
+    gridIncluidas.addEventListener("click", function (e) {
+      var b = e.target.closest(".lei-remover");
+      if (!b || !window.LeisIncluidas) return;
+      b.disabled = true;
+      LeisIncluidas.remover(b.getAttribute("data-chave")).catch(function () { b.disabled = false; });
+    });
+
     function render() {
       var opcao = opcoes[selectEdital.value] || null;
       var termo = semAcento(inputBusca ? inputBusca.value.trim() : "");
@@ -371,6 +421,7 @@
       if (wrapperEstado) wrapperEstado.style.display = opcao && opcao.modo === "escolher" ? "" : "none";
 
       // Federais: sempre todas (filtradas pela busca)
+      renderIncluidas(termo, digitos);
       var federais = leis.filter(function (l) { return !l.uf && atendeBusca(l, termo, digitos); });
       gridFederais.innerHTML = federais.length
         ? resumo(federais) + porMateria(federais, buscando)
@@ -433,7 +484,7 @@
     // adiantaria). Não chama render() de novo: só atualiza o próprio card
     // e os contadores, para não fechar os <details> abertos nem perder a
     // posição da rolagem.
-    [gridFederais, gridEstaduais].forEach(function (grid) {
+    [gridIncluidas, gridFederais, gridEstaduais].forEach(function (grid) {
       grid.addEventListener("change", function (e) {
         var t = e.target;
         if (!t.classList || !t.classList.contains("lei-check")) return;
@@ -512,6 +563,7 @@
   Promise.all([
     ensure("LEIS_DATA", "leis-data.js"),
     ensure("EDITAIS_DATA", "editais-data.js"),
+    ensure("LeisIncluidas", "leis-incluidas.js"),
     domReady()
   ]).then(iniciar);
 

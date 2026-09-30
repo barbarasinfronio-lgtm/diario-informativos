@@ -187,3 +187,12 @@
   .ed-row-text { flex-basis: calc(100% - 5rem); }
   .ed-current-actions { width: 100%; justify-content: space-between; }
 }
+
+/* normas fora do Diário de Leis: incluir no Diário da pessoa (leis-incluidas.js) */
+.ed-incluir { font: 600 calc(0.7rem * var(--fs-scale)) var(--font-sans); margin-left: 0.35rem; padding: 0.1rem 0.5rem; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+.ed-incluir:hover { background: var(--accent-soft); }
+.ed-incluir.is-incluida { border-color: var(--low-line, #9bc5a7); color: var(--low-fg, #2c6b3f); }
+.ed-incluir:disabled { opacity: .6; cursor: wait; }
+.ed-top .ed-incluidas { margin-top: 0.8rem; }
+.ed-incluidas li.is-read { color: var(--done); }
+.ed-incluidas li.is-read::marker { content: "✓ "; }

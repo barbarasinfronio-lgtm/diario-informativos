@@ -156,6 +156,16 @@
         if (entry.lidaEm) events.push({ d: "lei", org: key, dn: dayNum(entry.lidaEm) });
       });
     });
+    // leis que a pessoa incluiu no próprio Diário (leis-incluidas.js): chave "extra:…"
+    Object.keys(maps.lei || {}).forEach(function (k) {
+      if (k.indexOf("extra:") !== 0) return;
+      var entry = readEntry(maps.lei[k]);
+      if (!entry) return;
+      ctx.total.lei++;
+      ctx.read.lei++;
+      ctx.points += CFG.pontosPorLeitura.lei;
+      if (entry.lidaEm) events.push({ d: "lei", org: "extra", dn: dayNum(entry.lidaEm) });
+    });
 
     // ---- Súmulas ----
     var sumData = g("SUMULAS_DATA") || {};
