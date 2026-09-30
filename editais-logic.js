@@ -210,8 +210,23 @@
     return fonte + groups + laws + minhas + extras;
   }
 
+  // Vários avisos chegam quase juntos (conta, leis incluídas, escolha do
+  // edital): junta tudo num desenho só, em vez de refazer a página a cada um.
+  var renderPendente = false;
   function render() {
+    if (renderPendente) return;
+    renderPendente = true;
+    setTimeout(function () { renderPendente = false; renderAgora(); }, 0);
+  }
+
+  // Áreas fechadas não têm o corpo montado: ele só é criado quando a pessoa
+  // abre a área (antes eram ~160 editais desenhados de uma vez, quase todos
+  // escondidos).
+  var corposPendentes = {};
+
+  function renderAgora() {
     if (!ES) return;
+    corposPendentes = {};
     var list = ES.data();
     var cur = ES.principal();
     var escolher = !cur || changing;
@@ -235,32 +250,40 @@
     var buscando = termos.length > 0, achados = 0;
     var html = montarAreas(list).map(function (a, ai) {
       var total = 0, temPrincipal = false;
-      var corpo = "";
-      if (a.uniao && !buscando) corpo += linha(a.uniao, { escolher: escolher, rotuloUniao: "Todos os editais de " + a.titulo });
       a.uniao && cur && a.uniao.id === cur.id && (temPrincipal = true);
-      a.grupos.forEach(function (g) {
+      var filtrados = a.grupos.map(function (g) {
         var eds = g.editais.filter(combina);
         total += eds.length;
         eds.forEach(function (e) { if (cur && e.id === cur.id) temPrincipal = true; });
         if (g.uniao && cur && g.uniao.id === cur.id) temPrincipal = true;
-        if (buscando && !eds.length) return;
-        var linhas = "";
-        // com um edital só, a linha "Todos os editais" repetiria o mesmo conteúdo
-        if (g.uniao && !buscando && (g.uniao.emBreve || g.editais.length > 1 || (cur && cur.id === g.uniao.id))) {
-          linhas += linha(g.uniao, { escolher: escolher, rotuloUniao: g.uniao.emBreve ? g.uniao.titulo : "Todos os editais de " + g.nome });
-        }
-        linhas += eds.map(function (e) { return linha(e, { escolher: escolher }); }).join("");
-        if (!linhas) linhas = '<p class="ed-vazio">Nenhum edital mapeado ainda.</p>';
-        corpo += (g.titulo ? '<h3 class="ed-grupo">' + esc(g.titulo) + (eds.length ? ' <span>' + eds.length + "</span>" : "") + "</h3>" : "") + linhas;
+        return eds;
       });
+      var montarCorpo = function () {
+        var corpo = "";
+        if (a.uniao && !buscando) corpo += linha(a.uniao, { escolher: escolher, rotuloUniao: "Todos os editais de " + a.titulo });
+        a.grupos.forEach(function (g, gi) {
+          var eds = filtrados[gi];
+          if (buscando && !eds.length) return;
+          var linhas = "";
+          // com um edital só, a linha "Todos os editais" repetiria o mesmo conteúdo
+          if (g.uniao && !buscando && (g.uniao.emBreve || g.editais.length > 1 || (cur && cur.id === g.uniao.id))) {
+            linhas += linha(g.uniao, { escolher: escolher, rotuloUniao: g.uniao.emBreve ? g.uniao.titulo : "Todos os editais de " + g.nome });
+          }
+          linhas += eds.map(function (e) { return linha(e, { escolher: escolher }); }).join("");
+          if (!linhas) linhas = '<p class="ed-vazio">Nenhum edital mapeado ainda.</p>';
+          corpo += (g.titulo ? '<h3 class="ed-grupo">' + esc(g.titulo) + (eds.length ? ' <span>' + eds.length + "</span>" : "") + "</h3>" : "") + linhas;
+        });
+        return corpo;
+      };
       achados += total;
       if (buscando && !total) return "";
       var aberta = buscando || (ai in abertas ? abertas[ai] : temPrincipal);
+      if (!aberta) corposPendentes[ai] = montarCorpo;
       return '<details class="ed-area" data-area="' + ai + '"' + (aberta ? " open" : "") + ">" +
         '<summary><span class="ed-area-titulo">' + esc(a.titulo) + "</span>" +
           '<span class="ed-area-n">' + total + " edita" + (total === 1 ? "l" : "is") + "</span>" +
           (temPrincipal ? '<span class="ed-tag-main">Principal</span>' : "") + "</summary>" +
-        '<div class="ed-area-body">' + corpo + "</div></details>";
+        '<div class="ed-area-body">' + (aberta ? montarCorpo() : "") + "</div></details>";
     }).join("");
 
     if (buscando && !achados) html = '<p class="ed-vazio">Nenhum edital encontrado para essa busca.</p>';
@@ -324,7 +347,12 @@
   root.addEventListener("toggle", function (e) {
     var d = e.target;
     if (d.classList.contains("ed-area")) {
-      if (!termos.length) abertas[d.getAttribute("data-area")] = d.open;
+      var ai = d.getAttribute("data-area");
+      if (!termos.length) abertas[ai] = d.open;
+      if (d.open && corposPendentes[ai]) {
+        var corpoArea = d.querySelector(".ed-area-body");
+        if (corpoArea && !corpoArea.innerHTML) corpoArea.innerHTML = corposPendentes[ai]();
+      }
     } else if (d.classList.contains("ed-more")) {
       maisAbertos[d.getAttribute("data-ed")] = d.open;
       if (!d.open) return;

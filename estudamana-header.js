@@ -36,9 +36,8 @@ if (window.__estudamanaHeader) return;
 window.__estudamanaHeader = true;
 
 var CONFIG = {
-// Ordem preferida (pelo final do endereço da página, sem "/p/" e sem
-// ".html"). Páginas que não estão nesta lista entram DEPOIS dessas,
-// da mais antiga para a mais nova — então páginas novas caem no fim.
+// (Sem uso desde que o menu passou para a ordem alfabética — ver
+// "arrange" mais abaixo. Fica aqui só como registro da ordem antiga.)
 order: [
 "editais",
 "diario-dos-informativos",
@@ -216,12 +215,40 @@ var NA_INICIAL = ehInicial();
 // (<h1>) dentro do conteúdo. Nessas páginas, o do Blogger fica escondido; o
 // título continua valendo para o menu e para a aba do navegador.
 (function esconderTituloRepetido() {
+var TXT = function (el) { return (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase(); };
+function aplicar() {
 try {
-if (!document.querySelector(".post-body h1")) return;
+var blogger = document.querySelector(".post-outer .post-title.entry-title");
+var corpo = document.querySelector(".post-body");
+if (!corpo) return;
+var titulos = corpo.querySelectorAll("h1, h2");
+if (!titulos.length) return;
+// O título do próprio conteúdo é o primeiro <h1> (ou, sem <h1>, o <h2> que
+// repete o título do Blogger). Marcado para ficar legível no modo escuro.
+var meu = corpo.querySelector("h1");
+var alvo = blogger ? TXT(blogger) : "";
+if (!meu && alvo) {
+for (var i = 0; i < titulos.length; i++) if (TXT(titulos[i]) === alvo) { meu = titulos[i]; break; }
+}
+if (!meu) return;
+meu.classList.add("em-titulo-pagina");
+// Some o título do Blogger e qualquer outro título do conteúdo com o
+// mesmo texto (ex.: "Diário de Leis" aparecendo duas vezes).
+var texto = TXT(meu);
+if (blogger) blogger.style.setProperty("display", "none", "important");
+Array.prototype.forEach.call(corpo.querySelectorAll("h1, h2, h3"), function (h) {
+if (h !== meu && TXT(h) === texto) h.style.setProperty("display", "none", "important");
+});
+} catch (e) {}
+}
+// Roda já (o conteúdo pode já estar na página) e de novo quando ele termina
+// de carregar — antes só rodava uma vez, cedo demais em algumas páginas.
 var st = document.createElement("style");
 st.textContent = ".post-outer .post-title.entry-title { display: none !important; }";
-document.head.appendChild(st);
-} catch (e) {}
+try { if (document.querySelector(".post-body h1")) document.head.appendChild(st); } catch (e) {}
+aplicar();
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", aplicar);
+window.addEventListener("load", aplicar);
 })();
 // Na inicial, a lista de postagens do Blogger (que só mostraria um resumo
 // da apresentação), o título "Postagens" e a paginação ficam escondidos
@@ -321,14 +348,12 @@ var hide = {};
 CONFIG.hide.forEach(function (s) { hide[s] = true; });
 var visible = pages.filter(function (p) { return !hide[slugOf(p.path)]; });
 
-var rank = {};
-CONFIG.order.forEach(function (s, i) { rank[s] = i; });
-
-var pinned = visible.filter(function (p) { return slugOf(p.path) in rank; })
-.sort(function (a, b) { return rank[slugOf(a.path)] - rank[slugOf(b.path)]; });
-var rest = visible.filter(function (p) { return !(slugOf(p.path) in rank); })
-.sort(function (a, b) { return String(a.published).localeCompare(String(b.published)); });
-return pinned.concat(rest);
+// Ordem alfabética pelo nome que aparece no menu (sem diferenciar
+// acentos nem maiúsculas). "Início" fica sempre na frente (ver "home").
+// A lista "order" acima não é mais usada para ordenar.
+var collator = new Intl.Collator("pt-BR", { sensitivity: "base" });
+function labelOf(p) { return CONFIG.labels[slugOf(p.path)] || p.title || ""; }
+return visible.sort(function (a, b) { return collator.compare(labelOf(a), labelOf(b)); });
 }
 
 // ---- montagem do cabeçalho -----------------------------------------
