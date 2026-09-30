@@ -1084,6 +1084,23 @@ TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_e
              ("TESES", teses), ("LEIS", leis)]
 
 
+# Tempo máximo de cada parte (segundos); Control-C na janela pula só a parte
+# que está rodando. Um site pendurado (ex.: JusLaboris
+# lento, Chrome esperando uma página que não termina) não trava o resto:
+# a parte é interrompida, aparece como ERRO no Resumo e as outras seguem.
+LIMITE = {"TESES": 1800, "LEIS": 900}
+LIMITE_PADRAO = 300
+
+
+class Estourou(BaseException):
+    """Tempo esgotado. BaseException para não ser engolida por "except Exception"
+    ou "except Falha" dentro das funções dos tribunais."""
+
+
+def _estourou(signum, frame):
+    raise Estourou()
+
+
 def main(so=None, tudo=False):
     dados = Dados(ARQUIVO)
     dados.teses_mudou = False
@@ -1093,8 +1110,26 @@ def main(so=None, tudo=False):
         if so and nome not in so:
             continue
         print(f"\n=== {nome}")
+        limite = None if (nome == "TESES" and tudo) else LIMITE.get(nome, LIMITE_PADRAO)
+        tem_alarme = hasattr(signal, "SIGALRM") and limite
+        if tem_alarme:
+            signal.signal(signal.SIGALRM, _estourou)
+            signal.alarm(limite)
         try:
             novas = funcao(dados, tudo=tudo) if nome == "TESES" else funcao(dados)
+        except Estourou:
+            msg = (f"passou de {limite // 60} minutos sem terminar — o site deve estar lento "
+                   "ou fora do ar; pulei e segui com os outros")
+            print(f"  ERRO: {msg}")
+            falhas.append(nome)
+            resumo.append(f"  {nome}: ERRO — {msg}")
+            continue
+        except KeyboardInterrupt:
+            msg = "interrompido por você (Control-C); pulei e segui com os outros"
+            print(f"\n  {msg}")
+            falhas.append(nome)
+            resumo.append(f"  {nome}: {msg}")
+            continue
         except Falha as e:
             print(f"  ERRO: {e}")
             falhas.append(nome)
@@ -1105,6 +1140,9 @@ def main(so=None, tudo=False):
             falhas.append(nome)
             resumo.append(f"  {nome}: ERRO inesperado — {e!r}")
             continue
+        finally:
+            if tem_alarme:
+                signal.alarm(0)
         if nome == "LEIS":
             resumo.append("  LEIS: " + ("; ".join(n["edicao"] for n in novas) if novas
                                         else "nenhuma lei monitorada mudou"))
