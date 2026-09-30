@@ -330,7 +330,7 @@
       edition.className = "edition sumula-edition";
       var num = document.createElement("span");
       num.className = "num";
-      num.textContent = (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : "Súmula nº ") + row.numero;
+      num.textContent = (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : row.org === "tjto" ? "Enunciado nº " : "Súmula nº ") + row.numero;
       var texto = document.createElement("p");
       texto.className = "sumula-texto";
       texto.textContent = row.texto;
