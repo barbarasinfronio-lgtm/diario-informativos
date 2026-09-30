@@ -94,11 +94,24 @@
       linkFn: stfLink,
       footer: 'Fonte oficial: <a href="https://www.stf.jus.br/arquivo/informativo/documento/informativo1.htm" target="_blank" rel="noopener">stf.jus.br</a> — cobre as edições 1 a 1227 (1995 a 2026). O botão "Abrir" de cada linha leva à página oficial do STF: HTML para as edições 1 a 1224, PDF para as mais recentes.'
     },
+    stfpv: {
+      label: "STF PV", key: "stfpv", data: STFPV_DATA,
+      lede: "Plenário Virtual em Evidência: resumo semanal dos principais casos julgados pelo Plenário do STF nas sessões virtuais.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://portal.stf.jus.br/textos/verTexto.asp?servico=codi&pagina=Plenario_Virtual" target="_blank" rel="noopener">portal.stf.jus.br</a> — a numeração reinicia a cada ano. O botão "Abrir" leva ao PDF oficial.',
+      vazio: "As edições entram na próxima vez que você rodar o comando semanal (Atualizar Informativos) no Mac."
+    },
     stj: {
       label: "STJ", key: "stj", data: STJ_DATA,
       lede: "Informativo de Jurisprudência do STJ, edição quinzenal. Cobre o histórico completo desde 1998.",
       linkFn: function (row) { return row.link; },
       footer: 'Fonte oficial: <a href="https://scon.stj.jus.br/jurisprudencia/externo/informativo/" target="_blank" rel="noopener">scon.stj.jus.br</a> — cobre as edições 1 a 900 (1998 a 2026). Súmulas conferidas apenas nas edições mais recentes; as demais aparecem como "a confirmar".'
+    },
+    stjx: {
+      label: "STJ Extra", key: "stjx", data: STJX_DATA,
+      lede: "Edições extraordinárias do Informativo do STJ: os principais julgados do semestre por área (Público, Privado e Penal) e edições especiais.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://processo.stj.jus.br/jurisprudencia/externo/informativo/" target="_blank" rel="noopener">processo.stj.jus.br</a> (aba "Edições extraordinárias") — numeração própria, separada da edição quinzenal. O botão "Abrir" leva ao PDF oficial.'
     },
     tse: {
       label: "TSE", key: "tse", data: TSE_DATA,
@@ -125,14 +138,20 @@
       footer: 'Fonte oficial: <a href="https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao" target="_blank" rel="noopener">cnmp.mp.br</a> — o CNMP descontinuou o "Informativo de Jurisprudência" (até 2019) e passou a publicar o "Boletim da Sessão", aqui tratado como equivalente; cobre de 2017 a 2026. Numeração contínua até 2022 (edições 1 a 89), reiniciada a cada ano a partir de 2023. Sessões canceladas (sem boletim) não entram na lista. Súmulas não verificadas — o índice não traz as ementas.'
     }
   };
-  var ORG_ORDER = ["stf", "stj", "tse", "cnj", "tst", "cnmp"];
+  var ORG_ORDER = ["stf", "stfpv", "stj", "stjx", "tse", "cnj", "tst", "cnmp"];
   var currentOrg = "stf";
 
   var stateByOrg = {};
   ORG_ORDER.forEach(function (key) {
     stateByOrg[key] = ORGS[key].data.map(function (d) {
-      return { edicao: d.edicao, ano: d.ano, data: d.data, sumula: d.sumula, link: d.link, lida: false, lidaEm: null };
+      return { edicao: d.edicao, ano: d.ano, data: d.data, sumula: d.sumula, tema: d.tema, link: d.link, lida: false, lidaEm: null };
     });
+    // Séries que o robô completa aos poucos (histórico entra depois): mais nova primeiro.
+    if (key === "stjx" || key === "stfpv") {
+      stateByOrg[key].sort(function (a, b) {
+        return (b.ano - a.ano) || String(b.data || "").localeCompare(String(a.data || "")) || (b.edicao - a.edicao);
+      });
+    }
   });
 
   var MONTHS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
@@ -247,7 +266,7 @@
     var state = stateByOrg[currentOrg].filter(function (r) {
       var d = /^(\d{4})-(\d{2})-(\d{2})/.exec(r.data || "");
       var dataBr = d ? d[3] + "/" + d[2] + "/" + d[1] : "";
-      return combinaBusca("nº " + r.edicao + "/" + r.ano + " " + r.edicao + " " + fmtDate(r.data) + " " + dataBr + " " + r.ano);
+      return combinaBusca("nº " + r.edicao + "/" + r.ano + " " + r.edicao + " " + fmtDate(r.data) + " " + dataBr + " " + r.ano + " " + (r.tema || ""));
     });
     mostrarResultadoBusca(state.length, ["informativo", "informativos"]);
     var linkFn = ORGS[currentOrg].linkFn;
@@ -258,6 +277,12 @@
     });
 
     listRoot.innerHTML = "";
+    if (!stateByOrg[currentOrg].length && ORGS[currentOrg].vazio) {
+      var vazio = document.createElement("p");
+      vazio.className = "lede";
+      vazio.textContent = ORGS[currentOrg].vazio;
+      listRoot.appendChild(vazio);
+    }
     years.forEach(function (year) {
       var section = document.createElement("section");
       section.className = "year-group";
@@ -291,7 +316,7 @@
         num.textContent = "Nº " + row.edicao + "/" + row.ano;
         var date = document.createElement("span");
         date.className = "date";
-        date.textContent = fmtDate(row.data);
+        date.textContent = fmtDate(row.data) + (row.tema ? " · " + row.tema : "");
         edition.appendChild(num);
         edition.appendChild(date);
 

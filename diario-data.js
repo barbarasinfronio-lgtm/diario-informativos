@@ -1,5 +1,6 @@
 /*
- * Diário dos Informativos — dados (STF, STJ, TSE, CNJ, TST, CNMP)
+ * Diário dos Informativos — dados (STF, STF Plenário Virtual em Evidência,
+ * STJ, STJ extraordinárias, TSE, CNJ, TST, CNMP)
  * Gerado a partir da checagem diária dos sites oficiais dos tribunais.
  * Cada edição aqui é só um número + data + link para o PDF/HTML oficial —
  * nada do conteúdo dos informativos é copiado para este arquivo.
@@ -2142,6 +2143,35 @@
     { edicao: 1, ano: 1998, data: "1998-11-27", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0001" }
   ];
 
+  // Edições extraordinárias do Informativo do STJ (numeração própria, "33E").
+  var STJX_DATA = [
+    { edicao: 33, ano: 2026, data: "2026-07-28", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0033E" },
+    { edicao: 32, ano: 2026, data: "2026-07-21", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0032E" },
+    { edicao: 31, ano: 2026, data: "2026-07-14", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0031E" },
+    { edicao: 30, ano: 2026, data: "2026-01-27", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0030E" },
+    { edicao: 29, ano: 2026, data: "2026-01-20", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0029E" },
+    { edicao: 28, ano: 2026, data: "2026-01-13", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0028E" },
+    { edicao: 27, ano: 2025, data: "2025-07-29", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0027E" },
+    { edicao: 26, ano: 2025, data: "2025-07-22", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0026E" },
+    { edicao: 25, ano: 2025, data: "2025-07-15", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0025E" },
+    { edicao: 24, ano: 2025, data: "2025-01-28", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0024E" },
+    { edicao: 23, ano: 2025, data: "2025-01-21", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0023E" },
+    { edicao: 22, ano: 2025, data: "2025-01-14", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0022E" },
+    { edicao: 21, ano: 2024, data: "2024-07-30", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0021E" },
+    { edicao: 20, ano: 2024, data: "2024-07-23", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0020E" },
+    { edicao: 19, ano: 2024, data: "2024-07-16", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0019E" },
+    { edicao: 18, ano: 2024, data: "2024-04-03", sumula: null, tema: "Edição comemorativa dos 35 anos do STJ - Volume II", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0018E" },
+    { edicao: 17, ano: 2024, data: "2024-04-03", sumula: null, tema: "Edição comemorativa dos 35 anos do STJ - Volume I", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0017E" },
+    { edicao: 16, ano: 2024, data: "2024-01-30", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0016E" },
+    { edicao: 15, ano: 2024, data: "2024-01-23", sumula: null, tema: "Direito Privado", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0015E" },
+    { edicao: 14, ano: 2024, data: "2024-01-16", sumula: null, tema: "Direito Público", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0014E" },
+    { edicao: 13, ano: 2023, data: "2023-08-01", sumula: null, tema: "Direito Penal", link: "https://processo.stj.jus.br/SCON/GetPDFINFJ?edicao=0013E" }
+  ];
+
+  // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
+  var STFPV_DATA = [
+  ];
+
   var TSE_DATA = [
     { edicao: 12, ano: 2026, data: "2026-08-31", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-12-ano-28-de-16-a-31-de-agosto-de-2026" },
     { edicao: 11, ano: 2026, data: "2026-08-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-11-ano-28-de-1o-a-15-de-agosto-de-2026" },
@@ -3552,6 +3582,8 @@
 // cria variável global).
 window.STF_DATA = STF_DATA;
 window.STJ_DATA = STJ_DATA;
+window.STJX_DATA = STJX_DATA;
+window.STFPV_DATA = STFPV_DATA;
 window.TSE_DATA = TSE_DATA;
 window.CNJ_DATA = CNJ_DATA;
 window.TST_DATA = TST_DATA;
