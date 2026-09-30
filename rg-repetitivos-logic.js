@@ -295,7 +295,7 @@
       return (b.data||'').split('/').reverse().join('') > (a.data||'').split('/').reverse().join('') ? 1 : -1;
     });
 
-    document.getElementById('countLine').textContent = list.length + ' de ' + DATA.length + ' teses';
+    document.getElementById('countLine').textContent = list.length + ' de ' + DATA.length + ' decisões';
     var grid = document.getElementById('grid');
     grid.innerHTML = '';
     document.getElementById('empty').hidden = list.length>0;
