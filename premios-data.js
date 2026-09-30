@@ -43,7 +43,7 @@ window.PREMIOS_CONFIG = {
   ],
 
   // Emoji de cada tribunal (informativos) e de cada matéria (leis).
-  emojiOrg: { stf: "🏛️", stfpv: "🖥️", stj: "📘", stjx: "📗", tse: "🗳️", cnj: "🧾", tst: "👷", cnmp: "🛡️" },
+  emojiOrg: { stf: "🏛️", stfpv: "🖥️", stj: "📘", stjx: "📗", stjbp: "📑", tse: "🗳️", cnj: "🧾", tst: "👷", cnmp: "🛡️" },
   emojiMateria: {
     civil: "🏠", processual_civil: "📑", consumidor: "🛒", crianca: "🧒",
     penal: "🔒", processual_penal: "🕵️", constitucional: "📜", eleitoral: "🗳️",

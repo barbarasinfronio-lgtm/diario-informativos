@@ -46,10 +46,16 @@
     return m ? m[0] : "";
   })();
 
+  // (guarda o resultado: a mesma lei aparece em dezenas de editais e o
+  // progresso refaz essa conta a cada desenho da página)
+  var slugCache = {};
   function slug(text) {
-    return (text || "").toLowerCase()
+    var k = text || "";
+    var c = slugCache[k];
+    if (c !== undefined) return c;
+    return (slugCache[k] = k.toLowerCase()
       .normalize("NFD").replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""));
   }
 
   // Normas estaduais/municipais trazem a sigla da unidade entre parênteses

@@ -1036,6 +1036,33 @@ def stj_extra(dados):
     return novas
 
 
+STJ_BOLETIM = "https://processo.stj.jus.br/processo/precedentes"
+
+
+def stj_boletim(dados):
+    """Boletim de Precedentes do STJ: a própria página traz todas as edições
+    (uma lista por ano, com número, data e PDF); registra as que ainda não
+    estão no Diário (na primeira vez, todas)."""
+    var = "STJBP_DATA"
+    t = pagina(STJ_BOLETIM, valida=lambda x: "boletim_precedentes_stj" in x)
+    vistas = {e for e, _, _ in dados.registradas(var)}
+    achadas = {}
+    for m in re.finditer(
+            r'<option value="(https://www\.stj\.jus\.br/docs_internet/processo/precedentes/+(\d{4})/(\d+)_boletim_precedentes_stj_(\d{8})\.pdf)">'
+            r'[^<]*?n\.\s*(\d+)\s*-\s*(\d{2})/(\d{2})/(\d{4})', t):
+        link, ano, n1, dt, n2, d, mo, y = m.groups()
+        if int(n1) != int(n2) or dt != y + mo + d:
+            continue
+        achadas[int(n1)] = {"edicao": int(n1), "ano": int(ano), "data": f"{y}-{mo}-{d}",
+                            "link": link.replace("precedentes//", "precedentes/")}
+    if not achadas:
+        raise Falha("não achei nenhuma edição do Boletim de Precedentes na página — a página mudou?")
+    novas = [v for k, v in achadas.items() if k not in vistas]
+    if novas:
+        dados.inserir(var, novas, com_link=True)
+    return novas
+
+
 STF_PV = "https://portal.stf.jus.br/textos/verTexto.asp?servico=codi&pagina=Plenario_Virtual"
 _RE_PV = re.compile(r"(?:PVE|PV_?em_?Evid[a-zê]*)_?0*(\d{1,2})_(\d{4})", re.I)
 
@@ -1093,7 +1120,7 @@ def stf_pv(dados):
     return novas
 
 
-TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
              ("TESES", teses), ("LEIS", leis)]
 
 

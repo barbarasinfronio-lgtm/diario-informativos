@@ -295,7 +295,7 @@
       return (b.data||'').split('/').reverse().join('') > (a.data||'').split('/').reverse().join('') ? 1 : -1;
     });
 
-    document.getElementById('countLine').textContent = list.length + ' de ' + DATA.length + ' teses';
+    document.getElementById('countLine').textContent = list.length + ' de ' + DATA.length + ' decisões';
     var grid = document.getElementById('grid');
     grid.innerHTML = '';
     document.getElementById('empty').hidden = list.length>0;
@@ -508,7 +508,7 @@
     var lidasCount = totalLidos();
     var el = document.getElementById('stats');
     el.innerHTML =
-      '<div class="stat"><b>' + DATA.length + '</b><span>Teses no total</span></div>' +
+      '<div class="stat"><b>' + DATA.length + '</b><span>Julgados no total</span></div>' +
       '<div class="stat" style="color:var(--low-fg)"><b>' + lidasCount + '</b><span>Lidas</span></div>' +
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +

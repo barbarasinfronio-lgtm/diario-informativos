@@ -280,7 +280,7 @@
     }
     var toggle = document.getElementById("account-toggle");
     var detAntigo = boxEl.querySelector("details.cg-det");
-    var aberto = detAntigo ? detAntigo.open : host.mode === "panel";
+    var aberto = detAntigo ? detAntigo.open : (host.mode === "panel" && !!toggle && host.el.hidden);
     if (logado(user)) {
       var como = hasGoogle(user) ? "conta Google" : "e-mail e senha";
       boxEl.innerHTML =
@@ -309,7 +309,7 @@
   }
 
   // O quadro nasce minimizado (só o título aparece; clique para abrir). No
-  // modo "panel" ele já fica dentro do painel "Minha conta", que a pessoa
+  // modo "panel" com o botão "Minha conta" ele já fica dentro do painel, que a pessoa
   // abriu de propósito — então lá já vem aberto.
   function envolverEmDetails(aberto) {
     var det = document.createElement("details");

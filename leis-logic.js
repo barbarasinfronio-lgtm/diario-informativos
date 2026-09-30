@@ -231,8 +231,8 @@
     return ordem.map(function (mat) {
       var lidasNaMateria = grupos[mat].filter(function (l) { return isLida(l.chave); }).length;
       return '<details style="margin-bottom:10px;"' + (abrir ? " open" : "") + ">" +
-        '<summary style="cursor:pointer;font-weight:600;font-size:15px;color:#334155;padding:8px 0;">' +
-        escapeHtml(mat) + ' <span style="color:#94a3b8;font-weight:400;">(' + lidasNaMateria + " de " + grupos[mat].length + " lidas)</span></summary>" +
+        '<summary style="cursor:pointer;font-weight:600;font-size:15px;color:var(--em-leis-ink,#334155);padding:8px 0;">' +
+        escapeHtml(mat) + ' <span style="color:var(--em-leis-faint,#94a3b8);font-weight:400;">(' + lidasNaMateria + " de " + grupos[mat].length + " lidas)</span></summary>" +
         '<div style="padding-top:6px;">' + grupos[mat].map(card).join("") + "</div>" +
         "</details>";
     }).join("");
@@ -245,7 +245,7 @@
   function resumo(leis) {
     var lidasN = leis.filter(function (l) { return isLida(l.chave); }).length;
     if (!leis.length) return "";
-    return '<p class="lei-resumo" style="margin:0 0 12px;font-size:13px;font-weight:600;color:#475569;">' +
+    return '<p class="lei-resumo" style="margin:0 0 12px;font-size:13px;font-weight:600;color:var(--em-leis-soft,#475569);">' +
       lidasN + " de " + leis.length + " lidas</p>";
   }
 

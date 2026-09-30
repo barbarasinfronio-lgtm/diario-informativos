@@ -222,3 +222,24 @@ html.em-has-font body {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+/* Barra lateral escondida do tema do Blogger (aside.sidebar-container.sidebar-invisible):
+   ela fica fora da tela, mas em algumas larguras aparecia como um bloco branco
+   ao lado do conteúdo. Fechada, fica invisível; quando o tema a abre, tira a
+   classe "sidebar-invisible" e ela volta a aparecer normalmente. */
+.sidebar-container.sidebar-invisible { visibility: hidden; }
+
+/* Título da página (o do próprio conteúdo) legível no modo escuro: em algumas
+   páginas (ex.: Diário de Leis) ele vinha numa cor escura sobre fundo escuro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .em-titulo-pagina { color: var(--em-leis-ink, var(--ink)) !important; }
+}
+:root[data-theme="dark"] .em-titulo-pagina { color: var(--em-leis-ink, var(--ink)) !important; }
+
+/* Diário de Leis: cores dos títulos de matéria e do resumo (vêm em linha no
+   leis-logic.js, escuras) claras no modo escuro. */
+:root { --em-leis-ink: #334155; --em-leis-soft: #475569; --em-leis-faint: #94a3b8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --em-leis-ink: #e6e8ee; --em-leis-soft: #b8bfce; --em-leis-faint: #8a93a6; }
+}
+:root[data-theme="dark"] { --em-leis-ink: #e6e8ee; --em-leis-soft: #b8bfce; --em-leis-faint: #8a93a6; }
