@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-09-29",
+ "atualizado": "2026-09-30",
  "leis": {
   "cf-1988": {
    "numero": "CF/1988",
@@ -1153,6 +1153,39 @@
    ],
    "mudancas": [],
    "desde": "2026-09-29"
+  },
+  "lei-n-11-340-2006": {
+   "numero": "Lei nº 11.340/2006",
+   "nome": "Lei Maria da Penha",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm",
+   "alteradoras": [
+    "Lei 13505",
+    "Lei 13641",
+    "Lei 13772",
+    "Lei 13827",
+    "Lei 13836",
+    "Lei 13880",
+    "Lei 13882",
+    "Lei 13894",
+    "Lei 13984",
+    "Lei 14188",
+    "Lei 14550",
+    "Lei 14674",
+    "Lei 14857",
+    "Lei 14887",
+    "Lei 14994",
+    "Lei 15125",
+    "Lei 15212",
+    "Lei 15380",
+    "Lei 15383",
+    "Lei 15384",
+    "Lei 15411",
+    "Lei 15412",
+    "Lei 15438",
+    "Lei 15455"
+   ],
+   "mudancas": [],
+   "desde": "2026-09-30"
   }
  }
 }
