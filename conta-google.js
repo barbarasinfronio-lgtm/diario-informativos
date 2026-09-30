@@ -280,7 +280,7 @@
     }
     var toggle = document.getElementById("account-toggle");
     var detAntigo = boxEl.querySelector("details.cg-det");
-    var aberto = detAntigo ? detAntigo.open : (host.mode === "panel" && !!toggle);
+    var aberto = detAntigo ? detAntigo.open : (host.mode === "panel" && !!toggle && host.el.hidden);
     if (logado(user)) {
       var como = hasGoogle(user) ? "conta Google" : "e-mail e senha";
       boxEl.innerHTML =

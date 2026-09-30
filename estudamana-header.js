@@ -36,9 +36,8 @@ if (window.__estudamanaHeader) return;
 window.__estudamanaHeader = true;
 
 var CONFIG = {
-// Ordem preferida (pelo final do endereço da página, sem "/p/" e sem
-// ".html"). Páginas que não estão nesta lista entram DEPOIS dessas,
-// da mais antiga para a mais nova — então páginas novas caem no fim.
+// (Sem uso desde que o menu passou para a ordem alfabética — ver
+// "arrange" mais abaixo. Fica aqui só como registro da ordem antiga.)
 order: [
 "editais",
 "diario-dos-informativos",
@@ -321,14 +320,12 @@ var hide = {};
 CONFIG.hide.forEach(function (s) { hide[s] = true; });
 var visible = pages.filter(function (p) { return !hide[slugOf(p.path)]; });
 
-var rank = {};
-CONFIG.order.forEach(function (s, i) { rank[s] = i; });
-
-var pinned = visible.filter(function (p) { return slugOf(p.path) in rank; })
-.sort(function (a, b) { return rank[slugOf(a.path)] - rank[slugOf(b.path)]; });
-var rest = visible.filter(function (p) { return !(slugOf(p.path) in rank); })
-.sort(function (a, b) { return String(a.published).localeCompare(String(b.published)); });
-return pinned.concat(rest);
+// Ordem alfabética pelo nome que aparece no menu (sem diferenciar
+// acentos nem maiúsculas). "Início" fica sempre na frente (ver "home").
+// A lista "order" acima não é mais usada para ordenar.
+var collator = new Intl.Collator("pt-BR", { sensitivity: "base" });
+function labelOf(p) { return CONFIG.labels[slugOf(p.path)] || p.title || ""; }
+return visible.sort(function (a, b) { return collator.compare(labelOf(a), labelOf(b)); });
 }
 
 // ---- montagem do cabeçalho -----------------------------------------
