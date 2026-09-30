@@ -35,6 +35,28 @@
 if (window.__estudamanaHeader) return;
 window.__estudamanaHeader = true;
 
+// ---- última visita ---------------------------------------------------------
+// Guarda neste navegador quando a pessoa visitou o blog pela última vez, para
+// as "Leis alteradas" (Meu Progresso > Revisões) mostrarem o que mudou desde
+// então. Uma "visita" nova começa depois de 30 minutos sem abrir nenhuma página
+// (abrir outra aba ou página logo em seguida não conta como visita nova).
+//   localStorage "estudamana-visitas" = { atual: <data e hora ISO>, anterior: <AAAA-MM-DD ou null> }
+(function registrarVisita() {
+try {
+var KEY = "estudamana-visitas", agora = new Date(), v = {};
+try { v = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { v = {}; }
+var atual = v.atual ? new Date(v.atual) : null;
+var anterior = v.anterior || null;
+if (atual && !isNaN(atual)) {
+if (agora - atual > 30 * 60 * 1000) {
+var p2 = function (n) { return String(n).padStart(2, "0"); };
+anterior = atual.getFullYear() + "-" + p2(atual.getMonth() + 1) + "-" + p2(atual.getDate());
+}
+}
+localStorage.setItem(KEY, JSON.stringify({ atual: agora.toISOString(), anterior: anterior }));
+} catch (e) {}
+})();
+
 var CONFIG = {
 // (Sem uso desde que o menu passou para a ordem alfabética — ver
 // "arrange" mais abaixo. Fica aqui só como registro da ordem antiga.)
