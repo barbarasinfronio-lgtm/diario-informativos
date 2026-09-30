@@ -258,7 +258,7 @@
           "</span></li>";
       }).join("");
       top = '<div class="ed-current"><ol class="ed-combo">' + itens + "</ol>" +
-        (combo.length > 1 ? '<p class="ed-hint">Combinação de ' + combo.length + ' editais: ' + lidasU + " de " + totalU + " leis lidas (sem repetir as que se repetem entre eles).</p>" :
+        (combo.length > 1 ? '<p class="ed-hint">Combinação de ' + combo.length + ' editais: ' + lidasU + " de " + totalU + " leis lidas (sem repetições).</p>" :
           '<p class="ed-hint">Estuda para mais de um concurso? Abra uma carreira abaixo e clique em “+ Combinar” para juntar até mais 2 editais (2º e 3º).</p>') +
         '<div class="ed-current-actions"><a class="ed-link" href="' + LEIS_URL + '">Abrir o Diário de Leis</a>' +
         '<button type="button" class="edital-btn" id="ed-change" aria-expanded="' + (changing ? "true" : "false") + '">' +
