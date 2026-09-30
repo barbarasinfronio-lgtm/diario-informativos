@@ -9,6 +9,19 @@
   var TESES_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/teses.json';
   var state = { q:'', org:'all', risk:'all', area:null };
 
+  // O rótulo acima do título ("Dossiê de jurisprudência · Magistratura") está
+  // no HTML da página do Blogger; como o Diário deixou de ser só da
+  // magistratura, tira o " · Magistratura" daqui (vale mesmo sem editar o HTML).
+  (function(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) {
+      if (/Dossiê de jurisprudência\s*·\s*Magistratura/i.test(n.nodeValue)) {
+        n.nodeValue = n.nodeValue.replace(/\s*·\s*Magistratura/i, '');
+        break;
+      }
+    }
+  })();
+
   // Nem todo precedente qualificado do STJ é "Tema": também há IAC
   // (Incidente de Assunção de Competência) e PUIL (Pedido de Uniformização
   // de Interpretação de Lei), que não podem ser rotulados como "Tema" nem
@@ -190,9 +203,68 @@
     return true;
   }
 
+  // ---- Controle de constitucionalidade (ADI, ADPF, ADC, ADO) ---------------
+  // Antes era o Diário de Constitucionalidade; agora é um botão aqui. São
+  // ~19 mil julgados, então ficam num módulo à parte (carregado só ao abrir
+  // o botão) e paginados, em vez de entrar na lista comum.
+  var CONTROLE_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/controle-integrado.js';
+  var controle = null, controleP = null;
+  function garantirBotaoControle(){
+    var seg = document.getElementById('orgSeg');
+    if (!seg || seg.querySelector('[data-org="CONTROLE"]')) return;
+    var b = document.createElement('button');
+    b.dataset.org = 'CONTROLE';
+    b.textContent = 'Controle (ADI, ADPF…)';
+    b.title = 'Controle de constitucionalidade: ADI, ADPF, ADC e ADO do STF';
+    seg.appendChild(b);
+  }
+  function carregarControle(){
+    if (controle) return Promise.resolve(controle);
+    if (!controleP) {
+      controleP = fetch(CONTROLE_JS, { cache: 'no-cache' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(code){
+          (0, eval)(code + '\n//# sourceURL=' + CONTROLE_JS);
+          controle = window.ControleIntegrado.montar({
+            antes: document.getElementById('grid'),
+            busca: function(){ return state.q; }
+          });
+          return controle;
+        })
+        .catch(function(e){ controleP = null; throw e; });
+    }
+    return controleP;
+  }
+  // Some/volta o que só vale para a lista comum (cards, matérias, risco).
+  function modoControle(ligado){
+    ['grid','empty','areaChips','countLine'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.style.display = ligado ? 'none' : '';
+    });
+    var rb = document.querySelector('.risk-btn');
+    if (rb && rb.parentNode) rb.parentNode.style.display = ligado ? 'none' : '';
+  }
+
   function riskOrder(r){ return r==='Alta'?0:r==='Média'?1:2; }
 
+  var controleAtivo = false, controleVisivel = false;
   function render(){
+    if (state.org === 'CONTROLE') {
+      controleAtivo = true;
+      modoControle(true);
+      document.getElementById('clearBtn').hidden = false;
+      carregarControle().then(function(c){
+        if (state.org !== 'CONTROLE') return;
+        if (controleVisivel) c.buscaMudou(); else { controleVisivel = true; c.mostrar(); }
+      }).catch(function(){});
+      return;
+    }
+    if (controleAtivo) {
+      controleAtivo = false;
+      modoControle(false);
+      if (controle) controle.esconder();
+      controleVisivel = false;
+    }
     areaChips.querySelectorAll('.chip').forEach(function(c){
       c.classList.toggle('active', c.dataset.area === state.area);
     });
@@ -476,6 +548,7 @@
   montarChips();
   renderStats();
   render();
+  garantirBotaoControle();
   carregarTST();
   carregarTeses();
 
