@@ -458,9 +458,39 @@
     if (e.key === "Enter" && e.target && (e.target.id === "cg2-email" || e.target.id === "cg2-senha")) signInEmail(false);
   });
 
+  // ---- última visita ao blog (Leis alteradas, em Meu Progresso > Revisões) ---
+  // Com login, fica na conta (progress-premios/<uid>, campo "visitas") e o
+  // registro deste navegador (feito por estudamana-header.js) é apagado.
+  // "atual" = último momento de atividade; "anterior" = dia da visita
+  // anterior; visita nova = 30 minutos parado. Grava no máximo a cada 5 min.
+  function registrarVisita(user) {
+    try {
+      var KEY = "estudamana-visitas", SES = "estudamana-visita-sync";
+      var local = null;
+      try { local = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      // esta aba já gravou há pouco: não lê nem grava de novo
+      try { var ult = +sessionStorage.getItem(SES) || 0; if (Date.now() - ult < 5 * 60 * 1000) return; } catch (e) {}
+      var ref = firebase.firestore().doc("progress-premios/" + user.uid);
+      ref.get().then(function (snap) {
+        var d = snap.exists ? (snap.data() || {}) : {}, guardada = d.visitas || null;
+        var v = guardada || local || {};
+        var agora = new Date(), atual = v.atual ? new Date(v.atual) : null, anterior = v.anterior || null;
+        if (atual && !isNaN(atual) && agora - atual > 30 * 60 * 1000) {
+          var p2 = function (n) { return String(n).padStart(2, "0"); };
+          anterior = atual.getFullYear() + "-" + p2(atual.getMonth() + 1) + "-" + p2(atual.getDate());
+        }
+        var mudou = !guardada || guardada.anterior !== anterior || !atual || isNaN(atual) || agora - atual > 5 * 60 * 1000;
+        try { sessionStorage.setItem(SES, String(Date.now())); } catch (e) {}
+        if (mudou) return ref.set({ visitas: { atual: agora.toISOString(), anterior: anterior } }, { merge: true });
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   // ---- sincroniza a lista de grupos/edital de quem já está logado -----------
   function syncExtras(user) {
     if (!logado(user)) return;
+    registrarVisita(user);
     try {
       var db = firebase.firestore();
       var ref = db.doc("progress-leis/" + user.uid);
