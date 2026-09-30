@@ -93,6 +93,8 @@
       total: { inf: 0, lei: 0, sum: 0 },
       points: 0,
       lag: { ouro: 0, prata: 0, bronze: 0, fita: 0 },
+      // de onde vêm (e onde somem) as medalhas: informativos lidos por situação
+      medalhas: { lidos: 0, semDataLeitura: 0, semDataPublicacao: 0, depoisDe6: 0 },
       onTimeByOrg: {}, infByOrg: {}, leisByMateria: {}, sumByOrg: {},
       cacaSumulas: 0, arqueologo: 0, seculoPassado: 0
     };
@@ -119,6 +121,10 @@
         var readDn = entry && entry.lidaEm ? dayNum(entry.lidaEm) : null;
         if (pub) pubs.push({ org: org, edicao: row.edicao, ano: row.ano, pub: pub, pubDn: pubDn, read: !!entry, readDn: readDn });
         if (!entry) return;
+        ctx.medalhas.lidos++;
+        if (readDn === null) ctx.medalhas.semDataLeitura++;
+        else if (pubDn === null) ctx.medalhas.semDataPublicacao++;
+        else if (lagTier(Math.max(0, readDn - pubDn)) === null) ctx.medalhas.depoisDe6++;
         info.read++;
         ctx.read.inf++;
         ctx.points += CFG.pontosPorLeitura.inf;
@@ -862,6 +868,24 @@
       "</ul></section>";
   }
 
+  // Explica a conta das medalhas: só ganha medalha o informativo lido com a
+  // data da leitura registrada, com data de publicação conhecida e em até 6 dias.
+  function renderShelfWhy() {
+    var c = state.data.ctx, mm = c.medalhas, l = c.lag;
+    var ganhas = l.ouro + l.prata + l.bronze + l.fita;
+    function n(x) { return x.toLocaleString("pt-BR"); }
+    var linhas = [
+      "<li><b>" + n(mm.lidos) + "</b> informativos lidos no total</li>",
+      "<li><b>" + n(ganhas) + "</b> com medalha (lidos em até 6 dias da publicação)</li>",
+      "<li><b>" + n(mm.depoisDe6) + "</b> lidos depois de 6 dias — sem medalha</li>"
+    ];
+    if (mm.semDataLeitura) linhas.push("<li><b>" + n(mm.semDataLeitura) + "</b> sem a data da leitura registrada (marcados antes de o site guardar essa data) — sem medalha</li>");
+    if (mm.semDataPublicacao) linhas.push("<li><b>" + n(mm.semDataPublicacao) + "</b> de edições sem data de publicação conhecida — sem medalha</li>");
+    return '<details class="pz-why"><summary>Como as medalhas são contadas</summary>' +
+      '<p class="pz-hint">A medalha depende do dia em que você <b>marcou</b> a leitura no Diário: se você marca no dia em que o informativo sai, é ouro. Marcar depois, mesmo tendo lido antes, conta como leitura tardia.</p>' +
+      "<ul>" + linhas.join("") + "</ul></details>";
+  }
+
   function renderShelf() {
     var l = state.data.ctx.lag;
     function m(icon, n, label) {
@@ -873,7 +897,7 @@
         m("🥈", l.prata, "no dia seguinte") +
         m("🥉", l.bronze, "dois dias depois") +
         m("🎖️", l.fita, "em até 6 dias") +
-      "</ul></section>";
+      "</ul>" + renderShelfWhy() + "</section>";
   }
 
   function renderWeek() {

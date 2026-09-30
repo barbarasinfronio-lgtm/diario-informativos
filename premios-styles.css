@@ -437,3 +437,10 @@
   .rv-acoes { width: 100%; justify-content: flex-end; }
   .rv-hist .rv-tipo { min-width: 0; }
 }
+
+/* "Como as medalhas são contadas" */
+.pz-why { margin-top: 0.8rem; font-size: calc(0.85rem * var(--fs-scale)); color: var(--ink-soft); }
+.pz-why summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.pz-why ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.pz-why li { margin: 0.2rem 0; }
+.pz-why b { color: var(--ink); }
