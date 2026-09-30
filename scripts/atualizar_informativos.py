@@ -1037,7 +1037,7 @@ def stj_extra(dados):
 
 
 STF_PV = "https://portal.stf.jus.br/textos/verTexto.asp?servico=codi&pagina=Plenario_Virtual"
-_RE_PV = re.compile(r"(?:PVE|PV_?em_?Evid[a-zê]*)_?0*(\d{1,3})_(\d{4})", re.I)
+_RE_PV = re.compile(r"(?:PVE|PV_?em_?Evid[a-zê]*)_?0*(\d{1,2})_(\d{4})", re.I)
 
 
 def stf_pv(dados):
@@ -1046,14 +1046,25 @@ def stf_pv(dados):
     var = "STFPV_DATA"
     t = pagina(STF_PV, valida=lambda x: re.search(r"PV_?EM_?EVID|PVE\d", x, re.I))
     vistas = {(e, a) for e, a, _ in dados.registradas(var)}
-    achadas = {}
-    for m in re.finditer(r'<a\b[^>]*href="([^"]+?\.pdf)"[^>]*>(.*?)</a>', t, re.S | re.I):
+    achadas, sem_numero = {}, []
+    for m in re.finditer(r'<a\b[^>]*href="([^"]+?\.pdf)[^"]*"[^>]*>(.*?)</a>', t, re.S | re.I):
         href = html.unescape(m.group(1))
-        f = _RE_PV.search(href.rsplit("/", 1)[-1])
-        if not f:
+        if not re.search(r"EVID|PVE", href, re.I):
             continue
-        n, ano = int(f.group(1)), int(f.group(2))
-        if (n, ano) in vistas or (n, ano) in achadas:
+        nome = href.rsplit("/", 1)[-1]
+        # Os nomes variam muito (PVE04_2026.2.pdf, PVE_29_20262.pdf,
+        # 19_PV_em_Evidencia_19_20241.pdf, PVemEvidncia16_2026.pdf...):
+        # primeiro o padrão conhecido; se não der, o último "número_ano".
+        f = _RE_PV.search(nome)
+        if f:
+            n, ano = int(f.group(1)), int(f.group(2)[:4])
+        else:
+            pares = re.findall(r"(?<!\d)(\d{1,2})[_\-. ]+(20\d\d)", nome)
+            if not pares:
+                sem_numero.append(nome)
+                continue
+            n, ano = int(pares[-1][0]), int(pares[-1][1])
+        if not (1 <= n <= 60) or (n, ano) in vistas or (n, ano) in achadas:
             continue
         d = None
         for trecho in (m.group(2), t[m.end():m.end() + 120]):  # texto do link; senão, logo depois
@@ -1064,6 +1075,8 @@ def stf_pv(dados):
         data = iso(d.group(3), d.group(2), d.group(1)) if d else None
         achadas[(n, ano)] = {"edicao": n, "ano": ano, "data": data,
                              "link": urllib.parse.urljoin(STF_PV, href)}
+    if sem_numero:
+        print(f"  (PDFs sem número reconhecível, ficaram de fora: {', '.join(sem_numero[:10])})")
     if not achadas and not vistas:
         raise Falha("não achei nenhuma edição na página do Plenário Virtual em Evidência — a página mudou?")
     for a in achadas.values():
