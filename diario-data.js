@@ -2331,6 +2331,22 @@
 
   // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
   var STFPV_DATA = [
+    { edicao: 18, ano: 2026, data: "2026-06-05", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE18.2026.pdf" },
+    { edicao: 12, ano: 2026, data: "2026-04-24", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVEa12_2026.pdf" },
+    { edicao: 11, ano: 2026, data: "2026-04-17", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVEa11_2026.pdf" },
+    { edicao: 10, ano: 2026, data: "2026-04-10", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVEa10_2026.pdf" },
+    { edicao: 9, ano: 2026, data: "2026-04-03", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVEa09_2026.pdf" },
+    { edicao: 4, ano: 2024, data: "2024-04-12", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2024/11_PVemEvidencia12.04.2024a19.04.2024.pdf" },
+    { edicao: 3, ano: 2024, data: "2024-03-15", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2024/7_PV_em_Evidencia15.03.2024a22.03.2024.pdf" },
+    { edicao: 2, ano: 2024, data: "2024-02-16", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2024/2_PVemEvidncia16.02.2024a23.02.2024.pdf" },
+    { edicao: 12, ano: 2023, data: "2023-12-08", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/23_PV_Gabinetes_Ministros_Sesso_08.12.2023a18.12.2023.pdf" },
+    { edicao: 11, ano: 2023, data: "2023-11-17", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/21_PV_Gabinetes_Ministros_Sesso_17.11.2023a24.11.2023.pdf" },
+    { edicao: 10, ano: 2023, data: "2023-10-20", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/17_PV_Gabinetes_Ministros_Sesso_20.10.2023a27.10.2023.pdf" },
+    { edicao: 9, ano: 2023, data: "2023-09-22", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/13_PV_Gabinetes_Ministros_Sesso_22.09.2023a29.09.2023.pdf" },
+    { edicao: 6, ano: 2023, data: "2023-06-23", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/11_PV_Gabinetes_Ministros_Sesso_23.06.2023a30.06.2023.pdf" },
+    { edicao: 5, ano: 2023, data: "2023-05-12", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/10_PV_Gabinetes_Ministros_Sesso_12.05.2023a19.05.2023.pdf" },
+    { edicao: 4, ano: 2023, data: "2023-04-07", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/6_PV_Gabinetes_Ministros_Sesso_07.04.2023a17.04.2023.pdf" },
+    { edicao: 3, ano: 2023, data: "2023-03-24", sumula: null, link: "https://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2023/4_PV_Gabinetes_Ministros_Sesso_24.03.2023a31.03.2023.pdf" },
     { edicao: 29, ano: 2026, data: "2026-09-25", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE_29_20262.pdf" },
     { edicao: 28, ano: 2026, data: "2026-09-18", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE28_2026_Completo2.pdf" },
     { edicao: 27, ano: 2026, data: "2026-09-11", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE27_2026.Completo.pdf" },
