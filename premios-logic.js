@@ -735,6 +735,27 @@
   var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/",
                 norma: "progress-normas/", dec: "progress-decisoes/", adi: "progress-adi/", rcl: "progress-rcl/" };
 
+  // Visita ao blog: "atual" = último momento de atividade; "anterior" = dia da
+  // visita anterior. Uma visita nova começa após 30 minutos parado. Com login,
+  // isto fica na conta (progress-premios/<uid>, campo "visitas") e o registro
+  // deste navegador é apagado; a data-base das "Leis alteradas" (revisoes.js)
+  // é o "anterior". Sem visita registrada na conta, aproveita a deste navegador.
+  var VISITAS_KEY = "estudamana-visitas";
+  function registrarVisitaConta(db, uid, guardada) {
+    var local = null;
+    try { local = JSON.parse(localStorage.getItem(VISITAS_KEY) || "null"); } catch (e) {}
+    var v = guardada || local || {};
+    var agora = new Date(), atual = v.atual ? new Date(v.atual) : null, anterior = v.anterior || null;
+    if (atual && !isNaN(atual) && agora - atual > 30 * 60 * 1000) {
+      anterior = atual.getFullYear() + "-" + pad(atual.getMonth() + 1) + "-" + pad(atual.getDate());
+    }
+    var novo = { atual: agora.toISOString(), anterior: anterior };
+    var mudou = !guardada || guardada.anterior !== anterior || !atual || isNaN(atual) || agora - atual > 5 * 60 * 1000;
+    try { localStorage.removeItem(VISITAS_KEY); } catch (e) {}
+    if (!mudou) return Promise.resolve({ atual: guardada.atual, anterior: anterior });
+    return db.doc("progress-premios/" + uid).set({ visitas: novo }, { merge: true }).then(function () { return novo; });
+  }
+
   function loadRemote() {
     return new Promise(function (resolve) {
       if (!(window.firebase && window.DIARIO_FIREBASE_CONFIG)) { resolve(null); return; }
@@ -755,10 +776,13 @@
             return db.doc(PATHS[k] + user.uid).get().then(function (snap) {
               if (!snap.exists) return;
               var d = snap.data() || {};
-              if (k === "premios") { if (Array.isArray(d.vistos)) out.seen = d.vistos; if (d.conquistados && typeof d.conquistados === "object") out.conq = d.conquistados; if (d.revisoes && typeof d.revisoes === "object") out.rev = d.revisoes; }
+              if (k === "premios") { out.visitas = d.visitas || null; if (Array.isArray(d.vistos)) out.seen = d.vistos; if (d.conquistados && typeof d.conquistados === "object") out.conq = d.conquistados; if (d.revisoes && typeof d.revisoes === "object") out.rev = d.revisoes; }
               else if (d.map) out.maps[k] = d.map;
             }).catch(function (err) { out.errors[k] = (err && err.code) || "erro"; });
-          })).then(function () { fin(out); });
+          })).then(function () {
+            // última visita ao blog: guardada na conta (Leis alteradas, em Revisões)
+            return registrarVisitaConta(db, user.uid, out.visitas).then(function (v) { out.visitaAnterior = v.anterior; }).catch(function () {});
+          }).then(function () { fin(out); });
         });
       } catch (e) { fin(null); }
     });
@@ -790,7 +814,8 @@
     return extraJs;
   }
   function extraOpts() {
-    return { tab: state.tab, maps: state.maps || {}, rev: (state.remote && state.remote.rev) || {}, salvarRev: pushRev };
+    return { tab: state.tab, maps: state.maps || {}, rev: (state.remote && state.remote.rev) || {}, salvarRev: pushRev,
+             visitaAnterior: state.remote && state.remote.visitaAnterior !== undefined ? state.remote.visitaAnterior : undefined };
   }
 
   function pushSeen(ids) {
