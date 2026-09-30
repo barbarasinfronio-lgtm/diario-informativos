@@ -4,7 +4,8 @@
 #
 # Ele: 1) pega a versão mais nova do main; 2) confere nos sites oficiais se
 # saíram Informativos novos de STF, STJ, TSE, CNJ, TST e CNMP e teses novas
-# da Jurisprudência em Teses do STJ (scripts/atualizar_informativos.py);
+# da Jurisprudência em Teses do STJ (scripts/atualizar_informativos.py); as
+# leis alteradas ficam no "Atualizar Leis.command" (pode rodar todo dia);
 # 3) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a limpeza do
 # cache do jsDelivr, então o site mostra a novidade em minutos.
 #
@@ -34,7 +35,8 @@ git fetch -q origin main && git pull -q --rebase --autostash origin main \
   || { git rebase --abort 2>/dev/null
        echo "ERRO: não consegui juntar este Mac com o main (conflito). Cole esta janela para a Claude."; fim 1; }
 
-python3 scripts/atualizar_informativos.py
+# As leis (Planalto) têm arquivo próprio, para rodar todo dia: "Atualizar Leis.command".
+python3 scripts/atualizar_informativos.py STF STF-PV STJ STJ-EXTRA STJ-BOLETIM TSE CNJ TST CNMP TESES
 resultado=$?
 
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
