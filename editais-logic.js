@@ -151,7 +151,7 @@
 
   function linha(ed, opts) {
     var cur = ES.principal();
-    var main = !!(cur && cur.id === ed.id);
+    var main = !!(cur && cur.id === ed.id) || ES.emCombinacao(ed.id) > 1;
     var isUniao = ed.tipo === "carreira";
     if (ed.emBreve) {
       return '<div class="ed-row is-soon"><div class="ed-row-main"><span class="ed-sigla is-uniao">EM BREVE</span>' +
@@ -162,8 +162,18 @@
     var titulo = isUniao ? (opts.rotuloUniao || "Todos os editais") : ed.titulo;
     var meta = (isUniao ? "Junta " + (ed.editais || []).length + " edita" + ((ed.editais || []).length === 1 ? "l" : "is") + " · " : "") +
       p.lidas + " de " + p.total + " leis lidas";
-    var acao = main ? '<span class="ed-tag-main">Principal</span>'
-      : (opts.escolher ? '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Escolher</button>' : "");
+    var pos = ES.emCombinacao(ed.id);   // 1 = principal, 2 e 3 = secundários, 0 = fora
+    var acao;
+    if (pos === 1) acao = '<span class="ed-tag-main">1º · Principal</span>';
+    else if (pos > 1) acao = '<span class="ed-tag-sec">' + pos + 'º</span>' +
+      '<button type="button" class="edital-btn" data-rm="' + ed.id + '" title="Tirar da minha combinação">Tirar</button>';
+    else {
+      acao = opts.escolher ? '<button type="button" class="edital-btn edital-btn-primary" data-choose="' + ed.id + '">Escolher</button>' : "";
+      // com principal definido e vaga na combinação (até 3 editais), dá para juntar este também
+      if (cur && !opts.escolher && !isUniao && ES.secundariosIds().length < ES.maxSecundarios) {
+        acao += '<button type="button" class="edital-btn" data-add="' + ed.id + '" title="Estudo também para este edital (2º ou 3º)">+ Combinar</button>';
+      }
+    }
     return '<div class="ed-row' + (main ? " is-main" : "") + (isUniao ? " is-uniao" : "") + '" id="ed-' + ed.id + '">' +
       '<div class="ed-row-main">' +
         '<span class="ed-sigla' + (isUniao ? " is-uniao" : "") + '">' + esc(isUniao ? "TODOS" : ed.sigla) + "</span>" +
@@ -232,14 +242,27 @@
     var escolher = !cur || changing;
     var top;
     if (cur) {
-      var curCar = cur.tipo === "carreira";
-      var curKw = curCar ? (cur.secao === "exame" ? "exame" : "carreira") : "edital";
-      top = '<div class="ed-current"><p><span class="edital-kicker">' + (curKw.charAt(0).toUpperCase() + curKw.slice(1)) + " principal</span>" +
-        (curCar ? "<strong>" + esc(cur.titulo) + "</strong>"
-                : "<strong>" + esc(cur.sigla) + "</strong> — " + esc(cur.titulo)) + "</p>" +
+      var combo = ES.combinacao();
+      var unioes = {};
+      combo.forEach(function (e) { Object.keys(ES.lawKeys(e)).forEach(function (k) { unioes[k] = true; }); });
+      var totalU = Object.keys(unioes).length, lidasU = Object.keys(unioes).filter(function (k) { return readMap[k]; }).length;
+      var itens = combo.map(function (e, i) {
+        var car = e.tipo === "carreira";
+        var nome = car ? "<strong>" + esc(e.titulo) + "</strong>" : "<strong>" + esc(e.sigla) + "</strong> — " + esc(e.titulo);
+        var kw = i === 0 ? '<span class="edital-kicker">' + (car ? (e.secao === "exame" ? "Exame" : "Carreira") : "Edital") + " principal</span>"
+                         : '<span class="edital-kicker">' + (i + 1) + "º edital</span>";
+        return '<li class="ed-combo-item">' + kw + '<span class="ed-combo-nome">' + nome + "</span>" +
+          '<span class="ed-combo-acoes">' +
+            (i > 0 ? '<button type="button" class="edital-btn" data-up="' + e.id + '" title="Subir uma posição">▲</button>' : "") +
+            '<button type="button" class="edital-btn" data-rm="' + e.id + '" title="' + (i === 0 ? "Tirar o principal (o 2º sobe)" : "Tirar da combinação") + '">Tirar</button>' +
+          "</span></li>";
+      }).join("");
+      top = '<div class="ed-current"><ol class="ed-combo">' + itens + "</ol>" +
+        (combo.length > 1 ? '<p class="ed-hint">Combinação de ' + combo.length + ' editais: ' + lidasU + " de " + totalU + " leis lidas (sem repetir as que se repetem entre eles).</p>" :
+          '<p class="ed-hint">Estuda para mais de um concurso? Abra uma carreira abaixo e clique em “+ Combinar” para juntar até mais 2 editais (2º e 3º).</p>') +
         '<div class="ed-current-actions"><a class="ed-link" href="' + LEIS_URL + '">Abrir o Diário de Leis</a>' +
         '<button type="button" class="edital-btn" id="ed-change" aria-expanded="' + (changing ? "true" : "false") + '">' +
-        (changing ? "Cancelar" : "Trocar") + "</button></div></div>";
+        (changing ? "Cancelar" : "Trocar o principal") + "</button></div></div>";
     } else {
       top = '<div class="ed-none">🎯 Escolha o edital do seu concurso (ou todos os editais de uma carreira): o Diário de Leis passa a mostrar só as leis dele, e a escolha fica salva no seu progresso.</div>';
     }
@@ -335,9 +358,12 @@
 
   document.addEventListener("click", function (e) {
     if (!ES) return;
-    var b = e.target.closest("#ed-change, [data-choose]");
+    var b = e.target.closest("#ed-change, [data-choose], [data-add], [data-rm], [data-up]");
     if (!b) return;
     if (b.id === "ed-change") { changing = !changing; render(); return; }
+    if (b.hasAttribute("data-add")) { ES.adicionarSecundario(b.getAttribute("data-add")); render(); return; }
+    if (b.hasAttribute("data-rm")) { ES.removerDaCombinacao(b.getAttribute("data-rm")); render(); return; }
+    if (b.hasAttribute("data-up")) { ES.subirNaCombinacao(b.getAttribute("data-up")); render(); return; }
     changing = false;
     ES.setPrincipal(b.getAttribute("data-choose"));
     render();

@@ -19,8 +19,11 @@
   if (window.EditaisShared && window.EditaisShared.__ready) return;
 
   var LOCAL_KEY = "editais-principal";
+  var LOCAL_SEC_KEY = "editais-secundarios";   // JSON: até 2 ids, na ordem (2º e 3º edital)
+  var MAX_SEC = 2;
   var listeners = [];
   var current = null;      // id do edital principal ("" = nenhum)
+  var secondary = null;    // ids dos editais secundários (até 2), na ordem
   var cloudBound = false;
   var uid = null;
   var docRef = null;
@@ -81,6 +84,26 @@
     } catch (e) { /* sem armazenamento: só na memória */ }
   }
 
+  function readLocalSec() {
+    try {
+      var v = JSON.parse(localStorage.getItem(LOCAL_SEC_KEY) || "[]");
+      return Array.isArray(v) ? v.filter(function (x) { return typeof x === "string" && x; }) : [];
+    } catch (e) { return []; }
+  }
+  function writeLocalSec(ids) {
+    try {
+      if (ids.length) localStorage.setItem(LOCAL_SEC_KEY, JSON.stringify(ids)); else localStorage.removeItem(LOCAL_SEC_KEY);
+    } catch (e) { /* sem armazenamento: só na memória */ }
+  }
+  // Deixa a lista válida: só ids que existem, sem repetir, sem o principal, no máximo 2.
+  function cleanSec(ids) {
+    var out = [];
+    (ids || []).forEach(function (id) {
+      if (id && id !== current && out.indexOf(id) === -1 && findById(id) && !(findById(id).emBreve)) out.push(id);
+    });
+    return out.slice(0, MAX_SEC);
+  }
+
   function data() { return window.EDITAIS_DATA || []; }
 
   function findById(id) {
@@ -107,8 +130,74 @@
       if (id === (current || "")) return;
       current = id;
       writeLocal(id);
+      // o novo principal não pode ficar também na lista de secundários
+      var antes = (secondary || []).join(",");
+      secondary = cleanSec(secondary);
+      if (secondary.join(",") !== antes) writeLocalSec(secondary);
       notify();
-      if (!fromRemote) pushCloud(id);
+      if (!fromRemote) pushCloud();
+    },
+
+    // ---- combinação: principal + até 2 secundários (1º, 2º e 3º edital) ----
+    secundariosIds: function () { return (secondary || []).slice(); },
+    secundarios: function () { return (secondary || []).map(findById).filter(Boolean); },
+    // [principal, 2º, 3º] (só os que existem)
+    combinacao: function () {
+      var out = [];
+      if (current && findById(current)) out.push(findById(current));
+      (secondary || []).forEach(function (id) { var e = findById(id); if (e) out.push(e); });
+      return out;
+    },
+    maxSecundarios: MAX_SEC,
+    emCombinacao: function (id) {
+      if (id === current) return 1;
+      var i = (secondary || []).indexOf(id);
+      return i === -1 ? 0 : i + 2;
+    },
+    // troca a lista de secundários (a ordem importa)
+    setSecundarios: function (ids, fromRemote) {
+      var novo = cleanSec(ids);
+      if (novo.join(",") === (secondary || []).join(",")) return;
+      secondary = novo;
+      writeLocalSec(novo);
+      notify();
+      if (!fromRemote) pushCloud();
+    },
+    adicionarSecundario: function (id) {
+      if (!current || !id || id === current || (secondary || []).indexOf(id) !== -1) return false;
+      if ((secondary || []).length >= MAX_SEC) return false;
+      api.setSecundarios((secondary || []).concat([id]));
+      return true;
+    },
+    removerDaCombinacao: function (id) {
+      if (id === current) {
+        // sai o principal: o 2º sobe a principal e o 3º vira 2º
+        var resto = (secondary || []).slice();
+        current = resto.shift() || "";
+        writeLocal(current);
+        secondary = cleanSec(resto);
+        writeLocalSec(secondary);
+        notify();
+        pushCloud();
+        return;
+      }
+      api.setSecundarios((secondary || []).filter(function (x) { return x !== id; }));
+    },
+    // sobe um edital uma posição na combinação (o 2º vira principal, etc.)
+    subirNaCombinacao: function (id) {
+      var ordem = [current].concat(secondary || []).filter(Boolean);
+      var i = ordem.indexOf(id);
+      if (i < 1) return;
+      var t = ordem[i - 1]; ordem[i - 1] = ordem[i]; ordem[i] = t;
+      var antigo = current;
+      secondary = ordem.slice(1);
+      writeLocalSec(secondary);
+      if (ordem[0] !== antigo) {
+        current = ordem[0];
+        writeLocal(current);
+      }
+      notify();
+      pushCloud();
     },
 
     // conjunto de chaves "materia:slug(numero)" das leis do edital.
@@ -159,10 +248,12 @@
         if (d && typeof d.edital === "string") {
           // a conta manda: o que foi escolhido em outro aparelho vale aqui
           if (d.edital !== (current || "")) api.setPrincipal(d.edital, true);
+          if (Array.isArray(d.editaisSec)) api.setSecundarios(d.editaisSec, true);
+          else if ((secondary || []).length) pushCloud(); // conta sem secundários ainda: sobe os deste aparelho
           listenersRemote.forEach(function (fn) { try { fn(d); } catch (e) {} });
         } else {
           // conta sem escolha ainda: se este aparelho já escolheu, sobe
-          if (current) pushCloud(current);
+          if (current) pushCloud();
           if (d) listenersRemote.forEach(function (fn) { try { fn(d); } catch (e) {} });
         }
       }, function () { /* sem permissão/offline: segue local */ });
@@ -172,9 +263,9 @@
   var listenersRemote = [];
   api.onRemoteDoc = function (fn) { listenersRemote.push(fn); };
 
-  function pushCloud(id) {
+  function pushCloud() {
     if (!docRef) return;
-    docRef.set({ edital: id || "", editalEm: new Date().toISOString() }, { merge: true })
+    docRef.set({ edital: current || "", editaisSec: (secondary || []).slice(), editalEm: new Date().toISOString() }, { merge: true })
       .catch(function (err) {
         // melhor esforço — segue salvo neste navegador; loga para ajudar a
         // diferenciar "offline" de um problema real nas regras do Firestore
@@ -197,6 +288,7 @@
     function done() {
       if (current === null) current = readLocal();
       if (current && !findById(current)) current = "";
+      if (secondary === null) secondary = cleanSec(readLocalSec());
       cb(api);
     }
     if (window.EDITAIS_DATA) { done(); return; }
