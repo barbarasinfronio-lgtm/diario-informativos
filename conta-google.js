@@ -195,6 +195,11 @@
     ".cg-box{margin:0 0 .9rem;padding:.8rem .95rem;border:1px solid var(--surface-line,#e2dcca);border-radius:12px;background:var(--surface,#fff);color:var(--ink,#1c2130);font-family:var(--font-sans,system-ui,sans-serif);font-size:.9rem;line-height:1.4;text-align:left}",
     ".cg-box p{margin:0 0 .55rem}",
     ".cg-title{font-weight:700}",
+    ".cg-det>summary{cursor:pointer;list-style:none;margin:0}",
+    ".cg-det>summary::-webkit-details-marker{display:none}",
+    ".cg-det>summary::before{content:'\\25B8';display:inline-block;margin-right:.45rem;color:var(--accent,#1f3a5f);transition:transform .15s}",
+    ".cg-det[open]>summary::before{transform:rotate(90deg)}",
+    ".cg-det[open]>summary{margin-bottom:.55rem}",
     ".cg-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}",
     ".cg-btn{font:inherit;font-size:.85rem;padding:.5rem .95rem;border-radius:999px;border:1px solid var(--surface-line,#e2dcca);background:var(--surface,#fff);color:var(--ink,#1c2130);cursor:pointer;display:inline-flex;gap:.45rem;align-items:center}",
     ".cg-btn:hover{background:var(--surface-2,#efeadd)}",
@@ -274,17 +279,19 @@
       else host.el.parentNode.insertBefore(boxEl, host.el);
     }
     var toggle = document.getElementById("account-toggle");
+    var detAntigo = boxEl.querySelector("details.cg-det");
+    var aberto = detAntigo ? detAntigo.open : host.mode === "panel";
     if (logado(user)) {
       var como = hasGoogle(user) ? "conta Google" : "e-mail e senha";
       boxEl.innerHTML =
-        '<p class="cg-title">Você entrou com ' + como + ' <span class="cg-ok">✓</span></p>' +
+        '<summary class="cg-title">Você entrou com ' + como + ' <span class="cg-ok">✓</span></summary>' +
         "<p>" + esc(user.email || "") + " — seu progresso, seus prêmios e seus grupos ficam salvos na conta e acompanham você em qualquer aparelho.</p>" +
         '<div class="cg-row"><button type="button" class="cg-btn" id="cg2-out">Sair deste aparelho</button></div>' +
         '<p class="cg-msg" id="cg2-msg" hidden></p>';
       if (toggle) toggle.innerHTML = '<span aria-hidden="true">👤</span> Minha conta';
     } else {
       boxEl.innerHTML =
-        '<p class="cg-title">Entre para salvar seu progresso</p>' +
+        '<summary class="cg-title">Entre para salvar seu progresso</summary>' +
         "<p>Sem entrar, o que você marca fica só neste navegador e não conta nos grupos de estudo. Entre com o Google ou com e-mail e senha: o que já está marcado aqui vai junto para a sua conta.</p>" +
         '<div class="cg-row"><button type="button" class="cg-btn cg-btn-google" id="cg2-google">' +
         '<span aria-hidden="true">G</span> Entrar com Google</button></div>' +
@@ -297,7 +304,19 @@
         '<p class="cg-msg" id="cg2-msg" hidden></p>';
       if (toggle) toggle.innerHTML = '<span aria-hidden="true">💾</span> Entrar para salvar seu progresso';
     }
+    envolverEmDetails(aberto);
     msgEl = boxEl.querySelector("#cg2-msg");
+  }
+
+  // O quadro nasce minimizado (só o título aparece; clique para abrir). No
+  // modo "panel" ele já fica dentro do painel "Minha conta", que a pessoa
+  // abriu de propósito — então lá já vem aberto.
+  function envolverEmDetails(aberto) {
+    var det = document.createElement("details");
+    det.className = "cg-det";
+    det.open = aberto;
+    while (boxEl.firstChild) det.appendChild(boxEl.firstChild);
+    boxEl.appendChild(det);
   }
 
   function esc(t) {
