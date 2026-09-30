@@ -1,22 +1,53 @@
-/* Controle de constitucionalidade dentro do Diário das Decisões.
+/* Listas grandes do STF dentro do Diário das Decisões: controle de
+ * constitucionalidade (ADI, ADPF, ADC, ADO) e Reclamações.
  *
  * Carregado por rg-repetitivos-logic.js quando a pessoa escolhe o botão
- * "Controle" (ADI, ADPF, ADC, ADO). Usa os mesmos dados de
- * controleconst/anos/ e guarda a leitura no mesmo lugar do antigo Diário de
- * Constitucionalidade (em_lidos_constitucionalidades → progress-adi/<uid> →
- * "lidasAdi" nos grupos), então nada do que já estava marcado se perde e
- * Prêmios e Meus Grupos continuam contando.
+ * "Controle" ou "Reclamações". Usa os mesmos dados dos antigos diários
+ * (controleconst/anos/ e reclamacoes/anos/) e guarda a leitura no mesmo lugar
+ * deles (em_lidos_constitucionalidades → progress-adi/<uid> → "lidasAdi";
+ * em_lidos_reclamacoes → progress-rcl/<uid> → "lidasRcl"), então nada do que
+ * já estava marcado se perde e Prêmios e Meus Grupos continuam contando.
  *
- *   ControleIntegrado.montar({ antes: <elemento>, busca: () => texto })
+ *   ControleIntegrado.montar({ tipo: "controle" | "reclamacoes",
+ *                              antes: <elemento>, busca: () => texto })
  *   -> { mostrar(), esconder(), buscaMudou() }
  */
 (function () {
   "use strict";
-  var BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/anos/";
+  var BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
   var URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo=";
-  var STORAGE_KEY = "em_lidos_constitucionalidades";
-  var CLASSES = ["ADI", "ADPF", "ADC", "ADO"];
-  var NOME_CLASSE = { ADI: "Ação Direta de Inconstitucionalidade", ADPF: "Arguição de Descumprimento de Preceito Fundamental", ADC: "Ação Declaratória de Constitucionalidade", ADO: "Ação Direta de Inconstitucionalidade por Omissão" };
+
+  // O que muda de uma lista para a outra.
+  var CONFIGS = {
+    controle: {
+      prefixo: "controle", pasta: "controleconst/anos/", storage: "em_lidos_constitucionalidades",
+      caminho: "progress-adi/", campoGrupoNuvem: "lidasAdi",
+      campoFiltro: "classe", campoData: "data", campoTexto: ["tema", "tese", "resumo"],
+      filtros: ["ADI", "ADPF", "ADC", "ADO"],
+      nomeFiltro: { ADI: "Ação Direta de Inconstitucionalidade", ADPF: "Arguição de Descumprimento de Preceito Fundamental", ADC: "Ação Declaratória de Constitucionalidade", ADO: "Ação Direta de Inconstitucionalidade por Omissão" },
+      etiqueta: function (it) { return it.classe; },
+      linhaArea: function (it) { return this.nomeFiltro[it.classe] || it.classe; },
+      // o id traz a classe e a data (STF_ADI_7641_20260925_15066)
+      idTemFiltro: true, grupoIndice: "grupos"
+    },
+    reclamacoes: {
+      prefixo: "reclamacoes", pasta: "reclamacoes/anos/", storage: "em_lidos_reclamacoes",
+      caminho: "progress-rcl/", campoGrupoNuvem: "lidasRcl",
+      campoFiltro: "tipo", campoData: "dataJulgamento", campoTexto: ["resumo"],
+      filtros: ["Procedente", "Procedente em parte", "Improcedente"],
+      nomeFiltro: {},
+      etiqueta: function (it) { return it.tipo || "Reclamação"; },
+      linhaArea: function (it) { return "Reclamação · " + (it.ramo || "Geral"); },
+      idTemFiltro: false, grupoIndice: "porTipo"
+    }
+  };
+
+  function criar(cfg, opts) {
+  var BASE_ANOS = BASE + cfg.pasta;
+  var STORAGE_KEY = cfg.storage;
+  var P = cfg.prefixo + "-";
+  var NOME_CLASSE = cfg.nomeFiltro;
+  function textoItem(it) { for (var i = 0; i < cfg.campoTexto.length; i++) if (it[cfg.campoTexto[i]]) return it[cfg.campoTexto[i]]; return ""; }
 
   function lerLidos() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") || {}; } catch (e) { return {}; } }
   var lidos = lerLidos();
@@ -38,7 +69,7 @@
   function termos() { return semAcento(getBusca ? getBusca() : "").split(/\s+/).filter(Boolean); }
   function combinaBusca(item, ts) {
     if (!ts.length) return true;
-    var h = semAcento([item.processo, item.classe, formatarData(item.data), item.data, item.ano, item.relator, limparTexto(item.tema || item.tese || item.resumo)].join(" "));
+    var h = semAcento([item.processo, item[cfg.campoFiltro], item.ramo, formatarData(item[cfg.campoData]), item[cfg.campoData], item.ano, item.relator, limparTexto(textoItem(item))].join(" "));
     return ts.every(function (t) { return variantes(t).some(function (x) { return h.indexOf(x) !== -1; }); });
   }
   function formatarData(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || "")); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
@@ -67,9 +98,9 @@
     return pedidos[ano];
   }
   function anosRel() { return indice.anos.filter(function (a) { return filtroAno === "todos" || a.ano === String(filtroAno); }); }
-  function combina(it) { return filtroClasse === "todas" || it.classe === filtroClasse; }
+  function combina(it) { return filtroClasse === "todas" || it[cfg.campoFiltro] === filtroClasse; }
   function totalBase() {
-    return anosRel().reduce(function (s, a) { return s + (filtroClasse === "todas" ? a.total : (a.grupos[filtroClasse] || 0)); }, 0);
+    return anosRel().reduce(function (s, a) { return s + (filtroClasse === "todas" ? a.total : ((a[cfg.grupoIndice] || {})[filtroClasse] || 0)); }, 0);
   }
   function carregadosFiltrados(ts) {
     var out = [];
@@ -86,6 +117,7 @@
       rel.forEach(function (a) { carregados[a.ano].forEach(function (it) { if (combina(it) && lidos[it.id]) n++; }); });
       return n;
     }
+    if (!cfg.idTemFiltro) return Object.keys(lidos).length; // sem filtro: todas as marcações
     return Object.keys(lidos).filter(function (id) {
       var p = id.split("_");
       var ano = /^\d{8}$/.test(p[3] || "") ? p[3].slice(0, 4) : "sem-ano";
@@ -113,13 +145,13 @@
     if (!tem) return;
     grupoTimer = setTimeout(function () {
       var total = Object.keys(lidos).length;
-      nuvem().then(function (N) { N.enviarGrupos("lidasAdi", total); }).catch(function () {});
+      nuvem().then(function (N) { N.enviarGrupos(cfg.campoGrupoNuvem, total); }).catch(function () {});
     }, 800);
   }
   function ligarConta() {
     nuvem().then(function (N) {
       salvarNuvem = N.sincronizarLidos({
-        caminho: "progress-adi/",
+        caminho: cfg.caminho,
         ler: function () { return lidos; },
         gravar: function (novo) { lidos = novo; gravarLidos(); },
         aoMudar: function () { if (visivel) render(); enviarGrupos(); }
@@ -138,10 +170,11 @@
     indice.anos.forEach(function (a) {
       if (filtroAno !== "todos" && a.ano !== String(filtroAno)) return;
       tot.todas += a.total;
-      Object.keys(a.grupos).forEach(function (k) { tot[k] = (tot[k] || 0) + a.grupos[k]; });
+      var g = a[cfg.grupoIndice] || {};
+      Object.keys(g).forEach(function (k) { tot[k] = (tot[k] || 0) + g[k]; });
     });
     chipsEl.innerHTML = "";
-    [["todas", "Todas"]].concat(CLASSES.map(function (c) { return [c, c]; })).forEach(function (par) {
+    [["todas", "Todas"]].concat(cfg.filtros.map(function (c) { return [c, c]; })).forEach(function (par) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "chip" + (filtroClasse === par[0] ? " active" : "");
@@ -193,15 +226,15 @@
     if (!pagina.length) { aviso("Nenhum julgado encontrado para este filtro."); return; }
     pagina.forEach(function (it) {
       var lido = !!lidos[it.id];
-      var data = formatarData(it.data) || (it.ano ? String(it.ano) : "data não informada");
-      var texto = limparTexto(it.tema || it.tese || it.resumo) || "Sem resumo disponível — abra o processo no STF.";
+      var data = formatarData(it[cfg.campoData]) || (it.ano ? String(it.ano) : "data não informada");
+      var texto = limparTexto(textoItem(it)) || "Sem resumo disponível — abra o processo no STF.";
       var url = it.url || URL_STF + it.processo;
       var card = document.createElement("div");
       card.className = "card" + (lido ? " is-read" : "");
       card.innerHTML =
         '<div class="top-row"><label class="read-check" title="Marcar como lido"><input type="checkbox" class="read-checkbox"' + (lido ? " checked" : "") + "></label>" +
-        '<span class="tag-org STF">STF</span><span class="tag-tema">' + esc(it.classe) + "</span></div>" +
-        '<div class="area-line">' + esc(NOME_CLASSE[it.classe] || it.classe) + "</div>" +
+        '<span class="tag-org STF">STF</span><span class="tag-tema">' + esc(cfg.etiqueta(it)) + "</span></div>" +
+        '<div class="area-line">' + esc(cfg.linhaArea(it)) + "</div>" +
         "<h3>" + esc(it.processo) + "</h3>" +
         '<div class="destaque">' + esc(texto) + "</div>" +
         '<div class="meta"><span>' + esc(data) + " — " + esc(it.relator || "STF") + '</span><a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a></div>';
@@ -212,29 +245,29 @@
 
   function criarUI(antes) {
     root = document.createElement("div");
-    root.id = "controle-root";
+    root.id = P + "root";
     root.hidden = true;
     root.innerHTML =
-      '<div class="chips" id="controle-chips" style="margin-bottom:10px"></div>' +
+      '<div class="chips" id="' + P + 'chips" style="margin-bottom:10px"></div>' +
       '<div class="row" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px">' +
-        '<select id="controle-ano" aria-label="Ano do julgamento"><option value="todos">Todos os anos</option></select>' +
-        '<span class="seg" id="controle-lote"><button type="button" data-n="10" class="active">10 em 10</button><button type="button" data-n="20">20 em 20</button></span>' +
+        '<select id="' + P + 'ano" aria-label="Ano do julgamento"><option value="todos">Todos os anos</option></select>' +
+        '<span class="seg" id="' + P + 'lote"><button type="button" data-n="10" class="active">10 em 10</button><button type="button" data-n="20">20 em 20</button></span>' +
       "</div>" +
-      '<div class="count-line"><span id="controle-info"></span></div>' +
-      '<div class="grid" id="controle-lista"></div>' +
+      '<div class="count-line"><span id="' + P + 'info"></span></div>' +
+      '<div class="grid" id="' + P + 'lista"></div>' +
       '<div style="display:flex;gap:12px;align-items:center;justify-content:center;margin:16px 0">' +
-        '<button type="button" class="chip" id="controle-prev">‹ Anterior</button><span id="controle-label" class="count-line" style="margin:0"></span>' +
-        '<button type="button" class="chip" id="controle-next">Próximo ›</button></div>';
+        '<button type="button" class="chip" id="' + P + 'prev">‹ Anterior</button><span id="' + P + 'label" class="count-line" style="margin:0"></span>' +
+        '<button type="button" class="chip" id="' + P + 'next">Próximo ›</button></div>';
     antes.parentNode.insertBefore(root, antes);
-    chipsEl = root.querySelector("#controle-chips");
-    anoSel = root.querySelector("#controle-ano");
-    listEl = root.querySelector("#controle-lista");
-    infoEl = root.querySelector("#controle-info");
-    labelEl = root.querySelector("#controle-label");
-    prevBtn = root.querySelector("#controle-prev");
-    nextBtn = root.querySelector("#controle-next");
+    chipsEl = root.querySelector("#" + P + "chips");
+    anoSel = root.querySelector("#" + P + "ano");
+    listEl = root.querySelector("#" + P + "lista");
+    infoEl = root.querySelector("#" + P + "info");
+    labelEl = root.querySelector("#" + P + "label");
+    prevBtn = root.querySelector("#" + P + "prev");
+    nextBtn = root.querySelector("#" + P + "next");
     anoSel.addEventListener("change", function () { filtroAno = anoSel.value; loteAtual = 0; montarChips(); render(); });
-    root.querySelector("#controle-lote").addEventListener("click", function (e) {
+    root.querySelector("#" + P + "lote").addEventListener("click", function (e) {
       var b = e.target.closest("button[data-n]"); if (!b) return;
       loteTam = parseInt(b.dataset.n, 10) || 10; loteAtual = 0;
       Array.prototype.forEach.call(this.children, function (x) { x.classList.toggle("active", x === b); });
@@ -244,27 +277,26 @@
     nextBtn.addEventListener("click", function () { loteAtual++; render(); root.scrollIntoView({ block: "start" }); });
   }
 
+  getBusca = opts.busca;
+  criarUI(opts.antes);
+  ligarConta();
+  enviarGrupos();
+  return {
+    mostrar: function () {
+      visivel = true; root.hidden = false; render();
+      carregarIndice().then(function () {
+        if (anoSel.options.length === 1) indice.anos.filter(function (a) { return a.ano !== "sem-ano"; }).forEach(function (a) {
+          var o = document.createElement("option"); o.value = a.ano; o.textContent = a.ano; anoSel.appendChild(o);
+        });
+        montarChips(); render();
+      }).catch(function () { aviso("Não foi possível carregar os julgados. Recarregue a página."); });
+    },
+    esconder: function () { visivel = false; root.hidden = true; },
+    buscaMudou: function () { loteAtual = 0; render(); }
+  };
+  }
+
   window.ControleIntegrado = {
-    montar: function (opts) {
-      getBusca = opts.busca;
-      criarUI(opts.antes);
-      ligarConta();
-      enviarGrupos();
-      var ctl = {
-        mostrar: function () {
-          visivel = true; root.hidden = false; render();
-          carregarIndice().then(function () {
-            if (anoSel.options.length === 1) indice.anos.filter(function (a) { return a.ano !== "sem-ano"; }).forEach(function (a) {
-              var o = document.createElement("option"); o.value = a.ano; o.textContent = a.ano; anoSel.appendChild(o);
-            });
-            montarChips(); render();
-          }).catch(function () { aviso("Não foi possível carregar os julgados. Recarregue a página."); });
-        },
-        esconder: function () { visivel = false; root.hidden = true; },
-        buscaMudou: function () { loteAtual = 0; render(); },
-        total: function () { return indice ? indice.total : null; }
-      };
-      return ctl;
-    }
+    montar: function (opts) { return criar(CONFIGS[opts.tipo || "controle"], opts); }
   };
 })();

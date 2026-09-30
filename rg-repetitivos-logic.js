@@ -208,32 +208,47 @@
   // ~19 mil julgados, então ficam num módulo à parte (carregado só ao abrir
   // o botão) e paginados, em vez de entrar na lista comum.
   var CONTROLE_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/controle-integrado.js';
-  var controle = null, controleP = null;
-  function garantirBotaoControle(){
+  // Reclamações seguem o mesmo esquema (mesmo módulo, outros dados).
+  var LISTAS_GRANDES = {
+    CONTROLE:    { tipo: 'controle',    rotulo: 'Controle (ADI, ADPF…)', titulo: 'Controle de constitucionalidade: ADI, ADPF, ADC e ADO do STF' },
+    RECLAMACOES: { tipo: 'reclamacoes', rotulo: 'Reclamações',            titulo: 'Reclamações julgadas pelo STF' }
+  };
+  var controles = {}, controlesP = {}, moduloP = null;
+  function garantirBotoesListasGrandes(){
     var seg = document.getElementById('orgSeg');
-    if (!seg || seg.querySelector('[data-org="CONTROLE"]')) return;
-    var b = document.createElement('button');
-    b.dataset.org = 'CONTROLE';
-    b.textContent = 'Controle (ADI, ADPF…)';
-    b.title = 'Controle de constitucionalidade: ADI, ADPF, ADC e ADO do STF';
-    seg.appendChild(b);
+    if (!seg) return;
+    Object.keys(LISTAS_GRANDES).forEach(function(k){
+      if (seg.querySelector('[data-org="' + k + '"]')) return;
+      var b = document.createElement('button');
+      b.dataset.org = k;
+      b.textContent = LISTAS_GRANDES[k].rotulo;
+      b.title = LISTAS_GRANDES[k].titulo;
+      seg.appendChild(b);
+    });
   }
-  function carregarControle(){
-    if (controle) return Promise.resolve(controle);
-    if (!controleP) {
-      controleP = fetch(CONTROLE_JS, { cache: 'no-cache' })
+  function carregarModulo(){
+    if (window.ControleIntegrado) return Promise.resolve();
+    if (!moduloP) {
+      moduloP = fetch(CONTROLE_JS, { cache: 'no-cache' })
         .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
-        .then(function(code){
-          (0, eval)(code + '\n//# sourceURL=' + CONTROLE_JS);
-          controle = window.ControleIntegrado.montar({
-            antes: document.getElementById('grid'),
-            busca: function(){ return state.q; }
-          });
-          return controle;
-        })
-        .catch(function(e){ controleP = null; throw e; });
+        .then(function(code){ (0, eval)(code + '\n//# sourceURL=' + CONTROLE_JS); })
+        .catch(function(e){ moduloP = null; throw e; });
     }
-    return controleP;
+    return moduloP;
+  }
+  function carregarControle(org){
+    if (controles[org]) return Promise.resolve(controles[org]);
+    if (!controlesP[org]) {
+      controlesP[org] = carregarModulo().then(function(){
+        controles[org] = window.ControleIntegrado.montar({
+          tipo: LISTAS_GRANDES[org].tipo,
+          antes: document.getElementById('grid'),
+          busca: function(){ return state.q; }
+        });
+        return controles[org];
+      }).catch(function(e){ delete controlesP[org]; throw e; });
+    }
+    return controlesP[org];
   }
   // Some/volta o que só vale para a lista comum (cards, matérias, risco).
   function modoControle(ligado){
@@ -247,23 +262,26 @@
 
   function riskOrder(r){ return r==='Alta'?0:r==='Média'?1:2; }
 
-  var controleAtivo = false, controleVisivel = false;
+  var controleAtivo = null;   // qual lista grande está na tela (ou null)
+  var controleMostrada = null;
   function render(){
-    if (state.org === 'CONTROLE') {
-      controleAtivo = true;
+    if (LISTAS_GRANDES[state.org]) {
+      var org = state.org;
+      if (controleAtivo && controleAtivo !== org && controles[controleAtivo]) controles[controleAtivo].esconder();
+      controleAtivo = org;
       modoControle(true);
       document.getElementById('clearBtn').hidden = false;
-      carregarControle().then(function(c){
-        if (state.org !== 'CONTROLE') return;
-        if (controleVisivel) c.buscaMudou(); else { controleVisivel = true; c.mostrar(); }
-      }).catch(function(){});
+      carregarControle(org).then(function(c){
+        if (state.org !== org) return;
+        if (controleMostrada !== org) { controleMostrada = org; c.mostrar(); } else c.buscaMudou();
+      }).catch(function(e){ if (window.console) console.warn('[decisoes] lista grande', e); });
       return;
     }
     if (controleAtivo) {
-      controleAtivo = false;
+      if (controles[controleAtivo]) controles[controleAtivo].esconder();
+      controleAtivo = null;
+      controleMostrada = null;
       modoControle(false);
-      if (controle) controle.esconder();
-      controleVisivel = false;
     }
     areaChips.querySelectorAll('.chip').forEach(function(c){
       c.classList.toggle('active', c.dataset.area === state.area);
@@ -548,7 +566,7 @@
   montarChips();
   renderStats();
   render();
-  garantirBotaoControle();
+  garantirBotoesListasGrandes();
   carregarTST();
   carregarTeses();
 
