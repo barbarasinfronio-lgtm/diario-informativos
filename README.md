@@ -103,6 +103,14 @@ e, se houver edição nova, grava em `diario-data.js` e envia para o `main` (o
 que já dispara a limpeza do cache do jsDelivr). As edições novas entram com
 súmula "a confirmar".
 
+As **leis** têm arquivo próprio, para rodar todo dia: **`Atualizar Leis.command`**
+(mesma pasta). Ele confere no Planalto as leis do acervo, anota as alterações
+(e a data da última alteração de cada lei) em `leis/alteracoes.json` e envia
+para o `main`; o site mostra em Meu Progresso > Revisões ("Leis alteradas").
+Cada rodada tem tempo máximo de 20 minutos; o que sobrar fica para a próxima,
+começando pelas leis conferidas há mais tempo. O `Atualizar Informativos.command`
+não confere mais as leis (só o `Atualizar Leis.command`).
+
 Cada tribunal é conferido separadamente (o comentário no topo do script
 explica de onde vem cada um). Se um falhar, os outros são gravados e
 enviados e a janela diz qual falhou. Para rodar só alguns:
