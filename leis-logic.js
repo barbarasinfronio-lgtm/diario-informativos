@@ -205,9 +205,19 @@
   var textosCache = {};
 
   function idTexto(link) {
-    var m = String(link || "").match(/^https?:\/\/www\.planalto\.gov\.br(\/[^?#]*)/i);
-    if (!m) return "";
-    return slug(m[1].replace(/^\/ccivil_03\//i, "").replace(/\.html?$/i, ""));
+    var l = String(link || "");
+    var m = l.match(/^https?:\/\/www\.planalto\.gov\.br(\/[^?#]*)/i);
+    if (m) return slug(m[1].replace(/^\/ccivil_03\//i, "").replace(/\.html?$/i, ""));
+    // outros sites (leis estaduais): igual ao id_texto() do robô
+    m = l.match(/^https?:\/\/(?:www\.)?([^\/?#]+)([^?#]*)(?:\?([^#]*))?/i);
+    if (!m || /\.pdf$/i.test(m[2])) return "";
+    var s = slug(m[1] + m[2] + (m[3] ? "?" + m[3] : ""));
+    if (s.length > 90) {
+      var h = 0x811c9dc5;
+      for (var i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 0x01000193) >>> 0;
+      s = s.slice(0, 80) + "-" + ("00000000" + h.toString(16)).slice(-8);
+    }
+    return s;
   }
 
   function temTexto(id) { return !!(id && indiceTextos && indiceTextos[id]); }

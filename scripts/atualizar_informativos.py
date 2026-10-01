@@ -1018,8 +1018,19 @@ def id_texto(url):
     """Nome do arquivo do texto de uma lei: o caminho do link no Planalto, sem
     "/ccivil_03/" nem ".htm", em minúsculas e com "-" no lugar do resto.
     leis-logic.js calcula o mesmo nome a partir do link do leis-data.js."""
-    caminho = urllib.parse.urlsplit(url).path
-    caminho = re.sub(r"^/ccivil_03/", "", caminho)
+    partes = urllib.parse.urlsplit(url)
+    if not (partes.hostname or "").endswith("planalto.gov.br"):
+        # outros sites: "<site sem www>/<caminho>?<consulta>"; nome longo vira
+        # os 80 primeiros caracteres + um código (o mesmo cálculo está no leis-logic.js)
+        s = _slug(re.sub(r"^www\.", "", partes.hostname or "") + partes.path
+                  + ("?" + partes.query if partes.query else ""))
+        if len(s) > 90:
+            h = 0x811c9dc5
+            for c in s.encode("ascii", "ignore"):
+                h = ((h ^ c) * 0x01000193) & 0xffffffff
+            s = s[:80] + "-" + "%08x" % h
+        return s
+    caminho = re.sub(r"^/ccivil_03/", "", partes.path)
     caminho = re.sub(r"\.html?$", "", caminho, flags=re.I)
     return _slug(caminho)
 
@@ -1045,10 +1056,10 @@ def paragrafos_da_lei(t):
     return out
 
 
-def salvar_texto(url, pagina_html, nome, hoje_iso):
+def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None):
     """Grava leis/texto/<id>.json se o texto mudou. True se gravou."""
     import json
-    paragrafos = paragrafos_da_lei(pagina_html)
+    paragrafos = (extrator or paragrafos_da_lei)(pagina_html)
     if len(paragrafos) < 5 or sum(map(len, paragrafos)) < 500:
         print(f"  (texto de \"{nome}\" parece incompleto; não gravei)")
         return False
@@ -1063,6 +1074,90 @@ def salvar_texto(url, pagina_html, nome, hoje_iso):
     arq.write_text(json.dumps({"nome": nome, "url": url, "em": hoje_iso, "p": paragrafos},
                               ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return True
+
+
+def paragrafos_do_site(t):
+    """Texto de uma lei estadual (páginas de assembleias, casas civis e do Leis
+    Estaduais). Cada site é diferente: tira menus/rodapé, testa alguns recipientes
+    do texto (article, main, div "conteudo"...) e fica com o que tem mais "Art." """
+    t = re.sub(r"(?is)<(script|style|head|nav|header|footer|aside|form|noscript|svg|select)\b.*?</\1>|<!--.*?-->", " ", t)
+    cands = []
+    for pat in (r"(?is)<article\b.*?</article>", r"(?is)<main\b.*?</main>",
+                r'(?is)<div[^>]+(?:id|class)="[^"]*(?:conteudo|content|texto|norma|ato|lei)[^"]*"[^>]*>.*'):
+        m = re.search(pat, t)
+        if m:
+            cands.append(m.group(0))
+    cands.append(t)
+    melhor, n_melhor = [], -1
+    for c in cands:
+        ps = paragrafos_da_lei(c)
+        n = sum(1 for p in ps if re.match(r"(?i)^art(igo|\.)", p))
+        if n > n_melhor:
+            melhor, n_melhor = ps, n
+    for i, p in enumerate(melhor[:40]):   # começa no título da norma
+        if re.match(r"(?i)^(lei|decreto|constitui|emenda|resolu|o governador|a assembleia)", p):
+            return melhor[i:]
+    return melhor
+
+
+ESTADUAIS_HOSTS = ("leisestaduais.com.br", "legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
+                   "legislacao.sef.sc.gov.br", "legislacao.pr.gov.br", "al.rs.gov.br", "almg.gov.br",
+                   "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
+                   "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br")
+ESTADUAIS_ORCAMENTO = 600
+DEBUG_DIR = RAIZ / "leis" / "texto-debug"
+
+
+def leis_estaduais(hoje_iso):
+    """Lê o texto das leis estaduais do leis-data.js (sites em HTML). Sites que
+    não deram certo: guarda um pedaço da página em leis/texto-debug/<site>.html
+    para eu ajustar o leitor. Devolve quantos textos gravou."""
+    import json
+    import time
+    try:
+        t = (RAIZ / "leis-data.js").read_text(encoding="utf-8")
+    except OSError:
+        return 0
+    lista, vistos = [], set()
+    for m in re.finditer(r'\{\s*nome:\s*("(?:[^"\\]|\\.)*"),\s*numero:\s*("(?:[^"\\]|\\.)*"),\s*link:\s*"(https?://[^"]*)"', t):
+        url = m.group(3)
+        host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
+        if "planalto.gov.br" in host or url in vistos or re.search(r"\.pdf($|\?)", url, re.I):
+            continue
+        if not any(host == h or host.endswith("." + h) for h in ESTADUAIS_HOSTS):
+            continue
+        try:
+            nome, numero = json.loads(m.group(1)), json.loads(m.group(2))
+        except ValueError:
+            continue
+        vistos.add(url)
+        lista.append((numero, nome, url))
+    lista.sort(key=lambda x: (TEXTO_DIR / f"{id_texto(x[2])}.json").exists())
+    gravados, inicio, feitas, sem_amostra = 0, time.monotonic(), 0, set()
+    for numero, nome, url in lista:
+        if feitas and time.monotonic() - inicio > ESTADUAIS_ORCAMENTO:
+            print(f"  (leis estaduais: faltam {len(lista) - feitas} para a próxima rodada)")
+            break
+        feitas += 1
+        host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
+        try:
+            pg = pagina(url, valida=lambda x: len(x) > 1500)
+        except Falha as e:
+            print(f"  ATENÇÃO (lei estadual): {nome}: {e}")
+            continue
+        try:
+            if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site):
+                gravados += 1
+        except OSError as e:
+            print(f"  ATENÇÃO: {e}")
+            continue
+        if not (TEXTO_DIR / f"{id_texto(url)}.json").exists() and host not in sem_amostra:
+            sem_amostra.add(host)   # uma amostra por site, para eu ver como a página é
+            DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+            (DEBUG_DIR / f"{_slug(host)}.html").write_text(
+                f"<!-- {url} -->\n" + pg[:30000], encoding="utf-8")
+    print(f"  Leis estaduais: {gravados} gravada(s) nesta rodada ({feitas} conferidas de {len(lista)}).")
+    return gravados
 
 
 def indice_dos_textos():
@@ -1160,6 +1255,7 @@ def leis(dados, tudo=False):
         LEIS_ARQ.write_text(json.dumps({"atualizado": hoje_iso, "leis": registro},
                                        ensure_ascii=False, indent=1), encoding="utf-8")
         dados.leis_mudou = True
+    textos_novos += leis_estaduais(hoje_iso)
     if textos_novos or not (TEXTO_DIR / "indice.json").exists():
         total = indice_dos_textos()
         print(f"  Textos das leis: {textos_novos} gravado(s) ou atualizado(s); {total} no total (leis/texto/).")
@@ -1302,7 +1398,7 @@ TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_e
 # que está rodando. Um site pendurado (ex.: JusLaboris
 # lento, Chrome esperando uma página que não termina) não trava o resto:
 # a parte é interrompida, aparece como ERRO no Resumo e as outras seguem.
-LIMITE = {"TESES": 1800, "LEIS": 1500}
+LIMITE = {"TESES": 1800, "LEIS": 2400}
 LIMITE_PADRAO = 300
 
 
