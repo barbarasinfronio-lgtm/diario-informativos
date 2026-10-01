@@ -216,7 +216,7 @@ html.em-has-font body {
    Decisões, Constitucionalidade, Reclamações, Revisões), no card aberto do
    Diário das Decisões (o título grande fica alinhado à esquerda: justificado,
    abre buracos entre as palavras), nas questões do Diário das Provas, nos prêmios do Meu
-   Progresso e nas caixas comuns (login, "Me pague um café"). */
+   Progresso e nas caixas comuns (login, "Doe um cafezinho"). */
 .sumula-texto,
 .lei-card h3, .lei-card p,
 .card h3, .card .destaque,
@@ -264,7 +264,7 @@ body.collapsed-header .page_body .centered-top-container { padding-left: 0 !impo
 }
 :root[data-theme="dark"] { --em-leis-ink: #e6e8ee; --em-leis-soft: #b8bfce; --em-leis-faint: #8a93a6; }
 
-/* ---- "Me pague um café" (estudamana-header.js, CONFIG.cafe) ---------------- */
+/* ---- "Doe um cafezinho" (estudamana-header.js, CONFIG.cafe) ---------------- */
 .em-cafe-card {
   display: flex; gap: 0.75rem; align-items: center;
   max-width: var(--page-width-reading, 760px); margin: 2.5rem auto 1rem; padding: 0.85rem 1rem;
