@@ -5534,6 +5534,71 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-20-910-1932": {
+   "numero": "Decreto nº 20.910/1932",
+   "nome": "Prescrição contra a Fazenda Pública",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/1930-1949/d20910.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-076-2004": {
+   "numero": "Lei nº 11.076/2004",
+   "nome": "Títulos de crédito do agronegócio",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l11076.htm",
+   "alteradoras": [
+    "Lei 11524",
+    "Lei 13097",
+    "Lei 13331",
+    "Lei 13606",
+    "Lei 13986",
+    "Lei 14317",
+    "Lei 14421",
+    "Lei 14430",
+    "Lei 14937",
+    "MP 1072",
+    "MP 1103",
+    "MP 372",
+    "MP 656",
+    "MP 725",
+    "MP 897"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-57-663-1966": {
+   "numero": "Decreto nº 57.663/1966",
+   "nome": "Lei Uniforme de Genebra (letra de câmbio e nota promissória)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/antigos/d57663.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-6-996-1982": {
+   "numero": "Lei nº 6.996/1982",
+   "nome": "Inscrição eleitoral",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/1980-1988/l6996.htm",
+   "alteradoras": [
+    "Lei 7444",
+    "Lei 7663",
+    "Lei 9096"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-1-318-1854": {
+   "numero": "Decreto nº 1.318/1854",
+   "nome": "Regulamenta a Lei de Terras (Lei nº 601/1850)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/historicos/dim/dim1318.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
   }
  }
 }
