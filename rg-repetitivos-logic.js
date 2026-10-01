@@ -197,6 +197,8 @@
   var qTimer = null;
   qInput.addEventListener('input', function(){
     var v = this.value.trim().toLowerCase();
+    // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
+    if (v.replace(/\s+/g, '').length < 2) v = '';
     clearTimeout(qTimer);
     qTimer = setTimeout(function(){ state.q = v; limite = LOTE_INICIAL; render(); }, 250);
   });

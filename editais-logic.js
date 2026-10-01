@@ -332,7 +332,9 @@
 
   function mudouBusca() {
     limparBusca.hidden = !inputBusca.value;
-    termos = semAcento(inputBusca.value).split(/\s+/).filter(Boolean);
+    // busca só vale com pelo menos 2 caracteres (ex.: TJ, PGE); com 1, mostra a lista normal
+    var digitado = semAcento(inputBusca.value).trim();
+    termos = digitado.replace(/\s+/g, "").length < 2 ? [] : digitado.split(/\s+/).filter(Boolean);
     render();
   }
   inputBusca.addEventListener("input", mudouBusca);

@@ -432,6 +432,8 @@
     function render() {
       var opcao = opcoes[selectEdital.value] || null;
       var termo = semAcento(inputBusca ? inputBusca.value.trim() : "");
+      // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
+      if (termo.replace(/\s+/g, "").length < 2) termo = "";
       var digitos = /\d/.test(termo) ? termo.replace(/\D/g, "") : "";
       var buscando = !!termo;
 

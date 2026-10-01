@@ -120,7 +120,9 @@
     buscaInfo.hidden = true;
     function mudou() {
       limpar.hidden = !input.value;
-      termosBusca = semAcentoBusca(input.value).split(/\s+/).filter(Boolean);
+      // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
+      var digitado = semAcentoBusca(input.value).trim();
+      termosBusca = digitado.replace(/\s+/g, "").length < 2 ? [] : digitado.split(/\s+/).filter(Boolean);
       aoMudar();
     }
     input.addEventListener("input", mudou);
