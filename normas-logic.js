@@ -190,6 +190,11 @@
       var li = document.createElement("li");
       li.className = "row sumula-row" + (row.lida ? " is-read" : "");
       li.setAttribute("data-norma", currentOrg + ":" + row.tipo + ":" + row.numero);
+      li.setAttribute("data-cad-lista", "normas");
+      li.setAttribute("data-cad-item", currentOrg + ":" + row.tipo + ":" + row.numero);
+      li.setAttribute("data-cad-titulo", row.tipo + " nº " + row.numero);
+      li.setAttribute("data-cad-origem", NORMAS_DATA[currentOrg].label);
+      li.setAttribute("data-cad-abrir", "/p/diario-das-resolucoes.html#norma=" + encodeURIComponent(currentOrg + ":" + row.tipo + ":" + row.numero));
       if (destaque === currentOrg + ":" + row.tipo + ":" + row.numero) {
         li.style.boxShadow = "0 0 0 3px #f59e0b";
         li.style.borderRadius = "10px";
@@ -206,12 +211,12 @@
       checkWrap.appendChild(input);
 
       var edition = document.createElement("div");
-      edition.className = "edition sumula-edition";
+      edition.className = "edition sumula-edition cad-lugar";
       var num = document.createElement("span");
       num.className = "num";
       num.textContent = row.tipo + " nº " + row.numero;
       var texto = document.createElement("p");
-      texto.className = "sumula-texto";
+      texto.className = "sumula-texto cad-area";
       texto.textContent = row.ementa;
       edition.appendChild(num);
       edition.appendChild(texto);
@@ -536,4 +541,16 @@
     carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+})();
+
+// Meus Cadernos: destacar e anotar (cadernos.js). Os itens da lista trazem
+// data-cad-lista / data-cad-item / data-cad-titulo / data-cad-origem /
+// data-cad-abrir; o texto destacável tem a classe "cad-area".
+(function () {
+  if (window.EstudaManaCadernos) return;
+  var url = "https://barbarasinfronio-lgtm.github.io/diario-informativos/cadernos.js";
+  fetch(url, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (code) { if (!window.EstudaManaCadernos) (0, eval)(code + "\n//# sourceURL=" + url); })
+    .catch(function () {});
 })();
