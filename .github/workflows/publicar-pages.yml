@@ -1,0 +1,50 @@
+name: Publicar no GitHub Pages
+
+# O site busca os arquivos (código e dados) em
+#   https://barbarasinfronio-lgtm.github.io/diario-informativos/
+# O GitHub Pages não tem o limite de 50 MB por pacote do jsDelivr e mostra as
+# mudanças em até 10 minutos, sem precisar limpar cache.
+# Este robô publica o conteúdo do main:
+#   - a cada envio para o main (do Mac, do GitHub web ou de uma sessão);
+#   - quando outro robô termina (os envios feitos por robôs do GitHub não
+#     disparam o "push" acima);
+#   - de hora em hora, por garantia, e no botão "Run workflow".
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Gerar dados leves", "Dividir dados por ano", "Atualizar jurisprudência do TST"]
+    types: [completed]
+  schedule:
+    - cron: "41 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# um envio novo cancela a publicação anterior que ainda estiver rodando
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
