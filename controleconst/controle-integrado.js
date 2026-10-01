@@ -14,7 +14,7 @@
  */
 (function () {
   "use strict";
-  var BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+  var BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
   var URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo=";
 
   // O que muda de uma lista para a outra.
@@ -141,7 +141,7 @@
     if (window.EstudaManaNuvem) return Promise.resolve(window.EstudaManaNuvem);
     if (!nuvemP) nuvemP = new Promise(function (ok, erro) {
       var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/nuvem-shared.js";
+      s.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/nuvem-shared.js";
       s.onload = function () { ok(window.EstudaManaNuvem); };
       s.onerror = erro;
       document.head.appendChild(s);

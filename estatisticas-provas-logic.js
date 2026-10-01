@@ -5,13 +5,13 @@
  * das provas de concurso) e mostra: o que mais cai, por fonte, por banca e
  * por prova. A página do Blogger só precisa de:
  *
- *   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estatisticas-provas.css">
+ *   <link rel="stylesheet" href="https://barbarasinfronio-lgtm.github.io/diario-informativos/estatisticas-provas.css">
  *   <div id="estatisticas-provas"></div>
- *   <script src="https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estatisticas-provas-logic.js"></script>
+ *   <script src="https://barbarasinfronio-lgtm.github.io/diario-informativos/estatisticas-provas-logic.js"></script>
  */
 (function () {
   "use strict";
-  var URL_JSON = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/provas/cobrancas.json";
+  var URL_JSON = "https://barbarasinfronio-lgtm.github.io/diario-informativos/provas/cobrancas.json";
   var root = document.getElementById("estatisticas-provas");
   if (!root) { root = document.createElement("div"); root.id = "estatisticas-provas"; document.body.appendChild(root); }
   root.innerHTML = '<p class="ep-carregando">Carregando estatísticas…</p>';

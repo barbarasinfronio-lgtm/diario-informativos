@@ -285,7 +285,7 @@
     for (var i = 0; i < all0.length; i++) {
       if (/meus-grupos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
     }
-    if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/meus-grupos-logic.js";
+    if (!src) src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/meus-grupos-logic.js";
     carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   })();
 

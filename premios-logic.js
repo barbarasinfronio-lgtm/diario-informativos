@@ -596,7 +596,7 @@
      lei como lida ANTES dessa data, mostra um aviso. "Já revisei" esconde o
      aviso neste navegador (até a próxima alteração).
      ================================================================== */
-  var ALTERACOES_JSON = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leis/alteracoes.json";
+  var ALTERACOES_JSON = "https://barbarasinfronio-lgtm.github.io/diario-informativos/leis/alteracoes.json";
   var VISTAS_KEY = "leis-alteracoes-vistas";
 
   function carregarAlteracoes() {
@@ -806,7 +806,7 @@
   function carregarExtra() {
     if (window.ProgressoRevisoes) return Promise.resolve(window.ProgressoRevisoes);
     if (!extraJs) {
-      extraJs = fetch("https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/revisoes.js", { cache: "no-cache" })
+      extraJs = fetch("https://barbarasinfronio-lgtm.github.io/diario-informativos/revisoes.js", { cache: "no-cache" })
         .then(function (r) { if (!r.ok) throw new Error("revisoes.js"); return r.text(); })
         .then(function (code) { (0, eval)(code); return window.ProgressoRevisoes; })
         .catch(function (e) { extraJs = null; throw e; });
@@ -1113,7 +1113,7 @@
     if (/premios-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
   }
   // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
-  if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/premios-logic.js";
+  if (!src) src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/premios-logic.js";
   // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
   // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
   // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.

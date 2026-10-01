@@ -13,7 +13,7 @@
   // tribunal) + um AAAA.json por ano. A página carrega o índice e depois só os
   // anos que precisa mostrar, com "no-cache" (o navegador só baixa de novo
   // o que mudou). Se a página ainda carregar o arquivo inteiro, usa ele.
-  const BASE_ANOS = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/reclamacoes/anos/";
+  const BASE_ANOS = "https://barbarasinfronio-lgtm.github.io/diario-informativos/reclamacoes/anos/";
   const URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo=";
   const legado = window.RECLAMACOES_DATA;
 
@@ -318,7 +318,7 @@
     if (!nuvemP) {
       nuvemP = new Promise(function (ok, erro) {
         const s = document.createElement("script");
-        s.src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/nuvem-shared.js";
+        s.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/nuvem-shared.js";
         s.onload = function () { ok(window.EstudaManaNuvem); };
         s.onerror = erro;
         document.head.appendChild(s);

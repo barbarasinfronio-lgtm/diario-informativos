@@ -37,7 +37,7 @@
   var STORAGE_EDITAL = "estudamana_edital_selecionado";
   var STORAGE_ESTADO = "estudamana_estado_selecionado";
   var LOCAL_KEY = "leis-lidas";
-  var CDN_BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+  var CDN_BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
 
   var ESTADOS = [
     ["AC", "Acre"], ["AL", "Alagoas"], ["AP", "Amapá"], ["AM", "Amazonas"],

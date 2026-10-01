@@ -142,7 +142,7 @@
 
   // Em quais provas de concurso cada súmula já foi cobrada
   // (scripts/cobrancas_provas.py → provas/cobrancas.json).
-  var COBRANCAS_JSON = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/provas/cobrancas.json";
+  var COBRANCAS_JSON = "https://barbarasinfronio-lgtm.github.io/diario-informativos/provas/cobrancas.json";
   var COB = null;
   function cobrancasDe(row) {
     var lst = COB && COB.itens["sum:" + row.org + ":" + row.numero];
@@ -666,7 +666,7 @@
     if (/sumulas-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
   }
   // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
-  if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/sumulas-logic.js";
+  if (!src) src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/sumulas-logic.js";
   // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
   // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
   // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.
