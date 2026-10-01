@@ -1,0 +1,143 @@
+/* cadernos.css — destaques, anotações e a página "Meus Cadernos"
+   (carregado por cadernos.js). Usa as cores de estudamana-tokens.css. */
+
+:root {
+  --cad-amarelo: rgba(255, 214, 10, 0.42);
+  --cad-verde: rgba(72, 199, 116, 0.34);
+  --cad-rosa: rgba(255, 99, 160, 0.30);
+  --cad-amarelo-forte: #d9a800;
+  --cad-verde-forte: #2f9e5a;
+  --cad-rosa-forte: #d1497f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cad-amarelo: rgba(255, 214, 10, 0.30);
+    --cad-verde: rgba(72, 199, 116, 0.30);
+    --cad-rosa: rgba(255, 99, 160, 0.30);
+  }
+}
+:root[data-theme="dark"] {
+  --cad-amarelo: rgba(255, 214, 10, 0.30);
+  --cad-verde: rgba(72, 199, 116, 0.30);
+  --cad-rosa: rgba(255, 99, 160, 0.30);
+}
+
+/* ---- destaques no texto ---- */
+mark.cad-mark { color: inherit; border-radius: 2px; padding: 0 1px; cursor: pointer; }
+mark.cad-amarelo { background: var(--cad-amarelo); }
+mark.cad-verde { background: var(--cad-verde); }
+mark.cad-rosa { background: var(--cad-rosa); }
+mark.cad-com-nota { border-bottom: 2px dotted var(--ink-soft, #4a5064); }
+
+/* ---- selo nos cards da lista ---- */
+.cad-selo {
+  display: inline-flex; align-items: center; gap: 2px;
+  font: 600 calc(11px * var(--fs-scale, 1)) var(--font-sans, sans-serif);
+  color: var(--ink-soft, #4a5064); background: var(--cad-amarelo);
+  border-radius: 999px; padding: 1px 8px; margin-left: auto;
+}
+
+/* ---- barrinha flutuante ---- */
+.cad-barra {
+  position: fixed; z-index: 100000; max-width: min(340px, calc(100vw - 16px));
+  background: var(--surface, #fff); color: var(--ink, #1c2130);
+  border: 1px solid var(--surface-line, #e2dcca); border-radius: 12px;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.35);
+  padding: 8px; font: 500 calc(13px * var(--fs-scale, 1)) var(--font-sans, sans-serif);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.cad-barra[hidden] { display: none; }
+.cad-barra-linha { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.cad-barra-linha.cad-fim { justify-content: flex-end; }
+.cad-barra-msg { margin: 0; padding: 2px 4px; color: var(--ink-soft, #4a5064); }
+.cad-cor {
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  border: 2px solid var(--surface-line, #e2dcca); padding: 0;
+}
+.cad-cor.cad-amarelo { background: var(--cad-amarelo-forte); }
+.cad-cor.cad-verde { background: var(--cad-verde-forte); }
+.cad-cor.cad-rosa { background: var(--cad-rosa-forte); }
+.cad-cor.is-on, .cad-cor:hover { border-color: var(--ink, #1c2130); }
+.cad-acao {
+  border: 1px solid var(--surface-line, #e2dcca); background: var(--surface-2, #efeadd);
+  color: var(--ink, #1c2130); border-radius: 999px; padding: 5px 12px; cursor: pointer;
+  font: 600 calc(12.5px * var(--fs-scale, 1)) var(--font-sans, sans-serif);
+}
+.cad-acao:hover { border-color: var(--accent, #1f3a5f); }
+.cad-salvar { background: var(--accent, #1f3a5f); color: var(--accent-ink, #eef3f9); border-color: var(--accent, #1f3a5f); }
+.cad-perigo { color: var(--high-fg, #8a1f1f); margin-left: auto; }
+.cad-texto {
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 64px;
+  border: 1px solid var(--surface-line, #e2dcca); border-radius: 8px; padding: 6px 8px;
+  background: var(--ground, #f6f3ec); color: var(--ink, #1c2130);
+  font: 400 calc(13px * var(--fs-scale, 1)) / 1.45 var(--font-sans, sans-serif);
+}
+.cad-barra-cad { display: flex; align-items: center; gap: 6px; color: var(--ink-soft, #4a5064); font-size: calc(12px * var(--fs-scale, 1)); }
+.cad-barra-cad select, .cad-pg select {
+  flex: 1; min-width: 0; border: 1px solid var(--surface-line, #e2dcca); border-radius: 8px;
+  background: var(--surface, #fff); color: var(--ink, #1c2130); padding: 4px 6px; font: inherit;
+}
+
+/* ---- "Minhas marcações" no card aberto ---- */
+.cad-caixa { margin-top: 6px; }
+.cad-dica { font-size: calc(12.5px * var(--fs-scale, 1)); color: var(--ink-faint, #767d8f); margin: 4px 0; text-align: left !important; }
+.cad-dica a { color: var(--accent, #1f3a5f); font-weight: 600; }
+.cad-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.cad-item { border-left: 4px solid var(--cad-amarelo-forte); border-radius: 6px; background: var(--surface-2, #efeadd); }
+.cad-borda-verde { border-left-color: var(--cad-verde-forte); }
+.cad-borda-rosa { border-left-color: var(--cad-rosa-forte); }
+.cad-item-btn {
+  all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 3px;
+  width: 100%; padding: 8px 10px; cursor: pointer;
+}
+.cad-trecho { font-size: calc(13px * var(--fs-scale, 1)); line-height: 1.5; color: var(--ink-soft, #4a5064); font-style: italic; }
+.cad-nota { font-size: calc(13px * var(--fs-scale, 1)); line-height: 1.45; color: var(--ink, #1c2130); white-space: pre-wrap; }
+.cad-onde { font: 600 calc(11px * var(--fs-scale, 1)) var(--font-mono, monospace); color: var(--ink-faint, #767d8f); text-transform: uppercase; letter-spacing: .04em; }
+
+/* ---- página Meus Cadernos ---- */
+.cad-pg { max-width: var(--page-width-reading, 760px); margin: 0 auto; padding: 8px 16px 40px; color: var(--ink, #1c2130); font-family: var(--font-sans, sans-serif); }
+.cad-pg h1 { font: 700 calc(30px * var(--fs-scale, 1)) / 1.15 var(--font-serif, Georgia, serif); margin: 4px 0 8px; }
+.cad-pg .cad-olho { font: 700 calc(11px * var(--fs-scale, 1)) var(--font-mono, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent, #1f3a5f); margin: 0; }
+.cad-pg .cad-lede { color: var(--ink-soft, #4a5064); line-height: 1.55; margin: 0 0 18px; }
+.cad-abas { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.cad-aba {
+  border: 1px solid var(--surface-line, #e2dcca); background: var(--surface, #fff); color: var(--ink, #1c2130);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; font: 600 calc(13px * var(--fs-scale, 1)) var(--font-sans, sans-serif);
+}
+.cad-aba.is-on { background: var(--accent, #1f3a5f); color: var(--accent-ink, #eef3f9); border-color: var(--accent, #1f3a5f); }
+.cad-aba .n { opacity: .7; font-weight: 500; margin-left: 4px; }
+.cad-ferramentas { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 16px; }
+.cad-ferramentas input[type="search"] {
+  flex: 1 1 220px; min-width: 0; border: 1px solid var(--surface-line, #e2dcca); border-radius: 999px;
+  padding: 8px 14px; background: var(--surface, #fff); color: var(--ink, #1c2130); font: inherit;
+}
+.cad-filtro-cor { display: flex; gap: 4px; align-items: center; }
+.cad-filtro-cor .cad-cor { width: 22px; height: 22px; }
+.cad-filtro-cor .cad-cor.cad-todas { background: conic-gradient(var(--cad-amarelo-forte) 0 33%, var(--cad-verde-forte) 0 66%, var(--cad-rosa-forte) 0); }
+.cad-acoes-caderno { display: flex; gap: 6px; flex-wrap: wrap; margin: -4px 0 14px; }
+.cad-vazio { color: var(--ink-faint, #767d8f); padding: 20px; text-align: center; border: 1px dashed var(--surface-line, #e2dcca); border-radius: var(--radius, 14px); }
+.cad-grupo {
+  background: var(--surface, #fff); border: 1px solid var(--surface-line, #e2dcca); border-radius: var(--radius, 14px);
+  box-shadow: var(--shadow); padding: 14px 16px; margin: 0 0 12px;
+}
+.cad-grupo-orig { font: 700 calc(11px * var(--fs-scale, 1)) var(--font-mono, monospace); letter-spacing: .04em; text-transform: uppercase; color: var(--accent, #1f3a5f); margin: 0 0 2px; }
+.cad-grupo h2 { font: 600 calc(16px * var(--fs-scale, 1)) / 1.35 var(--font-serif, Georgia, serif); margin: 0 0 10px; }
+.cad-grupo h2 a { color: inherit; text-decoration: none; }
+.cad-grupo h2 a:hover { text-decoration: underline; }
+.cad-marca { border-left: 4px solid var(--cad-amarelo-forte); padding: 6px 0 6px 12px; margin: 8px 0; }
+.cad-marca.cad-borda-verde { border-left-color: var(--cad-verde-forte); }
+.cad-marca.cad-borda-rosa { border-left-color: var(--cad-rosa-forte); }
+.cad-marca blockquote { margin: 0; font: italic 400 calc(14px * var(--fs-scale, 1)) / 1.55 var(--font-serif, Georgia, serif); color: var(--ink-soft, #4a5064); text-align: justify; }
+.cad-marca .cad-nota { margin-top: 6px; display: block; }
+.cad-marca-rodape { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; font-size: calc(12px * var(--fs-scale, 1)); color: var(--ink-faint, #767d8f); }
+.cad-marca-rodape .cad-acao { padding: 3px 10px; font-size: calc(11.5px * var(--fs-scale, 1)); }
+.cad-marca-rodape select { flex: 0 1 auto; max-width: 180px; }
+.cad-marca .cad-texto { margin-top: 6px; }
+.cad-aviso { color: var(--ink-soft, #4a5064); background: var(--surface-2, #efeadd); border-radius: 10px; padding: 12px 14px; }
+
+@media print {
+  .cad-ferramentas, .cad-abas, .cad-acoes-caderno, .cad-marca-rodape, #account-panel,
+  .em-cafe-card, header, nav, footer { display: none !important; }
+  .cad-grupo { box-shadow: none; break-inside: avoid; border-color: #ccc; }
+  .cad-pg { max-width: none; padding: 0; }
+}

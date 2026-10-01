@@ -251,6 +251,8 @@
       var url = it.url || URL_STF + it.processo;
       var card = document.createElement("div");
       card.className = "card" + (lido ? " is-read" : "");
+      card.setAttribute("data-cad-fonte", cfg.prefixo);   // selo 📝 de Meus Cadernos
+      card.setAttribute("data-cad-id", it.id);
       card.innerHTML =
         '<div class="top-row"><label class="read-check" title="Marcar como lido"><input type="checkbox" class="read-checkbox"' + (lido ? " checked" : "") + "></label>" +
         '<span class="tag-org STF">STF</span><span class="tag-tema">' + esc(cfg.etiqueta(it)) + "</span></div>" +
@@ -289,6 +291,7 @@
 
   // ---- detalhes (usa a mesma janela #overlay/#modal do Diário) -------------
   function fecharDetalhe() {
+    if (window.EstudaManaCadernos) window.EstudaManaCadernos.desligar();
     var ov = document.getElementById("overlay");
     if (ov) ov.classList.remove("open");
     document.body.style.overflow = "";
@@ -328,6 +331,13 @@
     });
     ov.classList.add("open");
     document.body.style.overflow = "hidden";
+    // Meus Cadernos: destacar e anotar (cadernos.js, carregado pelo Diário das Decisões)
+    if (window.EstudaManaCadernos) window.EstudaManaCadernos.ligar(modal, {
+      fonte: cfg.prefixo, item: it.id, titulo: it.processo,
+      origem: "STF · " + cfg.etiqueta(it) + (it[cfg.campoData] ? " · " + formatarData(it[cfg.campoData]) : ""),
+      abrir: "/p/diario-das-decisoes.html#busca=" + encodeURIComponent(it.processo || ""),
+      areas: [].slice.call(modal.querySelectorAll(".tese-text"))
+    });
   }
 
   function criarUI(antes) {
