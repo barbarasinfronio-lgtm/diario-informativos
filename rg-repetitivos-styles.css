@@ -85,7 +85,7 @@
   /* abas de órgão/tipo: viraram muitas (STF, STJ, Omissões, Informativos,
      Reclamações…), então quebram em linhas como "pílulas" — nunca no meio
      da palavra */
-  .seg{display:flex; flex-wrap:wrap; gap:6px; flex:1 1 100%; min-width:0;}
+  .seg{display:flex; flex-wrap:wrap; gap:6px; flex:1 1 100%; min-width:0; border:0; border-radius:0; overflow:visible;}
   .seg button{
     border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink-soft);
     font:600 calc(12.5px * var(--fs-scale)) var(--font-sans);
