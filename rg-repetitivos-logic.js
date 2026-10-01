@@ -378,7 +378,8 @@
       item: function(x){
         var org = x[1];
         return { id: 'inf-' + x[0], grupo: 'INFORMATIVOS', orgao: org, tipo: 'informativo',
-          tipoNome: 'Informativo ' + org + (x[2] ? ' nº ' + x[2] : ''),
+          tipoNome: x[9] || ('Informativo ' + org + (x[2] ? ' nº ' + x[2] : '')),
+          _pv: /^pv-/.test(x[0]),
           area: x[3], titulo: x[4], tese: x[5], processo: x[6], data: x[7], info: x[2], risco: 'Alta',
           motivo: 'julgado divulgado em informativo — é a fonte que as bancas mais usam para cobrar jurisprudência recente',
           link: org === 'STJ' ? 'https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=' + ('0000' + x[2]).slice(-4) + '.cod.'
@@ -590,8 +591,8 @@
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
-      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : d.tipo==='informativo' ? 'Resumo do julgado' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? (d._pv ? 'Decisão do Plenário' : 'Tese do julgado') : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
+      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : d.tipo==='informativo' ? (d._pv ? 'Controvérsia' : 'Resumo do julgado') : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
