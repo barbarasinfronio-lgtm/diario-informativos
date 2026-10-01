@@ -549,20 +549,32 @@
         (cobrancasDe(d).length ? '<div class="cobrado">' + escapeHtml(cobrancaResumo(cobrancasDe(d))) + '</div>' : '') +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
+      card.dataset.id = d.id;
       var checkbox = card.querySelector('.read-checkbox');
       checkbox.addEventListener('click', function(e){ e.stopPropagation(); });
-      checkbox.addEventListener('change', function(){
-        if(checkbox.checked) lidos[d.id] = { lida:true, lidaEm: todayIso() }; else delete lidos[d.id];
-        writeLocal(lidos);
-        scheduleSync();
-        card.classList.toggle('is-read', checkbox.checked);
-        renderStats();
-      });
+      checkbox.addEventListener('change', function(){ marcarLido(d, checkbox.checked); });
 
       card.addEventListener('click', function(){ openModal(d); });
       grid.appendChild(card);
     })();
   }
+
+  // Marca/desmarca a leitura — usado pela caixinha do card e pelo botão
+  // "Marcar como lido" do card aberto. Grava no aparelho, na conta
+  // (progress-decisoes) e no total "lidasDecisoes" dos grupos (pontuação).
+  function marcarLido(d, lida){
+    if(lida) lidos[d.id] = { lida:true, lidaEm: todayIso() }; else delete lidos[d.id];
+    writeLocal(lidos);
+    scheduleSync();
+    document.querySelectorAll('#grid .card').forEach(function(card){
+      if(card.dataset.id !== String(d.id)) return;
+      card.classList.toggle('is-read', lida);
+      var cb = card.querySelector('.read-checkbox');
+      if(cb) cb.checked = lida;
+    });
+    renderStats();
+  }
+  function textoBotaoLido(d){ return isRead(lidos[d.id]) ? '✓ Lido — desmarcar' : 'Marcar como lido'; }
 
   var overlay = document.getElementById('overlay');
   var modal = document.getElementById('modal');
@@ -611,8 +623,14 @@
       (cobrancasDe(d).length ? '<div class="section-label">Cobrado em provas</div><ul class="cobrado-lista">' + cobrancasDe(d).map(function(c){ return '<li>' + escapeHtml(c.rotulo) + ' — questão ' + c.questoes.join(', ') + '</li>'; }).join('') + '</ul>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
-      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
+      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>' +
+      '<p style="margin-top:14px"><button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button></p>';
     modal.querySelector('.close').addEventListener('click', closeModal);
+    modal.querySelector('.lido-modal').addEventListener('click', function(){
+      marcarLido(d, !isRead(lidos[d.id]));
+      this.textContent = textoBotaoLido(d);
+      this.classList.toggle('active', isRead(lidos[d.id]));
+    });
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     modalAtual = d;
