@@ -1,5 +1,6 @@
 name: Gerar dados leves
 
+# Antes, tira as decisões repetidas e sem conteúdo (scripts/limpar_decisoes.py).
 # As páginas abrem com versões leves dos dados (pasta leve/) e só baixam o
 # texto completo quando precisam. Este robô roda scripts/gerar_leves.js e
 # atualiza a pasta leve/ sempre que os dados do Diário das Decisões mudam:
@@ -16,8 +17,11 @@ on:
       - stj/teses.json
       - stf/extras.json
       - tst/decisoes.json
+      - stj/acordaos/indice.json
+      - informativos/indice.json
       - normas-citadas.js
       - scripts/gerar_leves.js
+      - scripts/limpar_decisoes.py
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
@@ -35,20 +39,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # tira decisões repetidas e sem conteúdo (scripts/limpar_decisoes.py)
+      - name: Limpar decisões
+        run: python3 scripts/limpar_decisoes.py decisoes
+
       - name: Gerar leve/
         run: node scripts/gerar_leves.js
 
       - name: Salvar os arquivos gerados
         id: salvar
         run: |
-          git add -A leve
+          git add -A leve rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json informativos/indice.json
           if git diff --cached --quiet; then
             echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
           fi
           git diff --cached --name-only > alterados.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Atualiza dados leves (automático)"
+          git commit -m "Limpa decisões e atualiza dados leves (automático)"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "mudou=1" >> "$GITHUB_OUTPUT"

@@ -76,7 +76,7 @@ hide: [],
 
 // Nomes mais curtos para o menu (opcional). Formato: "endereco": "Nome".
 // Sem entrada aqui, vale o título da página no Blogger.
-labels: {},
+labels: { "me-pague-um-cafe": "Doe um cafezinho" },
 
 // Texto/endereço do primeiro item (a página inicial). Use null para
 // não mostrar.
@@ -108,7 +108,7 @@ fallback: [
 // em qualquer página com um elemento data-em-font.
 fontSize: { min: 0.85, max: 1.5, step: 0.1 },
 
-// "Me pague um café": um cartão no fim de toda página de estudo leva para
+// "Doe um cafezinho": um cartão no fim de toda página de estudo leva para
 // a página de apoio do blog ("pagina"). Essa página, no Blogger, tem só
 // <div id="estudamana-cafe"></div> — o texto e o botão são montados aqui.
 // "botoes": um botão por link de pagamento (hoje, o link do Mercado Pago
@@ -119,7 +119,7 @@ cafe: {
 pagina: "/p/me-pague-um-cafe.html",
 plataforma: "Mercado Pago",
 botoes: [
-{ rotulo: "☕ Me pague um café", link: "https://link.mercadopago.com.br/estudamana" }
+{ rotulo: "☕ Doe um cafezinho", link: "https://link.mercadopago.com.br/estudamana" }
 ]
 }
 };
@@ -433,10 +433,10 @@ var visible = pages.filter(function (p) { return !hide[slugOf(p.path)]; });
 // A lista "order" acima não é mais usada para ordenar.
 var collator = new Intl.Collator("pt-BR", { sensitivity: "base" });
 function labelOf(p) { return CONFIG.labels[slugOf(p.path)] || p.title || ""; }
-// "Me pague um café" fica sempre por último (pelo endereço de CONFIG.cafe
+// "Doe um cafezinho" fica sempre por último (pelo endereço de CONFIG.cafe
 // ou pelo título, caso o Blogger tenha dado outro endereço à página).
 function ehCafe(p) {
-return !!((CONFIG.cafe && slugOf(p.path) === slugOf(CONFIG.cafe.pagina)) || /pague um caf/i.test(p.title || ""));
+return !!((CONFIG.cafe && slugOf(p.path) === slugOf(CONFIG.cafe.pagina)) || /pague um caf|cafezinho/i.test(p.title || ""));
 }
 return visible.sort(function (a, b) {
 return (ehCafe(a) - ehCafe(b)) || collator.compare(labelOf(a), labelOf(b));
@@ -572,7 +572,7 @@ function signature(list) {
 return list.map(function (p) { return p.path + "|" + p.title; }).join("\n");
 }
 
-// ---- "Me pague um café" ------------------------------------------------------
+// ---- "Doe um cafezinho" ------------------------------------------------------
 // Cartão no fim das páginas de estudo + conteúdo da página de apoio. O link
 // de doação fica só aqui no código (no GitHub), nunca em imagem ou texto
 // copiável de chave Pix — ninguém consegue trocá-lo por outro.
@@ -616,7 +616,7 @@ var card = document.createElement("aside");
 card.className = "em-cafe-card";
 card.innerHTML = '<span class="em-cafe-icone" aria-hidden="true">\u2615</span>' +
 '<p><strong>Gostou do Estuda Mana?</strong> Todas as ferramentas s\u00e3o gratuitas. Se quiser ajudar a manter o site no ar, ' +
-'<a href="' + cafeEsc(cfg.pagina) + '">me pague um caf\u00e9</a>.</p>';
+'<a href="' + cafeEsc(cfg.pagina) + '">doe um cafezinho</a>.</p>';
 onde.appendChild(card);
 }
 function startCafe() {
