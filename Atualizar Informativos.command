@@ -21,7 +21,7 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Informativos — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-ARQUIVOS=(diario-data.js stj/teses.json leis/alteracoes.json leis/texto)
+ARQUIVOS=(diario-data.js stj/teses.json leis/alteracoes.json leis/texto leis/texto-debug)
 # Mudanças que o robô deixou neste Mac sem enviar (por exemplo, a importação
 # das Teses rodada pelo Terminal): guarda num commit, para irem junto.
 git checkout -q main 2>/dev/null

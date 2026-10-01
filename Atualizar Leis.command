@@ -24,7 +24,7 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Leis — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-ARQUIVOS=(leis/alteracoes.json leis/texto)
+ARQUIVOS=(leis/alteracoes.json leis/texto leis/texto-debug)
 # Mudanças que o robô deixou neste Mac sem enviar: guarda num commit, para irem junto.
 git checkout -q main 2>/dev/null
 if [ -n "$(git status --porcelain -- "${ARQUIVOS[@]}")" ]; then
