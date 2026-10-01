@@ -15,11 +15,11 @@
   // quando a pessoa abre o grupo ou busca algo; a ementa de cada um vem de
   // stj/acordaos/c/NNN.json só quando o card é aberto.
   var ACORDAOS_BASE = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/acordaos/';
-  var acordaosP = null, acordaosProntos = false, partesAcordaos = {};
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
     COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
+    INFORMATIVOS: { rotulo: 'Informativos', titulo: 'Julgados dos informativos do STJ e do STF — tese e resumo' },
     ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' }
   };
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
@@ -343,47 +343,79 @@
   var controleAtivo = null;   // qual lista grande está na tela (ou null)
   var controleMostrada = null;
   function dataBr(d){ return d.slice(6,8) + '/' + d.slice(4,6) + '/' + d.slice(0,4); }
-  function carregarAcordaos(){
-    if (acordaosP) return acordaosP;
-    acordaosP = fetch(ACORDAOS_BASE + 'indice.json', { cache: 'no-cache' })
-      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(j){
-        var itens = (j.itens || []).map(function(x){
-          return { id: 'stj-acordao-' + x[0], grupo: 'ACORDAOS', orgao: 'STJ', tipo: 'acordao', tipoNome: 'Acórdão · ' + x[2],
-            area: x[5], titulo: x[6], tese: x[6], destaque: x[7] ? x[7].charAt(0).toUpperCase() + x[7].slice(1) : '',
-            processo: x[1], relator: x[3], data: dataBr(x[4]), risco: 'Média',
-            motivo: 'acórdão julgado em ' + x[4].slice(0, 4) + ' — mostra como o STJ vem aplicando a jurisprudência no caso concreto',
-            link: 'https://processo.stj.jus.br/processo/pesquisa/?tipoPesquisa=tipoPesquisaNumeroRegistro&termo=' + x[8],
-            _acid: x[0], _parte: x[9] };
-        });
-        DATA = DATA.concat(itens);
-        acordaosProntos = true;
-        montarChips(); renderStats(); render();
-      })
-      .catch(function(e){ acordaosP = null; if (window.console) console.warn('[decisoes] acórdãos', e); });
-    return acordaosP;
-  }
-  // Ementa completa de um acórdão (arquivo com 250 deles), só ao abrir o card.
-  function completarAcordao(d){
-    if (d._completo || d._parte == null) return Promise.resolve(d);
-    var n = ('00' + d._parte).slice(-3);
-    if (!partesAcordaos[n]) partesAcordaos[n] = fetch(ACORDAOS_BASE + 'c/' + n + '.json', { cache: 'no-cache' })
-      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-      .catch(function(e){ delete partesAcordaos[n]; throw e; });
-    return partesAcordaos[n].then(function(parte){
-      var x = parte[d._acid];
-      if (x) {
+  // Listas grandes que só são baixadas sob demanda (ao abrir o grupo ou
+  // buscar): um índice leve e, ao abrir o card, o texto completo vindo de um
+  // arquivo com 250 itens (pasta c/).
+  var BASE_CDN = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/';
+  var SOB_DEMANDA = {
+    ACORDAOS: {
+      base: ACORDAOS_BASE, nome: 'os acórdãos do STJ', carregando: 'Carregando a ementa…',
+      item: function(x){
+        return { id: 'stj-acordao-' + x[0], grupo: 'ACORDAOS', orgao: 'STJ', tipo: 'acordao', tipoNome: 'Acórdão · ' + x[2],
+          area: x[5], titulo: x[6], tese: x[6], destaque: x[7] ? x[7].charAt(0).toUpperCase() + x[7].slice(1) : '',
+          processo: x[1], relator: x[3], data: dataBr(x[4]), risco: 'Média',
+          motivo: 'acórdão julgado em ' + x[4].slice(0, 4) + ' — mostra como o STJ vem aplicando a jurisprudência no caso concreto',
+          link: 'https://processo.stj.jus.br/processo/pesquisa/?tipoPesquisa=tipoPesquisaNumeroRegistro&termo=' + x[8],
+          _chave: x[0], _parte: x[9] };
+      },
+      completar: function(d, x){
         d.tese = x.ementa;
         d.destaque = x.dec || d.destaque;
         d.historico = [x.pub ? 'Publicação: ' + x.pub : '', x.inf ? 'Informações complementares: ' + x.inf : '', x.notas ? 'Notas: ' + x.notas : ''].filter(Boolean).join('\n');
-        d._completo = true; d._busca = null;
       }
+    },
+    // Julgados dos informativos do STJ e do STF (scripts/informativos_cards.py).
+    INFORMATIVOS: {
+      base: BASE_CDN + 'informativos/', nome: 'os informativos', carregando: 'Carregando o resumo do julgado…',
+      item: function(x){
+        var org = x[1];
+        return { id: 'inf-' + x[0], grupo: 'INFORMATIVOS', orgao: org, tipo: 'informativo',
+          tipoNome: 'Informativo ' + org + (x[2] ? ' nº ' + x[2] : ''),
+          area: x[3], titulo: x[4], tese: x[5], processo: x[6], data: x[7], info: x[2], risco: 'Alta',
+          motivo: 'julgado divulgado em informativo — é a fonte que as bancas mais usam para cobrar jurisprudência recente',
+          link: org === 'STJ' ? 'https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=' + ('0000' + x[2]).slice(-4) + '.cod.'
+            : 'https://portal.stf.jus.br/textos/verTexto.asp?servico=informativoSTF&pagina=Informativo' + x[2],
+          _chave: x[0], _parte: x[8] };
+      },
+      completar: function(d, x){ d.destaque = x; }
+    }
+  };
+  var sobDemanda = {};  // grupo -> { p, prontos, partes }
+  function estadoSD(g){ return sobDemanda[g] || (sobDemanda[g] = { p: null, prontos: false, partes: {} }); }
+  function carregarSobDemanda(g){
+    var st = estadoSD(g), cfg = SOB_DEMANDA[g];
+    if (st.p) return st.p;
+    st.p = fetch(cfg.base + 'indice.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        DATA = DATA.concat((j.itens || []).map(cfg.item));
+        st.prontos = true;
+        montarChips(); renderStats(); render();
+      })
+      .catch(function(e){ st.p = null; if (window.console) console.warn('[decisoes] ' + g, e); });
+    return st.p;
+  }
+  function completarSobDemanda(d){
+    if (d._completo || d._parte == null) return Promise.resolve(d);
+    var cfg = SOB_DEMANDA[d.grupo], st = estadoSD(d.grupo);
+    var n = ('00' + d._parte).slice(-3);
+    if (!st.partes[n]) st.partes[n] = fetch(cfg.base + 'c/' + n + '.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function(e){ delete st.partes[n]; throw e; });
+    return st.partes[n].then(function(parte){
+      var x = parte[d._chave];
+      if (x) { cfg.completar(d, x); d._completo = true; d._busca = null; }
       return d;
+    });
+  }
+  function aguardandoSobDemanda(ts){
+    return Object.keys(SOB_DEMANDA).filter(function(g){
+      var st = estadoSD(g); return !st.prontos && st.p && (state.org === g || ts.length);
     });
   }
 
   function render(){
-    if (!acordaosProntos && (state.org === 'ACORDAOS' || termosBusca().length)) carregarAcordaos();
+    Object.keys(SOB_DEMANDA).forEach(function(g){ if (!estadoSD(g).prontos && (state.org === g || termosBusca().length)) carregarSobDemanda(g); });
     if (LISTAS_GRANDES[state.org]) {
       var org = state.org;
       if (controleAtivo && controleAtivo !== org && controles[controleAtivo]) controles[controleAtivo].esconder();
@@ -445,9 +477,10 @@
         ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
         : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
-      if (!acordaosProntos && acordaosP && (state.org === 'ACORDAOS' || ts.length)) {
-        document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando os acórdãos do STJ…';
-        if (state.org === 'ACORDAOS') document.getElementById('empty').hidden = true;
+      var aguardando = aguardandoSobDemanda(ts);
+      if (aguardando.length) {
+        document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando ' + aguardando.map(function(g){ return SOB_DEMANDA[g].nome; }).join(' e ') + '…';
+        if (SOB_DEMANDA[state.org]) document.getElementById('empty').hidden = true;
       }
       grid.innerHTML = '';
       todos.slice(0, mostrar).forEach(function(t){
@@ -478,7 +511,7 @@
     (function(){
       var isReadNow = isRead(lidos[d.id]);
       var card = document.createElement('div');
-      card.className = 'card' + (isReadNow ? ' is-read' : '');
+      card.className = 'card' + (isReadNow ? ' is-read' : '') + (d.tipo === 'informativo' ? ' card-informativo' : '');
       card.innerHTML =
         '<div class="top-row">' +
           '<label class="read-check" title="Marcar como lido">' +
@@ -493,7 +526,7 @@
         '</div>' +
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
-        '<div class="destaque">' + escapeHtml(d.destaque||d.tese||d.questao||'') + '</div>' +
+        '<div class="destaque">' + escapeHtml(d.tipo === 'informativo' ? d.tese : (d.destaque||d.tese||d.questao||'')) + '</div>' +
         (cobrancasDe(d).length ? '<div class="cobrado">' + escapeHtml(cobrancaResumo(cobrancasDe(d))) + '</div>' : '') +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
@@ -516,13 +549,14 @@
   var modal = document.getElementById('modal');
   function openModal(d){
     if (d._parte != null && !d._completo) {
-      modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Carregando a ementa…</p>';
+      modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">' + escapeHtml(SOB_DEMANDA[d.grupo].carregando) + '</p>';
       modal.querySelector('.close').addEventListener('click', closeModal);
       overlay.classList.add('open');
-      completarAcordao(d).then(function(){ if (overlay.classList.contains('open')) openModal(d); })
+      completarSobDemanda(d).then(function(){ if (overlay.classList.contains('open')) openModal(d); })
         .catch(function(){ modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Não foi possível carregar a ementa agora. Tente de novo.</p>'; modal.querySelector('.close').addEventListener('click', closeModal); });
       return;
     }
+    modal.classList.toggle('modal-informativo', d.tipo === 'informativo');
     modal.innerHTML =
       '<button class="close" aria-label="Fechar">✕</button>' +
       '<div class="top-row">' +
@@ -537,8 +571,8 @@
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
-      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
+      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : d.tipo==='informativo' ? 'Resumo do julgado' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
@@ -690,6 +724,7 @@
     var stf = DATA.filter(d=>d.orgao==='STF' && !d.grupo).length;
     var extras = DATA.filter(d=>d.grupo && d.orgao==='STF').length;
     var acordaos = DATA.filter(d=>d.grupo==='ACORDAOS').length;
+    var informativos = DATA.filter(d=>d.grupo==='INFORMATIVOS').length;
     var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses' && !d.grupo).length;
     var teses = DATA.filter(d=>d.tipo==='teses').length;
     var tst = DATA.filter(d=>d.orgao==='TST').length;
@@ -705,6 +740,7 @@
       (teses ? '<div class="stat"><b>' + teses + '</b><span>STJ · Jurisprudência em Teses</span></div>' : '') +
       (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
       (extras ? '<div class="stat"><b>' + extras + '</b><span>STF · Omissões, resumos e COVID-19</span></div>' : '') +
+      (informativos ? '<div class="stat"><b>' + informativos + '</b><span>Julgados de informativos</span></div>' : '') +
       (acordaos ? '<div class="stat"><b>' + acordaos + '</b><span>STJ · Acórdãos de turmas</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');

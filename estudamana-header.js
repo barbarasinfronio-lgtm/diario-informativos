@@ -146,6 +146,42 @@ else localStorage.setItem(FONT_KEY, String(fontScale));
 updateFontButtons();
 }
 
+// ---- tema claro / escuro --------------------------------------------------
+// Sem escolha salva, o site segue o sistema (estudamana-tokens.css usa
+// prefers-color-scheme). O botão ☾/☀ ao lado de "A− A A+" grava a escolha
+// em localStorage "estudamana-tema" e põe data-theme no <html>, que os
+// tokens já respeitam. Aplicado aqui, antes do menu, para não piscar.
+var THEME_KEY = "estudamana-tema";
+function readTheme() {
+try { var t = localStorage.getItem(THEME_KEY); return t === "dark" || t === "light" ? t : null; }
+catch (e) { return null; }
+}
+function applyTheme(t) {
+if (t) document.documentElement.setAttribute("data-theme", t);
+else document.documentElement.removeAttribute("data-theme");
+}
+function currentTheme() {
+var t = document.documentElement.getAttribute("data-theme");
+if (t === "dark" || t === "light") return t;
+try { return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+catch (e) { return "light"; }
+}
+applyTheme(readTheme());
+function updateThemeButton() {
+var btn = fontBox && fontBox.querySelector("[data-theme-btn]");
+if (!btn) return;
+var dark = currentTheme() === "dark";
+btn.textContent = dark ? "\u2600" : "\u263E";
+btn.title = dark ? "Usar tema claro" : "Usar tema escuro";
+btn.setAttribute("aria-label", btn.title);
+}
+function toggleTheme() {
+var next = currentTheme() === "dark" ? "light" : "dark";
+applyTheme(next);
+try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+updateThemeButton();
+}
+
 var fontBox = null;
 
 function updateFontButtons() {
@@ -182,6 +218,12 @@ setScale(b.delta ? fontScale + b.delta : 1);
 });
 box.appendChild(btn);
 });
+var tb = document.createElement("button");
+tb.type = "button";
+tb.className = "em-font__btn em-font__btn--tema";
+tb.setAttribute("data-theme-btn", "");
+tb.addEventListener("click", toggleTheme);
+box.appendChild(tb);
 return box;
 }
 
@@ -207,6 +249,7 @@ fontBox = buildFontControls();
 document.documentElement.classList.add("em-has-font");
 placeFontControls();
 updateFontButtons();
+updateThemeButton();
 try {
 new MutationObserver(placeFontControls).observe(document.body, {
 subtree: true, attributes: true, attributeFilter: ["open"]
