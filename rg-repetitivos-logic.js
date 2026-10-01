@@ -10,13 +10,17 @@
   // Omissões inconstitucionais, resumos de decisões e o painel COVID-19 do
   // STF (dados abertos do STF → stf/extras.json). Cada um tem seu botão.
   var EXTRAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stf/extras.json';
-  // Acórdãos de turmas do STJ (dados abertos do STJ → stj/acordaos.json).
-  var ACORDAOS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/acordaos.json';
+  // Acórdãos do STJ (dados abertos do STJ → scripts/acordaos_stj.py). São
+  // dezenas de milhares: a lista leve (stj/acordaos/indice.json) só é baixada
+  // quando a pessoa abre o grupo ou busca algo; a ementa de cada um vem de
+  // stj/acordaos/c/NNN.json só quando o card é aberto.
+  var ACORDAOS_BASE = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/acordaos/';
+  var acordaosP = null, acordaosProntos = false, partesAcordaos = {};
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
     COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
-    ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de turmas do STJ (REsp, AREsp, HC, RHC e RMS) — ementa e decisão' }
+    ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' }
   };
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
   // página não ficar pesada; com busca, mostra tudo o que combinar.
@@ -338,7 +342,48 @@
 
   var controleAtivo = null;   // qual lista grande está na tela (ou null)
   var controleMostrada = null;
+  function dataBr(d){ return d.slice(6,8) + '/' + d.slice(4,6) + '/' + d.slice(0,4); }
+  function carregarAcordaos(){
+    if (acordaosP) return acordaosP;
+    acordaosP = fetch(ACORDAOS_BASE + 'indice.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var itens = (j.itens || []).map(function(x){
+          return { id: 'stj-acordao-' + x[0], grupo: 'ACORDAOS', orgao: 'STJ', tipo: 'acordao', tipoNome: 'Acórdão · ' + x[2],
+            area: x[5], titulo: x[6], tese: x[6], destaque: x[7] ? x[7].charAt(0).toUpperCase() + x[7].slice(1) : '',
+            processo: x[1], relator: x[3], data: dataBr(x[4]), risco: 'Média',
+            motivo: 'acórdão julgado em ' + x[4].slice(0, 4) + ' — mostra como o STJ vem aplicando a jurisprudência no caso concreto',
+            link: 'https://processo.stj.jus.br/processo/pesquisa/?tipoPesquisa=tipoPesquisaNumeroRegistro&termo=' + x[8],
+            _acid: x[0], _parte: x[9] };
+        });
+        DATA = DATA.concat(itens);
+        acordaosProntos = true;
+        montarChips(); renderStats(); render();
+      })
+      .catch(function(e){ acordaosP = null; if (window.console) console.warn('[decisoes] acórdãos', e); });
+    return acordaosP;
+  }
+  // Ementa completa de um acórdão (arquivo com 250 deles), só ao abrir o card.
+  function completarAcordao(d){
+    if (d._completo || d._parte == null) return Promise.resolve(d);
+    var n = ('00' + d._parte).slice(-3);
+    if (!partesAcordaos[n]) partesAcordaos[n] = fetch(ACORDAOS_BASE + 'c/' + n + '.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function(e){ delete partesAcordaos[n]; throw e; });
+    return partesAcordaos[n].then(function(parte){
+      var x = parte[d._acid];
+      if (x) {
+        d.tese = x.ementa;
+        d.destaque = x.dec || d.destaque;
+        d.historico = [x.pub ? 'Publicação: ' + x.pub : '', x.inf ? 'Informações complementares: ' + x.inf : '', x.notas ? 'Notas: ' + x.notas : ''].filter(Boolean).join('\n');
+        d._completo = true; d._busca = null;
+      }
+      return d;
+    });
+  }
+
   function render(){
+    if (!acordaosProntos && (state.org === 'ACORDAOS' || termosBusca().length)) carregarAcordaos();
     if (LISTAS_GRANDES[state.org]) {
       var org = state.org;
       if (controleAtivo && controleAtivo !== org && controles[controleAtivo]) controles[controleAtivo].esconder();
@@ -400,6 +445,10 @@
         ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
         : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
+      if (!acordaosProntos && acordaosP && (state.org === 'ACORDAOS' || ts.length)) {
+        document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando os acórdãos do STJ…';
+        if (state.org === 'ACORDAOS') document.getElementById('empty').hidden = true;
+      }
       grid.innerHTML = '';
       todos.slice(0, mostrar).forEach(function(t){
         if (t.d) desenharCard(t.d); else grid.appendChild(t.c.cartao(t.x));
@@ -466,6 +515,14 @@
   var overlay = document.getElementById('overlay');
   var modal = document.getElementById('modal');
   function openModal(d){
+    if (d._parte != null && !d._completo) {
+      modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Carregando a ementa…</p>';
+      modal.querySelector('.close').addEventListener('click', closeModal);
+      overlay.classList.add('open');
+      completarAcordao(d).then(function(){ if (overlay.classList.contains('open')) openModal(d); })
+        .catch(function(){ modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Não foi possível carregar a ementa agora. Tente de novo.</p>'; modal.querySelector('.close').addEventListener('click', closeModal); });
+      return;
+    }
     modal.innerHTML =
       '<button class="close" aria-label="Fechar">✕</button>' +
       '<div class="top-row">' +
@@ -718,7 +775,7 @@
   render();
   garantirBotoesListasGrandes();
   carregarExtras();
-  carregarExtras(ACORDAOS_JSON);
+  garantirBotoesGrupos();
   carregarTST();
   carregarTeses();
   carregarCobrancas();
