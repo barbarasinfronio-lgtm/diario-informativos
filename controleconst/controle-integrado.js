@@ -234,7 +234,11 @@
     var pagina = carregadosFiltrados(ts).slice(ini, fim);
     listEl.innerHTML = "";
     if (!pagina.length) { aviso("Nenhum julgado encontrado para este filtro."); return; }
-    pagina.forEach(function (it) {
+    pagina.forEach(function (it) { listEl.appendChild(cartao(it)); });
+  }
+
+  // Um card (usado na lista deste botão e nos resultados da busca em "Todos").
+  function cartao(it) {
       var lido = !!lidos[it.id];
       var data = formatarData(it[cfg.campoData]) || (it.ano ? String(it.ano) : "data não informada");
       var texto = limparTexto(textoItem(it), it.completo) || "Sem resumo disponível — abra o processo no STF.";
@@ -248,7 +252,9 @@
         "<h3>" + esc(it.processo) + "</h3>" +
         '<div class="destaque">' + esc(texto) + "</div>" +
         '<div class="meta"><span>' + esc(data) + " — " + esc(it.relator || "STF") + '</span><a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a></div>';
-      card.querySelector(".read-checkbox").addEventListener("change", function () { alternar(it.id); });
+      card.querySelector(".read-checkbox").addEventListener("change", function () {
+        alternar(it.id); card.classList.toggle("is-read", !!lidos[it.id]);
+      });
       // Clicar no card abre os detalhes (como nos outros cards do Diário);
       // a caixinha de lido e o link do STF continuam fazendo só o que fazem.
       card.style.cursor = "pointer";
@@ -256,7 +262,22 @@
         if (e.target.closest(".read-check, a")) return;
         abrirDetalhe(it);
       });
-      listEl.appendChild(card);
+      return card;
+  }
+
+  // Busca em TODOS os anos (para a busca do botão "Todos" do Diário):
+  // devolve os itens que combinam com o texto, mais recentes primeiro.
+  function buscarTudo(texto) {
+    var ts = semAcento(texto || "").split(/\s+/).filter(Boolean);
+    if (!ts.length) return Promise.resolve([]);
+    return carregarIndice().then(function () {
+      return Promise.all(indice.anos.map(function (a) { return carregarAno(a.ano); }));
+    }).then(function () {
+      var out = [];
+      indice.anos.forEach(function (a) {
+        (carregados[a.ano] || []).forEach(function (it) { if (combinaBusca(it, ts)) out.push(it); });
+      });
+      return out;
     });
   }
 
@@ -352,6 +373,9 @@
       }).catch(function () { aviso("Não foi possível carregar os julgados. Recarregue a página."); });
     },
     esconder: function () { visivel = false; root.hidden = true; },
+    buscarTudo: buscarTudo,
+    cartao: cartao,
+    dataDe: function (it) { return String(it[cfg.campoData] || ""); },
     buscaMudou: function () { loteAtual = 0; render(); }
   };
   }
