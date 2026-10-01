@@ -23,7 +23,7 @@
 
   if (window.NormasCitadas) return;
 
-  var CDN_BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+  var CDN_BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
   var PAGINA_LEIS = "/p/diario-de-leis.html";
   var PAGINA_NORMAS = "/p/diario-das-resolucoes.html";
 

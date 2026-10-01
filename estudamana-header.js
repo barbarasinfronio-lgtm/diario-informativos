@@ -519,8 +519,8 @@ blog.insertBefore(nav, blog.firstChild);
 
 // ---- CSS do cabeçalho -----------------------------------------------
 // Endereço dos arquivos: a pasta deste script, quando ele foi carregado
-// por <script src>; senão (carregado por fetch), o jsDelivr.
-var CDN_BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+// por <script src>; senão (carregado por fetch), o GitHub Pages.
+var CDN_BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
 
 function assetBase() {
 var script = document.currentScript;

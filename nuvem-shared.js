@@ -21,7 +21,7 @@
     storageBucket: "diariodeinformativos.firebasestorage.app"
   };
   var SDK = "https://www.gstatic.com/firebasejs/10.13.2/firebase-";
-  var BASE = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+  var BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
 
   function carregar(src) {
     return new Promise(function (ok, erro) {

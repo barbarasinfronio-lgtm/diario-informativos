@@ -29,7 +29,7 @@
   "use strict";
   if (window.ProgressoRevisoes) return;
 
-  var CDN = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+  var CDN = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
   var REV_KEY = "revisoes-feitas";
   var PAGINA_LEIS = "/p/diario-de-leis.html";
 

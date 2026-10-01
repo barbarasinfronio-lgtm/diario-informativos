@@ -39,8 +39,8 @@
       }
     }
     // Carregado por fetch (sem <script src>, como fazem as páginas do
-    // Blogger): não há de onde tirar a pasta, então usa o jsDelivr.
-    if (!s || !s.src) return "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/";
+    // Blogger): não há de onde tirar a pasta, então usa o GitHub Pages.
+    if (!s || !s.src) return "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
     return s.src.replace(/editais-shared\.js(\?.*)?$/, "");
   })();
   var QUERY = (function () {

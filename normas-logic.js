@@ -511,7 +511,7 @@
     if (/normas-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
   }
   // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
-  if (!src) src = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/normas-logic.js";
+  if (!src) src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/normas-logic.js";
   // fetch sem cache + eval: uma cópia antiga de conta-google.js guardada
   // pelo navegador (ou já carregada pelo HTML) não pode tomar o lugar do
   // quadro de login atual — a versão nova assume mesmo se a antiga já rodou.

@@ -9,20 +9,20 @@
   // página ainda carregar rg-repetitivos-data.js pelo HTML, ele já vale.
   var DATA = (window.RG_REPETITIVOS_DATA || []).slice();
   var completo = { rg: !!window.RG_REPETITIVOS_DATA };
-  var LEVE_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leve/decisoes.json';
-  var RG_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/rg-repetitivos-data.js';
-  var TST_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/tst/decisoes.json';
+  var LEVE_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/leve/decisoes.json';
+  var RG_JS = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/rg-repetitivos-data.js';
+  var TST_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/tst/decisoes.json';
   // Jurisprudência em Teses do STJ: uma tese por card, com o texto completo
   // (gerado pelo robô do Mac, scripts/atualizar_informativos.py → stj/teses.json).
-  var TESES_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/teses.json';
+  var TESES_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stj/teses.json';
   // Omissões inconstitucionais, resumos de decisões e o painel COVID-19 do
   // STF (dados abertos do STF → stf/extras.json). Cada um tem seu botão.
-  var EXTRAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stf/extras.json';
+  var EXTRAS_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stf/extras.json';
   // Acórdãos do STJ (dados abertos do STJ → scripts/acordaos_stj.py). São
   // dezenas de milhares: a lista leve (stj/acordaos/indice.json) só é baixada
   // quando a pessoa abre o grupo ou busca algo; a ementa de cada um vem de
   // stj/acordaos/c/NNN.json só quando o card é aberto.
-  var ACORDAOS_BASE = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/acordaos/';
+  var ACORDAOS_BASE = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stj/acordaos/';
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
@@ -35,7 +35,7 @@
   var LOTE_INICIAL = 10;
   // Em quais provas de concurso cada decisão já foi cobrada
   // (scripts/cobrancas_provas.py → provas/cobrancas.json).
-  var COBRANCAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/provas/cobrancas.json';
+  var COBRANCAS_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/provas/cobrancas.json';
   var COB = null;
   function cobrancasDe(d){
     var lst = COB && COB.itens['dec:' + d.id];
@@ -282,7 +282,7 @@
   // Antes era o Diário de Constitucionalidade; agora é um botão aqui. São
   // ~19 mil julgados, então ficam num módulo à parte (carregado só ao abrir
   // o botão) e paginados, em vez de entrar na lista comum.
-  var CONTROLE_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/controleconst/controle-integrado.js';
+  var CONTROLE_JS = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/controleconst/controle-integrado.js';
   // Reclamações seguem o mesmo esquema (mesmo módulo, outros dados).
   var LISTAS_GRANDES = {
     CONTROLE:    { tipo: 'controle',    rotulo: 'Controle (ADI, ADPF…)', titulo: 'Controle de constitucionalidade: ADI, ADPF, ADC e ADO do STF' },
@@ -354,7 +354,7 @@
   // Listas grandes que só são baixadas sob demanda (ao abrir o grupo ou
   // buscar): um índice leve e, ao abrir o card, o texto completo vindo de um
   // arquivo com 250 itens (pasta c/).
-  var BASE_CDN = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/';
+  var BASE_CDN = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/';
   var SOB_DEMANDA = {
     ACORDAOS: {
       base: ACORDAOS_BASE, nome: 'os acórdãos do STJ', carregando: 'Carregando a ementa…',
@@ -624,13 +624,13 @@
   // lida e uma setinha que abre a norma no Diário de Leis / Diário das
   // Resoluções, onde a pessoa marca a leitura. A lógica de achar e conferir
   // fica em normas-citadas.js, carregado só quando um card é aberto.
-  var NORMAS_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/normas-citadas.js';
+  var NORMAS_JS = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/normas-citadas.js';
   var normasJs = null;
   var modalAtual = null;
   var normasAtuais = null;
 
   // leis-incluidas.js: botão "Incluir no meu Diário" nas normas fora dos Diários
-  var INCLUIDAS_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leis-incluidas.js';
+  var INCLUIDAS_JS = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/leis-incluidas.js';
   var incluidasJs = null;
   function carregarIncluidas(){
     if (window.LeisIncluidas) return Promise.resolve();
@@ -907,7 +907,7 @@
       if (/rg-repetitivos-logic\.js/.test(all0[i].src)) { src = all0[i].src; break; }
     }
     // páginas que baixam os scripts com fetch + eval (sem <script src>): usa o CDN
-    if (!src) src = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/rg-repetitivos-logic.js';
+    if (!src) src = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/rg-repetitivos-logic.js';
     carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, 'conta-google.js'));
   }
 })();

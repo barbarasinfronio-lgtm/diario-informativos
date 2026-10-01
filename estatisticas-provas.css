@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estudamana-tokens.css");
+@import url("https://barbarasinfronio-lgtm.github.io/diario-informativos/estudamana-tokens.css");
 
 /* Página "Estatísticas de cobrança" (estatisticas-provas-logic.js) */
 #estatisticas-provas { max-width: var(--page-width-wide); margin: 0 auto; padding: 0 16px 40px; font-family: var(--font-sans); color: var(--ink); }
