@@ -287,8 +287,9 @@
         "<div><b>Relator(a)</b>" + esc(it.relator || "—") + "</div>" +
         "<div><b>Julgamento</b>" + esc(formatarData(it[cfg.campoData]) || it.ano || "—") + "</div>" +
         (it.resultado ? "<div><b>Resultado</b>" + esc(it.resultado) + "</div>" : "") +
+        (it.orgao ? "<div><b>Decisão</b>" + esc(it.orgao) + "</div>" : "") +
         (it.tipoDecisao ? "<div><b>Tipo de decisão</b>" + esc(it.tipoDecisao) + "</div>" : "") +
-        (it.andamento && it.andamento !== bruto && it.andamento !== it.resultado ? "<div><b>Andamento</b>" + esc(it.andamento) + "</div>" : "") +
+        (it.andamento && it.andamento !== bruto && it.andamento !== it.resultado && it.andamento !== it.tipo ? "<div><b>Andamento</b>" + esc(it.andamento) + "</div>" : "") +
         (it.ramo && !it.tipoDecisao ? "<div><b>" + (cfg.prefixo === "reclamacoes" ? "Tipo de decisão" : "Ramo") + "</b>" + esc(it.ramo) + "</div>" : "") +
       "</div>" +
       '<a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a>' +
