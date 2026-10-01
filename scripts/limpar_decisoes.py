@@ -38,7 +38,10 @@ Regras (por arquivo):
   tst/decisoes.json
     - sai: item sem texto.
   stj/acordaos/indice.json · informativos/indice.json
-    - repetidos (mesmo processo, data e ementa / mesmo órgão, edição e tese) → fica um.
+    - repetidos (mesmo processo, data e ementa / mesmo órgão, edição e tese) → fica um;
+    - acórdãos que só "não conhecem" do recurso/pedido saem, a não ser que
+      algo tenha sido analisado de ofício (ex.: habeas corpus concedido de ofício).
+  Controle: também saem as decisões "não conhecido" sem nada de ofício.
 """
 import json
 import os
@@ -132,8 +135,19 @@ DECIDE = re.compile(r"julgou|julgo|negou|nego |deu provimento|dou provimento|con
 AND_PAUTA = re.compile(r"^(Recebidos|DECIS[ÃA]O DO RELATOR|JULGAMENTO NO PLENO|QUEST[ÃA]O DE ORDEM)$", re.I)
 
 
+# "Não conhecido": o tribunal não decidiu nada. Fica só se, no mesmo julgamento,
+# analisou algo de ofício, fixou tese, modulou efeitos, acolheu embargos de outra
+# parte ou esclareceu a interpretação conforme (ex.: ADI 7949, ADI 1183).
+NAO_CONHECIDO = re.compile(r"n[ãa]o conhecid|nao conhecid|inadmitidos os embargos", re.I)
+DE_OFICIO = re.compile(r"de of[ií]cio", re.I)
+DE_OFICIO_DECIDIDO = re.compile(r"(,|e|mas|contudo|por[ée]m)\s*,?\s*de of[ií]cio,|(conced\w*|reconhec\w*|declar\w*|determin\w*|anul\w*|corrig\w*)[^.;]{0,60}de of[ií]cio|de of[ií]cio,? (para |a fim de )?(conced|reconhec|declar|determin|anul|corrig|fix)", re.I)
+VINCULANTE = re.compile(r"(fix\w*|assent\w*|firm\w*) (a seguinte |a |esta )?tese|tese de julgamento|modula\w*|acolh\w* (em parte )?(os )?embargos|interpreta[çc][ãa]o conforme (conferida|dada)|ressalvad\w* (em qualquer caso )?a validade", re.I)
+
+
 def sem_conteudo_controle(d):
     t = norm(d.get("tema"))
+    if NAO_CONHECIDO.search(d.get("andamento") or ""):
+        return not (DE_OFICIO_DECIDIDO.search(t) or VINCULANTE.search(t))
     proc = d.get("tipoDecisao") in PROC_TIPO or PROC_AND.search(d.get("andamento") or "")
     if proc and not SUBST.search(t):
         return True
@@ -352,6 +366,44 @@ def limpar_indice(f, chave, nome):
     gravar_json(f, obj, nl)
 
 
+SO_NAO_CONHECER = re.compile(r"n[ãa]o conhec", re.I)
+OUTRA_PARTE = re.compile(r"conhec\w* (parcialmente|em parte)|conhecer d[oa]s? (recurso|agravo|pedido|embargos|conflito)[^,;]*? e (lhe )?(dar|negar|julgar|conceder|acolher|rejeitar)|negar|dar |dar-|provimento|anul|cass|acolh|rejeit|homolog|julgar extinto|declar|conced", re.I)
+
+
+def limpar_acordaos():
+    """Acórdãos do STJ que só não conhecem do recurso (sem nada analisado de ofício)."""
+    f = "stj/acordaos/indice.json"
+    conferir_formato(f)
+    obj, nl = ler_json(f)
+    campos = obj["campos"]
+    ir, ic, ip = campos.index("resultado"), campos.index("id"), campos.index("parte")
+    partes = {}
+
+    def dispositivo(x):
+        """Trecho do acórdão com o que foi decidido ("por unanimidade, ... nos termos do voto")."""
+        n = "%03d" % int(x[ip])
+        if n not in partes:
+            try:
+                partes[n] = json.load(open(caminho("stj/acordaos/c/" + n + ".json"), encoding="utf-8"))
+            except (OSError, ValueError):
+                partes[n] = {}
+        dec = re.sub(r"\s+", " ", str((partes[n].get(str(x[ic])) or {}).get("dec") or ""))
+        m = re.search(r"(por unanimidade|por maioria).*?(nos termos do voto|$)", dec, re.I)
+        return (m.group(0) if m else dec) or str(x[ir] or "")
+    antes = len(obj["itens"])
+    final = []
+    for x in obj["itens"]:
+        d = dispositivo(x)
+        if SO_NAO_CONHECER.search(d) and not OUTRA_PARTE.search(d) and not DE_OFICIO.search(d):
+            continue
+        final.append(x)
+    obj["itens"] = final
+    if "total" in obj:
+        obj["total"] = len(final)
+    resumo.append(f"Acórdãos do STJ (só não conhecem): {antes} → {len(final)} (saíram {antes - len(final)})")
+    gravar_json(f, obj, nl)
+
+
 def main():
     alvos = [a for a in sys.argv[1:] if not a.startswith("--")] or ["todos"]
     tudo = "todos" in alvos
@@ -365,6 +417,7 @@ def main():
         limpar_extras()
         limpar_tst()
         limpar_indice("stj/acordaos/indice.json", ["processo", "data", "titulo", "resultado"], "Acórdãos do STJ")
+        limpar_acordaos()
         limpar_indice("informativos/indice.json", ["orgao", "informativo", "tese"], "Informativos")
     print(("(só relatório) " if RELATORIO else "") + "\n".join(resumo))
 
