@@ -7921,6 +7921,120 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-911-1969": {
+   "numero": "Decreto-Lei nº 911/1969",
+   "nome": "Alienação fiduciária de bens móveis",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm",
+   "alteradoras": [
+    "Lei 13043",
+    "Lei 14711",
+    "Lei 6014",
+    "Lei 6071"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-3-240-1941": {
+   "numero": "Decreto-Lei nº 3.240/1941",
+   "nome": "Sequestro de bens de indiciados por crimes de que resulte prejuízo à Fazenda Pública",
+   "link": "https://www.planalto.gov.br/ccivil_03/Decreto-Lei/1937-1946/Del3240.htm",
+   "alteradoras": [
+    "Lei 15327"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-3-931-1941": {
+   "numero": "Decreto-Lei nº 3.931/1941",
+   "nome": "Lei de Introdução ao Código de Processo Penal",
+   "link": "https://www.planalto.gov.br/ccivil_03/Decreto-Lei/1937-1946/Del3931.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-2-044-1908": {
+   "numero": "Decreto nº 2.044/1908",
+   "nome": "Letra de câmbio e nota promissória",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/historicos/dpl/dpl2044-1908.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-6-840-1980": {
+   "numero": "Lei nº 6.840/1980",
+   "nome": "Títulos de Crédito Comercial",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/1980-1988/L6840.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-522-2002": {
+   "numero": "Lei nº 10.522/2002",
+   "nome": "Cadastro Informativo de Créditos não Quitados (CADIN)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/2002/L10522.htm",
+   "alteradoras": [
+    "LC 225",
+    "Lei 10637",
+    "Lei 10954",
+    "Lei 11033",
+    "Lei 11051",
+    "Lei 11345",
+    "Lei 11941",
+    "Lei 12548",
+    "Lei 12649",
+    "Lei 12788",
+    "Lei 12810",
+    "Lei 12844",
+    "Lei 13043",
+    "Lei 13494",
+    "Lei 13606",
+    "Lei 13874",
+    "Lei 13988",
+    "Lei 14112",
+    "Lei 14195",
+    "Lei 14375",
+    "Lei 14689",
+    "Lei 14690",
+    "Lei 14973",
+    "MP 1090",
+    "MP 1160",
+    "MP 449",
+    "MP 651",
+    "MP 780",
+    "MP 881"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-58-1937": {
+   "numero": "Decreto-Lei nº 58/1937",
+   "nome": "Loteamento e venda de terrenos para pagamento em prestações",
+   "link": "https://www.planalto.gov.br/ccivil_03/Decreto-Lei/1937-1946/Del058.htm",
+   "alteradoras": [
+    "Lei 4778",
+    "Lei 5532",
+    "Lei 6014",
+    "Lei 649"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-99-710-1990": {
+   "numero": "Decreto nº 99.710/1990",
+   "nome": "Convenção sobre os Direitos da Criança",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d99710.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
   }
  }
 }
