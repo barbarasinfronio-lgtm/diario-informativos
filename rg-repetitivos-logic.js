@@ -10,10 +10,13 @@
   // Omissões inconstitucionais, resumos de decisões e o painel COVID-19 do
   // STF (dados abertos do STF → stf/extras.json). Cada um tem seu botão.
   var EXTRAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stf/extras.json';
+  // Acórdãos de turmas do STJ (dados abertos do STJ → stj/acordaos.json).
+  var ACORDAOS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/acordaos.json';
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
-    COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' }
+    COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
+    ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de turmas do STJ (REsp, AREsp, HC, RHC e RMS) — ementa e decisão' }
   };
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
   // página não ficar pesada; com busca, mostra tudo o que combinar.
@@ -451,8 +454,8 @@
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
-      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
+      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
@@ -601,8 +604,9 @@
 
   function renderStats(){
     var stf = DATA.filter(d=>d.orgao==='STF' && !d.grupo).length;
-    var extras = DATA.filter(d=>d.grupo).length;
-    var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses').length;
+    var extras = DATA.filter(d=>d.grupo && d.orgao==='STF').length;
+    var acordaos = DATA.filter(d=>d.grupo==='ACORDAOS').length;
+    var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses' && !d.grupo).length;
     var teses = DATA.filter(d=>d.tipo==='teses').length;
     var tst = DATA.filter(d=>d.orgao==='TST').length;
     var alta = DATA.filter(d=>d.risco==='Alta').length;
@@ -617,6 +621,7 @@
       (teses ? '<div class="stat"><b>' + teses + '</b><span>STJ · Jurisprudência em Teses</span></div>' : '') +
       (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
       (extras ? '<div class="stat"><b>' + extras + '</b><span>STF · Omissões, resumos e COVID-19</span></div>' : '') +
+      (acordaos ? '<div class="stat"><b>' + acordaos + '</b><span>STJ · Acórdãos de turmas</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
   }
@@ -666,8 +671,8 @@
       .catch(function(){ /* sem as Teses, a página segue com o resto */ });
   }
 
-  function carregarExtras(){
-    fetch(EXTRAS_JSON, { cache: 'no-cache' })
+  function carregarExtras(url){
+    fetch(url || EXTRAS_JSON, { cache: 'no-cache' })
       .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(j){
         var itens = (j && j.itens) || [];
@@ -686,6 +691,7 @@
   render();
   garantirBotoesListasGrandes();
   carregarExtras();
+  carregarExtras(ACORDAOS_JSON);
   carregarTST();
   carregarTeses();
 
