@@ -111,14 +111,16 @@ fontSize: { min: 0.85, max: 1.5, step: 0.1 },
 // "Me pague um café": um cartão no fim de toda página de estudo leva para
 // a página de apoio do blog ("pagina"). Essa página, no Blogger, tem só
 // <div id="estudamana-cafe"></div> — o texto e o botão são montados aqui.
-// "link" é o endereço da sua página na plataforma de doação (ex.:
-// "https://livepix.gg/seunome"). Enquanto estiver vazio, o botão de doar
-// não aparece. "plataforma" é o nome mostrado no aviso de segurança.
+// "botoes": um botão por link de pagamento (hoje, o link do Mercado Pago
+// em que a pessoa escolhe o valor). Só aceita endereço https://; botão com
+// link vazio não aparece. "plataforma" é o nome mostrado na página.
 // Use cafe: null para tirar o cartão e a página.
 cafe: {
 pagina: "/p/me-pague-um-cafe.html",
-link: "",
-plataforma: ""
+plataforma: "Mercado Pago",
+botoes: [
+{ rotulo: "☕ Me pague um café", link: "https://link.mercadopago.com.br/estudamana" }
+]
 }
 };
 
@@ -574,15 +576,23 @@ function linkSeguro(u) {
 return /^https:\/\/[^\s"<>]+$/.test(u || "") ? u : "";
 }
 function cafePagina(alvo) {
-var cfg = CONFIG.cafe, link = linkSeguro(cfg.link);
-var host = link ? link.replace(/^https:\/\/([^\/]+).*$/, "$1") : "";
+var cfg = CONFIG.cafe;
+var botoes = (cfg.botoes || []).filter(function (b) { return linkSeguro(b.link); });
+var hosts = [];
+botoes.forEach(function (b) {
+var h = b.link.replace(/^https:\/\/([^\/]+).*$/, "$1");
+if (hosts.indexOf(h) === -1) hosts.push(h);
+});
+var host = hosts.join(" ou ");
 alvo.className = "em-cafe-page";
 alvo.innerHTML =
 '<p class="em-cafe-lede">\u2615 Todas as ferramentas do Estuda Mana \u2014 os Di\u00e1rios, os editais mapeados, os grupos de estudo, os pr\u00eamios \u2014 s\u00e3o <strong>gratuitas</strong> e continuam gratuitas para todo mundo.</p>' +
 '<p>Manter tudo funcionando d\u00e1 trabalho: atualizar os informativos toda semana, conferir as leis alteradas, mapear editais novos e pagar os servi\u00e7os que guardam o seu progresso. Se o site ajuda nos seus estudos e voc\u00ea quiser contribuir, qualquer valor \u00e9 muito bem-vindo \u2014 e totalmente opcional.</p>' +
-(link
-? '<p class="em-cafe-acao"><a class="em-cafe-btn" href="' + cafeEsc(link) + '" target="_blank" rel="noopener noreferrer">\u2615 Me pague um caf\u00e9</a></p>'
-: '<p class="em-cafe-acao em-cafe-embreve">O bot\u00e3o de apoio estar\u00e1 aqui em breve.</p>') +
+(botoes.length
+? '<p class="em-cafe-acao">' + botoes.map(function (b) {
+return '<a class="em-cafe-btn" href="' + cafeEsc(b.link) + '" target="_blank" rel="noopener noreferrer">' + cafeEsc(b.rotulo) + "</a>";
+}).join(" ") + '</p><p class="em-cafe-nota">Você escolhe o valor e paga numa página segura' + (cfg.plataforma ? " do " + cafeEsc(cfg.plataforma) : "") + ', por Pix ou cartão.</p>' 
+: '<p class="em-cafe-acao em-cafe-embreve">O botão de apoio estará aqui em breve.</p>') +
 '<div class="em-cafe-seguranca"><p><strong>\uD83D\uDD12 Para sua seguran\u00e7a</strong></p><ul>' +
 '<li>O \u00fanico jeito oficial de apoiar \u00e9 o bot\u00e3o acima' + (host ? ', que abre <strong>' + cafeEsc(host) + '</strong>' + (cfg.plataforma ? " (" + cafeEsc(cfg.plataforma) + ")" : "") : "") + '. Confira o endere\u00e7o antes de pagar.</li>' +
 '<li>O Estuda Mana <strong>nunca</strong> pede doa\u00e7\u00e3o por WhatsApp, e-mail, direct ou coment\u00e1rio, nem divulga chave Pix ou QR Code em imagem. Se receber um pedido assim, \u00e9 golpe.</li>' +
