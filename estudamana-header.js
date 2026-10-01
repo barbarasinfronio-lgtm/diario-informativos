@@ -616,7 +616,8 @@ var card = document.createElement("aside");
 card.className = "em-cafe-card";
 card.innerHTML = '<span class="em-cafe-icone" aria-hidden="true">\u2615</span>' +
 '<p><strong>Gostou do Estuda Mana?</strong> Todas as ferramentas s\u00e3o gratuitas. Se quiser ajudar a manter o site no ar, ' +
-'<a href="' + cafeEsc(cfg.pagina) + '">doe um cafezinho</a>.</p>';
+'<a href="' + cafeEsc(cfg.pagina) + '">doe um cafezinho</a>.' +
+'<br><span class="em-cafe-fontes">De onde v\u00eam os dados: <a href="/p/fontes-e-aviso.html">fontes e aviso</a>.</span></p>';
 onde.appendChild(card);
 }
 function startCafe() {
