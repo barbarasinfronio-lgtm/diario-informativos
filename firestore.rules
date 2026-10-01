@@ -56,6 +56,27 @@ service cloud.firestore {
       allow write: if dono(uid) && contaDeVerdade();
     }
 
+    // Meus Cadernos (destaques e anotações): cada pessoa só lê e grava o
+    // próprio caderno — ninguém mais vê, nem os grupos de estudo.
+    match /cadernos/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade()
+                   && request.resource.data.keys().hasOnly(['cadernos', 'atual', 'atualizadoEm'])
+                   && request.resource.data.cadernos is list
+                   && request.resource.data.cadernos.size() <= 200;
+
+      match /marcas/{marcaId} {
+        allow read: if dono(uid);
+        allow delete: if dono(uid) && contaDeVerdade();
+        allow create, update: if dono(uid) && contaDeVerdade()
+                   && request.resource.data.keys().hasOnly(['fonte', 'item', 'titulo', 'origem', 'abrir',
+                        'secao', 'inicio', 'fim', 'trecho', 'cor', 'nota', 'caderno', 'criadoEm', 'atualizadoEm'])
+                   && request.resource.data.trecho is string && request.resource.data.trecho.size() <= 4000
+                   && request.resource.data.nota is string && request.resource.data.nota.size() <= 4000
+                   && request.resource.data.cor in ['amarelo', 'verde', 'rosa'];
+      }
+    }
+
     // Grupos de estudo coletivo
     match /groups/{code} {
       // Abrir um grupo específico exige saber o código (é assim que se entra).

@@ -550,6 +550,8 @@
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
       card.dataset.id = d.id;
+      card.setAttribute('data-cad-fonte', 'decisoes');   // selo 📝 de Meus Cadernos
+      card.setAttribute('data-cad-id', d.id);
       var checkbox = card.querySelector('.read-checkbox');
       checkbox.addEventListener('click', function(e){ e.stopPropagation(); });
       checkbox.addEventListener('change', function(){ marcarLido(d, checkbox.checked); });
@@ -636,12 +638,60 @@
     modalAtual = d;
     normasAtuais = null;
     mostrarNormas(d);
+    ligarCadernos(d);
   }
   function closeModal(){
+    if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     modalAtual = null;
     normasAtuais = null;
+  }
+
+  // ---- Meus Cadernos: destacar e anotar trechos do card aberto -------------
+  // (cadernos.js; as marcações ficam na conta, em cadernos/<uid>, e aparecem
+  // na página Meus Cadernos)
+  var CADERNOS_JS = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/cadernos.js';
+  var cadernosJs = null;
+  function carregarCadernos(){
+    if (window.EstudaManaCadernos) return Promise.resolve();
+    if (!cadernosJs) {
+      cadernosJs = fetch(CADERNOS_JS, { cache: 'no-cache' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(code){ (0, eval)(code + '\n//# sourceURL=' + CADERNOS_JS); })
+        .catch(function(e){ cadernosJs = null; throw e; });
+    }
+    return cadernosJs;
+  }
+  carregarCadernos().catch(function(){});
+  function linkDecisao(d){
+    return '/p/diario-das-decisoes.html#abrir=' + encodeURIComponent(d.id) + '&busca=' + encodeURIComponent(d.processo || d.titulo || '');
+  }
+  function ligarCadernos(d){
+    carregarCadernos().then(function(){
+      if (modalAtual !== d) return;
+      EstudaManaCadernos.ligar(modal, {
+        fonte: 'decisoes', item: d.id, titulo: d.titulo,
+        origem: [d.orgao, (d.tipoNome || precedenteAreaLine(d).replace(/^ · /, '')), d.tema ? precedenteBadge(d) : '', d.processo].filter(Boolean).join(' · '),
+        abrir: linkDecisao(d),
+        areas: [].slice.call(modal.querySelectorAll('h2, .tese-text, .destaque-text, .historico-text'))
+      });
+    }).catch(function(){});
+  }
+  // Link vindo de Meus Cadernos: #abrir=<id>&busca=<processo> — busca e abre o card
+  function abrirDoLink(){
+    var h = location.hash.replace(/^#/, ''), p = {};
+    h.split('&').forEach(function(kv){ var i = kv.indexOf('='); if (i > 0) p[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1)); });
+    if (!p.abrir && !p.busca) return;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch(e){}
+    if (p.busca) { qInput.value = p.busca; state.q = p.busca.trim().toLowerCase(); limite = LOTE_INICIAL; render(); }
+    if (!p.abrir) return;
+    var tentativas = 0;
+    (function procurar(){
+      var d = DATA.filter(function(x){ return String(x.id) === p.abrir; })[0];
+      if (d) { openModal(d); return; }
+      if (++tentativas < 40) setTimeout(procurar, 500);
+    })();
   }
 
   // ---- normas do julgado --------------------------------------------------
@@ -876,6 +926,7 @@
   montarChips();
   renderStats();
   render();
+  abrirDoLink();
   garantirBotoesListasGrandes();
   garantirBotoesGrupos();
   carregarLeve();
