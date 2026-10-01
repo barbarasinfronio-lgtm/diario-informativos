@@ -256,3 +256,31 @@ body.collapsed-header .page_body .centered-top-container { padding-left: 0 !impo
   :root:not([data-theme="light"]) { --em-leis-ink: #e6e8ee; --em-leis-soft: #b8bfce; --em-leis-faint: #8a93a6; }
 }
 :root[data-theme="dark"] { --em-leis-ink: #e6e8ee; --em-leis-soft: #b8bfce; --em-leis-faint: #8a93a6; }
+
+/* ---- "Me pague um café" (estudamana-header.js, CONFIG.cafe) ---------------- */
+.em-cafe-card {
+  display: flex; gap: 0.75rem; align-items: center;
+  max-width: var(--page-width-reading, 760px); margin: 2.5rem auto 1rem; padding: 0.85rem 1rem;
+  border: 1px dashed var(--surface-line); border-radius: 12px; background: var(--surface);
+  color: var(--ink-soft); font-family: var(--font-sans, system-ui, sans-serif); font-size: calc(0.85rem * var(--fs-scale, 1)); line-height: 1.45;
+}
+.em-cafe-card p { margin: 0; }
+.em-cafe-card strong { color: var(--ink); }
+.em-cafe-card a { color: var(--accent); font-weight: 600; }
+.em-cafe-icone { font-size: 1.6em; flex: none; }
+.em-cafe-page { max-width: var(--page-width-reading, 760px); margin: 0 auto; font-family: var(--font-sans, system-ui, sans-serif); color: var(--ink-soft); line-height: 1.6; font-size: calc(1rem * var(--fs-scale, 1)); }
+.em-cafe-page strong { color: var(--ink); }
+.em-cafe-lede { font-size: 1.08em; color: var(--ink); }
+.em-cafe-acao { text-align: center; margin: 1.6rem 0 0.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+.em-cafe-nota { text-align: center; font-size: 0.85em; color: var(--muted); margin: 0 0 1.4rem; }
+.em-cafe-btn {
+  display: inline-block; padding: 0.8rem 1.6rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
+  font-weight: 700; text-decoration: none; font-size: 1.05em;
+}
+.em-cafe-btn:hover { filter: brightness(1.08); }
+.em-cafe-embreve { color: var(--muted); font-style: italic; }
+.em-cafe-seguranca { border: 1px solid var(--surface-line); border-radius: 12px; padding: 0.8rem 1.1rem; background: var(--surface); font-size: 0.92em; }
+.em-cafe-seguranca p { margin: 0 0 0.3rem; }
+.em-cafe-seguranca ul { margin: 0; padding-left: 1.2rem; }
+.em-cafe-seguranca li { margin: 0.25rem 0; }
+.em-cafe-obrigado { text-align: center; margin-top: 1.4rem; }
