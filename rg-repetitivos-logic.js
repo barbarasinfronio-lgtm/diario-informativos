@@ -314,6 +314,7 @@
           (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
           (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
+          (d.suspensao ? '<span class="tag-afetado" title="' + escapeHtml(d.suspensao) + '">Suspensão nacional</span>' : '') +
         '</div>' +
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
@@ -346,6 +347,7 @@
         (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
+        (d.suspensao ? '<span class="tag-afetado">Suspensão nacional</span>' : '') +
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
@@ -358,6 +360,7 @@
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
         '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn' || d.tipo==='teses') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
         (d.tipo==='teses' ? '' : '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>') +
+        (d.suspensao ? '<div><b>Suspensão nacional</b>' + escapeHtml(d.suspensao.replace(/^Suspensão nacional /, '')) + '</div>' : '') +
       '</div>' +
       (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
