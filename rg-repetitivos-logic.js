@@ -506,13 +506,12 @@
     var meu = ++seqBusca;
     var extras = [];
     function desenharTudo(){
-      var extrasUnicos = semRepetirDosInformativos(extras, list);
       var todos = list.map(function(d){ return { d: d, k: chaveData(d.data) }; })
-        .concat(extrasUnicos.map(function(x){ return { x: x.it, c: x.c, k: chaveData(x.c.dataDe(x.it)) }; }));
+        .concat(extras.map(function(x){ return { x: x.it, c: x.c, k: chaveData(x.c.dataDe(x.it)) }; }));
       if (buscaTotal) todos.sort(function(a,b){ return a.k < b.k ? 1 : a.k > b.k ? -1 : 0; });
       var mostrar = Math.min(todos.length, ts.length ? Math.max(limite, 50) : limite);
       document.getElementById('countLine').textContent = ts.length
-        ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extrasUnicos.length ? ' (' + extrasUnicos.length + ' em Controle/Reclamações)' : '')
+        ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
         : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
       if (ts.length && state.org !== 'AFETADOS') {
@@ -551,38 +550,6 @@
       });
     }
   }
-  // Controle/Reclamações e Informativos às vezes trazem o mesmo julgamento
-  // (ex.: ADI 5654 — o Informativo 1202 tem a tese e o estado; o Controle, só
-  // o andamento). Na busca, fica o card do Informativo: o do Controle sai
-  // quando todas as ações dele estão num item da lista com data até 20 dias
-  // de diferença.
-  function acoesDe(t){
-    var out = [], re = /\b(ADI|ADPF|ADC|ADO|Rcl)\s*n?[º°o.]?\s*(\d[\d.]*)/gi, m;
-    while ((m = re.exec(String(t || '')))) out.push(m[1].toUpperCase() + m[2].replace(/\D/g, ''));
-    return out;
-  }
-  function diasDe(v){
-    var k = chaveData(v);
-    return k ? Date.UTC(+k.slice(0, 4), +k.slice(4, 6) - 1, +k.slice(6, 8)) / 86400000 : null;
-  }
-  function semRepetirDosInformativos(extras, list){
-    if (!extras.length) return extras;
-    var porAcao = {};
-    list.forEach(function(d){
-      var dia = diasDe(d.data);
-      if (dia == null) return;
-      acoesDe(d.processo).forEach(function(a){ (porAcao[a] = porAcao[a] || []).push({ dia: dia, proc: acoesDe(d.processo) }); });
-    });
-    return extras.filter(function(x){
-      var acoes = acoesDe(x.it.processo), dia = diasDe(x.c.dataDe(x.it));
-      if (!acoes.length || dia == null) return true;
-      var repetido = (porAcao[acoes[0]] || []).some(function(o){
-        return Math.abs(o.dia - dia) <= 20 && acoes.every(function(a){ return o.proc.indexOf(a) >= 0; });
-      });
-      return !repetido;
-    });
-  }
-
   var seqBusca = 0;
 
   function desenharCard(d){
