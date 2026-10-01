@@ -46,7 +46,10 @@ Regras (por arquivo):
     liminar ad referendum ainda não referendada, "nego seguimento", "julgo
     prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
     na preparação; ficam só as do Plenário/Turma, que vinculam.
+  Controle: saem as decisões que o Informativo do STF já traz (mesma ação, data
+    até 20 dias de diferença): o Informativo tem a tese e o estado de origem.
 """
+import datetime
 import json
 import os
 import re
@@ -173,6 +176,42 @@ def sem_conteudo_controle(d):
                 and not SUBST.search(t) and len(t) < 700)
 
 
+ACAO = re.compile(r"\b(ADI|ADPF|ADC|ADO)\s*n?[º°o.]?\s*(\d[\d.]*)", re.I)
+
+
+def acoes(t):
+    return [a.upper() + re.sub(r"\D", "", n) for a, n in ACAO.findall(str(t or ""))]
+
+
+def dia(v):
+    m = re.match(r"(\d{2})/(\d{2})/(\d{4})", str(v or "")) or re.match(r"(\d{4})-(\d{2})-(\d{2})", str(v or ""))
+    if not m:
+        return None
+    a, b, c = (int(x) for x in m.groups())
+    if a > 31:
+        a, c = c, a
+    return datetime.date(c, b, a).toordinal()
+
+
+def ja_no_informativo():
+    """Função que diz se a decisão do Controle já está num Informativo do STF."""
+    obj, _ = ler_json("informativos/indice.json")
+    campos = obj["campos"]
+    ip, idt = campos.index("processo"), campos.index("data")
+    por = {}
+    for x in obj["itens"]:
+        d, a = dia(x[idt]), acoes(x[ip])
+        for k in a:
+            por.setdefault(k, []).append((d, a))
+
+    def repetida(d):
+        a, dd = acoes(d.get("processo")), dia(d.get("data"))
+        if not a or dd is None:
+            return False
+        return any(o[0] is not None and abs(o[0] - dd) <= 20 and all(k in o[1] for k in a) for o in por.get(a[0], []))
+    return repetida
+
+
 def limpar_controle():
     f = "controleconst/adi_dados.js"
     conferir_formato(f)
@@ -180,6 +219,10 @@ def limpar_controle():
     antes = len(lista)
     lista = [d for d in lista if not sem_conteudo_controle(d)]
     vazias = antes - len(lista)
+    repetida = ja_no_informativo()
+    n1 = len(lista)
+    lista = [d for d in lista if not repetida(d)]
+    resumo.append(f"Controle: já no Informativo do STF {n1 - len(lista)}")
     vistos, saida, rep = {}, [], 0
     for d in lista:   # mesmo processo, data e texto
         k = (d.get("processo"), d.get("data"), norm(d.get("tema")))
