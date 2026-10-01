@@ -7,6 +7,18 @@
   // Jurisprudência em Teses do STJ: uma tese por card, com o texto completo
   // (gerado pelo robô do Mac, scripts/atualizar_informativos.py → stj/teses.json).
   var TESES_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stj/teses.json';
+  // Omissões inconstitucionais, resumos de decisões e o painel COVID-19 do
+  // STF (dados abertos do STF → stf/extras.json). Cada um tem seu botão.
+  var EXTRAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/stf/extras.json';
+  var GRUPOS = {
+    OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
+    RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
+    COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' }
+  };
+  // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
+  // página não ficar pesada; com busca, mostra tudo o que combinar.
+  var LOTE_INICIAL = 10;
+  var limite = LOTE_INICIAL;
   var state = { q:'', org:'all', risk:'all', area:null };
 
   // O rótulo acima do título ("Dossiê de jurisprudência · Magistratura") está
@@ -122,6 +134,7 @@
   document.getElementById('orgSeg').addEventListener('click', function(e){
     var btn = e.target.closest('button'); if(!btn) return;
     state.org = btn.dataset.org;
+    limite = LOTE_INICIAL;
     [...this.children].forEach(b=>b.classList.toggle('active', b===btn));
     render();
   });
@@ -142,7 +155,12 @@
   });
 
   var qInput = document.getElementById('q');
-  qInput.addEventListener('input', function(){ state.q = this.value.trim().toLowerCase(); render(); });
+  var qTimer = null;
+  qInput.addEventListener('input', function(){
+    var v = this.value.trim().toLowerCase();
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function(){ state.q = v; limite = LOTE_INICIAL; render(); }, 250);
+  });
 
   // Botão "Minimizar": recolhe o painel de filtros (fixo no topo ao rolar)
   // para só a linha da busca + STF/STJ, liberando espaço para ler. Criado
@@ -180,6 +198,7 @@
 
   document.getElementById('clearBtn').addEventListener('click', function(){
     state = { q:'', org:'all', risk:'all', area:null };
+    limite = LOTE_INICIAL;
     qInput.value = '';
     document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active', b.dataset.org==='all'));
     document.querySelectorAll('.risk-btn').forEach(b=>b.classList.toggle('active', b.dataset.r==='all'));
@@ -192,15 +211,31 @@
     });
   }
 
+  function semAcento(t){ return String(t == null ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
+  function textoBusca(d){
+    if (d._busca == null) d._busca = semAcento([d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,
+      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao].join(' '));
+    return d._busca;
+  }
   function matches(d){
-    if(state.org !== 'all' && d.orgao !== state.org) return false;
+    if (GRUPOS[state.org]) { if (d.grupo !== state.org) return false; }
+    else if(state.org !== 'all' && d.orgao !== state.org) return false;
     if(state.risk !== 'all' && d.risco !== state.risk) return false;
     if(state.area && d.area !== state.area) return false;
-    if(state.q){
-      var hay = [d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,d.precedenteLabel,d.orgao].join(' ').toLowerCase();
-      if(hay.indexOf(state.q) === -1) return false;
+    var ts = termosBusca();
+    if(ts.length){
+      var hay = textoBusca(d);
+      for (var i = 0; i < ts.length; i++) if (hay.indexOf(ts[i]) === -1) return false;
     }
     return true;
+  }
+  // "dd/mm/aaaa" ou "aaaa-mm-dd" → "aaaammdd" (para ordenar por data)
+  function chaveData(v){
+    var t = String(v || ''), m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(t);
+    if (m) return m[3] + m[2] + m[1];
+    m = /^(\d{4})-(\d{2})-(\d{2})/.exec(t);
+    return m ? m[1] + m[2] + m[3] : '';
   }
 
   // ---- Controle de constitucionalidade (ADI, ADPF, ADC, ADO) ---------------
@@ -224,6 +259,17 @@
       b.textContent = LISTAS_GRANDES[k].rotulo;
       b.title = LISTAS_GRANDES[k].titulo;
       seg.appendChild(b);
+    });
+  }
+  function garantirBotoesGrupos(){
+    var seg = document.getElementById('orgSeg');
+    if (!seg) return;
+    var antesDe = seg.querySelector('[data-org="CONTROLE"]');
+    Object.keys(GRUPOS).forEach(function(k){
+      if (seg.querySelector('[data-org="' + k + '"]')) return;
+      var b = document.createElement('button');
+      b.dataset.org = k; b.textContent = GRUPOS[k].rotulo; b.title = GRUPOS[k].titulo;
+      seg.insertBefore(b, antesDe || null);
     });
   }
   function carregarModulo(){
@@ -289,18 +335,70 @@
     var anyFilter = state.q || state.org!=='all' || state.risk!=='all' || state.area;
     document.getElementById('clearBtn').hidden = !anyFilter;
 
-    var list = DATA.filter(matches).sort(function(a,b){
-      var r = riskOrder(a.risco)-riskOrder(b.risco);
-      if(r!==0) return r;
-      return (b.data||'').split('/').reverse().join('') > (a.data||'').split('/').reverse().join('') ? 1 : -1;
-    });
+    var ts = termosBusca();
+    var list = DATA.filter(matches);
+    if (state.org === 'all') {
+      // "Todos": mais recentes primeiro
+      list.sort(function(a,b){ var x = chaveData(a.data), y = chaveData(b.data); return x < y ? 1 : x > y ? -1 : 0; });
+    } else {
+      list.sort(function(a,b){
+        var r = riskOrder(a.risco)-riskOrder(b.risco);
+        if(r!==0) return r;
+        return (b.data||'').split('/').reverse().join('') > (a.data||'').split('/').reverse().join('') ? 1 : -1;
+      });
+    }
 
-    document.getElementById('countLine').textContent = list.length + ' de ' + DATA.length + ' decisões';
     var grid = document.getElementById('grid');
     grid.innerHTML = '';
-    document.getElementById('empty').hidden = list.length>0;
+    var maisBtn = document.getElementById('maisDecisoes');
+    if (!maisBtn) {
+      maisBtn = document.createElement('button');
+      maisBtn.id = 'maisDecisoes'; maisBtn.type = 'button'; maisBtn.className = 'chip';
+      maisBtn.style.cssText = 'display:block;margin:16px auto';
+      maisBtn.addEventListener('click', function(){ limite += ts2().length ? 50 : 10; render(); });
+      grid.parentNode.insertBefore(maisBtn, grid.nextSibling);
+    }
+    // Busca em "Todos" (sem filtro de risco/matéria): procura também em
+    // Controle e Reclamações (carregados só quando há busca).
+    var buscaTotal = ts.length && state.org === 'all' && state.risk === 'all' && !state.area;
+    var meu = ++seqBusca;
+    var extras = [];
+    function desenharTudo(){
+      var todos = list.map(function(d){ return { d: d, k: chaveData(d.data) }; })
+        .concat(extras.map(function(x){ return { x: x.it, c: x.c, k: chaveData(x.c.dataDe(x.it)) }; }));
+      if (buscaTotal) todos.sort(function(a,b){ return a.k < b.k ? 1 : a.k > b.k ? -1 : 0; });
+      var mostrar = Math.min(todos.length, ts.length ? Math.max(limite, 50) : limite);
+      document.getElementById('countLine').textContent = ts.length
+        ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
+        : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
+      document.getElementById('empty').hidden = todos.length > 0;
+      grid.innerHTML = '';
+      todos.slice(0, mostrar).forEach(function(t){
+        if (t.d) desenharCard(t.d); else grid.appendChild(t.c.cartao(t.x));
+      });
+      maisBtn.hidden = mostrar >= todos.length;
+      maisBtn.textContent = 'Mostrar mais (' + (todos.length - mostrar) + ' restantes)';
+    }
+    function ts2(){ return termosBusca(); }
+    desenharTudo();
+    if (buscaTotal) {
+      document.getElementById('countLine').textContent += ' · buscando também em Controle e Reclamações…';
+      Promise.all(Object.keys(LISTAS_GRANDES).map(function(org){
+        return carregarControle(org).then(function(c){
+          return c.buscarTudo(state.q).then(function(itens){ return itens.map(function(it){ return { it: it, c: c }; }); });
+        }).catch(function(){ return []; });
+      })).then(function(partes){
+        if (meu !== seqBusca) return;
+        extras = [].concat.apply([], partes);
+        desenharTudo();
+      });
+    }
+  }
+  var seqBusca = 0;
 
-    list.forEach(function(d){
+  function desenharCard(d){
+    var grid = document.getElementById('grid');
+    (function(){
       var isReadNow = isRead(lidos[d.id]);
       var card = document.createElement('div');
       card.className = 'card' + (isReadNow ? ' is-read' : '');
@@ -333,7 +431,7 @@
 
       card.addEventListener('click', function(){ openModal(d); });
       grid.appendChild(card);
-    });
+    })();
   }
 
   var overlay = document.getElementById('overlay');
@@ -353,16 +451,16 @@
       '<h2>' + escapeHtml(d.titulo) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
-      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">Destaque</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
+      (d.destaque && d.destaque!==d.tese ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
         '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn' || d.tipo==='teses') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
-        (d.tipo==='teses' ? '' : '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>') +
+        (d.tipo==='teses' || d.grupo ? '' : '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>') +
         (d.suspensao ? '<div><b>Suspensão nacional</b>' + escapeHtml(d.suspensao.replace(/^Suspensão nacional /, '')) + '</div>' : '') +
       '</div>' +
-      (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
+      (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : d.grupo ? 'Detalhes' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
@@ -502,7 +600,8 @@
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 
   function renderStats(){
-    var stf = DATA.filter(d=>d.orgao==='STF').length;
+    var stf = DATA.filter(d=>d.orgao==='STF' && !d.grupo).length;
+    var extras = DATA.filter(d=>d.grupo).length;
     var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses').length;
     var teses = DATA.filter(d=>d.tipo==='teses').length;
     var tst = DATA.filter(d=>d.orgao==='TST').length;
@@ -517,6 +616,7 @@
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
       (teses ? '<div class="stat"><b>' + teses + '</b><span>STJ · Jurisprudência em Teses</span></div>' : '') +
       (tst ? '<div class="stat"><b>' + tst + '</b><span>TST · OJs, PNs e IRR</span></div>' : '') +
+      (extras ? '<div class="stat"><b>' + extras + '</b><span>STF · Omissões, resumos e COVID-19</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
   }
@@ -566,10 +666,26 @@
       .catch(function(){ /* sem as Teses, a página segue com o resto */ });
   }
 
+  function carregarExtras(){
+    fetch(EXTRAS_JSON, { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var itens = (j && j.itens) || [];
+        if (!itens.length) return;
+        DATA = DATA.concat(itens);
+        garantirBotoesGrupos();
+        montarChips();
+        renderStats();
+        render();
+      })
+      .catch(function(){ /* sem os extras, a página segue com o resto */ });
+  }
+
   montarChips();
   renderStats();
   render();
   garantirBotoesListasGrandes();
+  carregarExtras();
   carregarTST();
   carregarTeses();
 
