@@ -26,7 +26,7 @@
       filtros: ["ADI", "ADPF", "ADC", "ADO"],
       nomeFiltro: { ADI: "Ação Direta de Inconstitucionalidade", ADPF: "Arguição de Descumprimento de Preceito Fundamental", ADC: "Ação Declaratória de Constitucionalidade", ADO: "Ação Direta de Inconstitucionalidade por Omissão" },
       etiqueta: function (it) { return it.classe; },
-      linhaArea: function (it) { return this.nomeFiltro[it.classe] || it.classe; },
+      linhaArea: function (it) { return (this.nomeFiltro[it.classe] || it.classe) + (it.resultado ? " · " + it.resultado : ""); },
       // o id traz a classe e a data (STF_ADI_7641_20260925_15066)
       idTemFiltro: true, grupoIndice: "grupos"
     },
@@ -47,7 +47,17 @@
   var STORAGE_KEY = cfg.storage;
   var P = cfg.prefixo + "-";
   var NOME_CLASSE = cfg.nomeFiltro;
-  function textoItem(it) { for (var i = 0; i < cfg.campoTexto.length; i++) if (it[cfg.campoTexto[i]]) return it[cfg.campoTexto[i]]; return ""; }
+  var GENERICO = /^A[çc][ãa]o de controle concentrado de constitucionalidade\.?$/i;
+  function textoItem(it) {
+    for (var i = 0; i < cfg.campoTexto.length; i++) {
+      var t = it[cfg.campoTexto[i]];
+      // Sem o texto da decisão na base do STF: mostra ao menos o andamento
+      // ("JULGAMENTO DO PLENO - PROCEDENTE").
+      if (t && GENERICO.test(String(t).trim()) && it.andamento) return it.andamento;
+      if (t) return t;
+    }
+    return it.andamento || "";
+  }
 
   function lerLidos() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") || {}; } catch (e) { return {}; } }
   var lidos = lerLidos();
@@ -69,18 +79,18 @@
   function termos() { return semAcento(getBusca ? getBusca() : "").split(/\s+/).filter(Boolean); }
   function combinaBusca(item, ts) {
     if (!ts.length) return true;
-    var h = semAcento([item.processo, item[cfg.campoFiltro], item.ramo, formatarData(item[cfg.campoData]), item[cfg.campoData], item.ano, item.relator, limparTexto(textoItem(item))].join(" "));
+    var h = semAcento([item.processo, item[cfg.campoFiltro], item.ramo, item.resultado, item.andamento, item.tipoDecisao, formatarData(item[cfg.campoData]), item[cfg.campoData], item.ano, item.relator, limparTexto(textoItem(item))].join(" "));
     return ts.every(function (t) { return variantes(t).some(function (x) { return h.indexOf(x) !== -1; }); });
   }
   function formatarData(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || "")); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
   function safeUrl(u) { var s = String(u || ""); if (!/^https?:\/\//i.test(s)) return "#"; try { return encodeURI(decodeURI(s)); } catch (e) { return encodeURI(s); } }
   var LIMITE_TEXTO = 250;
-  function limparTexto(t) {
+  function limparTexto(t, completo) {
     var original = String(t == null ? "" : t);
     var s = original.replace(/_x([0-9A-Fa-f]{4})_/g, function (m, hex) { return String.fromCharCode(parseInt(hex, 16)); })
       .replace(/">\.\./g, '"...').replace(/[\s ]+/g, " ").trim();
     if (/^sem descri[cç][aã]o$/i.test(s)) return "";
-    if (original.length >= LIMITE_TEXTO - 5 && !/[.!?…"”)]$/.test(s)) {
+    if (!completo && original.length >= LIMITE_TEXTO - 5 && !/[.!?…"”)]$/.test(s)) {
       s = s.replace(/\s+\S*$/, "").replace(/[,;:\s]+$/, "");
       s += /[.!?]$/.test(s) ? " …" : "…";
     }
@@ -227,7 +237,7 @@
     pagina.forEach(function (it) {
       var lido = !!lidos[it.id];
       var data = formatarData(it[cfg.campoData]) || (it.ano ? String(it.ano) : "data não informada");
-      var texto = limparTexto(textoItem(it)) || "Sem resumo disponível — abra o processo no STF.";
+      var texto = limparTexto(textoItem(it), it.completo) || "Sem resumo disponível — abra o processo no STF.";
       var url = it.url || URL_STF + it.processo;
       var card = document.createElement("div");
       card.className = "card" + (lido ? " is-read" : "");
@@ -259,8 +269,8 @@
   function abrirDetalhe(it) {
     var ov = document.getElementById("overlay"), modal = document.getElementById("modal");
     if (!ov || !modal) { window.open(safeUrl(it.url || URL_STF + it.processo), "_blank", "noopener"); return; }
-    var bruto = textoItem(it), texto = limparTexto(bruto);
-    var cortado = String(bruto || "").length >= LIMITE_TEXTO - 5 && /…$/.test(texto);
+    var bruto = textoItem(it), texto = limparTexto(bruto, it.completo);
+    var cortado = !it.completo && String(bruto || "").length >= LIMITE_TEXTO - 5 && /…$/.test(texto);
     var url = it.url || URL_STF + it.processo;
     var lido = !!lidos[it.id];
     var rotuloTexto = cfg.prefixo === "reclamacoes" ? "Resumo da decisão" : "Decisão";
@@ -276,7 +286,10 @@
         "<div><b>Processo</b>" + esc(it.processo || "—") + "</div>" +
         "<div><b>Relator(a)</b>" + esc(it.relator || "—") + "</div>" +
         "<div><b>Julgamento</b>" + esc(formatarData(it[cfg.campoData]) || it.ano || "—") + "</div>" +
-        (it.ramo ? "<div><b>" + (cfg.prefixo === "reclamacoes" ? "Tipo de decisão" : "Ramo") + "</b>" + esc(it.ramo) + "</div>" : "") +
+        (it.resultado ? "<div><b>Resultado</b>" + esc(it.resultado) + "</div>" : "") +
+        (it.tipoDecisao ? "<div><b>Tipo de decisão</b>" + esc(it.tipoDecisao) + "</div>" : "") +
+        (it.andamento && it.andamento !== bruto && it.andamento !== it.resultado ? "<div><b>Andamento</b>" + esc(it.andamento) + "</div>" : "") +
+        (it.ramo && !it.tipoDecisao ? "<div><b>" + (cfg.prefixo === "reclamacoes" ? "Tipo de decisão" : "Ramo") + "</b>" + esc(it.ramo) + "</div>" : "") +
       "</div>" +
       '<a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a>' +
       '<p style="margin-top:14px"><button type="button" class="chip" id="' + P + 'lido-modal">' + (lido ? "✓ Lido — desmarcar" : "Marcar como lido") + "</button></p>";
