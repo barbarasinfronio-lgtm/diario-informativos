@@ -14,6 +14,10 @@
      EstudaManaCadernos.ligar(modal, { fonte, item, titulo, origem, abrir, areas })
      EstudaManaCadernos.desligar()
    Cards da lista com data-cad-fonte / data-cad-id ganham o selo 📝.
+   Listas sem card aberto (Súmulas, Resoluções, Leis, Informativos): cada
+   item traz data-cad-lista (fonte), data-cad-item, data-cad-titulo,
+   data-cad-origem e data-cad-abrir; o texto que pode ser destacado tem a
+   classe "cad-area" e o botão "📝 Anotar" vai em ".cad-lugar" (ou no item).
    ===================================================================== */
 (function () {
   if (window.EstudaManaCadernos) return;
@@ -55,8 +59,11 @@
   function avisar() {
     ouvintes.forEach(function (fn) { try { fn(); } catch (e) {} });
     atualizarSelos();
+    versao++;
+    atualizarListas();
     if (ligado) { aplicarDestaques(); desenharLista(); }
   }
+  var versao = 0;
 
   function carregarNuvem() {
     if (window.EstudaManaNuvem) return Promise.resolve();
@@ -193,9 +200,10 @@
       var add = lista[i].addedNodes;
       for (var j = 0; j < add.length; j++) {
         var n = add[j];
-        if (n.nodeType === 1 && (n.hasAttribute("data-cad-id") || n.querySelector("[data-cad-id]"))) {
+        if (n.nodeType === 1 && (n.hasAttribute("data-cad-id") || n.querySelector("[data-cad-id]") ||
+            n.hasAttribute("data-cad-lista") || n.querySelector("[data-cad-lista]"))) {
           clearTimeout(obsTimer);
-          obsTimer = setTimeout(function () { atualizarSelos(); }, 60);
+          obsTimer = setTimeout(function () { atualizarSelos(); atualizarListas(); }, 60);
           return;
         }
       }
@@ -245,10 +253,12 @@
   }
 
   function aplicarDestaques() {
-    if (!ligado) return;
-    var areas = ligado.areas;
+    if (ligado) destacarEm(ligado.areas, ligado.info);
+  }
+  function destacarEm(areas, info) {
     areas.forEach(tirarDestaques);
-    marcasDe(ligado.info.fonte, ligado.info.item).forEach(function (m) {
+    marcasDe(info.fonte, info.item).forEach(function (m) {
+      if (m.secao < 0) return;   // anotação do item inteiro (sem trecho)
       var area = areas[m.secao], ini = m.inicio, fim = m.fim;
       if (!area || area.textContent.slice(ini, fim) !== m.trecho) {
         // o texto mudou um pouco: procura o trecho de novo
@@ -262,6 +272,50 @@
     });
   }
 
+  // ---- listas (Súmulas, Resoluções, Leis, Informativos) ----------------------
+  function infoDe(el) {
+    return {
+      fonte: el.getAttribute("data-cad-lista"), item: el.getAttribute("data-cad-item"),
+      titulo: el.getAttribute("data-cad-titulo") || "", origem: el.getAttribute("data-cad-origem") || "",
+      abrir: el.getAttribute("data-cad-abrir") || ""
+    };
+  }
+  function resumoMarca(m) {
+    var t = m.secao < 0 ? "" : "“" + (m.trecho.length > 120 ? m.trecho.slice(0, 120) + "…" : m.trecho) + "”";
+    return '<button type="button" class="cad-item-btn cad-borda-' + esc(m.cor) + '" data-marca="' + esc(m.id) + '">' +
+      (t ? '<span class="cad-trecho">' + esc(t) + "</span>" : "") +
+      (m.nota ? '<span class="cad-nota">' + esc(m.nota) + "</span>" : '<span class="cad-nota cad-sem-nota">(sem anotação)</span>') +
+      "</button>";
+  }
+  function atualizarListas() {
+    var els = document.querySelectorAll("[data-cad-lista]");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el._cadV === versao && el._cadUid === uid) continue;
+      el._cadV = versao; el._cadUid = uid;
+      var info = infoDe(el);
+      if (!info.item) continue;
+      destacarEm([].slice.call(el.querySelectorAll(".cad-area")), info);
+      var lugar = el.querySelector(".cad-lugar") || el;
+      var box = lugar.querySelector(".cad-notas");
+      if (!uid) { if (box) box.remove(); continue; }
+      if (!box) { box = document.createElement("div"); box.className = "cad-notas"; lugar.appendChild(box); }
+      var lst = marcasDe(info.fonte, info.item).filter(function (m) { return m.secao < 0 || m.nota; });
+      box.innerHTML = lst.map(resumoMarca).join("") +
+        '<button type="button" class="cad-anotar" title="Anotar em Meus Cadernos">📝 Anotar</button>';
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".cad-anotar");
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    var el = b.closest("[data-cad-lista]");
+    var info = el ? infoDe(el) : ligado && ligado.info;
+    if (!info) return;
+    var sel = window.getSelection(); if (sel) sel.removeAllRanges();
+    editor({ novo: true, secao: -1, inicio: 0, fim: 0, trecho: String(info.titulo || "").slice(0, LIMITE_TRECHO), cor: "amarelo", info: info }, b.getBoundingClientRect());
+  }, true);
+
   // Quadro "Minhas marcações" no fim do card aberto
   function desenharLista() {
     if (!ligado) return;
@@ -271,16 +325,17 @@
       return;
     }
     var html = '<div class="section-label">Minhas marcações</div>';
-    if (!lst.length) html += '<p class="cad-dica">Selecione um trecho do texto acima para destacar ou anotar. Tudo fica salvo em <a href="' + PAGINA + '">Meus Cadernos</a>.</p>';
+    if (!lst.length) html += '<p class="cad-dica">Selecione um trecho do texto acima para destacar ou anotar, ou anote a decisão toda. Tudo fica salvo em <a href="' + PAGINA + '">Meus Cadernos</a>.</p>';
     else {
       html += '<ul class="cad-lista">' + lst.map(function (m) {
         return '<li class="cad-item cad-borda-' + esc(m.cor) + '"><button type="button" class="cad-item-btn" data-marca="' + esc(m.id) + '">' +
-          '<span class="cad-trecho">“' + esc(m.trecho.length > 220 ? m.trecho.slice(0, 220) + "…" : m.trecho) + '”</span>' +
+          (m.secao < 0 ? "" : '<span class="cad-trecho">“' + esc(m.trecho.length > 220 ? m.trecho.slice(0, 220) + "…" : m.trecho) + '”</span>') +
           (m.nota ? '<span class="cad-nota">' + esc(m.nota) + "</span>" : "") +
           '<span class="cad-onde">' + esc(nomeCaderno(m.caderno)) + "</span></button></li>";
       }).join("") + "</ul>" +
       '<p class="cad-dica"><a href="' + PAGINA + '">Abrir Meus Cadernos →</a></p>';
     }
+    html += '<p><button type="button" class="cad-anotar">📝 Anotar a decisão toda</button></p>';
     caixa.innerHTML = html;
   }
 
@@ -376,7 +431,7 @@
   }
 
   function dadosNova(s, cor, nota) {
-    var info = ligado.info;
+    var info = s.info || ligado.info;
     return {
       fonte: info.fonte, item: String(info.item), titulo: String(info.titulo || "").slice(0, 400),
       origem: String(info.origem || "").slice(0, 300), abrir: String(info.abrir || "").slice(0, 600),
@@ -405,11 +460,18 @@
   });
 
   function verSelecao() {
-    if (!ligado) return;
     if (!barra.hidden && barra.querySelector("textarea")) return;   // editando
     var sel = window.getSelection();
     if (!sel || sel.isCollapsed || !sel.rangeCount) { esconderBarra(); return; }
-    var r = sel.getRangeAt(0), areas = ligado.areas, secao = -1;
+    var r = sel.getRangeAt(0), areas = null, info = null, secao = -1;
+    if (ligado) { areas = ligado.areas; info = ligado.info; }
+    else {
+      var no = r.startContainer.nodeType === 1 ? r.startContainer : r.startContainer.parentNode;
+      var item = no && no.closest && no.closest("[data-cad-lista]");
+      if (!item) { esconderBarra(); return; }
+      areas = [].slice.call(item.querySelectorAll(".cad-area"));
+      info = infoDe(item);
+    }
     for (var i = 0; i < areas.length; i++) {
       if (areas[i].contains(r.startContainer) && areas[i].contains(r.endContainer)) { secao = i; break; }
     }
@@ -420,12 +482,12 @@
     while (ini < fim && /\s/.test(txt.charAt(ini))) ini++;
     while (fim > ini && /\s/.test(txt.charAt(fim - 1))) fim--;
     if (fim - ini < 2) { esconderBarra(); return; }
-    selecaoAtual = { secao: secao, inicio: ini, fim: fim, trecho: txt.slice(ini, fim) };
+    selecaoAtual = { secao: secao, inicio: ini, fim: fim, trecho: txt.slice(ini, fim), info: info };
     mostrarBarraNova(r.getBoundingClientRect());
   }
   var selTimer = null;
   document.addEventListener("selectionchange", function () {
-    if (!ligado) return;
+    if (!ligado && !document.querySelector("[data-cad-lista]")) return;
     clearTimeout(selTimer);
     selTimer = setTimeout(verSelecao, 350);
   });
@@ -434,6 +496,14 @@
   });
   window.addEventListener("resize", esconderBarra);
 
+  document.addEventListener("click", function (e) {
+    var mk = e.target.closest && e.target.closest("mark.cad-mark, .cad-item-btn");
+    if (!mk || !mk.getAttribute("data-marca")) return;
+    var s = window.getSelection();
+    if (mk.tagName === "MARK" && s && !s.isCollapsed) return;   // selecionando por cima
+    e.preventDefault(); e.stopPropagation();
+    abrirMarca(mk.getAttribute("data-marca"), mk);
+  }, true);
   function abrirMarca(id, el) {
     var m = marcas[id];
     if (!m) return;
@@ -448,13 +518,7 @@
     var caixa = document.createElement("div");
     caixa.className = "cad-caixa";
     modal.appendChild(caixa);
-    var noModal = function (e) {
-      var mk = e.target.closest("mark.cad-mark, .cad-item-btn");
-      if (!mk) return;
-      var s = window.getSelection();
-      if (mk.tagName === "MARK" && s && !s.isCollapsed) return;   // selecionando por cima
-      abrirMarca(mk.getAttribute("data-marca"), mk);
-    };
+    var noModal = function () {};
     var aoRolar = function () { if (!barra.querySelector("textarea")) esconderBarra(); };
     modal.addEventListener("click", noModal);
     modal.addEventListener("scroll", aoRolar);

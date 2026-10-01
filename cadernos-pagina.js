@@ -49,8 +49,8 @@
     if (!st.conhecida) { raiz.innerHTML = '<p class="cad-dica">Carregando seus cadernos…</p>'; return; }
     if (!st.uid) {
       raiz.innerHTML = '<p class="cad-aviso">Entre na sua conta (Google ou e-mail e senha) para ver seus cadernos. ' +
-        'Os destaques e anotações são feitos nos cards abertos do <a href="/p/diario-das-decisoes.html">Diário das Decisões</a>: ' +
-        'selecione um trecho e escolha a cor ou "Anotar".</p>';
+        'Os destaques e anotações são feitos nos Diários (Decisões, Súmulas, Resoluções, Leis e Informativos): ' +
+        'selecione um trecho e escolha a cor, ou use o botão "📝 Anotar".</p>';
       if (!loginMostrado && window.EstudaManaNuvem) { loginMostrado = true; window.EstudaManaNuvem.mostrarLogin(raiz); }
       return;
     }
@@ -104,7 +104,7 @@
     ordem.sort(function (a, b) { return grupos[a].recente < grupos[b].recente ? 1 : -1; });
 
     if (!st.marcas.length) {
-      html += '<p class="cad-vazio">Seu caderno ainda está vazio. Abra um card no <a href="/p/diario-das-decisoes.html">Diário das Decisões</a>, selecione um trecho e escolha uma cor ou "Anotar".</p>';
+      html += '<p class="cad-vazio">Seu caderno ainda está vazio. Nos Diários (Decisões, Súmulas, Resoluções, Leis e Informativos), selecione um trecho e escolha uma cor, ou use o botão "📝 Anotar".</p>';
     } else if (!ordem.length) {
       html += '<p class="cad-vazio">Nenhuma marcação com esse filtro.</p>';
     } else {
@@ -128,9 +128,9 @@
       }).join("");
       var ed = editando === m.id;
       return '<div class="cad-marca cad-borda-' + esc(m.cor) + '" data-marca="' + esc(m.id) + '">' +
-        "<blockquote>“" + esc(m.trecho) + "”</blockquote>" +
+        (m.secao < 0 ? "" : "<blockquote>“" + esc(m.trecho) + "”</blockquote>") +
         (ed ? '<textarea class="cad-texto" rows="3" data-editando="' + esc(m.id) + '" placeholder="Sua anotação">' + esc(m.nota) + "</textarea>"
-            : (m.nota ? '<span class="cad-nota">' + esc(m.nota) + "</span>" : "")) +
+            : (m.nota ? '<span class="cad-nota">' + esc(m.nota) + "</span>" : (m.secao < 0 ? '<span class="cad-nota cad-sem-nota">(sem anotação)</span>' : ""))) +
         '<div class="cad-marca-rodape">' +
           (ed ? '<button type="button" class="cad-acao cad-salvar" data-salvar="1">Salvar</button><button type="button" class="cad-acao" data-cancelar="1">Cancelar</button>'
               : '<button type="button" class="cad-acao" data-editar="1">' + (m.nota ? "Editar anotação" : "📝 Anotar") + "</button>") +

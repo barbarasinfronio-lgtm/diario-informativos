@@ -312,6 +312,11 @@
       state.filter(function (r) { return r.ano === year; }).forEach(function (row) {
         var li = document.createElement("li");
         li.className = "row" + (row.lida ? " is-read" : "");
+        li.setAttribute("data-cad-lista", "informativos");
+        li.setAttribute("data-cad-item", currentOrg + ":" + row.edicao);
+        li.setAttribute("data-cad-titulo", "Informativo nº " + row.edicao + "/" + row.ano + (row.tema ? " — " + row.tema : ""));
+        li.setAttribute("data-cad-origem", ORGS[currentOrg].label + " · " + fmtDate(row.data));
+        li.setAttribute("data-cad-abrir", "/p/diario-dos-informativos.html#cad=" + encodeURIComponent(currentOrg + "|" + row.edicao));
 
         var checkWrap = document.createElement("div");
         checkWrap.className = "check-wrap";
@@ -324,7 +329,7 @@
         checkWrap.appendChild(input);
 
         var edition = document.createElement("div");
-        edition.className = "edition";
+        edition.className = "edition cad-lugar";
         var num = document.createElement("span");
         num.className = "num";
         num.textContent = "Nº " + row.edicao + "/" + row.ano;
@@ -594,6 +599,18 @@
   applyMap(readLocal());
   criarBusca("Buscar pelo número ou data do informativo (ex.: 1228, 09/2026)", function () { render(); });
   render();
+  // Link vindo de Meus Cadernos: #cad=<órgão>|<edição> — abre o órgão e busca a edição
+  function abrirDoCaderno() {
+    var m = /[#&]cad=([^&]+)/.exec(location.hash);
+    if (!m) return;
+    var p;
+    try { p = decodeURIComponent(m[1]).split("|"); } catch (e) { return; }
+    if (ORGS[p[0]]) currentOrg = p[0];
+    var inp = document.querySelector(".busca-diario input");
+    if (inp && p[1]) { inp.value = p[1]; inp.dispatchEvent(new Event("input")); } else render();
+  }
+  abrirDoCaderno();
+  window.addEventListener("hashchange", abrirDoCaderno);
 
   // 2) se a pessoa entrou (Google ou e-mail e senha — ver conta-google.js),
   // reconcilia com o progresso salvo dela e liga a escuta em tempo real.
@@ -670,4 +687,16 @@
     carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+})();
+
+// Meus Cadernos: destacar e anotar (cadernos.js). Os itens da lista trazem
+// data-cad-lista / data-cad-item / data-cad-titulo / data-cad-origem /
+// data-cad-abrir; o texto destacável tem a classe "cad-area".
+(function () {
+  if (window.EstudaManaCadernos) return;
+  var url = "https://barbarasinfronio-lgtm.github.io/diario-informativos/cadernos.js";
+  fetch(url, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (code) { if (!window.EstudaManaCadernos) (0, eval)(code + "\n//# sourceURL=" + url); })
+    .catch(function () {});
 })();

@@ -344,6 +344,12 @@
       }
       var li = document.createElement("li");
       li.className = "row sumula-row" + (row.lida ? " is-read" : "");
+      var rotuloOrg = SUMULAS_DATA[row.org].label.replace(/\s*\(\d+\)$/, "");
+      li.setAttribute("data-cad-lista", "sumulas");
+      li.setAttribute("data-cad-item", row.org + ":" + row.numero);
+      li.setAttribute("data-cad-titulo", (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : row.org === "tjto" ? "Enunciado nº " : "Súmula nº ") + row.numero);
+      li.setAttribute("data-cad-origem", rotuloOrg);
+      li.setAttribute("data-cad-abrir", "/p/diario-das-sumulas.html#cad=" + encodeURIComponent(row.org + "|" + row.numero));
 
       var checkWrap = document.createElement("div");
       checkWrap.className = "check-wrap";
@@ -356,12 +362,12 @@
       checkWrap.appendChild(input);
 
       var edition = document.createElement("div");
-      edition.className = "edition sumula-edition";
+      edition.className = "edition sumula-edition cad-lugar";
       var num = document.createElement("span");
       num.className = "num";
       num.textContent = (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : row.org === "tjto" ? "Enunciado nº " : "Súmula nº ") + row.numero;
       var texto = document.createElement("p");
-      texto.className = "sumula-texto";
+      texto.className = "sumula-texto cad-area";
       texto.textContent = row.texto;
       edition.appendChild(num);
       edition.appendChild(texto);
@@ -620,6 +626,19 @@
   applyMap(readLocal());
   criarBusca("Buscar súmula por número ou palavra (ex.: 331, horas extras)", function () { loteAtual = 0; render(); });
   render();
+  // Link vindo de Meus Cadernos: #cad=<tribunal>|<número> — abre o tribunal e busca o número
+  function abrirDoCaderno() {
+    var m = /[#&]cad=([^&]+)/.exec(location.hash);
+    if (!m) return;
+    var p;
+    try { p = decodeURIComponent(m[1]).split("|"); } catch (e) { return; }
+    if (SUMULAS_DATA[p[0]]) currentOrg = p[0];
+    loteAtual = 0;
+    var inp = document.querySelector(".busca-diario input");
+    if (inp && p[1]) { inp.value = p[1]; inp.dispatchEvent(new Event("input")); } else render();
+  }
+  abrirDoCaderno();
+  window.addEventListener("hashchange", abrirDoCaderno);
   carregarCobrancas();
 
   // 2) progresso na conta de quem entrou (própria coleção "progress-sumulas")
@@ -691,4 +710,16 @@
     carregarContaGoogle(src.replace(/[^/]+\.js(\?.*)?$/, "conta-google.js"));
   }
   if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+})();
+
+// Meus Cadernos: destacar e anotar (cadernos.js). Os itens da lista trazem
+// data-cad-lista / data-cad-item / data-cad-titulo / data-cad-origem /
+// data-cad-abrir; o texto destacável tem a classe "cad-area".
+(function () {
+  if (window.EstudaManaCadernos) return;
+  var url = "https://barbarasinfronio-lgtm.github.io/diario-informativos/cadernos.js";
+  fetch(url, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (code) { if (!window.EstudaManaCadernos) (0, eval)(code + "\n//# sourceURL=" + url); })
+    .catch(function () {});
 })();

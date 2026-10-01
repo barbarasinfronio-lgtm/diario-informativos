@@ -202,7 +202,9 @@
     var fundo = lei.badge ? "#fff4e5" : federal ? "#e7f1ff" : "#e6f4ea";
     var cor = lei.badge ? "#b45309" : federal ? "#0d6efd" : "#198754";
     var lida = isLida(lei.chave);
-    return '<div class="lei-card" data-chave="' + escapeHtml(lei.chave) + '" style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);">' +
+    var cad = ' data-cad-lista="leis" data-cad-item="' + escapeHtml(lei.chave) + '" data-cad-titulo="' + escapeHtml(lei.nome) + '"' +
+      ' data-cad-origem="' + escapeHtml(lei.numero + " · " + badge) + '" data-cad-abrir="/p/diario-de-leis.html#lei=' + escapeHtml(encodeURIComponent(lei.chave)) + '"';
+    return '<div class="lei-card" data-chave="' + escapeHtml(lei.chave) + '"' + cad + ' style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">' +
       '<h3 style="margin:0;font-size:15px;font-weight:600;color:' + (lida ? "#94a3b8" : "#1e293b") + ';line-height:1.4;' + (lida ? "text-decoration:line-through;" : "") + '">' + escapeHtml(lei.nome) + "</h3>" +
       '<span style="font-size:11px;font-weight:700;background:' + fundo + ";color:" + cor + ';padding:3px 8px;border-radius:12px;white-space:nowrap;">' + badge + "</span>" +
@@ -663,4 +665,16 @@
   }
 
   domReady().then(startContaGoogle);
+})();
+
+// Meus Cadernos: destacar e anotar (cadernos.js). Os itens da lista trazem
+// data-cad-lista / data-cad-item / data-cad-titulo / data-cad-origem /
+// data-cad-abrir; o texto destacável tem a classe "cad-area".
+(function () {
+  if (window.EstudaManaCadernos) return;
+  var url = "https://barbarasinfronio-lgtm.github.io/diario-informativos/cadernos.js";
+  fetch(url, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (code) { if (!window.EstudaManaCadernos) (0, eval)(code + "\n//# sourceURL=" + url); })
+    .catch(function () {});
 })();
