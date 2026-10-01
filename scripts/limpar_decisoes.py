@@ -42,7 +42,14 @@ Regras (por arquivo):
     - acórdãos que só "não conhecem" do recurso/pedido saem, a não ser que
       algo tenha sido analisado de ofício (ex.: habeas corpus concedido de ofício).
   Controle: também saem as decisões "não conhecido" sem nada de ofício.
+  Controle: saem as decisões monocráticas (só do relator ou do presidente:
+    liminar ad referendum ainda não referendada, "nego seguimento", "julgo
+    prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
+    na preparação; ficam só as do Plenário/Turma, que vinculam.
+  Controle: saem as decisões que o Informativo do STF já traz (mesma ação, data
+    até 20 dias de diferença): o Informativo tem a tese e o estado de origem.
 """
+import datetime
 import json
 import os
 import re
@@ -144,7 +151,21 @@ DE_OFICIO_DECIDIDO = re.compile(r"(,|e|mas|contudo|por[ée]m)\s*,?\s*de of[ií]c
 VINCULANTE = re.compile(r"(fix\w*|assent\w*|firm\w*) (a seguinte |a |esta )?tese|tese de julgamento|modula\w*|acolh\w* (em parte )?(os )?embargos|interpreta[çc][ãa]o conforme (conferida|dada)|ressalvad\w* (em qualquer caso )?a validade", re.I)
 
 
+# Decisão colegiada (Plenário/Turma) = vinculante. Tudo que não tiver sinal de
+# colegiado é do relator ou do presidente. "Ad referendum" e "submeto ao
+# referendo do Plenário" são do relator: só valem depois que o Plenário referenda.
+COLEGIADO = re.compile(r"\bo tribunal(?! (de|regional|superior|federal|estadual|eleitoral|do)\b)|plen[áa]rio|por (maioria|unanimidade)|\b(a|primeira|segunda|1ª|2ª) turma|colegiad|referendou|referendad[ao]|sess[ãa]o virtual|\bpleno\b", re.I)
+SO_RELATOR = re.compile(r"ad referendum|submet\w+[^.]{0,80}(referendo|plen[áa]rio)|referendo[^.]{0,40}plen[áa]rio", re.I)
+
+
+def monocratica(d):
+    t = " ".join(str(d.get(c) or "") for c in ("tema", "andamento", "resultado"))
+    return not COLEGIADO.search(SO_RELATOR.sub(" ", t))
+
+
 def sem_conteudo_controle(d):
+    if monocratica(d):
+        return True
     t = norm(d.get("tema"))
     if NAO_CONHECIDO.search(d.get("andamento") or ""):
         return not (DE_OFICIO_DECIDIDO.search(t) or VINCULANTE.search(t))
@@ -155,6 +176,42 @@ def sem_conteudo_controle(d):
                 and not SUBST.search(t) and len(t) < 700)
 
 
+ACAO = re.compile(r"\b(ADI|ADPF|ADC|ADO)\s*n?[º°o.]?\s*(\d[\d.]*)", re.I)
+
+
+def acoes(t):
+    return [a.upper() + re.sub(r"\D", "", n) for a, n in ACAO.findall(str(t or ""))]
+
+
+def dia(v):
+    m = re.match(r"(\d{2})/(\d{2})/(\d{4})", str(v or "")) or re.match(r"(\d{4})-(\d{2})-(\d{2})", str(v or ""))
+    if not m:
+        return None
+    a, b, c = (int(x) for x in m.groups())
+    if a > 31:
+        a, c = c, a
+    return datetime.date(c, b, a).toordinal()
+
+
+def ja_no_informativo():
+    """Função que diz se a decisão do Controle já está num Informativo do STF."""
+    obj, _ = ler_json("informativos/indice.json")
+    campos = obj["campos"]
+    ip, idt = campos.index("processo"), campos.index("data")
+    por = {}
+    for x in obj["itens"]:
+        d, a = dia(x[idt]), acoes(x[ip])
+        for k in a:
+            por.setdefault(k, []).append((d, a))
+
+    def repetida(d):
+        a, dd = acoes(d.get("processo")), dia(d.get("data"))
+        if not a or dd is None:
+            return False
+        return any(o[0] is not None and abs(o[0] - dd) <= 20 and all(k in o[1] for k in a) for o in por.get(a[0], []))
+    return repetida
+
+
 def limpar_controle():
     f = "controleconst/adi_dados.js"
     conferir_formato(f)
@@ -162,6 +219,10 @@ def limpar_controle():
     antes = len(lista)
     lista = [d for d in lista if not sem_conteudo_controle(d)]
     vazias = antes - len(lista)
+    repetida = ja_no_informativo()
+    n1 = len(lista)
+    lista = [d for d in lista if not repetida(d)]
+    resumo.append(f"Controle: já no Informativo do STF {n1 - len(lista)}")
     vistos, saida, rep = {}, [], 0
     for d in lista:   # mesmo processo, data e texto
         k = (d.get("processo"), d.get("data"), norm(d.get("tema")))
@@ -186,7 +247,7 @@ def limpar_controle():
             juntadas += len(g) - 1
             d["processo"] = juntar_processos(g)
         final.append(d)
-    resumo.append(f"Controle: {antes} → {len(final)} (sem conteúdo {vazias}, repetidas {rep}, juntadas {juntadas})")
+    resumo.append(f"Controle: {antes} → {len(final)} (sem conteúdo ou monocráticas {vazias}, repetidas {rep}, juntadas {juntadas})")
     gravar_js(f, p, final, s, i)
 
 
