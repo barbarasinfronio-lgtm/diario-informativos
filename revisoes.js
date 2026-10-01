@@ -178,25 +178,48 @@
   var citacoes = null;   // id da lei (normas-citadas) -> nº de decisões que a citam
   var decisoesPorId = null;
   var preparando = null;
+  // leve/ (scripts/gerar_leves.js): títulos das decisões e contagem de citações
+  // já prontos, em vez de baixar ~4 MB de decisões para calcular aqui
+  function lerLeve(j) {
+    var campos = j.campos || [], tab = j.tabelas || {};
+    return (j.linhas || []).map(function (l) {
+      var d = {};
+      for (var i = 0; i < campos.length && i < l.length; i++) {
+        var k = campos[i], v = l[i];
+        if (tab[k]) { if (v) d[k] = tab[k][v - 1]; } else if (v !== 0 && v !== "" && v != null) d[k] = v;
+      }
+      return d;
+    });
+  }
+  function jsonOu(arquivo) {
+    return fetch(CDN + arquivo, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(arquivo); return r.json(); });
+  }
+  function prepararCompleto() {   // jeito antigo, se a pasta leve/ não responder
+    return Promise.all([carregarJs("RG_REPETITIVOS_DATA", "rg-repetitivos-data.js"), carregarTst()]).then(function () {
+      var todas = (g("RG_REPETITIVOS_DATA") || []).concat(tst || []);
+      decisoesPorId = {};
+      citacoes = {};
+      todas.forEach(function (d) {
+        decisoesPorId[String(d.id)] = d;
+        if (!window.NormasCitadas) return;
+        NormasCitadas.encontrar([d.titulo, d.tese, d.questao, d.destaque].join(" "), { data: d.data })
+          .forEach(function (n) { if (n.classe === "lei") citacoes[n.id] = (citacoes[n.id] || 0) + 1; });
+      });
+    });
+  }
   function preparar() {
     if (!preparando) {
       preparando = Promise.all([
         carregarJs("NormasCitadas", "normas-citadas.js"),
         carregarJs("LEIS_DATA", "leis-data.js"),
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
-        carregarJs("RG_REPETITIVOS_DATA", "rg-repetitivos-data.js"),
-        carregarAlteracoes(),
-        carregarTst()
+        carregarAlteracoes()
       ]).then(function () {
-        var todas = (g("RG_REPETITIVOS_DATA") || []).concat(tst || []);
-        decisoesPorId = {};
-        citacoes = {};
-        todas.forEach(function (d) {
-          decisoesPorId[String(d.id)] = d;
-          if (!window.NormasCitadas) return;
-          NormasCitadas.encontrar([d.titulo, d.tese, d.questao, d.destaque].join(" "), { data: d.data })
-            .forEach(function (n) { if (n.classe === "lei") citacoes[n.id] = (citacoes[n.id] || 0) + 1; });
-        });
+        return Promise.all([jsonOu("leve/decisoes.json"), jsonOu("leve/citacoes.json")]).then(function (r) {
+          decisoesPorId = {};
+          lerLeve(r[0]).forEach(function (d) { decisoesPorId[String(d.id)] = d; });
+          citacoes = r[1].citacoes || {};
+        }).catch(prepararCompleto);
       });
     }
     return preparando;

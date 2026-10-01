@@ -1,0 +1,67 @@
+name: Gerar dados leves
+
+# As páginas abrem com versões leves dos dados (pasta leve/) e só baixam o
+# texto completo quando precisam. Este robô roda scripts/gerar_leves.js e
+# atualiza a pasta leve/ sempre que os dados do Diário das Decisões mudam:
+#   - a cada envio de um desses arquivos (do Mac, do GitHub ou de uma sessão);
+#   - de 3 em 3 horas, por garantia (envios feitos por outros robôs do GitHub
+#     não disparam este);
+#   - no botão "Run workflow".
+# Depois limpa o cache do jsDelivr dos arquivos gerados.
+on:
+  push:
+    branches: [main]
+    paths:
+      - rg-repetitivos-data.js
+      - stj/teses.json
+      - stf/extras.json
+      - tst/decisoes.json
+      - normas-citadas.js
+      - scripts/gerar_leves.js
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gerar-leves
+  cancel-in-progress: false
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar leve/
+        run: node scripts/gerar_leves.js
+
+      - name: Salvar os arquivos gerados
+        id: salvar
+        run: |
+          git add -A leve
+          if git diff --cached --quiet; then
+            echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git diff --cached --name-only > alterados.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Atualiza dados leves (automático)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "mudou=1" >> "$GITHUB_OUTPUT"
+
+      - name: Limpar cache do jsDelivr dos arquivos gerados
+        if: steps.salvar.outputs.mudou == '1'
+        run: |
+          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
+          for espera in 60 120; do
+            sleep "$espera"
+            while read -r f; do
+              [ -z "$f" ] && continue
+              status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
+              echo "$f -> HTTP $status"
+            done < alterados.txt
+          done
