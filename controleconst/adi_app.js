@@ -91,10 +91,10 @@
     });
     return v;
   }
-  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem no começo de uma palavra —
-  // senão "ir" acharia "direito", "firmar"… Números e termos maiores: trecho.
+  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem como palavra inteira —
+  // senão "ir" acharia "direito", "irregular"… Números e termos maiores: trecho.
   function contem(h, t) {
-    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t).test(h);
+    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t + "([^a-z0-9]|$)").test(h);
     return h.indexOf(t) !== -1;
   }
   function combinaBusca(texto) {

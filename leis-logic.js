@@ -379,8 +379,8 @@
     function atendeBusca(lei, termo, digitos) {
       if (!termo) return true;
       if (digitos && lei.digitos.indexOf(digitos) !== -1) return true;
-      // siglas curtas (IR, ECA, CTN) só no começo de uma palavra; o resto, como trecho
-      if (/^[a-z]{2,3}$/.test(termo)) return new RegExp("(^|[^a-z0-9])" + termo).test(lei.busca);
+      // siglas curtas (IR, ECA, CTN) só como palavra inteira; o resto, como trecho
+      if (/^[a-z]{2,3}$/.test(termo)) return new RegExp("(^|[^a-z0-9])" + termo + "([^a-z0-9]|$)").test(lei.busca);
       return lei.busca.indexOf(termo) !== -1;
     }
 
