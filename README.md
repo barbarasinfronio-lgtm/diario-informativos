@@ -30,6 +30,7 @@ O arquivo de dados precisa ser carregado **antes** do de lógica.
 | Meu Progresso (endereço `/p/meus-premios.html`) | `premios-data.js` | `premios-logic.js` | `diario-styles-v2.css` + `premios-styles.css` |
 | Meus Grupos                  | —                       | `meus-grupos-logic.js`          | `diario-styles-v2.css`       |
 | Ranking de Informativos      | —                       | `ranking-informativos-logic.js` | `diario-styles-v2.css`       |
+| Estatísticas de cobrança (provas) | `provas/cobrancas.json` | `estatisticas-provas-logic.js` | `estatisticas-provas.css` |
 
 O **Diário de Leis** não segue mais o modelo "HTML pronto + script preenche":
 a página no Blogger só tem o esqueleto (`#select-edital`, `#select-estado`,
@@ -167,3 +168,11 @@ em `scripts/rodar_no_mac.sh`. Log: `~/EstudaMana/atualizar-tst.log`.
 
 Cópias do HTML das páginas do Blogger ficam fora deste repositório (pasta
 "Backups Blogger").
+
+## Cobrança em provas
+
+`provas/cobrancas.json` diz em quais provas de concurso cada súmula/decisão
+já caiu. Ele é gerado por `scripts/cobrancas_provas.py <pasta com .txt>` a
+partir do texto das provas (um .txt por prova, nome com banca, ano e órgão;
+gabaritos são ignorados). O Diário das Súmulas e o Diário das Decisões mostram
+"📝 Cobrada em …" nos cards, e a página de estatísticas usa o mesmo arquivo.

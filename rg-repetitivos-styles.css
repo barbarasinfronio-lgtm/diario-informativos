@@ -221,3 +221,7 @@
     .stat{padding:6px 10px;}
   }
   @media (max-width:520px){ .modal .norma-item{flex-wrap:wrap;} }
+
+  /* "Cobrado em provas" (provas/cobrancas.json) */
+  .card .cobrado{font-size:calc(11.5px * var(--fs-scale)); color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:4px 8px; margin-top:6px; line-height:1.35;}
+  .cobrado-lista{margin:4px 0 10px; padding-left:18px; font-size:calc(13px * var(--fs-scale)); color:var(--ink-soft);}

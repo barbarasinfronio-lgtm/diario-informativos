@@ -1037,3 +1037,14 @@
     text-decoration: none; font-size: calc(0.78rem * var(--fs-scale)); font-weight: 600; white-space: nowrap;
   }
   .edition-row .action-btn:hover { background: var(--accent); color: var(--surface, #fff); }
+
+/* "Cobrada em provas" (provas/cobrancas.json) */
+.sumula-cobrada {
+  margin: 6px 0 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-size: calc(12px * var(--fs-scale));
+  line-height: 1.35;
+}
