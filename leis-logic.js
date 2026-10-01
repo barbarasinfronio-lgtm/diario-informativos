@@ -195,6 +195,81 @@
     ];
   }
 
+  // ---- texto das leis ("Leia-me") -----------------------------------------
+  // O robô (scripts/atualizar_informativos.py, etapa LEIS) grava o texto das
+  // leis do Planalto em leis/texto/<id>.json e a lista do que existe em
+  // leis/texto/indice.json. O <id> é o caminho do link do Planalto, sem
+  // "/ccivil_03/" nem ".htm", em minúsculas e com "-" no lugar do resto.
+  var TEXTO_BASE = CDN_BASE + "leis/texto/";
+  var indiceTextos = null;   // {id: data}; null enquanto não chegou
+  var textosCache = {};
+
+  function idTexto(link) {
+    var m = String(link || "").match(/^https?:\/\/www\.planalto\.gov\.br(\/[^?#]*)/i);
+    if (!m) return "";
+    return slug(m[1].replace(/^\/ccivil_03\//i, "").replace(/\.html?$/i, ""));
+  }
+
+  function temTexto(id) { return !!(id && indiceTextos && indiceTextos[id]); }
+
+  function carregarIndiceTextos() {
+    return fetch(TEXTO_BASE + "indice.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (j) {
+        indiceTextos = j || {};
+        // mostra o botão nos cards que já estão na tela (sem refazer a lista)
+        Array.prototype.forEach.call(document.querySelectorAll(".lei-leia"), function (b) {
+          if (temTexto(b.getAttribute("data-texto-id"))) b.style.display = "";
+        });
+      });
+  }
+
+  function carregarTexto(id) {
+    if (textosCache[id]) return Promise.resolve(textosCache[id]);
+    return fetch(TEXTO_BASE + encodeURIComponent(id) + ".json")
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(function (j) { textosCache[id] = j; return j; });
+  }
+
+  // "Art. 5º", "§ 1º", "I -", títulos em maiúsculas… só para dar um respiro visual.
+  function paragrafoHtml(t) {
+    var e = escapeHtml(t);
+    if (/^(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])/i.test(t) && t.length < 140 && t === t.toUpperCase()) {
+      return '<p style="margin:16px 0 6px;font-weight:700;text-align:center;color:#1e293b;">' + e + "</p>";
+    }
+    var art = t.match(/^Art\.?\s*\d+[º°ª]?(?:-[A-Z]+)?\.?/);
+    if (art) {
+      return '<p style="margin:10px 0 4px;"><strong>' + escapeHtml(art[0]) + "</strong>" + escapeHtml(t.slice(art[0].length)) + "</p>";
+    }
+    return '<p style="margin:4px 0;">' + e + "</p>";
+  }
+
+  function abrirTexto(botao) {
+    var cardEl = botao.closest(".lei-card");
+    var painel = cardEl && cardEl.querySelector(".lei-texto");
+    if (!painel) return;
+    if (painel.style.display !== "none") {
+      painel.style.display = "none";
+      botao.textContent = "📜 Leia-me";
+      return;
+    }
+    painel.style.display = "";
+    botao.textContent = "📜 Fechar";
+    if (painel.getAttribute("data-pronto")) return;
+    painel.innerHTML = '<p style="margin:0;color:#64748b;">Carregando o texto…</p>';
+    carregarTexto(botao.getAttribute("data-texto-id")).then(function (j) {
+      var corpo = (j.p || []).map(paragrafoHtml).join("");
+      painel.innerHTML =
+        '<div style="max-height:70vh;overflow:auto;padding:4px 2px;font-size:14px;line-height:1.6;color:#334155;">' + corpo + "</div>" +
+        '<p style="margin:8px 0 0;font-size:11px;color:#94a3b8;">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
+        ". Pode estar desatualizado: confira na fonte oficial (\u201cAbrir lei na íntegra\u201d).</p>";
+      painel.setAttribute("data-pronto", "1");
+    }).catch(function () {
+      painel.innerHTML = '<p style="margin:0;color:#b91c1c;">Não consegui carregar o texto agora. Use \u201cAbrir lei na íntegra\u201d.</p>';
+    });
+  }
+
   // ---- visual dos cards ----------------------------------------------------
   function card(lei) {
     var federal = !lei.uf;
@@ -212,7 +287,11 @@
       '<p style="margin:6px 0 10px;font-size:13px;color:#64748b;">' + escapeHtml(lei.numero) + "</p>" +
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">' +
       (lei.link
-        ? '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>'
+        ? '<span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">' +
+          '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' +
+          (idTexto(lei.link)
+            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml(idTexto(lei.link)) + '" style="font-size:13px;font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto(idTexto(lei.link)) ? "" : "display:none;") + '">📜 Leia-me</button>'
+            : "") + "</span>"
         : "<span></span>") +
       (lei.removivel
         ? '<button type="button" class="lei-remover" data-chave="' + escapeHtml(lei.chave) + '" style="font-size:12px;background:none;border:0;color:#94a3b8;text-decoration:underline;cursor:pointer;padding:0;">Tirar do meu Diário</button>'
@@ -220,7 +299,7 @@
       '<label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#334155;cursor:pointer;user-select:none;">' +
       '<input type="checkbox" class="lei-check" data-chave="' + escapeHtml(lei.chave) + '"' + (lida ? " checked" : "") + ' style="width:17px;height:17px;cursor:pointer;">' +
       (lida ? "Lida ✓" : "Já li esta lei") +
-      "</label></div></div>";
+      '</label></div><div class="lei-texto" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #e2e8f0;"></div></div>';
   }
 
   // Agrupa por matéria em blocos que abrem e fecham (a lista federal é longa).
@@ -508,6 +587,13 @@
     }
 
     window.__leisRender = render;
+
+    // "Leia-me": abre/fecha o texto da lei dentro do próprio card.
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest(".lei-leia");
+      if (b) abrirTexto(b);
+    });
+    carregarIndiceTextos();
 
     selectEdital.addEventListener("change", function () {
       gravarStorage(STORAGE_EDITAL, selectEdital.value);

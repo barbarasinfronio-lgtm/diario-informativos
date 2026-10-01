@@ -112,6 +112,15 @@ Cada rodada tem tempo máximo de 20 minutos; o que sobrar fica para a próxima,
 começando pelas leis conferidas há mais tempo. O `Atualizar Informativos.command`
 não confere mais as leis (só o `Atualizar Leis.command`).
 
+**Leia-me (texto das leis)**: na mesma conferência, o robô guarda o texto de
+cada lei do Planalto em `leis/texto/<id>.json` (o `<id>` é o caminho do link do
+Planalto, sem `/ccivil_03/` e `.htm`, em minúsculas e com `-`), e a lista do que
+existe em `leis/texto/indice.json`. No Diário de Leis, as leis que têm texto
+ganham o botão **📜 Leia-me**, que abre o texto dentro do próprio card
+(`leis-logic.js`). O arquivo só é regravado quando o texto muda. Leis que não
+são do Planalto (LexML, Legisweb, estaduais) ainda não têm texto: a lista está em
+`leis/FALTAM-NO-PLANALTO.md`.
+
 Cada tribunal é conferido separadamente (o comentário no topo do script
 explica de onde vem cada um). Se um falhar, os outros são gravados e
 enviados e a janela diz qual falhou. Para rodar só alguns:
