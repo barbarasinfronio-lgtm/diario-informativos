@@ -75,11 +75,17 @@ for (const d of fontes.rg.concat(fontes.tst)) {
 
 const contagem = {};
 for (const [f, lista] of Object.entries(fontes)) contagem[f] = lista.length;
+// listas baixadas só sob demanda (acórdãos, julgados de informativos): o total
+// vai junto, para o painel de números não mudar enquanto a página carrega
+const sobDemanda = {};
+for (const [g, f] of [["ACORDAOS", "stj/acordaos/indice.json"], ["INFORMATIVOS", "informativos/indice.json"]]) {
+  try { sobDemanda[g] = (JSON.parse(ler(f)).itens || []).length; } catch (e) { /* sem o arquivo: a página conta ao baixar */ }
+}
 
 fs.mkdirSync(path.join(RAIZ, "leve"), { recursive: true });
-fs.writeFileSync(path.join(RAIZ, "leve/decisoes.json"), JSON.stringify({ fontes: contagem, campos: CAMPOS, tabelas, linhas }));
+fs.writeFileSync(path.join(RAIZ, "leve/decisoes.json"), JSON.stringify({ fontes: contagem, sobDemanda, campos: CAMPOS, tabelas, linhas }));
 fs.writeFileSync(path.join(RAIZ, "leve/citacoes.json"), JSON.stringify({ citacoes }));
 
 const kb = (f) => Math.round(fs.statSync(path.join(RAIZ, f)).size / 1024) + " KB";
-console.log("leve/decisoes.json:", itens.length, "itens,", kb("leve/decisoes.json"), contagem);
+console.log("leve/decisoes.json:", itens.length, "itens,", kb("leve/decisoes.json"), contagem, sobDemanda);
 console.log("leve/citacoes.json:", Object.keys(citacoes).length, "leis,", kb("leve/citacoes.json"));
