@@ -372,7 +372,7 @@
     });
     posicionar(ret);
     var ta = barra.querySelector("textarea");
-    if (ta && (m.novo || m.nota)) ta.focus();
+    if (ta) { try { ta.focus({ preventScroll: true }); } catch (e) { ta.focus(); } }
   }
 
   function dadosNova(s, cor, nota) {
