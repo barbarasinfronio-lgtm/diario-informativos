@@ -91,11 +91,17 @@
     });
     return v;
   }
+  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem no começo de uma palavra —
+  // senão "ir" acharia "direito", "firmar"… Números e termos maiores: trecho.
+  function contem(h, t) {
+    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t).test(h);
+    return h.indexOf(t) !== -1;
+  }
   function combinaBusca(texto) {
     if (!termosBusca.length) return true;
     var h = semAcentoBusca(texto);
     return termosBusca.every(function (t) {
-      return variantes(t).some(function (x) { return h.indexOf(x) !== -1; });
+      return variantes(t).some(function (x) { return contem(h, x); });
     });
   }
   function mostrarResultadoBusca(n, rotulo) {

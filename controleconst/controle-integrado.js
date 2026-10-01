@@ -76,11 +76,17 @@
     PLURAIS.forEach(function (r) { if (t.length > 3 && t.slice(-r[0].length) === r[0]) v.push(t.slice(0, t.length - r[0].length) + r[1]); });
     return v;
   }
+  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem no começo de uma palavra —
+  // senão "ir" acharia "direito", "firmar"… Números e termos maiores: trecho.
+  function contem(h, t) {
+    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t).test(h);
+    return h.indexOf(t) !== -1;
+  }
   function termos() { return semAcento(getBusca ? getBusca() : "").split(/\s+/).filter(Boolean); }
   function combinaBusca(item, ts) {
     if (!ts.length) return true;
     var h = semAcento([item.processo, item[cfg.campoFiltro], item.ramo, item.resultado, item.andamento, item.tipoDecisao, formatarData(item[cfg.campoData]), item[cfg.campoData], item.ano, item.relator, limparTexto(textoItem(item))].join(" "));
-    return ts.every(function (t) { return variantes(t).some(function (x) { return h.indexOf(x) !== -1; }); });
+    return ts.every(function (t) { return variantes(t).some(function (x) { return contem(h, x); }); });
   }
   function formatarData(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d || "")); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
   function safeUrl(u) { var s = String(u || ""); if (!/^https?:\/\//i.test(s)) return "#"; try { return encodeURI(decodeURI(s)); } catch (e) { return encodeURI(s); } }

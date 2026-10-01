@@ -254,6 +254,12 @@
 
   function semAcento(t){ return String(t == null ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
   function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
+  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem no começo de uma palavra —
+  // senão "ir" acharia "direito", "firmar"… Números e termos maiores: trecho.
+  function contem(h, t){
+    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t).test(h);
+    return h.indexOf(t) !== -1;
+  }
   function textoBusca(d){
     if (d._busca == null) d._busca = semAcento([d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,
       d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,d._resumo,
@@ -268,7 +274,7 @@
     var ts = termosBusca();
     if(ts.length){
       var hay = textoBusca(d);
-      for (var i = 0; i < ts.length; i++) if (hay.indexOf(ts[i]) === -1) return false;
+      for (var i = 0; i < ts.length; i++) if (!contem(hay, ts[i])) return false;
     }
     return true;
   }
