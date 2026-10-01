@@ -266,9 +266,22 @@
       cobrancasDe(d).map(function(c){ return 'cobrado prova ' + c.rotulo; }).join(' ')].join(' '));
     return d._busca;
   }
+  // Temas "em julgamento" (afetados, ainda sem tese) ficam só no botão
+  // "Em julgamento" — não se misturam com o que já foi julgado.
+  function emJulgamento(d){ return d.status === 'afetado'; }
+  // Alguns temas em julgamento vêm com o título cortado (", nos contratos…",
+  // sobra de "Definir se, nos contratos…"): mostra a partir da 1ª palavra.
+  function tituloDe(d){
+    var t = String(d.titulo || '');
+    if (!/^[\s,;.:]/.test(t)) return t;
+    t = t.replace(/^[\s,;.:]+/, '');
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
   function matches(d){
-    if (GRUPOS[state.org]) { if (d.grupo !== state.org) return false; }
-    else if(state.org !== 'all' && d.orgao !== state.org) return false;
+    if (state.org === 'AFETADOS') { if (!emJulgamento(d)) return false; }
+    else if (emJulgamento(d)) return false;
+    else if (GRUPOS[state.org]) { if (d.grupo !== state.org) return false; }
+    else if(state.org !== 'all' && (d.orgao !== state.org || SOB_DEMANDA[d.grupo])) return false;
     if(state.risk !== 'all' && d.risco !== state.risk) return false;
     if(state.area && d.area !== state.area) return false;
     var ts = termosBusca();
@@ -319,6 +332,12 @@
       b.dataset.org = k; b.textContent = GRUPOS[k].rotulo; b.title = GRUPOS[k].titulo;
       seg.insertBefore(b, antesDe || null);
     });
+    if (!seg.querySelector('[data-org="AFETADOS"]')) {
+      var a = document.createElement('button');
+      a.dataset.org = 'AFETADOS'; a.textContent = 'Em julgamento';
+      a.title = 'Temas afetados (repercussão geral, repetitivos, IRR) que ainda não foram julgados';
+      seg.insertBefore(a, antesDe || null);
+    }
   }
   function carregarModulo(){
     if (window.ControleIntegrado) return Promise.resolve();
@@ -382,7 +401,7 @@
     },
     // Julgados dos informativos do STJ e do STF (scripts/informativos_cards.py).
     INFORMATIVOS: {
-      base: BASE_CDN + 'informativos/', nome: 'os informativos', carregando: 'Carregando o resumo do julgado…',
+      base: BASE_CDN + 'informativos/', nome: 'os informativos', carregando: 'Carregando o resumo do julgado…', riscoAlto: true,
       item: function(x){
         var org = x[1];
         return { id: 'inf-' + x[0], grupo: 'INFORMATIVOS', orgao: org, tipo: 'informativo',
@@ -495,6 +514,14 @@
         ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
         : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
+      if (ts.length && state.org !== 'AFETADOS') {
+        var afet = DATA.filter(function(d){
+          if (!emJulgamento(d)) return false;
+          var h = textoBusca(d);
+          return ts.every(function(t){ return contem(h, t); });
+        }).length;
+        if (afet) document.getElementById('countLine').textContent += ' · ' + afet + (afet === 1 ? ' tema em julgamento' : ' temas em julgamento') + ' (botão "Em julgamento")';
+      }
       if (ts.length && fontesIncompletas().length) document.getElementById('countLine').textContent += ' — carregando os textos completos para a busca…';
       var aguardando = aguardandoSobDemanda(ts);
       if (aguardando.length) {
@@ -544,7 +571,7 @@
           (d.suspensao ? '<span class="tag-afetado" title="' + escapeHtml(d.suspensao) + '">Suspensão nacional</span>' : '') +
         '</div>' +
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
-        '<h3>' + escapeHtml(d.titulo) + '</h3>' +
+        '<h3>' + escapeHtml(tituloDe(d)) + '</h3>' +
         '<div class="destaque">' + escapeHtml(d._resumo != null ? d._resumo : d.tipo === 'informativo' ? d.tese : (d.destaque||d.tese||d.questao||'')) + '</div>' +
         (cobrancasDe(d).length ? '<div class="cobrado">' + escapeHtml(cobrancaResumo(cobrancasDe(d))) + '</div>' : '') +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
@@ -609,7 +636,7 @@
         (d.suspensao ? '<span class="tag-afetado">Suspensão nacional</span>' : '') +
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
-      '<h2>' + escapeHtml(d.titulo) + '</h2>' +
+      '<h2>' + escapeHtml(tituloDe(d)) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
         : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
@@ -671,7 +698,7 @@
     carregarCadernos().then(function(){
       if (modalAtual !== d) return;
       EstudaManaCadernos.ligar(modal, {
-        fonte: 'decisoes', item: d.id, titulo: d.titulo,
+        fonte: 'decisoes', item: d.id, titulo: tituloDe(d),
         origem: [d.orgao, (d.tipoNome || precedenteAreaLine(d).replace(/^ · /, '')), d.tema ? precedenteBadge(d) : '', d.processo].filter(Boolean).join(' · '),
         abrir: linkDecisao(d),
         areas: [].slice.call(modal.querySelectorAll('h2, .tese-text, .destaque-text, .historico-text'))
@@ -815,20 +842,34 @@
   overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 
+  // Acórdãos e julgados de informativos só são baixados sob demanda; até lá
+  // o painel usa o total que vem em leve/decisoes.json ("sobDemanda"), para
+  // os números não mudarem enquanto a página carrega.
+  var totaisSobDemanda = {};
   function renderStats(){
-    var stf = DATA.filter(d=>d.orgao==='STF' && !d.grupo).length;
-    var extras = DATA.filter(d=>d.grupo && d.orgao==='STF').length;
-    var acordaos = DATA.filter(d=>d.grupo==='ACORDAOS').length;
-    var informativos = DATA.filter(d=>d.grupo==='INFORMATIVOS').length;
-    var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses' && !d.grupo).length;
+    var afetados = DATA.filter(emJulgamento).length;
+    var stf = DATA.filter(d=>d.orgao==='STF' && !d.grupo && !emJulgamento(d)).length;
+    var extras = DATA.filter(d=>d.grupo && d.orgao==='STF' && !SOB_DEMANDA[d.grupo]).length;
+    var stj = DATA.filter(d=>d.orgao==='STJ' && d.tipo!=='teses' && !d.grupo && !emJulgamento(d)).length;
     var teses = DATA.filter(d=>d.tipo==='teses').length;
-    var tst = DATA.filter(d=>d.orgao==='TST').length;
-    var alta = DATA.filter(d=>d.risco==='Alta').length;
+    var tst = DATA.filter(d=>d.orgao==='TST' && !emJulgamento(d)).length;
+    var alta = DATA.filter(d=>d.risco==='Alta' && !emJulgamento(d)).length;
     var canc = DATA.filter(d=>d.status==='cancelado_superado').length;
+    var total = DATA.length - afetados, porGrupo = {};
+    Object.keys(SOB_DEMANDA).forEach(function(g){
+      var n = DATA.filter(function(d){ return d.grupo === g; }).length;
+      if (!estadoSD(g).prontos && totaisSobDemanda[g]) {
+        n = totaisSobDemanda[g];
+        total += n;
+        if (SOB_DEMANDA[g].riscoAlto) alta += n;
+      }
+      porGrupo[g] = n;
+    });
+    var acordaos = porGrupo.ACORDAOS, informativos = porGrupo.INFORMATIVOS;
     var lidasCount = totalLidos();
     var el = document.getElementById('stats');
     el.innerHTML =
-      '<div class="stat"><b>' + DATA.length + '</b><span>Julgados no total</span></div>' +
+      '<div class="stat"><b>' + total + '</b><span>Julgados no total</span></div>' +
       '<div class="stat" style="color:var(--low-fg)"><b>' + lidasCount + '</b><span>Lidas</span></div>' +
       '<div class="stat"><b>' + stf + '</b><span>STF · Rep. Geral</span></div>' +
       '<div class="stat"><b>' + stj + '</b><span>STJ · Repetitivos</span></div>' +
@@ -838,7 +879,8 @@
       (informativos ? '<div class="stat"><b>' + informativos + '</b><span>Julgados de informativos</span></div>' : '') +
       (acordaos ? '<div class="stat"><b>' + acordaos + '</b><span>STJ · Acórdãos de turmas</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
-      (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '');
+      (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '') +
+      (afetados ? '<div class="stat"><b>' + afetados + '</b><span>Em julgamento (fora do total)</span></div>' : '');
   }
 
   // Se a pessoa fechar a aba dentro da janela de espera do debounce (700ms),
@@ -882,6 +924,7 @@
     fetch(LEVE_JSON, { cache: 'no-cache' })
       .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(j){
+        totaisSobDemanda = j.sobDemanda || {};
         DATA = DATA.concat(lerLeve(j).filter(function(d){ return !completo[d._f]; }));
         garantirBotaoTST();
         garantirBotoesGrupos();
