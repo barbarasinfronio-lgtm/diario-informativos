@@ -215,14 +215,24 @@
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
         carregarAlteracoes()
       ]).then(function () {
-        return Promise.all([jsonOu("leve/decisoes.json"), jsonOu("leve/citacoes.json")]).then(function (r) {
-          decisoesPorId = {};
-          lerLeve(r[0]).forEach(function (d) { decisoesPorId[String(d.id)] = d; });
-          citacoes = r[1].citacoes || {};
+        return jsonOu("leve/citacoes.json").then(function (r) {
+          citacoes = r.citacoes || {};
         }).catch(prepararCompleto);
       });
     }
     return preparando;
+  }
+  // títulos das decisões: só para o Histórico, e só se a pessoa leu alguma
+  var titulosP = null;
+  function prepararTitulos() {
+    if (decisoesPorId) return Promise.resolve();
+    if (!titulosP) {
+      titulosP = jsonOu("leve/decisoes.json").then(function (j) {
+        decisoesPorId = {};
+        lerLeve(j).forEach(function (d) { decisoesPorId[String(d.id)] = d; });
+      }).catch(function () { titulosP = null; return prepararCompleto(); });
+    }
+    return titulosP;
   }
   function pronto() { return !!citacoes; }
 
@@ -462,6 +472,11 @@
     if (!pronto()) {
       el.innerHTML = '<p class="rv-vazio">Carregando…</p>';
       preparar().then(function () { render(el, o); });
+      return;
+    }
+    if (o.tab === "historico" && !decisoesPorId && Object.keys((o.maps && o.maps.dec) || {}).length) {
+      el.innerHTML = '<p class="rv-vazio">Carregando…</p>';
+      prepararTitulos().then(function () { render(el, o); });
       return;
     }
     o.rev = juntarRev(o.rev);
