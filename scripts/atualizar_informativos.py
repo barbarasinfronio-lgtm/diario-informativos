@@ -1011,6 +1011,77 @@ def leis_do_acervo():
 LEIS_ORCAMENTO = 1200
 
 
+TEXTO_DIR = RAIZ / "leis" / "texto"
+
+
+def id_texto(url):
+    """Nome do arquivo do texto de uma lei: o caminho do link no Planalto, sem
+    "/ccivil_03/" nem ".htm", em minúsculas e com "-" no lugar do resto.
+    leis-logic.js calcula o mesmo nome a partir do link do leis-data.js."""
+    caminho = urllib.parse.urlsplit(url).path
+    caminho = re.sub(r"^/ccivil_03/", "", caminho)
+    caminho = re.sub(r"\.html?$", "", caminho, flags=re.I)
+    return _slug(caminho)
+
+
+def paragrafos_da_lei(t):
+    """Texto da lei, parágrafo por parágrafo, a partir da página do Planalto.
+    O que está riscado (<strike>: texto revogado) fica de fora; as notas
+    "(Redação dada pela…)" ficam."""
+    t = re.sub(r"(?is)<(script|style|head)\b.*?</\1>|<!--.*?-->", " ", t)
+    t = re.sub(r"(?is)<(strike|s|del)\b[^>]*>.*?</\1>", " ", t)
+    t = re.sub(r"(?i)<br\s*/?>|</(p|div|tr|h[1-6]|li|table|blockquote)>", "\n", t)
+    t = re.sub(r"(?i)</t[dh]>", " ", t)
+    t = html.unescape(re.sub(r"<[^>]+>", "", t)).replace("\xa0", " ")
+    out = []
+    for linha in t.split("\n"):
+        linha = re.sub(r"\s+", " ", linha).strip()
+        if linha:
+            out.append(linha)
+    # cabeçalho de navegação do Planalto
+    while out and out[0] in ("Presidência da República", "Casa Civil",
+                             "Subchefia para Assuntos Jurídicos"):
+        out.pop(0)
+    return out
+
+
+def salvar_texto(url, pagina_html, nome, hoje_iso):
+    """Grava leis/texto/<id>.json se o texto mudou. True se gravou."""
+    import json
+    paragrafos = paragrafos_da_lei(pagina_html)
+    if len(paragrafos) < 5 or sum(map(len, paragrafos)) < 500:
+        print(f"  (texto de \"{nome}\" parece incompleto; não gravei)")
+        return False
+    arq = TEXTO_DIR / f"{id_texto(url)}.json"
+    if arq.exists():
+        try:
+            if json.loads(arq.read_text(encoding="utf-8")).get("p") == paragrafos:
+                return False
+        except ValueError:
+            pass
+    TEXTO_DIR.mkdir(parents=True, exist_ok=True)
+    arq.write_text(json.dumps({"nome": nome, "url": url, "em": hoje_iso, "p": paragrafos},
+                              ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return True
+
+
+def indice_dos_textos():
+    """leis/texto/indice.json: {id: data} dos textos que existem (o site só
+    mostra o botão "Leia-me" nas leis que estão aqui)."""
+    import json
+    ind = {}
+    for arq in sorted(TEXTO_DIR.glob("*.json")):
+        if arq.name == "indice.json":
+            continue
+        try:
+            ind[arq.stem] = json.loads(arq.read_text(encoding="utf-8")).get("em", "")
+        except ValueError:
+            continue
+    (TEXTO_DIR / "indice.json").write_text(
+        json.dumps(ind, ensure_ascii=False, indent=0), encoding="utf-8")
+    return len(ind)
+
+
 def leis(dados, tudo=False):
     import json
     import time
@@ -1025,7 +1096,11 @@ def leis(dados, tudo=False):
         if numero not in ja:
             ja.add(numero)
             lista.append((numero, nome, url))
-    lista.sort(key=lambda x: (registro.get(_slug(x[0])) or {}).get("conferidaEm", ""))
+    # as sem texto salvo vêm primeiro (a primeira rodada traz os textos todos,
+    # aos poucos); depois, as conferidas há mais tempo
+    lista.sort(key=lambda x: ((TEXTO_DIR / f"{id_texto(x[2])}.json").exists(),
+                              (registro.get(_slug(x[0])) or {}).get("conferidaEm", "")))
+    textos_novos, vistos_url = 0, set()
     inicio, conferidas = time.monotonic(), 0
     for numero, nome, url in lista:
         if conferidas and time.monotonic() - inicio > LEIS_ORCAMENTO:
@@ -1039,6 +1114,10 @@ def leis(dados, tudo=False):
         except Falha as e:
             erros.append(f"{nome}: {e}")
             continue
+        if url not in vistos_url:
+            vistos_url.add(url)
+            if salvar_texto(url, t, nome, hoje_iso):
+                textos_novos += 1
         antigo = registro.get(chave)
         ult_data, ult_norma = ultima_alteracao(t)
         if not achadas:
@@ -1080,6 +1159,10 @@ def leis(dados, tudo=False):
         LEIS_ARQ.parent.mkdir(exist_ok=True)
         LEIS_ARQ.write_text(json.dumps({"atualizado": hoje_iso, "leis": registro},
                                        ensure_ascii=False, indent=1), encoding="utf-8")
+        dados.leis_mudou = True
+    if textos_novos or not (TEXTO_DIR / "indice.json").exists():
+        total = indice_dos_textos()
+        print(f"  Textos das leis: {textos_novos} gravado(s) ou atualizado(s); {total} no total (leis/texto/).")
         dados.leis_mudou = True
     for e in erros:
         print(f"  ATENÇÃO: {e}")

@@ -5,14 +5,16 @@
 # Ele: 1) pega a versão mais nova do main; 2) confere no site do Planalto as
 # leis do acervo (as mais cobradas e todas as que têm texto no Planalto) e
 # anota quais foram alteradas e quando (scripts/atualizar_informativos.py,
-# etapa LEIS); 3) grava em leis/alteracoes.json e envia para o main. O envio
+# etapa LEIS) e guarda o texto de cada uma em leis/texto/ (botão "Leia-me" do
+# Diário de Leis); 3) grava em leis/alteracoes.json e leis/texto e envia para o main. O envio
 # dispara sozinho a limpeza do cache do jsDelivr, então o site mostra a
 # novidade em minutos (aba Revisões, em Meu Progresso: "Leis alteradas").
 #
-# Só mexe em leis/alteracoes.json — não toca nos Informativos nem nas Teses
+# Só mexe em leis/alteracoes.json e leis/texto — não toca nos Informativos nem nas Teses
 # (para isso, use o "Atualizar Informativos.command").
 #
-# Cada rodada tem tempo máximo (20 minutos). Se o acervo não couber, o que
+# Cada rodada tem tempo máximo (20 minutos); a primeira vez, com os textos
+# todos por baixar, pode precisar de duas ou três rodadas. Se o acervo não couber, o que
 # sobrar fica para a próxima vez, começando pelas leis conferidas há mais tempo.
 #
 # Não tem agendamento: só roda quando você abre este arquivo.
@@ -22,7 +24,7 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Leis — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-ARQUIVOS=(leis/alteracoes.json)
+ARQUIVOS=(leis/alteracoes.json leis/texto)
 # Mudanças que o robô deixou neste Mac sem enviar: guarda num commit, para irem junto.
 git checkout -q main 2>/dev/null
 if [ -n "$(git status --porcelain -- "${ARQUIVOS[@]}")" ]; then
