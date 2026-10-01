@@ -140,6 +140,27 @@
 
   function rowKey(orgKey, row) { return orgKey + ":" + row.numero; }
 
+  // Em quais provas de concurso cada súmula já foi cobrada
+  // (scripts/cobrancas_provas.py → provas/cobrancas.json).
+  var COBRANCAS_JSON = "https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/provas/cobrancas.json";
+  var COB = null;
+  function cobrancasDe(row) {
+    var lst = COB && COB.itens["sum:" + row.org + ":" + row.numero];
+    if (!lst) return [];
+    var porProva = {};
+    lst.forEach(function (x) { (porProva[x[0]] = porProva[x[0]] || []).push(x[1]); });
+    return Object.keys(porProva).map(function (pi) {
+      var p = COB.provas[pi];
+      return { rotulo: p.rotulo + " (" + p.banca + ")", ano: p.ano, questoes: porProva[pi] };
+    }).sort(function (a, b) { return b.ano.localeCompare(a.ano); });
+  }
+  function carregarCobrancas() {
+    fetch(COBRANCAS_JSON, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { COB = j; render(); })
+      .catch(function () { /* sem as cobranças, a página segue igual */ });
+  }
+
   function readLocal() {
     try {
       var raw = localStorage.getItem(LOCAL_KEY);
@@ -336,6 +357,14 @@
       texto.textContent = row.texto;
       edition.appendChild(num);
       edition.appendChild(texto);
+      var cobs = cobrancasDe(row);
+      if (cobs.length) {
+        var cob = document.createElement("p");
+        cob.className = "sumula-cobrada";
+        cob.textContent = "📝 Cobrada em " + cobs.length + (cobs.length === 1 ? " prova: " : " provas: ") +
+          cobs.map(function (c) { return c.rotulo + " (q. " + c.questoes.join(", ") + ")"; }).join(" · ");
+        edition.appendChild(cob);
+      }
 
       var star = document.createElement("span");
       if (row.lida) {
@@ -583,6 +612,7 @@
   applyMap(readLocal());
   criarBusca("Buscar súmula por número ou palavra (ex.: 331, horas extras)", function () { loteAtual = 0; render(); });
   render();
+  carregarCobrancas();
 
   // 2) progresso na conta de quem entrou (própria coleção "progress-sumulas")
   var progressUnsub = null;

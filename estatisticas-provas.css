@@ -1,0 +1,31 @@
+@import url("https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estudamana-tokens.css");
+
+/* Página "Estatísticas de cobrança" (estatisticas-provas-logic.js) */
+#estatisticas-provas { max-width: var(--page-width-wide); margin: 0 auto; padding: 0 16px 40px; font-family: var(--font-sans); color: var(--ink); }
+#estatisticas-provas .ep-filtros { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0 18px; }
+#estatisticas-provas .ep-filtros label { font-size: calc(13px * var(--fs-scale)); color: var(--ink-soft); display: flex; gap: 6px; align-items: center; }
+#estatisticas-provas select, #estatisticas-provas input[type=search] { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); }
+#estatisticas-provas input[type=search] { flex: 1 1 240px; min-width: 0; }
+#estatisticas-provas .ep-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 24px; }
+#estatisticas-provas .ep-numeros div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+#estatisticas-provas .ep-numeros b { display: block; font-size: calc(24px * var(--fs-scale)); font-variant-numeric: tabular-nums; }
+#estatisticas-provas .ep-numeros span { font-size: calc(12.5px * var(--fs-scale)); color: var(--muted); }
+#estatisticas-provas .ep-titulo { font-family: var(--font-serif); font-size: calc(20px * var(--fs-scale)); margin: 28px 0 10px; }
+#estatisticas-provas .ep-ranking { list-style: none; counter-reset: ep; padding: 0; margin: 0; display: grid; gap: 10px; }
+#estatisticas-provas .ep-ranking li { counter-increment: ep; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px 12px 46px; position: relative; }
+#estatisticas-provas .ep-ranking li::before { content: counter(ep); position: absolute; left: 14px; top: 12px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+#estatisticas-provas .ep-item-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+#estatisticas-provas .ep-vezes { font-size: calc(12px * var(--fs-scale)); background: var(--accent-soft); color: var(--ink); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+#estatisticas-provas .ep-texto { margin: 6px 0 4px; font-size: calc(14px * var(--fs-scale)); line-height: 1.45; }
+#estatisticas-provas .ep-onde { margin: 0; font-size: calc(12px * var(--fs-scale)); color: var(--muted); }
+#estatisticas-provas .ep-mais { margin-top: 12px; font: inherit; padding: 8px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); cursor: pointer; }
+#estatisticas-provas .ep-barras { display: grid; gap: 6px; }
+#estatisticas-provas .ep-barra { display: grid; grid-template-columns: minmax(120px, 34%) 1fr 48px; gap: 10px; align-items: center; font-size: calc(13px * var(--fs-scale)); }
+#estatisticas-provas .ep-barra-trilho { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; }
+#estatisticas-provas .ep-barra-cheia { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+#estatisticas-provas .ep-barra-num { text-align: right; font-variant-numeric: tabular-nums; }
+#estatisticas-provas .ep-tabela { width: 100%; border-collapse: collapse; font-size: calc(13px * var(--fs-scale)); }
+#estatisticas-provas .ep-tabela th, #estatisticas-provas .ep-tabela td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+#estatisticas-provas .ep-tabela td:nth-child(n+3), #estatisticas-provas .ep-tabela th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; }
+#estatisticas-provas .ep-nota, #estatisticas-provas .ep-vazio, #estatisticas-provas .ep-carregando { font-size: calc(12.5px * var(--fs-scale)); color: var(--muted); }
+@media (max-width: 560px) { #estatisticas-provas .ep-barra { grid-template-columns: 1fr 48px; } #estatisticas-provas .ep-barra-trilho { grid-column: 1 / -1; grid-row: 2; } }

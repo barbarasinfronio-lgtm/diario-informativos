@@ -21,6 +21,30 @@
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
   // página não ficar pesada; com busca, mostra tudo o que combinar.
   var LOTE_INICIAL = 10;
+  // Em quais provas de concurso cada decisão já foi cobrada
+  // (scripts/cobrancas_provas.py → provas/cobrancas.json).
+  var COBRANCAS_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/provas/cobrancas.json';
+  var COB = null;
+  function cobrancasDe(d){
+    var lst = COB && COB.itens['dec:' + d.id];
+    if (!lst) return [];
+    var porProva = {};
+    lst.forEach(function(x){ (porProva[x[0]] = porProva[x[0]] || []).push(x[1]); });
+    return Object.keys(porProva).map(function(pi){
+      var p = COB.provas[pi];
+      return { rotulo: p.rotulo + ' (' + p.banca + ')', ano: p.ano, questoes: porProva[pi] };
+    }).sort(function(a, b){ return b.ano.localeCompare(a.ano); });
+  }
+  function cobrancaResumo(cs){
+    var nomes = cs.slice(0, 3).map(function(c){ return c.rotulo; }).join(' · ');
+    return '📝 Cobrado em ' + cs.length + (cs.length === 1 ? ' prova: ' : ' provas: ') + nomes + (cs.length > 3 ? ' e mais ' + (cs.length - 3) : '');
+  }
+  function carregarCobrancas(){
+    fetch(COBRANCAS_JSON, { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){ COB = j; DATA.forEach(function(d){ d._busca = null; }); render(); })
+      .catch(function(){ /* sem as cobranças, a página segue igual */ });
+  }
   var limite = LOTE_INICIAL;
   var state = { q:'', org:'all', risk:'all', area:null };
 
@@ -218,7 +242,8 @@
   function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
   function textoBusca(d){
     if (d._busca == null) d._busca = semAcento([d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,
-      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao].join(' '));
+      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,
+      cobrancasDe(d).map(function(c){ return 'cobrado prova ' + c.rotulo; }).join(' ')].join(' '));
     return d._busca;
   }
   function matches(d){
@@ -420,6 +445,7 @@
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
         '<div class="destaque">' + escapeHtml(d.destaque||d.tese||d.questao||'') + '</div>' +
+        (cobrancasDe(d).length ? '<div class="cobrado">' + escapeHtml(cobrancaResumo(cobrancasDe(d))) + '</div>' : '') +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
       var checkbox = card.querySelector('.read-checkbox');
@@ -464,6 +490,7 @@
         (d.suspensao ? '<div><b>Suspensão nacional</b>' + escapeHtml(d.suspensao.replace(/^Suspensão nacional /, '')) + '</div>' : '') +
       '</div>' +
       (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : d.grupo ? 'Detalhes' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
+      (cobrancasDe(d).length ? '<div class="section-label">Cobrado em provas</div><ul class="cobrado-lista">' + cobrancasDe(d).map(function(c){ return '<li>' + escapeHtml(c.rotulo) + ' — questão ' + c.questoes.join(', ') + '</li>'; }).join('') + '</ul>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
@@ -694,6 +721,7 @@
   carregarExtras(ACORDAOS_JSON);
   carregarTST();
   carregarTeses();
+  carregarCobrancas();
 
   if(GS && window.firebase && window.DIARIO_FIREBASE_CONFIG){
     GS.onViewerReady(function(uid){
