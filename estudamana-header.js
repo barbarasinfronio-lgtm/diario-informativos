@@ -433,7 +433,14 @@ var visible = pages.filter(function (p) { return !hide[slugOf(p.path)]; });
 // A lista "order" acima não é mais usada para ordenar.
 var collator = new Intl.Collator("pt-BR", { sensitivity: "base" });
 function labelOf(p) { return CONFIG.labels[slugOf(p.path)] || p.title || ""; }
-return visible.sort(function (a, b) { return collator.compare(labelOf(a), labelOf(b)); });
+// "Me pague um café" fica sempre por último (pelo endereço de CONFIG.cafe
+// ou pelo título, caso o Blogger tenha dado outro endereço à página).
+function ehCafe(p) {
+return !!((CONFIG.cafe && slugOf(p.path) === slugOf(CONFIG.cafe.pagina)) || /pague um caf/i.test(p.title || ""));
+}
+return visible.sort(function (a, b) {
+return (ehCafe(a) - ehCafe(b)) || collator.compare(labelOf(a), labelOf(b));
+});
 }
 
 // ---- montagem do cabeçalho -----------------------------------------
