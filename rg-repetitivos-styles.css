@@ -225,3 +225,8 @@
   /* "Cobrado em provas" (provas/cobrancas.json) */
   .card .cobrado{font-size:calc(11.5px * var(--fs-scale)); color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:4px 8px; margin-top:6px; line-height:1.35;}
   .cobrado-lista{margin:4px 0 10px; padding-left:18px; font-size:calc(13px * var(--fs-scale)); color:var(--ink-soft);}
+
+  /* Julgados de informativos: texto justificado */
+  .card.card-informativo .destaque,
+  .modal.modal-informativo .tese-text,
+  .modal.modal-informativo .destaque-text{text-align:justify; hyphens:auto; -webkit-hyphens:auto;}

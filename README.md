@@ -176,3 +176,20 @@ já caiu. Ele é gerado por `scripts/cobrancas_provas.py <pasta com .txt>` a
 partir do texto das provas (um .txt por prova, nome com banca, ano e órgão;
 gabaritos são ignorados). O Diário das Súmulas e o Diário das Decisões mostram
 "📝 Cobrada em …" nos cards, e a página de estatísticas usa o mesmo arquivo.
+
+## Informativos em cards (Diário das Decisões)
+
+O grupo "Informativos" do Diário das Decisões mostra cada julgado dos
+informativos do STJ (592 em diante) e do STF (1000 em diante) como um card:
+tese, tema, processo e o resumo completo ao abrir. Gerado por
+`scripts/informativos_cards.py todos_informativos_consolidados.json`, que tira
+as repetições e grava `informativos/indice.json` (lista leve, baixada só ao
+abrir o grupo ou buscar) e `informativos/c/NNN.json` (resumos, 250 por
+arquivo, baixados ao abrir o card). Os informativos antigos do STF (.htm,
+1 a 999) ainda não entram: os julgados vieram num texto único.
+
+## Tema claro / escuro
+
+`estudamana-header.js` põe um botão ☾/☀ ao lado de "A− A A+". A escolha
+fica em `localStorage["estudamana-tema"]` e vira `data-theme` no `<html>`;
+sem escolha, o site segue o sistema (`estudamana-tokens.css`).

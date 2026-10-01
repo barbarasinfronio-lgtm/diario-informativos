@@ -119,6 +119,7 @@
 .em-font__btn--down { font-size: 0.8rem; }
 .em-font__btn--reset { font-size: 0.92rem; }
 .em-font__btn--up { font-size: 1.05rem; }
+.em-font__btn--tema { font-size: 1.05rem; border-left: 1px solid var(--line); border-radius: 0 999px 999px 0; margin-left: 2px; }
 
 .em-font__btn:hover:not(:disabled) {
   background: var(--surface-2);
