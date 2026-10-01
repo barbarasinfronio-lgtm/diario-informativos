@@ -214,14 +214,15 @@ html.em-has-font body {
 
 /* Texto dos cards justificado em todas as páginas (Súmulas, Resoluções, Leis,
    Decisões, Constitucionalidade, Reclamações, Revisões), no card aberto do
-   Diário das Decisões, nas questões do Diário das Provas, nos prêmios do Meu
+   Diário das Decisões (o título grande fica alinhado à esquerda: justificado,
+   abre buracos entre as palavras), nas questões do Diário das Provas, nos prêmios do Meu
    Progresso e nas caixas comuns (login, "Me pague um café"). */
 .sumula-texto,
 .lei-card h3, .lei-card p,
 .card h3, .card .destaque,
 .edition-row .edition-topic,
 .rv-texto,
-.modal h2, .modal .tese-text, .modal .destaque-text, .modal .historico-text,
+.modal .tese-text, .modal .destaque-text, .modal .historico-text,
 .ep-texto, .ep-nota,
 .pz-card-body p, .pz-hint,
 .cg-box p, .em-cafe-card p, .em-cafe-page p, .em-cafe-page li {
