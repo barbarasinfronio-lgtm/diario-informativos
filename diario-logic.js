@@ -383,7 +383,7 @@
     var starLine = document.getElementById("stat-stars");
     if (starLine) {
       starLine.textContent = lidas
-        ? GS.avatarEmoji(avatarPref) + " " + lidas + " juiz" + (lidas === 1 ? "" : "es") + " (" + estrelasOuro + " dourado" + (estrelasOuro === 1 ? "" : "s") + ")"
+        ? GS.linhaPremio(avatarPref, lidas, estrelasOuro)
         : "";
     }
   }

@@ -36,6 +36,55 @@
     return base + tone + JUDGE_SUFFIX;
   };
 
+  // Prêmio por leitura, conforme a carreira do edital principal escolhido
+  // na página "Editais" (localStorage "editais-principal"). Cada informativo
+  // lido vira uma peça da carreira: sentença, denúncia, inquérito etc.
+  // `fem` decide a concordância ("douradas"/"dourados").
+  S.PREMIOS_CARREIRA = {
+    mag:  { sufixo: JUDGE_SUFFIX, um: "sentença",    varios: "sentenças",    fem: true },
+    mp:   { sufixo: "‍💼",        um: "denúncia",    varios: "denúncias",    fem: true },
+    del:  { detetive: true,       um: "inquérito",   varios: "inquéritos",   fem: false },
+    def:  { sufixo: "‍💼",        um: "atendimento", varios: "atendimentos", fem: false },
+    adv:  { sufixo: "‍💼",        um: "parecer",     varios: "pareceres",    fem: false },
+    cart: { sufixo: "‍💼",        um: "escritura",   varios: "escrituras",   fem: true },
+    est:  { sufixo: "‍🎓",        um: "processo",    varios: "processos",    fem: false }
+  };
+
+  // Descobre a carreira pelo id do edital/carreira (os ids já dizem o cargo:
+  // "tjsp-192", "pc-sp-delegado-2022", "carreira-promotor", "exame-enam"…).
+  S.carreiraDoEdital = function (id) {
+    id = String(id || "").toLowerCase();
+    if (!id) return "est";
+    if (/magistratura|enam|^tj|^trf|^csjt/.test(id)) return "mag";
+    if (/enac/.test(id)) return "cart";
+    if (/delegad/.test(id)) return "del";
+    if (/defensor|^dp/.test(id)) return "def";
+    if (/promotor|^mp/.test(id)) return "mp";
+    if (/procurador|advogad|enap|^pg|^agu|^pfn/.test(id)) return "adv";
+    return "est";
+  };
+
+  S.premioCarreira = function () {
+    var id = "";
+    try { id = localStorage.getItem("editais-principal") || ""; } catch (e) {}
+    return S.PREMIOS_CARREIRA[S.carreiraDoEdital(id)];
+  };
+
+  // "👩🏽‍⚖️ 7 sentenças (2 douradas)"
+  S.linhaPremio = function (pref, lidas, douradas) {
+    var p = S.premioCarreira();
+    var tone = S.TONE_MOD[pref.tone] || "";
+    var boneco;
+    if (p.detetive) {
+      var g = { f: "‍♀️", m: "‍♂️" }[pref.gender] || "";
+      boneco = "\u{1F575}" + (tone || "️") + g;
+    } else {
+      boneco = (S.GENDER_BASE[pref.gender] || S.GENDER_BASE.f) + tone + p.sufixo;
+    }
+    return boneco + " " + lidas + " " + (lidas === 1 ? p.um : p.varios) +
+      " (" + douradas + " dourad" + (p.fem ? "a" : "o") + (douradas === 1 ? "" : "s") + ")";
+  };
+
   S.validAvatar = function (avatar) {
     return avatar && S.GENDER_BASE[avatar.gender] && S.TONE_MOD[avatar.tone] ? avatar : S.AVATAR_DEFAULT;
   };
