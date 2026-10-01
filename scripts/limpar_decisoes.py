@@ -42,6 +42,10 @@ Regras (por arquivo):
     - acórdãos que só "não conhecem" do recurso/pedido saem, a não ser que
       algo tenha sido analisado de ofício (ex.: habeas corpus concedido de ofício).
   Controle: também saem as decisões "não conhecido" sem nada de ofício.
+  Controle: saem as decisões monocráticas (só do relator ou do presidente:
+    liminar ad referendum ainda não referendada, "nego seguimento", "julgo
+    prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
+    na preparação; ficam só as do Plenário/Turma, que vinculam.
 """
 import json
 import os
@@ -144,7 +148,21 @@ DE_OFICIO_DECIDIDO = re.compile(r"(,|e|mas|contudo|por[ée]m)\s*,?\s*de of[ií]c
 VINCULANTE = re.compile(r"(fix\w*|assent\w*|firm\w*) (a seguinte |a |esta )?tese|tese de julgamento|modula\w*|acolh\w* (em parte )?(os )?embargos|interpreta[çc][ãa]o conforme (conferida|dada)|ressalvad\w* (em qualquer caso )?a validade", re.I)
 
 
+# Decisão colegiada (Plenário/Turma) = vinculante. Tudo que não tiver sinal de
+# colegiado é do relator ou do presidente. "Ad referendum" e "submeto ao
+# referendo do Plenário" são do relator: só valem depois que o Plenário referenda.
+COLEGIADO = re.compile(r"\bo tribunal(?! (de|regional|superior|federal|estadual|eleitoral|do)\b)|plen[áa]rio|por (maioria|unanimidade)|\b(a|primeira|segunda|1ª|2ª) turma|colegiad|referendou|referendad[ao]|sess[ãa]o virtual|\bpleno\b", re.I)
+SO_RELATOR = re.compile(r"ad referendum|submet\w+[^.]{0,80}(referendo|plen[áa]rio)|referendo[^.]{0,40}plen[áa]rio", re.I)
+
+
+def monocratica(d):
+    t = " ".join(str(d.get(c) or "") for c in ("tema", "andamento", "resultado"))
+    return not COLEGIADO.search(SO_RELATOR.sub(" ", t))
+
+
 def sem_conteudo_controle(d):
+    if monocratica(d):
+        return True
     t = norm(d.get("tema"))
     if NAO_CONHECIDO.search(d.get("andamento") or ""):
         return not (DE_OFICIO_DECIDIDO.search(t) or VINCULANTE.search(t))
@@ -186,7 +204,7 @@ def limpar_controle():
             juntadas += len(g) - 1
             d["processo"] = juntar_processos(g)
         final.append(d)
-    resumo.append(f"Controle: {antes} → {len(final)} (sem conteúdo {vazias}, repetidas {rep}, juntadas {juntadas})")
+    resumo.append(f"Controle: {antes} → {len(final)} (sem conteúdo ou monocráticas {vazias}, repetidas {rep}, juntadas {juntadas})")
     gravar_js(f, p, final, s, i)
 
 
