@@ -27,11 +27,17 @@
     });
     return v;
   }
+  // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem como palavra inteira —
+  // senão "ir" acharia "direito", "irregular"… Números e termos maiores: trecho.
+  function contem(h, t) {
+    if (/^[a-z]{2,3}$/.test(t)) return new RegExp("(^|[^a-z0-9])" + t + "([^a-z0-9]|$)").test(h);
+    return h.indexOf(t) !== -1;
+  }
   function combinaBusca(texto) {
     if (!termosBusca.length) return true;
     var h = semAcentoBusca(texto);
     return termosBusca.every(function (t) {
-      return variantes(t).some(function (x) { return h.indexOf(x) !== -1; });
+      return variantes(t).some(function (x) { return contem(h, x); });
     });
   }
   function mostrarResultadoBusca(n, rotulo) {
@@ -55,7 +61,9 @@
     buscaInfo.hidden = true;
     function mudou() {
       limpar.hidden = !input.value;
-      termosBusca = semAcentoBusca(input.value).split(/\s+/).filter(Boolean);
+      // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
+      var digitado = semAcentoBusca(input.value).trim();
+      termosBusca = digitado.replace(/\s+/g, "").length < 2 ? [] : digitado.split(/\s+/).filter(Boolean);
       aoMudar();
     }
     input.addEventListener("input", mudou);

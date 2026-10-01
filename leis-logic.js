@@ -379,6 +379,8 @@
     function atendeBusca(lei, termo, digitos) {
       if (!termo) return true;
       if (digitos && lei.digitos.indexOf(digitos) !== -1) return true;
+      // siglas curtas (IR, ECA, CTN) só como palavra inteira; o resto, como trecho
+      if (/^[a-z]{2,3}$/.test(termo)) return new RegExp("(^|[^a-z0-9])" + termo + "([^a-z0-9]|$)").test(lei.busca);
       return lei.busca.indexOf(termo) !== -1;
     }
 
@@ -432,6 +434,8 @@
     function render() {
       var opcao = opcoes[selectEdital.value] || null;
       var termo = semAcento(inputBusca ? inputBusca.value.trim() : "");
+      // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
+      if (termo.replace(/\s+/g, "").length < 2) termo = "";
       var digitos = /\d/.test(termo) ? termo.replace(/\D/g, "") : "";
       var buscando = !!termo;
 

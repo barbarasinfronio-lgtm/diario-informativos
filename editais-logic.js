@@ -129,7 +129,10 @@
   function combina(ed) {
     if (!termos.length) return true;
     var alvo = semAcento([ed.sigla, ed.titulo, ed.cargo, ed.orgao, ed.edital].join(" "));
-    return termos.every(function (w) { return alvo.indexOf(w) !== -1; });
+    // siglas curtas (TJ, MP, PGE) só no começo de uma palavra; o resto, como trecho
+    return termos.every(function (w) {
+      return /^[a-z]{2,3}$/.test(w) ? new RegExp("(^|[^a-z0-9])" + w).test(alvo) : alvo.indexOf(w) !== -1;
+    });
   }
 
   function montarAreas(list) {
@@ -332,7 +335,9 @@
 
   function mudouBusca() {
     limparBusca.hidden = !inputBusca.value;
-    termos = semAcento(inputBusca.value).split(/\s+/).filter(Boolean);
+    // busca só vale com pelo menos 2 caracteres (ex.: TJ, PGE); com 1, mostra a lista normal
+    var digitado = semAcento(inputBusca.value).trim();
+    termos = digitado.replace(/\s+/g, "").length < 2 ? [] : digitado.split(/\s+/).filter(Boolean);
     render();
   }
   inputBusca.addEventListener("input", mudouBusca);
