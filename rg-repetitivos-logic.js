@@ -2,7 +2,15 @@
   // STF/STJ vêm de rg-repetitivos-data.js; as OJs, Precedentes Normativos e
   // temas de IRR do TST vêm de tst/decisoes.json (gerado toda semana por
   // scripts/atualizar_tst.py) e entram na lista assim que chegam.
-  var DATA = RG_REPETITIVOS_DATA.slice();
+  // Para abrir rápido, a lista vem de leve/decisoes.json (só o que a lista
+  // precisa — gerado por scripts/gerar_leves.js). O texto completo de cada
+  // arquivo (rg-repetitivos-data.js, teses, extras, TST) só é baixado quando
+  // a pessoa busca algo ou abre um card (completarFonte, mais abaixo). Se a
+  // página ainda carregar rg-repetitivos-data.js pelo HTML, ele já vale.
+  var DATA = (window.RG_REPETITIVOS_DATA || []).slice();
+  var completo = { rg: !!window.RG_REPETITIVOS_DATA };
+  var LEVE_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/leve/decisoes.json';
+  var RG_JS = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/rg-repetitivos-data.js';
   var TST_JSON = 'https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/tst/decisoes.json';
   // Jurisprudência em Teses do STJ: uma tese por card, com o texto completo
   // (gerado pelo robô do Mac, scripts/atualizar_informativos.py → stj/teses.json).
@@ -246,7 +254,7 @@
   function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
   function textoBusca(d){
     if (d._busca == null) d._busca = semAcento([d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,
-      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,
+      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,d._resumo,
       cobrancasDe(d).map(function(c){ return 'cobrado prova ' + c.rotulo; }).join(' ')].join(' '));
     return d._busca;
   }
@@ -416,6 +424,8 @@
 
   function render(){
     Object.keys(SOB_DEMANDA).forEach(function(g){ if (!estadoSD(g).prontos && (state.org === g || termosBusca().length)) carregarSobDemanda(g); });
+    // busca precisa do texto completo (tese, destaque…), não só da lista leve
+    if (termosBusca().length) fontesIncompletas().forEach(function(f){ completarFonte(f).catch(function(){}); });
     if (LISTAS_GRANDES[state.org]) {
       var org = state.org;
       if (controleAtivo && controleAtivo !== org && controles[controleAtivo]) controles[controleAtivo].esconder();
@@ -477,6 +487,7 @@
         ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
         : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
+      if (ts.length && fontesIncompletas().length) document.getElementById('countLine').textContent += ' — carregando os textos completos para a busca…';
       var aguardando = aguardandoSobDemanda(ts);
       if (aguardando.length) {
         document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando ' + aguardando.map(function(g){ return SOB_DEMANDA[g].nome; }).join(' e ') + '…';
@@ -526,7 +537,7 @@
         '</div>' +
         '<div class="area-line">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
         '<h3>' + escapeHtml(d.titulo) + '</h3>' +
-        '<div class="destaque">' + escapeHtml(d.tipo === 'informativo' ? d.tese : (d.destaque||d.tese||d.questao||'')) + '</div>' +
+        '<div class="destaque">' + escapeHtml(d._resumo != null ? d._resumo : d.tipo === 'informativo' ? d.tese : (d.destaque||d.tese||d.questao||'')) + '</div>' +
         (cobrancasDe(d).length ? '<div class="cobrado">' + escapeHtml(cobrancaResumo(cobrancasDe(d))) + '</div>' : '') +
         '<div class="meta"><span>' + escapeHtml(d.processo||'') + '</span>' + (d.data ? '<span>' + d.data + '</span>' : '') + '</div>';
 
@@ -548,6 +559,14 @@
   var overlay = document.getElementById('overlay');
   var modal = document.getElementById('modal');
   function openModal(d){
+    if (d._f && !completo[d._f]) {
+      modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Carregando o texto completo…</p>';
+      modal.querySelector('.close').addEventListener('click', closeModal);
+      overlay.classList.add('open');
+      completarFonte(d._f).then(function(){ if (overlay.classList.contains('open')) openModal(d); })
+        .catch(function(){ modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Não foi possível carregar o texto agora. Tente de novo.</p>'; modal.querySelector('.close').addEventListener('click', closeModal); });
+      return;
+    }
     if (d._parte != null && !d._completo) {
       modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">' + escapeHtml(SOB_DEMANDA[d.grupo].carregando) + '</p>';
       modal.querySelector('.close').addEventListener('click', closeModal);
@@ -763,57 +782,77 @@
     seg.appendChild(b);
   }
 
-  function carregarTST(){
-    fetch(TST_JSON, { cache: 'no-cache' })
+  // ---- lista leve + texto completo sob demanda -------------------------------
+  var FONTES_JSON = { teses: TESES_JSON, extras: EXTRAS_JSON, tst: TST_JSON };
+  var carregandoFonte = {};
+  function fontesIncompletas(){
+    return ['rg', 'teses', 'extras', 'tst'].filter(function(f){ return !completo[f]; });
+  }
+  // leve/decisoes.json vem em colunas: { campos, tabelas, linhas } (campos com
+  // poucos valores diferentes vêm como número da tabela; 0 = vazio)
+  function lerLeve(j){
+    var campos = j.campos || [], tab = j.tabelas || {};
+    return (j.linhas || []).map(function(l){
+      var d = {};
+      for (var i = 0; i < campos.length && i < l.length; i++) {
+        var k = campos[i], v = l[i];
+        if (tab[k]) { if (v) d[k] = tab[k][v - 1]; }
+        else if (v !== 0 && v !== '' && v != null) d[k] = v;
+      }
+      return d;
+    });
+  }
+  function carregarLeve(){
+    fetch(LEVE_JSON, { cache: 'no-cache' })
       .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(j){
-        var itens = (j && j.itens) || [];
-        if (!itens.length) return;
-        DATA = DATA.concat(itens);
+        DATA = DATA.concat(lerLeve(j).filter(function(d){ return !completo[d._f]; }));
         garantirBotaoTST();
-        montarChips();
-        renderStats();
-        render();
-      })
-      .catch(function(){ /* sem o TST, a página segue só com STF e STJ */ });
-  }
-  function carregarTeses(){
-    fetch(TESES_JSON, { cache: 'no-cache' })
-      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(j){
-        var itens = (j && j.itens) || [];
-        if (!itens.length) return;
-        DATA = DATA.concat(itens);
-        montarChips();
-        renderStats();
-        render();
-      })
-      .catch(function(){ /* sem as Teses, a página segue com o resto */ });
-  }
-
-  function carregarExtras(url){
-    fetch(url || EXTRAS_JSON, { cache: 'no-cache' })
-      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(j){
-        var itens = (j && j.itens) || [];
-        if (!itens.length) return;
-        DATA = DATA.concat(itens);
         garantirBotoesGrupos();
-        montarChips();
-        renderStats();
-        render();
+        montarChips(); renderStats(); render();
       })
-      .catch(function(){ /* sem os extras, a página segue com o resto */ });
+      .catch(function(){
+        // sem a lista leve: baixa os arquivos completos, como antes
+        fontesIncompletas().forEach(function(f){ completarFonte(f).catch(function(){}); });
+      });
+  }
+  // baixa o arquivo completo de uma fonte e completa os itens da lista leve
+  // (ou acrescenta os itens, se a lista leve não veio)
+  function completarFonte(f){
+    if (completo[f]) return Promise.resolve();
+    if (carregandoFonte[f]) return carregandoFonte[f];
+    var p = f === 'rg'
+      ? fetch(RG_JS, { cache: 'no-cache' })
+          .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+          .then(function(code){ (0, eval)(code + '\n//# sourceURL=' + RG_JS); return window.RG_REPETITIVOS_DATA || []; })
+      : fetch(FONTES_JSON[f], { cache: 'no-cache' })
+          .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function(j){ return (j && j.itens) || []; });
+    carregandoFonte[f] = p.then(function(lista){
+      var porId = {}, novos = [];
+      DATA.forEach(function(d){ if (d._f === f) porId[String(d.id)] = d; });
+      lista.forEach(function(x){
+        var d = porId[String(x.id)];
+        if (!d) { novos.push(x); return; }
+        for (var k in x) d[k] = x[k];
+        delete d._resumo;
+        d._busca = null;
+      });
+      if (novos.length) DATA = DATA.concat(novos);
+      completo[f] = true;
+      if (f === 'tst') garantirBotaoTST();
+      if (f === 'extras') garantirBotoesGrupos();
+      montarChips(); renderStats(); render();
+    }).catch(function(e){ delete carregandoFonte[f]; throw e; });
+    return carregandoFonte[f];
   }
 
   montarChips();
   renderStats();
   render();
   garantirBotoesListasGrandes();
-  carregarExtras();
   garantirBotoesGrupos();
-  carregarTST();
-  carregarTeses();
+  carregarLeve();
   carregarCobrancas();
 
   if(GS && window.firebase && window.DIARIO_FIREBASE_CONFIG){
