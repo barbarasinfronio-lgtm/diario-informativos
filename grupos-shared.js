@@ -70,18 +70,21 @@
     return S.PREMIOS_CARREIRA[S.carreiraDoEdital(id)];
   };
 
+  // Boneco com o acessório da carreira (toga, pasta, detetive, beca).
+  S.bonecoCarreira = function (pref) {
+    var p = S.premioCarreira();
+    var tone = S.TONE_MOD[pref.tone] || "";
+    if (p.detetive) {
+      var g = { f: "‍♀️", m: "‍♂️" }[pref.gender] || "";
+      return "\u{1F575}" + (tone || "️") + g;
+    }
+    return (S.GENDER_BASE[pref.gender] || S.GENDER_BASE.f) + tone + p.sufixo;
+  };
+
   // "👩🏽‍⚖️ 7 sentenças (2 douradas)"
   S.linhaPremio = function (pref, lidas, douradas) {
     var p = S.premioCarreira();
-    var tone = S.TONE_MOD[pref.tone] || "";
-    var boneco;
-    if (p.detetive) {
-      var g = { f: "‍♀️", m: "‍♂️" }[pref.gender] || "";
-      boneco = "\u{1F575}" + (tone || "️") + g;
-    } else {
-      boneco = (S.GENDER_BASE[pref.gender] || S.GENDER_BASE.f) + tone + p.sufixo;
-    }
-    return boneco + " " + lidas + " " + (lidas === 1 ? p.um : p.varios) +
+    return S.bonecoCarreira(pref) + " " + lidas + " " + (lidas === 1 ? p.um : p.varios) +
       " (" + douradas + " dourad" + (p.fem ? "a" : "o") + (douradas === 1 ? "" : "s") + ")";
   };
 

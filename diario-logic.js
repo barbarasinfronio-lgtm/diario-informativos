@@ -531,7 +531,7 @@
   function syncAvatarControls() {
     if (avatarToggleGenderSelect) avatarToggleGenderSelect.value = avatarPref.gender;
     if (avatarToneSelect) avatarToneSelect.value = avatarPref.tone;
-    if (avatarPreview) avatarPreview.textContent = GS.avatarEmoji(avatarPref);
+    if (avatarPreview) avatarPreview.textContent = GS.bonecoCarreira(avatarPref);
   }
 
   function onAvatarPrefChange() {

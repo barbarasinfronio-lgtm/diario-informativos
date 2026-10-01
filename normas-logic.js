@@ -250,7 +250,7 @@
       var totalLidasGeral = 0;
       ORG_ORDER.forEach(function (k) { stateByOrg[k].forEach(function (r) { if (r.lida) totalLidasGeral++; }); });
       starLine.textContent = totalLidasGeral
-        ? GS.avatarEmoji(avatarPref) + " " + totalLidasGeral + " norma" + (totalLidasGeral === 1 ? "" : "s") + " no total"
+        ? GS.bonecoCarreira(avatarPref) + " " + totalLidasGeral + " norma" + (totalLidasGeral === 1 ? "" : "s") + " no total"
         : "";
     }
   }
@@ -371,7 +371,7 @@
   function syncAvatarControls() {
     if (avatarToggleGenderSelect) avatarToggleGenderSelect.value = avatarPref.gender;
     if (avatarToneSelect) avatarToneSelect.value = avatarPref.tone;
-    if (avatarPreview) avatarPreview.textContent = GS.avatarEmoji(avatarPref);
+    if (avatarPreview) avatarPreview.textContent = GS.bonecoCarreira(avatarPref);
   }
 
   function onAvatarPrefChange() {
