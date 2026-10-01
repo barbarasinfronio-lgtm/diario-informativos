@@ -239,8 +239,54 @@
         '<div class="destaque">' + esc(texto) + "</div>" +
         '<div class="meta"><span>' + esc(data) + " — " + esc(it.relator || "STF") + '</span><a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a></div>';
       card.querySelector(".read-checkbox").addEventListener("change", function () { alternar(it.id); });
+      // Clicar no card abre os detalhes (como nos outros cards do Diário);
+      // a caixinha de lido e o link do STF continuam fazendo só o que fazem.
+      card.style.cursor = "pointer";
+      card.addEventListener("click", function (e) {
+        if (e.target.closest(".read-check, a")) return;
+        abrirDetalhe(it);
+      });
       listEl.appendChild(card);
     });
+  }
+
+  // ---- detalhes (usa a mesma janela #overlay/#modal do Diário) -------------
+  function fecharDetalhe() {
+    var ov = document.getElementById("overlay");
+    if (ov) ov.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  function abrirDetalhe(it) {
+    var ov = document.getElementById("overlay"), modal = document.getElementById("modal");
+    if (!ov || !modal) { window.open(safeUrl(it.url || URL_STF + it.processo), "_blank", "noopener"); return; }
+    var bruto = textoItem(it), texto = limparTexto(bruto);
+    var cortado = String(bruto || "").length >= LIMITE_TEXTO - 5 && /…$/.test(texto);
+    var url = it.url || URL_STF + it.processo;
+    var lido = !!lidos[it.id];
+    var rotuloTexto = cfg.prefixo === "reclamacoes" ? "Resumo da decisão" : "Decisão";
+    modal.innerHTML =
+      '<button class="close" aria-label="Fechar">✕</button>' +
+      '<div class="top-row"><span class="tag-org STF">STF</span><span class="tag-tema">' + esc(cfg.etiqueta(it)) + "</span></div>" +
+      '<div class="area-line" style="margin-top:8px">' + esc(cfg.linhaArea(it)) + "</div>" +
+      "<h2>" + esc(it.processo) + "</h2>" +
+      '<div class="section-label">' + rotuloTexto + '</div><div class="tese-text">' +
+        esc(texto || "Sem resumo disponível — abra o processo no STF.") + "</div>" +
+      (cortado ? '<p class="historico-text" style="opacity:.8">O STF só publica este trecho inicial na base de dados; o texto completo está na página do processo.</p>' : "") +
+      '<div class="fields">' +
+        "<div><b>Processo</b>" + esc(it.processo || "—") + "</div>" +
+        "<div><b>Relator(a)</b>" + esc(it.relator || "—") + "</div>" +
+        "<div><b>Julgamento</b>" + esc(formatarData(it[cfg.campoData]) || it.ano || "—") + "</div>" +
+        (it.ramo ? "<div><b>" + (cfg.prefixo === "reclamacoes" ? "Tipo de decisão" : "Ramo") + "</b>" + esc(it.ramo) + "</div>" : "") +
+      "</div>" +
+      '<a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a>' +
+      '<p style="margin-top:14px"><button type="button" class="chip" id="' + P + 'lido-modal">' + (lido ? "✓ Lido — desmarcar" : "Marcar como lido") + "</button></p>";
+    modal.querySelector(".close").addEventListener("click", fecharDetalhe);
+    modal.querySelector("#" + P + "lido-modal").addEventListener("click", function () {
+      alternar(it.id);
+      this.textContent = lidos[it.id] ? "✓ Lido — desmarcar" : "Marcar como lido";
+    });
+    ov.classList.add("open");
+    document.body.style.overflow = "hidden";
   }
 
   function criarUI(antes) {
