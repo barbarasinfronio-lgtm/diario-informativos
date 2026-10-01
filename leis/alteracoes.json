@@ -5599,6 +5599,2328 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-01"
+  },
+  "lei-n-5-478-1968": {
+   "numero": "Lei nº 5.478/1968",
+   "nome": "Lei de Alimentos (ação de alimentos)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l5478.htm",
+   "alteradoras": [
+    "Lei 6014"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-195-2021": {
+   "numero": "Lei nº 14.195/2021",
+   "nome": "Ambiente de negócios (citação, prescrição intercorrente, sociedades)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14195.htm",
+   "alteradoras": [
+    "Lei 14382",
+    "MP 1085"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-4-380-1964": {
+   "numero": "Lei nº 4.380/1964",
+   "nome": "Correção monetária nos contratos imobiliários / SFH",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l4380.htm",
+   "alteradoras": [
+    "DL 1338",
+    "DL 204",
+    "Lei 11977",
+    "Lei 13137",
+    "Lei 13506",
+    "Lei 4864",
+    "Lei 5049",
+    "Lei 5127",
+    "Lei 5455",
+    "Lei 8245",
+    "MP 2197",
+    "MP 459",
+    "MP 656",
+    "MP 668"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-853-2019": {
+   "numero": "Lei nº 13.853/2019",
+   "nome": "Altera a LGPD (Autoridade Nacional de Proteção de Dados)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13853.htm",
+   "alteradoras": [
+    "Lei 14460",
+    "MP 1124"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-786-2018": {
+   "numero": "Lei nº 13.786/2018",
+   "nome": "Resolução de contrato de imóvel em incorporação (distrato)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13786.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-711-2023": {
+   "numero": "Lei nº 14.711/2023",
+   "nome": "Marco Legal das Garantias",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14711.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-063-2020": {
+   "numero": "Lei nº 14.063/2020",
+   "nome": "Assinaturas eletrônicas em interações com entes públicos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14063.htm",
+   "alteradoras": [
+    "Lei 14620",
+    "MP 1162"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-601-1850": {
+   "numero": "Lei nº 601/1850",
+   "nome": "Lei de Terras",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lim/lim601.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-267-2001": {
+   "numero": "Lei nº 10.267/2001",
+   "nome": "Lei de Georreferenciamento de imóveis rurais (altera Leis 4.947/66, 6.015/73 e 6.739/79)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/leis_2001/l10267.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-8-660-2016": {
+   "numero": "Decreto nº 8.660/2016",
+   "nome": "Convenção da Apostila de Haia — supressão da legalização de documentos públicos estrangeiros",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8660.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-376-2010": {
+   "numero": "Lei nº 12.376/2010",
+   "nome": "Altera a ementa da LINDB (Lei de Introdução às Normas do Direito Brasileiro)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12376.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-318-2010": {
+   "numero": "Lei nº 12.318/2010",
+   "nome": "Lei da Alienação Parental",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12318.htm",
+   "alteradoras": [
+    "Lei 14340"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-764-2012": {
+   "numero": "Lei nº 12.764/2012",
+   "nome": "Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista (Lei Berenice Piana)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm",
+   "alteradoras": [
+    "Lei 13977",
+    "Lei 15131",
+    "Lei 15256"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-971-1994": {
+   "numero": "Lei nº 8.971/1994",
+   "nome": "Regula o direito dos companheiros a alimentos e à sucessão (união estável)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8971.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-038-1990": {
+   "numero": "Lei nº 8.038/1990",
+   "nome": "Processos perante o STJ e o STF (recursos)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8038.htm",
+   "alteradoras": [
+    "Lei 12019",
+    "Lei 13964",
+    "Lei 14836",
+    "Lei 9756"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-129-2015": {
+   "numero": "Lei nº 13.129/2015",
+   "nome": "Altera a Lei de Arbitragem",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13129.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-008-1995": {
+   "numero": "Lei nº 9.008/1995",
+   "nome": "Fundo de Defesa de Direitos Difusos",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9008.htm",
+   "alteradoras": [
+    "Lei 13146",
+    "Lei 15352",
+    "MP 1317"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-181-2021": {
+   "numero": "Lei nº 14.181/2021",
+   "nome": "Superendividamento do consumidor",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14181.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-538-2023": {
+   "numero": "Lei nº 14.538/2023",
+   "nome": "Planos de saúde — reconstrução mamária (altera a Lei 9.656/1998)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14538.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-2-181-1997": {
+   "numero": "Decreto nº 2.181/1997",
+   "nome": "Sistema Nacional de Defesa do Consumidor (SNDC)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d2181.htm",
+   "alteradoras": [
+    "Lei 9298"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1996-08-01",
+   "ultimaNorma": "Lei nº 9.298/1996"
+  },
+  "lei-n-10-820-2003": {
+   "numero": "Lei nº 10.820/2003",
+   "nome": "Crédito consignado em folha de pagamento",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.820.htm",
+   "alteradoras": [
+    "Lei 10953",
+    "Lei 13097",
+    "Lei 13172",
+    "Lei 13183",
+    "Lei 13313",
+    "Lei 14431",
+    "Lei 14601",
+    "Lei 15179",
+    "Lei 15367",
+    "MP 1106",
+    "MP 1164",
+    "MP 1292",
+    "MP 656",
+    "MP 681",
+    "MP 719",
+    "MP 922"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-5-903-2006": {
+   "numero": "Decreto nº 5.903/2006",
+   "nome": "Práticas infracionais nas relações de consumo (oferta e preços)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5903.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-166-2019": {
+   "numero": "Lei Complementar nº 166/2019",
+   "nome": "Altera a Lei do Cadastro Positivo",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp166.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-11-150-2022": {
+   "numero": "Decreto nº 11.150/2022",
+   "nome": "Preservação e não comprometimento do mínimo existencial",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d11150.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-790-2023": {
+   "numero": "Lei nº 14.790/2023",
+   "nome": "Apostas de quota fixa (bets)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14790.htm",
+   "alteradoras": [
+    "Lei 15358",
+    "MP 1303",
+    "MP 1394"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-185-2015": {
+   "numero": "Lei nº 13.185/2015",
+   "nome": "Programa de combate à intimidação sistemática (bullying)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13185.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-811-2024": {
+   "numero": "Lei nº 14.811/2024",
+   "nome": "Lei Antibullying (criminaliza bullying e cyberbullying)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14811.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-2-740-1998": {
+   "numero": "Decreto nº 2.740/1998",
+   "nome": "Regulamenta a Lei nº 9.394/1996 quanto à educação infantil/rede de ensino",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d2740.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-4-898-1965": {
+   "numero": "Lei nº 4.898/1965",
+   "nome": "Abuso de Autoridade (revogada pela Lei 13.869/2019)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l4898.htm",
+   "alteradoras": [
+    "Lei 13869",
+    "Lei 6657",
+    "Lei 7960",
+    "MP 111"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-7-492-1986": {
+   "numero": "Lei nº 7.492/1986",
+   "nome": "Crimes contra o Sistema Financeiro Nacional",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l7492.htm",
+   "alteradoras": [
+    "Lei 13506",
+    "Lei 14478",
+    "Lei 9080"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1995-07-19",
+   "ultimaNorma": "Lei nº 9.080/1995"
+  },
+  "lei-n-13-344-2016": {
+   "numero": "Lei nº 13.344/2016",
+   "nome": "Prevenção e repressão ao tráfico de pessoas",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13344.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-532-2023": {
+   "numero": "Lei nº 14.532/2023",
+   "nome": "Tipifica racismo por injúria racial",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14532.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-1-521-1951": {
+   "numero": "Lei nº 1.521/1951",
+   "nome": "Crimes contra a economia popular",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l1521.htm",
+   "alteradoras": [
+    "Lei 3290",
+    "Lei 6649",
+    "MP 2172"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-459-1997": {
+   "numero": "Lei nº 9.459/1997",
+   "nome": "Altera a Lei de Crimes de Preconceito de Raça ou Cor",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9459.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-5-015-2004": {
+   "numero": "Decreto nº 5.015/2004",
+   "nome": "Convenção da ONU contra o Crime Organizado Transnacional (Palermo)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5015.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-5-016-2004": {
+   "numero": "Decreto nº 5.016/2004",
+   "nome": "Protocolo contra o Tráfico de Migrantes por Via Terrestre, Marítima e Aérea",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5016.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-5-017-2004": {
+   "numero": "Decreto nº 5.017/2004",
+   "nome": "Protocolo para Prevenir, Reprimir e Punir o Tráfico de Pessoas",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5017.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-154-1991": {
+   "numero": "Decreto nº 154/1991",
+   "nome": "Convenção contra o Tráfico Ilícito de Entorpecentes (Viena, 1988)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d0154.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-5-687-2006": {
+   "numero": "Decreto nº 5.687/2006",
+   "nome": "Convenção das Nações Unidas contra a Corrupção (Mérida)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5687.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-11-491-2023": {
+   "numero": "Decreto nº 11.491/2023",
+   "nome": "Convenção sobre o Crime Cibernético (Budapeste)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11491.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-737-2012": {
+   "numero": "Lei nº 12.737/2012",
+   "nome": "Tipificação criminal de delitos informáticos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12737.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-9-847-2019": {
+   "numero": "Decreto nº 9.847/2019",
+   "nome": "Regulamenta o Estatuto do Desarmamento (armas e munições)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/d9847.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-322-2022": {
+   "numero": "Lei nº 14.322/2022",
+   "nome": "Estelionato sentimental (golpe do amor) — altera o Código Penal",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14322.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-15-358-2026": {
+   "numero": "Lei nº 15.358/2026",
+   "nome": "Lei Antifacção — organizações criminosas armadas",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15358.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-15-384-2026": {
+   "numero": "Lei nº 15.384/2026",
+   "nome": "Feminicídio vicário — altera o Código Penal",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15384.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-1-002-1969": {
+   "numero": "Decreto-Lei nº 1.002/1969",
+   "nome": "Código de Processo Penal Militar",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del1002.htm",
+   "alteradoras": [
+    "Lei 13964",
+    "Lei 14752",
+    "Lei 6544",
+    "Lei 7040",
+    "Lei 8236",
+    "Lei 8457",
+    "Lei 9299"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1996-08-07",
+   "ultimaNorma": "Lei nº 9.299/1996"
+  },
+  "lei-n-1-579-1952": {
+   "numero": "Lei nº 1.579/1952",
+   "nome": "Comissões Parlamentares de Inquérito",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l1579.htm",
+   "alteradoras": [
+    "Lei 10679",
+    "Lei 13367"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2003-05-23",
+   "ultimaNorma": "Lei nº 10.679/2003"
+  },
+  "lei-n-5-249-1967": {
+   "numero": "Lei nº 5.249/1967",
+   "nome": "Ação pública — representação",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/1950-1969/l5249.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-658-1993": {
+   "numero": "Lei nº 8.658/1993",
+   "nome": "Ação penal originária nos Tribunais de Justiça e TRFs",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8658.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-671-2008": {
+   "numero": "Lei nº 11.671/2008",
+   "nome": "Inclusão de presos em estabelecimentos penais federais",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11671.htm",
+   "alteradoras": [
+    "Lei 13964",
+    "Lei 15407"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-037-2009": {
+   "numero": "Lei nº 12.037/2009",
+   "nome": "Identificação criminal do civilmente identificado",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l12037.htm",
+   "alteradoras": [
+    "Lei 12654",
+    "Lei 13964",
+    "Lei 15295",
+    "MP 905"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-457-1992": {
+   "numero": "Lei nº 8.457/1992",
+   "nome": "Organização da Justiça Militar da União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8457.htm",
+   "alteradoras": [
+    "Lei 10333",
+    "Lei 10445",
+    "Lei 13774",
+    "Lei 8719",
+    "Lei 9283"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2002-05-07",
+   "ultimaNorma": "Lei nº 10.445/2002"
+  },
+  "lei-n-10-446-2002": {
+   "numero": "Lei nº 10.446/2002",
+   "nome": "Infrações de repercussão interestadual ou internacional",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10446.htm",
+   "alteradoras": [
+    "Lei 12894",
+    "Lei 13124",
+    "Lei 13642",
+    "Lei 14967"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-830-2013": {
+   "numero": "Lei nº 12.830/2013",
+   "nome": "Investigação criminal conduzida pelo delegado de polícia",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12830.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-313-2010": {
+   "numero": "Lei nº 12.313/2010",
+   "nome": "Assistência jurídica ao preso — altera a Lei de Execução Penal",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12313.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-719-2008": {
+   "numero": "Lei nº 11.719/2008",
+   "nome": "Altera o CPP — resposta à acusação, absolvição sumária e sentença",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11719.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-697-2008": {
+   "numero": "Lei nº 11.697/2008",
+   "nome": "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11697.htm",
+   "alteradoras": [
+    "Lei 12434",
+    "Lei 13264",
+    "Lei 13850"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "emenda-constitucional-n-45-2004": {
+   "numero": "Emenda Constitucional nº 45/2004",
+   "nome": "Reforma do Judiciário",
+   "link": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc45.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-562-2011": {
+   "numero": "Lei nº 12.562/2011",
+   "nome": "Representação interventiva (ADI interventiva)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12562.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-300-2016": {
+   "numero": "Lei nº 13.300/2016",
+   "nome": "Mandado de Injunção",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13300.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-1-079-1950": {
+   "numero": "Lei nº 1.079/1950",
+   "nome": "Crimes de responsabilidade",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l1079.htm",
+   "alteradoras": [
+    "LC 227",
+    "Lei 10028"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "emenda-constitucional-n-80-2014": {
+   "numero": "Emenda Constitucional nº 80/2014",
+   "nome": "Defensoria Pública na Constituição",
+   "link": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc80.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-096-1995": {
+   "numero": "Lei nº 9.096/1995",
+   "nome": "Lei dos Partidos Políticos",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9096.htm",
+   "alteradoras": [
+    "Lei 11459",
+    "Lei 11694",
+    "Lei 12034",
+    "Lei 12875",
+    "Lei 12891",
+    "Lei 13107",
+    "Lei 13165",
+    "Lei 13487",
+    "Lei 13488",
+    "Lei 13831",
+    "Lei 13877",
+    "Lei 14063",
+    "Lei 14192",
+    "Lei 14208",
+    "Lei 14291",
+    "Lei 9259",
+    "Lei 9504",
+    "Lei 9693"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1997-09-30",
+   "ultimaNorma": "Lei nº 9.504/1997"
+  },
+  "lei-complementar-n-135-2010": {
+   "numero": "Lei Complementar nº 135/2010",
+   "nome": "Lei da Ficha Limpa",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp135.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-7-913-1989": {
+   "numero": "Lei nº 7.913/1989",
+   "nome": "Ação civil pública — danos a investidores no mercado de valores mobiliários",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l7913.htm",
+   "alteradoras": [
+    "Lei 14195",
+    "Lei 9008"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-7-357-1985": {
+   "numero": "Lei nº 7.357/1985",
+   "nome": "Lei do Cheque",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l7357.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-5-474-1968": {
+   "numero": "Lei nº 5.474/1968",
+   "nome": "Lei das Duplicatas",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l5474.htm",
+   "alteradoras": [
+    "DL 436",
+    "Lei 14206",
+    "Lei 14301",
+    "Lei 6458",
+    "MP 1051"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1977-11-01",
+   "ultimaNorma": "Lei nº 6.458/1977"
+  },
+  "decreto-lei-n-167-1967": {
+   "numero": "Decreto-Lei nº 167/1967",
+   "nome": "Cédula de crédito rural",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0167.htm",
+   "alteradoras": [
+    "DL 784",
+    "Lei 12873",
+    "Lei 13986",
+    "Lei 14421",
+    "Lei 6754",
+    "MP 619",
+    "MP 897"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1979-12-17",
+   "ultimaNorma": "Lei nº 6.754/1979"
+  },
+  "lei-n-6-024-1974": {
+   "numero": "Lei nº 6.024/1974",
+   "nome": "Intervenção e liquidação extrajudicial de instituições financeiras",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l6024.htm",
+   "alteradoras": [
+    "Lei 13506",
+    "MP 784"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-112-2020": {
+   "numero": "Lei nº 14.112/2020",
+   "nome": "Atualiza a legislação de recuperação judicial, extrajudicial e falência (altera a Lei nº 11.101/2005)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14112.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-116-2003": {
+   "numero": "Lei Complementar nº 116/2003",
+   "nome": "Imposto Sobre Serviços (ISS)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+   "alteradoras": [
+    "LC 157",
+    "LC 175",
+    "LC 183",
+    "LC 214",
+    "LC 218"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-159-2017": {
+   "numero": "Lei Complementar nº 159/2017",
+   "nome": "Regime de Recuperação Fiscal dos Estados",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp159.htm",
+   "alteradoras": [
+    "LC 178",
+    "LC 181",
+    "LC 189",
+    "LC 206"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-156-2016": {
+   "numero": "Lei Complementar nº 156/2016",
+   "nome": "Refinanciamento das dívidas dos Estados e do Distrito Federal com a União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp156.htm",
+   "alteradoras": [
+    "LC 159",
+    "LC 178",
+    "LC 181",
+    "LC 189"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-178-2021": {
+   "numero": "Lei Complementar nº 178/2021",
+   "nome": "Programa de Acompanhamento e Transparência Fiscal (novo Regime de Recuperação Fiscal)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp178.htm",
+   "alteradoras": [
+    "LC 181",
+    "LC 212"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-118-2005": {
+   "numero": "Lei Complementar nº 118/2005",
+   "nome": "Altera o CTN (prescrição, execução fiscal)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp118.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-703-1998": {
+   "numero": "Lei nº 9.703/1998",
+   "nome": "Depósitos judiciais e extrajudiciais de tributos federais",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9703.htm",
+   "alteradoras": [
+    "Lei 12058",
+    "Lei 12099",
+    "Lei 14973"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-147-1967": {
+   "numero": "Decreto-Lei nº 147/1967",
+   "nome": "Lei Orgânica da Procuradoria-Geral da Fazenda Nacional (PGFN)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0147.htm",
+   "alteradoras": [
+    "DL 1687",
+    "DL 2163",
+    "DL 231",
+    "Lei 5421",
+    "Lei 5830"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-397-1992": {
+   "numero": "Lei nº 8.397/1992",
+   "nome": "Medida Cautelar Fiscal",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8397.htm",
+   "alteradoras": [
+    "Lei 9532"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-105-2001": {
+   "numero": "Lei Complementar nº 105/2001",
+   "nome": "Sigilo das operações de instituições financeiras",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp105.htm",
+   "alteradoras": [
+    "LC 166",
+    "LC 224"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-169-2000": {
+   "numero": "Lei nº 10.169/2000",
+   "nome": "Normas gerais para a fixação de emolumentos dos serviços notariais e de registro",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l10169.htm",
+   "alteradoras": [
+    "Lei 13986"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-134-1990": {
+   "numero": "Lei nº 8.134/1990",
+   "nome": "Imposto de Renda — regime tributário das pessoas físicas (inclui notários e registradores)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8134.htm",
+   "alteradoras": [
+    "Lei 8383",
+    "Lei 9250"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-7-713-1988": {
+   "numero": "Lei nº 7.713/1988",
+   "nome": "Imposto de Renda — ganho de capital na alienação de imóveis",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l7713.htm",
+   "alteradoras": [
+    "Lei 11052",
+    "Lei 11119",
+    "Lei 11311",
+    "Lei 11482",
+    "Lei 11945",
+    "Lei 12350",
+    "Lei 12469",
+    "Lei 12761",
+    "Lei 12794",
+    "Lei 13149",
+    "Lei 4862",
+    "Lei 7738",
+    "Lei 7751",
+    "Lei 7759",
+    "Lei 7774",
+    "Lei 7799",
+    "Lei 7959",
+    "Lei 7975",
+    "Lei 8012",
+    "Lei 8014",
+    "Lei 8134",
+    "Lei 8218",
+    "Lei 8253",
+    "Lei 8269",
+    "Lei 8383",
+    "Lei 8541",
+    "Lei 9250",
+    "Lei 9430",
+    "MP 114",
+    "MP 1251",
+    "MP 162",
+    "MP 164",
+    "MP 300",
+    "MP 32",
+    "MP 38",
+    "MP 42",
+    "MP 451",
+    "MP 497",
+    "MP 528",
+    "MP 54",
+    "MP 582",
+    "MP 644",
+    "MP 670",
+    "MP 68"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1965-11-29",
+   "ultimaNorma": "Lei nº 4.862/1965"
+  },
+  "decreto-n-6-022-2007": {
+   "numero": "Decreto nº 6.022/2007",
+   "nome": "Institui o Sistema Público de Escrituração Digital (SPED)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6022.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-199-2023": {
+   "numero": "Lei Complementar nº 199/2023",
+   "nome": "Estatuto Nacional da Simplificação de Obrigações Tributárias Acessórias (Simplifica Já)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp199.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-208-2024": {
+   "numero": "Lei Complementar nº 208/2024",
+   "nome": "Disciplina o protesto extrajudicial de Certidão de Dívida Ativa como causa de interrupção da prescrição e regula a securitização de créditos públicos inscritos em dívida ativa",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp208.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "emenda-constitucional-n-106-2020": {
+   "numero": "Emenda Constitucional nº 106/2020",
+   "nome": "Institui regime extraordinário fiscal, financeiro e de contratações (Orçamento de Guerra) para enfrentamento da pandemia da Covid-19",
+   "link": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc106.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-026-2020": {
+   "numero": "Lei nº 14.026/2020",
+   "nome": "Novo Marco Legal do Saneamento Básico",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14026.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-6-938-1981": {
+   "numero": "Lei nº 6.938/1981",
+   "nome": "Política Nacional do Meio Ambiente",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l6938compilada.htm",
+   "alteradoras": [
+    "LC 140",
+    "Lei 10165",
+    "Lei 11284",
+    "Lei 11941",
+    "Lei 12651",
+    "Lei 12856",
+    "Lei 14876",
+    "Lei 14932",
+    "Lei 15190",
+    "Lei 15512",
+    "Lei 7804",
+    "Lei 8028",
+    "Lei 9960",
+    "Lei 9966",
+    "Lei 9985"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2000-12-27",
+   "ultimaNorma": "Lei nº 10.165/2000"
+  },
+  "decreto-n-99-274-1990": {
+   "numero": "Decreto nº 99.274/1990",
+   "nome": "Regulamenta a Política Nacional do Meio Ambiente",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/antigos/d99274.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-6-514-2008": {
+   "numero": "Decreto nº 6.514/2008",
+   "nome": "Infrações e sanções administrativas ambientais",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/decreto/d6514.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-10-936-2022": {
+   "numero": "Decreto nº 10.936/2022",
+   "nome": "Regulamenta a Política Nacional de Resíduos Sólidos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d10936.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-334-2010": {
+   "numero": "Lei nº 12.334/2010",
+   "nome": "Política Nacional de Segurança de Barragens",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12334.htm",
+   "alteradoras": [
+    "Lei 14066",
+    "Lei 15355"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-755-2023": {
+   "numero": "Lei nº 14.755/2023",
+   "nome": "Política Nacional de Direitos das Populações Atingidas por Barragens",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14755.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "medida-provisoria-n-2-220-2001": {
+   "numero": "Medida Provisória nº 2.220/2001",
+   "nome": "Concessão de Uso Especial para Fins de Moradia (CUEM)",
+   "link": "https://www.planalto.gov.br/ccivil_03/mpv/2220.htm",
+   "alteradoras": [
+    "Lei 13465",
+    "MP 759"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-9-310-2018": {
+   "numero": "Decreto nº 9.310/2018",
+   "nome": "Regularização Fundiária Urbana (REURB)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9310.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-587-2012": {
+   "numero": "Lei nº 12.587/2012",
+   "nome": "Política Nacional de Mobilidade Urbana",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12587.htm",
+   "alteradoras": [
+    "Lei 12865",
+    "Lei 13146",
+    "Lei 13406",
+    "Lei 13640",
+    "Lei 13683",
+    "Lei 14000",
+    "Lei 14748",
+    "Lei 15271",
+    "MP 748",
+    "MP 818",
+    "MP 906"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-124-2005": {
+   "numero": "Lei nº 11.124/2005",
+   "nome": "Sistema Nacional de Habitação de Interesse Social",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11124.htm",
+   "alteradoras": [
+    "Lei 11481",
+    "Lei 11578",
+    "Lei 11888",
+    "Lei 11922",
+    "Lei 13465",
+    "Lei 14118",
+    "Lei 14312",
+    "MP 387",
+    "MP 966"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-977-2009": {
+   "numero": "Lei nº 11.977/2009",
+   "nome": "Programa Minha Casa Minha Vida e regularização fundiária",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11977.htm",
+   "alteradoras": [
+    "Lei 12058",
+    "Lei 12249",
+    "Lei 12350",
+    "Lei 12424",
+    "Lei 12693",
+    "Lei 12722",
+    "Lei 13043",
+    "Lei 13097",
+    "Lei 13161",
+    "Lei 13173",
+    "Lei 13274",
+    "Lei 13465",
+    "Lei 14118",
+    "Lei 14312",
+    "Lei 14382",
+    "Lei 14462",
+    "Lei 14620",
+    "Lei 15081",
+    "Lei 15164",
+    "MP 1070",
+    "MP 1085",
+    "MP 1114",
+    "MP 1162",
+    "MP 1350",
+    "MP 1382",
+    "MP 472",
+    "MP 478",
+    "MP 514",
+    "MP 561",
+    "MP 651",
+    "MP 656",
+    "MP 679",
+    "MP 698",
+    "MP 759",
+    "MP 996"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-425-2017": {
+   "numero": "Lei nº 13.425/2017",
+   "nome": "Prevenção e combate a incêndio e desastres em estabelecimentos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13425.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-952-2009": {
+   "numero": "Lei nº 11.952/2009",
+   "nome": "Regularização fundiária das ocupações em terras da União (Amazônia Legal e demais áreas rurais)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11952.htm",
+   "alteradoras": [
+    "Lei 13465",
+    "Lei 13844",
+    "Lei 14285",
+    "Lei 14757",
+    "MP 759",
+    "MP 870",
+    "MP 910"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-785-2023": {
+   "numero": "Lei nº 14.785/2023",
+   "nome": "Lei dos Agrotóxicos (Lei de Pesticidas)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14785.htm",
+   "alteradoras": [
+    "Lei 15070"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-12-688-2025": {
+   "numero": "Decreto nº 12.688/2025",
+   "nome": "Institui o sistema de logística reversa de embalagens plásticas",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12688.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-lei-n-4-597-1942": {
+   "numero": "Decreto-Lei nº 4.597/1942",
+   "nome": "Prescrição das dívidas das autarquias e entidades paraestatais",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1937-1946/del4597.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-230-2021": {
+   "numero": "Lei nº 14.230/2021",
+   "nome": "Altera a Lei de Improbidade Administrativa",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14230.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-080-1990": {
+   "numero": "Lei nº 8.080/1990",
+   "nome": "Lei Orgânica da Saúde (SUS)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8080.htm",
+   "alteradoras": [
+    "LC 141",
+    "Lei 10424",
+    "Lei 11108",
+    "Lei 12401",
+    "Lei 12466",
+    "Lei 12864",
+    "Lei 12895",
+    "Lei 13097",
+    "Lei 13427",
+    "Lei 14021",
+    "Lei 14141",
+    "Lei 14313",
+    "Lei 14510",
+    "Lei 14572",
+    "Lei 14654",
+    "Lei 14655",
+    "Lei 14679",
+    "Lei 14715",
+    "Lei 14737",
+    "Lei 14758",
+    "Lei 14820",
+    "Lei 14847",
+    "Lei 14912",
+    "Lei 14977",
+    "Lei 15120",
+    "Lei 15126",
+    "Lei 15233",
+    "Lei 15379",
+    "Lei 15471",
+    "Lei 9836",
+    "MP 1301"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-394-1996": {
+   "numero": "Lei nº 9.394/1996",
+   "nome": "Lei de Diretrizes e Bases da Educação Nacional (LDB)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9394.htm",
+   "alteradoras": [
+    "Lei 10287",
+    "Lei 10328",
+    "Lei 10639",
+    "Lei 10709",
+    "Lei 10793",
+    "Lei 11114",
+    "Lei 11183",
+    "Lei 11274",
+    "Lei 11301",
+    "Lei 11330",
+    "Lei 11331",
+    "Lei 11525",
+    "Lei 11632",
+    "Lei 11645",
+    "Lei 11684",
+    "Lei 11700",
+    "Lei 11741",
+    "Lei 11769",
+    "Lei 11788",
+    "Lei 12013",
+    "Lei 12014",
+    "Lei 12020",
+    "Lei 12056",
+    "Lei 12061",
+    "Lei 12287",
+    "Lei 12416",
+    "Lei 12472",
+    "Lei 12603",
+    "Lei 12608",
+    "Lei 12796",
+    "Lei 12960",
+    "Lei 13006",
+    "Lei 13010",
+    "Lei 13168",
+    "Lei 13174",
+    "Lei 13184",
+    "Lei 13234",
+    "Lei 13278",
+    "Lei 13415",
+    "Lei 13478",
+    "Lei 13490",
+    "Lei 13530",
+    "Lei 13632",
+    "Lei 13663",
+    "Lei 13666",
+    "Lei 13716",
+    "Lei 13796",
+    "Lei 13803",
+    "Lei 13826",
+    "Lei 13840",
+    "Lei 13868",
+    "Lei 14164",
+    "Lei 14191",
+    "Lei 14333",
+    "Lei 14407",
+    "Lei 14533",
+    "Lei 14560",
+    "Lei 14644",
+    "Lei 14645",
+    "Lei 14679",
+    "Lei 14685",
+    "Lei 14767",
+    "Lei 14862",
+    "Lei 14945",
+    "Lei 14952",
+    "Lei 14986",
+    "Lei 15001",
+    "Lei 15017",
+    "Lei 15231",
+    "Lei 15276",
+    "Lei 15326",
+    "Lei 15360",
+    "Lei 15369",
+    "Lei 15462",
+    "Lei 15468",
+    "Lei 9475",
+    "MP 1303",
+    "MP 746",
+    "MP 785"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2003-12-01",
+   "ultimaNorma": "Lei nº 10.793/2003"
+  },
+  "decreto-n-11-129-2022": {
+   "numero": "Decreto nº 11.129/2022",
+   "nome": "Regulamenta a Lei Anticorrupção",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d11129.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-079-2004": {
+   "numero": "Lei nº 11.079/2004",
+   "nome": "Parcerias Público-Privadas (PPP)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l11079.htm",
+   "alteradoras": [
+    "LC 214",
+    "Lei 12024",
+    "Lei 12409",
+    "Lei 12766",
+    "Lei 13043",
+    "Lei 13097",
+    "Lei 13137",
+    "Lei 13529",
+    "Lei 14133",
+    "Lei 14227",
+    "MP 513",
+    "MP 575",
+    "MP 896"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-019-2014": {
+   "numero": "Lei nº 13.019/2014",
+   "nome": "Marco Regulatório das Organizações da Sociedade Civil (MROSC)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm",
+   "alteradoras": [
+    "Lei 13102",
+    "Lei 13204",
+    "Lei 14027",
+    "Lei 14309",
+    "Lei 14345",
+    "MP 658",
+    "MP 684"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-460-2017": {
+   "numero": "Lei nº 13.460/2017",
+   "nome": "Participação, proteção e defesa dos direitos do usuário do serviço público",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13460.htm",
+   "alteradoras": [
+    "Lei 14015",
+    "Lei 14129",
+    "Lei 14534"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-666-1993": {
+   "numero": "Lei nº 8.666/1993",
+   "nome": "Lei de Licitações e Contratos (antiga)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8666cons.htm",
+   "alteradoras": [
+    "LC 147",
+    "Lei 10973",
+    "Lei 11079",
+    "Lei 11107",
+    "Lei 11196",
+    "Lei 11445",
+    "Lei 11481",
+    "Lei 11484",
+    "Lei 11763",
+    "Lei 11783",
+    "Lei 11952",
+    "Lei 12188",
+    "Lei 12349",
+    "Lei 12440",
+    "Lei 12715",
+    "Lei 12873",
+    "Lei 13146",
+    "Lei 13204",
+    "Lei 13243",
+    "Lei 13465",
+    "Lei 13500",
+    "Lei 14133",
+    "Lei 14368",
+    "Lei 8883",
+    "Lei 9032",
+    "Lei 9648",
+    "Lei 9854",
+    "MP 422",
+    "MP 458",
+    "MP 495",
+    "MP 619",
+    "MP 759",
+    "MP 896",
+    "MP 910"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-520-2002": {
+   "numero": "Lei nº 10.520/2002",
+   "nome": "Lei do Pregão",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10520.htm",
+   "alteradoras": [
+    "Lei 14133",
+    "MP 896"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-892-2013": {
+   "numero": "Decreto nº 7.892/2013",
+   "nome": "Sistema de Registro de Preços",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7892.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-462-2011": {
+   "numero": "Lei nº 12.462/2011",
+   "nome": "Regime Diferenciado de Contratações (RDC)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12462.htm",
+   "alteradoras": [
+    "Lei 12648",
+    "Lei 12688",
+    "Lei 12702",
+    "Lei 12722",
+    "Lei 12745",
+    "Lei 12833",
+    "Lei 12980",
+    "Lei 13173",
+    "Lei 13190",
+    "Lei 13243",
+    "Lei 13319",
+    "Lei 14002",
+    "Lei 14034",
+    "Lei 14133",
+    "Lei 14620",
+    "Lei 14901",
+    "Lei 14978",
+    "MP 1349",
+    "MP 551",
+    "MP 568",
+    "MP 600",
+    "MP 630",
+    "MP 678",
+    "MP 896"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-6-017-2007": {
+   "numero": "Decreto nº 6.017/2007",
+   "nome": "Regulamenta a Lei dos Consórcios Públicos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6017.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-848-2019": {
+   "numero": "Lei nº 13.848/2019",
+   "nome": "Lei das Agências Reguladoras",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13848.htm",
+   "alteradoras": [
+    "Lei 15352",
+    "MP 1317"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-303-2016": {
+   "numero": "Lei nº 13.303/2016",
+   "nome": "Lei das Estatais",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13303.htm",
+   "alteradoras": [
+    "Lei 15177"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-790-1999": {
+   "numero": "Lei nº 9.790/1999",
+   "nome": "Organizações da Sociedade Civil de Interesse Público (OSCIP)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9790.htm",
+   "alteradoras": [
+    "Lei 10539",
+    "Lei 13019",
+    "Lei 13999",
+    "Lei 15364",
+    "MP 2216"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-637-1998": {
+   "numero": "Lei nº 9.637/1998",
+   "nome": "Organizações Sociais (OS)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9637.htm",
+   "alteradoras": [
+    "Lei 12269",
+    "MP 479",
+    "MP 850"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-3-555-2000": {
+   "numero": "Decreto nº 3.555/2000",
+   "nome": "Regulamento do Pregão",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d3555.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-10-024-2019": {
+   "numero": "Decreto nº 10.024/2019",
+   "nome": "Pregão eletrônico",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/d10024.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-581-2011": {
+   "numero": "Decreto nº 7.581/2011",
+   "nome": "Regulamenta o RDC",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/decreto/d7581.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-983-2013": {
+   "numero": "Decreto nº 7.983/2013",
+   "nome": "Orçamento de referência em obras e serviços de engenharia",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7983.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-6-170-2007": {
+   "numero": "Decreto nº 6.170/2007",
+   "nome": "Convênios e contratos de repasse",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6170.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-873-1999": {
+   "numero": "Lei nº 9.873/1999",
+   "nome": "Prescrição da ação punitiva da Administração Federal",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9873.htm",
+   "alteradoras": [
+    "Lei 11941",
+    "Lei 13506",
+    "Lei 9457",
+    "MP 784"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "1997-05-05",
+   "ultimaNorma": "Lei nº 9.457/1997"
+  },
+  "lei-n-9-636-1998": {
+   "numero": "Lei nº 9.636/1998",
+   "nome": "Bens imóveis da União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9636.htm",
+   "alteradoras": [
+    "Lei 10852",
+    "Lei 11314",
+    "Lei 11481",
+    "Lei 12058",
+    "Lei 12693",
+    "Lei 13139",
+    "Lei 13240",
+    "Lei 13465",
+    "Lei 13813",
+    "Lei 14011",
+    "Lei 14273",
+    "Lei 14474",
+    "Lei 9821",
+    "MP 1065",
+    "MP 1127",
+    "MP 335",
+    "MP 691",
+    "MP 759",
+    "MP 852",
+    "MP 915"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-73-1993": {
+   "numero": "Lei Complementar nº 73/1993",
+   "nome": "Lei Orgânica da Advocacia-Geral da União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp73.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-028-1995": {
+   "numero": "Lei nº 9.028/1995",
+   "nome": "Atribuições da Advocacia-Geral da União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9028.htm",
+   "alteradoras": [
+    "Lei 10480",
+    "Lei 11907",
+    "Lei 12767",
+    "Lei 14204",
+    "Lei 9649",
+    "MP 2180",
+    "MP 441"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2002-07-02",
+   "ultimaNorma": "Lei nº 10.480/2002"
+  },
+  "lei-n-9-469-1997": {
+   "numero": "Lei nº 9.469/1997",
+   "nome": "Intervenção da União e acordos — Fazenda Pública",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9469.htm",
+   "alteradoras": [
+    "Lei 11941",
+    "Lei 12249",
+    "Lei 12348",
+    "Lei 12716",
+    "Lei 13140",
+    "MP 2226",
+    "MP 449",
+    "MP 496"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2001-09-04",
+   "ultimaNorma": "Medida Provisória nº 2.226/2001"
+  },
+  "decreto-n-9-830-2019": {
+   "numero": "Decreto nº 9.830/2019",
+   "nome": "Regulamenta os arts. 20 a 30 da LINDB",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/d9830.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-10-201-2020": {
+   "numero": "Decreto nº 10.201/2020",
+   "nome": "Limites para transação e acordos (Lei 9.469/1997)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/d10201.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-813-2013": {
+   "numero": "Lei nº 12.813/2013",
+   "nome": "Conflito de interesses no Poder Executivo federal",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12813.htm",
+   "alteradoras": [
+    "MP 792"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-746-2012": {
+   "numero": "Decreto nº 7.746/2012",
+   "nome": "Contratações públicas sustentáveis",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/decreto/d7746.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-1-171-1994": {
+   "numero": "Decreto nº 1.171/1994",
+   "nome": "Código de Ética do Servidor Público Federal",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d1171.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-6-029-2007": {
+   "numero": "Decreto nº 6.029/2007",
+   "nome": "Sistema de Gestão da Ética do Poder Executivo Federal",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6029.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-724-2012": {
+   "numero": "Decreto nº 7.724/2012",
+   "nome": "Regulamenta a Lei de Acesso à Informação",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/decreto/d7724.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-129-2021": {
+   "numero": "Lei nº 14.129/2021",
+   "nome": "Lei do Governo Digital",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14129.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-625-1993": {
+   "numero": "Lei nº 8.625/1993",
+   "nome": "Lei Orgânica Nacional do Ministério Público",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8625.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-75-1993": {
+   "numero": "Lei Complementar nº 75/1993",
+   "nome": "Lei Orgânica do Ministério Público da União",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp75.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-906-1994": {
+   "numero": "Lei nº 8.906/1994",
+   "nome": "Estatuto da Advocacia e da OAB",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8906.htm",
+   "alteradoras": [
+    "Lei 11179",
+    "Lei 11767",
+    "Lei 11902",
+    "Lei 13245",
+    "Lei 13247",
+    "Lei 13363",
+    "Lei 13725",
+    "Lei 13793",
+    "Lei 13869",
+    "Lei 13875",
+    "Lei 14039",
+    "Lei 14365",
+    "Lei 14508",
+    "Lei 14612",
+    "Lei 15472",
+    "Lei 15511"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-979-2020": {
+   "numero": "Lei nº 13.979/2020",
+   "nome": "Medidas de enfrentamento da emergência de saúde pública (COVID-19)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13979.htm",
+   "alteradoras": [
+    "Lei 14006",
+    "Lei 14019",
+    "Lei 14022",
+    "Lei 14023",
+    "Lei 14028",
+    "Lei 14035",
+    "Lei 14065",
+    "MP 926",
+    "MP 927",
+    "MP 928",
+    "MP 951"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-301-2016": {
+   "numero": "Lei nº 13.301/2016",
+   "nome": "Medidas de vigilância em saúde (dengue, chikungunya, zika)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13301.htm",
+   "alteradoras": [
+    "Lei 13985",
+    "MP 894"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-8-420-2015": {
+   "numero": "Decreto nº 8.420/2015",
+   "nome": "Regulamento da Lei Anticorrupção (revogado pelo Decreto 11.129/2022)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8420.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-80-1994": {
+   "numero": "Lei Complementar nº 80/1994",
+   "nome": "Lei Orgânica Nacional da Defensoria Pública",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp80.htm",
+   "alteradoras": [
+    "LC 132",
+    "LC 98"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-4-878-1965": {
+   "numero": "Lei nº 4.878/1965",
+   "nome": "Regime jurídico dos policiais civis da União e do DF",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l4878.htm",
+   "alteradoras": [
+    "DL 1088",
+    "DL 247",
+    "DL 475",
+    "Lei 15047",
+    "Lei 5640",
+    "Lei 5800",
+    "Lei 6364",
+    "Lei 6974",
+    "MP 2184"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-9-266-1996": {
+   "numero": "Lei nº 9.266/1996",
+   "nome": "Carreira policial federal (classes e estrutura)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9266.htm",
+   "alteradoras": [
+    "Lei 11095",
+    "Lei 11358",
+    "Lei 13034",
+    "Lei 13047",
+    "MP 650",
+    "MP 657"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-14-967-2024": {
+   "numero": "Lei nº 14.967/2024",
+   "nome": "Estatuto da Segurança Privada e da Segurança das Instituições Financeiras",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14967.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-8-142-1990": {
+   "numero": "Lei nº 8.142/1990",
+   "nome": "Participação da comunidade na gestão do SUS",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l8142.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-005-2014": {
+   "numero": "Lei nº 13.005/2014",
+   "nome": "Plano Nacional de Educação (PNE 2014-2024)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm",
+   "alteradoras": [
+    "Lei 14627"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-complementar-n-88-1996": {
+   "numero": "Lei Complementar nº 88/1996",
+   "nome": "Altera dispositivos da LC nº 76/1993 sobre desapropriação de imóvel rural por interesse social para fins de reforma agrária",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp88.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-435-2011": {
+   "numero": "Lei nº 12.435/2011",
+   "nome": "Altera a LOAS (Sistema Único de Assistência Social — SUAS)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12435.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "emenda-constitucional-n-103-2019": {
+   "numero": "Emenda Constitucional nº 103/2019",
+   "nome": "Reforma da Previdência",
+   "link": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc103.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-3-048-1999": {
+   "numero": "Decreto nº 3.048/1999",
+   "nome": "Regulamento da Previdência Social",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d3048.htm",
+   "alteradoras": [
+    "Lei 10405"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01",
+   "ultimaAlteracao": "2002-01-09",
+   "ultimaNorma": "Lei nº 10.405/2002"
+  },
+  "lei-n-12-288-2010": {
+   "numero": "Lei nº 12.288/2010",
+   "nome": "Estatuto da Igualdade Racial",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12288.htm",
+   "alteradoras": [
+    "Lei 14553"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-7-853-1989": {
+   "numero": "Lei nº 7.853/1989",
+   "nome": "Apoio às pessoas com deficiência (CORDE, tutela jurisdicional)",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l7853.htm",
+   "alteradoras": [
+    "Lei 11958",
+    "Lei 13146",
+    "Lei 13861",
+    "Lei 15155",
+    "Lei 8028",
+    "MP 2216",
+    "MP 437"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-098-2000": {
+   "numero": "Lei nº 10.098/2000",
+   "nome": "Acessibilidade — normas gerais",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l10098.htm",
+   "alteradoras": [
+    "Lei 11982",
+    "Lei 13146",
+    "Lei 13443",
+    "Lei 13825",
+    "Lei 13835",
+    "Lei 15249"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-678-1992": {
+   "numero": "Decreto nº 678/1992",
+   "nome": "Convenção Americana sobre Direitos Humanos (Pacto de São José)",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d0678.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-9-571-2018": {
+   "numero": "Decreto nº 9.571/2018",
+   "nome": "Diretrizes Nacionais sobre Empresas e Direitos Humanos",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9571.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-4-886-2003": {
+   "numero": "Decreto nº 4.886/2003",
+   "nome": "Política Nacional de Promoção da Igualdade Racial",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/2003/d4886.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-8-136-2013": {
+   "numero": "Decreto nº 8.136/2013",
+   "nome": "Regulamento do Sistema Nacional de Promoção da Igualdade Racial (Sinapir)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d8136.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-3-956-2001": {
+   "numero": "Decreto nº 3.956/2001",
+   "nome": "Convenção Interamericana contra a Discriminação das Pessoas com Deficiência",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/2001/d3956.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-3-298-1999": {
+   "numero": "Decreto nº 3.298/1999",
+   "nome": "Política Nacional para a Integração da Pessoa com Deficiência",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/d3298.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-037-2009": {
+   "numero": "Decreto nº 7.037/2009",
+   "nome": "Programa Nacional de Direitos Humanos (PNDH-3)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d7037.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-346-2006": {
+   "numero": "Lei nº 11.346/2006",
+   "nome": "Sistema Nacional de Segurança Alimentar e Nutricional (SISAN)",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11346.htm",
+   "alteradoras": [
+    "Lei 13839",
+    "Lei 14214",
+    "Lei 15225",
+    "Lei 15451",
+    "MP 870"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-639-2003": {
+   "numero": "Lei nº 10.639/2003",
+   "nome": "Ensino de história e cultura afro-brasileira",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.639.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-11-645-2008": {
+   "numero": "Lei nº 11.645/2008",
+   "nome": "Ensino de história e cultura afro-brasileira e indígena",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11645.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-060-2014": {
+   "numero": "Lei nº 13.060/2014",
+   "nome": "Uso de instrumentos de menor potencial ofensivo por agentes de segurança",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13060.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-12-341-2024": {
+   "numero": "Decreto nº 12.341/2024",
+   "nome": "Regulamenta o uso da força e de instrumentos de menor potencial ofensivo",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/decreto/d12341.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-445-2017": {
+   "numero": "Lei nº 13.445/2017",
+   "nome": "Lei de Migração",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-852-2013": {
+   "numero": "Lei nº 12.852/2013",
+   "nome": "Estatuto da Juventude",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12852.htm",
+   "alteradoras": [
+    "Lei 15178"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-711-2012": {
+   "numero": "Lei nº 12.711/2012",
+   "nome": "Lei de Cotas no ensino superior e técnico",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12711.htm",
+   "alteradoras": [
+    "Lei 13409",
+    "Lei 14723",
+    "Lei 14945"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-990-2014": {
+   "numero": "Lei nº 12.990/2014",
+   "nome": "Reserva de vagas para negros em concursos públicos federais",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12990.htm",
+   "alteradoras": [
+    "Lei 15142"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-10-932-2022": {
+   "numero": "Decreto nº 10.932/2022",
+   "nome": "Convenção Interamericana contra o Racismo",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d10932.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-6-040-2007": {
+   "numero": "Decreto nº 6.040/2007",
+   "nome": "Política Nacional de Povos e Comunidades Tradicionais",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6040.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-4-887-2003": {
+   "numero": "Decreto nº 4.887/2003",
+   "nome": "Titulação das terras de quilombos",
+   "link": "https://www.planalto.gov.br/ccivil_03/decreto/2003/d4887.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-12-847-2013": {
+   "numero": "Lei nº 12.847/2013",
+   "nome": "Sistema Nacional de Prevenção e Combate à Tortura",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12847.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-10-035-2000": {
+   "numero": "Lei nº 10.035/2000",
+   "nome": "Contribuições previdenciárias na Justiça do Trabalho",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l10035.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "lei-n-13-475-2017": {
+   "numero": "Lei nº 13.475/2017",
+   "nome": "Lei do Aeronauta — regulamenta a profissão",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13475.htm",
+   "alteradoras": [
+    "Lei 14163",
+    "MP 1029",
+    "MP 905",
+    "MP 955",
+    "MP 964"
+   ],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
+  },
+  "decreto-n-7-053-2009": {
+   "numero": "Decreto nº 7.053/2009",
+   "nome": "Política Nacional para a População em Situação de Rua",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d7053.htm",
+   "alteradoras": [],
+   "mudancas": [],
+   "desde": "2026-10-01",
+   "conferidaEm": "2026-10-01"
   }
  }
 }
