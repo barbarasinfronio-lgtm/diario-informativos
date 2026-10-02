@@ -1111,6 +1111,61 @@ def texto_confere(numero, paragrafos):
     return re.search(rf"(?<![\d.]){n}(?![\d])", re.sub(r"(?<=\d)\s+(?=\d{{3}}\b)", "", topo)) is not None
 
 
+_JXA_PDF = r"""
+ObjC.import("PDFKit"); ObjC.import("Foundation");
+function run(argv) {
+  var d = $.PDFDocument.alloc.initWithURL($.NSURL.fileURLWithPath(argv[0]));
+  if (!d) return "";
+  var t = d.string;
+  return t ? ObjC.unwrap(t) : "";
+}
+"""
+
+
+def texto_de_pdf(corpo):
+    """Texto de um PDF. No Mac usa o PDFKit (já vem no macOS); se existir, o
+    pdftotext. Sem nenhum dos dois: Falha."""
+    with tempfile.TemporaryDirectory() as pasta:
+        arq = Path(pasta) / "lei.pdf"
+        arq.write_bytes(corpo)
+        if sys.platform == "darwin":
+            js = Path(pasta) / "pdf.js"
+            js.write_text(_JXA_PDF, encoding="utf-8")
+            r = subprocess.run(["osascript", "-l", "JavaScript", str(js), str(arq)],
+                               capture_output=True, text=True, timeout=120)
+            if r.returncode == 0 and r.stdout.strip():
+                return r.stdout
+        for exe in ("pdftotext",):
+            if shutil.which(exe):
+                r = subprocess.run([exe, "-layout", "-nopgbrk", str(arq), "-"], capture_output=True,
+                                   text=True, timeout=120)
+                if r.returncode == 0 and r.stdout.strip():
+                    return r.stdout
+    raise Falha("não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)")
+
+
+def paragrafos_de_pdf(texto):
+    """Junta as linhas do PDF em parágrafos: começa um novo em "Art.", "§",
+    incisos, alíneas e títulos; o resto continua o parágrafo anterior."""
+    novo = re.compile(r"(?i)^(art(igo|\.)|§|par[áa]grafo|[IVXLC]+\s*[-–.)]|[a-z]\)|\d+\s*[-–.)]\s|cap[íi]tulo|se[çc][ãa]o|t[íi]tulo|lei\b|decreto\b|o governador|a assembl)")
+    out = []
+    for linha in str(texto).replace("\r", "\n").split("\n"):
+        linha = re.sub(r"\s+", " ", linha.replace("\xa0", " ")).strip()
+        if not linha or re.fullmatch(r"\d{1,4}", linha):   # linha vazia ou só o número da página
+            continue
+        if out and not novo.match(linha):
+            if out[-1].endswith("-"):
+                out[-1] = out[-1][:-1] + linha
+            else:
+                out[-1] += " " + linha
+        else:
+            out.append(linha)
+    for i, p in enumerate(out[:40]):
+        if re.match(r"(?i)^(lei|decreto|constitui|emenda|resolu)", p):
+            return out[i:]
+    return out
+
+
 def paragrafos_do_site(t):
     """Texto de uma lei estadual (páginas de assembleias, casas civis e do Leis
     Estaduais). Cada site é diferente: tira menus/rodapé, testa alguns recipientes
@@ -1157,9 +1212,11 @@ def leis_estaduais(hoje_iso):
     for m in re.finditer(r'\{\s*nome:\s*("(?:[^"\\]|\\.)*"),\s*numero:\s*("(?:[^"\\]|\\.)*"),\s*link:\s*"(https?://[^"]*)"', t):
         url = m.group(3)
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
-        if "planalto.gov.br" in host or url in vistos or re.search(r"\.pdf($|\?)", url, re.I):
+        eh_pdf = re.search(r"\.pdf($|\?)", url, re.I) is not None
+        if "planalto.gov.br" in host or url in vistos:
             continue
-        if not any(host == h or host.endswith("." + h) for h in ESTADUAIS_HOSTS):
+        # PDFs de qualquer site (o número da lei é conferido antes de gravar)
+        if not eh_pdf and not any(host == h or host.endswith("." + h) for h in ESTADUAIS_HOSTS):
             continue
         try:
             nome, numero = json.loads(m.group(1)), json.loads(m.group(2))
@@ -1188,6 +1245,26 @@ def leis_estaduais(hoje_iso):
         feitas += 1
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
         nao_existe = lambda x: re.search(r"P[áa]gina\s+N[ãa]o\s+Encontrada|ainda n[ãa]o foi disponibilizado", re.sub(r"<[^>]+>", " ", x)) is not None
+        if re.search(r"\.pdf($|\?)", url, re.I):   # PDF: baixa e lê o texto
+            try:
+                status, tipo, corpo = buscar(url)
+                print(f"  {url} → HTTP {status}")
+                if status != 200:
+                    raise Falha(f"HTTP {status} (o site recusou ou a página mudou)")
+                texto_pdf = texto_de_pdf(corpo)
+            except Falha as e:
+                print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
+                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                               "motivo": "erro ao abrir: " + str(e)[:140]}
+                continue
+            n_err = len(ERRADOS)
+            if salvar_texto(url, texto_pdf, nome, hoje_iso, extrator=paragrafos_de_pdf, numero=numero):
+                gravados += 1
+                falhas.pop(url, None)
+            elif len(ERRADOS) > n_err:
+                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                               "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
+            continue
         tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2 or nao_existe(x)
         try:
             try:

@@ -210,7 +210,7 @@
     if (m) return slug(m[1].replace(/^\/ccivil_03\//i, "").replace(/\.html?$/i, ""));
     // outros sites (leis estaduais): igual ao id_texto() do robô
     m = l.match(/^https?:\/\/(?:www\.)?([^\/?#]+)([^?#]*)(?:\?([^#]*))?/i);
-    if (!m || /\.pdf$/i.test(m[2])) return "";
+    if (!m) return "";
     var s = slug(m[1] + m[2] + (m[3] ? "?" + m[3] : ""));
     if (s.length > 90) {
       var h = 0x811c9dc5;
