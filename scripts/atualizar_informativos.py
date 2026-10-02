@@ -287,7 +287,8 @@ def _osascript(modo, url=""):
         dica = ""
         if "JavaScript" in erro or "Apple" in erro:
             dica = (" — no Chrome, ative: Visualizar > Opções do desenvolvedor > "
-                    "Permitir JavaScript de eventos da Apple, e rode de novo")
+                    "Permitir JavaScript de eventos da Apple (vale por perfil do Chrome: "
+                    "ative na janela do perfil que o robô abre) e rode de novo")
         elif "-1743" in erro or "autoriz" in erro.lower() or "not allowed" in erro.lower():
             dica = (" — permita que o Terminal controle o Chrome em Ajustes do Sistema > "
                     "Privacidade e Segurança > Automação")
@@ -1157,6 +1158,7 @@ def leis_estaduais(hoje_iso):
         lista.append((numero, nome, url))
     lista.sort(key=lambda x: (TEXTO_DIR / f"{id_texto(x[2])}.json").exists())
     gravados, inicio, feitas, sem_amostra = 0, time.monotonic(), 0, set()
+    chrome_ok = [True]
     for numero, nome, url in lista:
         if feitas and time.monotonic() - inicio > ESTADUAIS_ORCAMENTO:
             print(f"  (leis estaduais: faltam {len(lista) - feitas} para a próxima rodada)")
@@ -1165,12 +1167,23 @@ def leis_estaduais(hoje_iso):
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
         tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2
         try:
-            pg = pagina(url, valida=lambda x: len(x) > 1500)
-            if not tem_lei(pg) and sys.platform == "darwin":
+            try:
+                pg = pagina(url, valida=lambda x: len(x) > 1500)
+            except Falha as e:
+                if "Chrome" in str(e) and "JavaScript" in str(e):
+                    chrome_ok[0] = False   # sem o Chrome real: não adianta tentar de novo
+                    pg = ""
+                else:
+                    raise
+            if not tem_lei(pg) and sys.platform == "darwin" and chrome_ok[0]:
                 # site que monta a página com JavaScript ou pede verificação anti-robô
                 pg = pagina_chrome_real(url, valida=tem_lei)
+            elif not tem_lei(pg):
+                raise Falha("a página precisa do Chrome (JavaScript dos eventos da Apple) e ele não está liberado")
         except Falha as e:
-            print(f"  ATENÇÃO (lei estadual): {nome}: {e}")
+            if "JavaScript" in str(e) and "Chrome" in str(e):
+                chrome_ok[0] = False
+            print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
             continue
         try:
             if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero):
