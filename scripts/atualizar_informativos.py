@@ -1176,7 +1176,8 @@ def leis_estaduais(hoje_iso):
             break
         feitas += 1
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
-        tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2
+        nao_existe = lambda x: re.search(r"P[áa]gina\s+N[ãa]o\s+Encontrada|ainda n[ãa]o foi disponibilizado", re.sub(r"<[^>]+>", " ", x)) is not None
+        tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2 or nao_existe(x)
         try:
             try:
                 pg = pagina(url, valida=lambda x: len(x) > 1500)
@@ -1196,7 +1197,7 @@ def leis_estaduais(hoje_iso):
                 chrome_ok[0] = False
             print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
             continue
-        if re.search(r"P[áa]gina\s+N[ãa]o\s+Encontrada|ainda n[ãa]o foi disponibilizado", re.sub(r"<[^>]+>", " ", pg)):
+        if nao_existe(pg):
             print(f"  ATENÇÃO: o link de \"{numero}\" não existe no site; não gravei")
             falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome, "motivo": "a página não existe no site"}
             continue
