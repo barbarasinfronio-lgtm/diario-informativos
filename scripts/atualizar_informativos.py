@@ -1196,6 +1196,9 @@ def leis_estaduais(hoje_iso):
             if "JavaScript" in str(e) and "Chrome" in str(e):
                 chrome_ok[0] = False
             print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
+            if not ("JavaScript" in str(e) and "Chrome" in str(e)):   # falta de permissão não é culpa do link
+                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                               "motivo": "erro ao abrir: " + re.sub(r"^https?://\S+ → ", "", str(e))[:140]}
             continue
         if nao_existe(pg):
             print(f"  ATENÇÃO: o link de \"{numero}\" não existe no site; não gravei")
