@@ -1056,12 +1056,21 @@ def paragrafos_da_lei(t):
     return out
 
 
-def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None):
+def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None, numero=None):
     """Grava leis/texto/<id>.json se o texto mudou. True se gravou."""
     import json
     paragrafos = (extrator or paragrafos_da_lei)(pagina_html)
-    if len(paragrafos) < 5 or sum(map(len, paragrafos)) < 500:
+    if extrator:   # leis estaduais: algumas são curtíssimas, mas têm de ter artigos
+        curto = len(paragrafos) < 4 or sum(map(len, paragrafos)) < 250 \
+            or not any(re.match(r"(?i)^art(igo|\.)", p) for p in paragrafos)
+    else:
+        curto = len(paragrafos) < 5 or sum(map(len, paragrafos)) < 500
+    if curto:
         print(f"  (texto de \"{nome}\" parece incompleto; não gravei)")
+        return False
+    if numero and not texto_confere(numero, paragrafos):
+        print(f"  ATENÇÃO: o link de \"{numero}\" abre outra norma (\"{paragrafos[0][:60]}\"); não gravei")
+        ERRADOS.append((numero, nome, url, paragrafos[0][:80]))
         return False
     arq = TEXTO_DIR / f"{id_texto(url)}.json"
     if arq.exists():
@@ -1076,11 +1085,25 @@ def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None):
     return True
 
 
+ERRADOS = []   # links que abrem outra norma (nesta rodada)
+
+
+def texto_confere(numero, paragrafos):
+    """O texto aberto é mesmo da norma esperada? O número ("12.726") tem de
+    aparecer nas primeiras linhas. Sem número no nome (ex.: Constituição), vale."""
+    m = re.search(r"(\d[\d.]*)\s*/\s*(\d{4})", numero or "")
+    if not m:
+        return True
+    n = m.group(1).replace(".", "").lstrip("0") or "0"
+    topo = re.sub(r"(?<=\d)\.(?=\d)", "", " ".join(paragrafos[:14]))
+    return re.search(rf"(?<![\d.]){n}(?![\d])", re.sub(r"(?<=\d)\s+(?=\d{{3}}\b)", "", topo)) is not None
+
+
 def paragrafos_do_site(t):
     """Texto de uma lei estadual (páginas de assembleias, casas civis e do Leis
     Estaduais). Cada site é diferente: tira menus/rodapé, testa alguns recipientes
     do texto (article, main, div "conteudo"...) e fica com o que tem mais "Art." """
-    t = re.sub(r"(?is)<(script|style|head|nav|header|footer|aside|form|noscript|svg|select)\b.*?</\1>|<!--.*?-->", " ", t)
+    t = re.sub(r"(?is)<(script|style|head|nav|header|footer|aside|noscript|svg|select)\b.*?</\1>|<!--.*?-->", " ", t)
     cands = []
     for pat in (r"(?is)<article\b.*?</article>", r"(?is)<main\b.*?</main>",
                 r'(?is)<div[^>]+(?:id|class)="[^"]*(?:conteudo|content|texto|norma|ato|lei)[^"]*"[^>]*>.*'):
@@ -1140,13 +1163,17 @@ def leis_estaduais(hoje_iso):
             break
         feitas += 1
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
+        tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2
         try:
             pg = pagina(url, valida=lambda x: len(x) > 1500)
+            if not tem_lei(pg) and sys.platform == "darwin":
+                # site que monta a página com JavaScript ou pede verificação anti-robô
+                pg = pagina_chrome_real(url, valida=tem_lei)
         except Falha as e:
             print(f"  ATENÇÃO (lei estadual): {nome}: {e}")
             continue
         try:
-            if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site):
+            if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero):
                 gravados += 1
         except OSError as e:
             print(f"  ATENÇÃO: {e}")
@@ -1156,6 +1183,11 @@ def leis_estaduais(hoje_iso):
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
             (DEBUG_DIR / f"{_slug(host)}.html").write_text(
                 f"<!-- {url} -->\n" + pg[:30000], encoding="utf-8")
+    if ERRADOS:
+        DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+        (DEBUG_DIR / "links-errados.md").write_text(
+            "# Links que abrem outra norma\n\n" + "".join(
+                f"- {n} — {nm}: {u} (abre: \"{t}\")\n" for n, nm, u, t in ERRADOS), encoding="utf-8")
     print(f"  Leis estaduais: {gravados} gravada(s) nesta rodada ({feitas} conferidas de {len(lista)}).")
     return gravados
 
