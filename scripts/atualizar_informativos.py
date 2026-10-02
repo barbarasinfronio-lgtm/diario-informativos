@@ -1156,7 +1156,18 @@ def leis_estaduais(hoje_iso):
             continue
         vistos.add(url)
         lista.append((numero, nome, url))
-    lista.sort(key=lambda x: (TEXTO_DIR / f"{id_texto(x[2])}.json").exists())
+    falhas_arq = DEBUG_DIR / "falhas.json"
+    try:
+        falhas = json.loads(falhas_arq.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        falhas = {}
+    limite = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
+    n_antes = len(lista)
+    lista = [x for x in lista if (falhas.get(x[2]) or {}).get("em", "") < limite]   # falhou há pouco: espera
+    if n_antes != len(lista):
+        print(f"  (leis estaduais: {n_antes - len(lista)} com link já conferido e falho; ver leis/texto-debug/links-errados.md)")
+    lenta = lambda u: any(h in u for h in ("leisestaduais.com.br", "legisla.casacivil.go.gov.br"))
+    lista.sort(key=lambda x: ((TEXTO_DIR / f"{id_texto(x[2])}.json").exists(), lenta(x[2])))
     gravados, inicio, feitas, sem_amostra = 0, time.monotonic(), 0, set()
     chrome_ok = [True]
     for numero, nome, url in lista:
@@ -1165,7 +1176,8 @@ def leis_estaduais(hoje_iso):
             break
         feitas += 1
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
-        tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2
+        nao_existe = lambda x: re.search(r"P[áa]gina\s+N[ãa]o\s+Encontrada|ainda n[ãa]o foi disponibilizado", re.sub(r"<[^>]+>", " ", x)) is not None
+        tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2 or nao_existe(x)
         try:
             try:
                 pg = pagina(url, valida=lambda x: len(x) > 1500)
@@ -1185,22 +1197,33 @@ def leis_estaduais(hoje_iso):
                 chrome_ok[0] = False
             print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
             continue
+        if nao_existe(pg):
+            print(f"  ATENÇÃO: o link de \"{numero}\" não existe no site; não gravei")
+            falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome, "motivo": "a página não existe no site"}
+            continue
+        n_err = len(ERRADOS)
         try:
             if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero):
                 gravados += 1
+                falhas.pop(url, None)
         except OSError as e:
             print(f"  ATENÇÃO: {e}")
             continue
+        if len(ERRADOS) > n_err:
+            falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                           "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
         if not (TEXTO_DIR / f"{id_texto(url)}.json").exists() and host not in sem_amostra:
             sem_amostra.add(host)   # uma amostra por site, para eu ver como a página é
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
             (DEBUG_DIR / f"{_slug(host)}.html").write_text(
                 f"<!-- {url} -->\n" + pg[:30000], encoding="utf-8")
-    if ERRADOS:
+    if falhas:
         DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+        falhas_arq.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
         (DEBUG_DIR / "links-errados.md").write_text(
-            "# Links que abrem outra norma\n\n" + "".join(
-                f"- {n} — {nm}: {u} (abre: \"{t}\")\n" for n, nm, u, t in ERRADOS), encoding="utf-8")
+            "# Links que não servem (abrem outra norma ou não existem)\n\n" + "".join(
+                f"- {v.get('numero')} — {v.get('nome')}: {u} → {v.get('motivo')}\n"
+                for u, v in sorted(falhas.items(), key=lambda kv: kv[1].get("numero", ""))), encoding="utf-8")
     print(f"  Leis estaduais: {gravados} gravada(s) nesta rodada ({feitas} conferidas de {len(lista)}).")
     return gravados
 
