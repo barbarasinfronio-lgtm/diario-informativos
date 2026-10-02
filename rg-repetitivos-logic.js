@@ -79,6 +79,13 @@
   // como "Recurso Repetitivo" sem incorrer em erro técnico.
   var PRECEDENTE_NOME = { IAC: 'Incidente de Assunção de Competência', PUIL: 'Pedido de Uniformização de Interpretação de Lei' };
   function precedenteBadge(d){ return (d.precedenteLabel || 'Tema') + ' ' + d.tema; }
+  // A mesma tese registrada em outro lugar (ex.: Edição 228 do Jurisprudência em Teses
+  // e Tema 209 dos Repetitivos): um card só, com os dois números.
+  function tambemTags(d){
+    return (d.tambem || []).map(function(r){
+      return '<span class="tag-tema" title="A mesma tese também está registrada como ' + escapeHtml(r) + '">' + escapeHtml(r) + '</span>';
+    }).join('');
+  }
   function precedenteAreaLine(d){
     if (d.tipoNome) return ' · ' + d.tipoNome;
     if (d.tipo === 'rg') return ' · Repercussão Geral';
@@ -262,7 +269,7 @@
   }
   function textoBusca(d){
     if (d._busca == null) d._busca = semAcento([d.titulo,d.tese,d.questao,d.destaque,d.processo,d.relator,d.tema,d.area,
-      d.precedenteLabel,d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,d._resumo,
+      d.precedenteLabel,(d.tambem || []).join(' '),d.orgao,d.tipoNome,d.historico,d.info,d.suspensao,d._resumo,
       cobrancasDe(d).map(function(c){ return 'cobrado prova ' + c.rotulo; }).join(' ')].join(' '));
     return d._busca;
   }
@@ -565,7 +572,7 @@
           '</label>' +
           '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
           '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
-          (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
+          (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') + tambemTags(d) +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
           (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
           (d.suspensao ? '<span class="tag-afetado" title="' + escapeHtml(d.suspensao) + '">Suspensão nacional</span>' : '') +
@@ -630,7 +637,7 @@
       '<div class="top-row">' +
         '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
         '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
-        (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') +
+        (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') + tambemTags(d) +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
         (d.suspensao ? '<span class="tag-afetado">Suspensão nacional</span>' : '') +
@@ -699,7 +706,7 @@
       if (modalAtual !== d) return;
       EstudaManaCadernos.ligar(modal, {
         fonte: 'decisoes', item: d.id, titulo: tituloDe(d),
-        origem: [d.orgao, (d.tipoNome || precedenteAreaLine(d).replace(/^ · /, '')), d.tema ? precedenteBadge(d) : '', d.processo].filter(Boolean).join(' · '),
+        origem: [d.orgao, (d.tipoNome || precedenteAreaLine(d).replace(/^ · /, '')), d.tema ? precedenteBadge(d) : '', (d.tambem || []).join(' · '), d.processo].filter(Boolean).join(' · '),
         abrir: linkDecisao(d),
         areas: [].slice.call(modal.querySelectorAll('h2, .tese-text, .destaque-text, .historico-text'))
       });

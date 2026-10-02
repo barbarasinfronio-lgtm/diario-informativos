@@ -1729,7 +1729,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "julgado em 2026 (tese muito recente); matéria de alta incidência em editais (Direito Penal); tema de grande repercussão pública/institucional (contribuição previdenciária)"
+  "motivo": "julgado em 2026 (tese muito recente); matéria de alta incidência em editais (Direito Penal); tema de grande repercussão pública/institucional (contribuição previdenciária)",
+  "tambem": [
+   "STJ Edição 87 · tese 9"
+  ]
  },
  {
   "id": 101,
@@ -1746,7 +1749,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "julgado em 2026 (tese muito recente); matéria de alta incidência em editais (Direito Penal); tema de grande repercussão pública/institucional (livramento condicional)"
+  "motivo": "julgado em 2026 (tese muito recente); matéria de alta incidência em editais (Direito Penal); tema de grande repercussão pública/institucional (livramento condicional)",
+  "tambem": [
+   "STJ Edição 45 · tese 13"
+  ]
  },
  {
   "id": 102,
@@ -5351,7 +5357,10 @@ var RG_REPETITIVOS_DATA = [
   "info": "",
   "status": "vigente",
   "risco": "Média",
-  "motivo": "julgado em 2020 (tese consolidada); matéria de média incidência em editais (Direito Ambiental); tema de repercussão pública/institucional (imprescritib, pretensão, reparação, ambiental)"
+  "motivo": "julgado em 2020 (tese consolidada); matéria de média incidência em editais (Direito Ambiental); tema de repercussão pública/institucional (imprescritib, pretensão, reparação, ambiental)",
+  "tambem": [
+   "STJ Edição 119 · tese 5"
+  ]
  },
  {
   "id": 317,
@@ -7633,23 +7642,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2020 (tese consolidada); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (validade, contribuição, recolhida, produtor)"
  },
  {
-  "id": 451,
-  "tema": "722",
-  "area": "Direito do Trabalho",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Competência para julgar mandado de segurança impetrado contra ato de dirigente de sociedade de economia mista federal.",
-  "tese": "Compete à justiça federal comum processar e julgar mandado de segurança quando a autoridade apontada como coatora for autoridade federal, considerando-se como tal também os dirigentes de pessoa jurídica de direito privado investidos de delegação concedida pela União.",
-  "destaque": "Compete à justiça federal comum processar e julgar mandado de segurança quando a autoridade apontada como coatora for autoridade federal, considerando-se como tal também os dirigentes de pessoa jurídica de direito privado investidos de delegação concedida pela União.",
-  "processo": "RE 726.035",
-  "relator": "Luiz Fux",
-  "data": "25/04/2014",
-  "info": "",
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "julgado em 2014 (tese antiga, mas ainda vigente); matéria de média incidência em editais (Direito do Trabalho); tema de repercussão pública/institucional (competência, mandado, segurança, impetrado)"
- },
- {
   "id": 452,
   "tema": "721",
   "area": "Direito Tributário",
@@ -8549,23 +8541,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "julgado em 2020 (tese consolidada); matéria de alta incidência em editais (Direito Administrativo); tema de repercussão pública/institucional (judiciário, concretizaçã, direito, revisão)"
- },
- {
-  "id": 506,
-  "tema": "622",
-  "area": "Direito Civil",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Prevalência da paternidade socioafetiva em detrimento da paternidade biológica.",
-  "tese": "A paternidade socioafetiva, declarada ou não em registro público, não impede o reconhecimento do vínculo de filiação concomitante baseado na origem biológica, com os efeitos jurídicos próprios.",
-  "destaque": "A paternidade socioafetiva, declarada ou não em registro público, não impede o reconhecimento do vínculo de filiação concomitante baseado na origem biológica, com os efeitos jurídicos próprios.",
-  "processo": "RE 898.060",
-  "relator": "Luiz Fux",
-  "data": "21/09/2016",
-  "info": "",
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "julgado em 2016 (tese consolidada); matéria de média incidência em editais (Direito Civil); tema de repercussão pública/institucional (prevalência, paternidade, socioafetiva, detrimento)"
  },
  {
   "id": 507,
@@ -10149,23 +10124,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "julgado em 2020 (tese consolidada); matéria de alta incidência em editais (Direito Administrativo); tema de repercussão pública/institucional (exigência, pagamento, exercício, profissão)"
- },
- {
-  "id": 602,
-  "tema": "454",
-  "area": "Direito Administrativo",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Direito à promoção funcional, independentemente de apuração própria ao estágio probatório, quando reconhecida eficácia retroativa do direito à nomeação.",
-  "tese": "A nomeação tardia de candidatos aprovados em concurso público, por meio de ato judicial, à qual atribuída eficácia retroativa, não gera direito às promoções ou progressões funcionais que alcançariam houvesse ocorrido, a tempo e modo, a nomeação.",
-  "destaque": "A nomeação tardia de candidatos aprovados em concurso público, por meio de ato judicial, à qual atribuída eficácia retroativa, não gera direito às promoções ou progressões funcionais que alcançariam houvesse ocorrido, a tempo e modo, a nomeação.",
-  "processo": "RE 629.392",
-  "relator": "Marco Aurélio",
-  "data": "08/06/2017",
-  "info": "",
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "julgado em 2017 (tese consolidada); matéria de alta incidência em editais (Direito Administrativo); tema de repercussão pública/institucional (direito, promoção, funcional, independente)"
  },
  {
   "id": 603,
@@ -12283,23 +12241,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2009 (tese antiga, mas ainda vigente); matéria de alta incidência em editais (Direito Penal); tema de repercussão pública/institucional (extinção, punibilidade, virtude, prescrição)"
  },
  {
-  "id": 729,
-  "tema": "238",
-  "area": "Direito Processual Penal",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Propositura de ação penal por descumprimento das condições estabelecidas em transação penal.",
-  "tese": "A homologação da transação penal prevista no artigo 76 da Lei 9.099/1995 não faz coisa julgada material e, descumpridas suas cláusulas, retoma-se a situação anterior, possibilitando-se ao Ministério Público a continuidade da persecução penal mediante oferecimento de denúncia ou requisição de inquérito policial.",
-  "destaque": "A homologação da transação penal prevista no artigo 76 da Lei 9.099/1995 não faz coisa julgada material e, descumpridas suas cláusulas, retoma-se a situação anterior, possibilitando-se ao Ministério Público a continuidade da persecução penal mediante oferecimento de denúncia ou requisição de inquérito policial.",
-  "processo": "RE 602.072",
-  "relator": "Cezar Peluso",
-  "data": "19/11/2009",
-  "info": "",
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "julgado em 2009 (tese antiga, mas ainda vigente); matéria de alta incidência em editais (Direito Processual Penal); tema de repercussão pública/institucional (propositura, descumprimen, condições, estabelecida)"
- },
- {
   "id": 730,
   "tema": "237",
   "area": "Direito Penal",
@@ -12539,23 +12480,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2011 (tese antiga, mas ainda vigente); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (inclusão, própria, cálculo, emprego)"
  },
  {
-  "id": 744,
-  "tema": "212",
-  "area": "Direito Tributário",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Incidência do ISS sobre locação de bens móveis.",
-  "tese": "É inconstitucional a incidência do Imposto sobre Serviços de Qualquer Natureza- ISS sobre operações de locação de bens móveis, dissociada da prestação de serviços.",
-  "destaque": "É inconstitucional a incidência do Imposto sobre Serviços de Qualquer Natureza- ISS sobre operações de locação de bens móveis, dissociada da prestação de serviços.",
-  "processo": "RE 626.706",
-  "relator": "Gilmar Mendes",
-  "data": "08/09/2010",
-  "info": "",
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "julgado em 2010 (tese antiga, mas ainda vigente); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (incidência, locação, inconstituci, imposto)"
- },
- {
   "id": 745,
   "tema": "211",
   "area": "Direito Tributário",
@@ -12673,23 +12597,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "julgado em 2011 (tese antiga, mas ainda vigente); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (cobrança, contribuição, recolhida, empregador)"
- },
- {
-  "id": 752,
-  "tema": "201",
-  "area": "Direito Tributário",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Restituição da diferença de ICMS pago a mais no regime de substituição tributária.",
-  "tese": "É devida a restituição da diferença do Imposto sobre Circulação de Mercadorias e Serviços (ICMS) pago a mais no regime de substituição tributária para a frente se a base de cálculo efetiva da operação for inferior à presumida.",
-  "destaque": "É devida a restituição da diferença do Imposto sobre Circulação de Mercadorias e Serviços (ICMS) pago a mais no regime de substituição tributária para a frente se a base de cálculo efetiva da operação for inferior à presumida.",
-  "processo": "RE 593.849",
-  "relator": "Edson Fachin",
-  "data": "19/10/2016",
-  "info": "",
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "julgado em 2016 (tese consolidada); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (restituição, diferença, substituição, tributária)"
  },
  {
   "id": 753,
@@ -14107,23 +14014,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2008 (tese antiga, mas ainda vigente); matéria de média incidência em editais (Direito Previdenciário); tema de repercussão pública/institucional (possibilidad, conjugar, vantagens, regimes)"
  },
  {
-  "id": 837,
-  "tema": "69",
-  "area": "Direito Tributário",
-  "orgao": "STF",
-  "tipo": "rg",
-  "titulo": "Inclusão do ICMS na base de cálculo do PIS e da COFINS.",
-  "tese": "O ICMS não compõe a base de cálculo para a incidência do PIS e da COFINS.",
-  "destaque": "O ICMS não compõe a base de cálculo para a incidência do PIS e da COFINS.",
-  "processo": "RE 574.706",
-  "relator": "Cármen Lúcia",
-  "data": "15/03/2017",
-  "info": "",
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "julgado em 2017 (tese consolidada); matéria de alta incidência em editais (Direito Tributário); tema de repercussão pública/institucional (inclusão, cálculo, incidência)"
- },
- {
   "id": 838,
   "tema": "67",
   "area": "Direito Administrativo",
@@ -15371,23 +15261,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese recente (ago/2025); remição de pena (trabalho, estudo, leitura) é tema muito recorrente em Execução Penal"
  },
  {
-  "id": 911,
-  "tema": "1326",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prescrição mensal da cobrança de complementação ao FUNDEB/FUNDEF",
-  "tese": "O prazo prescricional da pretensão de cobrança de complementação de recursos relativos ao Valor Mínimo Anual por Aluno (VMAA), repassado ao FUNDEB/FUNDEF, deve ser apurado mês a mês, e não anualmente, por cuidar de hipótese de relação de trato sucessivo, que se renova mensalmente, não havendo falar de prescrição do próprio fundo de direito, mas apenas das parcelas relativas ao quinquênio que precedeu a propositura da ação.",
-  "destaque": "A cobrança de diferenças do Valor Mínimo Anual por Aluno repassado ao FUNDEB/FUNDEF prescreve mês a mês (relação de trato sucessivo), e não anualmente — só as parcelas do último quinquênio.",
-  "processo": "REsp 2.154.735",
-  "relator": "Teodoro Silva Santos",
-  "data": "13/08/2025",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese recente (ago/2025); financiamento da educação (FUNDEB) é tema de interesse para Administrativo/Financeiro em concursos com viés educacional"
- },
- {
   "id": 912,
   "tema": "1342",
   "area": "Direito Tributário",
@@ -16358,23 +16231,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese recente (jun/2024); dosimetria em crimes de violência doméstica é tema muito cobrado em concursos"
  },
  {
-  "id": 969,
-  "tema": "1127",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Vedação a menor de 18 anos de antecipar o ensino médio via CEJA",
-  "tese": "É ilegal menor de 18 anos, mesmo que emancipado ou com altas habilidades, antecipar a conclusão de sua educação básica submetendo-se ao sistema de avaliação diferenciado oferecido pelos Centros de Educação de Jovens e Adultos – CEJAs, ainda que o intuito seja obter o diploma de ensino médio para matricular-se em curso superior.",
-  "destaque": "É ilegal que menor de 18 anos, mesmo emancipado ou com altas habilidades, antecipe a conclusão da educação básica pelo sistema de avaliação de jovens e adultos (CEJA) para obter diploma de ensino médio e ingressar no ensino superior.",
-  "processo": "REsp 1.945.851-CE",
-  "relator": "Og Fernandes",
-  "data": "22/05/2024",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de mai/2024; tema de nicho (educação/CEJA), baixa recorrência em concursos jurídicos gerais"
- },
- {
   "id": 970,
   "tema": "1176",
   "area": "Direito do Trabalho",
@@ -16750,23 +16606,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde set/2023; tema técnico sobre prescrição administrativa, de aplicação restrita"
  },
  {
-  "id": 992,
-  "tema": "1114",
-  "area": "Direito Processual Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Interrogatório como último ato da instrução mesmo com expedição de precatória",
-  "tese": "O interrogatório do réu é o último ato da instrução criminal. A inversão da ordem prevista no art. 400 do CPP tangencia somente à oitiva das testemunhas e não ao interrogatório. O eventual reconhecimento da nulidade se sujeita à preclusão, na forma do art. 571, I e II, do CPP, e à demonstração do prejuízo para o réu.",
-  "destaque": "A expedição de precatória para ouvir testemunha não altera a ordem do art. 400 do CPP: o interrogatório do réu continua sendo o último ato da instrução; eventual nulidade se sujeita à preclusão e à prova do prejuízo.",
-  "processo": "REsp 1.933.759-PR",
-  "relator": "João Otávio DE Noronha",
-  "data": "13/09/2023",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde set/2023; ordem do interrogatório (art. 400 CPP) é tema clássico e recorrente em Processual Penal"
- },
- {
   "id": 993,
   "tema": "1143",
   "area": "Direito Penal",
@@ -16866,7 +16705,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "tese consolidada desde set/2023; responsabilidade ambiental propter rem é tema clássico e muito recorrente em Ambiental"
+  "motivo": "tese consolidada desde set/2023; responsabilidade ambiental propter rem é tema clássico e muito recorrente em Ambiental",
+  "tambem": [
+   "STJ Edição 30 · tese 9"
+  ]
  },
  {
   "id": 999,
@@ -16883,7 +16725,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2023; busca e apreensão por alienação fiduciária é tema clássico e recorrente em Civil"
+  "motivo": "tese consolidada desde ago/2023; busca e apreensão por alienação fiduciária é tema clássico e recorrente em Civil",
+  "tambem": [
+   "STJ Edição 14 · tese 9"
+  ]
  },
  {
   "id": 1000,
@@ -16935,23 +16780,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese de jun/2023; tema técnico sobre regime específico de desoneração da folha (CPRB), de aplicação restrita"
- },
- {
-  "id": 1003,
-  "tema": "1189",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Vedação de pena de multa isolada em crimes de violência doméstica",
-  "tese": "A vedação constante do art. 17 da Lei n. 11.340/2006 (Lei Maria da Penha) obsta a imposição, nos casos de violência doméstica e familiar contra a mulher, de pena de multa isoladamente, ainda que prevista de forma autônoma no preceito secundário do tipo penal imputado.",
-  "destaque": "O art. 17 da Lei Maria da Penha impede a aplicação isolada de pena de multa em crimes de violência doméstica e familiar, mesmo que prevista autonomamente no tipo penal.",
-  "processo": "REsp 2.049.327-RJ",
-  "relator": "Sebastiao Reis",
-  "data": "14/06/2023",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de jun/2023; penas em crimes de violência doméstica são tema recorrente em Penal"
  },
  {
   "id": 1004,
@@ -17104,7 +16932,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "tese de mar/2023; procedimento em crimes de violência doméstica é tema muito recorrente em Processual Penal"
+  "motivo": "tese de mar/2023; procedimento em crimes de violência doméstica é tema muito recorrente em Processual Penal",
+  "tambem": [
+   "STJ Edição 41 · tese 17"
+  ]
  },
  {
   "id": 1013,
@@ -17172,7 +17003,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2022; IPVA é tema clássico em Direito Tributário, recorrente em concursos estaduais"
+  "motivo": "tese consolidada desde nov/2022; IPVA é tema clássico em Direito Tributário, recorrente em concursos estaduais",
+  "tambem": [
+   "STJ Edição 112 · tese 6"
+  ]
  },
  {
   "id": 1017,
@@ -17277,23 +17111,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde set/2022; DPVAT é tema clássico de Direito Civil (seguros), com recorrência moderada"
  },
  {
-  "id": 1023,
-  "tema": "1120",
-  "area": "Execução Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Remição ficta pela impossibilidade de trabalhar/estudar durante a pandemia",
-  "tese": "Nada obstante a interpretação restritiva que deve ser conferida ao art. 126, §4º, da LEP, os princípios da individualização da pena, da dignidade da pessoa humana, da isonomia e da fraternidade, ao lado da teoria da derrotabilidade da norma e da situação excepcionalíssima da pandemia de covid-19, impõem o cômputo do período de restrições sanitárias como de efetivo estudo ou trabalho em favor dos presos que já estavam trabalhando ou estudando e se viram impossibilitados de continuar seus afazeres unicamente em razão do estado pandêmico.",
-  "destaque": "Excepcionalmente, o período de restrições sanitárias da pandemia de covid-19 deve ser computado como se fosse de trabalho ou estudo, para fins de remição, em favor dos presos que já exerciam essas atividades e ficaram impedidos de continuar.",
-  "processo": "REsp 1.953.607-SC",
-  "relator": "Ribeiro Dantas",
-  "data": "14/09/2022",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde set/2022; situação excepcional e temporalmente superada (pandemia), aplicação já esgotada"
- },
- {
   "id": 1024,
   "tema": "1117",
   "area": "Direito Previdenciário",
@@ -17345,23 +17162,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde ago/2022; tráfico privilegiado é um dos temas mais recorrentes da Lei de Drogas em Penal"
  },
  {
-  "id": 1027,
-  "tema": "1082",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Continuidade do tratamento médico após rescisão unilateral de plano coletivo",
-  "tese": "A operadora, mesmo após o exercício regular do direito à rescisão unilateral de plano coletivo, deverá assegurar a continuidade dos cuidados assistenciais prescritos a usuário internado ou em pleno tratamento médico garantidor de sua sobrevivência ou de sua incolumidade física, até a efetiva alta, desde que o titular arque integralmente com a contraprestação devida.",
-  "destaque": "Mesmo após rescindir unilateralmente o plano coletivo, a operadora deve manter a assistência ao beneficiário internado ou em tratamento que garanta sua sobrevivência ou incolumidade física até a alta, desde que ele pague a contraprestação devida.",
-  "processo": "REsp 1.842.751-RS",
-  "relator": "Luis Felipe Salomão",
-  "data": "22/06/2022",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde jun/2022; planos de saúde coletivos e rescisão unilateral são tema muito recorrente em Consumidor"
- },
- {
   "id": 1028,
   "tema": "1086",
   "area": "Direito Administrativo",
@@ -17394,23 +17194,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde jun/2022; furto qualificado/majorado é tema clássico e muito recorrente em Penal"
- },
- {
-  "id": 1030,
-  "tema": "1145",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Produtor rural pode pedir recuperação judicial com dois anos de atividade empresarial",
-  "tese": "Ao produtor rural que exerça sua atividade de forma empresarial há mais de dois anos é facultado requerer a recuperação judicial, desde que esteja inscrito na Junta Comercial no momento em que formalizar o pedido recuperacional, independentemente do tempo de seu registro.",
-  "destaque": "O produtor rural que exerce a atividade de forma empresarial há mais de dois anos pode requerer recuperação judicial, desde que esteja inscrito na Junta Comercial no momento do pedido, independentemente de há quanto tempo esse registro foi feito.",
-  "processo": "REsp 1.905.573-MT",
-  "relator": "Luis Felipe Salomão",
-  "data": "22/06/2022",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde jun/2022; recuperação judicial do produtor rural é tema central e muito debatido na disciplina"
  },
  {
   "id": 1031,
@@ -17519,23 +17302,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde jun/2022; concorrência entre benefícios administrativo e judicial é tema recorrente em Previdenciário"
  },
  {
-  "id": 1037,
-  "tema": "1091",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Penhorabilidade do bem de família do fiador em locação comercial",
-  "tese": "É válida a penhora do bem de família de fiador apontado em contrato de locação de imóvel, seja residencial, seja comercial, nos termos do inciso VII do art. 3º da Lei n. 8.009/1990.",
-  "destaque": "É válida a penhora do bem de família do fiador em contrato de locação de imóvel, seja residencial, seja comercial (art. 3º, VII, da Lei 8.009/90).",
-  "processo": "REsp 1.822.033-PR",
-  "relator": "Luis Felipe Salomão",
-  "data": "08/06/2022",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde jun/2022; penhora do bem de família do fiador é tema clássico e muito recorrente em Civil"
- },
- {
   "id": 1038,
   "tema": "1121",
   "area": "Direito Penal",
@@ -17639,23 +17405,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mai/2022; tema técnico sobre indenização previdenciária em período histórico específico"
  },
  {
-  "id": 1044,
-  "tema": "1108",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Lei municipal autorizando contratação sem concurso afasta o dolo da improbidade",
-  "tese": "A contratação de servidores públicos temporários sem concurso público, mas baseada em legislação local, por si só, não configura a improbidade administrativa prevista no art. 11 da Lei n. 8.429/1992, por estar ausente o elemento subjetivo (dolo) necessário para a configuração do ato de improbidade violador dos princípios da administração pública.",
-  "destaque": "A contratação de servidor temporário sem concurso, mas baseada em lei local, não configura, por si só, improbidade administrativa do art. 11 da Lei 8.429/92, por ausência do dolo exigido.",
-  "processo": "REsp 1.926.832-TO",
-  "relator": "Gurgel DE Faria",
-  "data": "11/05/2022",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde mai/2022; elemento subjetivo da improbidade é tema recorrente em Administrativo"
- },
- {
   "id": 1045,
   "tema": "1106",
   "area": "Execução Penal",
@@ -17742,23 +17491,6 @@ var RG_REPETITIVOS_DATA = [
   "precedenteLabel": "IAC"
  },
  {
-  "id": 1050,
-  "tema": "1078",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Atraso na baixa de gravame de alienação fiduciária não é dano moral automático",
-  "tese": "O atraso, por parte de instituição financeira, na baixa de gravame de alienação fiduciária no registro de veículo não caracteriza, por si só, dano moral in re ipsa.",
-  "destaque": "O atraso da instituição financeira em dar baixa no gravame de alienação fiduciária no registro do veículo não caracteriza, por si só, dano moral in re ipsa.",
-  "processo": "REsp 1.881.453-RS",
-  "relator": "Marco Aurélio Bellizze",
-  "data": "30/11/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2021; dano moral in re ipsa em relações bancárias/consumeristas é tema recorrente"
- },
- {
   "id": 1051,
   "tema": "962",
   "area": "Direito Tributário",
@@ -17808,23 +17540,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde nov/2021; aposentadoria especial por ruído é tema clássico e muito recorrente em Previdenciário"
- },
- {
-  "id": 1054,
-  "tema": "1092",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Fazenda Pública pode habilitar em falência crédito objeto de execução fiscal em curso",
-  "tese": "É possível a Fazenda Pública habilitar em processo de falência crédito objeto de execução fiscal em curso, mesmo antes da vigência da Lei n. 14.112/2020, e desde que não haja pedido de constrição no juízo executivo.",
-  "destaque": "É possível a Fazenda Pública habilitar, no processo de falência, crédito que também é objeto de execução fiscal em curso, mesmo antes da Lei 14.112/2020, desde que não haja pedido de constrição no juízo executivo.",
-  "processo": "REsp 1.872.759-SP",
-  "relator": "Gurgel DE Faria",
-  "data": "18/11/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2021; concorrência entre execução fiscal e falência é tema recorrente na disciplina"
  },
  {
   "id": 1055,
@@ -17897,23 +17612,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2021; tema muito específico sobre uma categoria de militares e um benefício pontual"
  },
  {
-  "id": 1059,
-  "tema": "1097",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Dupla notificação obrigatória na multa por não indicação de condutor",
-  "tese": "Em se tratando de multa aplicada às pessoas jurídicas proprietárias de veículo, fundamentada na ausência de indicação do condutor infrator, é obrigatório observar a dupla notificação: a primeira que se refere à autuação da infração e a segunda sobre a aplicação da penalidade, conforme estabelecido nos arts. 280, 281 e 282 do CTB.",
-  "destaque": "Na multa aplicada à pessoa jurídica proprietária de veículo por não indicar o condutor infrator, é obrigatória a dupla notificação: da autuação da infração e da aplicação da penalidade (arts. 280 a 282 do CTB).",
-  "processo": "REsp 1.925.456-SP",
-  "relator": "Herman Benjamin",
-  "data": "21/10/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2021; infrações de trânsito e notificação são tema recorrente em Administrativo"
- },
- {
   "id": 1060,
   "tema": "1067",
   "area": "Direito do Consumidor",
@@ -17931,23 +17629,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2021; cobertura de planos de saúde é tema muito recorrente em Direito do Consumidor"
  },
  {
-  "id": 1061,
-  "tema": "1068",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Validade da cláusula de invalidez funcional permanente total por doença no seguro de vida em grupo",
-  "tese": "Não é ilegal ou abusiva a cláusula que prevê a cobertura adicional de invalidez funcional permanente total por doença (IFPD) em contrato de seguro de vida em grupo, condicionando o pagamento da indenização securitária à perda da existência independente do segurado, comprovada por declaração médica.",
-  "destaque": "Não é abusiva a cláusula que condiciona a cobertura adicional de invalidez funcional permanente total por doença (IFPD), em seguro de vida em grupo, à perda da existência independente do segurado, comprovada por laudo médico.",
-  "processo": "REsp 1.845.943-SP",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "13/10/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2021; cláusulas de seguro de vida em grupo são tema técnico recorrente em Civil/Consumidor"
- },
- {
   "id": 1062,
   "tema": "1054",
   "area": "Direito Processual Civil",
@@ -17963,40 +17644,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde set/2021; custas em execução fiscal são tema recorrente em Processual Civil/Tributário"
- },
- {
-  "id": 1063,
-  "tema": "1089",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prosseguimento da ação de improbidade para ressarcimento mesmo com prescrição das demais sanções",
-  "tese": "Na ação civil pública por ato de improbidade administrativa é possível o prosseguimento da demanda para pleitear o ressarcimento do dano ao erário, ainda que sejam declaradas prescritas as demais sanções previstas no art. 12 da Lei 8.429/92.",
-  "destaque": "Na ação civil pública por improbidade administrativa, é possível prosseguir apenas para pleitear o ressarcimento do dano ao erário, ainda que prescritas as demais sanções do art. 12 da Lei 8.429/92.",
-  "processo": "REsp 1.899.407",
-  "relator": "Assusete Magalhães",
-  "data": "22/09/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde set/2021; imprescritibilidade do ressarcimento ao erário é tema de grande repercussão em Administrativo"
- },
- {
-  "id": 1064,
-  "tema": "1094",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Diploma superior na mesma área supre exigência de ensino médio técnico do edital",
-  "tese": "O candidato aprovado em concurso público pode assumir cargo que, segundo o edital, exige título de Ensino Médio profissionalizante ou completo com curso técnico em área específica, caso não seja portador desse título mas detenha diploma de nível superior na mesma área profissional.",
-  "destaque": "O candidato aprovado em concurso pode assumir cargo que exige ensino médio profissionalizante em área específica se, mesmo sem esse título, possuir diploma de nível superior na mesma área.",
-  "processo": "REsp 1.903.883",
-  "relator": "Og Fernandes",
-  "data": "22/09/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde set/2021; tema específico sobre requisitos de escolaridade em edital de concurso"
  },
  {
   "id": 1065,
@@ -18152,23 +17799,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde jun/2021; tema extremamente restrito a uma localidade específica do Distrito Federal"
  },
  {
-  "id": 1074,
-  "tema": "1000",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Multa cominatória na exibição de documento de direito disponível",
-  "tese": "Desde que prováveis a existência da relação jurídica entre as partes e de documento ou coisa que se pretende seja exibido, apurada em contraditório prévio, poderá o juiz, após tentativa de busca e apreensão ou outra medida coercitiva, determinar sua exibição sob pena de multa com base no art. 400, parágrafo único, do CPC/2015.",
-  "destaque": "Provadas a relação jurídica entre as partes e a existência do documento a exibir, o juiz pode, após tentar busca e apreensão ou outra medida coercitiva, determinar a exibição sob pena de multa, com base no art. 400, parágrafo único, do CPC/2015.",
-  "processo": "REsp 1.763.462-MG",
-  "relator": "Paulo DE Tarso Sanseverino",
-  "data": "26/05/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde mai/2021; exibição de documentos e multa cominatória são tema técnico recorrente em Processual Civil"
- },
- {
   "id": 1075,
   "tema": "1084",
   "area": "Execução Penal",
@@ -18184,23 +17814,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde mai/2021; progressão de regime no Pacote Anticrime é tema muito recorrente em Execução Penal"
- },
- {
-  "id": 1076,
-  "tema": "1010",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Extensão da faixa não edificável em Área de Preservação Permanente urbana consolidada",
-  "tese": "Na vigência do novo Código Florestal (Lei n. 12.651/2012), a extensão não edificável nas Áreas de Preservação Permanente de qualquer curso d'água, perene ou intermitente, em trechos caracterizados como área urbana consolidada, deve respeitar o que disciplinado pelo seu art. 4º, caput, inciso I, alíneas a, b, c, d e e, a fim de assegurar a mais ampla garantia ambiental a esses espaços territoriais especialmente protegidos e, por conseguinte, à coletividade.",
-  "destaque": "Na vigência do novo Código Florestal, a faixa não edificável ao longo de cursos d'água em área urbana consolidada segue as distâncias do art. 4º, I, da Lei 12.651/2012, e não o recuo de 15 metros da Lei de Parcelamento do Solo Urbano (Lei 6.766/79).",
-  "processo": "REsp 1.770.760-SC",
-  "relator": "Benedito Gonçalves",
-  "data": "28/04/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde abr/2021; Área de Preservação Permanente é tema clássico e muito recorrente em Ambiental"
  },
  {
   "id": 1077,
@@ -18235,23 +17848,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde abr/2021; tema técnico sobre cálculo de honorários em ação previdenciária"
- },
- {
-  "id": 1079,
-  "tema": "1066",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "ECAD pode cobrar direitos autorais por obras disponibilizadas em quartos de hotel e motel",
-  "tese": "a) \"A disponibilização de equipamentos em quarto de hotel, motel ou afins para a transmissão de obras musicais, literomusicais e audiovisuais permite a cobrança de direitos autorais pelo Escritório Central de Arrecadação e Distribuição - ECAD.b) A contratação por empreendimento hoteleiro de serviços de TV por assinatura não impede a cobrança de direitos autorais pelo Escritório Central de Arrecadação e Distribuição - ECAD, inexistindo bis in idem.\"",
-  "destaque": "A disponibilização de equipamentos em quarto de hotel, motel ou afins para transmitir obras musicais e audiovisuais permite a cobrança de direitos autorais pelo ECAD, mesmo que o estabelecimento já pague por TV por assinatura, sem configurar bis in idem.",
-  "processo": "REsp 1.870.771-SP",
-  "relator": "Antonio Carlos Ferreira",
-  "data": "24/03/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde mar/2021; direitos autorais/ECAD é tema técnico de propriedade intelectual, aplicação de nicho"
  },
  {
   "id": 1080,
@@ -18407,40 +18003,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde fev/2021; aplicação restrita a uma carreira específica, embora toque em regras gerais de incompatibilidade da advocacia"
  },
  {
-  "id": 1089,
-  "tema": "1036",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Apreensão de instrumento usado em infração ambiental independe de uso exclusivo",
-  "tese": "\"A apreensão do instrumento utilizado na infração ambiental, fundada na atual redação do § 4º do art. 25 da Lei 9.605/1998, independe do uso específico, exclusivo ou habitual para a empreitada infracional\".",
-  "destaque": "A apreensão do instrumento usado na infração ambiental (art. 25, §4º/5º, da Lei 9.605/98) independe de ele ser de uso específico, exclusivo ou habitual para a atividade ilícita.",
-  "processo": "REsp 1.814.945",
-  "relator": "Mauro Campbell Marques",
-  "data": "10/02/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde fev/2021; apreensão de bens é tema recorrente em Direito Ambiental, cobrado com frequência em provas de carreiras ambientais e policiais"
- },
- {
-  "id": 1090,
-  "tema": "1043",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Guarda do veículo apreendido por infração ambiental não é direito subjetivo do infrator",
-  "tese": "O proprietário do veículo apreendido em razão de infração de transporte irregular de madeira não titulariza direito público subjetivo de ser nomeado fiel depositário do bem, as providências dos arts. 105 e 106 do Decreto Federal n. 6.514/2008 competindo ao alvedrio da Administração Pública, em fundamentado juízo de oportunidade e de conveniência.",
-  "destaque": "O proprietário de veículo apreendido por transporte irregular de madeira não tem direito subjetivo a ser nomeado fiel depositário do bem; a decisão cabe ao juízo de conveniência e oportunidade da Administração.",
-  "processo": "REsp 1.805.706",
-  "relator": "Mauro Campbell Marques",
-  "data": "10/02/2021",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde fev/2021, mas de aplicação restrita a apreensões por infração ambiental envolvendo madeira; baixa recorrência fora de Ambiental"
- },
- {
   "id": 1091,
   "tema": "1058",
   "area": "Direito Processual Civil",
@@ -18456,57 +18018,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde fev/2021; competência é tema clássico de Processual Civil, e o tema de fundo (educação infantil) é recorrente em ações estruturais"
- },
- {
-  "id": 1092,
-  "tema": "1032",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Coparticipação em internação psiquiátrica prolongada no plano de saúde",
-  "tese": "Nos contratos de plano de saúde não é abusiva a cláusula de coparticipação expressamente ajustada e informada ao consumidor, à razão máxima de 50% (cinquenta por cento) do valor das despesas, nos casos de internação superior a 30 (trinta) dias por ano, decorrente de transtornos psiquiátricos, preservada a manutenção do equilíbrio financeiro.",
-  "destaque": "Não é abusiva a cláusula de coparticipação em plano de saúde, de até 50% das despesas, para internações psiquiátricas superiores a 30 dias por ano, desde que ajustada e informada ao consumidor.",
-  "processo": "REsp 1.809.486-SP",
-  "relator": "Marco Buzzi",
-  "data": "09/12/2020",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2020; planos de saúde e cláusulas de coparticipação são tema central e muito cobrado em Direito do Consumidor"
- },
- {
-  "id": 1093,
-  "tema": "1034",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Manutenção de aposentados e demitidos no plano de saúde coletivo (art. 31 da Lei 9.656/98)",
-  "tese": "a) \"Eventuais mudanças de operadora, de modelo de prestação de serviço, de forma de custeio e de valores de contribuição não implicam interrupção da contagem do prazo de 10 (dez) anos previsto no art. 31 da Lei n. 9.656/1998, devendo haver a soma dos períodos contributivos para fins de cálculo da manutenção proporcional ou indeterminada do trabalhador aposentado no plano coletivo empresarial.\"b) \"O art. 31 da lei n. 9.656/1998 impõe que ativos e inativos sejam inseridos em plano de saúde coletivo único, contendo as mesmas condições de cobertura assistencial e de prestação de serviço, o que inclui, para todo o universo de beneficiários, a igualdade de modelo de pagamento e de valor de contribuição, admitindo-se a diferenciação por faixa etária se for contratada para todos, cabendo ao inativo o custeio integral, cujo valor pode ser obtido com a soma de sua cota-parte com a parcela que, quanto aos ativos, é proporcionalmente suportada pelo empregador.\"c) \"O ex-empregado aposentado, preenchidos os requisitos do art. 31 da Lei n. 9.656/1998, não tem direito adquirido de se manter no mesmo plano privado de assistência à saúde vigente na época da aposentadoria, podendo haver a substituição da operadora e a alteração do modelo de prestação de serviços, da forma de custeio e os respectivos valores, desde que mantida paridade com o modelo dos trabalhadores ativos e facultada a portabilidade de carências.\"",
-  "destaque": "Mudanças de operadora, modelo de custeio ou valores de contribuição não interrompem o prazo de 10 anos do art. 31 da Lei 9.656/98; o inativo deve ser mantido em plano coletivo único com os ativos, custeando integralmente sua parte, sem direito adquirido ao mesmo plano ou operadora.",
-  "processo": "REsp 1.818.487-SP",
-  "relator": "Antonio Carlos Ferreira",
-  "data": "09/12/2020",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2020; manutenção de aposentados/demitidos em plano de saúde é um dos temas mais recorrentes do Direito do Consumidor"
- },
- {
-  "id": 1094,
-  "tema": "1051",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Momento de existência do crédito para fins de sujeição à recuperação judicial",
-  "tese": "Para o fim de submissão aos efeitos da recuperação judicial, considera-se que a existência do crédito é determinada pela data em que ocorreu o seu fato gerador.",
-  "destaque": "Para saber se um crédito se submete à recuperação judicial (art. 49, caput, da Lei 11.101/2005), considera-se a data do fato gerador, não a do trânsito em julgado da sentença que o reconhece.",
-  "processo": "REsp 1.843.332-RS",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "09/12/2020",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2020; a sujeição de créditos à recuperação judicial (art. 49) é um dos temas mais cobrados da disciplina"
  },
  {
   "id": 1095,
@@ -18678,23 +18189,6 @@ var RG_REPETITIVOS_DATA = [
   "risco": "Alta",
   "motivo": "tese consolidada desde set/2020; aposentadoria especial e o agente ruído são tema clássico e muito recorrente em Previdenciário",
   "precedenteLabel": "PUIL"
- },
- {
-  "id": 1105,
-  "tema": "1049",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Redirecionamento da execução fiscal à sucessora por incorporação não informada ao fisco",
-  "tese": "A execução fiscal pode ser redirecionada em desfavor da empresa sucessora para cobrança de crédito tributário relativo a fato gerador ocorrido posteriormente à incorporação empresarial e ainda lançado em nome da sucedida, sem a necessidade de modificação da Certidão de Dívida Ativa, quando verificado que esse negócio jurídico não foi informado oportunamente ao fisco.",
-  "destaque": "A execução fiscal pode ser redirecionada à empresa incorporadora, sem necessidade de alterar a CDA, quando a incorporação não foi informada oportunamente ao fisco, mesmo que o fato gerador seja posterior à incorporação.",
-  "processo": "REsp 1.848.993-SP",
-  "relator": "Gurgel DE Faria",
-  "data": "26/08/2020",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2020; execução fiscal e redirecionamento por sucessão empresarial são temas centrais de Tributário/Processual"
  },
  {
   "id": 1106,
@@ -19228,23 +18722,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde dez/2018; contratos bancários de financiamento de veículos são tema muito recorrente em Direito Bancário"
  },
  {
-  "id": 1137,
-  "tema": "988",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Taxatividade mitigada do rol de agravo de instrumento (art. 1.015 do CPC)",
-  "tese": "O rol do art. 1.015 do CPC é de taxatividade mitigada, por isso admite a interposição de agravo de instrumento quando verificada a urgência decorrente da inutilidade do julgamento da questão no recurso de apelação.",
-  "destaque": "O rol do art. 1.015 do CPC é de taxatividade mitigada: cabe agravo de instrumento também fora das hipóteses listadas quando houver urgência decorrente da inutilidade do julgamento da questão em eventual apelação.",
-  "processo": "REsp 1.696.396-MT",
-  "relator": "Nancy Andrighi",
-  "data": "05/12/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2018; taxatividade mitigada do agravo de instrumento é um dos temas mais cobrados em Processual Civil"
- },
- {
   "id": 1138,
   "tema": "777",
   "area": "Direito Tributário",
@@ -19279,23 +18756,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2018; tarifas bancárias abusivas são tema clássico e muito cobrado em Direito Bancário"
  },
  {
-  "id": 1140,
-  "tema": "969",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Classificação do encargo do DL 1.025/69 na falência",
-  "tese": "O encargo do DL n. 1.025/1969 tem as mesmas preferências do crédito tributário devendo, por isso, ser classificado, na falência, na ordem estabelecida pelo art. 83, III, da Lei n. 11.101/2005.",
-  "destaque": "O encargo pecuniário do art. 1º do DL 1.025/1969 tem as mesmas preferências do crédito tributário, devendo ser classificado, na falência, na ordem do art. 83, III, da Lei 11.101/2005.",
-  "processo": "REsp 1.521.999-SP",
-  "relator": "Sérgio Kukina",
-  "data": "28/11/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2018; classificação de créditos na falência é tema recorrente em Recuperação Judicial, embora este encargo seja específico"
- },
- {
   "id": 1141,
   "tema": "974",
   "area": "Direito Administrativo",
@@ -19328,23 +18788,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde nov/2018; IPTU e prescrição tributária são temas centrais em Tributário, especialmente para carreiras municipais"
- },
- {
-  "id": 1143,
-  "tema": "990",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Plano de saúde não é obrigado a fornecer medicamento sem registro na ANVISA",
-  "tese": "As operadoras de plano de saúde não estão obrigadas a fornecer medicamento não registrado pela ANVISA.",
-  "destaque": "As operadoras de plano de saúde não estão obrigadas a fornecer medicamento importado que não tenha registro na ANVISA.",
-  "processo": "REsp 1.712.163-SP",
-  "relator": "Moura Ribeiro",
-  "data": "08/11/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2018; fornecimento de medicamentos por planos de saúde é tema muito recorrente em Direito do Consumidor"
  },
  {
   "id": 1144,
@@ -19449,23 +18892,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde ago/2018; o acréscimo de 25% por grande invalidez é tema clássico e muito cobrado em Direito Previdenciário"
  },
  {
-  "id": 1152,
-  "tema": "989",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Permanência no plano de saúde coletivo custeado só pelo empregador",
-  "tese": "Nos planos de saúde coletivos custeados exclusivamente pelo empregador não há direito de permanência do ex-empregado aposentado ou demitido sem justa causa como beneficiário, salvo disposição contrária expressa prevista em contrato ou em acordo/convenção coletiva de trabalho, não caracterizando contribuição o pagamento apenas de coparticipação, tampouco se enquadrando como salário indireto.",
-  "destaque": "Se o plano de saúde coletivo empresarial for custeado exclusivamente pelo empregador, o ex-empregado aposentado ou demitido sem justa causa não tem direito de nele permanecer, salvo previsão contratual ou coletiva em sentido contrário; coparticipação isolada não conta como contribuição.",
-  "processo": "REsp 1.680.318-SP",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "22/08/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2018; permanência de aposentados/demitidos em plano de saúde é um dos temas mais cobrados em Direito do Consumidor"
- },
- {
   "id": 1153,
   "tema": "993",
   "area": "Execução Penal",
@@ -19535,23 +18961,6 @@ var RG_REPETITIVOS_DATA = [
   "precedenteLabel": "IAC"
  },
  {
-  "id": 1157,
-  "tema": "973",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Honorários no cumprimento individual de sentença coletiva (Súmula 345/STJ)",
-  "tese": "O art. 85, § 7º, do CPC/2015 não afasta a aplicação do entendimento consolidado na Súmula 345 do STJ, de modo que são devidos honorários advocatícios nos procedimentos individuais de cumprimento de sentença decorrente de ação coletiva, ainda que não impugnados e promovidos em litisconsórcio.",
-  "destaque": "O art. 85, §7º, do CPC/2015 não afasta a Súmula 345/STJ: são devidos honorários advocatícios nos cumprimentos individuais de sentença de ação coletiva, mesmo sem impugnação e mesmo em litisconsórcio.",
-  "processo": "REsp 1.648.238",
-  "relator": "Gurgel DE Faria",
-  "data": "20/06/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde jun/2018; honorários em cumprimento de sentença coletiva é tema recorrente em Processual Civil"
- },
- {
   "id": 1158,
   "tema": "936",
   "area": "Direito Civil",
@@ -19617,7 +19026,10 @@ var RG_REPETITIVOS_DATA = [
   "info": null,
   "status": "vigente",
   "risco": "Média",
-  "motivo": "tese consolidada desde jun/2018; medida socioeducativa e maioridade é tema recorrente em provas que cobram o ECA, ainda que fora do núcleo penal adulto"
+  "motivo": "tese consolidada desde jun/2018; medida socioeducativa e maioridade é tema recorrente em provas que cobram o ECA, ainda que fora do núcleo penal adulto",
+  "tambem": [
+   "STJ Edição 54 · tese 10"
+  ]
  },
  {
   "id": 1162,
@@ -19688,23 +19100,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde abr/2018; corte de serviços públicos essenciais é tema clássico e muito cobrado em Direito Administrativo"
  },
  {
-  "id": 1166,
-  "tema": "766",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade do Ministério Público em ações de saúde com beneficiário individualizado",
-  "tese": "O Ministério Público é parte legítima para pleitear tratamento médico ou entrega de medicamentos nas demandas de saúde propostas contra os entes federativos, mesmo quando se tratar de feitos contendo beneficiários individualizados, porque se refere a direitos individuais indisponíveis, na forma do art. 1º da Lei n. 8.625/1993 (Lei Orgânica Nacional do Ministério Público).",
-  "destaque": "O Ministério Público tem legitimidade para pleitear tratamento médico ou medicamentos contra entes federativos, mesmo em demandas com beneficiários individualizados, por se tratar de direitos individuais indisponíveis.",
-  "processo": "REsp 1.682.836-SP",
-  "relator": "Og Fernandes",
-  "data": "25/04/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde abr/2018; judicialização da saúde e legitimidade do MP são temas muito recorrentes em Administrativo e Processual Civil"
- },
- {
   "id": 1167,
   "tema": "965",
   "area": "Direito Administrativo",
@@ -19720,23 +19115,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde fev/2018; competência de órgãos de trânsito é tema recorrente em Administrativo, especialmente para carreiras de trânsito"
- },
- {
-  "id": 1168,
-  "tema": "983",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Dano moral mínimo em sentença condenatória de violência doméstica",
-  "tese": "Nos casos de violência contra a mulher praticados no âmbito doméstico e familiar, é possível a fixação de valor mínimo indenizatório a título de dano moral, desde que haja pedido expresso da acusação ou da parte ofendida, ainda que não especificada a quantia, e independentemente de instrução probatória.",
-  "destaque": "Na condenação por violência doméstica contra a mulher, é possível fixar valor mínimo de indenização por dano moral, desde que haja pedido expresso (mesmo sem valor definido) e independentemente de instrução probatória sobre o dano.",
-  "processo": "REsp 1.643.051-MS",
-  "relator": "Rogerio Schietti",
-  "data": "28/02/2018",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde fev/2018; violência doméstica é um dos temas mais cobrados em Direito Penal"
  },
  {
   "id": 1169,
@@ -19788,40 +19166,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde dez/2017; trade dress e concorrência desleal são temas relevantes de Propriedade Industrial, recorrentes em provas com foco empresarial"
- },
- {
-  "id": 1173,
-  "tema": "976",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Competência para julgar pedidos ilíquidos contra massa falida com a Fazenda no polo passivo",
-  "tese": "A competência para processar e julgar demandas cíveis com pedidos ilíquidos contra massa falida, quando em litisconsórcio passivo com pessoa jurídica de direito público, é do juízo cível no qual for proposta a ação de conhecimento, competente para julgar ações contra a Fazenda Pública, de acordo as respectivas normas de organização judiciária.",
-  "destaque": "Quando há litisconsórcio passivo entre massa falida e pessoa jurídica de direito público, a competência para julgar pedidos ilíquidos é do juízo cível competente para causas contra a Fazenda Pública, não do juízo falimentar.",
-  "processo": "REsp 1.643.856-SP",
-  "relator": "Og Fernandes",
-  "data": "13/12/2017",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde dez/2017; competência em processos falimentares é tema recorrente em Recuperação Judicial/Processual Civil"
- },
- {
-  "id": 1174,
-  "tema": "627",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Auxílio-acidente do segurado especial sem contribuição facultativa",
-  "tese": "O segurado especial, cujo acidente ou moléstia é anterior à vigência da Lei n. 12.873/2013, que alterou a redação do inciso I do artigo 39 da Lei n. 8.213/91, não precisa comprovar o recolhimento de contribuição como segurado facultativo para ter direito ao auxílio-acidente.",
-  "destaque": "O segurado especial cujo acidente ou moléstia é anterior à Lei 12.873/2013 não precisa comprovar recolhimento como segurado facultativo para ter direito ao auxílio-acidente.",
-  "processo": "REsp 1.361.410-RS",
-  "relator": "Benedito Gonçalves",
-  "data": "08/11/2017",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2017; segurado especial rural é tema recorrente em Direito Previdenciário"
  },
  {
   "id": 1175,
@@ -20011,23 +19355,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mai/2017; tarifas de serviços públicos essenciais são tema recorrente em Direito Administrativo"
  },
  {
-  "id": 1186,
-  "tema": "98",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Astreintes contra o ente público para fornecer medicamento",
-  "tese": "Possibilidade de imposição de multa diária (astreintes) a ente público, para compeli-lo a fornecer medicamento à pessoa desprovida de recursos financeiros.",
-  "destaque": "É possível impor multa diária (astreintes) ao ente público para obrigá-lo a fornecer medicamento a pessoa sem recursos financeiros.",
-  "processo": "REsp 1.474.665-RS",
-  "relator": "Benedito Gonçalves",
-  "data": "26/04/2017",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde abr/2017; judicialização da saúde e astreintes contra a Fazenda são tema muito recorrente em Processual Civil e Administrativo"
- },
- {
   "id": 1187,
   "tema": "616",
   "area": "Direito Administrativo",
@@ -20062,23 +19389,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mar/2017; tema técnico de previdência complementar, de nicho e baixa recorrência em concursos gerais"
  },
  {
-  "id": 1190,
-  "tema": "953",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Capitalização anual de juros exige pactuação expressa",
-  "tese": "A cobrança de juros capitalizados nos contratos de mútuo é permitida quando houver expressa pactuação.",
-  "destaque": "A cobrança de juros capitalizados em contratos de mútuo bancário só é permitida quando houver pactuação expressa entre as partes.",
-  "processo": "REsp 1.388.972-SC",
-  "relator": "Marco Buzzi",
-  "data": "08/02/2017",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde fev/2017; capitalização de juros (anatocismo) é um dos temas mais cobrados em Direito Bancário"
- },
- {
   "id": 1191,
   "tema": "879",
   "area": "Direito Administrativo",
@@ -20094,23 +19404,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde dez/2016; legitimidade de agências reguladoras em litígios de concessionárias é tema recorrente em Direito Administrativo"
- },
- {
-  "id": 1192,
-  "tema": "952",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Validade do reajuste de plano de saúde por faixa etária",
-  "tese": "O reajuste de mensalidade de plano de saúde individual ou familiar fundado na mudança de faixa etária do beneficiário é válido desde que (i) haja previsão contratual, (ii) sejam observadas as normas expedidas pelos órgãos governamentais reguladores e (iii) não sejam aplicados percentuais desarrazoados ou aleatórios que, concretamente e sem base atuarial idônea, onerem excessivamente o consumidor ou discriminem o idoso.",
-  "destaque": "O reajuste de mensalidade de plano de saúde individual/familiar por mudança de faixa etária é válido se houver previsão contratual, observância das normas regulatórias e percentuais que não onerem excessivamente ou discriminem o idoso.",
-  "processo": "REsp 1.568.244-RJ",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "14/12/2016",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2016; reajuste por faixa etária é um dos temas mais cobrados em Direito do Consumidor"
  },
  {
   "id": 1193,
@@ -20249,23 +19542,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde ago/2016; base de cálculo de PIS/COFINS e inclusão do ICMS são tema central em Tributário, relevante inclusive para entender a evolução até a 'tese do século' do STF"
  },
  {
-  "id": 1201,
-  "tema": "610",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prazo prescricional para revisar reajuste de plano de saúde",
-  "tese": "Na vigência dos contratos de plano ou de seguro de assistência à saúde, a pretensão condenatória decorrente da declaração de nulidade de cláusula de reajuste nele prevista prescreve em 20 anos (art. 177 do CC/1916) ou em 3 anos (art. 206, § 3º, IV, do CC/2002), observada a regra de transição do art. 2.028 do CC/2002.",
-  "destaque": "A pretensão de declarar nula cláusula de reajuste de plano de saúde e repetir valores pagos a maior prescreve em 20 anos (CC/1916) ou 3 anos (CC/2002), observada a regra de transição.",
-  "processo": "REsp 1.360.969-RS",
-  "relator": "Marco Buzzi",
-  "data": "10/08/2016",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2016; prescrição em contratos de plano de saúde é tema recorrente em Direito do Consumidor"
- },
- {
   "id": 1202,
   "tema": "690",
   "area": "Direito Tributário",
@@ -20315,23 +19591,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde ago/2016; tema de nicho sobre crédito rural, baixa recorrência fora de carreiras agrárias/bancárias"
- },
- {
-  "id": 1205,
-  "tema": "933",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Absorção da falsificação de papel público pelo descaminho (princípio da consunção)",
-  "tese": "Quando o falso se exaure no descaminho, sem mais potencialidade lesiva, é por este absorvido, como crime-fim, condição que não se altera por ser menor a pena a este cominada.",
-  "destaque": "Quando o falso se esgota no descaminho, sem mais potencial lesivo, é absorvido por este como crime-fim, mesmo tendo pena abstrata maior.",
-  "processo": "REsp 1.378.053",
-  "relator": "Nefi Cordeiro",
-  "data": "10/08/2016",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2016; princípio da consunção e crimes contra a ordem tributária/descaminho são tema clássico em Direito Penal"
  },
  {
   "id": 1206,
@@ -20504,57 +19763,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2015; a repetição em dobro do art. 940 do CC é tema clássico e muito recorrente em Direito Civil"
  },
  {
-  "id": 1216,
-  "tema": "920",
-  "area": "Direito Processual Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Revogação da suspensão condicional do processo após o fim do prazo",
-  "tese": "Se descumpridas as condições impostas durante o período de prova da suspensão condicional do processo, o benefício poderá ser revogado, mesmo se já ultrapassado o prazo legal, desde que referente a fato ocorrido durante sua vigência.",
-  "destaque": "Se as condições da suspensão condicional do processo (art. 89, §4º, da Lei 9.099/95) forem descumpridas durante o período de prova, o benefício pode ser revogado mesmo depois de já ultrapassado o prazo legal, desde que o fato seja daquele período.",
-  "processo": "REsp 1.498.034-RS",
-  "relator": "Rogerio Schietti",
-  "data": "25/11/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2015; suspensão condicional do processo é tema clássico e muito cobrado em Processual Penal"
- },
- {
-  "id": 1217,
-  "tema": "930",
-  "area": "Direito Processual Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Condições da suspensão condicional do processo podem equivaler a penas restritivas",
-  "tese": "Não há óbice a que se estabeleçam, no prudente uso da faculdade judicial disposta no art. 89, § 2º, da Lei n. 9.099/1995, obrigações equivalentes, do ponto de vista prático, a sanções penais (tais como a prestação de serviços comunitários ou a prestação pecuniária), mas que, para os fins do sursis processual, se apresentam tão somente como condições para sua incidência.",
-  "destaque": "Na suspensão condicional do processo (art. 89, §2º, da Lei 9.099/95), o juiz pode fixar obrigações equivalentes, na prática, a penas restritivas de direitos (como prestação de serviços ou pecuniária), que valem apenas como condições do sursis processual.",
-  "processo": "REsp 1.498.034-RS",
-  "relator": "Rogerio Schietti",
-  "data": "25/11/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2015; mesmo pacote do Tema 920 sobre suspensão condicional do processo, tema recorrente em Processual Penal"
- },
- {
-  "id": 1218,
-  "tema": "454",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Juros sobre capital próprio na base de cálculo do PIS/COFINS",
-  "tese": "Não são dedutíveis da base de cálculo das contribuições ao PIS e COFINS o valor destinado aos acionistas a título de juros sobre o capital próprio, na vigência da Lei n. 10.637/2002 e da Lei n. 10.833/2003.",
-  "destaque": "Os valores pagos aos acionistas a título de juros sobre capital próprio não são dedutíveis da base de cálculo do PIS e da COFINS, no regime não cumulativo das Leis 10.637/02 e 10.833/03.",
-  "processo": "EREsp 1.200.492",
-  "relator": "Luiz Fux",
-  "data": "14/10/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2015; base de cálculo de PIS/COFINS é tema recorrente em Tributário, embora este ponto seja técnico"
- },
- {
   "id": 1219,
   "tema": "902",
   "area": "Direito Processual Civil",
@@ -20570,57 +19778,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde out/2015; sustação de protesto é tema recorrente em Processual Civil/Empresarial"
- },
- {
-  "id": 1220,
-  "tema": "912",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Nova incidência de IPI na revenda de produto importado pelo próprio importador",
-  "tese": "Os produtos importados estão sujeitos a uma nova incidência do IPI quando de sua saída do estabelecimento importador na operação de revenda, mesmo que não tenham sofrido industrialização no Brasil.",
-  "destaque": "Quando o importador revende ao mercado interno o produto importado, incide novo IPI na saída do estabelecimento, mesmo sem qualquer industrialização no Brasil.",
-  "processo": "EREsp 1.403.532",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "14/10/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2015; tema recorrente de Direito Tributário (IPI), mas de aplicação restrita a operações de importação seguidas de revenda"
- },
- {
-  "id": 1221,
-  "tema": "916",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Consumação do roubo com a inversão da posse, ainda que breve",
-  "tese": "Consuma-se o crime de roubo com a inversão da posse do bem, mediante emprego de violência ou grave ameaça, ainda que por breve tempo e em seguida a perseguição imediata ao agente e recuperação da coisa roubada, sendo prescindível a posse mansa e pacífica ou desvigiada.",
-  "destaque": "O roubo se consuma com a simples inversão da posse mediante violência ou grave ameaça, ainda que por curto período e seguida de perseguição imediata, não sendo necessária posse mansa e pacífica.",
-  "processo": "REsp 1.499.050-RJ",
-  "relator": "Rogerio Schietti",
-  "data": "14/10/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2015; consumação x tentativa em crimes patrimoniais é tema clássico e muito recorrente de Direito Penal"
- },
- {
-  "id": 1222,
-  "tema": "934",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Consumação do furto com a posse de fato da coisa, ainda que breve",
-  "tese": "Consuma-se o crime de furto com a posse de fato da res furtiva, ainda que por breve espaço de tempo e seguida de perseguição ao agente, sendo prescindível a posse mansa e pacífica ou desvigiada.",
-  "destaque": "O furto se consuma com a posse de fato da coisa subtraída, ainda que por curto tempo e seguida de perseguição ao agente, dispensando-se posse mansa e pacífica.",
-  "processo": "REsp 1.524.450-RJ",
-  "relator": "Nefi Cordeiro",
-  "data": "14/10/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2015; consumação x tentativa em crimes patrimoniais é tema clássico e muito recorrente de Direito Penal, em linha com a tese equivalente sobre o roubo"
  },
  {
   "id": 1223,
@@ -20655,23 +19812,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde set/2015; imunidade/isenção de entidades sem fins lucrativos é tema recorrente de Direito Tributário, com aplicação prática frequente"
- },
- {
-  "id": 1225,
-  "tema": "642",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Exercício de atividade rural no momento de completar a idade mínima para aposentadoria rural",
-  "tese": "O segurado especial tem que estar laborando no campo, quando completar a idade mínima para se aposentar por idade rural, momento em que poderá requerer seu benefício. Ressalvada a hipótese do direito adquirido, em que o segurado especial, embora não tenha requerido sua aposentadoria por idade rural, preenchera de forma concomitante, no passado, ambos os requisitos carência e idade.",
-  "destaque": "Para a aposentadoria por idade rural, o segurado especial deve estar exercendo a atividade rural quando completa a idade mínima, ressalvado o direito adquirido se já preenchia os requisitos no passado.",
-  "processo": "REsp 1.354.908",
-  "relator": "Mauro Campbell Marques",
-  "data": "09/09/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde set/2015; aposentadoria rural por idade é um dos temas centrais e mais cobrados de Direito Previdenciário"
  },
  {
   "id": 1226,
@@ -20740,57 +19880,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde ago/2015; execução individual de sentença coletiva é tema relevante de processo coletivo, com aplicação prática em ações civis públicas"
- },
- {
-  "id": 1230,
-  "tema": "926",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Perícia por amostragem comprova a materialidade da violação de direito autoral",
-  "tese": "É suficiente, para a comprovação da materialidade do delito previsto no art. 184, § 2º, do Código Penal, a perícia realizada, por amostragem, sobre os aspectos externos do material apreendido, sendo desnecessária a identificação dos titulares dos direitos autorais violados ou de quem os represente.",
-  "destaque": "Basta perícia por amostragem sobre os aspectos externos do material apreendido para comprovar a materialidade do crime de violação de direito autoral (art. 184, §2º, CP), sendo dispensável identificar os titulares dos direitos violados.",
-  "processo": "REsp 1.456.239-MG",
-  "relator": "Rogerio Schietti",
-  "data": "12/08/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde ago/2015; tema técnico e específico de crimes contra a propriedade intelectual, de recorrência mais baixa em concursos gerais"
- },
- {
-  "id": 1231,
-  "tema": "893",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Multa do art. 475-J do CPC no cumprimento de sentença arbitral condenatória",
-  "tese": "No âmbito do cumprimento de sentença arbitral condenatória de prestação pecuniária, a multa de 10% (dez por cento) do artigo 475-J do CPC deverá incidir se o executado não proceder ao pagamento espontâneo no prazo de 15 (quinze) dias contados da juntada do mandado de citação devidamente cumprido aos autos (em caso de título executivo contendo quantia líquida) ou da intimação do devedor, na pessoa de seu advogado, mediante publicação na imprensa oficial (em havendo prévia liquidação da obrigação certificada pelo juízo arbitral).",
-  "destaque": "A multa de 10% do art. 475-J do CPC incide também no cumprimento de sentença arbitral condenatória, se o executado não pagar espontaneamente em 15 dias após a citação ou a intimação cabível.",
-  "processo": "REsp 1.102.460-RJ",
-  "relator": "Marco Buzzi",
-  "data": "17/06/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde jun/2015; cumprimento de sentença (hoje art. 523 do CPC/2015) e sentença arbitral são temas recorrentes de Processual Civil"
- },
- {
-  "id": 1232,
-  "tema": "634",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inclusão do ISS na base de cálculo do PIS e da COFINS",
-  "tese": "O valor suportado pelo beneficiário do serviço, nele incluindo a quantia referente ao ISSQN, compõe o conceito de receita ou faturamento para fins de adequação à hipótese de incidência do PIS e da COFINS.",
-  "destaque": "O valor do ISS repassado ao tomador do serviço integra o conceito de receita ou faturamento e, portanto, compõe a base de cálculo do PIS e da COFINS.",
-  "processo": "REsp 1.330.737",
-  "relator": "Castro Meira",
-  "data": "10/06/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde jun/2015; inclusão de tributos na base de cálculo de outros tributos é um dos temas mais recorrentes de Direito Tributário (compare-se com a discussão análoga sobre o ICMS)"
  },
  {
   "id": 1233,
@@ -21031,23 +20120,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mar/2015; prestação de contas em contratos bancários é tema recorrente de Processual Civil/Consumidor"
  },
  {
-  "id": 1247,
-  "tema": "882",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Taxas de manutenção de associação de moradores não vinculam quem não aderiu",
-  "tese": "As taxas de manutenção criadas por associações de moradores não obrigam os não associados ou que a elas não anuíram.",
-  "destaque": "As taxas de manutenção cobradas por associação de moradores não obrigam os proprietários que não são associados nem aderiram ao ato que instituiu o encargo.",
-  "processo": "REsp 1.280.871-SP",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "11/03/2015",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde mar/2015; cobrança de taxas por associação de moradores é tema clássico e muito recorrente de Direito Civil"
- },
- {
   "id": 1248,
   "tema": "887",
   "area": "Direito Processual Civil",
@@ -21235,23 +20307,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2014; indisponibilidade de bens em execução fiscal é tema central e muito recorrente de Direito Tributário"
  },
  {
-  "id": 1260,
-  "tema": "885",
-  "area": "Recuperação Judicial",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Recuperação judicial do devedor principal não suspende execução contra coobrigados e garantidores",
-  "tese": "A recuperação judicial do devedor principal não impede o prosseguimento das execuções nem induz suspensão ou extinção de ações ajuizadas contra terceiros devedores solidários ou coobrigados em geral, por garantia cambial, real ou fidejussória, pois não se lhes aplicam a suspensão prevista nos arts. 6º, caput, e 52, inciso III, ou a novação a que se refere o art. 59, caput, por força do que dispõe o art. 49, § 1º, todos da Lei n. 11.101/2005.",
-  "destaque": "A recuperação judicial do devedor principal não impede nem suspende execuções contra terceiros devedores solidários, coobrigados ou garantidores cambiais, reais ou fidejussórios.",
-  "processo": "REsp 1.333.349-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "26/11/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2014; não extensão dos efeitos da recuperação judicial a coobrigados e garantes (art. 49, §1º, da Lei 11.101/05) é tema central e muito recorrente de Recuperação Judicial"
- },
- {
   "id": 1261,
   "tema": "552",
   "area": "Direito Processual Civil",
@@ -21269,23 +20324,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2014; ação rescisória e contagem de prazos são temas recorrentes de Processual Civil"
  },
  {
-  "id": 1262,
-  "tema": "647",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Restrição de atuação do licenciado em educação física à educação básica",
-  "tese": "Ao profissional formado em educação física, na modalidade licenciatura de graduação plena, somente é permitido atuar na educação básica, sendo-lhe defeso o exercício da profissão na área não formal.",
-  "destaque": "O profissional formado em educação física na modalidade licenciatura plena só pode atuar na educação básica, sendo vedado o exercício na área não formal.",
-  "processo": "REsp 1.361.900",
-  "relator": "Benedito Gonçalves",
-  "data": "12/11/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde nov/2014; tema de nicho sobre exercício profissional regulado, baixa recorrência em concursos jurídicos gerais"
- },
- {
   "id": 1263,
   "tema": "650",
   "area": "Direito Civil",
@@ -21301,23 +20339,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde nov/2014; tema de nicho, restrito ao regulamento de plano de previdência privada específico (PREVI)"
- },
- {
-  "id": 1264,
-  "tema": "708",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Penhorabilidade do bem de família do fiador em contrato de locação",
-  "tese": "É legítima a penhora de apontado bem de família pertencente a fiador de contrato de locação, ante o que dispõe o art. 3º, inciso VII, da Lei n. 8.009/1990",
-  "destaque": "É legítima a penhora do bem de família do fiador em contrato de locação, por força da exceção do art. 3º, VII, da Lei 8.009/1990.",
-  "processo": "REsp 1.363.368-MS",
-  "relator": "Luis Felipe Salomão",
-  "data": "12/11/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2014; penhora do bem de família do fiador locatício é tema clássico e muito recorrente de Direito Civil, também pacificado pelo STF"
  },
  {
   "id": 1265,
@@ -21371,23 +20392,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2014; limites da condenação e julgamento extra petita são temas relevantes de Processual Civil"
  },
  {
-  "id": 1268,
-  "tema": "793",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Órgão de proteção ao crédito não responde por reproduzir dados públicos de cartório de distribuição",
-  "tese": "Diante da presunção legal de veracidade e publicidade inerente aos registros do cartório de distribuição judicial, a reprodução objetiva, fiel, atualizada e clara desses dados na base de órgão de proteção ao crédito - ainda que sem a ciência do consumidor-, não tem o condão de ensejar obrigação de reparação de danos.",
-  "destaque": "A reprodução fiel e atualizada de dados públicos de cartório de distribuição judicial por órgão de proteção ao crédito não gera dever de indenizar, mesmo sem ciência do consumidor.",
-  "processo": "REsp 1.344.352-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "12/11/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde nov/2014; responsabilidade de órgãos de proteção ao crédito é tema recorrente de Direito do Consumidor"
- },
- {
   "id": 1270,
   "tema": "876",
   "area": "Direito Processual Civil",
@@ -21422,23 +20426,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2014; tema técnico sobre prescrição de crédito rural em execução fiscal não tributária, de aplicação relativamente restrita"
  },
  {
-  "id": 1272,
-  "tema": "835",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Saldo devedor residual do SFH sem cobertura do FCVS é responsabilidade do mutuário",
-  "tese": "Nos contratos de financiamento celebrados no âmbito do SFH, sem cláusula de garantia de cobertura do FCVS, o saldo devedor residual deverá ser suportado pelo mutuário.",
-  "destaque": "Nos contratos do Sistema Financeiro da Habitação sem cláusula de garantia de cobertura do FCVS, o saldo devedor residual ao final das prestações deve ser pago pelo mutuário.",
-  "processo": "REsp 1.443.870",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "22/10/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde out/2014; tema específico de financiamento habitacional (SFH/FCVS), de aplicação relativamente restrita"
- },
- {
   "id": 1273,
   "tema": "538",
   "area": "Direito Administrativo",
@@ -21471,40 +20458,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde set/2014; exigência de prévio requerimento administrativo é tema central e muito recorrente de Direito Previdenciário/Processual Civil, alinhado à tese do STF"
- },
- {
-  "id": 1275,
-  "tema": "720",
-  "area": "Direito do Trabalho",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Impossibilidade de saque do FGTS por quem exerceu cargo comissionado por mais de 3 anos",
-  "tese": "O trabalhador que teve seu contrato de trabalho suspenso, permanecendo fora do sistema do FGTS em razão do exercício de cargo comissionado por mais de três anos, não possui direito ao levantamento do saldo de FGTS.",
-  "destaque": "O trabalhador que ficou fora do sistema do FGTS por mais de 3 anos em razão de cargo comissionado não tem direito ao saque do saldo da conta vinculada.",
-  "processo": "REsp 1.419.112",
-  "relator": "Og Fernandes",
-  "data": "24/09/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde set/2014; tema de nicho sobre FGTS em situação específica de afastamento por cargo comissionado"
- },
- {
-  "id": 1276,
-  "tema": "630",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Redirecionamento da execução fiscal ao sócio-gerente por dissolução irregular da empresa",
-  "tese": "Em execução fiscal de dívida ativa tributária ou não-tributária, dissolvida irregularmente a empresa, está legitimado o redirecionamento ao sócio-gerente.",
-  "destaque": "Em execução fiscal de dívida tributária ou não tributária, comprovada a dissolução irregular da empresa, é legítimo redirecionar a execução ao sócio-gerente.",
-  "processo": "REsp 1.371.128",
-  "relator": "Mauro Campbell Marques",
-  "data": "10/09/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde set/2014; redirecionamento por dissolução irregular é um dos temas mais recorrentes de Direito Tributário (execução fiscal), ligado também à Súmula 435/STJ"
  },
  {
   "id": 1277,
@@ -21590,23 +20543,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde ago/2014; tema de nicho, restrito à execução de ação coletiva histórica específica (IDEC x Banco do Brasil)"
- },
- {
-  "id": 1282,
-  "tema": "724",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade ativa dos poupadores independentemente de vínculo associativo ao IDEC",
-  "tese": "Os poupadores ou seus sucessores detêm legitimidade ativa - também por força da coisa julgada -, independentemente de fazerem parte ou não dos quadros associativos do IDEC, de ajuizarem o cumprimento individual da sentença coletiva proferida na ação civil pública nº 1998.01.1.016798-9 pelo Juízo da 12ª Vara Cível da Circunscrição Especial Judiciária de Brasília/DF.",
-  "destaque": "Os poupadores ou seus sucessores têm legitimidade para ajuizar o cumprimento individual da sentença coletiva do IDEC contra o Banco do Brasil, mesmo sem integrar os quadros associativos do IDEC.",
-  "processo": "REsp 1.391.198-RS",
-  "relator": "Luis Felipe Salomão",
-  "data": "13/08/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde ago/2014; tema de nicho, complementar ao Tema 723/STJ sobre a mesma ação coletiva histórica"
  },
  {
   "id": 1283,
@@ -21813,23 +20749,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mai/2014; embargos de declaração protelatórios são tema recorrente de Processual Civil"
  },
  {
-  "id": 1296,
-  "tema": "717",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade do Ministério Público para ajuizar ação de alimentos em favor de criança ou adolescente",
-  "tese": "O Ministério Público tem legitimidade ativa para ajuizar ação de alimentos em proveito de criança ou adolescente. A legitimidade do Ministério Público independe do exercício do poder familiar dos pais, ou de o menor se encontrar nas situações de risco descritas no art. 98 do Estatuto da Criança e do Adolescente, ou de quaisquer outros questionamentos acerca da existência ou eficiência da Defensoria Pública na comarca.",
-  "destaque": "O Ministério Público tem legitimidade para ajuizar ação de alimentos em benefício de criança ou adolescente, independentemente do exercício do poder familiar pelos pais ou de situação de risco.",
-  "processo": "REsp 1.327.471-MT",
-  "relator": "Luis Felipe Salomão",
-  "data": "14/05/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde mai/2014; legitimidade do MP em ações de alimentos infantojuvenis é tema recorrente de Direito Civil/ECA, muito cobrado em carreiras do Ministério Público"
- },
- {
   "id": 1297,
   "tema": "722",
   "area": "Direito Civil",
@@ -21949,23 +20868,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde abr/2014; incidência de contribuição previdenciária sobre verbas trabalhistas é tema central e muito recorrente de Direito Tributário/Previdenciário, complementar ao Tema 687/STJ"
  },
  {
-  "id": 1305,
-  "tema": "686",
-  "area": "Direito Constitucional",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Chamamento ao processo da União não é obrigatório em ações de fornecimento de medicamentos",
-  "tese": "O chamamento ao processo da União com base no art. 77, III, do CPC, nas demandas propostas contra os demais entes federativos responsáveis para o fornecimento de medicamentos ou prestação de serviços de saúde, não é impositivo, mostrando-se inadequado opor obstáculo inútil à garantia fundamental do cidadão à saúde.",
-  "destaque": "Nas ações contra entes federativos para fornecimento de medicamentos ou serviços de saúde, o chamamento ao processo da União (art. 77, III, CPC/73) não é obrigatório, por não poder obstar a garantia à saúde.",
-  "processo": "REsp 1.203.244",
-  "relator": "Herman Benjamin",
-  "data": "09/04/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde abr/2014; responsabilidade solidária dos entes federados em saúde pública é tema muito recorrente de Direito Constitucional/Administrativo"
- },
- {
   "id": 1306,
   "tema": "705",
   "area": "Direito Processual Civil",
@@ -22017,40 +20919,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mar/2014; tema de nicho sobre prova de legitimidade de pescadores profissionais em caso concreto de dano ambiental"
  },
  {
-  "id": 1309,
-  "tema": "681",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Responsabilidade objetiva pela teoria do risco integral em dano ambiental (caso do rio Sergipe)",
-  "tese": "A responsabilidade por dano ambiental é objetiva, informada pela teoria do risco integral, sendo o nexo de causalidade o fator aglutinante que permite que o risco se integre na unidade do ato, sendo descabida a invocação, pela empresa responsável pelo dano ambiental, de excludentes de responsabilidade civil para afastar a sua obrigação de indenizar.",
-  "destaque": "A responsabilidade por dano ambiental é objetiva e fundada na teoria do risco integral, não cabendo à empresa poluidora invocar excludentes de responsabilidade civil.",
-  "processo": "REsp 1.354.536-SE",
-  "relator": "Luis Felipe Salomão",
-  "data": "26/03/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde mar/2014; reafirma a teoria do risco integral em dano ambiental, tema central de Direito Ambiental (compare-se com o Tema 707/STJ), ainda que aplicado a caso concreto específico"
- },
- {
-  "id": 1310,
-  "tema": "683",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Parâmetros para fixação do dano moral em dano ambiental que afeta pescadores",
-  "tese": "Em vista das circunstâncias específicas e homogeneidade dos efeitos do dano ambiental verificado no ecossistema do rio Sergipe - afetando significativamente, por cerca de seis meses, o volume pescado e a renda dos pescadores na região afetada -, sem que tenha sido dado amparo pela poluidora para mitigação dos danos morais experimentados e demonstrados por aqueles que extraem o sustento da pesca profissional, não se justifica, em sede de recurso especial, a revisão do quantum arbitrado, a título de compensação por danos morais, em R$ 3.000,00 (três mil reais).",
-  "destaque": "Na fixação do dano moral por dano ambiental que afeta pescadores, o valor deve ser arbitrado com moderação e proporcionalidade, não cabendo ao STJ rever o quantum já fixado com razoabilidade pelas instâncias ordinárias.",
-  "processo": "REsp 1.354.536-SE",
-  "relator": "Luis Felipe Salomão",
-  "data": "26/03/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde mar/2014; fixação de quantum indenizatório em caso concreto específico, de baixa aplicabilidade geral"
- },
- {
   "id": 1311,
   "tema": "696",
   "area": "Direito Tributário",
@@ -22066,40 +20934,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde mar/2014; execução fiscal de anuidades de conselhos profissionais é tema recorrente de Direito Tributário/Administrativo"
- },
- {
-  "id": 1312,
-  "tema": "711",
-  "area": "Direito do Trabalho",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inaplicabilidade de juros progressivos às contas de FGTS de trabalhadores avulsos",
-  "tese": "Não se aplica a taxa progressiva de juros às contas vinculadas ao FGTS de trabalhadores qualificados como avulsos.",
-  "destaque": "Não se aplica a taxa progressiva de juros às contas vinculadas de FGTS de trabalhadores avulsos.",
-  "processo": "REsp 1.349.059",
-  "relator": "Og Fernandes",
-  "data": "26/03/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde mar/2014; tema de nicho sobre FGTS de categoria específica de trabalhadores"
- },
- {
-  "id": 1313,
-  "tema": "834",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Necessidade de prova efetiva do dano material/lucros cessantes em dano ambiental (caso do rio Sergipe)",
-  "tese": "O dano material somente é indenizável mediante prova efetiva de sua ocorrência, não havendo falar em indenização por lucros cessantes dissociada do dano efetivamente demonstrado nos autos; assim, se durante o interregno em que foram experimentados os efeitos do dano ambiental houve o período de 'defeso' - incidindo a proibição sobre toda atividade de pesca do lesado -, não há cogitar em indenização por lucros cessantes durante essa vedação.",
-  "destaque": "O dano material só é indenizável mediante prova efetiva de sua ocorrência; não cabe indenização por lucros cessantes durante o período de defeso, em que a pesca já era proibida.",
-  "processo": "REsp 1.354.536-SE",
-  "relator": "Luis Felipe Salomão",
-  "data": "26/03/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde mar/2014; tema de nicho sobre prova de lucros cessantes em caso concreto de dano ambiental, complementar ao Tema 681/STJ"
  },
  {
   "id": 1314,
@@ -22221,23 +21055,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde fev/2014; termo inicial de benefício por incapacidade é tema central e muito recorrente de Direito Previdenciário"
  },
  {
-  "id": 1321,
-  "tema": "654",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Capitalização de juros em periodicidade inferior à semestral na cédula de crédito rural",
-  "tese": "A legislação sobre cédulas de crédito rural admite o pacto de capitalização de juros em periodicidade inferior à semestral.",
-  "destaque": "A legislação sobre cédulas de crédito rural admite a pactuação de capitalização de juros em periodicidade inferior à semestral, inclusive mensal.",
-  "processo": "REsp 1.333.977-MT",
-  "relator": "Maria Isabel Gallotti",
-  "data": "26/02/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde fev/2014; capitalização de juros é tema recorrente de Direito Bancário, aqui na modalidade específica de cédula de crédito rural"
- },
- {
   "id": 1322,
   "tema": "666",
   "area": "Direito do Consumidor",
@@ -22357,23 +21174,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde dez/2013; tema de nicho histórico e setorial sobre tabelamento de preços do setor sucroalcooleiro nos anos 1990"
  },
  {
-  "id": 1329,
-  "tema": "628",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prazo quinquenal para ação monitória de cheque prescrito",
-  "tese": "O prazo para ajuizamento de ação monitória em face do emitente de cheque sem força executiva é quinquenal, a contar do dia seguinte à data de emissão estampada na cártula.",
-  "destaque": "A ação monitória contra o emitente de cheque sem força executiva prescreve em 5 anos, contados do dia seguinte à data de emissão do cheque.",
-  "processo": "REsp 1.101.412-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "11/12/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2013; ação monitória de cheque prescrito é tema clássico e muito recorrente de Direito Civil/Processual Civil"
- },
- {
   "id": 1330,
   "tema": "636",
   "area": "Direito Tributário",
@@ -22389,23 +21189,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde dez/2013; tema técnico sobre execução fiscal de créditos não tributários de autarquias federais"
- },
- {
-  "id": 1331,
-  "tema": "641",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prazo quinquenal para ação monitória de nota promissória prescrita",
-  "tese": "O prazo para ajuizamento de ação monitória em face do emitente de nota promissória sem força executiva é quinquenal, a contar do dia seguinte ao vencimento do título.",
-  "destaque": "A ação monitória contra o emitente de nota promissória sem força executiva prescreve em 5 anos, contados do dia seguinte ao vencimento do título.",
-  "processo": "REsp 1.262.056-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "11/12/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2013; ação monitória de títulos de crédito prescritos é tema clássico e recorrente de Direito Civil, complementar ao Tema 628/STJ sobre cheque"
  },
  {
   "id": 1332,
@@ -22440,23 +21223,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde dez/2013; execução fiscal contra empresa falida é tema técnico recorrente em Tributário/Processual Civil, ligado à Súmula 392/STJ"
- },
- {
-  "id": 1334,
-  "tema": "703",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Emenda da execução fiscal contra empresa falida não viola a Súmula 392/STJ",
-  "tese": "O entendimento de que o ajuizamento contra a pessoa jurídica cuja falência foi decretada antes do ajuizamento da referida execução fiscal \"constitui mera irregularidade, sanável nos termos do art. 284 do CPC e do art. 2º, § 8º, da Lei 6.830/1980 não viola a orientação fixada pela Súmula 392 do Superior Tribunal Justiça, mas tão somente insere o equívoco ora debatido na extensão do que se pode compreender por 'erro material ou formal', e não como 'modificação do sujeito passivo da execução', expressões essas empregadas pelo referido precedente sumular.",
-  "destaque": "Corrigir o polo passivo da execução fiscal indevidamente proposta contra a empresa falida (em vez da massa falida) é mero erro material sanável, não modificação vedada pela Súmula 392/STJ.",
-  "processo": "REsp 1.372.243",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "11/12/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde dez/2013; execução fiscal contra empresa falida é tema técnico recorrente em Tributário/Processual Civil, complementar ao Tema 702/STJ"
  },
  {
   "id": 1335,
@@ -22595,23 +21361,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2013; tema técnico e específico sobre preclusão de honorários em execução"
  },
  {
-  "id": 1343,
-  "tema": "84",
-  "area": "Direito Constitucional",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Possibilidade de sequestro de verbas públicas para efetivar fornecimento de medicamentos",
-  "tese": "Tratando-se de fornecimento de medicamentos, cabe ao Juiz adotar medidas eficazes à efetivação de suas decisões, podendo, se necessário, determinar até mesmo o sequestro de valores do devedor (bloqueio), segundo o seu prudente arbítrio, e sempre com adequada fundamentação.",
-  "destaque": "Para garantir o fornecimento de medicamentos, o juiz pode adotar medidas eficazes para efetivar sua decisão, inclusive determinar o sequestro (bloqueio) de valores do ente público devedor, com fundamentação adequada.",
-  "processo": "REsp 1.069.810-RS",
-  "relator": "Luiz Fux",
-  "data": "23/10/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2013; medidas de efetivação judicial do direito à saúde (sequestro de verbas públicas) são tema recorrente de Direito Constitucional/Administrativo"
- },
- {
   "id": 1344,
   "tema": "646",
   "area": "Direito Penal",
@@ -22678,23 +21427,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde out/2013; redirecionamento da execução fiscal e legitimidade recursal são temas recorrentes de Processual Civil/Tributário"
- },
- {
-  "id": 1348,
-  "tema": "655",
-  "area": "Execução Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Reconhecimento de falta grave por crime doloso dispensa trânsito em julgado da condenação",
-  "tese": "O reconhecimento de falta grave decorrente do cometimento de fato definido como crime doloso no cumprimento da pena prescinde do trânsito em julgado de sentença penal condenatória no processo penal instaurado para apuração do fato.",
-  "destaque": "O reconhecimento de falta grave decorrente de crime doloso cometido durante o cumprimento da pena não depende do trânsito em julgado da sentença penal condenatória no processo criminal correspondente.",
-  "processo": "REsp 1.336.561-RS",
-  "relator": "Laurita Vaz",
-  "data": "25/09/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde set/2013; reconhecimento de falta grave por crime doloso é tema central e muito recorrente de Execução Penal"
  },
  {
   "id": 1349,
@@ -22850,23 +21582,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde ago/2013; tarifas bancárias são tema clássico e muito recorrente de Direito Bancário, complementar aos Temas 618 e 619/STJ"
  },
  {
-  "id": 1358,
-  "tema": "621",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Possibilidade de financiar o IOF junto com o mútuo principal",
-  "tese": "Podem as partes convencionar o pagamento do Imposto sobre Operações Financeiras e de Crédito (IOF) por meio de financiamento acessório ao mútuo principal, sujeitando-o aos mesmos encargos contratuais.",
-  "destaque": "As partes podem convencionar o pagamento do IOF por meio de financiamento acessório ao contrato de mútuo principal, sujeito aos mesmos encargos contratuais.",
-  "processo": "REsp 1.251.331-RS",
-  "relator": "Maria Isabel Gallotti",
-  "data": "28/08/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde ago/2013; encargos e tarifas em contratos bancários são tema recorrente de Direito Bancário, complementar aos Temas 618 a 620/STJ"
- },
- {
   "id": 1359,
   "tema": "638",
   "area": "Direito Previdenciário",
@@ -23018,23 +21733,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde jun/2013; tema clássico do cumprimento de sentença, ainda que a redação do CPC/73 tenha sido substituída pelo CPC/2015 (art. 523), mantendo relevância histórica e comparativa"
- },
- {
-  "id": 1368,
-  "tema": "541",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Creditamento de ICMS sobre energia elétrica usada por empresas de telefonia",
-  "tese": "O ICMS incidente sobre a energia elétrica consumida pelas empresas de telefonia, que promovem processo industrial por equiparação, pode ser creditado para abatimento do imposto devido quando da prestação de serviços.",
-  "destaque": "O ICMS pago na energia elétrica consumida por empresas de telefonia (que promovem processo industrial por equiparação) pode ser creditado para abater o imposto devido na prestação dos serviços.",
-  "processo": "REsp 1.201.635-MG",
-  "relator": "Teori Albino Zavascki",
-  "data": "12/06/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde jun/2013; tema recorrente de não cumulatividade do ICMS, de interesse em provas de Direito Tributário"
  },
  {
   "id": 1369,
@@ -23343,23 +22041,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mai/2013; efeito suspensivo em embargos à execução fiscal é tema central e muito cobrado em Processual Civil/Tributário"
  },
  {
-  "id": 1387,
-  "tema": "542",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Indenização do DPVAT proporcional ao grau de invalidez parcial",
-  "tese": "A indenização do seguro DPVAT, em caso de invalidez parcial permanente do beneficiário, será paga de forma proporcional ao grau da invalidez.",
-  "destaque": "Em caso de invalidez parcial permanente, a indenização do seguro DPVAT deve ser paga de forma proporcional ao grau da lesão apurada, e não pelo valor máximo integral.",
-  "processo": "REsp 1.246.432-RS",
-  "relator": "Paulo DE Tarso Sanseverino",
-  "data": "22/05/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde mai/2013; DPVAT é tema clássico e muito recorrente em Direito Civil/Contratos de seguro"
- },
- {
   "id": 1388,
   "tema": "590",
   "area": "Direito Processual Civil",
@@ -23392,23 +22073,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde mai/2013; tema recorrente de execução fiscal e responsabilidade patrimonial de matriz/filial"
- },
- {
-  "id": 1390,
-  "tema": "599",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Poder das universidades de fixar regras próprias para revalidação de diploma estrangeiro",
-  "tese": "O art. 53, inciso V, da Lei 9394/96 permite à universidade fixar normas específicas a fim de disciplinar o referido processo de revalidação de diplomas de graduação expedidos por estabelecimentos estrangeiros de ensino superior, não havendo qualquer ilegalidade na determinação do processo seletivo para a revalidação do diploma, porquanto decorre da necessidade de adequação dos procedimentos da instituição de ensino para o cumprimento da norma, uma vez que de outro modo não teria a universidade condições para verificar a capacidade técnica do profissional e sua formação, sem prejuízo da responsabilidade social que envolve o ato.",
-  "destaque": "O art. 53, V, da LDB permite às universidades fixar normas específicas de processamento dos pedidos de revalidação de diplomas de graduação obtidos no exterior, inclusive por meio de processo seletivo.",
-  "processo": "REsp 1.349.445",
-  "relator": "Mauro Campbell Marques",
-  "data": "08/05/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde mai/2013; tema de nicho relacionado a ensino superior, baixa recorrência em concursos jurídicos gerais"
  },
  {
   "id": 1391,
@@ -23445,23 +22109,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde abr/2013; complementa o Tema 520 sobre contratos de gaveta, tema relevante mas de aplicação mais específica"
  },
  {
-  "id": 1393,
-  "tema": "522",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Necessidade de anuência da instituição financeira em cessão de mútuo habitacional pós-1996",
-  "tese": "No caso de cessão de direitos sobre imóvel financiado no âmbito do Sistema Financeiro da Habitação realizada após 25/10/1996, a anuência da instituição financeira mutuante é indispensável para que o cessionário adquira legitimidade ativa para requerer revisão das condições ajustadas, tanto para os contratos garantidos pelo FCVS como para aqueles sem a cobertura do mencionado Fundo.",
-  "destaque": "Nas cessões de contrato de mútuo do SFH feitas após 25/10/1996, a anuência da instituição financeira é indispensável para que o cessionário tenha legitimidade para pedir revisão, com ou sem cobertura do FCVS.",
-  "processo": "REsp 1.150.429",
-  "relator": "Ricardo Villas Bôas Cueva",
-  "data": "25/04/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde abr/2013; conclui a trilogia sobre contratos de gaveta, tema recorrente em Direito Civil/SFH"
- },
- {
   "id": 1395,
   "tema": "574",
   "area": "Direito Civil",
@@ -23477,23 +22124,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde abr/2013; tema de nicho (telefonia fixa/PCTs), pouco recorrente atualmente em concursos gerais"
- },
- {
-  "id": 1396,
-  "tema": "584",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Competência da Justiça Federal em disputas sobre credenciamento de curso a distância",
-  "tese": "Em se tratando de demanda em que se discute a ausência/obstáculo de credenciamento da instituição de ensino superior pelo Ministério da Educação como condição de expedição de diploma aos estudantes, é inegável a presença de interesse jurídico da União, razão pela qual deve a competência ser atribuída à Justiça Federal, nos termos do art. 109, I, da Constituição Federal de 1988.",
-  "destaque": "Quando a demanda envolve obstáculo à expedição de diploma por falta de credenciamento da instituição de ensino a distância pelo MEC, há interesse da União, atraindo a competência da Justiça Federal (art. 109, I, CF).",
-  "processo": "REsp 1.344.771",
-  "relator": "Mauro Campbell Marques",
-  "data": "24/04/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde abr/2013; tema de nicho sobre competência em matéria de ensino a distância"
  },
  {
   "id": 1397,
@@ -23613,23 +22243,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde fev/2013; prescrição da execução individual de sentença coletiva é tema clássico e recorrente em Processual Civil"
- },
- {
-  "id": 1404,
-  "tema": "564",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Dispensa de menção ao negócio subjacente em monitória fundada em cheque prescrito",
-  "tese": "Em ação monitória fundada em cheque prescrito, ajuizada em face do emitente, é dispensável menção ao negócio jurídico subjacente à emissão da cártula.",
-  "destaque": "Em ação monitória fundada em cheque prescrito, ajuizada contra o emitente, é dispensável mencionar o negócio jurídico que deu origem à emissão da cártula.",
-  "processo": "REsp 1.094.571-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "04/02/2013",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde fev/2013; cheque e ação monitória são temas clássicos e muito recorrentes em Direito Civil/Títulos de crédito"
  },
  {
   "id": 1405,
@@ -23853,23 +22466,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde nov/2012; tema técnico complementar sobre índice de correção em previdência privada, de aplicação mais restrita"
  },
  {
-  "id": 1418,
-  "tema": "513",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inaplicabilidade da Súmula 252/STJ (FGTS) à previdência privada",
-  "tese": "A Súmula 252/STJ, por ser específica para a correção de saldos do FGTS, não tem aplicação nas demandas que envolvem previdência privada.",
-  "destaque": "A Súmula 252/STJ, específica para correção de saldos do FGTS, não se aplica às demandas envolvendo restituição de contribuições de previdência privada.",
-  "processo": "REsp 1.177.973-DF",
-  "relator": "Raul Araújo",
-  "data": "14/11/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde nov/2012; tema técnico e complementar sobre índices aplicáveis à previdência privada"
- },
- {
   "id": 1419,
   "tema": "514",
   "area": "Direito Civil",
@@ -23885,23 +22481,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde nov/2012; tema complementar de nicho sobre efeitos de transação em previdência privada"
- },
- {
-  "id": 1420,
-  "tema": "534",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Reconhecimento de atividade especial por exposição à eletricidade após 1997",
-  "tese": "As normas regulamentadoras que estabelecem os casos de agentes e atividades nocivos à saúde do trabalhador são exemplificativas, podendo ser tido como distinto o labor que a técnica médica e a legislação correlata considerarem como prejudiciais ao obreiro, desde que o trabalho seja permanente, não ocasional, nem intermitente, em condições especiais (art. 57, § 3º, da Lei 8.213/1991).",
-  "destaque": "As normas regulamentadoras sobre agentes nocivos são exemplificativas; mesmo após o Decreto 2.172/97 (que retirou a eletricidade do rol), pode-se reconhecer atividade especial por exposição a esse agente, desde que comprovada a nocividade permanente por perícia técnica.",
-  "processo": "REsp 1.306.113",
-  "relator": "Herman Benjamin",
-  "data": "14/11/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde nov/2012; aposentadoria especial e o rol exemplificativo de agentes nocivos são temas centrais em Direito Previdenciário"
  },
  {
   "id": 1421,
@@ -23955,57 +22534,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2012; tema de nicho sobre isenção fiscal de consultores de organismos internacionais"
  },
  {
-  "id": 1424,
-  "tema": "546",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Lei aplicável à conversão de tempo especial em comum na aposentadoria",
-  "tese": "A lei vigente por ocasião da aposentadoria é a aplicável ao direito à conversão entre tempos de serviço especial e comum, independentemente do regime jurídico à época da prestação do serviço.",
-  "destaque": "A lei vigente na data da aposentadoria é a aplicável ao direito de converter tempo de serviço especial em comum, independentemente do regime jurídico vigente à época da prestação do serviço.",
-  "processo": "REsp 1.310.034",
-  "relator": "Herman Benjamin",
-  "data": "24/10/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2012; conversão de tempo especial é tema recorrente em Direito Previdenciário, ainda que a regra específica tenha sido depois alterada por lei"
- },
- {
-  "id": 1425,
-  "tema": "434",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inaplicabilidade da multa do art. 557, §2º, do CPC/73 ao agravo para esgotar instância",
-  "tese": "O agravo interposto contra decisão monocrática do Tribunal de origem, com o objetivo de exaurir a instância recursal ordinária, a fim de permitir a interposição de recurso especial e do extraordinário, não é manifestamente inadmissível ou infundado, o que torna inaplicável a multa prevista no art. 557, § 2º, do Código de Processo Civil.",
-  "destaque": "O agravo interposto apenas para exaurir a instância ordinária e viabilizar recurso especial/extraordinário não é manifestamente inadmissível ou infundado, afastando a multa do art. 557, §2º, do CPC/73.",
-  "processo": "REsp 1.198.108-RJ",
-  "relator": "Mauro Campbell Marques",
-  "data": "17/10/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde out/2012; tema relevante sobre recorribilidade e prequestionamento, ainda que vinculado a dispositivo do CPC/73"
- },
- {
-  "id": 1426,
-  "tema": "508",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Intimação pessoal da Fazenda Pública Municipal também no segundo grau",
-  "tese": "O representante da Fazenda Pública Municipal (caso dos autos), em sede de execução fiscal e respectivos embargos, possui a prerrogativa de ser intimado pessoalmente, em virtude do disposto no art. 25 da Lei 6.830/80, sendo que tal prerrogativa também é assegurada no segundo grau de jurisdição, razão pela qual não é válida, nessa situação, a intimação efetuada, exclusivamente, por meio da imprensa oficial ou carta registrada.",
-  "destaque": "A prerrogativa de intimação pessoal do representante da Fazenda Pública em execução fiscal (art. 25 da LEF) também se aplica no segundo grau de jurisdição, não bastando a intimação pela imprensa oficial ou por carta registrada.",
-  "processo": "REsp 1.268.324-PA",
-  "relator": "Mauro Campbell Marques",
-  "data": "17/10/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2012; prerrogativas processuais da Fazenda Pública em execução fiscal são tema central e recorrente"
- },
- {
   "id": 1427,
   "tema": "531",
   "area": "Direito Administrativo",
@@ -24021,23 +22549,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde out/2012; devolução de valores recebidos de boa-fé por servidor é tema clássico e muito recorrente em Direito Administrativo"
- },
- {
-  "id": 1428,
-  "tema": "532",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Trabalho urbano de um cônjuge não descaracteriza a condição de segurado especial dos demais",
-  "tese": "O trabalho urbano de um dos membros do grupo familiar não descaracteriza, por si só, os demais integrantes como segurados especiais, devendo ser averiguada a dispensabilidade do trabalho rural para a subsistência do grupo familiar, incumbência esta das instâncias ordinárias (Súmula 7/STJ).",
-  "destaque": "O exercício de trabalho urbano por um dos membros do grupo familiar não descaracteriza, por si só, os demais como segurados especiais; é preciso avaliar se o trabalho rural ainda é indispensável à subsistência do grupo (Súmula 7/STJ).",
-  "processo": "REsp 1.304.479",
-  "relator": "Herman Benjamin",
-  "data": "10/10/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2012; segurado especial rural é tema clássico e muito recorrente em Direito Previdenciário"
  },
  {
   "id": 1429,
@@ -24072,40 +22583,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde out/2012; comprovação de tempo rural para aposentadoria é tema clássico e muito recorrente em Direito Previdenciário"
- },
- {
-  "id": 1431,
-  "tema": "625",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inaplicabilidade da isenção de preparo recursal aos Conselhos de Fiscalização",
-  "tese": "O benefício da isenção do preparo, conferido aos entes públicos previstos no art. 4º, caput, da Lei 9.289/1996, é inaplicável aos Conselhos de Fiscalização Profissional.",
-  "destaque": "A isenção de preparo prevista no art. 4º da Lei 9.289/96 para entes públicos não se estende aos Conselhos de Fiscalização Profissional, que devem recolher o preparo normalmente.",
-  "processo": "REsp 1.338.247",
-  "relator": "Herman Benjamin",
-  "data": "10/10/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde out/2012; tema de nicho, restrito a recursos envolvendo conselhos profissionais"
- },
- {
-  "id": 1432,
-  "tema": "581",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Natureza hedionda de estupro e atentado violento ao pudor na forma simples antes da Lei 12.015/09",
-  "tese": "Os crimes de estupro e atentado violento ao pudor praticados antes da edição da Lei nº 12.015/2009, ainda que em sua forma simples, configuram modalidades de crime hediondo.",
-  "destaque": "Os crimes de estupro e atentado violento ao pudor praticados antes da Lei 12.015/2009, mesmo em sua forma simples (sem violência real ou lesão grave), são considerados crimes hediondos.",
-  "processo": "REsp 1.110.520-SP",
-  "relator": "Maria Thereza DE Assis Moura",
-  "data": "26/09/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde set/2012; tema histórico relevante de Direito Penal sobre hediondez, hoje de aplicação mais restrita a fatos anteriores a 2009"
  },
  {
   "id": 1433,
@@ -24312,23 +22789,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde ago/2012; complementa o Tema 517, tema de aplicação mais específica sobre culpa concorrente em acidentes ferroviários"
  },
  {
-  "id": 1445,
-  "tema": "537",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade do consumidor para questionar ICMS sobre demanda contratada de energia",
-  "tese": "Diante do que dispõe a legislação que disciplina as concessões de serviço público e da peculiar relação envolvendo o Estado-concedente, a concessionária e o consumidor, esse último tem legitimidade para propor ação declaratória c/c repetição de indébito na qual se busca afastar, no tocante ao fornecimento de energia elétrica, a incidência do ICMS sobre a demanda contratada e não utilizada.",
-  "destaque": "O consumidor de energia elétrica tem legitimidade para propor ação declaratória c/c repetição de indébito buscando afastar a incidência de ICMS sobre a demanda contratada e não utilizada.",
-  "processo": "REsp 1.299.303-SC",
-  "relator": "Cesar Asfor Rocha",
-  "data": "08/08/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2012; ICMS sobre demanda contratada de energia é tema clássico e recorrente em Direito Tributário"
- },
- {
   "id": 1446,
   "tema": "472",
   "area": "Direito Administrativo",
@@ -24395,40 +22855,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde jun/2012; desistência da ação e seus requisitos são tema clássico e recorrente em Processual Civil"
- },
- {
-  "id": 1450,
-  "tema": "539",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Competência da Justiça Estadual para litígios de previdência privada",
-  "tese": "Compete à Justiça Estadual processar e julgar litígios instaurados entre entidade de previdência privada e participante de seu plano de benefícios.",
-  "destaque": "Compete à Justiça Estadual processar e julgar litígios entre entidade de previdência privada e participante de seu plano de benefícios.",
-  "processo": "REsp 1.207.071-RJ",
-  "relator": "Maria Isabel Gallotti",
-  "data": "27/06/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde jun/2012; competência em matéria de previdência privada é tema clássico e muito recorrente em provas jurídicas"
- },
- {
-  "id": 1451,
-  "tema": "540",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incorporação do auxílio cesta-alimentação à complementação de aposentadoria",
-  "tese": "O auxílio cesta-alimentação, parcela concedida a título indenizatório aos empregados em atividade, mediante convenção coletiva de trabalho, não se incorpora aos proventos da complementação de aposentadoria pagos por entidade fechada de previdência privada.",
-  "destaque": "O auxílio cesta-alimentação, parcela indenizatória concedida por convenção coletiva aos empregados em atividade, não se incorpora aos proventos de complementação de aposentadoria pagos por entidade fechada de previdência privada.",
-  "processo": "REsp 1.207.071-RJ",
-  "relator": "Maria Isabel Gallotti",
-  "data": "27/06/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde jun/2012; tema de nicho, complementar ao Tema 539 sobre previdência privada"
  },
  {
   "id": 1452,
@@ -24567,23 +22993,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mai/2012; tema histórico de nicho relacionado ao extinto empréstimo compulsório da Eletrobrás"
  },
  {
-  "id": 1460,
-  "tema": "530",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Validade de notificação extrajudicial por cartório de comarca diversa do devedor",
-  "tese": "A notificação extrajudicial realizada e entregue no endereço do devedor, por via postal e com aviso de recebimento, é válida quando realizada por Cartório de Títulos e Documentos de outra Comarca, mesmo que não seja aquele do domicílio do devedor.",
-  "destaque": "A notificação extrajudicial entregue no endereço do devedor por via postal com aviso de recebimento é válida mesmo quando expedida por Cartório de Títulos e Documentos de comarca diferente da do domicílio do devedor.",
-  "processo": "REsp 1.184.570-MG",
-  "relator": "Maria Isabel Gallotti",
-  "data": "09/05/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde mai/2012; notificação extrajudicial para constituição em mora é tema recorrente em Direito Civil (contratos e alienação fiduciária)"
- },
- {
   "id": 1461,
   "tema": "1",
   "area": "Direito Processual Civil",
@@ -24669,23 +23078,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde mar/2012; classificação de prazos processuais é tema recorrente em Processual Civil"
  },
  {
-  "id": 1466,
-  "tema": "446",
-  "area": "Direito Processual Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Direito de recusar o bafômetro ou exame de sangue por não autoincriminação",
-  "tese": "O indivíduo não pode ser compelido a colaborar com os referidos testes do 'bafômetro' ou do exame de sangue, em respeito ao princípio segundo o qual ninguém é obrigado a se autoincriminar (nemo tenetur se detegere).",
-  "destaque": "Ninguém pode ser obrigado a colaborar com o teste do bafômetro ou com exame de sangue para apurar embriaguez, em respeito ao princípio de que ninguém é obrigado a produzir prova contra si mesmo (nemo tenetur se detegere).",
-  "processo": "REsp 1.111.566-DF",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "28/03/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde mar/2012; direito à não autoincriminação em crimes de trânsito é tema muito recorrente em Processual Penal"
- },
- {
   "id": 1467,
   "tema": "447",
   "area": "Direito Penal",
@@ -24737,23 +23129,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde fev/2012; tema técnico de nicho sobre benefício fiscal extinto (crédito-prêmio de IPI)"
  },
  {
-  "id": 1470,
-  "tema": "455",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incidência de PIS sobre juros sobre capital próprio entre 1999 e 2002",
-  "tese": "Não incide PIS/COFINS sobre o JCP recebido durante a vigência da Lei 9.718/98 até a edição das Leis 10.637/02 (cujo art. 1º. entrou em vigor a partir de 01.12.2002) e 10.833/03, tal como no caso dos autos, que se refere apenas ao período compreendido entre 01.03.1999 e 30.09.2002.",
-  "destaque": "Não incide PIS/Pasep sobre os juros sobre capital próprio (JCP) recebidos na vigência da Lei 9.718/98, até a edição das Leis 10.637/02 e 10.833/03, que passaram a tratar da matéria.",
-  "processo": "REsp 1.104.184",
-  "relator": "Luiz Fux",
-  "data": "29/02/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde fev/2012; tema técnico de nicho, restrito a um período específico de apuração de PIS sobre JCP"
- },
- {
   "id": 1471,
   "tema": "436",
   "area": "Direito Ambiental",
@@ -24786,40 +23161,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde fev/2012; julgamento antecipado é tema clássico e recorrente em Processual Civil"
- },
- {
-  "id": 1473,
-  "tema": "438",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Teoria do risco integral na responsabilidade civil por dano ambiental",
-  "tese": "A alegação de culpa exclusiva de terceiro pelo acidente em causa, como excludente de responsabilidade, deve ser afastada, ante a incidência da teoria do risco integral e da responsabilidade objetiva ínsita ao dano ambiental (art. 225, § 3º, da CF e do art. 14, § 1º, da Lei nº 6.938/81), responsabilizando o degradador em decorrência do princípio do poluidor-pagador.",
-  "destaque": "A responsabilidade civil por dano ambiental é objetiva, baseada na teoria do risco integral (art. 225, §3º, CF e art. 14, §1º, da Lei 6.938/81); a alegação de culpa exclusiva de terceiro não afasta a responsabilização do poluidor.",
-  "processo": "REsp 1.114.398-PR",
-  "relator": "Sidnei Beneti",
-  "data": "08/02/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde fev/2012; responsabilidade objetiva e risco integral são temas centrais e muito recorrentes em Direito Ambiental"
- },
- {
-  "id": 1474,
-  "tema": "439",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Dano moral ao pescador artesanal por privação do trabalho em razão de dano ambiental",
-  "tese": "É devida a indenização por dano moral patente o sofrimento intenso do pescador profissional artesanal, causado pela privação das condições de trabalho, em consequência do dano ambiental.",
-  "destaque": "É devida indenização por dano moral ao pescador profissional artesanal pelo sofrimento decorrente da privação de suas condições de trabalho em razão de acidente ambiental.",
-  "processo": "REsp 1.114.398-PR",
-  "relator": "Sidnei Beneti",
-  "data": "08/02/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde fev/2012; dano moral decorrente de dano ambiental é tema recorrente, complementar aos Temas 436/438"
  },
  {
   "id": 1475,
@@ -24856,23 +23197,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde fev/2012; sucumbência mínima é tema clássico e muito recorrente em Processual Civil"
  },
  {
-  "id": 1477,
-  "tema": "469",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Condenação direta e solidária da seguradora denunciada à lide",
-  "tese": "Em ação de reparação de danos movida em face do segurado, a Seguradora denunciada pode ser condenada direta e solidariamente junto com este a pagar a indenização devida à vítima, nos limites contratados na apólice.",
-  "destaque": "Na ação de reparação de danos movida contra o segurado, a seguradora litisdenunciada pode ser condenada direta e solidariamente com ele a pagar a indenização à vítima, nos limites da apólice.",
-  "processo": "REsp 925.130-SP",
-  "relator": "Luis Felipe Salomão",
-  "data": "08/02/2012",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde fev/2012; denunciação da lide em contrato de seguro é tema clássico e recorrente em Direito Civil/Processual Civil"
- },
- {
   "id": 1478,
   "tema": "471",
   "area": "Direito Civil",
@@ -24888,23 +23212,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde fev/2012; ação direta contra seguradora é tema clássico e recorrente em Direito Civil, complementar ao Tema 469 (entendimento posteriormente mitigado pela jurisprudência, mas ainda referência histórica relevante)"
- },
- {
-  "id": 1479,
-  "tema": "221",
-  "area": "Direito Penal",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Corrupção de menores como crime formal (art. 244-B do ECA)",
-  "tese": "A configuração do crime do art. 244-B do ECA independe da prova da efetiva corrupção do menor, por se tratar de delito formal.",
-  "destaque": "O crime de corrupção de menores (art. 244-B do ECA) é formal, dispensando prova de efetiva corrupção do menor; basta a participação do adolescente na prática delituosa.",
-  "processo": "REsp 1.112.326-DF",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "14/12/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde dez/2011; corrupção de menores como crime formal é tema clássico e muito cobrado em Direito Penal"
  },
  {
   "id": 1480,
@@ -24975,23 +23282,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2011; vedação à combinação de leis penais (lex tertia) é tema clássico e muito cobrado em Direito Penal"
  },
  {
-  "id": 1484,
-  "tema": "480",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Foro competente para liquidação individual de sentença de ação civil pública",
-  "tese": "A liquidação e a execução individual de sentença genérica proferida em ação civil coletiva pode ser ajuizada no foro do domicílio do beneficiário, porquanto os efeitos e a eficácia da sentença não estão circunscritos a lindes geográficos, mas aos limites objetivos e subjetivos do que foi decidido, levando-se em conta, para tanto, sempre a extensão do dano e a qualidade dos interesses metaindividuais postos em juízo (arts. 468, 472 e 474, CPC e 93 e 103, CDC).",
-  "destaque": "A liquidação e execução individual de sentença genérica de ação civil coletiva pode ser proposta no foro do domicílio do beneficiário, já que os efeitos da sentença não estão limitados geograficamente.",
-  "processo": "REsp 1.243.887-PR",
-  "relator": "Luis Felipe Salomão",
-  "data": "19/10/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde out/2011; competência para execução individual de ação coletiva é tema clássico e muito recorrente em Processual Civil"
- },
- {
   "id": 1485,
   "tema": "481",
   "area": "Direito Processual Civil",
@@ -25043,23 +23333,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde out/2011; atualização de condenações contra a Fazenda Pública é tema central e muito recorrente em Direito Administrativo/Processual Civil"
  },
  {
-  "id": 1489,
-  "tema": "320",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Impossibilidade de converter execução em ação monitória após a citação",
-  "tese": "É inadmissível a conversão, de ofício ou a requerimento das partes, da execução em ação monitória após ter ocorrido a citação.",
-  "destaque": "Não é possível converter, de ofício ou a pedido das partes, a execução que não preenche os requisitos de certeza, liquidez e exigibilidade em ação monitória depois de realizada a citação do devedor.",
-  "processo": "REsp 1.129.938",
-  "relator": "Massami Uyeda",
-  "data": "28/09/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde set/2011; conversão de execução em monitória é tema recorrente em Processual Civil, especialmente em títulos de crédito"
- },
- {
   "id": 1490,
   "tema": "452",
   "area": "Direito Administrativo",
@@ -25094,23 +23367,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde set/2011; protesto indevido de título e responsabilidade do endossatário-mandatário são temas clássicos em Direito Civil/Títulos de crédito"
  },
  {
-  "id": 1493,
-  "tema": "465",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Responsabilidade do endossatário por endosso translativo com vício no título",
-  "tese": "Responde pelos danos decorrentes de protesto indevido o endossatário que recebe por endosso translativo título de crédito contendo vício formal extrínseco ou intrínseco, ficando ressalvado seu direito de regresso contra os endossantes e avalistas.",
-  "destaque": "Diferentemente do endosso-mandato, o endossatário que recebe título por endosso translativo com vício formal e o leva indevidamente a protesto responde pelos danos, ressalvado o direito de regresso contra endossantes e avalistas.",
-  "processo": "REsp 1.213.256-RS",
-  "relator": "Luis Felipe Salomão",
-  "data": "28/09/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde set/2011; distinção entre endosso-mandato e endosso translativo é tema recorrente em Direito Civil/Títulos de crédito"
- },
- {
   "id": 1494,
   "tema": "470",
   "area": "Direito Tributário",
@@ -25143,40 +23399,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde set/2011; tema técnico de nicho sobre financiamento habitacional e Tabela Price"
- },
- {
-  "id": 1496,
-  "tema": "466",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Responsabilidade objetiva do banco por fraude de terceiros (fortuito interno)",
-  "tese": "As instituições financeiras respondem objetivamente pelos danos gerados por fortuito interno relativo a fraudes e delitos praticados por terceiros no âmbito de operações bancárias.",
-  "destaque": "As instituições financeiras respondem objetivamente pelos danos causados por fraudes e delitos de terceiros praticados no âmbito de operações bancárias, por se tratar de fortuito interno inerente à atividade (Súmula 479/STJ).",
-  "processo": "REsp 1.197.929-PR",
-  "relator": "Luis Felipe Salomão",
-  "data": "24/08/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde ago/2011; fortuito interno e responsabilidade objetiva das instituições financeiras são temas clássicos e muito cobrados em Direito do Consumidor"
- },
- {
-  "id": 1497,
-  "tema": "449",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Decadência do art. 26 do CDC e prestação de contas bancária",
-  "tese": "A decadência do art. 26 do CDC não é aplicável à prestação de contas para obter esclarecimentos sobre cobrança de taxas, tarifas e encargos bancários.",
-  "destaque": "O prazo decadencial do art. 26 do CDC (vícios de produto/serviço) não se aplica à ação de prestação de contas ajuizada pelo correntista para esclarecer cobranças de taxas, tarifas e encargos bancários.",
-  "processo": "REsp 1.117.614-PR",
-  "relator": "Maria Isabel Gallotti",
-  "data": "10/08/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2011, ainda aplicada; combina prestação de contas e relação bancária de consumo, temas recorrentes em provas de Consumidor/Processual Civil"
  },
  {
   "id": 1498,
@@ -25400,23 +23622,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2011 vinculada a uma lei de remissão específica e já superada no tempo; baixa recorrência"
  },
  {
-  "id": 1514,
-  "tema": "457",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Vedação à remissão de ofício sem consulta à Fazenda sobre outros débitos",
-  "tese": "A Lei 11.941/2008 remite os débitos para com a Fazenda Nacional vencidos há cinco anos ou mais cujo valor total consolidado seja igual ou inferior a 10 mil reais. Não pode o magistrado, de ofício, pronunciar a remissão, analisando isoladamente o valor cobrado em uma Execução Fiscal, sem questionar a Fazenda sobre a existência de outros débitos que somados impediriam o contribuinte de gozar do benefício.",
-  "destaque": "O magistrado não pode, de ofício, pronunciar a remissão do art. 14 da Lei 11.941/2009 analisando isoladamente o valor de uma execução fiscal, sem antes questionar a Fazenda sobre a existência de outros débitos que, somados, superem o limite legal.",
-  "processo": "REsp 1.208.935",
-  "relator": "Mauro Campbell Marques",
-  "data": "13/04/2011",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2011 ligada a benefício fiscal específico e já superado no tempo; baixa recorrência"
- },
- {
   "id": 1515,
   "tema": "352",
   "area": "Direito Bancário",
@@ -25638,23 +23843,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010; comprovação de tempo rural é um dos temas mais recorrentes em Direito Previdenciário"
  },
  {
-  "id": 1528,
-  "tema": "432",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Crédito presumido de IPI na exportação mesmo com insumo de não contribuinte do PIS/COFINS",
-  "tese": "O benefício fiscal do ressarcimento do crédito presumido do IPI relativo às exportações incide mesmo quando as matérias-primas ou os insumos sejam adquiridos de pessoa física ou jurídica não contribuinte do PIS/PASEP.",
-  "destaque": "O benefício do ressarcimento do crédito presumido de IPI nas exportações incide ainda que os insumos tenham sido adquiridos de pessoa física ou jurídica não contribuinte do PIS/PASEP e da COFINS.",
-  "processo": "REsp 993.164",
-  "relator": "Luiz Fux",
-  "data": "13/12/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, ligada a regime de incentivo fiscal de exportação já superado no tempo; baixa recorrência"
- },
- {
   "id": 1529,
   "tema": "442",
   "area": "Direito Bancário",
@@ -25687,23 +23875,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese de 2010, tema técnico de procedimento de penhora em execução fiscal, baixa recorrência isolada"
- },
- {
-  "id": 1531,
-  "tema": "271",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Depósito integral do crédito tributário impede a execução fiscal",
-  "tese": "Os efeitos da suspensão da exigibilidade pela realização do depósito integral do crédito exequendo, quer no bojo de ação anulatória, quer no de ação declaratória de inexistência de relação jurídico-tributária, ou mesmo no de mandado de segurança, desde que ajuizados anteriormente à execução fiscal, têm o condão de impedir a lavratura do auto de infração, assim como de coibir o ato de inscrição em dívida ativa e o ajuizamento da execução fiscal, a qual, acaso proposta, deverá ser extinta.",
-  "destaque": "O depósito integral do valor exequendo, feito antes do ajuizamento da execução fiscal (em ação anulatória, declaratória ou mandado de segurança), impede a inscrição em dívida ativa e o próprio ajuizamento da execução, que deve ser extinta se proposta.",
-  "processo": "REsp 1.140.956-SP",
-  "relator": "Luiz Fux",
-  "data": "24/11/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese de 2010; efeitos da suspensão da exigibilidade pelo depósito integral (art. 151, II, CTN) é tema central e recorrente em Tributário"
  },
  {
   "id": 1532,
@@ -25755,40 +23926,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese de 2010, tema de nicho sobre contribuição pouco cobrada em concursos gerais"
- },
- {
-  "id": 1535,
-  "tema": "367",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Exigência de nota fiscal no deslocamento de bens entre estabelecimentos mesmo sem incidência de ICMS",
-  "tese": "Ainda que, em tese, o deslocamento de bens do ativo imobilizado e de material de uso e consumo entre estabelecimentos de uma mesma instituição financeira não configure hipótese de incidência do ICMS, compete ao Fisco Estadual averiguar a veracidade da aludida operação, sobressaindo a razoabilidade e proporcionalidade da norma jurídica que tão-somente exige que os bens da pessoa jurídica sejam acompanhados das respectivas notas fiscais.",
-  "destaque": "Ainda que o deslocamento de bens do ativo imobilizado entre estabelecimentos da mesma instituição financeira não seja fato gerador do ICMS, o Fisco pode exigir que os bens circulem acompanhados de nota fiscal para averiguar a veracidade da operação.",
-  "processo": "REsp 1.116.792-PB",
-  "relator": "Luiz Fux",
-  "data": "24/11/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010, correlata ao tema clássico de não incidência de ICMS na transferência entre estabelecimentos do mesmo contribuinte"
- },
- {
-  "id": 1536,
-  "tema": "378",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Fiança bancária não substitui o depósito integral para suspender a exigibilidade",
-  "tese": "A fiança bancária não é equiparável ao depósito integral do débito exequendo para fins de suspensão da exigibilidade do crédito tributário, ante a taxatividade do art. 151 do CTN e o teor do Enunciado Sumular n. 112 desta Corte.",
-  "destaque": "A fiança bancária não equivale ao depósito integral do débito para fins de suspensão da exigibilidade do crédito tributário, diante da taxatividade do art. 151 do CTN e da Súmula 112/STJ.",
-  "processo": "REsp 1.156.668",
-  "relator": "Luiz Fux",
-  "data": "24/11/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese de 2010; distinção entre as modalidades de suspensão da exigibilidade do art. 151 do CTN é tema muito recorrente em Tributário"
  },
  {
   "id": 1537,
@@ -25859,23 +23996,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010; embargos de terceiro e legitimidade recursal do terceiro prejudicado são temas recorrentes em Processual Civil"
  },
  {
-  "id": 1541,
-  "tema": "39",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Registro imobiliário questionado não afasta, por si só, a legitimidade para ação reivindicatória",
-  "tese": "A mera existência de ação tendo por objeto a declaração de nulidade de registro imobiliário não é suficiente para se concluir pela ilegitimidade ativa daquele que, com base nesse mesmo registro, ajuíza ação reivindicatória.",
-  "destaque": "A mera existência de ação de nulidade de registro imobiliário não basta para concluir pela ilegitimidade ativa de quem, com base nesse mesmo registro, ajuíza ação reivindicatória.",
-  "processo": "REsp 990.507-DF",
-  "relator": "Nancy Andrighi",
-  "data": "10/11/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010; legitimidade e presunção de propriedade decorrente do registro são temas recorrentes em Direito Civil (coisas)"
- },
- {
   "id": 1542,
   "tema": "249",
   "area": "Direito Processual Civil",
@@ -25942,23 +24062,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese de 2010; prescrição da repetição de indébito tributário é tema clássico e muito recorrente em Tributário"
- },
- {
-  "id": 1546,
-  "tema": "314",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Extinção de ofício da execução fiscal não embargada por inércia da Fazenda",
-  "tese": "A inércia da Fazenda exequente, ante a intimação regular para promover o andamento do feito e a observância dos artigos 40 e 25 da Lei de Execução Fiscal, implica a extinção da execução fiscal não embargada ex officio, afastando-se o Enunciado Sumular 240 do STJ, segundo o qual 'A extinção do processo, por abandono da causa pelo autor, depende de requerimento do réu'. Matéria impassível de ser alegada pela exequente contumaz.",
-  "destaque": "A inércia da Fazenda exequente, após intimação regular para dar andamento ao feito, permite a extinção de ofício da execução fiscal não embargada, afastando a Súmula 240/STJ.",
-  "processo": "REsp 1.120.097",
-  "relator": "Luiz Fux",
-  "data": "13/10/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010; abandono do processo e extinção de execuções fiscais seguem sendo tema relevante em Processual Civil/Tributário, hoje ligado à prescrição intercorrente"
  },
  {
   "id": 1547,
@@ -26148,23 +24251,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010, tema técnico de execução fiscal, baixa recorrência isolada"
  },
  {
-  "id": 1558,
-  "tema": "419",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Registro particular de imóvel não afasta sua condição de terreno de marinha",
-  "tese": "Os registros de propriedade particular de imóveis situados em terrenos de marinha não são oponíveis à União.",
-  "destaque": "Os registros de propriedade particular sobre imóveis situados em terrenos de marinha não são oponíveis à União.",
-  "processo": "REsp 1.183.546",
-  "relator": "Mauro Campbell Marques",
-  "data": "08/09/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, tema de aplicação restrita a terrenos de marinha; baixa recorrência em editais gerais"
- },
- {
   "id": 1559,
   "tema": "421",
   "area": "Direito Processual Civil",
@@ -26216,23 +24302,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010 sobre o procedimento do agravo de instrumento no CPC/1973, já reformulado pelo CPC/2015"
  },
  {
-  "id": 1563,
-  "tema": "413",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Preparo do agravo pode ser recolhido no dia útil seguinte se protocolado fora do expediente bancário",
-  "tese": "Admite-se que o preparo seja efetuado no primeiro dia útil subsequente, quando a interposição do recurso ocorrer após o encerramento do expediente bancário.",
-  "destaque": "Quando o agravo de instrumento é protocolado após o fechamento das agências bancárias, admite-se que o preparo seja recolhido no primeiro dia útil subsequente, sem gerar deserção.",
-  "processo": "REsp 1.122.064-DF",
-  "relator": "Hamilton Carvalhido",
-  "data": "01/09/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010; tempestividade do preparo recursal é tema recorrente em Processual Civil"
- },
- {
   "id": 1564,
   "tema": "130",
   "area": "Direito Administrativo",
@@ -26248,40 +24317,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese de 2010, vinculada a uma ADI estadual específica sobre contribuição de inativos; baixa recorrência"
- },
- {
-  "id": 1565,
-  "tema": "259",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incidência de ICMS no simples deslocamento de mercadoria entre estabelecimentos do mesmo contribuinte",
-  "tese": "Não constitui fato gerador do ICMS o simples deslocamento de mercadoria de um para outro estabelecimento do mesmo contribuinte.",
-  "destaque": "O simples deslocamento físico de mercadoria de um estabelecimento para outro do mesmo contribuinte não configura fato gerador do ICMS, por ausência de circulação econômica (Súmula 166/STJ).",
-  "processo": "REsp 1.125.133-SP",
-  "relator": "Luiz Fux",
-  "data": "25/08/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese de 2010 que consolidou a Súmula 166/STJ; um dos temas mais clássicos e recorrentes de ICMS em provas de Tributário"
- },
- {
-  "id": 1566,
-  "tema": "293",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legalidade do repasse do PIS/COFINS nas contas telefônicas ao consumidor",
-  "tese": "O repasse econômico do PIS e da COFINS realizados pelas empresas concessionárias de serviços de telecomunicação é legal e condiz com as regras de economia e de mercado.",
-  "destaque": "O repasse econômico do PIS e da COFINS nas contas de telefone pelas concessionárias de telecomunicações é legal e compatível com as regras de mercado, não configurando cobrança indevida ao consumidor.",
-  "processo": "REsp 976.836-RS",
-  "relator": "Luiz Fux",
-  "data": "25/08/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010; repasse de tributos indiretos ao consumidor em tarifas de serviços públicos é tema recorrente em Tributário"
  },
  {
   "id": 1567,
@@ -26367,23 +24402,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese de 2010, tema de nicho sobre serviço postal e autonomia municipal; baixa recorrência"
- },
- {
-  "id": 1572,
-  "tema": "416",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Auxílio-acidente é devido ainda que mínima a redução da capacidade laborativa",
-  "tese": "Exige-se, para concessão do auxílio-acidente, a existência de lesão, decorrente de acidente do trabalho, que implique redução da capacidade para o labor habitualmente exercido. O nível do dano e, em consequência, o grau do maior esforço, não interferem na concessão do benefício, o qual será devido ainda que mínima a lesão.",
-  "destaque": "Para conceder auxílio-acidente basta existir lesão decorrente de acidente de trabalho que reduza a capacidade para o labor habitual; o benefício é devido mesmo que a redução seja mínima, pois o grau da lesão não interfere na concessão.",
-  "processo": "REsp 1.109.591-SC",
-  "relator": "Celso Limongi (desembargador Convocado DO Tj/sp)",
-  "data": "25/08/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese de 2010; requisitos do auxílio-acidente são tema clássico e muito recorrente em Previdenciário"
  },
  {
   "id": 1573,
@@ -26590,23 +24608,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010, restrita a período histórico e setor econômico específico; baixíssima recorrência hoje"
  },
  {
-  "id": 1586,
-  "tema": "412",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Base de cálculo do PIS até a MP 1.212/1995",
-  "tese": "A base de cálculo do PIS, até a edição da MP n. 1.212/1995, era o faturamento ocorrido no sexto mês anterior ao do fato gerador.",
-  "destaque": "Até a edição da MP 1.212/1995, a base de cálculo do PIS era o faturamento ocorrido no sexto mês anterior ao fato gerador, conforme o art. 6º, parágrafo único, da LC 7/1970.",
-  "processo": "REsp 1.127.713",
-  "relator": "Herman Benjamin",
-  "data": "09/08/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, restrita a regime de cálculo do PIS já superado; baixa recorrência"
- },
- {
   "id": 1587,
   "tema": "16",
   "area": "Direito Processual Civil",
@@ -26794,23 +24795,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010, tema técnico e restrito de apuração de IRPJ; baixa recorrência isolada"
  },
  {
-  "id": 1599,
-  "tema": "395",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Valor de alçada para apelação em execução fiscal",
-  "tese": "Adota-se como valor de alçada para o cabimento de apelação em sede de execução fiscal o valor de R$ 328,27 (trezentos e vinte e oito reais e vinte e sete centavos), corrigido pelo IPCA-E a partir de janeiro de 2001, valor esse que deve ser observado à data da propositura da execução.",
-  "destaque": "O valor de alçada para cabimento de apelação em execução fiscal corresponde a R$ 328,27 (equivalente a 50 ORTN), corrigido pelo IPCA-E a partir de janeiro de 2001, aferido na data da propositura da execução.",
-  "processo": "REsp 1.168.625-MG",
-  "relator": "Luiz Fux",
-  "data": "09/06/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, tema técnico e específico de cálculo de alçada recursal; baixa recorrência"
- },
- {
   "id": 1600,
   "tema": "194",
   "area": "Direito Processual Civil",
@@ -26828,23 +24812,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010 sobre dispositivo do CPC/1973 já substituído pelo CPC/2015; tema técnico e desatualizado"
  },
  {
-  "id": 1601,
-  "tema": "322",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Cálculo do valor mínimo por aluno do FUNDEF pela média nacional",
-  "tese": "Para fins de complementação pela União ao Fundo de Manutenção e Desenvolvimento do Ensino Fundamental - FUNDEF (art. 60 do ADCT, redação da EC 14/96), o 'valor mínimo anual por aluno' (VMAA), de que trata o art. 6º, § 1º da Lei 9.424/96, deve ser calculado levando em conta a média nacional.",
-  "destaque": "Para a complementação da União ao FUNDEF, o valor mínimo anual por aluno (VMAA) deve ser calculado com base na média nacional, e não a partir do menor valor de cada Estado.",
-  "processo": "REsp 1.101.015",
-  "relator": "Teori Albino Zavascki",
-  "data": "26/05/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, ligada ao FUNDEF, fundo já substituído pelo FUNDEB; baixíssima recorrência hoje"
- },
- {
   "id": 1602,
   "tema": "142",
   "area": "Direito Tributário",
@@ -26860,23 +24827,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese de 2010; termo inicial da prescrição da repetição de indébito é tema clássico e muito recorrente em Tributário"
- },
- {
-  "id": 1603,
-  "tema": "213",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Auxílio-acidente por perda auditiva exige redução efetiva da capacidade laborativa",
-  "tese": "Para a concessão de auxílio-acidente fundamentado na perda de audição (...), é necessário que a sequela seja ocasionada por acidente de trabalho e que acarrete uma diminuição efetiva e permanente da capacidade para a atividade que o segurado habitualmente exercia.",
-  "destaque": "Para conceder auxílio-acidente fundado em perda auditiva, a sequela deve decorrer de acidente de trabalho e acarretar diminuição efetiva e permanente da capacidade para a atividade habitual do segurado.",
-  "processo": "REsp 1.108.298-SC",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "12/05/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010, correlata ao Tema 416 sobre auxílio-acidente; requisitos do benefício são tema recorrente em Previdenciário"
  },
  {
   "id": 1604,
@@ -26979,23 +24929,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese de 2010, alinhada à Súmula 436/STJ; termo inicial da prescrição em tributos declarados e não pagos é tema clássico e muito recorrente em Tributário"
- },
- {
-  "id": 1611,
-  "tema": "396",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Fazenda Federal deve adiantar despesas de carta precatória mesmo na Justiça Federal",
-  "tese": "Ainda que a execução fiscal tenha sido ajuizada na Justiça Federal (o que afasta a incidência da norma inserta no artigo 1º, § 1º, da Lei 9.289/96), cabe à Fazenda Pública Federal adiantar as despesas com o transporte/condução/deslocamento dos oficiais de justiça necessárias ao cumprimento da carta precatória de penhora e avaliação de bens (processada na Justiça Estadual), por força do princípio hermenêutico ubi eadem ratio ibi eadem legis dispositio.",
-  "destaque": "Mesmo quando a execução fiscal tramita na Justiça Federal, cabe à Fazenda Pública Federal adiantar as despesas de deslocamento dos oficiais de justiça para cumprir carta precatória de penhora processada na Justiça Estadual.",
-  "processo": "REsp 1.144.687",
-  "relator": "Luiz Fux",
-  "data": "12/05/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese de 2010, tema técnico sobre custas em cartas precatórias de execução fiscal; baixa recorrência"
  },
  {
   "id": 1612,
@@ -27304,23 +25237,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese de 2010, tema técnico de procedimento em execução fiscal; baixa recorrência isolada"
  },
  {
-  "id": 1634,
-  "tema": "274",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incidência de ICMS na importação de aeronave por arrendamento mercantil simples",
-  "tese": "O arrendamento mercantil, contratado pela indústria aeronáutica de grande porte para viabilizar o uso, pelas companhias de navegação aérea, de aeronaves por ela construídas, não constitui operação relativa à circulação de mercadoria sujeita à incidência do ICMS.",
-  "destaque": "O arrendamento mercantil (leasing operacional) de aeronaves, contratado para viabilizar seu uso por companhias aéreas, não constitui operação de circulação de mercadoria e, por isso, não é hipótese de incidência do ICMS.",
-  "processo": "REsp 1.131.718-SP",
-  "relator": "Luiz Fux",
-  "data": "24/03/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese de 2010; não incidência de ICMS em operações de leasing sem transferência de propriedade segue relevante em Tributário, tema também tratado pelo STF"
- },
- {
   "id": 1635,
   "tema": "324",
   "area": "Direito Ambiental",
@@ -27406,23 +25322,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; prazo de conclusão de processo administrativo é tema clássico de Direito Administrativo sancionador"
  },
  {
-  "id": 1640,
-  "tema": "329",
-  "area": "Direito Ambiental",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prazo prescricional para execução da multa ambiental",
-  "tese": "Prescreve em cinco anos, contados do término do processo administrativo, a pretensão da Administração Pública de promover a execução da multa por infração ambiental.",
-  "destaque": "A pretensão de executar a multa por infração ambiental prescreve em cinco anos, contados do término do processo administrativo.",
-  "processo": "REsp 1.115.078",
-  "relator": "Castro Meira",
-  "data": "24/03/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; prazo de execução de multa ambiental é tema recorrente em Direito Ambiental/Administrativo"
- },
- {
   "id": 1641,
   "tema": "330",
   "area": "Direito Ambiental",
@@ -27472,23 +25371,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde 2010; causas de suspensão de exigibilidade do crédito tributário (art. 151 do CTN) são tema central e recorrente em Tributário"
- },
- {
-  "id": 1644,
-  "tema": "344",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Notificação prévia na ação de improbidade administrativa (art. 17, §7º, Lei 8.429/92)",
-  "tese": "O especialíssimo procedimento estabelecido na Lei 8.429/92, que prevê um juízo de delibação para recebimento da petição inicial (art. 17, §§ 8º e 9º), precedido de notificação do demandado (art. 17, § 7º), somente é aplicável para ações de improbidade administrativa típicas.",
-  "destaque": "O procedimento especial da Lei de Improbidade, com notificação prévia do réu antes do recebimento da inicial, só se aplica às ações de improbidade administrativa propriamente ditas.",
-  "processo": "REsp 1.163.643-SP",
-  "relator": "Teori Albino Zavascki",
-  "data": "24/03/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; procedimento da ação de improbidade é tema muito recorrente em concursos de carreiras jurídicas, sobretudo MP"
  },
  {
   "id": 1645,
@@ -27695,23 +25577,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; discussão histórica sobre planos econômicos, pouco recorrente atualmente"
  },
  {
-  "id": 1659,
-  "tema": "210",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Termo inicial dos juros moratórios na desapropriação",
-  "tese": "O termo inicial dos juros moratórios em desapropriações é o dia 1º de janeiro do exercício seguinte àquele em que o pagamento deveria ser feito.",
-  "destaque": "Nas desapropriações, os juros moratórios só começam a correr em 1º de janeiro do exercício seguinte àquele em que o pagamento deveria ter sido feito.",
-  "processo": "REsp 1.118.103-SP",
-  "relator": "Teori Albino Zavascki",
-  "data": "24/02/2010",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; desapropriação e seus consectários (juros moratórios/compensatórios) são tema central de Direito Administrativo"
- },
- {
   "id": 1660,
   "tema": "211",
   "area": "Direito Administrativo",
@@ -27865,40 +25730,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; prerrogativas processuais de procuradores é tema recorrente para concursos de carreiras jurídicas públicas"
  },
  {
-  "id": 1670,
-  "tema": "53",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Uso da Taxa Referencial (TR) para corrigir saldo devedor no SFH",
-  "tese": "No âmbito do Sistema Financeiro da Habitação, a partir da Lei n. 8.177/1991, é permitida a utilização da Taxa Referencial (TR) como índice de correção monetária do saldo devedor, que também será cabível ainda que o contrato tenha sido firmado antes da Lei n. 8.177/1991, mas desde que haja previsão contratual de correção monetária pela taxa básica de remuneração dos depósitos em poupança, sem nenhum outro índice específico.",
-  "destaque": "É válido usar a Taxa Referencial (TR) para corrigir o saldo devedor de contratos do Sistema Financeiro da Habitação a partir da Lei 8.177/91, inclusive em contratos anteriores se previam correção pela taxa básica da poupança.",
-  "processo": "REsp 969.129-MG",
-  "relator": "Luis Felipe Salomão",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; contratos do SFH e índices de correção são tema clássico de Direito Bancário"
- },
- {
-  "id": 1671,
-  "tema": "54",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Liberdade de escolha da seguradora no seguro habitacional do SFH",
-  "tese": "O mutuário do SFH não pode ser compelido a contratar o seguro habitacional obrigatório com a instituição financeira mutuante ou com a seguradora por ela indicada.",
-  "destaque": "O mutuário do SFH não pode ser obrigado a contratar o seguro habitacional obrigatório com o próprio banco financiador ou com a seguradora por ele indicada.",
-  "processo": "REsp 969.129-MG",
-  "relator": "Luis Felipe Salomão",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; contratos do SFH são tema recorrente de Direito Bancário/Consumidor"
- },
- {
   "id": 1672,
   "tema": "135",
   "area": "Direito Administrativo",
@@ -28035,23 +25866,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; tema técnico específico sobre cadastro fiscal (CNPJ), pouco recorrente em provas gerais"
  },
  {
-  "id": 1680,
-  "tema": "237",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Garantia antecipada do juízo para obtenção de certidão positiva com efeito de negativa",
-  "tese": "É possível ao contribuinte, após o vencimento da sua obrigação e antes da execução, garantir o juízo de forma antecipada, para o fim de obter certidão positiva com efeito de negativa.",
-  "destaque": "O contribuinte pode, mesmo antes de ajuizada a execução fiscal, oferecer garantia antecipadamente ao juízo, por medida cautelar, para obter certidão positiva com efeitos de negativa.",
-  "processo": "REsp 1.123.669",
-  "relator": "Luiz Fux",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; suspensão da exigibilidade e certidões fiscais são tema recorrente em Tributário"
- },
- {
   "id": 1681,
   "tema": "240",
   "area": "Direito Tributário",
@@ -28103,40 +25917,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; regra de transição do art. 2.028 do CC é tema recorrente em Civil/Administrativo"
  },
  {
-  "id": 1686,
-  "tema": "255",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Créditos rurais cedidos à União como dívida ativa para execução fiscal",
-  "tese": "Os créditos rurais originários de operações financeiras alongadas ou renegociadas (cf. Lei n. 9.138/95), cedidos à União por força da Medida Provisória 2.196-3/2001, estão abarcados no conceito de Dívida Ativa da União para efeitos de execução fiscal - não importando a natureza pública ou privada dos créditos em si.",
-  "destaque": "Os créditos de operações de crédito rural cedidos à União pelo Banco do Brasil integram o conceito de Dívida Ativa da União e podem ser cobrados pelo rito da execução fiscal, independentemente de sua natureza pública ou privada.",
-  "processo": "REsp 1.123.539",
-  "relator": "Luiz Fux",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde 2010; tema de nicho (crédito rural cedido à União), baixa recorrência em provas gerais"
- },
- {
-  "id": 1687,
-  "tema": "261",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incidência de diferencial de alíquota de ICMS sobre insumos de construção civil",
-  "tese": "As empresas de construção civil não estão obrigadas a pagar ICMS sobre mercadorias adquiridas como insumos em operações interestaduais.",
-  "destaque": "Empresas de construção civil não estão obrigadas a pagar o diferencial de alíquota de ICMS sobre materiais adquiridos como insumo em operações interestaduais.",
-  "processo": "REsp 1.135.489-AL",
-  "relator": "Luiz Fux",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; tributação da construção civil (ISS x ICMS) é tema clássico e recorrente em Tributário"
- },
- {
   "id": 1688,
   "tema": "262",
   "area": "Direito Processual Civil",
@@ -28152,23 +25932,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde 2010; exceção de pré-executividade é tema clássico e muito cobrado em Processual Civil/Tributário"
- },
- {
-  "id": 1689,
-  "tema": "263",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Vigência da contribuição ao PIS entre 1995 e 1998 (LC 7/70 e MP 1.212/95)",
-  "tese": "A contribuição social destinada ao PIS permaneceu exigível no período compreendido entre outubro de 1995 a fevereiro de 1996, por força da Lei Complementar 7/70, e entre março de 1996 a outubro de 1998, por força da Medida Provisória 1.212/95 e suas reedições.",
-  "destaque": "A contribuição ao PIS permaneceu exigível de outubro/1995 a fevereiro/1996 pela LC 7/70, e de março/1996 a outubro/1998 pela MP 1.212/95 e suas reedições.",
-  "processo": "REsp 1.136.210",
-  "relator": "Luiz Fux",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde 2010; discussão histórica sobre vigência de norma tributária já superada"
  },
  {
   "id": 1690,
@@ -28220,23 +25983,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde 2010; hipótese específica de certidão fiscal envolvendo a própria Fazenda Pública como devedora"
- },
- {
-  "id": 1693,
-  "tema": "278",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Base de cálculo do ICMS no fornecimento de alimentação e bebidas em bares e restaurantes",
-  "tese": "O ICMS incide sobre o fornecimento de alimentação e bebidas em bares, restaurantes e estabelecimentos congêneres, cuja base de cálculo compreende o valor total das operações realizadas, inclusive aquelas correspondentes à prestação de serviço.",
-  "destaque": "O ICMS incide sobre o valor total cobrado por bares, restaurantes e estabelecimentos similares no fornecimento de alimentação e bebidas, incluindo a parcela do serviço.",
-  "processo": "REsp 1.135.534-PE",
-  "relator": "Luiz Fux",
-  "data": "09/12/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; ICMS sobre fornecimento de alimentação é tema clássico e recorrente em Tributário"
  },
  {
   "id": 1694,
@@ -28528,23 +26274,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; execução contra a Fazenda Pública (RPV/precatório) é tema recorrente em Processual Civil"
  },
  {
-  "id": 1711,
-  "tema": "156",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Auxílio-acidente independe da reversibilidade da lesão",
-  "tese": "Será devido o auxílio-acidente quando demonstrado o nexo de causalidade entre a redução de natureza permanente da capacidade laborativa e a atividade profissional desenvolvida, sendo irrelevante a possibilidade de reversibilidade da doença.",
-  "destaque": "O auxílio-acidente é devido sempre que houver nexo causal entre a redução permanente da capacidade laboral e a atividade profissional, sendo irrelevante que a doença possa, em tese, ser revertida.",
-  "processo": "REsp 1.112.886-SP",
-  "relator": "Napoleão Nunes Maia Filho",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; auxílio-acidente é um dos benefícios mais cobrados em Direito Previdenciário"
- },
- {
   "id": 1712,
   "tema": "159",
   "area": "Direito Tributário",
@@ -28560,40 +26289,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde 2010; creditamento de IPI é tema recorrente em Direito Tributário"
- },
- {
-  "id": 1713,
-  "tema": "166",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Limites para substituição da Certidão de Dívida Ativa (CDA) na execução fiscal",
-  "tese": "A Fazenda Pública pode substituir a certidão de dívida ativa (CDA) até a prolação da sentença de embargos, quando se tratar de correção de erro material ou formal, vedada a modificação do sujeito passivo da execução.",
-  "destaque": "A Fazenda pode substituir a CDA até a sentença dos embargos para corrigir erro material ou formal, mas nunca para mudar o sujeito passivo da execução.",
-  "processo": "REsp 1.045.472-BA",
-  "relator": "Luiz Fux",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; substituição da CDA é tema clássico e muito recorrente em execução fiscal"
- },
- {
-  "id": 1714,
-  "tema": "170",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Ausência de crédito de ICMS sobre energia elétrica antes da LC 87/96",
-  "tese": "Sob a égide do Convênio ICMS 66/88 (antes, portanto, da entrada em vigor da Lei Complementar 87/96) não havia direito do contribuinte ao crédito de ICMS recolhido quando pago em razão de operações de consumo de energia elétrica.",
-  "destaque": "Sob o Convênio ICMS 66/88, antes da LC 87/96, o estabelecimento comercial não tinha direito a creditar o ICMS pago sobre a energia elétrica consumida.",
-  "processo": "REsp 977.090-ES",
-  "relator": "Luiz Fux",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese consolidada desde 2010; regra histórica de vigência anterior a 1996, hoje superada pela não cumulatividade da LC 87/96"
  },
  {
   "id": 1715,
@@ -28647,23 +26342,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; tema específico de contribuição sindical rural, de aplicação restrita"
  },
  {
-  "id": 1718,
-  "tema": "209",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade passiva do promitente vendedor na execução fiscal de ITR sem registro",
-  "tese": "O promitente vendedor é parte legítima para figurar no pólo passivo da execução fiscal que busca a cobrança de ITR nas hipóteses em que não há registro imobiliário do ato translativo de propriedade.",
-  "destaque": "O antigo proprietário (promitente vendedor) de imóvel rural pode figurar no polo passivo da execução fiscal de ITR quando não houve registro em cartório da transferência da propriedade.",
-  "processo": "REsp 1.073.846",
-  "relator": "Luiz Fux",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; legitimidade passiva tributária no ITR é tema recorrente em Tributário"
- },
- {
   "id": 1719,
   "tema": "230",
   "area": "Direito Processual Civil",
@@ -28715,23 +26393,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; ação rescisória e Súmula 343/STF são tema clássico e muito recorrente em Processual Civil"
  },
  {
-  "id": 1722,
-  "tema": "241",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Depósito prévio não é condição para ajuizar ação anulatória de débito fiscal",
-  "tese": "O depósito prévio previsto no art. 38, da LEF, não constitui condição de procedibilidade da ação anulatória, mas mera faculdade do autor, para o efeito de suspensão da exigibilidade do crédito tributário, nos termos do art. 151 do CTN, inibindo, dessa forma, o ajuizamento da ação executiva fiscal.",
-  "destaque": "O depósito prévio do art. 38 da Lei de Execução Fiscal é mera faculdade do contribuinte, útil para suspender a exigibilidade do crédito, mas não é condição de procedibilidade da ação anulatória.",
-  "processo": "REsp 962.838-BA",
-  "relator": "Luiz Fux",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; ação anulatória de débito fiscal é tema clássico e muito recorrente em Tributário"
- },
- {
   "id": 1723,
   "tema": "242",
   "area": "Direito Tributário",
@@ -28781,23 +26442,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde 2010; certidões de regularidade fiscal e tributo declarado e não pago são tema clássico em Tributário, inclusive já sumulado (Súm. 446/STJ)"
- },
- {
-  "id": 1726,
-  "tema": "258",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Mandado de segurança não convalida compensação tributária já realizada",
-  "tese": "É incabível o mandado de segurança para convalidar a compensação tributária realizada pelo contribuinte.",
-  "destaque": "O mandado de segurança pode ser usado para declarar o direito à compensação (Súmula 213/STJ), mas não para validar compensação que o contribuinte já efetuou por conta própria.",
-  "processo": "REsp 1.124.537",
-  "relator": "Luiz Fux",
-  "data": "25/11/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; mandado de segurança em matéria de compensação tributária é tema clássico e recorrente em Tributário"
  },
  {
   "id": 1727,
@@ -29072,23 +26716,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; requisitos do benefício assistencial (LOAS) são tema muito recorrente e ainda atual em Direito Previdenciário"
  },
  {
-  "id": 1744,
-  "tema": "197",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Termo inicial dos juros de mora na indenização do seguro DPVAT",
-  "tese": "Os juros de mora na indenização do seguro DPVAT fluem a partir da citação.",
-  "destaque": "Os juros de mora na indenização do seguro DPVAT começam a contar a partir da citação na ação de cobrança, não da data do sinistro.",
-  "processo": "REsp 1.098.365-PR",
-  "relator": "Luis Felipe Salomão",
-  "data": "28/10/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; seguro DPVAT é tema clássico e muito recorrente em Direito Civil"
- },
- {
   "id": 1745,
   "tema": "212",
   "area": "Direito Processual Civil",
@@ -29140,23 +26767,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; tema de nicho e histórico, restrito a servidores de um único Estado"
  },
  {
-  "id": 1748,
-  "tema": "144",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Exclusão dos descontos incondicionais da base de cálculo do ICMS",
-  "tese": "Os descontos incondicionais nas operações mercantis não se incluem na base de cálculo do ICMS.",
-  "destaque": "Os descontos incondicionais concedidos nas operações mercantis não integram a base de cálculo do ICMS.",
-  "processo": "REsp 1.111.156-SP",
-  "relator": "Humberto Martins",
-  "data": "14/10/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; base de cálculo do ICMS é tema clássico e muito recorrente em Tributário, inclusive já sumulado (Súm. 457/STJ)"
- },
- {
   "id": 1749,
   "tema": "198",
   "area": "Direito Tributário",
@@ -29189,23 +26799,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese consolidada desde 2010; tema técnico específico de regulação metrológica, baixa recorrência em provas gerais"
- },
- {
-  "id": 1751,
-  "tema": "132",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Incidência do ISS sobre serviços bancários congêneres (interpretação extensiva da lista)",
-  "tese": "É legítima a incidência de ISS sobre os serviços bancários congêneres da lista anexa ao DL n. 406/1968 e à LC n. 56/1987.",
-  "destaque": "É legítimo cobrar ISS sobre serviços bancários que, mesmo sem nome idêntico na lista anexa da lei, sejam congêneres aos ali previstos (interpretação extensiva).",
-  "processo": "REsp 1.111.234-PR",
-  "relator": "Eliana Calmon",
-  "data": "23/09/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; incidência do ISS sobre serviços bancários é tema clássico e muito recorrente em Tributário"
  },
  {
   "id": 1752,
@@ -29257,23 +26850,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese consolidada desde 2010; reafirma o Tema 139 sobre tributação de verbas de liberalidade na rescisão"
- },
- {
-  "id": 1755,
-  "tema": "151",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Não incidência de Imposto de Renda na indenização por adesão a Plano de Demissão Voluntária (PDV)",
-  "tese": "A indenização recebida pela adesão a programa de incentivo à demissão voluntária não está sujeita à incidência do imposto de renda.",
-  "destaque": "A indenização recebida pelo empregado que adere a um Plano de Demissão Voluntária (PDV) tem natureza indenizatória e não sofre incidência de Imposto de Renda.",
-  "processo": "REsp 1.112.745",
-  "relator": "Mauro Campbell Marques",
-  "data": "23/09/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; não incidência de IR sobre verbas de PDV é tema clássico e muito recorrente em Tributário, já sumulado (Súm. 215/STJ)"
  },
  {
   "id": 1756,
@@ -29395,23 +26971,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; capitalização de juros e Tabela Price no SFH é tema clássico e muito recorrente em Direito Bancário"
  },
  {
-  "id": 1763,
-  "tema": "49",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Ausência de limitação legal dos juros remuneratórios a 10% a.a. no SFH",
-  "tese": "O art. 6º, e, da Lei n. 4.380/1964 não estabelece limitação aos juros remuneratórios nos contratos vinculados ao SFH.",
-  "destaque": "O art. 6º, 'e', da Lei 4.380/64 não estabelece um teto de 10% ao ano para os juros remuneratórios nos contratos do Sistema Financeiro da Habitação.",
-  "processo": "REsp 1.070.297-PR",
-  "relator": "Luis Felipe Salomão",
-  "data": "09/09/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; juros remuneratórios no SFH é tema recorrente em Direito Bancário"
- },
- {
   "id": 1764,
   "tema": "57",
   "area": "Direito Civil",
@@ -29429,23 +26988,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese consolidada desde 2010; previdência privada complementar é tema recorrente em Direito Civil/Previdenciário"
  },
  {
-  "id": 1766,
-  "tema": "59",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Dispensa de aviso de recebimento (AR) na comunicação prévia de negativação",
-  "tese": "É dispensável o aviso de recebimento (AR) na carta de comunicação ao consumidor sobre a negativação de seu nome em bancos de dados e cadastros.",
-  "destaque": "Não é necessário comprovar, por aviso de recebimento (AR), que o consumidor efetivamente recebeu a carta que o avisa sobre a inclusão de seu nome em cadastro de inadimplentes (Súmula 404/STJ).",
-  "processo": "REsp 1.083.291-RS",
-  "relator": "Nancy Andrighi",
-  "data": "09/09/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; negativação e cadastros de inadimplentes são tema clássico e muito recorrente em Direito do Consumidor, já sumulado"
- },
- {
   "id": 1767,
   "tema": "153",
   "area": "Direito Administrativo",
@@ -29461,40 +27003,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tese consolidada desde 2010; tarifas de serviços públicos são tema recorrente em Direito Administrativo"
- },
- {
-  "id": 1768,
-  "tema": "154",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prazo de prescrição para repetir indébito de tarifas de água e esgoto",
-  "tese": "A ação de repetição de indébito de tarifas de água e esgoto sujeita-se ao prazo prescricional estabelecido no Código Civil.",
-  "destaque": "A ação para reaver valores pagos a mais em tarifas de água e esgoto segue o prazo prescricional do Código Civil, e não o prazo de cinco anos do Código de Defesa do Consumidor.",
-  "processo": "REsp 1.113.403-RJ",
-  "relator": "Teori Albino Zavascki",
-  "data": "09/09/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese consolidada desde 2010; repetição de indébito de tarifas públicas é tema recorrente em Administrativo/Consumidor"
- },
- {
-  "id": 1770,
-  "tema": "22",
-  "area": "Direito Previdenciário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Auxílio-acidente por disacusia mesmo abaixo do índice da Tabela Fowler",
-  "tese": "Comprovados o nexo de causalidade e a redução da capacidade laborativa, mesmo em face da disacusia em grau inferior ao estabelecido pela Tabela Fowler, subsiste o direito do obreiro ao benefício de auxílio-acidente.",
-  "destaque": "Mesmo com perda auditiva inferior ao grau mínimo da Tabela Fowler, o trabalhador tem direito ao auxílio-acidente se comprovados o nexo de causalidade e a redução da capacidade laborativa.",
-  "processo": "REsp 1.095.523-SP",
-  "relator": "Laurita Vaz",
-  "data": "26/08/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese consolidada desde 2010; auxílio-acidente é um dos benefícios mais cobrados em Direito Previdenciário"
  },
  {
   "id": 1771,
@@ -29546,23 +27054,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese antiga (2009); complementa o Tema 160, de aplicação restrita ao setor automotivo"
- },
- {
-  "id": 1774,
-  "tema": "174",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "IPTU x ITR em imóvel urbano com destinação rural",
-  "tese": "Não incide IPTU, mas ITR, sobre imóvel localizado na área urbana do Município, desde que comprovadamente utilizado em exploração extrativa, vegetal, agrícola, pecuária ou agroindustrial (art. 15 do DL 57/1966).",
-  "destaque": "Imóvel situado em área urbana mas comprovadamente usado em atividade extrativa, agrícola, pecuária ou agroindustrial paga ITR, não IPTU (art. 15 do DL 57/66).",
-  "processo": "REsp 1.112.646-SP",
-  "relator": "Herman Benjamin",
-  "data": "26/08/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema clássico e recorrente em Tributário (critério da destinação x localização na distinção IPTU/ITR)"
  },
  {
   "id": 1775,
@@ -29786,23 +27277,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009), mas tema recorrente em Direito Administrativo (processo administrativo de trânsito, prazos e decadência)"
  },
  {
-  "id": 1788,
-  "tema": "120",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Recusa da Fazenda à substituição de penhora por precatório",
-  "tese": "A Fazenda Pública pode recusar a substituição do bem penhorado por precatório.",
-  "destaque": "A Fazenda Pública exequente pode recusar a substituição de bem já penhorado por precatório do próprio devedor.",
-  "processo": "REsp 1.090.898-SP",
-  "relator": "Castro Meira",
-  "data": "12/08/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema recorrente em execução fiscal e execução contra a Fazenda Pública"
- },
- {
   "id": 1789,
   "tema": "140",
   "area": "Direito Processual Civil",
@@ -29871,23 +27345,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009), mas tema recorrente sobre cumprimento de sentença e regime de juros de mora na transição entre códigos civis"
  },
  {
-  "id": 1793,
-  "tema": "55",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Suspensão da execução extrajudicial do SFH (DL 70/66)",
-  "tese": "Em se tratando de contratos celebrados no âmbito do Sistema Financeiro da Habitação, a execução extrajudicial de que trata o Decreto-lei nº 70/66, enquanto perdurar a demanda, poderá ser suspensa, uma vez preenchidos os requisitos para a concessão da tutela cautelar, independentemente de caução ou do depósito de valores incontroversos, desde que: a) exista discussão judicial contestando a existência integral ou parcial do débito; b) essa discussão esteja fundamentada em jurisprudência do Superior Tribunal de Justiça ou do Supremo Tribunal Federal (fumus boni iuris).",
-  "destaque": "A execução extrajudicial de imóvel financiado pelo SFH pode ser suspensa em tutela cautelar, sem caução, se há discussão judicial do débito amparada em jurisprudência do STJ ou STF.",
-  "processo": "REsp 1.067.237",
-  "relator": "Luis Felipe Salomão",
-  "data": "24/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese antiga (2009); tema de aplicação restrita a financiamentos do extinto sistema de execução extrajudicial do SFH (DL 70/66)"
- },
- {
   "id": 1794,
   "tema": "85",
   "area": "Direito Tributário",
@@ -29903,57 +27360,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese antiga (2009); tema técnico e de aplicação restrita à contribuição sindical rural"
- },
- {
-  "id": 1795,
-  "tema": "123",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Pagamento prévio de multas para liberar veículo apreendido",
-  "tese": "É lícito à autoridade administrativa condicionar a liberação de veículo, quando aplicada a pena de apreensão, ao pagamento das multas regularmente notificadas e já vencidas.",
-  "destaque": "A autoridade de trânsito pode condicionar a liberação do veículo apreendido ao pagamento das multas regularmente notificadas e já vencidas.",
-  "processo": "REsp 1.104.775-RS",
-  "relator": "Castro Meira",
-  "data": "24/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema recorrente em Direito Administrativo de trânsito, envolvendo grande número de casos práticos"
- },
- {
-  "id": 1796,
-  "tema": "124",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Cobrança de despesas de remoção e estada de veículo apreendido",
-  "tese": "É legal a exigência de prévio pagamento das despesas com remoção e estada no depósito para liberação de veículo apreendido, sendo que as taxas de estada somente poderão ser cobradas até os 30 primeiros dias.",
-  "destaque": "É legal exigir o pagamento prévio das despesas de remoção e estada para liberar veículo apreendido, mas a taxa de estada só pode ser cobrada pelos primeiros 30 dias.",
-  "processo": "REsp 1.104.775-RS",
-  "relator": "Castro Meira",
-  "data": "24/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema recorrente em Direito Administrativo de trânsito, complementar ao Tema 123"
- },
- {
-  "id": 1797,
-  "tema": "141",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Saque do FGTS em contrato nulo por falta de concurso público",
-  "tese": "O titular da conta vinculada ao FGTS tem o direito de sacar o saldo respectivo quando declarado nulo seu contrato de trabalho por ausência de prévia aprovação em concurso público.",
-  "destaque": "O titular da conta vinculada ao FGTS pode sacar o saldo quando seu contrato de trabalho é declarado nulo por ausência de prévia aprovação em concurso público.",
-  "processo": "REsp 1.110.848",
-  "relator": "Luiz Fux",
-  "data": "24/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema recorrente em Administrativo (efeitos da nulidade da contratação sem concurso, art. 37, §2º, CF)"
  },
  {
   "id": 1798,
@@ -30024,23 +27430,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009); tema de aplicação restrita aos empregados de uma única empresa (Petrobrás)"
  },
  {
-  "id": 1802,
-  "tema": "107",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Encargo de 20% do DL 1.025/69 na execução fiscal contra massa falida",
-  "tese": "O encargo de 20% previsto no DL n. 1.025/1969 é exigível na execução fiscal proposta contra a massa falida.",
-  "destaque": "O encargo legal de 20% previsto no DL 1.025/69 é exigível mesmo na execução fiscal movida contra massa falida.",
-  "processo": "REsp 1.110.924",
-  "relator": "Benedito Gonçalves",
-  "data": "10/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese antiga (2009); tema técnico, no cruzamento entre execução fiscal e falência, de baixa incidência em provas gerais"
- },
- {
   "id": 1803,
   "tema": "122",
   "area": "Direito Tributário",
@@ -30056,23 +27445,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em Tributário (sujeição passiva do IPTU)"
- },
- {
-  "id": 1804,
-  "tema": "134",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Prescrição anterior ao ajuizamento pode ser reconhecida de ofício",
-  "tese": "Em execução fiscal, a prescrição ocorrida antes da propositura da ação pode ser decretada de ofício (art. 219, § 5º, do CPC).",
-  "destaque": "Em execução fiscal, a prescrição ocorrida antes mesmo do ajuizamento da ação pode ser decretada de ofício pelo juiz.",
-  "processo": "REsp 1.100.156-RJ",
-  "relator": "Teori Albino Zavascki",
-  "data": "10/06/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em execução fiscal e prescrição tributária"
  },
  {
   "id": 1805,
@@ -30517,23 +27889,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009); tema técnico e histórico, restrito ao contencioso de FGTS anterior a 2001"
  },
  {
-  "id": 1831,
-  "tema": "121",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Isenção de IR sobre férias proporcionais indenizadas",
-  "tese": "São isentas de imposto de renda as indenizações de férias proporcionais e respectivo adicional.",
-  "destaque": "São isentas de imposto de renda as indenizações de férias proporcionais e o respectivo adicional de um terço, por terem natureza indenizatória.",
-  "processo": "REsp 1.111.223",
-  "relator": "Castro Meira",
-  "data": "22/04/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e recorrente em Tributário (não incidência de IR sobre verbas indenizatórias trabalhistas)"
- },
- {
   "id": 1832,
   "tema": "99",
   "area": "Direito Administrativo",
@@ -30549,57 +27904,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese antiga (2009); tema técnico e histórico, repete a lógica dos Temas 109-113 sobre FGTS"
- },
- {
-  "id": 1833,
-  "tema": "102",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Citação por edital na execução fiscal exige frustração das demais vias",
-  "tese": "A citação por edital na execução fiscal é cabível quando frustradas as demais modalidades.",
-  "destaque": "A citação por edital na execução fiscal só é cabível depois de frustradas as demais modalidades de citação.",
-  "processo": "REsp 1.103.050",
-  "relator": "Teori Albino Zavascki",
-  "data": "25/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "tese antiga (2009), mas tema recorrente em execução fiscal, complementar ao Tema 82"
- },
- {
-  "id": 1834,
-  "tema": "103",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Ônus da prova do sócio-gerente que consta da CDA",
-  "tese": "Se a execução foi ajuizada apenas contra a pessoa jurídica, mas o nome do sócio consta da CDA, a ele incumbe o ônus da prova de que não ficou caracterizada nenhuma das circunstâncias previstas no art. 135 do CTN, ou seja, não houve a prática de atos 'com excesso de poderes ou infração de lei, contrato social ou estatutos'.",
-  "destaque": "Se a execução é movida só contra a empresa, mas o nome do sócio já consta da CDA, é dele o ônus de provar que não houve excesso de poderes ou infração à lei (art. 135 do CTN).",
-  "processo": "REsp 1.104.900-ES",
-  "relator": "Denise Arruda",
-  "data": "25/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em execução fiscal (responsabilidade tributária do sócio-gerente)"
- },
- {
-  "id": 1835,
-  "tema": "104",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Cabimento da exceção de pré-executividade na execução fiscal",
-  "tese": "A exceção de pré-executividade é admissível na execução fiscal relativamente às matérias conhecíveis de ofício que não demandem dilação probatória.",
-  "destaque": "A exceção de pré-executividade é admissível na execução fiscal para matérias conhecíveis de ofício que não exijam dilação probatória.",
-  "processo": "REsp 1.104.900-ES",
-  "relator": "Denise Arruda",
-  "data": "25/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em execução fiscal (exceção de pré-executividade)"
  },
  {
   "id": 1836,
@@ -30687,23 +27991,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009); tema técnico e de aplicação restrita à liquidação de sentenças sobre IR retido na fonte"
  },
  {
-  "id": 1841,
-  "tema": "89",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Isenção de ICMS na importação de bacalhau (países do GATT)",
-  "tese": "As operações de importação de bacalhau (peixe seco e salgado, espécie do gênero pescado), provenientes de países signatários do GATT - General Agreement on Tariffs and Trade, realizadas até 30 de abril de 1999, são isentas de recolhimento do ICMS.",
-  "destaque": "As importações de bacalhau de países signatários do GATT, realizadas até 30/4/1999, eram isentas de ICMS.",
-  "processo": "REsp 871.760-BA",
-  "relator": "Luiz Fux",
-  "data": "11/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "tese antiga (2009); tema muito específico, ligado a uma isenção histórica já extinta"
- },
- {
   "id": 1842,
   "tema": "91",
   "area": "Direito Tributário",
@@ -30721,40 +28008,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2009), mas tema clássico e recorrente em Tributário (conflito de competência ISS x ICMS, Súmula 156/STJ)"
  },
  {
-  "id": 1843,
-  "tema": "96",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Declaração do contribuinte constitui o crédito tributário",
-  "tese": "A entrega de declaração pelo contribuinte reconhecendo débito fiscal constitui o crédito tributário, dispensada qualquer outra providência por parte do fisco.",
-  "destaque": "A entrega de declaração pelo contribuinte reconhecendo o débito já constitui o crédito tributário, dispensando qualquer outra providência do Fisco.",
-  "processo": "REsp 1.101.728-SP",
-  "relator": "Teori Albino Zavascki",
-  "data": "11/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em Tributário (constituição do crédito por declaração, Súmula 436/STJ)"
- },
- {
-  "id": 1844,
-  "tema": "97",
-  "area": "Direito Tributário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Falta de pagamento do tributo não gera, por si só, responsabilidade do sócio",
-  "tese": "A simples falta de pagamento do tributo não configura, por si só, nem em tese, circunstância que acarreta a responsabilidade subsidiária do sócio, prevista no art. 135 do CTN. É indispensável, para tanto, que tenha agido com excesso de poderes ou infração à lei, ao contrato social ou ao estatuto da empresa.",
-  "destaque": "A simples falta de pagamento do tributo não basta para responsabilizar o sócio (art. 135 do CTN); é preciso excesso de poderes ou infração à lei, ao contrato social ou ao estatuto.",
-  "processo": "REsp 1.101.728-SP",
-  "relator": "Teori Albino Zavascki",
-  "data": "11/03/2009",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2009), mas tema clássico e muito recorrente em Tributário (responsabilidade do sócio, Súmula 430/STJ)"
- },
- {
   "id": 1845,
   "tema": "79",
   "area": "Direito Tributário",
@@ -30770,57 +28023,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "tese antiga (2009); tema restrito a um programa de parcelamento específico (REFIS) já superado por programas mais recentes"
- },
- {
-  "id": 1846,
-  "tema": "37",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Legitimidade dos órgãos de cadastro por negativação sem aviso",
-  "tese": "Os órgãos mantenedores de cadastros possuem legitimidade passiva para as ações que buscam a reparação dos danos morais e materiais decorrentes da inscrição, sem prévia notificação, do nome de devedor em seus cadastros restritivos, inclusive quando os dados utilizados para a negativação são oriundos do CCF do Banco Central ou de outros cadastros mantidos por entidade diversas.",
-  "destaque": "Os órgãos mantenedores de cadastros de proteção ao crédito respondem por danos morais e materiais decorrentes de inscrição sem prévia notificação, mesmo usando dados de outros cadastros como o CCF do Bacen.",
-  "processo": "REsp 1.061.134-RS",
-  "relator": "Nancy Andrighi",
-  "data": "10/12/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito do Consumidor (negativação sem prévia comunicação)"
- },
- {
-  "id": 1848,
-  "tema": "40",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Falta de aviso prévio da negativação gera dano moral",
-  "tese": "A ausência de prévia comunicação ao consumidor da inscrição do seu nome em cadastros de proteção ao crédito, prevista no art. 43, § 2º, do CDC, enseja o direito à compensação por danos morais.",
-  "destaque": "A ausência de prévia comunicação ao consumidor sobre a inscrição de seu nome em cadastro de proteção ao crédito (art. 43, §2º, CDC) gera direito à indenização por dano moral.",
-  "processo": "REsp 1.062.336-RS",
-  "relator": "Nancy Andrighi",
-  "data": "10/12/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito do Consumidor (Súmula 359/STJ)"
- },
- {
-  "id": 1849,
-  "tema": "41",
-  "area": "Direito do Consumidor",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inscrição preexistente afasta o dano moral por nova negativação irregular",
-  "tese": "Da anotação irregular em cadastro de proteção ao crédito, não cabe indenização por dano moral, quando preexistente legítima inscrição, ressalvado o direito ao cancelamento.",
-  "destaque": "Se já existia inscrição legítima anterior do nome do devedor, uma nova anotação irregular não gera dano moral, ressalvado o direito ao cancelamento.",
-  "processo": "REsp 1.062.336-RS",
-  "relator": "Nancy Andrighi",
-  "data": "10/12/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito do Consumidor (Súmula 385/STJ)"
  },
  {
   "id": 1850,
@@ -31163,91 +28365,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em contratos bancários (limitação de juros remuneratórios)"
  },
  {
-  "id": 1870,
-  "tema": "25",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Juros acima de 12% ao ano não são abusivos por si só",
-  "tese": "A estipulação de juros remuneratórios superiores a 12% ao ano, por si só, não indica abusividade.",
-  "destaque": "A simples estipulação de juros remuneratórios superiores a 12% ao ano não indica, por si só, abusividade.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em contratos bancários"
- },
- {
-  "id": 1871,
-  "tema": "26",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Regra do Código Civil sobre juros não se aplica ao mútuo bancário",
-  "tese": "São inaplicáveis aos juros remuneratórios dos contratos de mútuo bancário as disposições do art. 591 c/c o art. 406 do CC/02.",
-  "destaque": "As regras do art. 591 c/c art. 406 do Código Civil não se aplicam aos juros remuneratórios dos contratos de mútuo bancário.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em contratos bancários"
- },
- {
-  "id": 1872,
-  "tema": "27",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Revisão excepcional dos juros remuneratórios em contrato bancário",
-  "tese": "É admitida a revisão das taxas de juros remuneratórios em situações excepcionais, desde que caracterizada a relação de consumo e que a abusividade (capaz de colocar o consumidor em desvantagem exagerada (art. 51, §1 º, do CDC) fique cabalmente demonstrada, ante às peculiaridades do julgamento em concreto.",
-  "destaque": "É possível revisar juros remuneratórios em contratos bancários de consumo, mas apenas quando a abusividade (desvantagem exagerada) for cabalmente demonstrada no caso concreto.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito Bancário e do Consumidor"
- },
- {
-  "id": 1873,
-  "tema": "28",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Abusividade na normalidade contratual descaracteriza a mora bancária",
-  "tese": "O reconhecimento da abusividade nos encargos exigidos no período da normalidade contratual (juros remuneratórios e capitalização) descaracteriza a mora.",
-  "destaque": "Reconhecida a abusividade de juros remuneratórios e capitalização durante o período de normalidade do contrato bancário, a mora do devedor fica descaracterizada.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em contratos bancários e revisionais"
- },
- {
-  "id": 1874,
-  "tema": "29",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Ação revisional não afasta, por si só, a mora do devedor",
-  "tese": "A simples propositura da ação de revisão de contrato não inibe a caracterização da mora do autor.",
-  "destaque": "A simples propositura de ação de revisão do contrato bancário não impede a caracterização da mora do autor.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em contratos bancários (ações revisionais)"
- },
- {
   "id": 1875,
   "tema": "30",
   "area": "Direito Bancário",
@@ -31297,23 +28414,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Alta",
   "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito Bancário, complementar aos Temas 31 a 34"
- },
- {
-  "id": 1881,
-  "tema": "36",
-  "area": "Direito Bancário",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Vedado ao juiz reconhecer de ofício a abusividade de cláusula bancária",
-  "tese": "Nos contratos bancários, é vedado ao julgador conhecer, de ofício, da abusividade das cláusulas.",
-  "destaque": "Nos contratos bancários, o julgador não pode reconhecer de ofício a abusividade de cláusulas contratuais, dependendo de pedido da parte.",
-  "processo": "REsp 1.061.530-RS",
-  "relator": "Ari Pargendler",
-  "data": "22/10/2008",
-  "info": null,
-  "status": "vigente",
-  "risco": "Alta",
-  "motivo": "tese antiga (2008), mas tema clássico e muito recorrente em Direito Bancário (Súmula 381/STJ)"
  },
  {
   "id": 1882,
@@ -31790,23 +28890,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2026 (tese muito recente); matéria de alta incidência em editais (Direito Administrativo) — classificação automática, revisar"
  },
  {
-  "id": 1910,
-  "tema": "1308",
-  "area": "Direito Administrativo",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Inaplicabilidade a contratos realizados por instituições públicas distintas da vedação de nova admissão de professor substituto temporário anteriormente contratado, antes de decorridos 24 meses do encerramento do contrato anterior",
-  "tese": "A vedação de nova admissão de professor substituto temporário anteriormente contratado, antes de decorridos 24 (vinte e quatro) meses do encerramento do contrato anterior, contida no art. 9º, III, da Lei 8.745/1993, não se aplica aos contratos realizados por instituições públicas distintas\".",
-  "destaque": "A vedação de nova admissão de professor substituto temporário anteriormente contratado, antes de decorridos 24 (vinte e quatro) meses do encerramento do contrato anterior, contida no art. 9º, III, da Lei 8.745/1993, não se aplica aos contratos realizados por instituições públicas distintas\".",
-  "processo": "REsp 2136644/AL",
-  "relator": "Afrânio Vilela",
-  "data": "13/08/2025",
-  "info": null,
-  "status": "vigente",
-  "risco": "Média",
-  "motivo": "julgado em 2025 (tese recente); matéria de alta incidência em editais (Direito Administrativo) — classificação automática, revisar"
- },
- {
   "id": 1911,
   "tema": "1294",
   "area": "Direito Administrativo",
@@ -31992,23 +29075,6 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Baixa",
   "motivo": "julgado em 2024; matéria de alta incidência em editais (Direito Previdenciário) — classificação automática, revisar"
- },
- {
-  "id": 1922,
-  "tema": "1200",
-  "area": "Direito Processual Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Abertura da sucessão como termo inicial do prazo prescricional para ajuizamento de ação de petição de herança, promovida por pretenso filho, cumulativamente com ação de reconhecimento de paternidade post mortem",
-  "tese": "O prazo prescricional para propor ação de petição de herança conta-se da abertura da sucessão, cuja fluência não é impedida, suspensa ou interrompida pelo ajuizamento de ação de reconhecimento de filiação, independentemente do seu trânsito em julgado.",
-  "destaque": "O prazo prescricional para propor ação de petição de herança conta-se da abertura da sucessão, cuja fluência não é impedida, suspensa ou interrompida pelo ajuizamento de ação de reconhecimento de filiação, independentemente do seu trânsito em julgado.",
-  "processo": "REsp 2029809/MG",
-  "relator": "Marco Aurélio Bellizze",
-  "data": "22/05/2024",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "julgado em 2024; matéria de alta incidência em editais (Direito Processual Civil) — classificação automática, revisar"
  },
  {
   "id": 1923,
@@ -41098,25 +38164,6 @@ var RG_REPETITIVOS_DATA = [
   "motivo": "julgado em 2012",
   "link": "https://processo.stj.jus.br/repetitivos/temas_repetitivos/pesquisa.jsp?novaConsulta=true&tipo_pesquisa=T&cod_tema_inicial=503&cod_tema_final=503",
   "historico": "Assunto: 10295- Gratificação Incorporada / Quintos e Décimos / VPNI"
- },
- {
-  "id": 2469,
-  "tema": "685",
-  "area": "Direito Civil",
-  "orgao": "STJ",
-  "tipo": "repetitivo",
-  "titulo": "Discussão quanto ao termo inicial dos juros de mora de sentença proferida em Ação Civil Pública é a citação na liquidação daquela sentença coletiva.",
-  "tese": "Os juros de mora incidem a partir da citação do devedor no processo de conhecimento da Ação Civil Pública quando esta se fundar em responsabilidade contratual, cujo inadimplemento já produza a mora, salvo a configuração da mora em momento anterior.",
-  "destaque": "Os juros de mora incidem a partir da citação do devedor no processo de conhecimento da Ação Civil Pública quando esta se fundar em responsabilidade contratual, cujo inadimplemento já produza a mora, salvo a configuração da mora em momento anterior.",
-  "processo": "REsp 1370899",
-  "relator": "Sidnei Beneti",
-  "data": "21/05/2014",
-  "info": null,
-  "status": "vigente",
-  "risco": "Baixa",
-  "motivo": "julgado em 2014",
-  "link": "https://processo.stj.jus.br/repetitivos/temas_repetitivos/pesquisa.jsp?novaConsulta=true&tipo_pesquisa=T&cod_tema_inicial=685&cod_tema_final=685",
-  "historico": "Assunto: 8826- DIREITO PROCESSUAL CIVIL E DO TRABALHO"
  },
  {
   "id": 2470,
