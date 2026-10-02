@@ -125,11 +125,22 @@ def buscar(url):
         "Accept-Language": "pt-BR,pt;q=0.9",
     })
     completou = False
+    saltos = 0
     for tentativa in (1, 2, 3):
         try:
             with urllib.request.urlopen(req, context=_contextos[host], timeout=60) as r:
                 return r.status, r.headers.get("Content-Type", ""), r.read()
         except urllib.error.HTTPError as e:
+            # redirecionamento (o urllib de Python mais antigo não segue o 308)
+            destino = e.headers.get("Location") if e.code in (301, 302, 303, 307, 308) else None
+            if destino and saltos < 5:
+                saltos += 1
+                url = urllib.parse.urljoin(url, destino)
+                host = urllib.parse.urlsplit(url).hostname
+                if host not in _contextos:
+                    _contextos[host] = _contexto_padrao()
+                req = urllib.request.Request(url, headers=req.headers)
+                continue
             if e.code >= 500 and tentativa < 3:
                 continue
             return e.code, e.headers.get("Content-Type", ""), b""

@@ -119,143 +119,11 @@
   "nome": "Compensação financeira estadual pela exploração de recursos minerais",
   "motivo": "a página não existe no site"
  },
- "https://leis.alesc.sc.gov.br/html/2018/17492_2018_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 17.492/2018",
-  "nome": "Parcelamento do solo urbano — Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=60133&hId_FazSumula=&RF=1": {
   "em": "2026-10-02",
   "numero": "Lei Estadual (RS) nº 14.254/2013",
   "nome": "Conselhos Estaduais e Municipais dos Direitos da Pessoa Idosa do Rio Grande do Sul",
   "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2006/339_2006_lei_complementar.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (SC) nº 339/2006",
-  "nome": "Organização Judiciária de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2006/367_2006_lei_complementar.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (SC) nº 367/2006",
-  "nome": "Estatuto da Magistratura de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2008/413_2008_lei_complementar.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (SC) nº 413/2008",
-  "nome": "Altera as LC (SC) nº 339/2006 e 367/2006",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/1998/11069_1998_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 11.069/1998",
-  "nome": "Produção, comércio, uso, consumo, transporte e armazenamento de agrotóxicos em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2005/13558_2005_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 13.558/2005",
-  "nome": "Política Estadual de Educação Ambiental de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2016/16869_2016_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 16.869/2016",
-  "nome": "Regulamenta a atuação de doulas em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2022/18322_2022_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 18.322/2022",
-  "nome": "Dispõe sobre a violência obstétrica no Estado de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2003/12854_2003_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 12.854/2003",
-  "nome": "Código Estadual de Proteção aos Animais de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2005/13553_2005_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 13.553/2005",
-  "nome": "Plano Estadual de Gerenciamento Costeiro de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2009/14652_2009_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 14.652/2009",
-  "nome": "Gestão integrada de bacias hidrográficas para fins de licenciamento ambiental em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2009/14661_2009_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 14.661/2009",
-  "nome": "Parque Estadual da Serra do Tabuleiro (Santa Catarina)",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2015/16601_2015_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 16.601/2015",
-  "nome": "Diretrizes para prevenção e resposta a desastres, inundações e processos geológicos em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2017/17066_2017_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 17.066/2017",
-  "nome": "Transparência nas listas de espera do SUS em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2017/17292_2017_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 17.292/2017",
-  "nome": "Reserva de vagas a pessoas com deficiência em concursos públicos de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2017/17354_2017_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 17.354/2017",
-  "nome": "Cria o Instituto do Meio Ambiente de Santa Catarina (IMA)",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2019/17715_2019_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 17.715/2019",
-  "nome": "Programa de Integridade e Compliance no âmbito da Administração Pública de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2020/18018_2020_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 18.018/2020",
-  "nome": "Direitos de migrantes, refugiados e apátridas no Estado de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/1994/9748_1994_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 9.748/1994",
-  "nome": "Política Estadual de Recursos Hídricos de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2000/11402_2000_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei (SC) nº 11.402/2000",
-  "nome": "Norma sobre a política do idoso em Santa Catarina (citada no edital)",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2000/11436_2000_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei (SC) nº 11.436/2000",
-  "nome": "Política Estadual do Idoso de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2010/15182_2010_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei (SC) nº 15.182/2010",
-  "nome": "Norma sobre a política do idoso em Santa Catarina (citada no edital)",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
  },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=61908&hId_FazSumula=&RF=1": {
   "em": "2026-10-02",
@@ -268,42 +136,6 @@
   "numero": "Lei (RS) nº 9.831/1993",
   "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul",
   "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2001/11697_2001_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 11.697/2001",
-  "nome": "Autorização de viagem nacional para crianças e adolescentes no Estado de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2000/11603_2000_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 11.603/2000",
-  "nome": "Proteção ao trabalho de menores de dezoito anos no Estado de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2009/14651_2009_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 14.651/2009",
-  "nome": "Programa de Combate à Intimidação Sistemática (Bullying) em Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2001/12069_2001_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 12.069/2001",
-  "nome": "Processo de ação direta de inconstitucionalidade perante o Tribunal de Justiça de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2009/465_2009_lei_complementar.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (SC) nº 465/2009",
-  "nome": "Tribunal Administrativo Tributário de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2004/13136_2004_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 13.136/2004",
-  "nome": "Tribunal Administrativo Tributário de Santa Catarina (norma anterior)",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
  },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=5549&hId_FazSumula=&RF=1": {
   "em": "2026-10-02",
@@ -371,18 +203,6 @@
   "nome": "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
- "https://leis.alesc.sc.gov.br/html/1985/6745_1985_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 6.745/1985",
-  "nome": "Estatuto dos Funcionários Públicos Civis de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2010/491_2010_lei_complementar.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (SC) nº 491/2010",
-  "nome": "Processo Administrativo Disciplinar de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
- },
  "https://legislacao.mt.gov.br/mt/lei-complementar-n-04-1990-mato-grosso": {
   "em": "2026-10-02",
   "numero": "Lei Complementar (MT) nº 04/1990",
@@ -394,12 +214,6 @@
   "numero": "Lei Complementar (RS) nº 16.263/2024",
   "nome": "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul",
   "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://leis.alesc.sc.gov.br/html/2004/12929_2004_lei.html": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (SC) nº 12.929/2004",
-  "nome": "Organizações Sociais do Estado de Santa Catarina",
-  "motivo": "erro ao abrir: HTTP 308 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-8264-2004-mato-grosso-dispoe-sobre-o-regime-de-concessao-e-permissao-de-servicos-e-obras-publicas-no-ambito-do-setor-rodoviario-2020-10-09-versao-compilada": {
   "em": "2026-10-02",
