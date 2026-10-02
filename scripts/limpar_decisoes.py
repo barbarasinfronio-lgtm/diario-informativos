@@ -46,6 +46,8 @@ Regras (por arquivo):
     liminar ad referendum ainda não referendada, "nego seguimento", "julgo
     prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
     na preparação; ficam só as do Plenário/Turma, que vinculam.
+  Todas as listas de teses/informativos: se a essência da tese é a mesma (texto
+    quase idêntico, mesmos números e mesmos nomes próprios) fica só a mais recente.
   Controle: saem as decisões que o Informativo do STF já traz (mesma ação, data
     até 20 dias de diferença): o Informativo tem a tese e o estado de origem.
 """
@@ -131,6 +133,72 @@ def juntar_processos(itens, campo="processo", sufixo="julgamento conjunto"):
     else:
         lista = ", ".join(nomes[:-1]) + " e " + nomes[-1]
     return lista + " (" + sufixo + ")"
+
+
+# ---- teses parecidas: fica só a mais recente --------------------------------
+def _sem_notas(t):
+    """Tira as notas entre parênteses ("Tese julgada sob o rito do art. 543-C…",
+    "Súmula 460/STJ"…), que mudam de edição para edição."""
+    t = unicodedata.normalize("NFKC", str(t or ""))
+    return re.sub(r"\((?:[^()]*?(?:tese julgada|tema|rito|s[uú]mula|informativo|vide|repetitivo|stj|stf)[^()]*)\)", " ", t, flags=re.I)
+
+
+def _assinatura(t):
+    base = _sem_notas(t)
+    palavras = set(re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", base.lower())).split())
+    nums = {w for w in palavras if w.isdigit()}
+    # nomes próprios (Ceará, Pará, União…): duas teses sobre estados diferentes não são a mesma
+    proprios = set(re.findall(r"(?<=[a-zà-ú,;] )[A-ZÀ-Ú][a-zà-ú]{2,}", base))
+    return palavras, nums, proprios, len(palavras)
+
+
+def _parecidas(a, b, lim=0.88):
+    (wa, na, pa, la), (wb, nb, pb, lb) = a, b
+    if la < 8 or lb < 8 or na != nb or pa != pb:
+        return False
+    if min(la, lb) / max(la, lb) < 0.8:
+        return False
+    return len(wa & wb) / len(wa | wb) >= lim
+
+
+def _dia(d):
+    m = re.match(r"(\d{2})/(\d{2})/(\d{4})", str(d or ""))
+    return datetime.date(int(m[3]), int(m[2]), int(m[1])).toordinal() if m else 0
+
+
+def tirar_parecidas(itens, texto, data, grupo=lambda x: None):
+    """itens: lista de objetos; texto(x), data(x) 'dd/mm/aaaa', grupo(x) separa
+    o que nunca se mistura (ex.: STF x STJ). Devolve (lista sem as mais antigas
+    de cada grupo de teses parecidas, quantas saíram)."""
+    sigs = [_assinatura(texto(x)) for x in itens]
+    idx = {}
+    for i, sg in enumerate(sigs):
+        for w in sorted(sg[0], key=lambda z: -len(z))[:6]:
+            idx.setdefault((grupo(itens[i]), w), []).append(i)
+    pai = list(range(len(itens)))
+
+    def raiz(i):
+        while pai[i] != i:
+            pai[i] = pai[pai[i]]
+            i = pai[i]
+        return i
+    for i, sg in enumerate(sigs):
+        cand = set()
+        for w in sorted(sg[0], key=lambda z: -len(z))[:6]:
+            cand.update(idx.get((grupo(itens[i]), w), []))
+        for j in cand:
+            if j < i and raiz(i) != raiz(j) and _parecidas(sg, sigs[j]):
+                pai[raiz(i)] = raiz(j)
+    grupos = {}
+    for i in range(len(itens)):
+        grupos.setdefault(raiz(i), []).append(i)
+    sai = set()
+    for g in grupos.values():
+        if len(g) > 1:
+            # a mais recente fica (empate: a que aparece primeiro)
+            fica = max(g, key=lambda i: (_dia(data(itens[i])), -i))
+            sai.update(i for i in g if i != fica)
+    return [x for i, x in enumerate(itens) if i not in sai], len(sai)
 
 
 # ---- Controle concentrado -----------------------------------------------------
@@ -333,7 +401,9 @@ def limpar_rg():
         elif peso(d) > peso(melhor[k]):
             melhor[k] = d
     final = [melhor[k] for k in ordem]
-    resumo.append(f"Repercussão Geral/Repetitivos: {antes} → {len(final)} (canceladas por duplicidade {canceladas}, repetidas {len(lista) - len(final)})")
+    n0 = len(final)
+    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"), lambda d: d.get("orgao"))
+    resumo.append(f"Repercussão Geral/Repetitivos: {antes} → {len(final)} (canceladas por duplicidade {canceladas}, repetidas {len(lista) - n0}, tese parecida {parecidas})")
     gravar_js(f, p, final, s, i)
 
 
@@ -357,10 +427,12 @@ def limpar_teses():
         if len(t) > 40 and (t not in mais_nova or edicao(d) > edicao(mais_nova[t])):
             mais_nova[t] = d
     final = [d for d in lista if len(norm(d.get("tese"))) <= 40 or mais_nova[norm(d.get("tese"))] is d]
+    n0 = len(final)
+    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"))
     obj["itens"] = final
     if "total" in obj:
         obj["total"] = len(final)
-    resumo.append(f"Teses do STJ: {antes} → {len(final)} (itens retirados {retiradas}, repetidas em outra edição {len(lista) - len(final)})")
+    resumo.append(f"Teses do STJ: {antes} → {len(final)} (itens retirados {retiradas}, repetidas em outra edição {len(lista) - n0}, tese parecida {parecidas})")
     gravar_json(f, obj, nl)
 
 
@@ -386,8 +458,10 @@ def limpar_extras():
         if len(g) > 1:
             d["processo"] = juntar_processos(g)
         final.append(d)
+    n0 = len(final)
+    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"), lambda d: d.get("grupo"))
     obj["itens"] = final
-    resumo.append(f"Extras do STF: {antes} → {len(final)} (juntadas {antes - len(final)})")
+    resumo.append(f"Extras do STF: {antes} → {len(final)} (juntadas {antes - n0}, tese parecida {parecidas})")
     gravar_json(f, obj, nl)
 
 
@@ -399,15 +473,17 @@ def limpar_tst():
     lista = obj["itens"]
     antes = len(lista)
     final = [d for d in lista if norm(d.get("tese")) or norm(d.get("questao")) or norm(d.get("destaque"))]
+    n0 = len(final)
+    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"))
     obj["itens"] = final
     if "total" in obj:
         obj["total"] = len(final)
-    resumo.append(f"TST: {antes} → {len(final)} (sem texto {antes - len(final)})")
+    resumo.append(f"TST: {antes} → {len(final)} (sem texto {antes - n0}, tese parecida {parecidas})")
     gravar_json(f, obj, nl)
 
 
 # ---- índices em colunas (Acórdãos do STJ, Informativos) ---------------------------
-def limpar_indice(f, chave, nome):
+def limpar_indice(f, chave, nome, parecidas_em=None):
     conferir_formato(f)
     obj, nl = ler_json(f)
     campos = obj["campos"]
@@ -420,10 +496,16 @@ def limpar_indice(f, chave, nome):
             continue
         vistos.add(k)
         final.append(x)
+    n0 = len(final)
+    extra = ""
+    if parecidas_em:   # nome da coluna com a tese: tese parecida → fica a mais recente
+        it, idt, io = (campos.index(c) for c in (parecidas_em, "data", "orgao"))
+        final, n = tirar_parecidas(final, lambda x: x[it], lambda x: x[idt], lambda x: x[io])
+        extra = f", tese parecida {n}"
     obj["itens"] = final
     if "total" in obj:
         obj["total"] = len(final)
-    resumo.append(f"{nome}: {antes} → {len(final)} (repetidos {antes - len(final)})")
+    resumo.append(f"{nome}: {antes} → {len(final)} (repetidos {antes - n0}{extra})")
     gravar_json(f, obj, nl)
 
 
@@ -479,7 +561,7 @@ def main():
         limpar_tst()
         limpar_indice("stj/acordaos/indice.json", ["processo", "data", "titulo", "resultado"], "Acórdãos do STJ")
         limpar_acordaos()
-        limpar_indice("informativos/indice.json", ["orgao", "informativo", "tese"], "Informativos")
+        limpar_indice("informativos/indice.json", ["orgao", "informativo", "tese"], "Informativos", parecidas_em="tese")
     print(("(só relatório) " if RELATORIO else "") + "\n".join(resumo))
 
 
