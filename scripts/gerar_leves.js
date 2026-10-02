@@ -30,7 +30,7 @@ const fontes = {
 
 // campos que a lista, os filtros, a contagem e os selos do card usam
 const CAMPOS = ["id", "orgao", "tipo", "tipoNome", "grupo", "area", "tema", "data", "status", "risco",
-  "titulo", "processo", "relator", "precedenteLabel", "info", "suspensao", "_resumo", "_f"];
+  "titulo", "processo", "relator", "precedenteLabel", "info", "suspensao", "tambem", "_resumo", "_f"];
 // campos com poucos valores diferentes: gravados como número de uma tabela
 const TABELADOS = new Set(["orgao", "tipo", "tipoNome", "grupo", "area", "status", "risco", "precedenteLabel", "relator", "_f"]);
 const TAM_RESUMO = 150; // o card mostra só o começo do texto
@@ -45,7 +45,7 @@ function resumo(d) {
 const tabelas = {}, indices = {};
 for (const k of TABELADOS) { tabelas[k] = []; indices[k] = new Map(); }
 function valor(k, v) {
-  if (v === undefined || v === null || v === "") return 0;
+  if (v === undefined || v === null || v === "" || (Array.isArray(v) && !v.length)) return 0;
   if (!TABELADOS.has(k)) return v;
   if (!indices[k].has(v)) { tabelas[k].push(v); indices[k].set(v, tabelas[k].length); }
   return indices[k].get(v);   // 1, 2, 3… (0 = vazio)

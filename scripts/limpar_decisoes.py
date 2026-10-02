@@ -166,10 +166,8 @@ def _dia(d):
     return datetime.date(int(m[3]), int(m[2]), int(m[1])).toordinal() if m else 0
 
 
-def tirar_parecidas(itens, texto, data, grupo=lambda x: None):
-    """itens: lista de objetos; texto(x), data(x) 'dd/mm/aaaa', grupo(x) separa
-    o que nunca se mistura (ex.: STF x STJ). Devolve (lista sem as mais antigas
-    de cada grupo de teses parecidas, quantas saíram)."""
+def agrupar_parecidas(itens, texto, grupo=lambda x: None):
+    """Lista de grupos (listas de posições) de itens com a mesma essência."""
     sigs = [_assinatura(texto(x)) for x in itens]
     idx = {}
     for i, sg in enumerate(sigs):
@@ -192,13 +190,62 @@ def tirar_parecidas(itens, texto, data, grupo=lambda x: None):
     grupos = {}
     for i in range(len(itens)):
         grupos.setdefault(raiz(i), []).append(i)
+    return [g for g in grupos.values() if len(g) > 1]
+
+
+def tirar_parecidas(itens, texto, data, grupo=lambda x: None):
+    """itens: lista de objetos; texto(x), data(x) 'dd/mm/aaaa', grupo(x) separa
+    o que nunca se mistura (ex.: STF x STJ). Devolve (lista sem as mais antigas
+    de cada grupo de teses parecidas, quantas saíram)."""
     sai = set()
-    for g in grupos.values():
-        if len(g) > 1:
-            # a mais recente fica (empate: a que aparece primeiro)
-            fica = max(g, key=lambda i: (_dia(data(itens[i])), -i))
-            sai.update(i for i in g if i != fica)
+    for g in agrupar_parecidas(itens, texto, grupo):
+        # a mais recente fica (empate: a que aparece primeiro)
+        fica = max(g, key=lambda i: (_dia(data(itens[i])), -i))
+        sai.update(i for i in g if i != fica)
     return [x for i, x in enumerate(itens) if i not in sai], len(sai)
+
+
+def _rotulo_precedente(d):
+    """"STJ Tema 209", "STF Tema 1396", "STJ Edição 228 · tese 4"."""
+    return " ".join(x for x in (d.get("orgao"), d.get("precedenteLabel") or "Tema", str(d.get("tema") or "")) if x)
+
+
+def juntar_teses_e_temas():
+    """A mesma tese aparece na Jurisprudência em Teses do STJ e como Tema
+    (Repetitivo/Repercussão Geral). Fica um card só, com o conteúdo mais recente,
+    e o número do outro vai em "tambem" (o card mostra os dois números)."""
+    f_rg, f_te = "rg-repetitivos-data.js", "stj/teses.json"
+    p, rg, suf, ind = ler_js(f_rg)
+    obj, nl = ler_json(f_te)
+    teses = obj["itens"]
+    todos = [("rg", d) for d in rg] + [("te", d) for d in teses]
+    cruzadas = 0
+    sai = set()
+    for g in agrupar_parecidas(todos, lambda x: x[1].get("tese")):
+        if len({todos[i][0] for i in g}) < 2:
+            continue   # tudo da mesma lista: já tratado antes
+        # fica a mais recente; empate: o Tema (tem processo e relator)
+        fica = max(g, key=lambda i: (_dia(todos[i][1].get("data")), todos[i][0] == "rg", -i))
+        sobreviv = todos[fica][1]
+        rotulos = list(sobreviv.get("tambem") or [])
+        for i in g:
+            if i == fica:
+                continue
+            d = todos[i][1]
+            for r in [_rotulo_precedente(d)] + list(d.get("tambem") or []):
+                if r not in rotulos and r != _rotulo_precedente(sobreviv):
+                    rotulos.append(r)
+            sai.add(i)
+            cruzadas += 1
+        sobreviv["tambem"] = rotulos
+    rg = [d for i, (t, d) in enumerate(todos) if t == "rg" and i not in sai]
+    teses = [d for i, (t, d) in enumerate(todos) if t == "te" and i not in sai]
+    obj["itens"] = teses
+    if "total" in obj:
+        obj["total"] = len(teses)
+    resumo.append(f"Teses x Temas: {cruzadas} cards juntados (ficam {len(rg)} Temas e {len(teses)} teses)")
+    gravar_js(f_rg, p, rg, suf, ind)
+    gravar_json(f_te, obj, nl)
 
 
 # ---- Controle concentrado -----------------------------------------------------
@@ -557,6 +604,7 @@ def main():
     if tudo or "decisoes" in alvos:
         limpar_rg()
         limpar_teses()
+        juntar_teses_e_temas()
         limpar_extras()
         limpar_tst()
         limpar_indice("stj/acordaos/indice.json", ["processo", "data", "titulo", "resultado"], "Acórdãos do STJ")
