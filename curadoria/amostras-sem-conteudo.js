@@ -134,7 +134,7 @@ for (const x of lista) {
   f.push(x);
 }
 let md = `# Decisões sem conteúdo de estudo — amostras para validar (${hoje})\n\n`;
-md += `Triagem **automática** (classificador da página de curadoria, \`curadoria/score.js\`). Nada foi apagado. Cada fonte traz: quantos registros o classificador marcou como "sem conteúdo de estudo", a distribuição por tipo de motivo (palavras no texto) e 12 exemplos sorteados para você conferir. Se os exemplos confirmam, a regra pode virar remoção; se algum for útil, anote o número e eu ajusto o classificador.\n\n`;
+md += `Triagem **automática** (classificador da página de curadoria, \`curadoria/score.js\`). Nada foi apagado. Cada fonte traz: quantos registros o classificador marcou como "sem conteúdo de estudo", a distribuição por tipo de motivo (palavras no texto) e 12 exemplos sorteados com o **teor inteiro** do registro (sem cortes) para você conferir. Se os exemplos confirmam, a regra pode virar remoção; se algum for útil, anote o número e eu ajusto o classificador.\n\n`;
 for (const [fonte, arr] of Object.entries(porFonte).sort((a, b) => b[1].length - a[1].length)) {
   const tot = lista.filter((x) => x._sourceLabel === fonte).length;
   md += `## ${fonte} — ${arr.length.toLocaleString("pt-BR")} de ${tot.toLocaleString("pt-BR")} (${(100 * arr.length / tot).toFixed(1).replace(".", ",")}%)\n\n`;
@@ -146,7 +146,7 @@ for (const [fonte, arr] of Object.entries(porFonte).sort((a, b) => b[1].length -
   md += `Exemplos sorteados:\n\n`;
   for (const i of idx) {
     const x = arr[i], t = corpo(x);
-    md += `- **${x.processo || x.id}** · ${x.dataJulgamento || x.data || "s/d"} · _${motivo(t)}_ — ${t.slice(0, 280).replace(/\|/g, "/")}${t.length > 280 ? "…" : ""}\n`;
+    md += `- **${x.processo || x.id}** · ${x.dataJulgamento || x.data || "s/d"} · _${motivo(t)}_ — \n\n  ${t}\n\n`;
   }
   md += "\n";
 }
