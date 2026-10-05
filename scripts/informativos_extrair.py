@@ -48,7 +48,10 @@ def blocos_de_html(pagina):
     t = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", pagina)
     t = re.sub(r"(?i)</?(p|div|li|ul|ol|h\d|tr|table|section|article|br)\b[^>]*>", "\n\n", t)
     t = _html.unescape(re.sub(r"<[^>]+>", " ", t))
-    return blocos_do_texto(t)
+    bl = blocos_do_texto(t)
+    # na página, os rótulos costumam vir em "Caixa Baixa" e sozinhos: volta a MAIÚSCULAS
+    rot = re.compile(r"^(processo|ramo do direito|tema|destaque|informa[çc][õo]es do inteiro teor|informa[çc][õo]es adicionais)\s*:?$", re.I)
+    return [b.upper() if rot.match(b) else b for b in bl]
 
 
 def blocos_de_pdf(corpo, texto_de_pdf=None):
