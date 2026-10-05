@@ -1,0 +1,183 @@
+# Decisões sem conteúdo de estudo — amostras para validar (2026-10-05)
+
+Triagem **automática** (classificador da página de curadoria, `curadoria/score.js`). Nada foi apagado. Cada fonte traz: quantos registros o classificador marcou como "sem conteúdo de estudo", a distribuição por tipo de motivo (palavras no texto) e 12 exemplos sorteados para você conferir. Se os exemplos confirmam, a regra pode virar remoção; se algum for útil, anote o número e eu ajusto o classificador.
+
+## STF · controle concentrado — 5.430 de 6.861 (79,1%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 2.172 |
+| liminar / tutela (provisório) | 1.705 |
+| agravo/embargos sem tese nova | 1.010 |
+| perda de objeto / prejudicado | 268 |
+| não conhecimento / inadmissão | 183 |
+| processual (prazo, custas, representação) | 72 |
+| desistência / homologação | 18 |
+| aplica tese/precedente já firmado | 2 |
+
+Exemplos sorteados:
+
+- **ADI 5725** · 2018-12-06 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade, conheceu da ação direta e julgou procedente o pedido formulado para declarar a inconstitucionalidade da Lei 18.909/2016, do Estado do Paraná, nos termos do voto do Relator. Não participou, justificadamente, deste julgamento, o Ministro Gilmar…
+- **ADI 3075** · 2003-12-19 · _liminar / tutela (provisório)_ — DECISÃO: O TRIBUNAL, POR MAIORIA, DEFERIU O PEDIDO CAUTELAR E SUSPENDEU A EFICÁCIA DA LEI Nº 14.235, DE 2003, DO ESTADO DO PARANÁ, VENCIDOS, EM DIFERENTE EXTENSÃO, OS SENHORES MINISTROS JOAQUIM BARBOSA, CARLOS BRITTO, MARCO AURÉLIO E SEPÚLVEDA PERTENCE. VOTOU O PRESIDENTE, O SENH…
+- **ADI 1776 e ADI 4387 (julgamento conjunto)** · 2014-09-04 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade e nos termos do voto do Relator, julgou procedente a ação direta. Ausente, justificadamente, o Ministro Celso de Mello. Presidiu o julgamento o Ministro Ricardo Lewandowski, Vice-Presidente no exercício da Presidência. Plenário, 04.09.2014. Pr…
+- **ADI 5336** · 2018-10-17 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade, conheceu da ação direta e julgou-a procedente para declarar a inconstitucionalidade formal da Lei 6.296/2012 do Estado do Rio de Janeiro, nos termos do voto do Relator. Ausentes, justificadamente, os Ministros Gilmar Mendes e Ricardo Lewandow…
+- **ADI 3327** · 2013-08-08 · _sem padrão identificado_ — Decisão: O Tribunal, por maioria, julgou improcedente a ação direta, vencidos os Ministros Dias Toffoli (Relator), Rosa Weber, Luiz Fux, Ricardo Lewandowski e Marco Aurélio. Redigirá o acórdão a Ministra Cármen Lúcia. Ausente, neste julgamento, o Ministro Joaquim Barbosa (Preside…
+- **ADI 6400** · 2021-06-08 · _não conhecimento / inadmissão_ — Decisão: O Tribunal, por maioria, rejeitou os embargos de declaração e determinou a imediata certificação do trânsito em julgado, nos termos do voto do Relator, vencido o Ministro Marco Aurélio, que não conhecia do recurso. Plenário, Sessão Virtual de 28.5.2021 a 7.6.2021. Embarg…
+- **ADI 2145** · 2000-06-07 · _liminar / tutela (provisório)_ — Decisão : O Tribunal, por maioria, vencido o Senhor Ministro Marco Aurélio, deferiu o pedido de medida cautelar, para suspender, com eficácia ex tunc, os efeitos do inciso II do art. 14, e da expressão "e Agente Tributário Estadual", constante do art. 15, ambos da Lei nº 2.081, d…
+- **ADI 4461** · 2019-11-11 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade, conheceu parcialmente da ação direta e, nessa parte, julgou improcedente o pedido, para declarar a constitucionalidade dos arts. 12; 15, parágrafo único; 22, VI e VII; e 25 da Lei nº 2.250/2009 do Estado do Acre, nos termos do voto do Relator…
+- **ADI 2028, ADI 2036, ADI 2228 e ADI 2621 (julgamento conjunto)** · 2019-12-18 · _agravo/embargos sem tese nova_ — Decisão: O Tribunal, por maioria, acolheu parcialmente os embargos de declaração, sem efeito modificativo, para (i) sanando erro material, excluir das ementas das ADIs 2028 e 2036 a expressão "ao inaugurar a divergência", tendo em vista que o julgamento dessas duas ações se deu p…
+- **ADI 2310** · 2000-12-19 · _liminar / tutela (provisório)_ — PARA SUSPENDER, AD REFERENDUM DO PLENÁRIO, A EFICÁCIA DOS ARTIGOS 1º, 2º E PARÁGRAFO ÚNICO, 12 E § 1º, 13 E PARÁGRAFO ÚNICO, 15, 24 E INCISO I, 27 E 30 DA LEI Nº 9.986/20000, ATÉ FINAL JULGAMENTO DA ADI. DECISÃO LIMINAR - DEFERIDA
+- **ADPF 340** · 2019-04-05 · _agravo/embargos sem tese nova_ — Decisão: O Tribunal, por unanimidade, negou provimento ao agravo regimental, nos termos do voto do Relator. Plenário, Sessão Virtual de 29.3.2019 a 4.4.2019. Agravo regimental não provido
+- **ADI 4357 e ADI 4425 (julgamento conjunto)** · 2015-03-25 · _sem padrão identificado_ — Decisão: Concluindo o julgamento, o Tribunal, por maioria e nos termos do voto, ora reajustado, do Ministro Luiz Fux (Relator), resolveu a questão de ordem nos seguintes termos: 1) - modular os efeitos para que se dê sobrevida ao regime especial de pagamento de precatórios, insti…
+
+## STJ · acórdãos — 2.386 de 15.152 (15,7%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 1.112 |
+| não conhecimento / inadmissão | 292 |
+| aplica tese/precedente já firmado | 281 |
+| processual (prazo, custas, representação) | 241 |
+| agravo/embargos sem tese nova | 179 |
+| perda de objeto / prejudicado | 129 |
+| liminar / tutela (provisório) | 80 |
+| desistência / homologação | 72 |
+
+Exemplos sorteados:
+
+- **AREsp 2715818** · 2026-05-18 · _agravo/embargos sem tese nova_ — AGRAVO EM RECURSO ESPECIAL. PROCESSUAL CIVIL E DIREITO BANCÁRIO. AÇÃO DE EXECUÇÃO DE TÍTULO EXTRAJUDICIAL. EMBARGOS À EXECUÇÃO. CURADOR ESPECIAL. NEGATIVA DE PRESTAÇÃO JURISDICIONAL. INOCORRÊNCIA. EXCEÇÃO DE CONTRATO NÃO CUMPRIDO. FUNDAMENTAÇÃO DEFICIENTE. SÚMULA N. 284/STF. NULI…
+- **REsp 2225920** · 2025-10-13 · _processual (prazo, custas, representação)_ — PROCESSUAL CIVIL. RECURSO ESPECIAL. PROMESSA DE COMPRA E VENDA. EXTINÇÃO DO PROCESSO SEM JULGAMENTO DO MÉRITO. NÃO RECOLHIMENTO DE CUSTAS COMPLEMENTARES. INTIMAÇÃO PESSOAL DA PARTE. NECESSIDADE. RECURSO ESPECIAL PROVIDO. 1. É assente o entendimento desta Corte Superior de que a e…
+- **AREsp 3181236** · 2026-08-19 · _aplica tese/precedente já firmado_ — PROCESSUAL CIVIL. ADMINISTRATIVO. AÇÃO ORDINÁRIA. CONVERSÃO EM PECÚNIA DE LICENÇAS NÃO GOZADAS. AGRAVO EM RECURSO ESPECIAL CONHECIDO. ÓBICES À ADMISSIBILIDADE DO RECURSO ESPECIAL. O ACÓRDÃO RECORRIDO ESTÁ EM CONSONÂNCIA COM O ENTENDIMENTO DESTA CORTE SUPERIOR. SÚMULA 83/STJ. RECU…
+- **REsp 2141547** · 2026-03-09 · _sem padrão identificado_ — DIREITO CIVIL E PROCESSUAL CIVIL. RECURSO ESPECIAL. AÇÕES REIVINDICATÓRIA E DE USUCAPIÃO. CONEXÃO. MATÉRIA DE DEFESA. SÚMULA N. 237/STF. EXTINÇÃO SEM RESOLUÇÃO DE MÉRITO. OMISSÃO DO JULGADO. QUESTÃO RELEVANTE. RETORNO À ORIGEM. 1. A usucapião pode ser arguida como matéria de defe…
+- **AREsp 1325652** · 2022-10-04 · _processual (prazo, custas, representação)_ — PROCESSUAL CIVIL E ADMINISTRATIVO. NEGATIVA DE PRESTAÇÃO JURISDICIONAL. INEXISTÊNCIA. AÇÃO CIVIL PÚBLICA. MINISTÉRIO PÚBLICO FEDERAL. LEGITIMIDADE. ENTIDADE DE PREVIDÊNCIA COMPLEMENTAR. INSTITUIÇÃO DO REGIME JURÍDICO ÚNICO. COPARTICIPAÇÃO DA FUNASA. IMPOSSIBILIDADE. DEVOLUÇÃO DE …
+- **Rcl 45676** · 2024-03-06 · _liminar / tutela (provisório)_ — RECLAMAÇÃO AJUIZADA PELA UNIÃO PARA GARANTIR A AUTORIDADE DE DECISÃO DO STJ. ACÓRDÃO DA CORTE ESPECIAL QUE ESTIPULOU A INVIABILIDADE DA CONCESSÃO DE MEDIDA LIMINAR DEFERITÓRIA DE INGRESSO DE ESTRANGEIROS NO BRASIL, À MÍNGUA DE VISTO, EXCETO QUANDO HAJA (A) O ESGOTAMENTO DAS POSSI…
+- **REsp 2108723** · 2025-08-25 · _sem padrão identificado_ — RECURSO ESPECIAL. DIREITO CIVIL. SEGURO. PRESTAÇÃO JURISDICIONAL. NEGATIVA. AFASTAMENTO. DOENÇA OCUPACIONAL. CLÁUSULA RESTRITIVA. EXISTÊNCIA. EQUIPARAÇÃO. ACIDENTE PESSOAL. IMPOSSIBILIDADE. 1. Não se configura a negativa de prestação jurisdicional quando o acórdão recorrido se ma…
+- **AREsp 2665416** · 2025-11-03 · _sem padrão identificado_ — AGRAVO EM RECURSO ESPECIAL. AÇÃO MONITÓRIA. CONTRATO DE PRESTAÇÃO DE SERVIÇOS ODONTOLÓGICOS. INADIMPLEMENTO CONTRATUAL. JUROS DE MORA. DÍVIDA ILÍQUIDA. NECESSIDADE DE APURAÇÃO JUDICIAL. TERMO INICIAL. CITAÇÃO. NEGATIVA DE PRESTAÇÃO JURISDICIONAL. INOCORRÊNCIA. AGRAVO CONHECIDO PA…
+- **REsp 2166525** · 2025-11-17 · _sem padrão identificado_ — CIVIL. PROCESSUAL CIVIL. RECURSO ESPECIAL. REVELIA. PRESUNÇÃO DE VERACIDADE. INÉRCIA DA RÉ NA ORIGEM. BOA-FÉ DO AUTOR RECONHECIDA PELAS INSTÂNCIAS ORDINÁRIAS. ACESSÃO INVERSA E DIREITO DE RETENÇÃO. ENRIQUECIMENTO SEM CAUSA AFASTADO. RECURSO NÃO PROVIDO. 1. A manutenção dos efeito…
+- **REsp 2227345** · 2025-10-27 · _sem padrão identificado_ — DIREITO CIVIL E PROCESSUAL CIVIL. RECURSO ESPECIAL. AÇÃO DE INSOLVÊNCIA CIVIL. BEM DE FAMÍLIA. IMPENHORABILIDADE. BEM INDIVISÍVEL. IMPENHORABILIDADE DA TOTALIDADE DO BEM. 1. Ação de insolvência civil. 2. A jurisprudência do STJ se posiciona no sentido de que a proteção da impenho…
+- **REsp 2166423** · 2025-12-09 · _aplica tese/precedente já firmado_ — CIVIL. PROCESSUAL CIVIL. RECURSO ESPECIAL. EMBARGOS À EXECUÇÃO. HONORÁRIOS CONTRATUAIS E HONORÁRIOS SUCUMBENCIAIS. NEGATIVA DE PRESTAÇÃO JURISDICIONAL. INOCORRÊNCIA. BIS IN IDEM NA VIA JUDICIAL. CLÁUSULAS CONTRATUAIS. SÚMULA 5/STJ. RECONHECIMENTO. RECURSO NÃO PROVIDO. 1. Não há n…
+- **CC 217665** · 2026-04-14 · _sem padrão identificado_ — CONFLITO DE COMPETÊNCIA. FALÊNCIA. EXECUÇÃO TRABALHISTA. SUJEIÇÃO AO JUÍZO UNIVERSAL. CONFLITO CONHECIDO. COMPETÊNCIA DO JUÍZO UNIVERSAL. 1. A concentração de ações no juízo universal ocorre para preservar o plano de recuperação ou o procedimento de falência da empresa, cabendo a…
+
+## STJ · acórdãos · sem metadados do índice — 655 de 4.672 (14,0%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| não conhecimento / inadmissão | 655 |
+
+Exemplos sorteados:
+
+- **000913995** · s/d · _não conhecimento / inadmissão_ — CIVIL E PROCESSUAL CIVIL. RECURSO ESPECIAL. AÇÃO DE OBRIGAÇÃO DE FAZER CUMULADA COM INDENIZAÇÃO POR DANOS MORAIS. PLANO DE SAÚDE. COBERTURA PARA CIRURGIA PÓS-BARIÁTRICA. RECUSA. DÚVIDA RAZOÁVEL. DANOS MORAIS NÃO DEMONSTRADOS NAS INSTÂNCIAS ORDINÁRIAS. REFORMA DO JULGADO. IMPOSSIB…
+- **000905922** · s/d · _não conhecimento / inadmissão_ — EMBARGOS DE DIVERGÊNCIA EM RECURSO ESPECIAL. IMPROPRIEDADE DA VIA ELEITA PARA REEXAME DA ADMISSIBILIDADE DO RECURSO ESPECIAL. SÚMULA 284/STF. SÚMULA 315/STJ. DISSÍDIO JURISPRUDENCIAL. NÃO DEMONSTRAÇÃO. AUSÊNCIA DE SIMILITUDE FÁTICA E JURÍDICA. INADMISSIBILIDADE. Embargos de diver…
+- **1066506** · s/d · _não conhecimento / inadmissão_ — PROCESSUAL CIVIL E TRIBUTÁRIO. AGRAVO EM RECURSO ESPECIAL. DECISÃO DE INADMISSIBILIDADE DO RECURSO ESPECIAL. AUSÊNCIA DE IMPUGNAÇÃO ESPECÍFICA DE TODOS OS FUNDAMENTOS DA DECISÃO AGRAVADA. PRINCÍPIO DA DIALETICIDADE. ART. 932, INCISO III, DO CPC. SÚMULA N. 182 DO STJ. AGRAVO EM RE…
+- **930267** · s/d · _não conhecimento / inadmissão_ — PROCESSUAL CIVIL. AGRAVO EM RECURSO ESPECIAL. AÇÃO DE ADJUDICAÇÃO COMPULSÓRIA. DEMARCAÇÃO E REGULARIZAÇÃO DE IMÓVEL. INADEQUAÇÃO DA VIA ELEITA. VIOLAÇÃO AO ART. 1.022 DO CPC. NÃO OCORRÊNCIA. ART. 501 DO CPC. DISSÍDIO JURISPRUDENCIAL. AUSÊNCIA DE COTEJO ANALÍTICO. SÚMULAS 7/STJ E …
+- **921788** · s/d · _não conhecimento / inadmissão_ — AGRAVO EM RECURSO ESPECIAL. ARTIGOS APONTADOS COMO VIOLADOS. ALEGAÇÃO GENÉRICA. SÚMULA 284/STF. ACÓRDÃO BASEADO EM ANÁLISE FÁTICA. PERÍCIA TÉCNICA. CULPA EXCLUSIVA DA AGRAVANTE NA QUEDA DO MURO. REVISÃO. SÚMULA 7/STJ. 1. A interdição opera efeitos ex nunc (REsp n. 1.943.699/SP, r…
+- **928572** · s/d · _não conhecimento / inadmissão_ — AGRAVO EM RECURSO ESPECIAL. EXECUÇÃO. MORTE. EXECUTADO. HABILITAÇÃO. HERDEIROS. PRESCRIÇÃO INTERCORRENTE. AUSÊNCIA DE PRAZO. NÃO OCORRÊNCIA. 1. Nos termos da jurisprudência desta Corte, o falecimento de uma das partes acarreta a suspensão do processo e, diante da ausência de prev…
+- **1448677** · s/d · _não conhecimento / inadmissão_ — PROCESSUAL CIVIL E TRIBUTÁRIO. AGRAVO EM RECURSO ESPECIAL. DECISÃO DE INADMISSÃO DO RECURSO ESPECIAL NA ORIGEM. AUSÊNCIA DE IMPUGNAÇÃO ESPECÍFICA. SÚMULA 182/STJ. MANUTENÇÃO DO ÓBICE DA SÚMULA N. 7/STJ. AGRAVO NÃO CONHECIDO. 1. O agravo em recurso especial deve atacar especificam…
+- **000892042** · s/d · _não conhecimento / inadmissão_ — RECURSO ESPECIAL. RECUPERAÇÃO JUDICIAL. ASSEMBLEIA-GERAL DE CREDORES. ABUSO DO DIREITO DE VOTO. ACÓRDÃO RECORRIDO. MODIFICAÇÃO DA CONCLUSÃO. NECESSIDADE DE REEXAME DE FATOS E PROVAS. IMPOSSIBILIDADE. SÚMULA 7/STJ. RECURSO ESPECIAL NÃO CONHECIDO. 1. Agravo de instrumento interpost…
+- **1446679** · s/d · _não conhecimento / inadmissão_ — PROCESSUAL CIVIL. ADMINISTRATIVO. EXECUÇÃO INDIVIDUAL DE SENTENÇA COLETIVA. COMPENSAÇÃO DE VALORES PAGOS ADMINISTRATIVAMENTE. AGRAVO EM RECURSO ESPECIAL CONHECIDO. ÓBICES À ADMISSIBILIDADE DO RECURSO ESPECIAL. ACÓRDÃO RECORRIDO EM CONSONÂNCIA COM O ENTENDIMENTO DESTA CORTE SUPERI…
+- **000906440** · s/d · _não conhecimento / inadmissão_ — RECURSO ESPECIAL. CONTRATO DE LOCAÇÃO. AÇÃO REVISIONAL. CUMPRIMENTO DE SENTENÇA. PREQUESTIONAMENTO. AUSÊNCIA. SÚMULA Nº 211/STJ. 1. A ausência de prequestionamento da matéria suscitada no recurso especial, a despeito da oposição de embargos de declaração, impede o conhecimento do…
+- **1449071** · s/d · _não conhecimento / inadmissão_ — PROCESSO CIVIL E ADMINISTRATIVO. AGRAVO EM RECURSO ESPECIAL. MANDADO DE SEGURANÇA. EDUCAÇÃO. MATRÍCULA EM CURSO SUPLETIVO. MENOR DE 18 (DEZOITO) ANOS. AUSÊNCIA DE IMPUGNAÇÃO CONCRETA DO FUNDAMENTO DA DECISÃO QUE NÃO ADMITIU O RECURSO. INCIDÊNCIA DA SÚMULA N. 182 DO STJ. AGRAVO EM…
+- **930329** · s/d · _não conhecimento / inadmissão_ — PROCESSUAL CIVIL. AGRAVO EM RECURSO ESPECIAL. INTERPOSIÇÃO DE DOIS RECURSOS CONTRA A MESMA DECISÃO. PRINCÍPO DA UNIRRECORRIBILIDADE. DESISTÊNCIA DO PRIMEIRO EM FAVOR DO SEGUNDO. PRECLUSÃO CONSUMATIVA. RECONHECIMENTO. AGRAVO NÃO CONHECIDO. 1. Em razão do princípio da unirrecorribi…
+
+## Teses e decisões de referência · extras — 499 de 528 (94,5%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 271 |
+| liminar / tutela (provisório) | 162 |
+| processual (prazo, custas, representação) | 32 |
+| agravo/embargos sem tese nova | 26 |
+| desistência / homologação | 6 |
+| não conhecimento / inadmissão | 2 |
+
+Exemplos sorteados:
+
+- **ADPF 635** · 2025-04-03 · _desistência / homologação_ — O Plenário homologou parcialmente o plano de redução da letalidade policial apresentado pelo Estado do Rio de Janeiro e determinou a adoção de… O Plenário homologou parcialmente o plano de redução da letalidade policial apresentado pelo Estado do Rio de Janeiro e determinou a ado…
+- **SS 5377 e SS 5371 (julgamento conjunto)** · s/d · _sem padrão identificado_ — Cuida-se de suspensão de segurança proposta pelo Ministério Público do estado de São Paulo, com o objetivo de sustar os efeitos de decisão proferida… Cuida-se de suspensão de segurança proposta pelo Ministério Público do estado de São Paulo, com o objetivo de sustar os efeitos de…
+- **STP 174** · s/d · _liminar / tutela (provisório)_ — Cuida-se de suspensão de tutela provisória ajuizada pelo Município de Belo Horizonte/MG, visando sustar os efeitos da decisão exarada por… Cuida-se de suspensão de tutela provisória ajuizada pelo Município de Belo Horizonte/MG, visando sustar os efeitos da decisão exarada por… Di…
+- **SL 1527** · s/d · _liminar / tutela (provisório)_ — Trata-se de pedido de suspensão de liminar ajuizado pelo Município de Iracemápolis/SP contra decisão proferida pelo Órgão Especial do Tribunal de… Trata-se de pedido de suspensão de liminar ajuizado pelo Município de Iracemápolis/SP contra decisão proferida pelo Órgão Especial do…
+- **ACO 3458** · s/d · _liminar / tutela (provisório)_ — O Estado de São Paulo ajuizou a presente ação cível originária em face da União, postulando, em sede de tutela cautelar de urgência, a concessão de… O Estado de São Paulo ajuizou a presente ação cível originária em face da União, postulando, em sede de tutela cautelar de urgência…
+- **Rcl 46962** · s/d · _liminar / tutela (provisório)_ — Trata-se de reclamação constitucional, com pedido de medida liminar, ajuizada pelo Município de Sigefredo Pacheco/PI, em face da decisão proferida… Trata-se de reclamação constitucional, com pedido de medida liminar, ajuizada pelo Município de Sigefredo Pacheco/PI, em face da dec…
+- **RHC 176634** · s/d · _sem padrão identificado_ — Trata-se de pedido de reconsideração do Recurso em Habeas Corpus proposto por sua defesa técnica, uma vez que não foram apreciadas as novas… Trata-se de pedido de reconsideração do Recurso em Habeas Corpus proposto por sua defesa técnica, uma vez que não foram apreciadas as novas…
+- **ARE 1197779 AgR** · 2019-10-25 · _sem padrão identificado_ — RECURSO EXTRAORDINÁRIO COM AGRAVO – AÇÃO CIVIL PÚBLICA PARA DESIGNAÇÃO DE DELEGADO E SERVIDORES EM DELEGACIA DE POLÍCIA – OBRIGAÇÃO… RECURSO EXTRAORDINÁRIO COM AGRAVO – AÇÃO CIVIL PÚBLICA PARA DESIGNAÇÃO DE DELEGADO E SERVIDORES EM DELEGACIA DE POLÍCIA – OBRIGAÇÃO… Designação de …
+- **ADC 81 e ADI 7.187 (julgamento conjunto)** · 2024-06-04 · _sem padrão identificado_ — O STF validou a regra do Programa Mais Médicos (Lei 12.871/2013) que exige o chamamento público das instituições que queiram abrir novos cursos e… O STF validou a regra do Programa Mais Médicos (Lei 12.871/2013) que exige o chamamento público das instituições que queiram abrir no…
+- **HC 208.240** · 2024-04-11 · _sem padrão identificado_ — Por unanimidade, o STF fixou entendimento de que a abordagem policial e a busca pessoal motivadas por raça, sexo, orientação sexual, cor da pele ou… Por unanimidade, o STF fixou entendimento de que a abordagem policial e a busca pessoal motivadas por raça, sexo, orientação sexual…
+- **STP 336** · s/d · _liminar / tutela (provisório)_ — Cuida-se de suspensão de tutela provisória ajuizada pela Companhia Municipal de Trânsito e Transporte (CMTT) com o objetivo de sustar decisão… Cuida-se de suspensão de tutela provisória ajuizada pela Companhia Municipal de Trânsito e Transporte (CMTT) com o objetivo de sustar dec…
+- **MS 37062** · s/d · _liminar / tutela (provisório)_ — Trata-se de mandado de segurança coletivo, com pedido de medida liminar, impetrado, preventivamente, pela Associação Nacional dos Contribuintes de… Trata-se de mandado de segurança coletivo, com pedido de medida liminar, impetrado, preventivamente, pela Associação Nacional dos Co…
+
+## STF · reclamações — 449 de 518 (86,7%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 337 |
+| liminar / tutela (provisório) | 48 |
+| perda de objeto / prejudicado | 44 |
+| processual (prazo, custas, representação) | 12 |
+| não conhecimento / inadmissão | 5 |
+| agravo/embargos sem tese nova | 3 |
+
+Exemplos sorteados:
+
+- **Rcl 3737** · 2009-05-20 · _sem padrão identificado_ — Decisão: Prosseguindo no julgamento, o Tribunal, por unanimidade e nos termos do voto da Relatora, conheceu em parte da reclamação e, na parte conhecida, por maioria, julgou-a procedente, vencido o Senhor Ministro Marco Aurélio, que a julgava improcedente. Votou o Presidente, Min…
+- **Rcl 1421** · 2008-04-03 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade e nos termos do voto do relator, julgou improcedente a reclamação. Votou a Presidente, Ministra Ellen Gracie. Ausente, justificadamente, o Senhor Ministro Joaquim Barbosa. Falou pelo reclamante o Dr. Ricardo Antônio Rezende, Procurador do Esta…
+- **Rcl 2349** · 2004-03-10 · _sem padrão identificado_ — DECISÃO: O TRIBUNAL, POR DECISÃO MAJORITÁRIA, JULGOU PROCEDENTE A RECLAMAÇÃO E DETERMINOU A REMESSA DOS AUTOS DA RESPECTIVA INVESTIGAÇÃO A ESTA CORTE, VENCIDOS OS SENHORES MINISTROS CARLOS VELLOSO, RELATOR, E JOAQUIM BARBOSA, QUE A JULGAVAM IMPROCEDENTE. VOTOU O PRESIDENTE, O SEN…
+- **Rcl 8853 e Rcl 5826 (mesma decisão)** · 2015-03-18 · _sem padrão identificado_ — Decisão: O Tribunal, por maioria, julgou improcedente a reclamação, vencida a Ministra Cármen Lúcia (Relatora) e parcialmente vencido o Ministro Ayres Britto. O Tribunal rejeitou a proposta do Ministro Marco Aurélio, no que foi acompanhado pela Ministra Cármen Lúcia, de conversão…
+- **Rcl 2314** · 2006-05-04 · _sem padrão identificado_ — Decisão: O Tribunal, à unanimidade, julgou procedente a reclamação, nos termos do voto do Relator. Ausente, justificadamente, neste julgamento, o Senhor Ministro Marco Aurélio. Presidiu o julgamento a Senhora Ministra Ellen Gracie. Plenário, 04.05.2006. Procedente
+- **Rcl 1519 e Rcl 1503 (mesma decisão)** · 2011-11-17 · _sem padrão identificado_ — Decisão: O Tribunal, por maioria e nos termos do voto do Senhor Ministro Dias Toffoli, que redigirá o acórdão, julgou procedente a reclamação, contra o voto do Senhor Ministro Carlos Velloso (Relator). Ausentes, justificadamente, os Senhores Ministros Cezar Peluso (Presidente) e …
+- **Rcl 22012** · 2017-12-05 · _liminar / tutela (provisório)_ — Decisão: A Turma, por maioria, julgou improcedente a reclamação nos termos do voto do Ministro Ricardo Lewandowski, ficando, em consequência, revogada a liminar anteriormente deferida, vencidos os Ministros Dias Toffoli (Relator) e Gilmar Mendes. Ausente, justificadamente, o Mini…
+- **Rcl 2309** · 2003-10-08 · _sem padrão identificado_ — Decisão: O Tribunal julgou improcedente a reclamação. Decisão unânime. Ausentes, justificadamente, os Senhores Ministros Celso de Mello e Nelson Jobim e, neste julgamento, o Senhor Ministro Maurício Corrêa, Presidente. Presidiu o julgamento o Senhor Ministro Sepúlveda Pertence. P…
+- **Rcl 2594** · 2005-02-02 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade, julgou improcedente a reclamação, nos termos do voto do relator. Presidiu o julgamento o Senhor Ministro Nelson Jobim. Plenário, 02.02.2005. Improcedente
+- **Rcl 9324** · 2011-11-24 · _sem padrão identificado_ — Decisão: O Tribunal, por unanimidade e nos termos do voto da Relatora, julgou procedente a reclamação. Votou o Presidente, Ministro Cezar Peluso. Falaram, pelo reclamante, o Dr. Antônio Sérgio Altieri de Moraes Pitombo, e, pelo interessado D.V.D., o Dr. Andrei Zenkner Schmidt. Pl…
+- **Rcl 47049** · 2021-09-15 · _sem padrão identificado_ — Decisão: A Turma, por maioria, julgou procedente a reclamação e cassou a decisão reclamada quanto à atribuição à reclamante de responsabilidade subsidiária pelos débitos trabalhistas inadimplidos pela prestadora contratada, nos termos do voto da Ministra Cármen Lúcia, Redatora pa…
+- **Rcl 18930 e Rcl 18875 (mesma decisão)** · 2014-12-16 · _sem padrão identificado_ — Decisão: A Turma, por votação unânime, julgou improcedente a reclamação, nos termos do voto do Relator. Não participou, justificadamente, deste julgamento, o Senhor Ministro Gilmar Mendes. 2ª Turma, 16.12.2014. Improcedente
+
+## Teses e decisões de referência · teses — 63 de 3.269 (1,9%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 56 |
+| processual (prazo, custas, representação) | 4 |
+| não conhecimento / inadmissão | 1 |
+| agravo/embargos sem tese nova | 1 |
+| liminar / tutela (provisório) | 1 |
+
+Exemplos sorteados:
+
+- **stj-jt-183-11** · 2021-12-17 · _agravo/embargos sem tese nova_ — Não é cabível a majoração dos honorários recursais no julgamento de agravo interno. Não é cabível a majoração dos honorários recursais no julgamento de agravo interno. 183 · tese 11 Agravo Interno II
+- **AgRg no AREsp 2431005/SP** · 2025-08-08 · _sem padrão identificado_ — O acordo de não persecução penal é inaplicável aos crimes raciais. O acordo de não persecução penal é inaplicável aos crimes raciais. 264 · tese 4 Equidade Racial
+- **stj-jt-68-14** · 2016-10-19 · _liminar / tutela (provisório)_ — A legitimidade passiva na ação cautelar de exibição de documentos é do síndico e não do condomínio. A legitimidade passiva na ação cautelar de exibição de documentos é do síndico e não do condomínio. 68 · tese 14 Condomínio
+- **stj-jt-75-1** · 2017-02-22 · _sem padrão identificado_ — O ciúme, sem outras circunstâncias, não caracteriza motivo torpe. O ciúme, sem outras circunstâncias, não caracteriza motivo torpe. 75 · tese 1 Tribunal do Júri - I
+- **AgInt no REsp 2200656/RS** · 2026-03-27 · _sem padrão identificado_ — Não cabe reclamação se, na data da decisão reclamada, não havia tese fixada em IAC. Não cabe reclamação se, na data da decisão reclamada, não havia tese fixada em IAC. 277 · tese 6 Reclamação II
+- **stj-jt-56-11** · 2016-04-27 · _sem padrão identificado_ — É indevido o protesto de título de crédito prescrito. É indevido o protesto de título de crédito prescrito. 56 · tese 11 Títulos de Crédito
+- **AgRg na Rcl 48543/CE** · 2026-03-13 · _processual (prazo, custas, representação)_ — Não cabe reclamação para impugnar reconhecimento de intempestividade de recurso especial. Não cabe reclamação para impugnar reconhecimento de intempestividade de recurso especial. 276 · tese 8 Reclamação
+- **AgRg no Ag 1168584/RJ** · 2014-06-04 · _sem padrão identificado_ — É cabível reconvenção na ação de busca e apreensão. É cabível reconvenção na ação de busca e apreensão. 14 · tese 5 Busca e Apreensão - I
+- **stj-jt-155-9** · 2020-09-04 · _sem padrão identificado_ — A inércia do executado em impugnar o valor da avaliação conduz à preclusão. A inércia do executado em impugnar o valor da avaliação conduz à preclusão. 155 · tese 9 Lei de Execução Fiscal - II
+- **stj-jt-56-14** · 2016-04-27 · _sem padrão identificado_ — O protesto indevido de título enseja indenização por dano moral que se configura in re ipsa. O protesto indevido de título enseja indenização por dano moral que se configura in re ipsa. 56 · tese 14 Títulos de Crédito
+- **Rcl 47055/RJ** · 2026-04-10 · _sem padrão identificado_ — É possível o ajuizamento de reclamação concomitantemente à interposição do recurso cabível. É possível o ajuizamento de reclamação concomitantemente à interposição do recurso cabível. 278 · tese 8 Reclamação III
+- **AgRg no RHC 198250/SP** · 2025-08-08 · _sem padrão identificado_ — O crime de injúria racial, espécie do gênero racismo, é imprescritível. O crime de injúria racial, espécie do gênero racismo, é imprescritível. 264 · tese 3 Equidade Racial
+
+## Teses e decisões de referência · tst — 6 de 780 (0,8%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 6 |
+
+Exemplos sorteados:
+
+- **tst-oj-sdi1-200** · 2005-04-25 · _sem padrão identificado_ — É inválido o substabelecimento de advogado investido de mandato tácito. É inválido o substabelecimento de advogado investido de mandato tácito. 200 MANDATO TÁCITO. SUBSTABELECIMENTO INVÁLIDO
+- **tst-oj-sdi1-195** · 2005-04-25 · _sem padrão identificado_ — Não incide a contribuição para o FGTS sobre as férias indenizadas. Não incide a contribuição para o FGTS sobre as férias indenizadas. 195 FÉRIAS INDENIZADAS. FGTS. NÃO INCIDÊNCIA
+- **tst-pn-47** · s/d · _sem padrão identificado_ — O empregado despedido será informado, por escrito, dos motivos da dispensa. O empregado despedido será informado, por escrito, dos motivos da dispensa. 47 DISPENSA DE EMPREGADO
+- **tst-pn-115** · s/d · _sem padrão identificado_ — Determina-se o fornecimento gratuito de uniformes, desde que exigido seu uso pelo empregador. Determina-se o fornecimento gratuito de uniformes, desde que exigido seu uso pelo empregador. 115 UNIFORMES
+- **tst-pn-56** · s/d · _sem padrão identificado_ — São constitucionais os Decretos-Leis nºs 2012/1983, 2024/1983 e 2045/1983. São constitucionais os Decretos-Leis nºs 2012/1983, 2024/1983 e 2045/1983. 56 CONSTITUCIONALIDAD
+- **tst-oj-sdi1-t-2** · 1997-10-02 · _sem padrão identificado_ — É devido o valor das horas extras até então habitualmente prestadas. É devido o valor das horas extras até então habitualmente prestadas. 2 CSN. LICENÇA REMUNERADA
+
+## Teses e decisões de referência · rg — 1 de 2.414 (0,0%)
+
+| Tipo de motivo | Registros |
+|---|---:|
+| sem padrão identificado | 1 |
+
+Exemplos sorteados:
+
+- **RE 581488/RS** · 2015-12-03 · _sem padrão identificado_ — Diferença de classes no SUS é inconstitucional Diferença de classes no SUS é inconstitucional 579 Inconstitucionalidade da diferença de classes no SUS
+
