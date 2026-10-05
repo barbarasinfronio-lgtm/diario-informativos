@@ -289,7 +289,7 @@
     if (state.org === 'AFETADOS') { if (!emJulgamento(d)) return false; }
     else if (emJulgamento(d)) return false;
     else if (GRUPOS[state.org]) { if (d.grupo !== state.org) return false; }
-    else if(state.org !== 'all' && (d.orgao !== state.org || SOB_DEMANDA[d.grupo])) return false;
+    else if(state.org !== 'all' && (d.orgao !== state.org || (SOB_DEMANDA[d.grupo] && !(d.grupo === 'INFORMATIVOS' && termosBusca().length)))) return false;   // ao buscar, "STF"/"STJ" também acham os julgados de Informativos
     if(state.risk !== 'all' && d.risco !== state.risk) return false;
     if(state.area && d.area !== state.area) return false;
     var ts = termosBusca();
