@@ -87,10 +87,10 @@ def achar_incidente(classe, num):
         except robo.Falha as e:
             print(f"    ({nome}: {str(e)[:100]})")
             continue
-        (DEBUG / f"{classe}-{num}-{nome}.html").write_text(t[:300000], encoding="utf-8")
         m = RX_INC.search(t)
         if m:
             return m[1]
+        (DEBUG / f"{classe}-{num}-{nome}.html").write_text(t[:300000], encoding="utf-8")
         print(f"    ({nome}: {len(t)} caracteres, sem incidente)")
     raise robo.Falha("não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)")
 
@@ -131,9 +131,10 @@ def rtf_para_texto(corpo):
 
 def texto_completo(truncado, classe, num, inc):
     pg = robo.pagina(ABA.format(inc=inc, num=num, cls=classe))
-    DEBUG.mkdir(parents=True, exist_ok=True)
-    (DEBUG / f"{classe}-{num}-abaDecisoes.html").write_text(pg[:400000], encoding="utf-8")
     prefixo = norm(truncado)[:160]
+    def guardar(sufixo, conteudo):
+        DEBUG.mkdir(parents=True, exist_ok=True)
+        (DEBUG / f"{classe}-{num}-{sufixo}").write_text(conteudo[:400000], encoding="utf-8")
     # a aba mostra só os primeiros 1.000 caracteres; o texto inteiro está no arquivo
     # "Decisão de Julgamento" (RTF) do mesmo andamento
     for item in re.split(r'(?=<div class="andamento-item")', pg):
@@ -146,16 +147,18 @@ def texto_completo(truncado, classe, num, inc):
         if status != 200 or b"{\\rtf" not in corpo[:50]:
             raise robo.Falha(f"o arquivo da decisão não abriu (HTTP {status})")
         texto = rtf_para_texto(corpo)
-        (DEBUG / f"{classe}-{num}-{m[1]}.txt").write_text(texto[:20000], encoding="utf-8")
         k = norm(texto).find(prefixo[:80])
         if k < 0:
+            guardar(f"{m[1]}.txt", texto)
             raise robo.Falha("o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)")
         ini = texto.lower().find(truncado[:30].lower())
         cand = (texto[ini:] if ini >= 0 else texto).strip()
         if len(norm(cand)) <= len(norm(truncado)):
+            guardar(f"{m[1]}.txt", texto)
             raise robo.Falha("o arquivo da decisão não é maior que o texto que já temos")
         return cand
-    raise robo.Falha("não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões")
+    guardar("abaDecisoes.html", pg)
+    raise robo.Falha("não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)")
 
 
 def main():
@@ -184,6 +187,7 @@ def main():
             alvos = alvos[:a.max]
     incidentes = {}
     feitos = falhas = 0
+    motivos = {}
     for f, campo, d in alvos:
         classe, num = processo_principal(d["processo"])
         if not classe:
@@ -197,6 +201,8 @@ def main():
         except robo.Falha as e:
             falhas += 1
             print(f"  {d['processo']} ({d.get('data') or d.get('dataJulgamento')}): {e}")
+            if not a.teste:
+                motivos[d["id"]] = {"processo": d["processo"], "motivo": str(e)[:200]}
             continue
         except KeyboardInterrupt:
             print("\ninterrompido; o que já foi buscado está guardado.")
@@ -219,6 +225,7 @@ def main():
                 if c and c["campo"] == campo:
                     d[campo] = c["texto"]
             gravar_js(f, p, lista, s, i)
+        (RAIZ / "curadoria" / "textos-completos-falhas.json").write_text(json.dumps(motivos, ensure_ascii=False, indent=1), encoding="utf-8")
         print("Dados atualizados; agora rode: python3 scripts/dividir_por_ano.py")
     print(f"{feitos} completada(s), {falhas} sem sucesso.")
 
