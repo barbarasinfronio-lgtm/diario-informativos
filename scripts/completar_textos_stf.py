@@ -97,6 +97,8 @@ def achar_incidente(classe, num):
 
 def texto_completo(truncado, classe, num, inc):
     pg = robo.pagina(ABA.format(inc=inc, num=num, cls=classe))
+    DEBUG.mkdir(parents=True, exist_ok=True)
+    (DEBUG / f"{classe}-{num}-abaDecisoes.html").write_text(pg[:400000], encoding="utf-8")
     prefixo = norm(truncado)[:160]
     melhor = ""
     for b in blocos(pg):
@@ -114,7 +116,8 @@ def texto_completo(truncado, classe, num, inc):
         (DEBUG / f"{classe}-{num}.html").write_text(pg[:300000], encoding="utf-8")
         raise robo.Falha("não achei o texto na aba Decisões (HTML guardado em curadoria/debug-stf/)")
     if len(norm(melhor)) <= len(norm(truncado)):
-        raise robo.Falha("o texto da página não é maior que o que já temos")
+        raise robo.Falha(f"o texto da página ({len(melhor)} caracteres) não é maior que o que já temos "
+                         f"({len(truncado)}); página guardada em curadoria/debug-stf/")
     return melhor
 
 
