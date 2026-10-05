@@ -324,8 +324,8 @@ import atexit  # noqa: E402
 atexit.register(_fechar_janela_chrome)
 
 
-def pagina_chrome_real(url, valida=None):
-    if _achar_firefox() and not _ff["indisponivel"]:
+def pagina_chrome_real(url, valida=None, sem_firefox=False):
+    if not sem_firefox and _achar_firefox() and not _ff["indisponivel"]:
         return pagina_firefox(url, valida)   # sem janela; o Chrome só se o Firefox falhar
     if sys.platform != "darwin":
         raise Falha(f"{url} → o site só abre no Chrome do Mac")
@@ -495,7 +495,7 @@ def baixar_via_firefox(url, pagina_da_origem, valida=None):
     return None
 
 
-def pagina_firefox(url, valida=None):
+def pagina_firefox(url, valida=None, estrito=False):
     """HTML da página já montada (com JavaScript), lido por um Firefox sem janela."""
     if _ff["indisponivel"]:
         raise Falha(_ff["indisponivel"])
@@ -517,6 +517,10 @@ def pagina_firefox(url, valida=None):
             if not valida or valida(texto):
                 break
             time.sleep(2)   # páginas "Just a moment..." trocam sozinhas
+        else:
+            if valida and estrito:
+                raise Falha(f"{url} → o Firefox recebeu outra página (\"{_titulo(texto)}\"), "
+                            "provavelmente a verificação anti-robô do site")
     except (Falha, OSError, ValueError) as e:
         _firefox_fechar()   # recomeça limpo na próxima página
         raise Falha(f"{url} → falhou pelo Firefox ({e})")
@@ -547,11 +551,13 @@ def pagina(url, valida=None):
                 raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
             _via_navegador.add(host)
         try:
-            return pagina_firefox(url, valida)
-        except Falha:
-            if not _ff["indisponivel"]:
+            return pagina_firefox(url, valida, estrito=True)
+        except Falha as e:
+            if not _ff["indisponivel"] and "anti-robô" not in str(e):
                 raise
-            print(f"  (Firefox não abriu: {_ff['indisponivel']}; usando o Chrome)")
+            print(f"  (Firefox: {_ff['indisponivel'] or e}; tentando o Chrome)")
+            _via_chrome_real.add(host)
+            return pagina_chrome_real(url, valida, sem_firefox=True)
     if host in _via_chrome_real:
         return pagina_chrome_real(url, valida)
     if host not in _via_navegador:
@@ -1827,7 +1833,8 @@ def _pdf_do_informativo(org, n, link):
     print(f"  {org} nº {n}: PDF → HTTP {status}")
     if status == 200 and eh_pdf(tipo, corpo):
         return corpo
-    if status == 403 and _achar_firefox() and not _ff["indisponivel"]:
+    if status == 403 and org == "STF" and _achar_firefox() and not _ff["indisponivel"]:
+        # (STJ: a verificação anti-robô barra o Firefox sem janela; a página da edição serve)
         host = urllib.parse.urlsplit(url).hostname
         try:
             corpo = baixar_via_firefox(url, f"https://{host}/SCON/JurisprudenciaEmTesesFeed",
