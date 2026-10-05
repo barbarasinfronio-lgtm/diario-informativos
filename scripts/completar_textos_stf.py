@@ -186,10 +186,30 @@ def main():
     ap.add_argument("--teste", help='ex.: "ADI 4357" — só mostra, não grava')
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--tudo", action="store_true")
+    ap.add_argument("--importar", help="junta o cache de outro arquivo (textos já buscados em outro lugar) e aplica nos dados")
     ap.add_argument("--refazer", action="store_true", help="baixa de novo os textos gravados com cabeçalho do RTF ou palavras partidas")
     ap.add_argument("--espera", type=float, default=1.5)
     a = ap.parse_args()
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
+    if a.importar:
+        outro = json.loads(Path(a.importar).read_text(encoding="utf-8"))
+        novos = 0
+        for k, v in outro.items():
+            v["texto"] = limpa_antigo(v["texto"])
+            if k not in cache or len(v["texto"]) > len(cache[k]["texto"]) and not JUNK.search(v["texto"][:400]):
+                cache[k] = v
+                novos += 1
+        CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0), encoding="utf-8")
+        print(f"{novos} texto(s) importado(s); cache com {len(cache)}.")
+        for f, campo in FONTES:
+            p, lista, s_, i = dados_ = ler_js(f)
+            for d in lista:
+                c = cache.get(d["id"])
+                if c and c["campo"] == campo:
+                    d[campo] = c["texto"]
+            gravar_js(f, p, lista, s_, i)
+        print("Dados atualizados; agora rode: python3 scripts/dividir_por_ano.py")
+        return
     dados = {f: ler_js(f) for f, _ in FONTES}
     alvos = []
     for f, campo in FONTES:
