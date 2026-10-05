@@ -56,7 +56,7 @@
 
   // Percentuais por questão só valem para as provas objetivas (as discursivas,
   // de sentença e orais entram em "O que mais caiu", mas não nas contas).
-  function objetiva(p) { return !p.etapa || p.etapa === "objetiva"; }
+  function objetiva(p) { return (!p.etapa || p.etapa === "objetiva") && p.questoes > 0; }
   function desenhar() {
     var provas = COB.provas.filter(function (p) { return objetiva(p) && (!filtro.banca || p.banca === filtro.banca); });
     var totalQ = provas.reduce(function (s, p) { return s + p.questoes; }, 0);

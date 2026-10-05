@@ -2146,6 +2146,7 @@
 
   // Edições extraordinárias do Informativo do STJ (numeração própria, "33E").
   var STJBP_DATA = [
+    { edicao: 146, ano: 2026, data: "2026-10-02", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/146_boletim_precedentes_stj_20261002.pdf" },
     { edicao: 145, ano: 2026, data: "2026-09-18", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/145_boletim_precedentes_stj_20260918.pdf" },
     { edicao: 144, ano: 2026, data: "2026-09-08", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/144_boletim_precedentes_stj_20260908.pdf" },
     { edicao: 143, ano: 2026, data: "2026-08-21", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/143_boletim_precedentes_stj_20260821.pdf" },
