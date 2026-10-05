@@ -1194,8 +1194,29 @@ ESTADUAIS_HOSTS = ("leisestaduais.com.br", "legisla.casacivil.go.gov.br", "leis.
                    "legislacao.sef.sc.gov.br", "legislacao.pr.gov.br", "al.rs.gov.br", "almg.gov.br",
                    "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
                    "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br")
-ESTADUAIS_ORCAMENTO = 600
+ESTADUAIS_ORCAMENTO = 1100
+EXTRATOR_VERSAO = 2   # sobe quando o leitor melhora: as falhas anteriores são tentadas de novo
 DEBUG_DIR = RAIZ / "leis" / "texto-debug"
+
+
+def _alternativas(url, pg):
+    """Outros lugares onde o texto da lei pode estar, quando a página só traz a ficha."""
+    out = []
+    p = urllib.parse.urlsplit(url)
+    if (p.hostname or "").startswith("sapl.") and re.fullmatch(r"/norma/\d+/?", p.path):
+        out.append(("html", url.rstrip("/") + "/ta"))        # texto compilado do SAPL
+    for m in re.finditer(r"(?i)(?:href|src)=[\"']([^\"']+\.pdf(?:\?[^\"']*)?)[\"']", pg or ""):
+        out.append(("pdf", urllib.parse.urljoin(url, html.unescape(m.group(1)))))
+    if "sinj.df.gov.br" in url:
+        m = re.search(r'"ch_norma":"(\d+)".{0,6000}?"ar_atualizado":\{[^}]*?"filename":"([^"]+\.html?)"', pg or "", re.S)
+        if m:
+            out.append(("html", f"https://www.sinj.df.gov.br/sinj/Norma/{m.group(1)}/{m.group(2)}"))
+    vistos, res = set(), []
+    for t, u in out:
+        if u not in vistos and u != url:
+            vistos.add(u)
+            res.append((t, u))
+    return res[:4]
 
 
 def leis_estaduais(hoje_iso):
@@ -1231,7 +1252,10 @@ def leis_estaduais(hoje_iso):
         falhas = {}
     limite = (datetime.now() - timedelta(days=14)).strftime("%Y-%m-%d")
     n_antes = len(lista)
-    lista = [x for x in lista if (falhas.get(x[2]) or {}).get("em", "") < limite]   # falhou há pouco: espera
+    def em_espera(u):
+        f = falhas.get(u) or {}
+        return f.get("v") == EXTRATOR_VERSAO and f.get("em", "") >= limite   # falhou há pouco, com este leitor
+    lista = [x for x in lista if not em_espera(x[2])]
     if n_antes != len(lista):
         print(f"  (leis estaduais: {n_antes - len(lista)} com link já conferido e falho; ver leis/texto-debug/links-errados.md)")
     lenta = lambda u: any(h in u for h in ("leisestaduais.com.br", "legisla.casacivil.go.gov.br"))
@@ -1254,7 +1278,7 @@ def leis_estaduais(hoje_iso):
                 texto_pdf = texto_de_pdf(corpo)
             except Falha as e:
                 print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
-                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
                                "motivo": "erro ao abrir: " + str(e)[:140]}
                 continue
             n_err = len(ERRADOS)
@@ -1262,7 +1286,7 @@ def leis_estaduais(hoje_iso):
                 gravados += 1
                 falhas.pop(url, None)
             elif len(ERRADOS) > n_err:
-                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
                                "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
             continue
         tem_lei = lambda x: len(re.findall(r"(?i)\bart(?:igo|\.)", x)) >= 2 or nao_existe(x)
@@ -1287,29 +1311,56 @@ def leis_estaduais(hoje_iso):
                 chrome_ok[0] = False
             print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
             if not ("JavaScript" in str(e) and "Chrome" in str(e)):   # falta de permissão não é culpa do link
-                falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+                falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
                                "motivo": "erro ao abrir: " + re.sub(r"^https?://\S+ → ", "", str(e))[:140]}
             continue
         if nao_existe(pg):
             print(f"  ATENÇÃO: o link de \"{numero}\" não existe no site; não gravei")
-            falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome, "motivo": "a página não existe no site"}
+            falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome, "motivo": "a página não existe no site"}
             continue
         n_err = len(ERRADOS)
+        gravou = False
         try:
-            if salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero):
-                gravados += 1
-                falhas.pop(url, None)
+            gravou = salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero)
+            if not gravou and len(ERRADOS) == n_err:
+                # a página não traz o texto: tenta o caminho alternativo (SAPL /ta, PDF do site, arquivo do SINJ)
+                for tipo, alt in _alternativas(url, pg):
+                    try:
+                        if tipo == "pdf":
+                            status, _tp, corpo = buscar(alt)
+                            if status != 200:
+                                continue
+                            txt, ext = texto_de_pdf(corpo), paragrafos_de_pdf
+                        else:
+                            txt, ext = pagina(alt, valida=lambda x: len(x) > 500), paragrafos_do_site
+                    except Falha:
+                        continue
+                    gravou = salvar_texto(url, txt, nome, hoje_iso, extrator=ext, numero=numero)
+                    if gravou or len(ERRADOS) > n_err:
+                        break
         except OSError as e:
             print(f"  ATENÇÃO: {e}")
             continue
-        if len(ERRADOS) > n_err:
-            falhas[url] = {"em": hoje_iso, "numero": numero, "nome": nome,
+        if gravou:
+            gravados += 1
+            falhas.pop(url, None)
+        elif len(ERRADOS) == n_err and (TEXTO_DIR / f"{id_texto(url)}.json").exists():
+            falhas.pop(url, None)   # o texto já está salvo e não mudou
+        elif len(ERRADOS) > n_err:
+            falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
                            "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
+        else:
+            falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
+                           "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"}
         if not (TEXTO_DIR / f"{id_texto(url)}.json").exists() and host not in sem_amostra:
             sem_amostra.add(host)   # uma amostra por site, para eu ver como a página é
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+            # amostra curta: começo da página + trechos em volta de "Art. 1" (mostra onde está o texto)
+            trechos = [pg[:2500]]
+            for m_ in list(re.finditer(r"(?i)art(?:igo|\.)\s*1\s*[ºo°.]", pg))[:2]:
+                trechos.append("\n<!-- … -->\n" + pg[max(0, m_.start() - 1500):m_.start() + 2500])
             (DEBUG_DIR / f"{_slug(host)}.html").write_text(
-                f"<!-- {url} -->\n" + pg[:30000], encoding="utf-8")
+                f"<!-- {url} ({len(pg)} caracteres) -->\n" + "".join(trechos), encoding="utf-8")
     if falhas:
         DEBUG_DIR.mkdir(parents=True, exist_ok=True)
         falhas_arq.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
