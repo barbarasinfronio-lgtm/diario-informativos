@@ -27,7 +27,9 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # fonte: arquivo que você sobe; campo_data: onde está a data (AAAA-MM-DD);
 # campo_grupo: filtro principal da página (classe da ação / tribunal).
 CONJUNTOS = [
-    {"fonte": "controleconst/adi_dados.js", "campo_data": "data", "campo_grupo": "classe"},
+    {"fonte": "controleconst/adi_dados.js", "campo_data": "data", "campo_grupo": "classe",
+     # P = prioritárias, O = outras (scripts/classificar_controle.js)
+     "campo_extra": "cur"},
     {"fonte": "reclamacoes/reclamacoes-data.js", "campo_data": "dataJulgamento", "campo_grupo": "tribunal",
      # contagem extra por resultado (Procedente...), usada pelos filtros do Diário das Decisões
      "campo_extra": "tipo"},

@@ -28,7 +28,7 @@
       etiqueta: function (it) { return it.classe; },
       linhaArea: function (it) { return (this.nomeFiltro[it.classe] || it.classe) + (it.resultado ? " · " + it.resultado : ""); },
       // o id traz a classe e a data (STF_ADI_7641_20260925_15066)
-      idTemFiltro: true, grupoIndice: "grupos"
+      idTemFiltro: true, grupoIndice: "grupos", curadoria: true
     },
     reclamacoes: {
       prefixo: "reclamacoes", pasta: "reclamacoes/anos/", storage: "em_lidos_reclamacoes",
@@ -65,7 +65,20 @@
 
   var indice = null, carregados = {}, pedidos = {};
   var filtroClasse = "todas", filtroAno = "todos", loteTam = 10, loteAtual = 0, seq = 0;
-  var root, chipsEl, anoSel, listEl, infoEl, pagerEl, prevBtn, nextBtn, labelEl, getBusca, visivel = false;
+  // Curadoria (só Controle): "P" = prioritárias, "O" = outras. Só a Barbara (e-mail abaixo) vê o botão
+  // "Descartar" e a lista de descartados; o descarte fica neste aparelho e pode ser copiado para eu remover de vez.
+  var CURADORA = "barbara.sinfronio@gmail.com", DESC_KEY = "em_descartes_" + cfg.prefixo;
+  var filtroCur = "todas";
+  function lerDesc() { try { return JSON.parse(localStorage.getItem(DESC_KEY) || "{}") || {}; } catch (e) { return {}; } }
+  var descartes = lerDesc();
+  function gravarDesc() { try { localStorage.setItem(DESC_KEY, JSON.stringify(descartes)); } catch (e) {} }
+  function ehCuradora() {
+    try { var u = window.firebase && firebase.auth && firebase.auth().currentUser; return !!u && String(u.email || "").toLowerCase() === CURADORA; }
+    catch (e) { return false; }
+  }
+  function nDescartes() { return Object.keys(descartes).length; }
+  function usaTudo(ts) { return ts.length > 0 || (!!cfg.curadoria && (filtroCur !== "todas" || (ehCuradora() && nDescartes() > 0))); }
+  var root, chipsEl, curEl, anoSel, listEl, infoEl, pagerEl, prevBtn, nextBtn, labelEl, getBusca, visivel = false;
 
   // ---- utilidades ---------------------------------------------------------
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -114,7 +127,14 @@
     return pedidos[ano];
   }
   function anosRel() { return indice.anos.filter(function (a) { return filtroAno === "todos" || a.ano === String(filtroAno); }); }
-  function combina(it) { return filtroClasse === "todas" || it[cfg.campoFiltro] === filtroClasse; }
+  function combina(it) {
+    if (filtroClasse !== "todas" && it[cfg.campoFiltro] !== filtroClasse) return false;
+    if (!cfg.curadoria) return true;
+    var desc = ehCuradora() && descartes[it.id];
+    if (filtroCur === "descartados") return !!desc;
+    if (desc) return false;                       // descartado por ela: some da lista dela
+    return filtroCur === "todas" || it.cur === filtroCur;
+  }
   function totalBase() {
     return anosRel().reduce(function (s, a) { return s + (filtroClasse === "todas" ? a.total : ((a[cfg.grupoIndice] || {})[filtroClasse] || 0)); }, 0);
   }
@@ -189,6 +209,7 @@
       var g = a[cfg.grupoIndice] || {};
       Object.keys(g).forEach(function (k) { tot[k] = (tot[k] || 0) + g[k]; });
     });
+    montarCur();
     chipsEl.innerHTML = "";
     [["todas", "Todas"]].concat(cfg.filtros.map(function (c) { return [c, c]; })).forEach(function (par) {
       var b = document.createElement("button");
@@ -201,6 +222,38 @@
     });
   }
 
+  function montarCur() {
+    if (!cfg.curadoria || !curEl || !indice) return;
+    var tot = { P: 0, O: 0 };
+    indice.anos.forEach(function (a) {
+      if (filtroAno !== "todos" && a.ano !== String(filtroAno)) return;
+      var g = a.porTipo || {};
+      tot.P += g.P || 0; tot.O += g.O || 0;
+    });
+    var itens = [["todas", "Todas", tot.P + tot.O], ["P", "Prioritárias", tot.P], ["O", "Outras", tot.O]];
+    if (ehCuradora()) itens.push(["descartados", "Descartados por mim", nDescartes()]);
+    curEl.innerHTML = "";
+    itens.forEach(function (par) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (filtroCur === par[0] ? " active" : "");
+      b.title = par[0] === "P" ? "Decisões que valem estudo" : par[0] === "O" ? "Decisões sem tese nova, mas que declaram algo ou ainda não foram avaliadas" : par[0] === "descartados" ? "Só você vê isto" : "Todas";
+      b.innerHTML = esc(par[1]) + ' <span class="n">' + par[2] + "</span>";
+      b.addEventListener("click", function () { filtroCur = par[0]; loteAtual = 0; montarCur(); render(); });
+      curEl.appendChild(b);
+    });
+    if (ehCuradora() && nDescartes()) {
+      var c = document.createElement("button");
+      c.type = "button"; c.className = "chip"; c.textContent = "Copiar lista dos descartados";
+      c.title = "Copia os ids para você me mandar remover de vez";
+      c.addEventListener("click", function () {
+        var txt = JSON.stringify(Object.keys(descartes));
+        (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { c.textContent = "Copiado ✓"; }, function () { window.prompt("Copie:", txt); });
+      });
+      curEl.appendChild(c);
+    }
+  }
+
   function aviso(t) { listEl.innerHTML = '<p class="count-line" style="justify-content:center;padding:24px">' + esc(t) + "</p>"; }
 
   function render() {
@@ -209,11 +262,12 @@
     if (!indice) { aviso("Carregando julgados…"); return; }
     var ts = termos();
     var rel = anosRel();
-    var pronto = !ts.length || rel.every(function (a) { return carregados[a.ano]; });
+    var tudo = usaTudo(ts);
+    var pronto = !tudo || rel.every(function (a) { return carregados[a.ano]; });
     var etapa = pronto ? Promise.resolve() : (aviso("Buscando em todos os anos…"), Promise.all(rel.map(function (a) { return carregarAno(a.ano); })));
     etapa.then(function () {
       if (meu !== seq) return;
-      var total = ts.length ? carregadosFiltrados(ts).length : totalBase();
+      var total = tudo ? carregadosFiltrados(ts).length : totalBase();
       var ini = loteAtual * loteTam, fim = Math.min(ini + loteTam, total);
       var precisa = carregadosFiltrados(ts).length < fim;
       var falta = Promise.resolve();
@@ -260,6 +314,18 @@
         "<h3>" + esc(it.processo) + "</h3>" +
         '<div class="destaque">' + esc(texto) + "</div>" +
         '<div class="meta"><span>' + esc(data) + " — " + esc(it.relator || "STF") + '</span><a class="fonte-link" href="' + esc(safeUrl(url)) + '" target="_blank" rel="noopener">Abrir no STF ↗</a></div>';
+      if (cfg.curadoria && ehCuradora()) {
+        var jaDesc = !!descartes[it.id];
+        var bd = document.createElement("button");
+        bd.type = "button"; bd.className = "chip"; bd.style.marginTop = "8px";
+        bd.textContent = jaDesc ? "Restaurar" : "Descartar (só para mim)";
+        bd.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (descartes[it.id]) delete descartes[it.id]; else descartes[it.id] = new Date().toISOString().slice(0, 10);
+          gravarDesc(); montarCur(); render();
+        });
+        card.appendChild(bd);
+      }
       card.querySelector(".read-checkbox").addEventListener("change", function () {
         alternar(it.id); card.classList.toggle("is-read", !!lidos[it.id]);
       });
@@ -267,7 +333,7 @@
       // a caixinha de lido e o link do STF continuam fazendo só o que fazem.
       card.style.cursor = "pointer";
       card.addEventListener("click", function (e) {
-        if (e.target.closest(".read-check, a")) return;
+        if (e.target.closest(".read-check, a, button")) return;
         abrirDetalhe(it);
       });
       return card;
@@ -346,6 +412,7 @@
     root.hidden = true;
     root.innerHTML =
       '<div class="chips" id="' + P + 'chips" style="margin-bottom:10px"></div>' +
+      (cfg.curadoria ? '<div class="chips" id="' + P + 'cur" style="margin-bottom:10px"></div>' : "") +
       '<div class="row" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px">' +
         '<select id="' + P + 'ano" aria-label="Ano do julgamento"><option value="todos">Todos os anos</option></select>' +
         '<span class="seg" id="' + P + 'lote"><button type="button" data-n="10" class="active">10 em 10</button><button type="button" data-n="20">20 em 20</button></span>' +
@@ -357,6 +424,7 @@
         '<button type="button" class="chip" id="' + P + 'next">Próximo ›</button></div>';
     antes.parentNode.insertBefore(root, antes);
     chipsEl = root.querySelector("#" + P + "chips");
+    curEl = root.querySelector("#" + P + "cur");
     anoSel = root.querySelector("#" + P + "ano");
     listEl = root.querySelector("#" + P + "lista");
     infoEl = root.querySelector("#" + P + "info");
@@ -376,6 +444,7 @@
 
   getBusca = opts.busca;
   criarUI(opts.antes);
+  try { if (cfg.curadoria && window.firebase && firebase.auth) firebase.auth().onAuthStateChanged(function () { montarCur(); if (visivel) render(); }); } catch (e) {}
   ligarConta();
   enviarGrupos();
   return {

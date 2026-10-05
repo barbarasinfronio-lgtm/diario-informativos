@@ -14,6 +14,8 @@ on:
       - reclamacoes/reclamacoes-data.js
       - scripts/dividir_por_ano.py
       - scripts/limpar_decisoes.py
+      - scripts/classificar_controle.js
+      - scripts/score-curadoria.js
   workflow_dispatch: # botão "Run workflow" para dividir na mão
 
 permissions:
@@ -33,6 +35,11 @@ jobs:
       # amicus curiae, rito do art. 12…) — scripts/limpar_decisoes.py
       - name: Limpar decisões
         run: python3 scripts/limpar_decisoes.py controle reclamacoes
+
+      # curadoria do Controle: tira o que é só certidão de resultado e marca
+      # prioritárias (P) e outras (O) — scripts/classificar_controle.js
+      - name: Classificar o Controle
+        run: node scripts/classificar_controle.js
 
       - name: Dividir por ano
         run: python3 scripts/dividir_por_ano.py
