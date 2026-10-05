@@ -54,14 +54,17 @@
     }).join("") + "</div>";
   }
 
+  // Percentuais por questão só valem para as provas objetivas (as discursivas,
+  // de sentença e orais entram em "O que mais caiu", mas não nas contas).
+  function objetiva(p) { return !p.etapa || p.etapa === "objetiva"; }
   function desenhar() {
-    var provas = COB.provas.filter(function (p) { return !filtro.banca || p.banca === filtro.banca; });
+    var provas = COB.provas.filter(function (p) { return objetiva(p) && (!filtro.banca || p.banca === filtro.banca); });
     var totalQ = provas.reduce(function (s, p) { return s + p.questoes; }, 0);
     var itens = itensFiltrados();
 
     // questões com alguma jurisprudência ligada
     var qLig = {};
-    itens.forEach(function (it) { Object.keys(it.provas).forEach(function (pi) { it.provas[pi].forEach(function (q) { qLig[pi + ":" + q] = 1; }); }); });
+    itens.forEach(function (it) { Object.keys(it.provas).forEach(function (pi) { if (!objetiva(COB.provas[pi])) return; it.provas[pi].forEach(function (q) { qLig[pi + ":" + q] = 1; }); }); });
     var nLig = Object.keys(qLig).length;
 
     // por fonte (quantas vezes cada tipo de fonte apareceu)
@@ -72,12 +75,13 @@
     // por banca (% das questões com jurisprudência ligada)
     var porBanca = {};
     COB.provas.forEach(function (p, pi) {
+      if (!objetiva(p)) return;
       var b = porBanca[p.banca] = porBanca[p.banca] || { q: 0, lig: 0, provas: 0 };
       b.q += p.questoes; b.provas++;
     });
     Object.keys(COB.itens).forEach(function (k) {
       if (filtro.fonte && COB.cards[k] && COB.cards[k].fonte !== filtro.fonte) return;
-      COB.itens[k].forEach(function (x) { var key = x[0] + ":" + x[1]; if (!porBanca._v) porBanca._v = {}; porBanca._v[key] = 1; });
+      COB.itens[k].forEach(function (x) { if (!objetiva(COB.provas[x[0]])) return; var key = x[0] + ":" + x[1]; if (!porBanca._v) porBanca._v = {}; porBanca._v[key] = 1; });
     });
     Object.keys(porBanca._v || {}).forEach(function (key) { var p = COB.provas[key.split(":")[0]]; porBanca[p.banca].lig++; });
     delete porBanca._v;
@@ -100,7 +104,7 @@
       "</div>" +
       '<h2 class="ep-titulo">O que mais caiu</h2>' +
       (itens.length ? '<ol class="ep-ranking">' + itens.slice(0, MOSTRAR).map(function (it) {
-        var lista = Object.keys(it.provas).map(function (pi) { var p = COB.provas[pi]; return p.rotulo + " (" + p.banca + ") q. " + it.provas[pi].join(", "); });
+        var lista = Object.keys(it.provas).map(function (pi) { var p = COB.provas[pi]; var qs = it.provas[pi].filter(function (n) { return n > 0; }); return p.rotulo + " (" + p.banca + ")" + (qs.length ? " q. " + qs.join(", ") : ""); });
         return '<li><div class="ep-item-top"><b>' + esc(it.card.rotulo) + '</b><span class="ep-vezes">' + it.n + (it.n === 1 ? " prova" : " provas") + "</span></div>" +
           '<p class="ep-texto">' + esc(it.card.texto) + "</p>" +
           '<p class="ep-onde">' + esc(lista.join(" · ")) + "</p></li>";
@@ -114,7 +118,7 @@
       '<h2 class="ep-titulo">Provas analisadas</h2>' +
       '<table class="ep-tabela"><thead><tr><th>Prova</th><th>Banca</th><th>Questões</th><th>Com jurisprudência</th></tr></thead><tbody>' +
       COB.provas.map(function (p, pi) {
-        if (filtro.banca && p.banca !== filtro.banca) return "";
+        if (!objetiva(p) || (filtro.banca && p.banca !== filtro.banca)) return "";
         var n = Object.keys(qLig).filter(function (k) { return k.split(":")[0] === String(pi); }).length;
         return "<tr><td>" + esc(p.rotulo) + "</td><td>" + esc(p.banca) + "</td><td>" + p.questoes + "</td><td>" + n + " (" + pct(n, p.questoes) + ")</td></tr>";
       }).join("") + "</tbody></table>" +

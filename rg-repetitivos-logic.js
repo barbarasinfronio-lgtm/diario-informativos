@@ -42,9 +42,10 @@
     if (!lst) return [];
     var porProva = {};
     lst.forEach(function(x){ (porProva[x[0]] = porProva[x[0]] || []).push(x[1]); });
+    // questão 0 = prova discursiva/oral que não foi separada em questões
     return Object.keys(porProva).map(function(pi){
       var p = COB.provas[pi];
-      return { rotulo: p.rotulo + ' (' + p.banca + ')', ano: p.ano, questoes: porProva[pi] };
+      return { rotulo: p.rotulo + ' (' + p.banca + ')', ano: p.ano, questoes: porProva[pi].filter(function(n){ return n > 0; }) };
     }).sort(function(a, b){ return b.ano.localeCompare(a.ano); });
   }
   function cobrancaResumo(cs){
@@ -656,7 +657,7 @@
         (d.suspensao ? '<div><b>Suspensão nacional</b>' + escapeHtml(d.suspensao.replace(/^Suspensão nacional /, '')) + '</div>' : '') +
       '</div>' +
       (d.historico ? '<div class="section-label">' + (d.tipo==='teses' ? 'Legislação e observações' : d.grupo ? 'Detalhes' : 'Histórico') + '</div><div class="historico-text">' + escapeHtml(d.historico) + '</div>' : '') +
-      (cobrancasDe(d).length ? '<div class="section-label">Cobrado em provas</div><ul class="cobrado-lista">' + cobrancasDe(d).map(function(c){ return '<li>' + escapeHtml(c.rotulo) + ' — questão ' + c.questoes.join(', ') + '</li>'; }).join('') + '</ul>' : '') +
+      (cobrancasDe(d).length ? '<div class="section-label">Cobrado em provas</div><ul class="cobrado-lista">' + cobrancasDe(d).map(function(c){ return '<li>' + escapeHtml(c.rotulo) + (c.questoes.length ? ' — questão ' + c.questoes.join(', ') : '') + '</li>'; }).join('') + '</ul>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>' +
