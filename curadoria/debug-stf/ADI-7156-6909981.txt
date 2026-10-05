@@ -1,0 +1,85 @@
+\*http://schemas.microsoft.com/office/word/2003/wordml
+
+\*
+
+
+
+\*
+
+
+\*
+
+
+\*
+
+
+\*.\*.\*.\*)
+\*()\*()\*()\*
+()\*()
+ Decisão:
+ Concluindo o julgamento, o
+ Tribunal, por unanimidade, julgou improcedente a ação direta no tocante ao art. 23, § 4º, II, III, IV e V, da Lei 8.429/1992, incluído
+ pela Lei 14.230/2021. Na sequência, por maioria, 
+julgou parcialmente procedente a ação direta para, com relação ao art. 23, § 5º, da citada lei, 
+declarar a inconstitucionalidade da expressão “pela metade do prazo previsto no caput
+ deste artigo”, com prazo máximo de 20 (vinte) anos de prescrição, nos termos do voto do Ministro André Mendonça (Relator),
+ vencidos os Ministros Nunes Marques, Luiz Fux e Gilmar Mendes, que julgavam improcedente a ação neste ponto e modulavam os efeitos da decisão. O Ministro Dias Toffoli também julgava improcedente a ação no tocante ao § 5º do art.
+ 23, mas, vencido, acompanhou o Relator. Nesta assentada, o Ministro Dias Toffoli consignou que acompanha o Relator no julgamento dos art
+s. 8º e 21, § 4º, da citada lei, ocorrido na sessão de 25
+.6.2026. Presidência do Ministro Edson Fachin. Plenário, 1
+º.7.2026.
+
+
+
+\*Normal;heading 1;
+heading 2;heading 3;heading 4;
+heading 5;heading 6;heading 7;
+heading 8;heading 9;caption;Title;
+Subtitle;Strong;Emphasis;Placeholder Text;No Spacing;Light Shading;
+Light List;Light Grid;Medium Shading 1;Medium Shading 2;Medium List 1;Medium List 2;
+Medium Grid 1;Medium Grid 2;Medium Grid 3;Dark List;Colorful Shading;Colorful List;
+Colorful Grid;Light Shading Accent 1;Light List Accent 1;Light Grid Accent 1;Medium Shading 1 Accent 1;
+Medium Shading 2 Accent 1;Medium List 1 Accent 1;Revision;List Paragraph;
+Quote;Intense Quote;Medium List 2 Accent 1;Medium Grid 1 Accent 1;Medium Grid 2 Accent 1;
+Medium Grid 3 Accent 1;Dark List Accent 1;Colorful Shading Accent 1;Colorful List Accent 1;Colorful Grid Accent 1;
+Light Shading Accent 2;Light List Accent 2;Light Grid Accent 2;Medium Shading 1 Accent 2;Medium Shading 2 Accent 2;
+Medium List 1 Accent 2;Medium List 2 Accent 2;Medium Grid 1 Accent 2;Medium Grid 2 Accent 2;Medium Grid 3 Accent 2;
+Dark List Accent 2;Colorful Shading Accent 2;Colorful List Accent 2;Colorful Grid Accent 2;Light Shading Accent 3;
+Light List Accent 3;Light Grid Accent 3;Medium Shading 1 Accent 3;Medium Shading 2 Accent 3;Medium List 1 Accent 3;
+Medium List 2 Accent 3;Medium Grid 1 Accent 3;Medium Grid 2 Accent 3;Medium Grid 3 Accent 3;Dark List Accent 3;
+Colorful Shading Accent 3;Colorful List Accent 3;Colorful Grid Accent 3;Light Shading Accent 4;Light List Accent 4;
+Light Grid Accent 4;Medium Shading 1 Accent 4;Medium Shading 2 Accent 4;Medium List 1 Accent 4;Medium List 2 Accent 4;
+Medium Grid 1 Accent 4;Medium Grid 2 Accent 4;Medium Grid 3 Accent 4;Dark List Accent 4;Colorful Shading Accent 4;
+Colorful List Accent 4;Colorful Grid Accent 4;Light Shading Accent 5;Light List Accent 5;Light Grid Accent 5;
+Medium Shading 1 Accent 5;Medium Shading 2 Accent 5;Medium List 1 Accent 5;Medium List 2 Accent 5;
+Medium Grid 1 Accent 5;Medium Grid 2 Accent 5;Medium Grid 3 Accent 5;Dark List Accent 5;Colorful Shading Accent 5;
+Colorful List Accent 5;Colorful Grid Accent 5;Light Shading Accent 6;Light List Accent 6;Light Grid Accent 6;
+Medium Shading 1 Accent 6;Medium Shading 2 Accent 6;Medium List 1 Accent 6;Medium List 2 Accent 6;
+Medium Grid 1 Accent 6;Medium Grid 2 Accent 6;Medium Grid 3 Accent 6;Dark List Accent 6;Colorful Shading Accent 6;
+Colorful List Accent 6;Colorful Grid Accent 6;Subtle Emphasis;Intense Emphasis;
+Subtle Reference;Intense Reference;Book Title;Bibliography;
+TOC Heading;Plain Table 1;Plain Table 2;Plain Table 3;Plain Table 4;
+Plain Table 5;Grid Table Light;Grid Table 1 Light;Grid Table 2;Grid Table 3;Grid Table 4;
+Grid Table 5 Dark;Grid Table 6 Colorful;Grid Table 7 Colorful;Grid Table 1 Light Accent 1;Grid Table 2 Accent 1;
+Grid Table 3 Accent 1;Grid Table 4 Accent 1;Grid Table 5 Dark Accent 1;Grid Table 6 Colorful Accent 1;
+Grid Table 7 Colorful Accent 1;Grid Table 1 Light Accent 2;Grid Table 2 Accent 2;Grid Table 3 Accent 2;
+Grid Table 4 Accent 2;Grid Table 5 Dark Accent 2;Grid Table 6 Colorful Accent 2;Grid Table 7 Colorful Accent 2;
+Grid Table 1 Light Accent 3;Grid Table 2 Accent 3;Grid Table 3 Accent 3;Grid Table 4 Accent 3;
+Grid Table 5 Dark Accent 3;Grid Table 6 Colorful Accent 3;Grid Table 7 Colorful Accent 3;Grid Table 1 Light Accent 4;
+Grid Table 2 Accent 4;Grid Table 3 Accent 4;Grid Table 4 Accent 4;Grid Table 5 Dark Accent 4;
+Grid Table 6 Colorful Accent 4;Grid Table 7 Colorful Accent 4;Grid Table 1 Light Accent 5;Grid Table 2 Accent 5;
+Grid Table 3 Accent 5;Grid Table 4 Accent 5;Grid Table 5 Dark Accent 5;Grid Table 6 Colorful Accent 5;
+Grid Table 7 Colorful Accent 5;Grid Table 1 Light Accent 6;Grid Table 2 Accent 6;Grid Table 3 Accent 6;
+Grid Table 4 Accent 6;Grid Table 5 Dark Accent 6;Grid Table 6 Colorful Accent 6;Grid Table 7 Colorful Accent 6;
+List Table 1 Light;List Table 2;List Table 3;List Table 4;List Table 5 Dark;
+List Table 6 Colorful;List Table 7 Colorful;List Table 1 Light Accent 1;List Table 2 Accent 1;List Table 3 Accent 1;
+List Table 4 Accent 1;List Table 5 Dark Accent 1;List Table 6 Colorful Accent 1;List Table 7 Colorful Accent 1;
+List Table 1 Light Accent 2;List Table 2 Accent 2;List Table 3 Accent 2;List Table 4 Accent 2;
+List Table 5 Dark Accent 2;List Table 6 Colorful Accent 2;List Table 7 Colorful Accent 2;List Table 1 Light Accent 3;
+List Table 2 Accent 3;List Table 3 Accent 3;List Table 4 Accent 3;List Table 5 Dark Accent 3;
+List Table 6 Colorful Accent 3;List Table 7 Colorful Accent 3;List Table 1 Light Accent 4;List Table 2 Accent 4;
+List Table 3 Accent 4;List Table 4 Accent 4;List Table 5 Dark Accent 4;List Table 6 Colorful Accent 4;
+List Table 7 Colorful Accent 4;List Table 1 Light Accent 5;List Table 2 Accent 5;List Table 3 Accent 5;
+List Table 4 Accent 5;List Table 5 Dark Accent 5;List Table 6 Colorful Accent 5;List Table 7 Colorful Accent 5;
+List Table 1 Light Accent 6;List Table 2 Accent 6;List Table 3 Accent 6;List Table 4 Accent 6;
+List Table 5 Dark Accent 6;List Table 6 Colorful Accent 6;List Table 7 Colorful Accent 6;
