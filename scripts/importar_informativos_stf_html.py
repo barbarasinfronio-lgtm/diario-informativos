@@ -43,6 +43,43 @@ def cabecalho(corpo):
     return None, ""
 
 
+def extrair_por_texto(html, numero, periodo):
+    """Informativos antigos (HTML sem fechar <P>): o BeautifulSoup aninha tudo, então corta o HTML cru
+    em cada <A NAME="título"> e lê o texto até a próxima âncora."""
+    import html as _h
+    ancoras = list(re.finditer(r"<a\s+name=\"?([^\">]+)\"?\s*>(.*?)</a>", html, re.I | re.S))
+    ancoras = [a for a in ancoras if not NAO_JULGADO.match(a.group(1).strip())]
+    out, colegiado = [], "Plenário"
+    for k, a in enumerate(ancoras):
+        fim = ancoras[k + 1].start() if k + 1 < len(ancoras) else len(html)
+        titulo = limpa(_h.unescape(re.sub(r"<[^>]+>", " ", a.group(2)))) or limpa(_h.unescape(a.group(1)))
+        seg = html[a.end():fim]
+        m_fim = re.search(r"(CLIPPING|T\s*R\s*A\s*N\s*S\s*C|INOVA[ÇC][ÕO]ES LEGISLATIVAS|OUTRAS INFORMA|Ac[óo]rd[ãa]os publicados)", _h.unescape(re.sub(r"<[^>]+>", " ", seg)))
+        proc = ""
+        mp = re.search(r"<font[^>]*color=\"?#008080\"?[^>]*>(.*?)</font>", seg, re.I | re.S)
+        if mp:
+            proc = limpa(_h.unescape(re.sub(r"<[^>]+>", " ", mp.group(1))))
+            seg = seg.replace(mp.group(0), " ")
+        txt = limpa(_h.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"(?i)<(br|p)\b[^>]*>", "\n", seg))))
+        if m_fim:
+            txt = limpa(_h.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"(?i)<(br|p)\b[^>]*>", "\n", seg[:max(0, len(seg) - len(seg[m_fim.start():]))] if False else seg))))
+            cut = re.search(r"(?:CLIPPING|T\s*R\s*A\s*N\s*S\s*C|INOVA[ÇC][ÕO]ES LEGISLATIVAS|OUTRAS INFORMA|Ac[óo]rd[ãa]os publicados)", txt)
+            if cut:
+                txt = txt[:cut.start()].strip()
+        # cabeçalhos de colegiado que vieram no fim deste trecho valem para os próximos julgados
+        c_atual = colegiado
+        for rx, nome in COLEGIADO:
+            for linha in re.findall(r"(PLEN[ÁA]RIO|PRIMEIRA TURMA|SEGUNDA TURMA)\s*$", txt):
+                if rx.match(linha):
+                    colegiado = nome
+        txt = re.sub(r"\s*(PLEN[ÁA]RIO|PRIMEIRA TURMA|SEGUNDA TURMA)\s*$", "", txt).strip()
+        base = re.sub(r"\s*-\s*\d+\s*$", "", titulo)
+        if txt or proc:
+            out.append({"informativo": numero, "periodo": periodo, "orgao_julgador": c_atual,
+                        "titulo": base, "processo": proc, "resumo": txt})
+    return out
+
+
 def extrair(caminho):
     bruto = open(caminho, "rb").read()
     html = bruto.decode("iso-8859-1", "replace") if b"charset=iso-8859-1" in bruto[:3000].lower() else bruto.decode("utf-8", "replace")
@@ -104,6 +141,10 @@ def extrair(caminho):
         base = re.sub(r"\s*-\s*\d+\s*$", "", titulo)       # "… - 12", "… - 13": partes do mesmo julgado
         decisoes.append({"informativo": numero, "periodo": periodo, "orgao_julgador": colegiado,
                          "titulo": base, "titulo_original": titulo, "processo": proc, "resumo": resumo})
+    if not decisoes:
+        decisoes = extrair_por_texto(html, numero, periodo)
+        for d in decisoes:
+            d["titulo_original"] = d["titulo"]
     # junta as partes "- 1", "- 2", "- 3" do mesmo julgado
     juntas = []
     for d in decisoes:
