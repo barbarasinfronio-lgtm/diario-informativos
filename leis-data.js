@@ -79,7 +79,7 @@ var LEIS_DATA = {
     { nome: "Lei da Desburocratização — dispensa de reconhecimento de firma e autenticação de cópias", numero: "Lei nº 13.726/2018", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13726.htm" },
     { nome: "Gratuidade dos atos necessários ao exercício da cidadania (registro civil de nascimento e óbito)", numero: "Lei nº 9.265/1996", link: "https://www.planalto.gov.br/ccivil_03/leis/l9265.htm" },
     { nome: "Regulamenta a Lei nº 8.080/1990 para dispor sobre a organização do Sistema Único de Saúde (SUS), o planejamento da saúde, a assistência à saúde e a articulação interfederativa", numero: "Decreto nº 7.508/2011", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/decreto/d7508.htm" },
-    { nome: "Institui a Política Estadual de Recursos Hídricos e cria o Sistema Estadual de Gerenciamento de Recursos Hídricos do Paraná", numero: "Lei Estadual (PR) nº 12.726/1999", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=8050" },
+    { nome: "Institui a Política Estadual de Recursos Hídricos e cria o Sistema Estadual de Gerenciamento de Recursos Hídricos do Paraná", numero: "Lei Estadual (PR) nº 12.726/1999", link: "https://progestao.ana.gov.br/acoes-estados/pr/lei-12-726-99_pr.pdf" },
     { nome: "Estatuto da Pessoa com Deficiência do Estado do Paraná — reserva de percentual de vagas para pessoas com deficiência em concursos públicos estaduais", numero: "Lei Estadual (PR) nº 18.419/2015", link: "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=135670" },
   ]},
 
