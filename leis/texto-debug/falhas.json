@@ -6,31 +6,36 @@
   "motivo": "abre outra norma (\"Lei 8431 - 12 de Dezembro de 1986\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=135670": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 18.419/2015",
   "nome": "Estatuto da Pessoa com Deficiência do Estado do Paraná — reserva de percentual de vagas para pessoas com deficiência em concursos públicos estaduais",
   "motivo": "abre outra norma (\"Resolução SEED 535 - 12 de Fevereiro de 2008\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9128": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 14.277/2003",
   "nome": "Código de Organização e Divisão Judiciárias do Estado do Paraná",
   "motivo": "abre outra norma (\"Lei 6886 - 30 de Junho de 1977\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=143506": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 18.573/2015",
   "nome": "ITCMD — Paraná",
   "motivo": "abre outra norma (\"Decreto 1811 - 03 de Julho de 2015\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=170934": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 18.877/2016",
   "nome": "Processo administrativo tributário do Paraná",
   "motivo": "abre outra norma (\"Resolução SEED 1004 - 21 de Março de 2017\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9464": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 11.580/1996",
   "nome": "ICMS do Estado do Paraná",
   "motivo": "abre outra norma (\"Lei 7223 - 17 de Outubro de 1979\")"
@@ -54,31 +59,36 @@
   "motivo": "abre outra norma (\"LEI Nº 12.963, de 18 de maio de 2004\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=141462&codTipoAto=1&tipoVisualizacao=compilado": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 14.234/2003",
   "nome": "Institui prêmio de produtividade e o Fundo Especial da Procuradoria-Geral do Estado do Paraná",
   "motivo": "abre outra norma (\"Lei 18471 - 14 de Maio de 2015\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=127393": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 18.292/2014",
   "nome": "Cobrança judicial e extrajudicial da dívida ativa do Estado do Paraná (limites para execuções fiscais e protesto extrajudicial)",
   "motivo": "abre outra norma (\"Resolução SEED 3410 - 14 de Julho de 2014\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=318765": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 21.860/2023",
   "nome": "Transação de créditos tributários e não tributários no âmbito do Estado do Paraná",
   "motivo": "abre outra norma (\"Resolução SEED 5839 - 23 de Agosto de 2023\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=7546": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PR) nº 12.398/1998",
   "nome": "Cria o Sistema de Seguridade Funcional do Estado do Paraná (Paranaprevidência)",
   "motivo": "abre outra norma (\"Lei 8345 - 21 de Julho de 1986\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9684": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Complementar (PR) nº 107/2005",
   "nome": "Código de Defesa do Contribuinte do Estado do Paraná",
   "motivo": "abre outra norma (\"Lei 6848 - 06 de Dezembro de 1976\")"
@@ -120,73 +130,85 @@
   "motivo": "a página não existe no site"
  },
  "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (SC) nº 3.938/1966",
   "nome": "Código Tributário do Estado de Santa Catarina",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/decreto-n-1352-2025-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Decreto Estadual (MT) nº 1.352/2025",
   "nome": "Regulamenta a Lei Complementar nº 802/2024 (Lei de Transação Tributária Estadual de MT)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-7850-2002-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (MT) nº 7.850/2002",
   "nome": "Dispõe sobre o Imposto sobre Transmissão Causa Mortis e Doação (ITCD) no Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-8797-2008-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (MT) nº 8.797/2008",
   "nome": "Regulamenta o Processo Administrativo Tributário (PAT) de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-7098-1998-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (MT) nº 7.098/1998",
   "nome": "Consolida as normas relativas ao ICMS no Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/5045": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 3.804/2021",
   "nome": "Licenciamento Ambiental do Estado do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/4771": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 3.530/2019",
   "nome": "Código Estadual de Proteção à Fauna do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/4855": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 3.614/2019",
   "nome": "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-complementar-n-04-1990-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Complementar (MT) nº 04/1990",
   "nome": "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-8264-2004-mato-grosso-dispoe-sobre-o-regime-de-concessao-e-permissao-de-servicos-e-obras-publicas-no-ambito-do-setor-rodoviario-2020-10-09-versao-compilada": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (MT) nº 8.264/2004",
   "nome": "Regime de concessão e permissão de serviços e obras públicas do setor rodoviário do Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-complementar-n-670-2020-mato-grosso": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Complementar (MT) nº 670/2020",
   "nome": "Regime Próprio de Previdência dos servidores do Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/5240": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 4.129/2023",
   "nome": "Modelo de gestão do Sistema de Proteção Social dos Militares do Estado do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -204,55 +226,64 @@
   "motivo": "a página não existe no site"
  },
  "https://www2.aneel.gov.br/cedoc/ren20211000.pdf": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Resolução Normativa ANEEL nº 1.000/2021",
   "nome": "Regras de prestação do serviço público de energia elétrica",
   "motivo": "erro ao abrir: HTTP 403 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1287-2001_43522.PDF": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 1.287/2001",
   "nome": "Código Tributário do Estado do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_771-1995_43006.PDF": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 771/1995",
   "nome": "Política Florestal do Estado do Tocantins (Código Florestal Estadual)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1560-2005_43795.PDF": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 1.560/2005",
   "nome": "Sistema Estadual de Unidades de Conservação do Tocantins (SEUC)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1917-2008_44152.PDF": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (TO) nº 1.917/2008",
   "nome": "Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.semas.pa.gov.br/legislacao/files/pdf/506.pdf": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 6.462/2002",
   "nome": "Dispõe sobre a Política Estadual de Florestas e demais Formas de Vegetação do Pará",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
  },
  "https://www.uesc.br/projur/lei6677.pdf": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (BA) nº 6.677/1994",
   "nome": "Estatuto dos Servidores Públicos Civis do Estado da Bahia",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
  },
  "https://www.pm.pa.gov.br/images/PM1/ATUALIZADA_-LEI_N%C2%BA_6.833_13_de_fevereiro_de_2006_C%C3%B3digo_de%C3%89tica_e_Disciplina_da_PMPA_1.pdf": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 6.833/2006",
   "nome": "Institui o Código de Ética e Disciplina da Polícia Militar do Pará (CEDPM)",
   "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
  },
  "https://educadores.educacao.ba.gov.br/sites/default/files/private/midiateca/documentos/2023/leino13559-2016pee1.pdf": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (BA) nº 13.559/2016",
   "nome": "Plano Estadual de Educação da Bahia",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -274,5 +305,110 @@
   "numero": "Lei Estadual (PA) nº 6.745/2005",
   "nome": "Macrozoneamento Ecológico-Econômico do Estado do Pará",
   "motivo": "a página não existe no site"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=60133&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RS) nº 14.254/2013",
+  "nome": "Conselhos Estaduais e Municipais dos Direitos da Pessoa Idosa do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leis.alesc.sc.gov.br/ato-normativo/16675": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (SC) nº 14.954/2009",
+  "nome": "Fiscalização e coibição da comercialização irregular de combustíveis em Santa Catarina",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leis.alesc.sc.gov.br/ato-normativo/20508": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (SC) nº 17.819/2019",
+  "nome": "Fundo Estadual de Assistência Social de Santa Catarina",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=61908&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei (RS) nº 14.705/2015",
+  "nome": "Plano Estadual de Educação do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=39818&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei (RS) nº 9.831/1993",
+  "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leis.alesc.sc.gov.br/ato-normativo/13151": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (SC) nº 11.435/2000",
+  "nome": "Conselho Municipal dos Direitos da Criança e do Adolescente e Conselho Tutelar em Santa Catarina",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9403": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PR) nº 14.260/2003",
+  "nome": "IPVA — Paraná",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=5549&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei nº 6.537/1973",
+  "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul",
+  "motivo": "erro ao abrir: não consegui usar o Chrome desta Mac (650:721: execution error: Google Chrome obteve um erro: Não é possível obter window id \"1475880653\". ("
+ },
+ "https://leis.alesc.sc.gov.br/ato-normativo/16396": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (SC) nº 14.675/2009",
+  "nome": "Código Estadual do Meio Ambiente de Santa Catarina",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leis.alesc.sc.gov.br/ato-normativo/18905": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (SC) nº 16.342/2014",
+  "nome": "Altera o Código Estadual do Meio Ambiente de Santa Catarina",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=41893&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RS) nº 10.350/1994",
+  "nome": "Política Estadual de Recursos Hídricos do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=64860&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RS) nº 15.434/2020",
+  "nome": "Código Estadual do Meio Ambiente do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://sapl.al.ma.leg.br/norma/2358": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (MA) nº 6.107/1994",
+  "nome": "Estatuto dos Servidores Públicos Civis do Estado do Maranhão",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=58020": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Complementar (DF) nº 769/2008",
+  "nome": "Regime Próprio de Previdência Social do Distrito Federal",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=70196": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Complementar (DF) nº 840/2011",
+  "nome": "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  }
 }
