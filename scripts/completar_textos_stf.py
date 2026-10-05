@@ -20,7 +20,7 @@ O que já foi buscado fica em curadoria/textos-completos-cache.json (não busca 
 novo; quem falhou é tentado de novo na próxima vez). Se a página mudar de formato,
 o HTML lido é guardado em curadoria/debug-stf/ para eu ajustar.
 """
-import argparse, html, json, os, re, sys, time, unicodedata, urllib.parse
+import argparse, html, json, os, re, signal, sys, time, unicodedata, urllib.parse
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -98,6 +98,9 @@ def achar_incidente(classe, num):
 def rtf_para_texto(corpo):
     """RTF (bytes) → texto simples. Trata \\'xx (cp1252), \\uN (unicode), \\par e grupos de formatação."""
     t = corpo.decode("latin-1")
+    # quebras de linha "cruas" do arquivo não existem no RTF (só \\par): sem isso, as palavras saem partidas
+    t = re.sub(r"(\\[a-zA-Z]+-?\d*)[\r\n]+", r"\1 ", t)
+    t = re.sub(r"[\r\n]+", "", t)
     # grupos que não são texto (tabelas de fontes/cores, estilos, cabeçalhos)
     for nome in ("fonttbl", "colortbl", "stylesheet", "info", "header", "footer", "pict", "listtable", "listoverridetable", "generator"):
         i = 0
@@ -151,8 +154,9 @@ def texto_completo(truncado, classe, num, inc):
         if k < 0:
             guardar(f"{m[1]}.txt", texto)
             raise robo.Falha("o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)")
-        ini = texto.lower().find(truncado[:30].lower())
-        cand = (texto[ini:] if ini >= 0 else texto).strip()
+        palavras = re.findall(r"\S+", truncado)[:6]
+        mi = re.search(r"\s+".join(re.escape(w) for w in palavras), texto, re.I)
+        cand = (texto[mi.start():] if mi else texto).strip()
         if len(norm(cand)) <= len(norm(truncado)):
             guardar(f"{m[1]}.txt", texto)
             raise robo.Falha("o arquivo da decisão não é maior que o texto que já temos")
@@ -174,7 +178,7 @@ def main():
     for f, campo in FONTES:
         for d in dados[f][1]:
             t = d.get(campo) or ""
-            if len(t) >= CORTE - 1 or t.endswith("…"):
+            if len(t) == CORTE or t.endswith("…"):   # cortado em exatamente 1.000 (o resto é texto completo)
                 alvos.append((f, campo, d))
     print(f"{len(alvos)} decisões cortadas; {sum(1 for _, _, d in alvos if d['id'] in cache)} já buscadas antes.")
     if a.teste:
@@ -193,12 +197,16 @@ def main():
         if not classe:
             continue
         try:
+            if hasattr(signal, "SIGALRM"):   # uma página pendurada não pode travar a rodada
+                signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 3 minutos; pulei")))
+                signal.alarm(180)
             if (classe, num) not in incidentes:
                 incidentes[(classe, num)] = achar_incidente(classe, num)
                 time.sleep(a.espera)
             novo = texto_completo(d[campo], classe, num, incidentes[(classe, num)])
             time.sleep(a.espera)
         except robo.Falha as e:
+            if hasattr(signal, "SIGALRM"): signal.alarm(0)
             falhas += 1
             print(f"  {d['processo']} ({d.get('data') or d.get('dataJulgamento')}): {e}")
             if not a.teste:
@@ -207,6 +215,7 @@ def main():
         except KeyboardInterrupt:
             print("\ninterrompido; o que já foi buscado está guardado.")
             break
+        if hasattr(signal, "SIGALRM"): signal.alarm(0)
         feitos += 1
         print(f"  {d['processo']} ({d.get('data') or d.get('dataJulgamento')}): {len(d[campo])} → {len(novo)} caracteres")
         if a.teste:
