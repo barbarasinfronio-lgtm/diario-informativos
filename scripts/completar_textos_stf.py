@@ -68,13 +68,31 @@ def processo_principal(p):
     return (m[1].upper(), m[2].replace(".", "")) if m else (None, None)
 
 
+RX_INC = re.compile(r"incidente(?:=|%3D|\"\s*:\s*\"?|\s*:\s*)(\d{4,})", re.I)
+
+
 def achar_incidente(classe, num):
-    url = DETALHE + urllib.parse.quote(f"{classe} {num}")
-    t = robo.pagina(url)
-    m = re.search(r"incidente=(\d+)", t)
-    if not m:
-        raise robo.Falha("não achei o 'incidente' na página do processo")
-    return m[1]
+    """Número interno ("incidente") do processo. Tenta: a página do processo; a mesma
+    pelo Firefox (se for montada por JavaScript); a lista de processos por classe/número."""
+    DEBUG.mkdir(parents=True, exist_ok=True)
+    tentativas = [
+        ("detalhe", lambda: robo.pagina(DETALHE + urllib.parse.quote(f"{classe} {num}"))),
+        ("detalhe-firefox", lambda: robo.pagina_firefox(DETALHE + urllib.parse.quote(f"{classe} {num}"))),
+        ("lista", lambda: robo.pagina(f"https://portal.stf.jus.br/processos/listarProcessos.asp?classe={classe}&numeroProcesso={num}")),
+        ("lista-firefox", lambda: robo.pagina_firefox(f"https://portal.stf.jus.br/processos/listarProcessos.asp?classe={classe}&numeroProcesso={num}")),
+    ]
+    for nome, f in tentativas:
+        try:
+            t = f()
+        except robo.Falha as e:
+            print(f"    ({nome}: {str(e)[:100]})")
+            continue
+        (DEBUG / f"{classe}-{num}-{nome}.html").write_text(t[:300000], encoding="utf-8")
+        m = RX_INC.search(t)
+        if m:
+            return m[1]
+        print(f"    ({nome}: {len(t)} caracteres, sem incidente)")
+    raise robo.Falha("não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)")
 
 
 def texto_completo(truncado, classe, num, inc):
