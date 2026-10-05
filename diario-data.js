@@ -3390,6 +3390,7 @@
   ];
 
   var TST_DATA = [
+    { edicao: 315, ano: 2026, data: "2026-06-30", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/271535" },
     { edicao: 314, ano: 2026, data: "2026-06-12", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/269695" },
     { edicao: 313, ano: 2026, data: "2026-05-22", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/270097" },
     { edicao: 312, ano: 2026, data: "2026-04-30", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/268786" },
