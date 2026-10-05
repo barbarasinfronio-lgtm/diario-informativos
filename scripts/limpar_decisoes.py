@@ -372,7 +372,20 @@ FORMULA = re.compile(r"(em )?\d{1,2}[./]\d{1,2}[./]\d{2,4}:?|\(\.\.\.\)|\[\.\.\.
 SO_LIMINAR = re.compile(r"^(julgo )?(julgo )?prejudicad[oa] (o |a )?(pedido|medida) (de )?liminar( requerid[oa])?$|^cassad[ao] a medida liminar$|^prejudicado pedido de liminar$", re.I)
 
 
+def rcl_monocratica(d):
+    """Reclamação decidida só pelo relator/presidente: não é precedente, não serve
+    para estudar (pedido da Barbara em 02/10/2026). O campo "orgao" já vem do STF;
+    sem ele, vale o mesmo teste do controle concentrado (sinal de colegiado no texto)."""
+    o = d.get("orgao")
+    if o in ("Monocrática", "Colegiada"):
+        return o == "Monocrática"
+    t = SO_RELATOR.sub(" ", " ".join(str(d.get(c) or "") for c in ("resumo", "andamento")))
+    return not COLEGIADO.search(t)
+
+
 def sem_conteudo_rcl(d):
+    if rcl_monocratica(d):
+        return True
     t = norm(d.get("resumo"))
     if not t or LIXO_RCL.search(t):
         return True
@@ -422,7 +435,7 @@ def limpar_reclamacoes():
             juntadas += len(g) - 1
             d["processo"] = juntar_processos(g, sufixo="mesma decisão")
         final.append(d)
-    resumo.append(f"Reclamações: {antes} → {len(final)} (sem conteúdo {vazias}, repetidas {rep}, juntadas {juntadas}, códigos corrigidos {renomeadas})")
+    resumo.append(f"Reclamações: {antes} → {len(final)} (monocráticas e sem conteúdo {vazias}, repetidas {rep}, juntadas {juntadas}, códigos corrigidos {renomeadas})")
     gravar_js(f, p, final, s, i)
 
 
