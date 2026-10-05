@@ -69,7 +69,9 @@ def unidades():
             continue
         if rel[0] not in ETAPA or len(rel) < 4:
             continue
-        pasta = rel[-2]; banca = rel[-3]
+        pasta = rel[-2]
+        # banca = pasta acima da do concurso, pulando subpastas de organização ("_Concluído")
+        banca = next((x for x in reversed(rel[1:-2]) if not x.startswith("_") and x not in ("Cível", "Criminal")), rel[-3])
         # "2021 189 TJSP" (nº do concurso), "2015 TJDFT 1º" (1º/2º concurso do ano)
         m = re.match(r"(\d{4})\s+(?:(\d+)\s+)?(\S+?)(?:\s+(\d)º)?$", pasta)
         if not m: continue
@@ -155,7 +157,10 @@ for (sigla, ano, etapa, banca), arqs in sorted(unidades().items()):
     if not partes: continue
     nq = len({n for n, _ in partes if n}) or 0
     if etapa == "objetiva" and nq < 30:
-        stats["objetiva sem questões separadas"] += 1; print("  objetiva não separada:", rot, [os.path.basename(a) for a in arqs]); continue
+        # caderno cujas questões não deu para separar (OCR, diagramação): vale o
+        # caderno todo, sem nº de questão; fica fora dos percentuais (questoes=0)
+        stats["objetiva sem questões separadas"] += 1; print("  objetiva não separada (vale o caderno todo):", rot)
+        partes = [(0, "\n".join(q for _, q in partes))]; nq = 0
     pi = len(COB["provas"])
     prova = dict(rotulo=rot, banca=banca, ano=ano, orgao=base, cargo=cargo(sigla), questoes=nq, etapa=etapa)
     lig = 0
