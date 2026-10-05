@@ -68,6 +68,46 @@ def colegiado_de(txt):
     return ""
 
 
+RX_ITEM = re.compile(r"^(?:\*\*)?((?:ADI|ADPF|ADC|ADO|ADIn|ADInMC|ADPFMC|RE|ARE|HC|MS|Rcl|AP|Inq|Pet|ACO|AO|RHC|SS|STA|SL)\s*[\d.]+(?:[-/][A-Z]{2})?(?:\s*(?:e|,)\s*[\d.]+)*[^\n]{0,40}?)(?:\*\*)?\s*$")
+
+
+def clipping_virtual(corpo, numero, dper):
+    """"Clipping das sessões virtuais": um bloco por processo (ADI 5.216 / RELATOR / Decisão / EMENTA)."""
+    blocos = re.split(r"\n\s*\n", re.sub(r"\r", "", corpo).strip())
+    cards, atual = [], None
+    for b in blocos:
+        ls = [l.strip() for l in b.splitlines() if l.strip()]
+        if not ls:
+            continue
+        m = RX_ITEM.match(ls[0])
+        if m:
+            atual = dict(proc=m[1].strip(), rel="", texto=[])
+            cards.append(atual)
+            ls = ls[1:]
+        if atual is None:
+            continue
+        for l in ls:
+            mr = re.match(r"^(?:\*\*)?(?:relator(?:\(a\))?|relatora)\s*:?\s*(?:\*\*)?\s*:?\s*(.*?)\*{0,2}$", l, re.I)
+            if mr and not atual["rel"]:
+                atual["rel"] = re.sub(r"^(?:min\.?\s*)", "", mr[1].strip(" *"), flags=re.I).title().replace(" De ", " de ").replace(" Da ", " da ")
+            else:
+                atual["texto"].append(l)
+    out = []
+    for c in cards:
+        texto = re.sub(r"\s+", " ", " ".join(c["texto"])).strip()
+        if not texto:
+            continue
+        mf = re.findall(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", texto)
+        data = f"{int(mf[0][0]):02d}/{int(mf[0][1]):02d}/{mf[0][2]}" if mf else dper
+        if len(mf) > 1:
+            data = f"{int(mf[1][0]):02d}/{int(mf[1][1]):02d}/{mf[1][2]}"
+        proc = c["proc"] + (f", rel. Min. {c['rel']}" if c["rel"] else "") + ", sessão virtual"
+        md = re.search(r"(?:Decis[ãa]o:?)(.*?)(?:EMENTA|$)", texto, re.I)
+        out.append(dict(org="STF", info=str(numero), area=area(texto, c["proc"]), tit=c["proc"], tese=ie._corta(texto, 700),
+                        proc=proc, data=data, teor=texto))
+    return out
+
+
 def extrair(caminho):
     t = open(caminho, encoding="utf-8", errors="replace").read()
     m = re.match(r"#\s*Informativo STF n[ºo°]\s*(\d+)\s*[—–-]\s*(.*)", t)
@@ -83,8 +123,11 @@ def extrair(caminho):
     for i in range(1, len(partes), 3):
         col, titulo, corpo = partes[i], partes[i + 1].strip(), partes[i + 2]
         tnorm = re.sub(r"\s+", "", titulo)
+        if re.match(r"^clippingdassess", tnorm, re.I):
+            itens.extend(clipping_virtual(corpo.split("\n---", 1)[0], numero, dper))
+            continue
         if re.match(r"^(clipping|transcri|inova|outras)", tnorm, re.I):
-            break                      # daqui para a frente não há mais julgados
+            break                      # daqui para a frente não há mais julgados                     # daqui para a frente não há mais julgados
         if FIM_SECAO.match(tnorm):
             continue                   # "repercussao" (índice) e afins: pula só esta seção
         corpo = corpo.split("\n---", 1)[0] if "\n---" in corpo else corpo
@@ -152,6 +195,20 @@ def extrair(caminho):
     return numero, juntos
 
 
+def extrair_htm(caminho):
+    """Informativo em .htm (o importador de scripts/importar_informativos_stf_html.py) → mesmos cards."""
+    import importar_informativos_stf_html as h
+    itens = []
+    numero = None
+    for d in h.extrair(caminho):
+        numero = d["informativo"]
+        proc = d["processo"] or f"Informativo STF nº {numero}"
+        dper = data_periodo(d["periodo"].replace("Brasília,", "").strip())
+        itens.append(dict(org="STF", info=str(numero), area=area(d["resumo"] + " " + d["titulo"], proc), tit=d["titulo"][:260],
+                          tese=ie._corta(d["resumo"], 700), proc=proc, data=data_proc(proc) or dper, teor=d["resumo"]))
+    return numero, itens
+
+
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if not args:
@@ -165,7 +222,7 @@ if __name__ == "__main__":
     ja = ie.edicoes_gravadas().get("STF", set())
     todos, sem = [], []
     for a in arqs:
-        n, its = extrair(a)
+        n, its = extrair_htm(a) if a.lower().endswith((".htm", ".html")) else extrair(a)
         if n in ja:
             continue
         if not its: sem.append(n)
