@@ -159,7 +159,8 @@
     lst.forEach(function (x) { (porProva[x[0]] = porProva[x[0]] || []).push(x[1]); });
     return Object.keys(porProva).map(function (pi) {
       var p = COB.provas[pi];
-      return { rotulo: p.rotulo + " (" + p.banca + ")", ano: p.ano, questoes: porProva[pi] };
+      // questão 0 = prova discursiva/oral que não foi separada em questões
+      return { rotulo: p.rotulo + " (" + p.banca + ")", ano: p.ano, questoes: porProva[pi].filter(function (n) { return n > 0; }) };
     }).sort(function (a, b) { return b.ano.localeCompare(a.ano); });
   }
   function carregarCobrancas() {
@@ -376,7 +377,7 @@
         var cob = document.createElement("p");
         cob.className = "sumula-cobrada";
         cob.textContent = "📝 Cobrada em " + cobs.length + (cobs.length === 1 ? " prova: " : " provas: ") +
-          cobs.map(function (c) { return c.rotulo + " (q. " + c.questoes.join(", ") + ")"; }).join(" · ");
+          cobs.map(function (c) { return c.rotulo + (c.questoes.length ? " (q. " + c.questoes.join(", ") + ")" : ""); }).join(" · ");
         edition.appendChild(cob);
       }
 
