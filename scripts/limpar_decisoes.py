@@ -327,6 +327,14 @@ def ja_no_informativo():
     return repetida
 
 
+ETIQUETA = re.compile(r"^\s*(decis[ãa]o:\s*)?(\((?:ED|AgR|EI|ED-ED|2ºS|[^)]{0,25})\)\s*-?\s*)*(decis[ãa]o:\s*)?", re.I)
+
+
+def sem_etiqueta(t):
+    """Tira o "(ED-segundos)", "(AgR)"… do começo: o mesmo julgamento aparece uma vez por recurso."""
+    return norm(ETIQUETA.sub("", str(t or "")))[:400]
+
+
 def limpar_controle():
     f = "controleconst/adi_dados.js"
     conferir_formato(f)
@@ -340,7 +348,7 @@ def limpar_controle():
     resumo.append(f"Controle: já no Informativo do STF {n1 - len(lista)}")
     vistos, saida, rep = {}, [], 0
     for d in lista:   # mesmo processo, data e texto
-        k = (d.get("processo"), d.get("data"), norm(d.get("tema")))
+        k = (d.get("processo"), d.get("data"), sem_etiqueta(d.get("tema")))
         if k in vistos:
             rep += 1
             continue
@@ -348,7 +356,7 @@ def limpar_controle():
         saida.append(d)
     grupos, ordem = {}, []
     for d in saida:   # julgamento conjunto
-        t = norm(d.get("tema"))
+        t = sem_etiqueta(d.get("tema"))
         k = (d.get("data"), t) if len(t) > 80 else ("unico", d.get("id"))
         if k not in grupos:
             grupos[k] = []
