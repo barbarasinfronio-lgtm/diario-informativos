@@ -238,10 +238,11 @@ def main():
         classe, num = processo_principal(d["processo"])
         if not classe:
             continue
+        print(f"  … {d['processo'][:60]} ({d.get('data') or d.get('dataJulgamento')})", flush=True)
         try:
             if hasattr(signal, "SIGALRM"):   # uma página pendurada não pode travar a rodada
-                signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 3 minutos; pulei")))
-                signal.alarm(180)
+                signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 2 minutos; pulei")))
+                signal.alarm(120)
             if (classe, num) not in incidentes:
                 incidentes[(classe, num)] = achar_incidente(classe, num)
                 time.sleep(a.espera)
@@ -250,6 +251,8 @@ def main():
             time.sleep(a.espera)
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
+            if "passou de" in str(e):
+                robo._firefox_fechar()   # o Firefox pode ter travado: recomeça limpo na próxima
             falhas += 1
             print(f"  {d['processo']} ({d.get('data') or d.get('dataJulgamento')}): {e}")
             if not a.teste:
