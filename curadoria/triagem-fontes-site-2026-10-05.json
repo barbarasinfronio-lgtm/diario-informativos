@@ -1,0 +1,371 @@
+{
+ "gerado": "2026-10-05",
+ "total_com_sobreposicao": 59861,
+ "porFonte": {
+  "STF · reclamações": {
+   "total": 20394,
+   "application": 8111,
+   "noStudy": 11841,
+   "review": 438,
+   "keep": 4
+  },
+  "STF · controle concentrado": {
+   "total": 6861,
+   "keep": 127,
+   "application": 324,
+   "review": 978,
+   "noStudy": 5430,
+   "essential": 2
+  },
+  "Teses e decisões de referência · rg": {
+   "total": 2414,
+   "essential": 2413,
+   "noStudy": 1
+  },
+  "Teses e decisões de referência · teses": {
+   "total": 3269,
+   "essential": 3203,
+   "noStudy": 63,
+   "keep": 2,
+   "application": 1
+  },
+  "Teses e decisões de referência · extras": {
+   "total": 528,
+   "noStudy": 499,
+   "application": 28,
+   "review": 1
+  },
+  "Teses e decisões de referência · tst": {
+   "total": 780,
+   "essential": 774,
+   "noStudy": 6
+  },
+  "STJ · acórdãos": {
+   "total": 15152,
+   "keep": 1315,
+   "application": 4192,
+   "review": 7247,
+   "noStudy": 2386,
+   "essential": 12
+  },
+  "STJ · acórdãos · sem metadados do índice": {
+   "total": 4672,
+   "application": 1018,
+   "review": 2580,
+   "noStudy": 655,
+   "keep": 417,
+   "essential": 2
+  },
+  "Informativos · STF/STJ": {
+   "total": 5735,
+   "essential": 5735
+  },
+  "Informativos · STF/STJ · sem metadados do índice": {
+   "total": 56,
+   "essential": 56
+  }
+ },
+ "porNatureza": {
+  "STF · reclamações | keep | tese": 2,
+  "STF · reclamações | keep | explicacao": 2,
+  "STF · controle concentrado | keep | tese": 111,
+  "STF · controle concentrado | keep | explicacao": 16,
+  "STF · controle concentrado | essential | evolucao": 2,
+  "Teses e decisões de referência · rg | essential | precedente": 2411,
+  "Teses e decisões de referência · rg | essential | evolucao": 2,
+  "Teses e decisões de referência · teses | essential | precedente": 3201,
+  "Teses e decisões de referência · teses | keep | explicacao": 2,
+  "Teses e decisões de referência · teses | essential | evolucao": 2,
+  "Teses e decisões de referência · tst | essential | precedente": 774,
+  "STJ · acórdãos | keep | explicacao": 773,
+  "STJ · acórdãos | keep | tese": 542,
+  "STJ · acórdãos | essential | evolucao": 12,
+  "STJ · acórdãos · sem metadados do índice | keep | explicacao": 301,
+  "STJ · acórdãos · sem metadados do índice | essential | evolucao": 2,
+  "STJ · acórdãos · sem metadados do índice | keep | tese": 116,
+  "Informativos · STF/STJ | essential | informativo": 5735,
+  "Informativos · STF/STJ · sem metadados do índice | essential | informativo": 56
+ },
+ "porAno": {
+  "1989": {
+   "total": 30,
+   "noStudy": 28,
+   "review": 2
+  },
+  "1990": {
+   "total": 109,
+   "noStudy": 97,
+   "review": 12
+  },
+  "1991": {
+   "total": 93,
+   "noStudy": 87,
+   "review": 6
+  },
+  "1992": {
+   "total": 95,
+   "noStudy": 92,
+   "application": 1,
+   "review": 2
+  },
+  "1993": {
+   "total": 97,
+   "noStudy": 89,
+   "review": 8
+  },
+  "1994": {
+   "total": 92,
+   "review": 11,
+   "noStudy": 80,
+   "essential": 1
+  },
+  "1995": {
+   "total": 134,
+   "noStudy": 125,
+   "review": 7,
+   "application": 2
+  },
+  "1996": {
+   "total": 93,
+   "noStudy": 82,
+   "review": 8,
+   "essential": 3
+  },
+  "1997": {
+   "total": 146,
+   "noStudy": 121,
+   "review": 15,
+   "application": 2,
+   "essential": 8
+  },
+  "1998": {
+   "total": 146,
+   "noStudy": 103,
+   "review": 10,
+   "application": 1,
+   "essential": 32
+  },
+  "1999": {
+   "total": 123,
+   "noStudy": 103,
+   "review": 16,
+   "essential": 4
+  },
+  "2000": {
+   "total": 194,
+   "noStudy": 139,
+   "review": 15,
+   "application": 4,
+   "essential": 36
+  },
+  "2001": {
+   "total": 165,
+   "noStudy": 125,
+   "review": 17,
+   "application": 9,
+   "essential": 14
+  },
+  "2002": {
+   "total": 296,
+   "noStudy": 241,
+   "review": 27,
+   "application": 7,
+   "essential": 21
+  },
+  "2003": {
+   "total": 270,
+   "noStudy": 202,
+   "review": 25,
+   "application": 11,
+   "essential": 32
+  },
+  "2004": {
+   "total": 188,
+   "noStudy": 129,
+   "application": 21,
+   "review": 23,
+   "essential": 15
+  },
+  "2005": {
+   "total": 243,
+   "noStudy": 135,
+   "application": 12,
+   "review": 14,
+   "essential": 82
+  },
+  "2006": {
+   "total": 164,
+   "noStudy": 142,
+   "review": 13,
+   "application": 9
+  },
+  "2007": {
+   "total": 202,
+   "noStudy": 153,
+   "application": 12,
+   "review": 20,
+   "essential": 17
+  },
+  "2008": {
+   "total": 326,
+   "noStudy": 190,
+   "application": 19,
+   "review": 11,
+   "essential": 106
+  },
+  "2009": {
+   "total": 874,
+   "application": 33,
+   "noStudy": 634,
+   "review": 9,
+   "essential": 198
+  },
+  "2010": {
+   "total": 669,
+   "noStudy": 394,
+   "application": 38,
+   "review": 13,
+   "essential": 224
+  },
+  "2011": {
+   "total": 596,
+   "application": 73,
+   "noStudy": 392,
+   "review": 12,
+   "essential": 119
+  },
+  "2012": {
+   "total": 364,
+   "noStudy": 194,
+   "application": 44,
+   "review": 8,
+   "essential": 118
+  },
+  "2013": {
+   "total": 718,
+   "noStudy": 509,
+   "application": 48,
+   "review": 8,
+   "essential": 153
+  },
+  "2014": {
+   "total": 1159,
+   "noStudy": 665,
+   "application": 86,
+   "review": 18,
+   "essential": 390
+  },
+  "2015": {
+   "total": 1520,
+   "noStudy": 928,
+   "application": 206,
+   "review": 22,
+   "essential": 364
+  },
+  "2016": {
+   "total": 1441,
+   "noStudy": 612,
+   "application": 189,
+   "review": 22,
+   "essential": 618
+  },
+  "2017": {
+   "total": 1341,
+   "noStudy": 477,
+   "application": 96,
+   "review": 39,
+   "keep": 3,
+   "essential": 726
+  },
+  "2018": {
+   "total": 1677,
+   "application": 329,
+   "review": 68,
+   "noStudy": 664,
+   "keep": 2,
+   "essential": 614
+  },
+  "2019": {
+   "total": 2569,
+   "application": 678,
+   "noStudy": 1116,
+   "review": 62,
+   "keep": 8,
+   "essential": 705
+  },
+  "2020": {
+   "total": 3311,
+   "application": 776,
+   "review": 185,
+   "noStudy": 1571,
+   "keep": 15,
+   "essential": 764
+  },
+  "2021": {
+   "total": 3436,
+   "noStudy": 1466,
+   "application": 739,
+   "review": 205,
+   "keep": 19,
+   "essential": 1007
+  },
+  "2022": {
+   "total": 4396,
+   "application": 1212,
+   "noStudy": 1300,
+   "review": 587,
+   "keep": 127,
+   "essential": 1170
+  },
+  "2023": {
+   "total": 5141,
+   "application": 1629,
+   "noStudy": 1619,
+   "review": 618,
+   "keep": 178,
+   "essential": 1097
+  },
+  "2024": {
+   "total": 6617,
+   "noStudy": 1450,
+   "application": 1843,
+   "review": 2029,
+   "keep": 195,
+   "essential": 1100
+  },
+  "2025": {
+   "total": 10609,
+   "noStudy": 2356,
+   "application": 2896,
+   "review": 3317,
+   "keep": 641,
+   "essential": 1399
+  },
+  "2026": {
+   "total": 4874,
+   "application": 1619,
+   "noStudy": 1210,
+   "review": 1179,
+   "keep": 260,
+   "essential": 606
+  },
+  "sem data": {
+   "total": 5343,
+   "noStudy": 861,
+   "essential": 454,
+   "application": 1030,
+   "review": 2581,
+   "keep": 417
+  }
+ },
+ "informativosStj": {
+  "total": 4483,
+  "comChave": 4482,
+  "comAcordao": 1062
+ },
+ "orfaos": {
+  "acordaos": 4672,
+  "informativos": 56
+ },
+ "avisos": []
+}
