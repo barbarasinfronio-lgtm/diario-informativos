@@ -35,6 +35,7 @@ def _limpa(t):
     t = (t or "").replace("\xad\n", "").replace("\xad", "")
     t = re.sub(r"(\w)- (\w)", r"\1\2", t)           # hifenização de quebra de linha
     t = re.sub(r"\s+", " ", t)
+    t = re.sub(r"\s+([,;])", r"\1", t)        # "REsp 1.806.555-SP ," (página do STJ)
     return t.strip()
 
 
