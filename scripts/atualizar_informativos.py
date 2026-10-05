@@ -46,6 +46,7 @@ Sai com código 0 (tudo certo, com ou sem novidade) ou 1 (algum tribunal
 falhou).
 """
 import html
+import json
 import os
 import re
 import signal
@@ -324,6 +325,8 @@ atexit.register(_fechar_janela_chrome)
 
 
 def pagina_chrome_real(url, valida=None):
+    if _achar_firefox() and not _ff["indisponivel"]:
+        return pagina_firefox(url, valida)   # sem janela; o Chrome só se o Firefox falhar
     if sys.platform != "darwin":
         raise Falha(f"{url} → o site só abre no Chrome do Mac")
     texto = _osascript("abrir", url)
@@ -341,6 +344,150 @@ def pagina_chrome_real(url, valida=None):
 _via_chrome_real = set()
 
 
+# Firefox invisível (preferido): o robô comanda um Firefox sem janela pelo
+# protocolo Marionette (já vem no Firefox; não precisa instalar nada). Ao
+# contrário do Chrome "de verdade", não abre janela nem tira o foco do que a
+# pessoa está fazendo (ex.: uma aula aberta no navegador). Um único Firefox
+# serve a rodada inteira e é fechado no fim.
+FIREFOXES = [
+    "/Applications/Firefox.app/Contents/MacOS/firefox",
+    "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox",
+]
+_ff = {"proc": None, "sock": None, "pasta": None, "id": 0, "indisponivel": None}
+
+
+def _achar_firefox():
+    return next((c for c in FIREFOXES if Path(c).exists()), None) or shutil.which("firefox")
+
+
+def _mn_enviar(nome, params=None):
+    s = _ff["sock"]
+    _ff["id"] += 1
+    corpo = json.dumps([0, _ff["id"], nome, params or {}]).encode()
+    s.sendall(str(len(corpo)).encode() + b":" + corpo)
+    while True:
+        msg = _mn_ler(s)
+        if isinstance(msg, list) and len(msg) == 4 and msg[0] == 1 and msg[1] == _ff["id"]:
+            if msg[2]:
+                raise Falha(f"Firefox: {msg[2].get('message') or msg[2]}")
+            return msg[3]
+
+
+def _mn_ler(s):
+    n = b""
+    while not n.endswith(b":"):
+        c = s.recv(1)
+        if not c:
+            raise Falha("o Firefox fechou a conexão")
+        n += c
+    total, buf = int(n[:-1]), b""
+    while len(buf) < total:
+        c = s.recv(total - len(buf))
+        if not c:
+            raise Falha("o Firefox fechou a conexão")
+        buf += c
+    return json.loads(buf.decode("utf-8", "replace"))
+
+
+def _firefox_fechar():
+    p = _ff["proc"]
+    if p:
+        try:
+            os.killpg(p.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+    if _ff["sock"]:
+        try:
+            _ff["sock"].close()
+        except OSError:
+            pass
+    if _ff["pasta"]:
+        shutil.rmtree(_ff["pasta"], ignore_errors=True)
+    _ff.update(proc=None, sock=None, pasta=None)
+
+
+def _firefox_iniciar():
+    caminho = _achar_firefox()
+    if not caminho:
+        raise Falha("não achei o Firefox neste Mac (instale em firefox.com: ele abre as páginas "
+                    "sem janela e sem tirar o foco da sua tela)")
+    with socket.socket() as t:
+        t.bind(("127.0.0.1", 0))
+        porta = t.getsockname()[1]
+    pasta = tempfile.mkdtemp(prefix="robo-firefox-")
+    prefs = {"marionette.port": porta, "browser.shell.checkDefaultBrowser": False,
+             "datareporting.policy.dataSubmissionEnabled": False,
+             "app.update.auto": False, "app.update.enabled": False,
+             "browser.startup.homepage_override.mstone": "ignore",
+             "general.useragent.locale": "pt-BR", "intl.accept_languages": "pt-BR,pt",
+             "dom.disable_open_during_load": True, "media.autoplay.default": 5,
+             "browser.tabs.warnOnClose": False}
+    with open(Path(pasta) / "user.js", "w") as f:
+        for k, v in prefs.items():
+            f.write(f"user_pref({json.dumps(k)}, {json.dumps(v)});\n")
+    _ff["pasta"] = pasta
+    _ff["proc"] = subprocess.Popen(
+        [caminho, "--headless", "--marionette", "--no-remote", "--profile", pasta],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+        start_new_session=True)
+    fim = time.time() + 45
+    sock = None
+    while time.time() < fim:
+        try:
+            sock = socket.create_connection(("127.0.0.1", porta), timeout=5)
+            break
+        except OSError:
+            if _ff["proc"].poll() is not None:
+                break
+            time.sleep(0.5)
+    if not sock:
+        _firefox_fechar()
+        raise Falha("o Firefox não respondeu ao robô")
+    sock.settimeout(ESPERA_CHROME + 30)
+    _ff["sock"] = sock
+    try:
+        _mn_ler(sock)  # saudação {"applicationType":"gecko",...}
+        _mn_enviar("WebDriver:NewSession", {"capabilities": {"acceptInsecureCerts": True}})
+        _mn_enviar("WebDriver:SetTimeouts", {"pageLoad": ESPERA_CHROME * 1000, "script": 30000})
+    except Exception:
+        _firefox_fechar()
+        raise
+
+
+import atexit  # noqa: E402
+atexit.register(_firefox_fechar)
+
+
+def pagina_firefox(url, valida=None):
+    """HTML da página já montada (com JavaScript), lido por um Firefox sem janela."""
+    if _ff["indisponivel"]:
+        raise Falha(_ff["indisponivel"])
+    if not _ff["sock"]:
+        try:
+            _firefox_iniciar()
+        except Falha as e:
+            _ff["indisponivel"] = str(e)
+            raise
+    try:
+        try:
+            _mn_enviar("WebDriver:Navigate", {"url": url})
+        except Falha as e:   # "tempo esgotado" ainda deixa ler o que já carregou
+            print(f"  (Firefox: {str(e)[:100]})")
+        texto = ""
+        for _ in range(12):
+            r = _mn_enviar("WebDriver:GetPageSource")
+            texto = r.get("value", "") if isinstance(r, dict) else str(r or "")
+            if not valida or valida(texto):
+                break
+            time.sleep(2)   # páginas "Just a moment..." trocam sozinhas
+    except (Falha, OSError, ValueError) as e:
+        _firefox_fechar()   # recomeça limpo na próxima página
+        raise Falha(f"{url} → falhou pelo Firefox ({e})")
+    print(f"  {url} → pelo Firefox ({len(texto)} caracteres)")
+    return texto
+
+
+
 def _titulo(texto):
     m = re.search(r"<title[^>]*>(.*?)</title>", texto, re.S | re.I)
     return re.sub(r"\s+", " ", html.unescape(m.group(1))).strip()[:80] if m else "?"
@@ -352,6 +499,22 @@ def pagina(url, valida=None):
     barrado (ou trouxer uma página que não é a esperada — "valida" diz o que
     esperar), tenta pelo Chrome de verdade do Mac."""
     host = urllib.parse.urlsplit(url).hostname
+    if _achar_firefox() and not _ff["indisponivel"]:
+        # Firefox sem janela: não tira a tela da pessoa (o Chrome faria isso)
+        if host not in _via_navegador:
+            status, tipo, corpo = buscar(url)
+            print(f"  {url} → HTTP {status}")
+            if status == 200:
+                return texto_de(corpo, tipo)
+            if status != 403:
+                raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
+            _via_navegador.add(host)
+        try:
+            return pagina_firefox(url, valida)
+        except Falha:
+            if not _ff["indisponivel"]:
+                raise
+            print("  (Firefox não abriu; usando o Chrome)")
     if host in _via_chrome_real:
         return pagina_chrome_real(url, valida)
     if host not in _via_navegador:
