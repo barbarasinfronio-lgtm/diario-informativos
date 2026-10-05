@@ -19,6 +19,7 @@ on:
       - tst/decisoes.json
       - stj/acordaos/indice.json
       - informativos/indice.json
+      - scripts/ligar_repetitivos.py
       - normas-citadas.js
       - scripts/gerar_leves.js
       - scripts/limpar_decisoes.py
@@ -43,13 +44,17 @@ jobs:
       - name: Limpar decisões
         run: python3 scripts/limpar_decisoes.py decisoes
 
+      # liga cada Tema repetitivo do STJ à ementa do acórdão e ao Informativo (stj/repetitivos/)
+      - name: Ligar repetitivos
+        run: python3 scripts/ligar_repetitivos.py
+
       - name: Gerar leve/
         run: node scripts/gerar_leves.js
 
       - name: Salvar os arquivos gerados
         id: salvar
         run: |
-          git add -A leve rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json informativos/indice.json
+          git add -A leve stj/repetitivos rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json informativos/indice.json
           if git diff --cached --quiet; then
             echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
           fi

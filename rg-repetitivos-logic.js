@@ -615,6 +615,29 @@
 
   var overlay = document.getElementById('overlay');
   var modal = document.getElementById('modal');
+  // Temas repetitivos do STJ: a ementa do acórdão e o julgado do Informativo ficam em
+  // stj/repetitivos/NN.json (scripts/ligar_repetitivos.py), baixados só ao abrir o card.
+  var detalheRep = {};
+  function carregarDetalheRep(d){
+    var b = ('0' + Math.floor(Number(d.tema) / 100)).slice(-2);
+    if (!detalheRep[b]) detalheRep[b] = fetch(BASE_CDN + 'stj/repetitivos/' + b + '.json', { cache: 'no-cache' })
+      .then(function(r){ return r.ok ? r.json() : {}; }).catch(function(){ return {}; });
+    detalheRep[b].then(function(j){
+      var e = j[String(d.tema)];
+      if (!e || modalAtual !== d) return;
+      var h = '';
+      if (e.ementa) h += '<div class="section-label">Ementa do acórdão' + (e.acordao ? ' — ' + escapeHtml(e.acordao) : '') + '</div><div class="destaque-text">' + escapeHtml(e.ementa) + '</div>';
+      if (e.infoTeor) h += '<div class="section-label">Informativo STJ nº ' + escapeHtml(e.info) + ' — inteiro teor</div><div class="destaque-text">' + escapeHtml(e.infoTeor) + '</div>';
+      var campos = modal.querySelector('.fields');
+      if (campos && h) campos.insertAdjacentHTML('afterend', h);
+      if (e.info && campos) {
+        Array.prototype.forEach.call(campos.querySelectorAll('div'), function(x){
+          var bt = x.querySelector('b');
+          if (bt && bt.textContent === 'Informativo') x.innerHTML = '<b>Informativo</b>' + escapeHtml(e.info);
+        });
+      }
+    });
+  }
   function openModal(d){
     if (d._f && !completo[d._f]) {
       modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Carregando o texto completo…</p>';
@@ -674,6 +697,7 @@
     normasAtuais = null;
     mostrarNormas(d);
     ligarCadernos(d);
+    if (d.orgao === 'STJ' && d.tipo === 'repetitivo' && d.tema) carregarDetalheRep(d);
   }
   function closeModal(){
     if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();
