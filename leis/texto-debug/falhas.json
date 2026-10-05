@@ -119,30 +119,6 @@
   "nome": "Compensação financeira estadual pela exploração de recursos minerais",
   "motivo": "a página não existe no site"
  },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=60133&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (RS) nº 14.254/2013",
-  "nome": "Conselhos Estaduais e Municipais dos Direitos da Pessoa Idosa do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=61908&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei (RS) nº 14.705/2015",
-  "nome": "Plano Estadual de Educação do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=39818&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei (RS) nº 9.831/1993",
-  "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=5549&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei nº 6.537/1973",
-  "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
  "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm": {
   "em": "2026-10-02",
   "numero": "Lei Estadual (SC) nº 3.938/1966",
@@ -173,18 +149,6 @@
   "nome": "Consolida as normas relativas ao ICMS no Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=41893&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (RS) nº 10.350/1994",
-  "nome": "Política Estadual de Recursos Hídricos do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=64860&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei Estadual (RS) nº 15.434/2020",
-  "nome": "Código Estadual do Meio Ambiente do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
- },
  "https://sapl.al.to.leg.br/norma/5045": {
   "em": "2026-10-02",
   "numero": "Lei Estadual (TO) nº 3.804/2021",
@@ -208,12 +172,6 @@
   "numero": "Lei Complementar (MT) nº 04/1990",
   "nome": "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=67598&hId_FazSumula=&RF=1": {
-  "em": "2026-10-02",
-  "numero": "Lei Complementar (RS) nº 16.263/2024",
-  "nome": "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul",
-  "motivo": "erro ao abrir: HTTP 500 (o site recusou ou a página mudou)"
  },
  "https://legislacao.mt.gov.br/mt/lei-ordinaria-n-8264-2004-mato-grosso-dispoe-sobre-o-regime-de-concessao-e-permissao-de-servicos-e-obras-publicas-no-ambito-do-setor-rodoviario-2020-10-09-versao-compilada": {
   "em": "2026-10-02",

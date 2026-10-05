@@ -1273,6 +1273,8 @@ def leis_estaduais(hoje_iso):
                 if "Chrome" in str(e) and "JavaScript" in str(e):
                     chrome_ok[0] = False   # sem o Chrome real: não adianta tentar de novo
                     pg = ""
+                elif re.search(r"HTTP (403|500)", str(e)) and sys.platform == "darwin" and chrome_ok[0]:
+                    pg = ""   # o site recusa o robô (ex.: ALRS dá 500): tenta pelo seu Chrome
                 else:
                     raise
             if not tem_lei(pg) and sys.platform == "darwin" and chrome_ok[0]:
