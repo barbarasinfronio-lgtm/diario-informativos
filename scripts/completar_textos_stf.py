@@ -95,30 +95,67 @@ def achar_incidente(classe, num):
     raise robo.Falha("não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)")
 
 
+def rtf_para_texto(corpo):
+    """RTF (bytes) → texto simples. Trata \\'xx (cp1252), \\uN (unicode), \\par e grupos de formatação."""
+    t = corpo.decode("latin-1")
+    # grupos que não são texto (tabelas de fontes/cores, estilos, cabeçalhos)
+    for nome in ("fonttbl", "colortbl", "stylesheet", "info", "header", "footer", "pict", "listtable", "listoverridetable", "generator"):
+        i = 0
+        while True:
+            i = t.find("{\\" + nome, i)
+            if i < 0:
+                i = t.find("{\\*\\" + nome, 0) if False else -1
+                break
+            nivel, j = 0, i
+            while j < len(t):
+                if t[j] == "{" and t[j - 1] != "\\": nivel += 1
+                elif t[j] == "}" and t[j - 1] != "\\":
+                    nivel -= 1
+                    if nivel == 0: break
+                j += 1
+            t = t[:i] + t[j + 1:]
+    t = re.sub(r"\{\\\*[^{}]*\}", "", t)
+
+    def uni(m):
+        n = int(m[1]); n = n + 65536 if n < 0 else n
+        return chr(n)
+    t = re.sub(r"\\u(-?\d+) ?(?:\\'[0-9a-fA-F]{2}|[^\\{}])", lambda m: uni(m), t)
+    t = re.sub(r"\\'([0-9a-fA-F]{2})", lambda m: bytes([int(m[1], 16)]).decode("cp1252", "replace"), t)
+    t = re.sub(r"\\(par|line|sect|page)\b ?", "\n", t)
+    t = re.sub(r"\\tab\b ?", " ", t)
+    t = re.sub(r"\\[a-zA-Z]+-?\d* ?", "", t)
+    t = t.replace("\\{", "{").replace("\\}", "}").replace("\\\\", "\\")
+    t = re.sub(r"[{}]", "", t)
+    return re.sub(r"[ \t]+", " ", t).strip()
+
+
 def texto_completo(truncado, classe, num, inc):
     pg = robo.pagina(ABA.format(inc=inc, num=num, cls=classe))
     DEBUG.mkdir(parents=True, exist_ok=True)
     (DEBUG / f"{classe}-{num}-abaDecisoes.html").write_text(pg[:400000], encoding="utf-8")
     prefixo = norm(truncado)[:160]
-    melhor = ""
-    for b in blocos(pg):
-        nb = norm(b)
-        k = nb.find(prefixo)
-        if k >= 0:
-            # o bloco pode trazer um título antes do texto: começa onde o texto começa
-            # (a posição no texto "limpo" difere da original, então corta pelo 1º trecho igual)
-            ini = b.lower().find(truncado[:40].lower())
-            cand = b[ini:] if ini >= 0 else b
-            if len(cand) > len(melhor):
-                melhor = cand
-    if not melhor:
-        DEBUG.mkdir(parents=True, exist_ok=True)
-        (DEBUG / f"{classe}-{num}.html").write_text(pg[:300000], encoding="utf-8")
-        raise robo.Falha("não achei o texto na aba Decisões (HTML guardado em curadoria/debug-stf/)")
-    if len(norm(melhor)) <= len(norm(truncado)):
-        raise robo.Falha(f"o texto da página ({len(melhor)} caracteres) não é maior que o que já temos "
-                         f"({len(truncado)}); página guardada em curadoria/debug-stf/")
-    return melhor
+    # a aba mostra só os primeiros 1.000 caracteres; o texto inteiro está no arquivo
+    # "Decisão de Julgamento" (RTF) do mesmo andamento
+    for item in re.split(r'(?=<div class="andamento-item")', pg):
+        if prefixo not in norm(re.sub(r"<[^>]+>", " ", html.unescape(item))):
+            continue
+        m = re.search(r'downloadTexto\.asp\?id=(\d+)(?:&amp;|&)ext=RTF', item)
+        if not m:
+            continue
+        status, tipo, corpo = robo.buscar(f"https://portal.stf.jus.br/processos/downloadTexto.asp?id={m[1]}&ext=RTF")
+        if status != 200 or b"{\\rtf" not in corpo[:50]:
+            raise robo.Falha(f"o arquivo da decisão não abriu (HTTP {status})")
+        texto = rtf_para_texto(corpo)
+        (DEBUG / f"{classe}-{num}-{m[1]}.txt").write_text(texto[:20000], encoding="utf-8")
+        k = norm(texto).find(prefixo[:80])
+        if k < 0:
+            raise robo.Falha("o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)")
+        ini = texto.lower().find(truncado[:30].lower())
+        cand = (texto[ini:] if ini >= 0 else texto).strip()
+        if len(norm(cand)) <= len(norm(truncado)):
+            raise robo.Falha("o arquivo da decisão não é maior que o texto que já temos")
+        return cand
+    raise robo.Falha("não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões")
 
 
 def main():
