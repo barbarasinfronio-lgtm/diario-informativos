@@ -1765,7 +1765,99 @@ def stf_pv(dados):
     return novas
 
 
-TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
+# ================================================================ cards dos informativos
+# Depois que STF e STJ registram uma edição nova em diario-data.js, esta etapa
+# lê o PDF da edição, separa os julgados (scripts/informativos_extrair.py) e
+# põe os cards no Diário das Decisões (informativos/). Se o PDF não abrir pelo
+# robô (o STJ às vezes recusa), vale um PDF colocado à mão em informativos/pdf/
+# (nomes: Informativo_stf_1227.pdf, GetPDFINFJ0902.pdf).
+PASTA_INF = RAIZ / "informativos"
+EDICOES_POR_VEZ = 12
+JANELA_EDICOES = 40
+
+
+def _pdf_do_informativo(org, n, link):
+    manual = PASTA_INF / "pdf"
+    nomes = ([f"Informativo_stf_{n}.pdf"] if org == "STF"
+             else [f"GetPDFINFJ{n:04d}.pdf", f"GetPDFINFJ{n}.pdf", f"GetPDFINFJ{n:04d} (1).pdf"])
+    for nome in nomes:
+        if (manual / nome).exists():
+            print(f"  nº {n}: usando o PDF de informativos/pdf/{nome}")
+            return (manual / nome).read_bytes()
+    url = (f"https://www.stf.jus.br/arquivo/cms/informativoSTF/anexo/Informativo_PDF/Informativo_stf_{n}.pdf"
+           if org == "STF" else link or f"https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}")
+    status, tipo, corpo = buscar(url)
+    print(f"  {org} nº {n}: PDF → HTTP {status}")
+    return corpo if status == 200 and eh_pdf(tipo, corpo) else None
+
+
+def cards_informativos(dados):
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import informativos_extrair as ie
+    lidas_f = PASTA_INF / "lidas.json"
+    lidas = json.loads(lidas_f.read_text(encoding="utf-8")) if lidas_f.exists() else {}
+    gravadas = ie.edicoes_gravadas()
+    feitas, falhas = [], []
+    for org, var in (("STF", "STF_DATA"), ("STJ", "STJ_DATA")):
+        registradas = dados.registradas(var)[:JANELA_EDICOES]
+        links = {e: l for e, _, l in registradas}
+        faltam = [e for e, _, _ in registradas
+                  if e not in gravadas.get(org, set()) and str(e) not in lidas.get(org, {})
+                  and (org != "STF" or e >= 1000)]
+        if not faltam:
+            print(f"  {org}: todas as edições recentes já têm cards")
+            continue
+        print(f"  {org}: edições sem cards: {', '.join(map(str, faltam[:EDICOES_POR_VEZ]))}")
+        for n in faltam[:EDICOES_POR_VEZ]:
+            chave = f"{org}:{n}"
+            try:
+                corpo = _pdf_do_informativo(org, n, links.get(n))
+                if corpo:
+                    blocos = ie.blocos_de_pdf(corpo, texto_de_pdf)
+                elif org == "STJ":   # sem o PDF: a página da edição
+                    t = pagina("https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
+                               f"?acao=pesquisarumaedicao&livre={n:04d}.cod.")
+                    blocos = ie.blocos_de_html(t)
+                else:
+                    raise Falha("o PDF não abriu (ponha o PDF em informativos/pdf/ e rode de novo)")
+                itens = ie.extrair(org, n, blocos)
+            except (Falha, RuntimeError) as e:
+                print(f"  {org} nº {n}: {e}")
+                falhas.append(chave)
+                continue
+            if not itens:
+                lidas.setdefault("tentativas", {})[chave] = lidas.get("tentativas", {}).get(chave, 0) + 1
+                print(f"  {org} nº {n}: nenhum julgado reconhecido (tentativa {lidas['tentativas'][chave]}/3)")
+                if lidas["tentativas"][chave] >= 3:
+                    lidas.setdefault(org, {})[str(n)] = 0
+                continue
+            ids = ie.acrescentar(itens)
+            lidas.setdefault(org, {})[str(n)] = len(ids)
+            print(f"  {org} nº {n}: {len(itens)} julgado(s) lido(s), {len(ids)} novo(s) no Diário das Decisões")
+            feitas.append({"edicao": n, "data": "", "ano": f"{org} · {len(ids)} julgado(s)"})
+    lidas_f.write_text(json.dumps(lidas, ensure_ascii=False, indent=1), encoding="utf-8")
+    if falhas:
+        raise Falha("não consegui ler: " + ", ".join(falhas)
+                    + " — o que deu certo foi gravado; para estes, baixe o PDF e ponha em informativos/pdf/")
+    return feitas
+
+
+def cobrancas_informativos(dados):
+    """Cruza os julgados novos dos informativos com as provas (scripts/cobrancas_informativos.py).
+    Precisa da pasta Provas do Mac: o caminho fica em provas/pasta-das-provas.txt."""
+    f = RAIZ / "provas" / "pasta-das-provas.txt"
+    pasta = os.environ.get("PROVAS_PASTA") or (f.read_text(encoding="utf-8").strip() if f.exists() else "")
+    if not pasta or not os.path.isdir(os.path.expanduser(pasta)):
+        print("  (pasta das provas não informada: o cruzamento com as provas fica para depois — "
+              "o 'Atualizar Informativos.command' pergunta o caminho na próxima vez)")
+        return []
+    r = subprocess.run([sys.executable, str(RAIZ / "scripts" / "cobrancas_informativos.py"), os.path.expanduser(pasta)])
+    if r.returncode:
+        raise Falha("o cruzamento com as provas falhou (veja a mensagem acima)")
+    return []
+
+
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
              ("TESES", teses), ("LEIS", leis)]
 
 
@@ -1773,7 +1865,7 @@ TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_e
 # que está rodando. Um site pendurado (ex.: JusLaboris
 # lento, Chrome esperando uma página que não termina) não trava o resto:
 # a parte é interrompida, aparece como ERRO no Resumo e as outras seguem.
-LIMITE = {"TESES": 1800, "LEIS": 2400}
+LIMITE = {"TESES": 1800, "LEIS": 2400, "CARDS": 1200, "COBRANCAS": 1800}
 LIMITE_PADRAO = 300
 
 

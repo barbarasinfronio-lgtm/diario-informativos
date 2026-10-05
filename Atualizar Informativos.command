@@ -6,7 +6,8 @@
 # saíram Informativos novos de STF, STJ, TSE, CNJ, TST e CNMP e teses novas
 # da Jurisprudência em Teses do STJ (scripts/atualizar_informativos.py); as
 # leis alteradas ficam no "Atualizar Leis.command" (pode rodar todo dia);
-# 3) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a limpeza do
+# 3) lê os Informativos novos de STF e STJ, cria os cards do Diário das Decisões (informativos/)
+# e marca o que já foi cobrado em prova (provas/cobrancas.json); 4) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a limpeza do
 # cache do jsDelivr, então o site mostra a novidade em minutos.
 #
 # Se um tribunal falhar, os outros são gravados e enviados assim mesmo; a
@@ -21,7 +22,7 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Informativos — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-ARQUIVOS=(diario-data.js stj/teses.json leis/alteracoes.json leis/texto leis/texto-debug)
+ARQUIVOS=(diario-data.js stj/teses.json leis/alteracoes.json leis/texto leis/texto-debug informativos provas/cobrancas.json provas/informativos-cruzados.json)
 # Mudanças que o robô deixou neste Mac sem enviar (por exemplo, a importação
 # das Teses rodada pelo Terminal): guarda num commit, para irem junto.
 git checkout -q main 2>/dev/null
@@ -36,7 +37,22 @@ git fetch -q origin main && git pull -q --rebase --autostash origin main \
        echo "ERRO: não consegui juntar este Mac com o main (conflito). Cole esta janela para a Claude."; fim 1; }
 
 # As leis (Planalto) têm arquivo próprio, para rodar todo dia: "Atualizar Leis.command".
-python3 scripts/atualizar_informativos.py STF STF-PV STJ STJ-EXTRA STJ-BOLETIM TSE CNJ TST CNMP TESES
+# Para marcar o que foi cobrado em prova, o robô precisa saber onde está a sua pasta "Provas"
+# (a que tem a subpasta _texto). Pergunta só uma vez; o caminho fica em provas/pasta-das-provas.txt.
+if [ ! -s provas/pasta-das-provas.txt ]; then
+  echo "Para marcar nos Informativos novos o que já foi cobrado em prova, preciso saber onde"
+  echo "está a sua pasta \"Provas\". ARRASTE a pasta para esta janela e aperte Enter"
+  echo "(ou só Enter para pular; eu pergunto de novo na próxima vez):"
+  read -r pasta_provas
+  pasta_provas=$(printf '%s' "$pasta_provas" | sed -e 's/\\\(.\)/\1/g' -e 's/[[:space:]]*$//')
+  if [ -n "$pasta_provas" ] && [ -d "$pasta_provas" ]; then
+    printf '%s\n' "$pasta_provas" > provas/pasta-das-provas.txt
+  elif [ -n "$pasta_provas" ]; then
+    echo "Não achei essa pasta; pulando por agora."
+  fi
+  echo
+fi
+python3 scripts/atualizar_informativos.py STF STF-PV STJ STJ-EXTRA STJ-BOLETIM CARDS COBRANCAS TSE CNJ TST CNMP TESES
 resultado=$?
 
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done

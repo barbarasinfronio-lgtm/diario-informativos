@@ -14,7 +14,8 @@ de 4+ palavras seguidas).
 import subprocess
 import json,re,glob,os,collections,unicodedata,sys
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-C=json.loads(subprocess.run(['node','-e',open(os.path.join(ROOT,'scripts','cobrancas_corpus.js')).read()],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
+# COBRANCAS_CORPUS: arquivo .json com só alguns itens (usado por cobrancas_informativos.py)
+C=json.load(open(os.environ['COBRANCAS_CORPUS'],encoding='utf-8')) if os.environ.get('COBRANCAS_CORPUS') else json.loads(subprocess.run(['node','-e',open(os.path.join(ROOT,'scripts','cobrancas_corpus.js')).read()],cwd=ROOT,capture_output=True,text=True,check=True).stdout)
 def norm(s):
     s=unicodedata.normalize('NFD',(s or '').lower()); s=''.join(c for c in s if unicodedata.category(c)!='Mn')
     s=re.sub(r'-\n',' ',s); return re.sub(r'[^a-z0-9]+',' ',s).strip()
@@ -131,6 +132,7 @@ def rotulo(c):
         sig=o.upper().replace('_UJ','')
         return 'Súmula '+c['num']+' do '+sig,'Súmula '+('do STF' if o=='stf' else 'do STJ' if o=='stj' else 'do TST' if o=='tst' else 'dos TJs')
     t=c.get('tipo')
+    if t=='informativo': return 'Informativo '+c['org']+(' nº '+c['info'] if c.get('info') else ''),'Informativos (STF/STJ)'
     if t=='rg': return 'Tema '+c['num']+' da Repercussão Geral (STF)','Repercussão Geral (STF)'
     if t=='repetitivo':
         l=c.get('label') or 'Tema'
