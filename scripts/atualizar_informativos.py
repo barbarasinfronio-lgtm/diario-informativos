@@ -406,6 +406,14 @@ def _firefox_fechar():
     _ff.update(proc=None, sock=None, pasta=None)
 
 
+def _ff_log_final():
+    try:
+        linhas = [l for l in Path(_ff["log"]).read_text(errors="replace").splitlines() if l.strip()]
+        return " | ".join(linhas[-3:])[:300]
+    except Exception:
+        return ""
+
+
 def _firefox_iniciar():
     caminho = _achar_firefox()
     if not caminho:
@@ -426,9 +434,10 @@ def _firefox_iniciar():
         for k, v in prefs.items():
             f.write(f"user_pref({json.dumps(k)}, {json.dumps(v)});\n")
     _ff["pasta"] = pasta
+    _ff["log"] = Path(pasta) / "firefox.log"
     _ff["proc"] = subprocess.Popen(
         [caminho, "--headless", "--marionette", "--no-remote", "--profile", pasta],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL,
+        stdout=open(_ff["log"], "wb"), stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,
         start_new_session=True)
     fim = time.time() + 45
     sock = None
@@ -441,21 +450,49 @@ def _firefox_iniciar():
                 break
             time.sleep(0.5)
     if not sock:
+        fim_log = _ff_log_final()
         _firefox_fechar()
-        raise Falha("o Firefox não respondeu ao robô")
+        raise Falha("o Firefox não respondeu ao robô" + (f" ({fim_log})" if fim_log else ""))
     sock.settimeout(ESPERA_CHROME + 30)
     _ff["sock"] = sock
     try:
         _mn_ler(sock)  # saudação {"applicationType":"gecko",...}
         _mn_enviar("WebDriver:NewSession", {"capabilities": {"acceptInsecureCerts": True}})
-        _mn_enviar("WebDriver:SetTimeouts", {"pageLoad": ESPERA_CHROME * 1000, "script": 30000})
-    except Exception:
+        _mn_enviar("WebDriver:SetTimeouts", {"pageLoad": ESPERA_CHROME * 1000, "script": 60000})
+    except Exception as e:
+        fim_log = _ff_log_final()
         _firefox_fechar()
-        raise
+        raise Falha(f"conversa com o Firefox falhou: {e}" + (f" ({fim_log})" if fim_log else ""))
 
 
 import atexit  # noqa: E402
 atexit.register(_firefox_fechar)
+
+
+_JS_BAIXAR = """
+const url = arguments[0], feito = arguments[arguments.length - 1];
+fetch(url, {credentials: 'include'}).then(r => r.arrayBuffer().then(b => {
+  const u = new Uint8Array(b); let s = '';
+  for (let i = 0; i < u.length; i += 32768) s += String.fromCharCode.apply(null, u.subarray(i, i + 32768));
+  feito({status: r.status, b64: btoa(s)});
+})).catch(e => feito({status: 0, erro: String(e)}));
+"""
+
+
+def baixar_via_firefox(url, pagina_da_origem, valida=None):
+    """Bytes de um arquivo (PDF) que o site só entrega a um navegador de verdade:
+    abre uma página do mesmo site (passa a verificação anti-robô) e baixa de dentro dela."""
+    import base64
+    pagina_firefox(pagina_da_origem, valida)
+    for _ in range(6):
+        r = _mn_enviar("WebDriver:ExecuteAsyncScript", {"script": _JS_BAIXAR, "args": [url]})
+        v = r.get("value") if isinstance(r, dict) else None
+        if v and v.get("status") == 200 and v.get("b64"):
+            return base64.b64decode(v["b64"])
+        if v and v.get("status") not in (0, 403, 503):
+            return None
+        time.sleep(3)
+    return None
 
 
 def pagina_firefox(url, valida=None):
@@ -514,7 +551,7 @@ def pagina(url, valida=None):
         except Falha:
             if not _ff["indisponivel"]:
                 raise
-            print("  (Firefox não abriu; usando o Chrome)")
+            print(f"  (Firefox não abriu: {_ff['indisponivel']}; usando o Chrome)")
     if host in _via_chrome_real:
         return pagina_chrome_real(url, valida)
     if host not in _via_navegador:
@@ -1788,7 +1825,19 @@ def _pdf_do_informativo(org, n, link):
            if org == "STF" else link or f"https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao={n:04d}")
     status, tipo, corpo = buscar(url)
     print(f"  {org} nº {n}: PDF → HTTP {status}")
-    return corpo if status == 200 and eh_pdf(tipo, corpo) else None
+    if status == 200 and eh_pdf(tipo, corpo):
+        return corpo
+    if status == 403 and _achar_firefox() and not _ff["indisponivel"]:
+        host = urllib.parse.urlsplit(url).hostname
+        try:
+            corpo = baixar_via_firefox(url, f"https://{host}/SCON/JurisprudenciaEmTesesFeed",
+                                       valida=lambda x: "Um momento" not in x[:3000])
+            print(f"  {org} nº {n}: PDF pelo Firefox → " + (f"{len(corpo)} bytes" if corpo else "não veio"))
+            if corpo and eh_pdf("", corpo):
+                return corpo
+        except Falha as e:
+            print(f"  {org} nº {n}: Firefox: {e}")
+    return None
 
 
 def cards_informativos(dados):
@@ -1821,6 +1870,10 @@ def cards_informativos(dados):
                 else:
                     raise Falha("o PDF não abriu (ponha o PDF em informativos/pdf/ e rode de novo)")
                 itens = ie.extrair(org, n, blocos)
+                if not itens:
+                    dbg = PASTA_INF / "debug"
+                    dbg.mkdir(exist_ok=True)
+                    (dbg / f"{org}-{n}.txt").write_text("\n\n".join(blocos)[:60000], encoding="utf-8")
             except (Falha, RuntimeError) as e:
                 print(f"  {org} nº {n}: {e}")
                 falhas.append(chave)
