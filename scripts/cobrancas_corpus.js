@@ -6,4 +6,5 @@ for (const k in SUMULAS_DATA) for (const s of (SUMULAS_DATA[k].sumulas || [])) C
 for (const d of RG_REPETITIVOS_DATA) C.push({ src: "dec", key: String(d.id), org: d.orgao, tipo: d.tipo, label: d.precedenteLabel || "Tema", num: String(d.tema), texto: d.tese || "" });
 for (const d of JSON.parse(fs.readFileSync("stj/teses.json", "utf8")).itens) C.push({ src: "dec", key: d.id, org: "STJ", tipo: "teses", num: d.tema, texto: d.tese });
 for (const d of JSON.parse(fs.readFileSync("stf/extras.json", "utf8")).itens) if (d.grupo === "RESUMOS") C.push({ src: "dec", key: d.id, org: "STF", tipo: d.tipo, texto: d.tese });
+for (const x of JSON.parse(fs.readFileSync("informativos/indice.json", "utf8")).itens) C.push({ src: "dec", key: "inf-" + x[0], org: x[1], tipo: "informativo", info: String(x[2] || ""), texto: x[5] });
 process.stdout.write(JSON.stringify(C));
