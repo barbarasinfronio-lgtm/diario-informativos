@@ -82,8 +82,11 @@ def extrair(caminho):
     itens, ultimo = [], ""
     for i in range(1, len(partes), 3):
         col, titulo, corpo = partes[i], partes[i + 1].strip(), partes[i + 2]
-        if FIM_SECAO.match(re.sub(r"\s+", "", titulo)):
-            break
+        tnorm = re.sub(r"\s+", "", titulo)
+        if re.match(r"^(clipping|transcri|inova|outras)", tnorm, re.I):
+            break                      # daqui para a frente não há mais julgados
+        if FIM_SECAO.match(tnorm):
+            continue                   # "repercussao" (índice) e afins: pula só esta seção
         corpo = corpo.split("\n---", 1)[0] if "\n---" in corpo else corpo
         ultimo_corte = CORTES.search("\n" + corpo)
         if ultimo_corte:
@@ -100,6 +103,8 @@ def extrair(caminho):
             s = l.strip()
             if re.fullmatch(r"(PLEN[ÁA]RIO|PRIMEIRA TURMA|SEGUNDA TURMA|1[ªa]? TURMA|2[ªa]? TURMA)", s, re.I):
                 continue     # cabeçalho da próxima seção, que veio parar no fim deste texto
+            if re.fullmatch(r"\d[ªa]\s*Parte:?", s):
+                continue     # restos da conversão ("1ª Parte:")
             if not s or set(s) <= {"*"}:
                 corpo_l.append("")
                 continue
