@@ -1,0 +1,218 @@
+{
+ "STF_ADI_7775_20260812_15377": {
+  "processo": "ADI 7775",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1005_20260423_18299": {
+  "processo": "ADPF 1005, ADPF 1006 e ADPF 1097 (julgamento conjunto)",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADI_5772_20260305_10207": {
+  "processo": "ADI 5772",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_973_20251218_18219": {
+  "processo": "ADPF 973",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1259_20251203_18799": {
+  "processo": "ADPF 1259",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_635_20251110_17281": {
+  "processo": "ADPF 635",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_347_20251017_16520": {
+  "processo": "ADPF 347",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_944_20251016_18165": {
+  "processo": "ADPF 944",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7869_20250922_15534": {
+  "processo": "ADI 7869",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7811_20250728_15451": {
+  "processo": "ADI 7811",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7832_20250724_15481": {
+  "processo": "ADI 7832",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADC_96_20250704_292": {
+  "processo": "ADC 96",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1236_20250617_18766": {
+  "processo": "ADPF 1236",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1230_20250613_18759": {
+  "processo": "ADPF 1230",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7532_20250224_14878": {
+  "processo": "ADI 7532",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADI_3724_20250217_5701": {
+  "processo": "ADI 3724",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADPF_1201_20241219_18712": {
+  "processo": "ADPF 1201",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7734_20241016_15317": {
+  "processo": "ADI 7734",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1017_20240930_18332": {
+  "processo": "ADPF 1017",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7697_20240814_15181": {
+  "processo": "ADI 7697",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7688_20240801_15152": {
+  "processo": "ADI 7688",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7490_20240617_14830": {
+  "processo": "ADI 7490",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_7633_20240425_15049": {
+  "processo": "ADI 7633",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADC_87_20240422_275": {
+  "processo": "ADC 87",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7481_20240422_14792": {
+  "processo": "ADI 7481",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_7603_20240304_14980": {
+  "processo": "ADI 7603 e ADI 7605 (julgamento conjunto)",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7580_20240104_14944": {
+  "processo": "ADI 7580",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7493_20231215_14836": {
+  "processo": "ADI 7493",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_635_20231206_17283": {
+  "processo": "ADPF 635",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1082_20231205_18457": {
+  "processo": "ADPF 1082",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7447_20230906_14740": {
+  "processo": "ADI 7447",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_581_20230704_17128": {
+  "processo": "ADPF 581 e ADPF 586 (julgamento conjunto)",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1017_20230703_18329": {
+  "processo": "ADPF 1017",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_5492_20230427_9421": {
+  "processo": "ADI 5492",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_6654_20230419_12887": {
+  "processo": "ADI 6654, ADI 6658 e ADI 6703 (julgamento conjunto)",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADC_77_20230330_229": {
+  "processo": "ADC 77",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_1285_20230327_1747": {
+  "processo": "ADI 1285",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_7331_20230316_14506": {
+  "processo": "ADI 7331",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_2114_20230313_3018": {
+  "processo": "ADI 2114",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_7232_20221230_14309": {
+  "processo": "ADI 7232",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7236_20221227_14322": {
+  "processo": "ADI 7236",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_6637_20221219_12861": {
+  "processo": "ADI 6637",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADI_4814_20221205_7743": {
+  "processo": "ADI 4814",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADI_4299_20221128_6619": {
+  "processo": "ADI 4299",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_991_20221121_18270": {
+  "processo": "ADPF 991",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_1013_20221018_18316": {
+  "processo": "ADPF 1013",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7204_20221006_14218": {
+  "processo": "ADI 7204",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_6119_20220905_11180": {
+  "processo": "ADI 6119",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_6139_20220905_11248": {
+  "processo": "ADI 6139",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_3221_20220829_4958": {
+  "processo": "ADI 3221",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADPF_619_20220822_17232": {
+  "processo": "ADPF 619",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_4052_20220704_6189": {
+  "processo": "ADI 4052",
+  "motivo": "o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)"
+ },
+ "STF_ADI_7181_20220607_14156": {
+  "processo": "ADI 7181",
+  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+ },
+ "STF_ADI_5331_20220606_8958": {
+  "processo": "ADI 5331",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ }
+}
