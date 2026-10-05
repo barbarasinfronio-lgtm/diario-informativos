@@ -49,6 +49,19 @@ def gravar_js(f, prefixo, lista, sufixo, indent):
     (RAIZ / f).write_text(prefixo + corpo + sufixo, encoding="utf-8")
 
 
+JUNK = re.compile(r"\\\*|;; ;;|Default; First|schemas\.|\x00")
+
+
+def limpa_antigo(t):
+    """Texto gravado nas primeiras rodadas (cabeçalho do RTF e quebras de linha no meio das palavras)
+    → só o começo útil, para achar o andamento de novo."""
+    t = re.sub(r"[\r\n]+", "", t)
+    m = re.search(r"Decis[ãa]o\s*:", t)
+    if JUNK.search(t[:400]) and m:
+        t = t[m.start():]
+    return t
+
+
 def norm(s):
     s = unicodedata.normalize("NFD", (s or "").lower())
     return re.sub(r"[^a-z0-9]+", " ", "".join(c for c in s if unicodedata.category(c) != "Mn")).strip()
@@ -132,7 +145,7 @@ def rtf_para_texto(corpo):
     return re.sub(r"[ \t]+", " ", t).strip()
 
 
-def texto_completo(truncado, classe, num, inc):
+def texto_completo(truncado, classe, num, inc, refazer=False):
     pg = robo.pagina(ABA.format(inc=inc, num=num, cls=classe))
     prefixo = norm(truncado)[:160]
     def guardar(sufixo, conteudo):
@@ -156,8 +169,11 @@ def texto_completo(truncado, classe, num, inc):
             raise robo.Falha("o arquivo da decisão não começa igual ao texto que temos (guardado em curadoria/debug-stf/)")
         palavras = re.findall(r"\S+", truncado)[:6]
         mi = re.search(r"\s+".join(re.escape(w) for w in palavras), texto, re.I)
+        if not mi:   # sem o começo conhecido: corta o cabeçalho do RTF no primeiro "Decisão"
+            mj = re.search(r"Decis[ãa]o\s*:", texto)
+            mi = mj
         cand = (texto[mi.start():] if mi else texto).strip()
-        if len(norm(cand)) <= len(norm(truncado)):
+        if not refazer and len(norm(cand)) <= len(norm(truncado)):
             guardar(f"{m[1]}.txt", texto)
             raise robo.Falha("o arquivo da decisão não é maior que o texto que já temos")
         return cand
@@ -170,6 +186,7 @@ def main():
     ap.add_argument("--teste", help='ex.: "ADI 4357" — só mostra, não grava')
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--tudo", action="store_true")
+    ap.add_argument("--refazer", action="store_true", help="baixa de novo os textos gravados com cabeçalho do RTF ou palavras partidas")
     ap.add_argument("--espera", type=float, default=1.5)
     a = ap.parse_args()
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
@@ -180,15 +197,20 @@ def main():
             t = d.get(campo) or ""
             if len(t) == CORTE or t.endswith("…"):   # cortado em exatamente 1.000 (o resto é texto completo)
                 alvos.append((f, campo, d))
-    print(f"{len(alvos)} decisões cortadas; {sum(1 for _, _, d in alvos if d['id'] in cache)} já buscadas antes.")
+    if a.refazer:
+        alvos = [(f, campo, d) for f, campo in FONTES for d in dados[f][1]
+                 if d["id"] in cache and (JUNK.search(d[campo][:400]) or "\r" in d[campo])]
+        print(f"{len(alvos)} textos gravados com defeito; refazendo.")
+    else:
+        print(f"{len(alvos)} decisões cortadas; {sum(1 for _, _, d in alvos if d['id'] in cache)} já buscadas antes.")
     if a.teste:
         c, n = processo_principal(a.teste)
         alvos = [x for x in alvos if processo_principal(x[2]["processo"]) == (c, n)]
         print(f"modo teste: {len(alvos)} decisão(ões) de {c} {n}")
-    else:
+    elif not a.refazer:
         alvos = [x for x in alvos if x[2]["id"] not in cache]
-        if not a.tudo:
-            alvos = alvos[:a.max]
+    if not a.teste and not a.tudo:
+        alvos = alvos[:a.max]
     incidentes = {}
     feitos = falhas = 0
     motivos = {}
@@ -203,7 +225,8 @@ def main():
             if (classe, num) not in incidentes:
                 incidentes[(classe, num)] = achar_incidente(classe, num)
                 time.sleep(a.espera)
-            novo = texto_completo(d[campo], classe, num, incidentes[(classe, num)])
+            base = limpa_antigo(d[campo])[:90] if a.refazer else d[campo]
+            novo = texto_completo(base, classe, num, incidentes[(classe, num)], refazer=a.refazer)
             time.sleep(a.espera)
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
@@ -222,6 +245,7 @@ def main():
             print("-" * 60 + "\n" + novo + "\n" + "-" * 60)
             continue
         cache[d["id"]] = {"campo": campo, "texto": novo}
+        if a.refazer: cache[d["id"]]["refeito"] = True
         d[campo] = novo
         CACHE.parent.mkdir(exist_ok=True)
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0), encoding="utf-8")
