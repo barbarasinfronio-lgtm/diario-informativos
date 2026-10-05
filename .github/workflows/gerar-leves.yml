@@ -20,6 +20,7 @@ on:
       - stj/acordaos/indice.json
       - informativos/indice.json
       - scripts/ligar_repetitivos.py
+      - stj/repetitivos-scon.json
       - normas-citadas.js
       - scripts/gerar_leves.js
       - scripts/limpar_decisoes.py
