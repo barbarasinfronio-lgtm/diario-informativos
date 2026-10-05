@@ -94,40 +94,46 @@
   "motivo": "abre outra norma (\"Lei 6848 - 06 de Dezembro de 1976\")"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-5008-1981-para-dispoe-sobre-o-codigo-de-organizacao-judiciaria-do-estado-do-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 5.008/1981",
   "nome": "Código de Organização Judiciária do Estado do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100918/lei-20732": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (GO) nº 20.732/2020",
   "nome": "Compensação de débito tributário ou não tributário inscrito em dívida ativa com débito do Estado de Goiás decorrente de precatório judicial vencido",
   "motivo": "abre outra norma (\"Lei Ordinária Nº 20.714/2020 - Casa Civil do Estado de Goiás\")"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-6182-1998-para-regula-o-processo-administrativo-tributario-do-estado-do-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 6.182/1998",
   "nome": "Regula o processo administrativo-tributário do Estado do Pará e cria o Tribunal Administrativo de Recursos Fiscais (TARF)",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-5645-1991-para-dispoe-sobre-criterios-e-prazos-de-credito-e-repasse-da-cota-parte-do-icms": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 5.645/1991",
   "nome": "Dispõe sobre critérios e prazos de créditos e repasse da cota-parte do ICMS e outros tributos estaduais aos Municípios do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-5629-1990-para-dispoe-sobre-a-protecao-do-patrimonio-historico-artistico-natural-e-cultural": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 5.629/1990",
   "nome": "Preservação e proteção do patrimônio histórico, artístico, natural e cultural do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-8001-1990-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 8.001/1990",
   "nome": "Compensação financeira estadual pela exploração de recursos minerais",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm": {
   "v": 2,
@@ -214,16 +220,18 @@
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-7031-2007-para-institui-o-cadastro-estadual-de-controle-monitoramento-e-fiscalizacao-das-atividades-de-lavra-exploracao-e-transporte-de-recursos-minerais": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 7.031/2007",
   "nome": "Norma sobre mineração do Estado do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-6710-2005-para-dispoe-sobre-a-cobranca-da-taxa-de-controle-acompanhamento-e-fiscalizacao-das-atividades-de-exploracao-e-aproveitamento-de-recursos-hidricos": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 6.710/2005",
   "nome": "Compensação financeira estadual sobre exploração minerária (CFEM)",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://www2.aneel.gov.br/cedoc/ren20211000.pdf": {
   "v": 2,
@@ -289,22 +297,25 @@
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-5295-1985-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 5.295/1985",
   "nome": "Norma fundiária/ambiental do Estado do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-5849-1994-para-dispoe-sobre-a-politica-agricola-e-fundiaria-do-estado-do-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 5.849/1994",
   "nome": "Lei Agrícola, Agrária e Fundiária do Estado do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-6745-2005-para-institui-o-macrozoneamento-ecologico-economico-do-estado-do-para": {
-  "em": "2026-10-02",
+  "v": 2,
+  "em": "2026-10-05",
   "numero": "Lei Estadual (PA) nº 6.745/2005",
   "nome": "Macrozoneamento Ecológico-Econômico do Estado do Pará",
-  "motivo": "a página não existe no site"
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=60133&hId_FazSumula=&RF=1": {
   "v": 2,
@@ -410,5 +421,243 @@
   "numero": "Lei Complementar (DF) nº 840/2011",
   "nome": "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal",
   "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=67598&hId_FazSumula=&RF=1": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Complementar (RS) nº 16.263/2024",
+  "nome": "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://sapl.al.pi.leg.br/norma/4581": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PI) nº 7.294/2019",
+  "nome": "Regularização fundiária no Estado do Piauí (política de regularização fundiária sob gestão do INTERPI)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://sapl.al.pi.leg.br/norma/3947": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PI) nº 6.709/2015",
+  "nome": "Reforma, regularização fundiária e colonização de terras devolutas rurais e urbanas do Estado do Piauí",
+  "motivo": "abre outra norma (\"DE 2016 PU8LICAOO D. Oficiai W' _ _L~gDa.a: -1.L !_Q.L!À..G Institui a Política \")"
+ },
+ "https://www.al.mt.gov.br/norma-juridica/urn:lex:br;mato.grosso:estadual:lei.ordinaria:1977-09-20;3922/ficha-tecnica": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (MT) nº 3.922/1977",
+  "nome": "Código de Terras do Estado de Mato Grosso",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.al.mt.gov.br/norma-juridica/urn:lex:br;mato.grosso:estadual:lei.complementar:2014-12-29;555/ficha-tecnica": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Complementar (MT) nº 555/2014",
+  "nome": "Estatuto dos Militares do Estado de Mato Grosso (Polícia Militar e Corpo de Bombeiros Militar)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=66318": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PR) nº 17.046/2012",
+  "nome": "Normas para licitação e contratação de Parcerias Público-Privadas no Estado do Paraná (Programa Paraná Parcerias)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=250868": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PR) nº 20.656/2021",
+  "nome": "Normas gerais e procedimentos especiais sobre atos e processos administrativos no Estado do Paraná",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/rn/lei-ordinaria-n-6968-1996-rio-grande-do-norte-dispoe-sobre-o-imposto-sobre-operacoes-relativas-a-circulacao-de-mercadorias-e-sobre-prestacoes-de-servicos-de-transporte-interestadual-e-intermunicipal-e-de-comunicacao-icms-e-da-outras-providencias": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RN) nº 6.968/1996",
+  "nome": "Dispõe sobre o ICMS no Rio Grande do Norte",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/rn/lei-ordinaria-n-5887-1989-rio-grande-do-norte-institui-o-imposto-sobre-transmissao-causa-mortis-e-doacao-de-quaisquer-bens-ou-direitos-itcd-e-da-outras-providencias": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RN) nº 5.887/1989",
+  "nome": "Institui o Imposto sobre Transmissão Causa Mortis e Doação (ITCD) no Estado do Rio Grande do Norte",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/87836/lei-11651": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 11.651/1991",
+  "nome": "Institui o Código Tributário do Estado de Goiás",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-4835-1979-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 4.835/1979",
+  "nome": "Legitimação de terras públicas do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-6376-2001-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 6.376/2001",
+  "nome": "Norma ambiental/minerária do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-4884-1979-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 4.884/1979",
+  "nome": "Norma fundiária do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-9048-2020-para-institui-a-politica-estadual-sobre-mudancas-climaticas-do-para-pemc-pa": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 9.048/2020",
+  "nome": "Política Estadual sobre Mudanças Climáticas do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-82-1892-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 82/1892",
+  "nome": "Norma fundiária histórica do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/rn/lei-ordinaria-n-8485-2004-rio-grande-do-norte-dispoe-sobre-a-politica-estadual-de-saneamento-basico-institui-o-sistema-integrado-de-gestao-do-esgotamento-sanitario-e-da-outras-providencias": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RN) nº 8.485/2004",
+  "nome": "Institui a Política Estadual de Saneamento Básico do Rio Grande do Norte",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/rn/lei-ordinaria-n-6908-1996-rio-grande-do-norte-dispoe-sobre-a-politica-estadual-de-recursos-hidricos-institui-o-sistema-integrado-de-gestao-de-recursos-hidricos-sigerh-e-da-outras-providencias": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (RN) nº 6.908/1996",
+  "nome": "Dispõe sobre a Política Estadual de Recursos Hídricos e institui o SIGERH do Rio Grande do Norte",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-9575-2022-para-dispoe-sobre-o-processo-administrativo-ambiental-para-apuracao-das-condutas-e-atividades-lesivas-ao-meio-ambiente-as-sancoes-cabiveis-alem-de-tratar-da-conciliacao-ambiental-no-ambito-da-administracao": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 9.575/2022",
+  "nome": "Dispõe sobre o processo administrativo ambiental para apuração de infrações e conciliação ambiental no Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-7389-2010-para-define-as-atividades-de-impacto-local-e-disciplina-o-licenciamento-e-a-fiscalizacao-ambiental-no-estado-do-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 7.389/2010",
+  "nome": "Define as atividades de impacto local e disciplina o licenciamento e a fiscalização ambiental no Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-5887-1995-para-dispoe-sobre-a-politica-estadual-do-meio-ambiente-e-da-outras": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 5.887/1995",
+  "nome": "Dispõe sobre a Política Estadual do Meio Ambiente do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/108605/lei-22593": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 22.593/2024",
+  "nome": "Institui a Política Estadual de Incentivo à Economia Circular do Estado de Goiás",
+  "motivo": "abre outra norma (\"Atos Relacionados\")"
+ },
+ "https://leisestaduais.com.br/ba/lei-ordinaria-n-11357-2009-bahia-organiza-o-regime-proprio-de-previdencia-social-dos-servidores-publicos-do-estado-da-bahia-e-da-outras-providencias": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (BA) nº 11.357/2009",
+  "nome": "Norma administrativa do Estado da Bahia (citada no edital do concurso)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/se/lei-complementar-n-33-1996-sergipe-institui-o-codigo-de-organizacao-e-de-procedimento-da-administracao-publica-do-estado-de-sergipe": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Complementar (SE) nº 33/1996",
+  "nome": "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/ms/lei-ordinaria-n-1102-1990-mato-grosso-do-sul-dispoe-sobre-o-estatuto-dos-funcionarios-publicos-civis-do-poder-executivo": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (MS) nº 1.102/1990",
+  "nome": "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso do Sul",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/ms/lei-ordinaria-n-2207-2000-mato-grosso-do-sul-institui-o-fundo-de-desenvolvimento-do-sistema-rodoviario-do-estado-de-mato-grosso-do-sul-fundersul": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (MS) nº 2.207/2000",
+  "nome": "Norma administrativa do Estado de Mato Grosso do Sul (citada no edital do concurso)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-5810-1994-para-dispoe-sobre-o-regime-juridico-unico-dos-servidores-publicos-civis-da-administracao-direta-das-autarquias-e-das-fundacoes-publicas-do-estado-do-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 5.810/1994",
+  "nome": "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-7649-2012-para-institui-o-programa-de-parcerias-publico-privadas-do-estado-do-para-parcerias-para": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 7.649/2012",
+  "nome": "Regulamenta as parcerias público-privadas (PPP) no âmbito do Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-6474-2002-para-institui-no-ambito-do-estado-do-para-a-modalidade-de-licitacao-denominada-pregao": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 6.474/2002",
+  "nome": "Institui, no Estado do Pará, a modalidade de licitação denominada pregão",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-8417-2016-para-institui-o-estatuto-estadual-da-microempresa-e-empresa-de-pequeno-porte": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 8.417/2016",
+  "nome": "Estatuto Paraense da Microempresa e Empresa de Pequeno Porte — tratamento diferenciado em licitações",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://leisestaduais.com.br/pa/lei-ordinaria-n-5980-1996-para-dispoe-sobre-a-qualificacao-de-entidades-como-organizacoes-sociais": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (PA) nº 5.980/1996",
+  "nome": "Dispõe sobre as entidades qualificadas como Organizações Sociais no Estado do Pará",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/99266/lei-19969": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 19.969/2018",
+  "nome": "Institui o Código de Ética e Disciplina dos Militares do Estado de Goiás (CEDIME)",
+  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/82823/lei-13800": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 13.800/2001",
+  "nome": "Regula o processo administrativo no âmbito da Administração Pública do Estado de Goiás",
+  "motivo": "abre outra norma (\"LEI Nº 13.278, DE 29 DE MAIO DE 1998.\")"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/90074/lei-18025": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 18.025/2013",
+  "nome": "Lei de Acesso à Informação do Estado de Goiás",
+  "motivo": "abre outra norma (\"Lei Ordinária Nº 7.387/1971 - Casa Civil do Estado de Goiás\")"
+ },
+ "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/81180/lei-14910": {
+  "v": 2,
+  "em": "2026-10-05",
+  "numero": "Lei Estadual (GO) nº 14.910/2004",
+  "nome": "Institui o Programa de Parcerias Público-Privadas do Estado de Goiás",
+  "motivo": "abre outra norma (\"LEI N° 14.554, DE 01 DE OUTUBRO DE 2003.\")"
  }
 }
