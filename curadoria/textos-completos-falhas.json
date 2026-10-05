@@ -382,5 +382,9 @@
  "STF_ADPF_353_20210621_16537": {
   "processo": "ADPF 353",
   "motivo": "o arquivo da decisão não é maior que o texto que já temos"
+ },
+ "STF_ADPF_405_20210621_16642": {
+  "processo": "ADPF 405",
+  "motivo": "o arquivo da decisão não é maior que o texto que já temos"
  }
 }
