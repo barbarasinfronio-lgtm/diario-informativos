@@ -79,7 +79,7 @@
   var buscaInfo = null;
 
   function semAcentoBusca(t) {
-    return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/(\d)\.(?=\d)/g, '$1');
   }
   // Singular e plural contam igual: "execucao" acha "execuções", "fiscal"
   // acha "fiscais", "lei" acha "leis".

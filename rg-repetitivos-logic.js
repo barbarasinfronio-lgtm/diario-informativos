@@ -260,7 +260,7 @@
     });
   }
 
-  function semAcento(t){ return String(t == null ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function semAcento(t){ return String(t == null ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/(\d)\.(?=\d)/g, '$1'); }
   function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
   // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem como palavra inteira —
   // senão "ir" acharia "direito", "irregular"… Números e termos maiores: trecho.
