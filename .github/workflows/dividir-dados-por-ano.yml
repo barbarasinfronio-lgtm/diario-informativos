@@ -15,6 +15,7 @@ on:
       - scripts/dividir_por_ano.py
       - scripts/limpar_decisoes.py
       - scripts/classificar_controle.js
+      - scripts/classificar_reclamacoes.js
       - scripts/score-curadoria.js
   workflow_dispatch: # botão "Run workflow" para dividir na mão
 
@@ -39,7 +40,7 @@ jobs:
       # curadoria do Controle: tira o que é só certidão de resultado e marca
       # prioritárias (P) e outras (O) — scripts/classificar_controle.js
       - name: Classificar o Controle
-        run: node scripts/classificar_controle.js
+        run: node scripts/classificar_controle.js && node scripts/classificar_reclamacoes.js
 
       - name: Dividir por ano
         run: python3 scripts/dividir_por_ano.py

@@ -38,7 +38,7 @@
       nomeFiltro: {},
       etiqueta: function (it) { return it.tipo || "Reclamação"; },
       linhaArea: function (it) { return "Reclamação · " + (it.ramo || "Geral"); },
-      idTemFiltro: false, grupoIndice: "porTipo"
+      idTemFiltro: false, grupoIndice: "porTipo", curadoria: true
     }
   };
 
@@ -227,7 +227,7 @@
     var tot = { P: 0, O: 0 };
     indice.anos.forEach(function (a) {
       if (filtroAno !== "todos" && a.ano !== String(filtroAno)) return;
-      var g = a.porTipo || {};
+      var g = a.porCur || {};
       tot.P += g.P || 0; tot.O += g.O || 0;
     });
     var itens = [["todas", "Todas", tot.P + tot.O], ["P", "Prioritárias", tot.P], ["O", "Outras", tot.O]];

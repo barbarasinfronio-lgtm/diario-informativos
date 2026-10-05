@@ -29,10 +29,10 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONJUNTOS = [
     {"fonte": "controleconst/adi_dados.js", "campo_data": "data", "campo_grupo": "classe",
      # P = prioritárias, O = outras (scripts/classificar_controle.js)
-     "campo_extra": "cur"},
+     "campo_cur": "cur"},
     {"fonte": "reclamacoes/reclamacoes-data.js", "campo_data": "dataJulgamento", "campo_grupo": "tribunal",
      # contagem extra por resultado (Procedente...), usada pelos filtros do Diário das Decisões
-     "campo_extra": "tipo"},
+     "campo_extra": "tipo", "campo_cur": "cur"},
 ]
 
 URL_STF = "https://portal.stf.jus.br/processos/detalhe.asp?processo="
@@ -90,6 +90,12 @@ def dividir(conj):
                 g = str(it.get(conj["campo_extra"]) or "")
                 extra[g] = extra.get(g, 0) + 1
             entrada["porTipo"] = extra
+        if conj.get("campo_cur"):
+            cur = {}
+            for it in lista:
+                g = str(it.get(conj["campo_cur"]) or "O")
+                cur[g] = cur.get(g, 0) + 1
+            entrada["porCur"] = cur
         anos.append(entrada)
 
     # Apaga arquivos de anos que sumiram dos dados.
