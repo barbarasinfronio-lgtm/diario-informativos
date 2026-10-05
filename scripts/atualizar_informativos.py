@@ -1193,7 +1193,7 @@ def paragrafos_do_site(t):
 ESTADUAIS_HOSTS = ("leisestaduais.com.br", "legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
                    "legislacao.sef.sc.gov.br", "legislacao.pr.gov.br", "al.rs.gov.br", "almg.gov.br",
                    "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
-                   "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br")
+                   "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br", "legis.senado.leg.br")
 ESTADUAIS_ORCAMENTO = 1100
 EXTRATOR_VERSAO = 2   # sobe quando o leitor melhora: as falhas anteriores são tentadas de novo
 DEBUG_DIR = RAIZ / "leis" / "texto-debug"
