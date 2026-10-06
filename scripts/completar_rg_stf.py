@@ -37,10 +37,33 @@ def temas():
 RX_RODAPE = re.compile(r"(?m)^(?:Documento assinado digitalmente conforme MP.*|http://www\.stf\.jus\.br/portal/autenticacao/autenticarDocumento\.asp.*|Inteiro Teor do Acórdão - Página \d+ de \d+\s*|Supremo Tribunal Federal Supremo Tribunal Federal\s*)$\n?")
 
 
+def tirar_linhas_duplicadas(t):
+    """O texto de PDFs do STF sai com cada linha duas vezes (camada de texto dupla); as numeradas
+    saem como "3. 3. Definição…" seguida de "Definição…". Fica só uma cópia de cada."""
+    out = []
+    ls = t.split("\n")
+    i = 0
+    while i < len(ls):
+        a = ls[i]
+        b = ls[i + 1] if i + 1 < len(ls) else None
+        if b is not None and a.strip() and a == b:
+            i += 1       # descarta a primeira cópia, a seguinte entra no próximo passo
+            continue
+        if b is not None and len(b) > 15 and a.endswith(b) and 0 < len(a) - len(b) <= 12:
+            m_ = re.match(r"^(\S+)\s+\1\s*$", a[:len(a) - len(b)].strip())   # "3. 3. " + texto
+            ls[i + 1] = (m_.group(1) + " " + b) if m_ else b      # mantém a numeração, uma vez só
+            i += 1
+            continue
+        out.append(a)
+        i += 1
+    return "\n".join(out)
+
+
 def limpar_pdf(t):
     """Tira do texto do PDF as linhas repetidas em toda página (assinatura digital, link de
     autenticação, "Página N de M") e as linhas em branco em excesso."""
     t = RX_RODAPE.sub("", t)
+    t = tirar_linhas_duplicadas(t)
     return re.sub(r"\n{3,}", "\n\n", t).strip()
 
 
