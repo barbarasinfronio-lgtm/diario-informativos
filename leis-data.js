@@ -493,7 +493,7 @@ var LEIS_DATA = {
     { nome: "Regularização fundiária no Estado do Pará", numero: "Lei Estadual (PA) nº 8.878/2019", link: "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf" },
     { nome: "Legitimação de terras públicas do Estado do Pará", numero: "Lei Estadual (PA) nº 4.835/1979", link: "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.835-DE-03-DE-MAIO-DE-1979.pdf" },
     { nome: "Norma ambiental/minerária do Estado do Pará", numero: "Lei Estadual (PA) nº 6.376/2001", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-6376-2001-para" },
-    { nome: "Norma fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 4.884/1979", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-4884-1979-para" },
+    { nome: "Norma fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 4.884/1979", link: "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.884-DE-11-DE-DEZEMBRO-DE-1979.pdf" },
     { nome: "Política Estadual sobre Mudanças Climáticas do Pará", numero: "Lei Estadual (PA) nº 9.048/2020", link: "https://www.semas.pa.gov.br/legislacao/files/lei_9048.pdf" },
     { nome: "Norma fundiária histórica do Estado do Pará", numero: "Lei Estadual (PA) nº 82/1892", link: "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-N%C2%B0-82-DE-15-DE-SETEMBRO-DE-1892.pdf" },
     { nome: "Regulamenta a Lei do Saneamento Básico (Lei nº 11.445/2007)", numero: "Decreto nº 7.217/2010", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/decreto/d7217.htm" },
