@@ -998,7 +998,7 @@
   }
 
   function renderTabs() {
-    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }, { id: "revisoes", label: "Revisões", icon: "🔁" },
+    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }, { id: "revisoes", label: "Revisões", icon: "🔁" }, { id: "novidades", label: "Novidades legislativas", icon: "📢" },
       { id: "historico", label: "Histórico", icon: "🕘" }].concat(CATS.map(function (c) {
       return { id: c.id, label: c.label, icon: c.icon };
     })).concat([{ id: "todas", label: "Todas", icon: "🗂️" }]);
@@ -1059,7 +1059,7 @@
 
   function render() {
     var html = renderAvisosLeis() + renderBanner() + renderTabs();
-    var extra = state.tab === "revisoes" || state.tab === "historico";
+    var extra = state.tab === "revisoes" || state.tab === "novidades" || state.tab === "historico";
     if (state.tab === "resumo") {
       var cartao = window.ProgressoRevisoes ? ProgressoRevisoes.resumo(extraOpts()) : "";
       html += cartao + renderHero() + renderShelf() + renderWeek() + renderNext() + renderBest() + renderCatTiles();
@@ -1072,7 +1072,7 @@
     root.innerHTML = html;
     if (extra) {
       carregarExtra().then(function (m) {
-        if (state.tab === "revisoes" || state.tab === "historico") m.render(document.getElementById("pz-extra"), extraOpts());
+        if (state.tab === "revisoes" || state.tab === "novidades" || state.tab === "historico") m.render(document.getElementById("pz-extra"), extraOpts());
       }).catch(function () {
         var el = document.getElementById("pz-extra");
         if (el) el.innerHTML = '<p class="pz-empty">Não foi possível carregar agora. Tente recarregar a página.</p>';
