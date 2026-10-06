@@ -123,6 +123,7 @@ def main():
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
     ap.add_argument("--refazer-ata", action="store_true", help="busca de novo os temas que só têm a ata (sem o acórdão)")
+    ap.add_argument("--enviar", action="store_true", help="grava no git e envia ao site (stf/rg e curadoria/debug-stf)")
     a = ap.parse_args()
     PASTA.mkdir(parents=True, exist_ok=True)
     todos = temas()
