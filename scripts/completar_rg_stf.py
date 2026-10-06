@@ -67,6 +67,23 @@ def limpar_pdf(t):
     return re.sub(r"\n{3,}", "\n\n", t).strip()
 
 
+def recortar_acordao(t):
+    """Fica só com o acórdão propriamente dito: da EMENTA até a assinatura do ministro
+    (ementa, dispositivo e teses, "Vistos, relatados e discutidos…", data e nome do relator/redator).
+    Relatório, votos, debates e anexos ficam de fora. Sem os dois marcadores, devolve o texto todo."""
+    ini = re.search(r"E\s?M\s?E\s?N\s?T\s?A\s*:", t)
+    if not ini:
+        return t
+    fim = re.search(r"Bras[íi]lia,?\s+\d{1,2}\s*(?:º|o)?\s+de\s+[a-zç]+\s+de\s+\d{4}\.?", t[ini.start():], re.I)
+    if not fim:
+        return t
+    resto = t[ini.start() + fim.end():]
+    # nome do ministro, "Relator/Redator para o acórdão" e "Documento assinado digitalmente"
+    ass = re.match(r"(?:\s*\n[^\n]{0,80}){1,5}?\s*\n[^\n]*[Dd]ocumento assinado digitalmente", resto)
+    corte = ini.start() + fim.end() + (ass.end() if ass else min(len(resto), 200))
+    return t[ini.start():corte].strip()
+
+
 def _dnum(x):
     m = re.match(r"(\d{2})/(\d{2})/(\d{4})", x or "")
     return (m.group(3) + m.group(2) + m.group(1)) if m else ""
@@ -196,7 +213,8 @@ def main():
                 inteiro = ""
             if len(inteiro) > len(texto):
                 print(f"    acórdão inteiro: {len(inteiro)} caracteres (a ata tinha {len(texto)})")
-                texto = inteiro
+                texto = recortar_acordao(inteiro)
+                print(f"    do EMENTA até a assinatura: {len(texto)} caracteres")
                 completo = True
             else:
                 print("    (só a ata/decisão de julgamento; o acórdão não foi achado)")
