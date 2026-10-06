@@ -281,6 +281,10 @@
       if (/^Art\.?$/.test(t) && i + 1 < src.length) t = "Art. " + String(src[++i]).trim();
       if (t) ps.push(t);
     }
+    // o Planalto marca o ordinal com "o" sobrescrito, que vira "1o"/"8o" no texto: devolve o "º" (e "No 10.741" → "Nº 10.741")
+    ps = ps.map(function (t) {
+      return t.replace(/\b(\d{1,3})[o°](?![A-Za-zÀ-ú])/g, "$1º").replace(/\b([Nn])[o°](?=\s*\d)/g, "$1º");
+    });
     var ini = -1;
     for (var q = 0; q < ps.length && q < 200; q++) {
       if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; }
