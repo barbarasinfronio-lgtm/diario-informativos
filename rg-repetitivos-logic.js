@@ -708,6 +708,11 @@
                 ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
                 '<div class="destaque-text">' + teorEmParagrafos(e.texto) + '</div></details>';
         campos.insertAdjacentHTML('afterend', h);
+        // o card já foi aberto: o inteiro teor entra na lista de textos que podem ser destacados e anotados (Meus Cadernos)
+        var area = modal.querySelector('.teor-rg .destaque-text');
+        if (area) carregarCadernos().then(function(){
+          if (modalAtual === d && window.EstudaManaCadernos && EstudaManaCadernos.adicionarArea) EstudaManaCadernos.adicionarArea(area);
+        }).catch(function(){});
       });
   }
   function openModal(d){

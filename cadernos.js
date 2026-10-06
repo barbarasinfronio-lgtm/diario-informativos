@@ -534,9 +534,17 @@
     esconderBarra();
   }
 
+  // texto que chega depois de o card abrir (ex.: o inteiro teor do acórdão): passa a poder ser destacado e anotado
+  function adicionarArea(el) {
+    if (!ligado || !el || ligado.areas.indexOf(el) >= 0) return;
+    ligado.areas.push(el);
+    aplicarDestaques();
+  }
+
   window.EstudaManaCadernos = {
     ligar: ligar,
     desligar: desligar,
+    adicionarArea: adicionarArea,
     pronto: function () { return iniciado; },
     aoMudar: function (fn) { ouvintes.push(fn); },
     // usados pela página Meus Cadernos (cadernos-pagina.js)
