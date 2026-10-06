@@ -294,3 +294,35 @@ body.collapsed-header .page_body .centered-top-container { padding-left: 0 !impo
 
 /* rodapé: link para a página de fontes */
 .em-cafe-card .em-cafe-fontes { font-size: .9em; opacity: .85; }
+
+/* Comentários do Blogger no modo escuro: nome, data e texto vinham em cinza
+   escuro sobre fundo escuro (ilegíveis). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .comments,
+  :root:not([data-theme="light"]) .comments h3,
+  :root:not([data-theme="light"]) .comments h4,
+  :root:not([data-theme="light"]) .comments .comment-content,
+  :root:not([data-theme="light"]) .comments .comment-content p,
+  :root:not([data-theme="light"]) .comments .comments-content,
+  :root:not([data-theme="light"]) .comments .comments-content .comment-content { color: var(--ink, #e6e8ee) !important; }
+  :root:not([data-theme="light"]) .comments .comments-content .user,
+  :root:not([data-theme="light"]) .comments .comments-content .user a,
+  :root:not([data-theme="light"]) .comments .comments-content .datetime,
+  :root:not([data-theme="light"]) .comments .comments-content .datetime a,
+  :root:not([data-theme="light"]) .comments .comment .comment-actions a { color: var(--em-leis-soft, #b8bfce) !important; }
+  :root:not([data-theme="light"]) .comments .comments-content .user a { font-weight: 700; }
+  :root:not([data-theme="light"]) .comments .comment .comment-actions a { color: var(--accent, #7aa2ff) !important; }
+}
+:root[data-theme="dark"] .comments,
+:root[data-theme="dark"] .comments h3,
+:root[data-theme="dark"] .comments h4,
+:root[data-theme="dark"] .comments .comment-content,
+:root[data-theme="dark"] .comments .comment-content p,
+:root[data-theme="dark"] .comments .comments-content,
+:root[data-theme="dark"] .comments .comments-content .comment-content { color: var(--ink, #e6e8ee) !important; }
+:root[data-theme="dark"] .comments .comments-content .user,
+:root[data-theme="dark"] .comments .comments-content .user a,
+:root[data-theme="dark"] .comments .comments-content .datetime,
+:root[data-theme="dark"] .comments .comments-content .datetime a { color: var(--em-leis-soft, #b8bfce) !important; }
+:root[data-theme="dark"] .comments .comments-content .user a { font-weight: 700; }
+:root[data-theme="dark"] .comments .comment .comment-actions a { color: var(--accent, #7aa2ff) !important; }
