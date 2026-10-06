@@ -6,8 +6,10 @@
  * Leis, Súmulas, Resoluções, Decisões, Constitucionalidade e Reclamações),
  * do mais recente para o mais antigo, mais as revisões feitas.
  *
- * Revisões: quando reler cada súmula e cada lei já lida.
- *   - Súmulas: a cada 6 meses.
+ * Revisões: quando reler cada súmula, lei, decisão/tese e informativo já lidos.
+ *   Revisão ESPAÇADA: 1 dia, 7 dias, 30 dias e 90 dias depois da leitura; depois,
+ *   de tempos em tempos (ESTAGIOS_DIAS e a regra de cada item):
+ *   - Súmulas, decisões e informativos: a cada 6 meses.
  *   - Leis principais (CF, CC, CPC, CP, CPP e ECA): a cada 6 meses.
  *   - Demais leis: pelo número de decisões do Diário das Decisões que as
  *     citam (normas-citadas.js) — veja FAIXAS abaixo.
@@ -35,6 +37,10 @@
 
   // ---- regras ---------------------------------------------------------------
   var SUMULA_MESES = 6;
+  var DECISAO_MESES = 6;
+  // revisão espaçada: as 4 primeiras revisões (dias depois da leitura / da revisão anterior);
+  // da 5ª em diante vale o intervalo longo de cada item (meses)
+  var ESTAGIOS_DIAS = [1, 7, 30, 90];
   var PRINCIPAIS = {
     "CF/1988": "Constituição Federal",
     "Lei nº 10.406/2002": "Código Civil",
@@ -72,6 +78,10 @@
   function diaNum(iso) { var p = iso.split("-"); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5); }
   function somaMeses(iso, n) {
     var p = iso.split("-"), d = new Date(Date.UTC(+p[0], +p[1] - 1 + n, +p[2]));
+    return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate());
+  }
+  function somaDias(iso, n) {
+    var p = iso.split("-"), d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n));
     return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate());
   }
   var MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -163,6 +173,7 @@
       var recentes = datas.filter(function (d) { var n = diaNum(d); return n >= baseN && n <= hojeN; }).sort();
       if (!recentes.length) return;
       var quando = recentes[recentes.length - 1];
+      var aprox = !!(l.ultimaAprox && dia(l.ultimaAlteracao) === quando && !(l.mudancas || []).some(function (m) { return dia(m.detectadoEm) === quando; }));
       if (vistas[chave] && vistas[chave] >= quando) return;      // "Já vi": só volta se houver alteração mais nova
       var lida = null;
       Object.keys(lidas).forEach(function (k) {
@@ -170,7 +181,7 @@
         var e = lida_(lidas[k]);
         if (e && (!lida || (e.em && (!lida.em || e.em > lida.em)))) lida = e;
       });
-      out.push({ chave: chave, nome: l.nome, numero: l.numero, link: l.link, quando: quando, normas: normas, lida: lida });
+      out.push({ chave: chave, nome: l.nome, numero: l.numero, link: l.link, quando: quando, aprox: aprox, normas: normas, lida: lida });
     });
     return out.sort(function (a, b) { return a.quando < b.quando ? 1 : a.quando > b.quando ? -1 : 0; });
   }
@@ -284,13 +295,39 @@
       });
     });
 
+    // Decisões e teses lidas no Diário das Decisões (títulos de leve/decisoes.json)
+    var dmap = maps.dec || {};
+    Object.keys(dmap).forEach(function (k) {
+      var e = lida(dmap[k]); if (!e) return;
+      var d = decisoesPorId && decisoesPorId[k];
+      var titulo = d ? (d.orgao || "") + " · " + (d.precedenteLabel || "Tema") + " " + (d.tema || "") + " — " + (d.titulo || "") : "Decisão " + k;
+      out.push({ id: "dec:" + k, tipo: "Decisão", titulo: titulo.replace(/\s+/g, " ").trim(), sub: d ? (d.processo || "") : "", lidaEm: e.em,
+        meses: DECISAO_MESES, motivo: "decisão ou tese", href: "/p/diario-das-decisoes.html#abrir=" + encodeURIComponent(k) + "&busca=" + encodeURIComponent((d && (d.processo || d.titulo)) || "") });
+    });
+    // Informativos lidos
+    Object.keys(maps.inf || {}).forEach(function (k) {
+      var e = lida(maps.inf[k]); if (!e) return;
+      var p = k.split(":");
+      out.push({ id: "inf:" + k, tipo: "Informativo", titulo: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1], sub: "", lidaEm: e.em,
+        meses: DECISAO_MESES, motivo: "informativo", href: "" });
+    });
+
     out.forEach(function (it) {
-      var feitas = rev[it.id] || [];
+      var feitas = (rev[it.id] || []).filter(function (d) { return !it.lidaEm || d >= it.lidaEm; });
       it.ultimaRev = feitas.length ? feitas[feitas.length - 1] : null;
+      it.nRev = feitas.length;                       // revisões já feitas desde a leitura
       var base = [it.lidaEm, it.ultimaRev].filter(Boolean).sort().pop() || null;
       it.base = base;
       if (!base) { it.estado = "semdata"; return; }
-      it.vence = somaMeses(base, it.meses);
+      if (it.nRev < ESTAGIOS_DIAS.length) {          // revisão espaçada: 1, 7, 30 e 90 dias
+        it.intervalo = plural(ESTAGIOS_DIAS[it.nRev], "dia", "dias");
+        it.vence = somaDias(base, ESTAGIOS_DIAS[it.nRev]);
+        it.fase = "revisão " + (it.nRev + 1) + " de " + (ESTAGIOS_DIAS.length + 1);
+      } else {
+        it.intervalo = "a cada " + it.meses + " meses";
+        it.vence = somaMeses(base, it.meses);
+        it.fase = "revisão " + (it.nRev + 1);
+      }
       it.dias = diaNum(it.vence) - hojeN;
       it.estado = it.dias <= 0 ? "agora" : it.dias <= 30 ? "breve" : "emdia";
     });
@@ -367,10 +404,11 @@
       : it.dias === 0 ? "vence hoje"
       : "vence em " + fmt(it.vence);
     var base = it.base ? (it.ultimaRev && it.ultimaRev === it.base ? "revisada em " : "lida em ") + fmt(it.base) + " · " : "";
+    var plano = it.fase ? it.fase + " (" + it.intervalo + (it.nRev >= ESTAGIOS_DIAS.length ? ", " + it.motivo : "") + ")" : "";
     return '<li class="rv-item rv-' + it.estado + '">' +
       '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
-        '<span class="rv-meta">' + esc(base + "a cada " + it.meses + " meses (" + it.motivo + ") · " + quando) + "</span></div>" +
+        '<span class="rv-meta">' + esc(base + plano + " · " + quando) + "</span></div>" +
       '<div class="rv-acoes">' + (it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +
     "</li>";
@@ -381,7 +419,7 @@
     return '<li class="rv-item rv-agora">' +
       '<span class="rv-tipo">Lei alterada</span>' +
       '<div class="rv-texto"><b>' + esc(a.nome) + "</b>" +
-        '<span class="rv-meta">' + esc(a.numero + " · alterada em " + fmt(a.quando) +
+        '<span class="rv-meta">' + esc(a.numero + " · alterada " + (a.aprox ? "por volta de " : "em ") + fmt(a.quando) + (a.aprox ? " (data estimada)" : "") +
           (a.normas.length ? " por " + a.normas.join(", ") : "") + " · " + leitura) + "</span></div>" +
       '<div class="rv-acoes">' + (a.link ? '<a class="rv-abrir" href="' + esc(a.link) + '" target="_blank" rel="noopener">Ver texto atualizado</a>' : "") +
         '<button type="button" class="rv-feito" data-alt-visto="' + esc(a.chave) + '" data-alt-em="' + esc(a.quando) + '">✔ Já vi</button></div>' +
@@ -413,12 +451,13 @@
     var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o);
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return a.dias - b.dias; }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
-      "<li><b>Súmulas:</b> a cada " + SUMULA_MESES + " meses.</li>" +
+      "<li><b>Revisão espaçada:</b> a 1ª revisão é 1 dia depois da leitura, a 2ª 7 dias depois, a 3ª 30 dias e a 4ª 90 dias depois da revisão anterior. Da 5ª em diante o intervalo é longo e depende do item:</li>" +
+      "<li><b>Súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada " + PRINCIPAL_MESES + " meses.</li>" +
       "<li><b>Demais leis</b>, pelo número de decisões do Diário das Decisões que as citam: " +
         FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + ".</li>" +
-      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde a sua última visita ao blog aparece como sugestão, mesmo que você nunca a tenha lido. No primeiro acesso vale a data inicial de " + fmt(DATA_INICIAL_ALTERACOES) + ". A data da alteração é a da norma que alterou a lei (lida do Planalto pelo robô semanal) ou, na falta dela, o dia em que o robô percebeu a mudança.</li>" +
-      "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo recomeça.</li>" +
+      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde a sua última visita ao blog aparece como sugestão, mesmo que você nunca a tenha lido. No primeiro acesso vale a data inicial de " + fmt(DATA_INICIAL_ALTERACOES) + ". O Planalto quase sempre cita a norma que alterou só pelo ano; por isso o robô estima o dia (“data estimada”) pela ordem de numeração das leis.</li>" +
+      "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo da revisão seguinte começa a contar.</li>" +
       "</ul></details>";
     if (!itens.length) {
       return blocoAlteradas(alts, o) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
@@ -432,6 +471,7 @@
       blocoAlteradas(alts, o) +
       listaRev("Para revisar agora", por("agora"), "agora", true, "Nada para revisar agora. 🎉") +
       listaRev("Nos próximos 30 dias", por("breve"), "breve", c.agora === 0, "Nenhuma revisão nos próximos 30 dias.") +
+      listaRev("Em dia — próximas revisões", por("emdia"), "emdia", false, "Nada em dia ainda.") +
       (c.semdata ? listaRev("Lidas antes de o site guardar a data", itens.filter(function (i) { return i.estado === "semdata"; }), "semdata", false, "") +
         '<p class="rv-nota">Essas leituras são antigas e não têm data. Clique em “Revisei hoje” quando revisar e o prazo passa a contar.</p>' : "");
   }
@@ -474,7 +514,7 @@
       preparar().then(function () { render(el, o); });
       return;
     }
-    if (o.tab === "historico" && !decisoesPorId && Object.keys((o.maps && o.maps.dec) || {}).length) {
+    if (!decisoesPorId && Object.keys((o.maps && o.maps.dec) || {}).length) {
       el.innerHTML = '<p class="rv-vazio">Carregando…</p>';
       prepararTitulos().then(function () { render(el, o); });
       return;
@@ -515,5 +555,6 @@
       (na ? " · 📢 " + plural(na, "lei alterada", "leis alteradas") + " " + textoBaseAlt(o) : "") + " <span>Ver revisões →</span></button>";
   }
 
-  window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo };
+  window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo,
+    _teste: { itensDeRevisao: itensDeRevisao, leisAlteradas: leisAlteradas, definir: function (x) { if (x.citacoes) citacoes = x.citacoes; if (x.alteracoes) alteracoes = x.alteracoes; if (x.decisoes) decisoesPorId = x.decisoes; } } };
 })();

@@ -1707,6 +1707,11 @@ def leis(dados, tudo=False):
         LEIS_ARQ.write_text(json.dumps({"atualizado": hoje_iso, "leis": registro},
                                        ensure_ascii=False, indent=1), encoding="utf-8")
         dados.leis_mudou = True
+    try:   # data de cada alteração (as notas do Planalto quase sempre trazem só o ano)
+        import datar_alteracoes
+        datar_alteracoes.atualizar(id_texto=id_texto)
+    except Exception as e:   # noqa: BLE001 — não derruba a etapa LEIS
+        print(f"  (não consegui datar as alterações: {e})")
     textos_novos += leis_estaduais(hoje_iso)
     if textos_novos or not (TEXTO_DIR / "indice.json").exists():
         total = indice_dos_textos()
