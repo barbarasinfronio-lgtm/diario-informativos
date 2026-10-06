@@ -272,6 +272,34 @@
     return '<p style="margin:4px 0;">' + e + "</p>";
   }
 
+  // O Planalto deixa, no texto compilado, a redação antiga (revogada) ao lado da nova. Quando dois parágrafos
+  // quase iguais, com o mesmo rótulo (Art. n, § n, inciso, alínea), vêm juntos, o primeiro é a redação antiga: sai.
+  function tirarRedacoesAntigas(ps) {
+    var ROTULO = /^(Art\.\s*\d+[º°]?(?:-[A-Z]+)?|§\s*\d+[º°]?(?:-[A-Z]+)?|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-])/;
+    var palavras = function (t) {
+      var set = {}, n = 0;
+      String(t).toLowerCase().replace(/\([^)]*\)/g, " ").split(/[^a-zà-ú0-9]+/).forEach(function (w) { if (w.length > 2 && !set[w]) { set[w] = 1; n++; } });
+      return { set: set, n: n };
+    };
+    var semelhante = function (a, b) {
+      var A = palavras(a), B = palavras(b), comum = 0;
+      Object.keys(A.set).forEach(function (w) { if (B.set[w]) comum++; });
+      var menor = Math.min(A.n, B.n);
+      return menor >= 3 && comum / (A.n + B.n - comum) >= 0.5 || (menor >= 5 && comum / menor >= 0.75);
+    };
+    var fora = {};
+    for (var i = 0; i < ps.length - 1; i++) {
+      var r = ROTULO.exec(ps[i]);
+      if (!r) continue;
+      var rot = r[0].replace(/\s+/g, "").replace(/[-–—]$/, "-");
+      for (var j = i + 1; j <= i + 2 && j < ps.length; j++) {
+        var r2 = ROTULO.exec(ps[j]);
+        if (r2 && r2[0].replace(/\s+/g, "").replace(/[-–—]$/, "-") === rot && semelhante(ps[i], ps[j])) { fora[i] = true; break; }
+      }
+    }
+    return ps.filter(function (_, k) { return !fora[k]; });
+  }
+
   // Texto do Planalto vem quebrado em linhas do tamanho da tela de origem: junta as linhas de um mesmo parágrafo
   // (artigo, §, inciso, alínea e título em maiúsculas começam parágrafo novo) e tira o cabeçalho/índice do começo.
   function paragrafosDaLei(src) {
@@ -296,7 +324,7 @@
       if (!out.length || NOVO.test(t)) out.push(t);
       else out[out.length - 1] += " " + t;
     });
-    return out;
+    return tirarRedacoesAntigas(out);
   }
 
   // "Leia também": decisões, súmulas e resoluções que citam a lei ou tratam do mesmo assunto
