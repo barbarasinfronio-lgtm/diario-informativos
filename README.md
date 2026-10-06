@@ -27,7 +27,7 @@ O arquivo de dados precisa ser carregado **antes** do de lógica.
 | Diário das Resoluções (CNJ, CSJT, CNMP, CSMPT, CONAMA, CONANDA) | `normas-data.js` | `normas-logic.js` | `diario-styles-v2.css` |
 | Diário das Decisões — "Precedentes Qualificados" (STF, STJ, TST) | `rg-repetitivos-data.js` + `tst/decisoes.json` | `rg-repetitivos-logic.js` | `rg-repetitivos-styles.css` |
 | Editais                      | `editais-data.js`       | `editais-logic.js`              | `editais-styles.css`         |
-| Meu Progresso (endereço `/p/meus-premios.html`) | `premios-data.js` | `premios-logic.js` | `diario-styles-v2.css` + `premios-styles.css` |
+| Meus Estudos (antes Meu Progresso; endereço `/p/meus-premios.html`) | `premios-data.js` | `premios-logic.js` | `diario-styles-v2.css` + `premios-styles.css` |
 | Meus Grupos                  | —                       | `meus-grupos-logic.js`          | `diario-styles-v2.css`       |
 | Ranking de Informativos      | —                       | `ranking-informativos-logic.js` | `diario-styles-v2.css`       |
 | Estatísticas de cobrança (provas) | `provas/cobrancas.json` | `estatisticas-provas-logic.js` | `estatisticas-provas.css` |
