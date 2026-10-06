@@ -222,6 +222,23 @@
 
   function temTexto(id) { return !!(id && indiceTextos && indiceTextos[id]); }
 
+  // Leis que não estão no Diário mas são citadas nas decisões: o robô (scripts/leis_citadas.py) grava o
+  // texto delas e a lista "tipo-número-ano" → id em leis/texto/citadas.json. Serve às leis que a pessoa incluiu.
+  var citadas = null, citadasPedido = null;
+  function chaveCitada(rotulo) {
+    var m = String(rotulo || "").match(/^\s*(Lei Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*\/\s*(\d{4}|\d{2})\b/i);
+    if (!m) return "";
+    var t = /complementar|^lc$/i.test(m[1]) ? "lc" : /decreto[\s-]lei/i.test(m[1]) ? "dl" : /decreto/i.test(m[1]) ? "decreto" : "lei";
+    var a = m[3].length === 4 ? m[3] : (Number(m[3]) > 30 ? "19" : "20") + m[3];
+    return t + "-" + m[2].replace(/\./g, "") + "-" + a;
+  }
+  function carregarCitadas() {
+    if (!citadasPedido) citadasPedido = fetch(TEXTO_BASE + "citadas.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
+      .then(function (j) { citadas = j || {}; return citadas; });
+    return citadasPedido;
+  }
+
   function carregarIndiceTextos() {
     return fetch(TEXTO_BASE + "indice.json", { cache: "no-cache" })
       .then(function (r) { return r.ok ? r.json() : {}; })
@@ -299,8 +316,8 @@
       (lei.link
         ? '<span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">' +
           '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' +
-          (idTexto(lei.link)
-            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml(idTexto(lei.link)) + '" style="font-size:13px;font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto(idTexto(lei.link)) ? "" : "display:none;") + '">📜 Leia-me</button>'
+          ((lei.textoId || idTexto(lei.link))
+            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:13px;font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto((lei.textoId || idTexto(lei.link))) ? "" : "display:none;") + '">📜 Leia-me</button>'
             : "") + "</span>"
         : "<span></span>") +
       (lei.removivel
@@ -497,9 +514,11 @@
     function renderIncluidas(termo, digitos) {
       var LI = window.LeisIncluidas;
       var itens = LI ? LI.lista() : [];
+      if (itens.length && citadas === null) carregarCitadas().then(function () { renderIncluidas(termo, digitos); });
       var cards = itens.map(function (it) {
         return {
           chave: it.chave, nome: it.rotulo, numero: it.nome || "Incluída por você",
+          textoId: citadas && citadas[chaveCitada(it.rotulo)] || "",
           link: it.href, uf: null, badge: "INCLUÍDA", removivel: true,
           materia: LI.titulo(it.edital), edital: it.edital,
           busca: semAcento(it.rotulo + " " + (it.nome || "")), digitos: String(it.rotulo).replace(/\D/g, "")
