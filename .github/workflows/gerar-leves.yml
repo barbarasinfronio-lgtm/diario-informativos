@@ -8,7 +8,6 @@ name: Gerar dados leves
 #   - de 3 em 3 horas, por garantia (envios feitos por outros robôs do GitHub
 #     não disparam este);
 #   - no botão "Run workflow".
-# Depois limpa o cache do jsDelivr dos arquivos gerados.
 on:
   push:
     branches: [main]
@@ -67,16 +66,3 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
           echo "mudou=1" >> "$GITHUB_OUTPUT"
-
-      - name: Limpar cache do jsDelivr dos arquivos gerados
-        if: steps.salvar.outputs.mudou == '1'
-        run: |
-          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
-          for espera in 60 120; do
-            sleep "$espera"
-            while read -r f; do
-              [ -z "$f" ] && continue
-              status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
-              echo "$f -> HTTP $status"
-            done < alterados.txt
-          done

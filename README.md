@@ -1,18 +1,14 @@
 # Estuda Mana — arquivos do site
 
 Código (JS e CSS) das páginas de estudo do [Estuda Mana](https://www.estudamana.com.br),
-um site no Blogger. As páginas do Blogger carregam estes arquivos direto deste
-repositório pelo jsDelivr:
+um site no Blogger. O Blogger carrega o código **do GitHub Pages** deste repositório
+(`https://barbarasinfronio-lgtm.github.io/diario-informativos/`): o tema tem
+um pequeno script que busca `estudamana-header.js` com `fetch(..., {cache:'no-cache'})`
+(se falhar, usa `<script src>`), e o cabeçalho carrega o resto do mesmo endereço.
 
-```html
-<script src="https://cdn.jsdelivr.net/gh/barbarasinfronio-lgtm/diario-informativos@main/estudamana-header.js"></script>
-```
-
-> **Atenção:** como as páginas apontam para `@main`, tudo o que entra na branch
-> `main` vai para o ar. O jsDelivr guarda uma cópia de cada arquivo por várias
-> horas, mas o robô `limpar-cache-jsdelivr.yml` (ver [Automação](#automação))
-> já manda ele buscar a versão nova a cada push no `main`, então a demora hoje
-> é de segundos, não de horas.
+> **Atenção:** tudo o que entra na branch `main` vai para o ar. O robô
+> `publicar-pages.yml` (ver [Automação](#automação)) publica o `main` a cada
+> envio; a mudança aparece em poucos minutos, sem cache para limpar.
 
 ## Páginas e arquivos
 
@@ -71,10 +67,11 @@ Cada arquivo traz no topo um comentário explicando o funcionamento e as opçõe
 
 Workflows do GitHub Actions (pasta `.github/workflows/`):
 
-- **`limpar-cache-jsdelivr.yml`**: a cada push no `main`, pede ao jsDelivr
-  para buscar de novo **só os arquivos alterados** (.js/.css/.json), 1 e 3
-  minutos depois do envio (limpar tudo a cada envio fazia o jsDelivr recusar
-  por excesso). Pelo botão "Run workflow", limpa todos.
+- **`publicar-pages.yml`**: a cada push no `main` (e quando os outros robôs
+  terminam, e de hora em hora), publica o repositório no GitHub Pages — é de lá
+  que o site carrega código e dados.
+- **`gerar-leves.yml`**: limpa decisões sem conteúdo e gera a pasta `leve/`
+  (`scripts/gerar_leves.js`) quando os dados do Diário das Decisões mudam.
 - **`dividir-dados-por-ano.yml`**: a cada envio de `controleconst/adi_dados.js`
   ou `reclamacoes/reclamacoes-data.js`, gera as pastas `anos/` (um arquivo
   por ano) com `scripts/dividir_por_ano.py`.
@@ -101,7 +98,7 @@ Mac, **sem agendamento**: uma vez por semana, dê dois cliques em
 **`Atualizar Informativos.command`** (raiz do repositório, no Finder). Ele
 atualiza o repositório com o `main`, roda `scripts/atualizar_informativos.py`
 e, se houver edição nova, grava em `diario-data.js` e envia para o `main` (o
-que já dispara a limpeza do cache do jsDelivr). As edições novas entram com
+que já dispara a publicação no GitHub Pages). As edições novas entram com
 súmula "a confirmar".
 
 As **leis** têm arquivo próprio, para rodar todo dia: **`Atualizar Leis.command`**
