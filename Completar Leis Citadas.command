@@ -6,7 +6,7 @@
 # servidores do GitHub).
 cd "$(dirname "$0")" || exit 1
 fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; exit "$1"; }
-ARQUIVOS=(leis/texto)
+ARQUIVOS=(leis/texto leis/texto-debug)
 echo "=== Completar leis citadas — $(date '+%d/%m/%Y %H:%M') ==="
 git checkout -q main 2>/dev/null
 git fetch -q origin main && git pull -q --rebase --autostash origin main \
