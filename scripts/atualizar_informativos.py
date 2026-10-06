@@ -1410,7 +1410,7 @@ def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None, numero=None):
     if curto:
         print(f"  (texto de \"{nome}\" parece incompleto; não gravei)")
         return False
-    if numero and not texto_confere(numero, paragrafos):
+    if numero and not texto_confere(numero, paragrafos, url):
         print(f"  ATENÇÃO: o link de \"{numero}\" abre outra norma (\"{paragrafos[0][:60]}\"); não gravei")
         ERRADOS.append((numero, nome, url, paragrafos[0][:80]))
         return False
@@ -1430,13 +1430,17 @@ def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None, numero=None):
 ERRADOS = []   # links que abrem outra norma (nesta rodada)
 
 
-def texto_confere(numero, paragrafos):
+def texto_confere(numero, paragrafos, url=""):
     """O texto aberto é mesmo da norma esperada? O número ("12.726") tem de
-    aparecer nas primeiras linhas. Sem número no nome (ex.: Constituição), vale."""
+    aparecer nas primeiras linhas. Sem número no nome (ex.: Constituição), vale.
+    Vale também quando o próprio link traz número e ano (ex.: lei7031_2007_…pdf, c331996.html),
+    para PDFs e páginas cujo topo não repete o título da lei."""
     m = re.search(r"(\d[\d.]*)\s*/\s*(\d{4})", numero or "")
     if not m:
         return True
     n = m.group(1).replace(".", "").lstrip("0") or "0"
+    if url and re.search(rf"(?<!\d){n}[-_]?{m.group(2)}(?!\d)", urllib.parse.unquote(url).lower()):
+        return True
     topo = re.sub(r"(?<=\d)\.(?=\d)", "", " ".join(paragrafos[:14]))
     return re.search(rf"(?<![\d.]){n}(?![\d])", re.sub(r"(?<=\d)\s+(?=\d{{3}}\b)", "", topo)) is not None
 
@@ -1490,6 +1494,10 @@ def paragrafos_de_pdf(texto):
                 out[-1] += " " + linha
         else:
             out.append(linha)
+    for i, p in enumerate(out[:40]):   # título de verdade: "LEI Nº 7.031, DE ...", "DECRETO Nº ..."
+        if re.match(r"(?i)^(lei(\s+(complementar|ordin[áa]ria|estadual))?|decreto|emenda|resolu[çc][ãa]o)\s*(n[ºo°.]|\d)", p) \
+                or re.match(r"(?i)^constitui", p):
+            return out[i:]
     for i, p in enumerate(out[:40]):
         if re.match(r"(?i)^(lei|decreto|constitui|emenda|resolu)", p):
             return out[i:]
