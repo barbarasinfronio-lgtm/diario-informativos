@@ -491,7 +491,7 @@ var LEIS_DATA = {
     { nome: "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)", numero: "Decreto-Lei nº 25/1937", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0025.htm" },
     { nome: "Regulamenta a Lei de Terras (Lei nº 601/1850)", numero: "Decreto nº 1.318/1854", link: "https://www.planalto.gov.br/ccivil_03/decreto/historicos/dim/dim1318.htm" },
     { nome: "Regularização fundiária no Estado do Pará", numero: "Lei Estadual (PA) nº 8.878/2019", link: "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf" },
-    { nome: "Legitimação de terras públicas do Estado do Pará", numero: "Lei Estadual (PA) nº 4.835/1979", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-4835-1979-para" },
+    { nome: "Legitimação de terras públicas do Estado do Pará", numero: "Lei Estadual (PA) nº 4.835/1979", link: "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.835-DE-03-DE-MAIO-DE-1979.pdf" },
     { nome: "Norma ambiental/minerária do Estado do Pará", numero: "Lei Estadual (PA) nº 6.376/2001", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-6376-2001-para" },
     { nome: "Norma fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 4.884/1979", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-4884-1979-para" },
     { nome: "Política Estadual sobre Mudanças Climáticas do Pará", numero: "Lei Estadual (PA) nº 9.048/2020", link: "https://www.semas.pa.gov.br/legislacao/files/lei_9048.pdf" },
