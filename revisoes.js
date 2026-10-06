@@ -319,10 +319,18 @@
       var base = [it.lidaEm, it.ultimaRev].filter(Boolean).sort().pop() || null;
       it.base = base;
       if (!base) { it.estado = "semdata"; return; }
-      if (it.nRev < ESTAGIOS_DIAS.length) {          // revisão espaçada: 1, 7, 30 e 90 dias
-        it.intervalo = plural(ESTAGIOS_DIAS[it.nRev], "dia", "dias");
-        it.vence = somaDias(base, ESTAGIOS_DIAS[it.nRev]);
-        it.fase = "revisão " + (it.nRev + 1) + " de " + (ESTAGIOS_DIAS.length + 1);
+      // leitura antiga: pula as revisões curtas que já passaram (lida há 7+ dias começa na de 7; há 30+, na de 30;
+      // há 90+, na de 90). A idade que vale é a da leitura até a 1ª revisão (ou até hoje, se ainda não houve nenhuma).
+      var k0 = 0;
+      if (it.lidaEm) {
+        var idade = (feitas.length ? diaNum(feitas[0]) : hojeN) - diaNum(it.lidaEm);
+        for (var q = ESTAGIOS_DIAS.length - 1; q >= 1; q--) { if (idade >= ESTAGIOS_DIAS[q]) { k0 = q; break; } }
+      }
+      var est = it.nRev + k0;                         // posição na sequência 1 · 7 · 30 · 90 · longo
+      if (est < ESTAGIOS_DIAS.length) {
+        it.intervalo = plural(ESTAGIOS_DIAS[est], "dia", "dias");
+        it.vence = somaDias(base, ESTAGIOS_DIAS[est]);
+        it.fase = "revisão " + (it.nRev + 1) + (k0 ? " (começa em " + ESTAGIOS_DIAS[k0] + " dias: leitura antiga)" : " de " + (ESTAGIOS_DIAS.length + 1));
       } else {
         it.intervalo = "a cada " + it.meses + " meses";
         it.vence = somaMeses(base, it.meses);
@@ -396,7 +404,7 @@
   }
 
   // ---- tela ---------------------------------------------------------------------
-  var ui = { filtro: "todos", limiteHist: 80, verTodos: {} };
+  var ui = { filtro: "todos", limiteHist: 80, verTodos: {}, confirmar: null };
 
   function linhaRev(it) {
     var quando = it.estado === "semdata" ? "leitura sem data"
@@ -404,7 +412,7 @@
       : it.dias === 0 ? "vence hoje"
       : "vence em " + fmt(it.vence);
     var base = it.base ? (it.ultimaRev && it.ultimaRev === it.base ? "revisada em " : "lida em ") + fmt(it.base) + " · " : "";
-    var plano = it.fase ? it.fase + " (" + it.intervalo + (it.nRev >= ESTAGIOS_DIAS.length ? ", " + it.motivo : "") + ")" : "";
+    var plano = it.fase ? it.fase + " (" + it.intervalo + (/meses/.test(it.intervalo) ? ", " + it.motivo : "") + ")" : "";
     return '<li class="rv-item rv-' + it.estado + '">' +
       '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
@@ -440,7 +448,15 @@
 
   function listaRev(titulo, itens, id, aberto, vazio) {
     var LIM = 40, todos = ui.verTodos[id], mostrar = todos ? itens : itens.slice(0, LIM);
-    return '<details class="rv-bloco"' + (aberto ? " open" : "") + '><summary><span>' + titulo + '</span><span class="rv-n">' + itens.length + "</span></summary>" +
+    var lote = "";
+    if (itens.length > 1 && (id === "agora" || id === "semdata")) {      // limpar o atraso de uma vez (com confirmação na própria tela)
+      lote = ui.confirmar === id
+        ? '<div class="rv-lote"><span>Marcar <b>' + itens.length + '</b> itens como revisados hoje?</span>' +
+          '<button type="button" class="rv-feito" data-lote-sim="' + id + '">✔ Sim, marcar todos</button>' +
+          '<button type="button" class="rv-mais" data-lote-nao="1">Cancelar</button></div>'
+        : '<div class="rv-lote"><button type="button" class="rv-mais" data-lote="' + id + '">✔ Revisei todos deste bloco (' + itens.length + ")</button></div>";
+    }
+    return '<details class="rv-bloco"' + (aberto ? " open" : "") + '><summary><span>' + titulo + '</span><span class="rv-n">' + itens.length + "</span></summary>" + lote +
       (itens.length ? '<ul class="rv-lista">' + mostrar.map(linhaRev).join("") + "</ul>" +
         (itens.length > mostrar.length ? '<button type="button" class="rv-mais" data-todos="' + id + '">Mostrar todas (' + itens.length + ")</button>" : "")
         : '<p class="rv-vazio">' + vazio + "</p>") +
@@ -522,9 +538,24 @@
     o.rev = juntarRev(o.rev);
     el.innerHTML = o.tab === "historico" ? telaHistorico(o) : telaRevisoes(o);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao]");
       if (!b) return;
-      if (b.dataset.altVisto) {
+      if (b.dataset.lote) {
+        ui.confirmar = b.dataset.lote;
+      } else if (b.dataset.loteNao) {
+        ui.confirmar = null;
+      } else if (b.dataset.loteSim) {
+        var estado = b.dataset.loteSim, dd = hoje(), loc = lerRevLocal(), pacote = {};
+        itensDeRevisao(o.maps, o.rev).filter(function (i) { return i.estado === estado; }).forEach(function (i) {
+          loc[i.id] = (loc[i.id] || []).filter(function (x) { return x !== dd; }).concat([dd]).sort();
+          pacote[i.id] = loc[i.id];
+        });
+        try { localStorage.setItem(REV_KEY, JSON.stringify(loc)); } catch (e) {}
+        if (o.salvarRevLote) o.salvarRevLote(pacote);
+        else if (o.salvarRev) Object.keys(pacote).forEach(function (id) { o.salvarRev(id, pacote[id]); });
+        o.rev = juntarRev(o.rev);
+        ui.confirmar = null;
+      } else if (b.dataset.altVisto) {
         var vistas = lerVistasAlt();
         vistas[b.dataset.altVisto] = b.dataset.altEm;
         try { localStorage.setItem(VISTAS_ALT_KEY, JSON.stringify(vistas)); } catch (e) {}

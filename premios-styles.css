@@ -444,3 +444,6 @@
 .pz-why ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
 .pz-why li { margin: 0.2rem 0; }
 .pz-why b { color: var(--ink); }
+
+/* Revisões: "Revisei todos deste bloco" (revisoes.js) */
+.rv-lote { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 2px 4px; }
