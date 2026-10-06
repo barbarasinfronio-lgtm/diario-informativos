@@ -38,8 +38,9 @@
   var COBRANCAS_JSON = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/provas/cobrancas.json';
   var COB = null;
   function cobrancasDe(d){
-    var lst = COB && COB.itens['dec:' + d.id];
-    if (!lst) return [];
+    var lst = [];
+    if (COB) [d.id].concat(d.idsJuntados || []).forEach(function(x){ lst = lst.concat(COB.itens['dec:' + x] || []); });   // inclui os cards que este absorveu
+    if (!lst.length) return [];
     var porProva = {};
     lst.forEach(function(x){ (porProva[x[0]] = porProva[x[0]] || []).push(x[1]); });
     // questão 0 = prova discursiva/oral que não foi separada em questões
@@ -457,7 +458,18 @@
     });
   }
 
+  // Card que absorveu outros (mesma tese nas Teses do STJ e como Tema): vale como lido se qualquer um dos códigos foi lido
+  function aplicarAliases(){
+    DATA.forEach(function(d){
+      if(!d.idsJuntados || isRead(lidos[d.id])) return;
+      for(var i = 0; i < d.idsJuntados.length; i++){
+        var v = lidos[d.idsJuntados[i]];
+        if(isRead(v)){ lidos[d.id] = v; break; }
+      }
+    });
+  }
   function render(){
+    aplicarAliases();
     Object.keys(SOB_DEMANDA).forEach(function(g){ if (!estadoSD(g).prontos && (state.org === g || termosBusca().length)) carregarSobDemanda(g); });
     // busca precisa do texto completo (tese, destaque…), não só da lista leve
     if (termosBusca().length) fontesIncompletas().forEach(function(f){ completarFonte(f).catch(function(){}); });
@@ -600,7 +612,7 @@
   // "Marcar como lido" do card aberto. Grava no aparelho, na conta
   // (progress-decisoes) e no total "lidasDecisoes" dos grupos (pontuação).
   function marcarLido(d, lida){
-    if(lida) lidos[d.id] = { lida:true, lidaEm: todayIso() }; else delete lidos[d.id];
+    if(lida) lidos[d.id] = { lida:true, lidaEm: todayIso() }; else { delete lidos[d.id]; (d.idsJuntados || []).forEach(function(x){ delete lidos[x]; }); }
     writeLocal(lidos);
     scheduleSync();
     document.querySelectorAll('#grid .card').forEach(function(card){

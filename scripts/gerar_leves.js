@@ -33,7 +33,7 @@ const fontes = {
 
 // campos que a lista, os filtros, a contagem e os selos do card usam
 const CAMPOS = ["id", "orgao", "tipo", "tipoNome", "grupo", "area", "tema", "data", "status", "risco",
-  "titulo", "processo", "relator", "precedenteLabel", "info", "suspensao", "tambem", "_resumo", "_f"];
+  "titulo", "processo", "relator", "precedenteLabel", "info", "suspensao", "tambem", "idsJuntados", "_resumo", "_f"];
 // campos com poucos valores diferentes: gravados como número de uma tabela
 const TABELADOS = new Set(["orgao", "tipo", "tipoNome", "grupo", "area", "status", "risco", "precedenteLabel", "relator", "_f"]);
 const TAM_RESUMO = 150; // o card mostra só o começo do texto

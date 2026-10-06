@@ -225,6 +225,10 @@
     var n = 0, nivel = 0, txt = "";
     if (it.tipo === "Súmula" || it.tipo === "Decisão") {
       n = (COBRANCA && COBRANCA.itens && COBRANCA.itens[it.id]) || 0;
+      if (it.tipo === "Decisão" && decisoesPorId) {      // card que absorveu esta decisão: vale a maior cobrança entre os códigos juntados
+        var dd = decisoesPorId[it.id.slice(4)] || decisoesPorId[aliasDeDecisao(it.id.slice(4))];
+        if (dd) [String(dd.id)].concat(dd.idsJuntados || []).forEach(function (x) { n = Math.max(n, (COBRANCA && COBRANCA.itens["dec:" + x]) || 0); });
+      }
       nivel = nivelPorProvas(n);
       txt = n ? "cobrado em " + plural(n, "prova", "provas") : "";
     } else if (it.tipo === "Informativo") {
@@ -262,7 +266,7 @@
   function prepararCompleto() {   // jeito antigo, se a pasta leve/ não responder
     return Promise.all([carregarJs("RG_REPETITIVOS_DATA", "rg-repetitivos-data.js"), carregarTst()]).then(function () {
       var todas = (g("RG_REPETITIVOS_DATA") || []).concat(tst || []);
-      decisoesPorId = {};
+      decisoesPorId = {}; aliasMapa = null;
       citacoes = {};
       todas.forEach(function (d) {
         decisoesPorId[String(d.id)] = d;
@@ -294,7 +298,7 @@
     if (decisoesPorId) return Promise.resolve();
     if (!titulosP) {
       titulosP = jsonOu("leve/decisoes.json").then(function (j) {
-        decisoesPorId = {};
+        decisoesPorId = {}; aliasMapa = null; aliasMapa = null;
         lerLeve(j).forEach(function (d) { decisoesPorId[String(d.id)] = d; });
       }).catch(function () { titulosP = null; return prepararCompleto(); });
     }
@@ -442,6 +446,17 @@
     }
   }
 
+  var aliasMapa = null;
+  function aliasDeDecisao(k) {
+    if (!aliasMapa) {
+      aliasMapa = {};
+      Object.keys(decisoesPorId || {}).forEach(function (id) {
+        (decisoesPorId[id].idsJuntados || []).forEach(function (x) { aliasMapa[String(x)] = id; });
+      });
+    }
+    return aliasMapa[k];
+  }
+
   function itensDeRevisao(maps, rev) {
     var out = [], hojeIso = hoje(), hojeN = diaNum(hojeIso);
 
@@ -480,6 +495,7 @@
     Object.keys(dmap).forEach(function (k) {
       var e = lida(dmap[k]); if (!e) return;
       var d = decisoesPorId && decisoesPorId[k];
+      if (!d && decisoesPorId) { var alvo = aliasDeDecisao(k); if (alvo) d = decisoesPorId[alvo]; }     // card que absorveu esta decisão
       var titulo = d ? (d.orgao || "") + " · " + (d.precedenteLabel || "Tema") + " " + (d.tema || "") + " — " + (d.titulo || "")
         : (COBRANCA && COBRANCA.rotulos && COBRANCA.rotulos["dec:" + k]) || "Decisão " + k;
       out.push({ id: "dec:" + k, tipo: "Decisão", titulo: titulo.replace(/\s+/g, " ").trim(), sub: d ? (d.processo || "") : "", lidaEm: e.em,
@@ -802,6 +818,7 @@
     document.body.appendChild(fundo);
     if (it.tipo === "Decisão") {
       var k = id.slice(4), d0 = decisoesPorId && decisoesPorId[k];
+      if (!d0 && decisoesPorId && aliasDeDecisao(k)) { k = aliasDeDecisao(k); d0 = decisoesPorId[k]; }
       var semDecisao = function () {      // decisão que saiu da lista (ex.: repetida): usa o texto do card de cobranças em provas
         return jsonOu("provas/cobrancas.json").then(function (j) {
           var cd = j.cards && j.cards["dec:" + k];
