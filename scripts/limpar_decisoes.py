@@ -34,9 +34,11 @@ Regras (por arquivo):
     - nada sai nem é juntado.
   tst/decisoes.json
     - sai: item sem texto.
-  (Out/2026: as regras de repetida/parecida/juntar deixaram de valer para estas quatro listas, porque
-   as leituras e as revisões guardam o código de cada decisão; só saem as sem conteúdo.)
-  stj/acordaos/indice.json · informativos/indice.json
+  (Out/2026: as regras de repetida/parecida deixaram de valer para estas quatro listas, porque as
+   leituras e as revisões guardam o código de cada decisão; só saem as sem conteúdo. A mesma tese
+   nas Teses do STJ e como Tema continua virando um card só: o card guarda os códigos dos
+   absorvidos em "idsJuntados", e as páginas contam como lida se qualquer um deles foi lido.)
+  stj/acordaos/indice.json
     - repetidos (mesmo processo, data e ementa / mesmo órgão, edição e tese) → fica um;
     - acórdãos que só "não conhecem" do recurso/pedido saem, a não ser que
       algo tenha sido analisado de ofício (ex.: habeas corpus concedido de ofício).
@@ -45,8 +47,7 @@ Regras (por arquivo):
     liminar ad referendum ainda não referendada, "nego seguimento", "julgo
     prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
     na preparação; ficam só as do Plenário/Turma, que vinculam.
-  Informativos: se a essência da tese é a mesma (texto quase idêntico, mesmos números
-    e mesmos nomes próprios) fica só a mais recente.
+  Informativos (informativos/indice.json): não é mais limpo (repetidos e parecidos ficam).
   Controle: saem as decisões que o Informativo do STF já traz (mesma ação, data
     até 20 dias de diferença): o Informativo tem a tese e o estado de origem.
 """
@@ -236,6 +237,11 @@ def juntar_teses_e_temas():
                     rotulos.append(r)
             sai.add(i)
             cruzadas += 1
+            ids = list(sobreviv.get("idsJuntados") or [])
+            for x in [d.get("id")] + list(d.get("idsJuntados") or []):
+                if x is not None and x != sobreviv.get("id") and x not in ids:
+                    ids.append(x)
+            sobreviv["idsJuntados"] = ids
         sobreviv["tambem"] = rotulos
     rg = [d for i, (t, d) in enumerate(todos) if t == "rg" and i not in sai]
     teses = [d for i, (t, d) in enumerate(todos) if t == "te" and i not in sai]
@@ -587,11 +593,11 @@ def main():
     if tudo or "decisoes" in alvos:
         limpar_rg()
         limpar_teses()
+        juntar_teses_e_temas()
         limpar_extras()
         limpar_tst()
         limpar_indice("stj/acordaos/indice.json", ["processo", "data", "titulo", "resultado"], "Acórdãos do STJ")
         limpar_acordaos()
-        limpar_indice("informativos/indice.json", ["orgao", "informativo", "tese"], "Informativos", parecidas_em="tese")
     print(("(só relatório) " if RELATORIO else "") + "\n".join(resumo))
 
 
