@@ -186,6 +186,12 @@ partir do texto das provas (um .txt por prova, nome com banca, ano e órgão;
 gabaritos são ignorados). O Diário das Súmulas e o Diário das Decisões mostram
 "📝 Cobrada em …" nos cards, e a página de estatísticas usa o mesmo arquivo.
 
+Pastas lidas dentro de `Provas/` (no Mac): `01 Objetivas`, `02 Discursivas`, `03 Sentenças`, `04 Oral`,
+`ENAM` e `Provas anteriores da FGV - Magistratura/` (subpastas `Provas de 1ª fase`, `Provas de 2ª fase` e
+`Provas de 2ª fase - Outras bancas`, e dentro delas uma pasta por concurso, como `TJMT - Aplicada em 16-11-24`
+ou `TJSC - 2025`). Nessa última, a etapa vem da subpasta (1ª fase = objetiva) e do nome do arquivo
+("sentença" = prova de sentença; o resto da 2ª fase = discursiva; espelhos de correção valem, gabaritos da 1ª fase não).
+
 ## Informativos em cards (Diário das Decisões)
 
 O grupo "Informativos" do Diário das Decisões mostra cada julgado dos
