@@ -310,7 +310,10 @@ def dia(v):
     a, b, c = (int(x) for x in m.groups())
     if a > 31:
         a, c = c, a
-    return datetime.date(c, b, a).toordinal()
+    try:
+        return datetime.date(c, b, a).toordinal()
+    except ValueError:      # data inválida nos dados de origem (ex.: mês 13): conta como sem data
+        return None
 
 
 def ja_no_informativo():
