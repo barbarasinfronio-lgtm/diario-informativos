@@ -301,7 +301,7 @@ var LEIS_DATA = {
     { nome: "Altera o CPP — resposta à acusação, absolvição sumária e sentença", numero: "Lei nº 11.719/2008", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11719.htm" },
     { nome: "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)", numero: "Lei nº 11.697/2008", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11697.htm" },
     { nome: "Altera a Lei nº 13.105/2015 quanto ao juízo de admissibilidade dos recursos especial e extraordinário", numero: "Lei nº 13.256/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13256.htm" },
-    { nome: "Política Estadual de Inclusão da Pessoa Portadora de Deficiência ou com Mobilidade Reduzida da Bahia", numero: "Lei Estadual (BA) nº 10.845/2007", link: "https://leisestaduais.com.br/ba/lei-ordinaria-n-10845-2007-bahia-dispoe-sobre-a-organizacao-e-divisao-judiciaria-do-estado-da-bahia-a-administracao-e-o-funcionamento-da-justica-e-seus-servicos-auxiliares" },
+    { nome: "Organização e Divisão Judiciária do Estado da Bahia (Código de Organização Judiciária)", numero: "Lei Estadual (BA) nº 10.845/2007", link: "https://www.tjba.jus.br/juizadosespeciais/wp-content/uploads/joomla_uploads/pdf/legislacao/LOJ_10845_2007-ORGANIZACAO-JUDICIARIA.pdf" },
   ]},
 
   constitucional: { label: "Direito Constitucional", leis: [
