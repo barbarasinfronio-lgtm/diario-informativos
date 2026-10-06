@@ -788,6 +788,16 @@
     });
   }
 
+  // "Revisei todos deste bloco" (revisoes.js): várias revisões de uma vez, numa gravação só
+  function pushRevLote(lote) {
+    var r = state.remote;
+    if (!r || !r.user) return;
+    try {
+      firebase.firestore().doc(PATHS.premios + r.user.uid)
+        .set({ revisoes: lote, updatedAt: new Date().toISOString() }, { merge: true })
+        .then(function () { r.rev = r.rev || {}; Object.keys(lote).forEach(function (k) { r.rev[k] = lote[k]; }); }).catch(function () {});
+    } catch (e) {}
+  }
   // "Revisei hoje" (revisoes.js): guarda as datas na conta
   function pushRev(id, datas) {
     var r = state.remote;
@@ -814,7 +824,7 @@
     return extraJs;
   }
   function extraOpts() {
-    return { tab: state.tab, maps: state.maps || {}, rev: (state.remote && state.remote.rev) || {}, salvarRev: pushRev,
+    return { tab: state.tab, maps: state.maps || {}, rev: (state.remote && state.remote.rev) || {}, salvarRev: pushRev, salvarRevLote: pushRevLote,
              visitaAnterior: state.remote && state.remote.visitaAnterior !== undefined ? state.remote.visitaAnterior : undefined };
   }
 
