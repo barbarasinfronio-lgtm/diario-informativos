@@ -56,14 +56,17 @@
     if (it.tipo === "Súmula") return 1;
     if (it.tipo === "Decisão") return 3;
     if (it.tipo === "Informativo") return 12;
-    return it.motivo && /^lei principal/.test(it.motivo) ? 30 : 15;      // Lei
+    return it.motivo && /^lei principal/.test(it.motivo) ? 15 : 10;      // Lei: releitura rápida (grifos e anotações)
   }
   function fmtMin(m) { return m >= 60 ? Math.floor(m / 60) + " h" + (m % 60 ? " " + (m % 60) + " min" : "") : m + " min"; }
   // separa o atraso em "meta de hoje" (cabe no tempo que falta) e "fila"; o que já foi revisado hoje conta no tempo
-  function planoDeHoje(itens) {
+  function planoDeHoje(itens, leituraPendente) {
     var hojeIso = hoje(), feito = 0;
-    itens.forEach(function (i) { if (i.ultimaRev === hojeIso) feito += i.min; });
-    var restante = MINUTOS_POR_DIA - feito, usado = 0, meta = [], fila = [];
+    itens.forEach(function (i) {
+      if (i.ultimaRev === hojeIso) feito += i.min;
+      if (i.bloco && i.lidaEm === hojeIso) feito += MIN_BLOCO;      // bloco lido hoje
+    });
+    var restante = MINUTOS_POR_DIA - feito - (leituraPendente ? MIN_BLOCO : 0), usado = 0, meta = [], fila = [];
     itens.filter(function (i) { return i.estado === "agora"; })
       .sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); })
       .forEach(function (i) {
@@ -235,6 +238,9 @@
     } else if (it.tipo === "Informativo") {
       var e = COBRANCA && COBRANCA.inf && COBRANCA.inf[it.id.slice(4)];
       if (e) { nivel = e[0] >= 4 ? 3 : e[0] >= 2 ? 2 : 1; txt = plural(e[0], "julgado já cobrado", "julgados já cobrados") + " em provas"; }
+    } else if (it.tipo === "Lei (bloco)") {
+      var pn = !!PRINCIPAIS[leiPorTexto(it.bloco.tid).numero];
+      nivel = pn ? 3 : 0; txt = pn ? "lei de base das provas" : "";
     } else if (it.tipo === "Lei") {
       var principal = !!(it.motivo && /^lei principal/.test(it.motivo));
       nivel = principal ? 3 : citas >= 10 ? 2 : citas >= 3 ? 1 : 0;
@@ -310,6 +316,119 @@
     return a.length ? (citacoes[a[0].id] || 0) : 0;
   }
 
+  // ---- plano de lei seca ---------------------------------------------------------
+  // Lei grande não se lê num dia: o plano divide o texto (leis/texto/<id>.json) em blocos de uns 10 minutos
+  // (cerca de 900 palavras, fechando em artigo inteiro). Meta mínima: 1 bloco por dia, sem cobrança por dia perdido.
+  // Cada bloco lido vira uma revisão espaçada (1 · 7 · 30 · 90 dias), curta. Guardado nas mesmas "revisões" da conta:
+  //   "plano:<textoId>"      → [data em que começou]
+  //   "bloco:<textoId>:<n>"  → [data da leitura, datas das revisões…]
+  var PALAVRAS_BLOCO = 900, MIN_BLOCO = 10, MIN_REVISAO_BLOCO = 3;
+  var textos = {}, indiceTextos = null, blocosCache = {};
+  function idTexto(link) {      // igual ao de leis-logic.js
+    var l = String(link || ""), m = l.match(/^https?:\/\/www\.planalto\.gov\.br(\/[^?#]*)/i);
+    if (m) return slug(m[1].replace(/^\/ccivil_03\//i, "").replace(/\.html?$/i, ""));
+    m = l.match(/^https?:\/\/(?:www\.)?([^\/?#]+)([^?#]*)(?:\?([^#]*))?/i);
+    if (!m) return "";
+    var sg = slug(m[1] + m[2] + (m[3] ? "?" + m[3] : ""));
+    if (sg.length > 90) {
+      var h = 0x811c9dc5;
+      for (var i = 0; i < sg.length; i++) h = Math.imul(h ^ sg.charCodeAt(i), 0x01000193) >>> 0;
+      sg = sg.slice(0, 80) + "-" + ("00000000" + h.toString(16)).slice(-8);
+    }
+    return sg;
+  }
+  function carregarIndiceTextos() {
+    if (indiceTextos) return Promise.resolve();
+    return fetch(CDN + "leis/texto/indice.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; }).then(function (j) { indiceTextos = j || {}; });
+  }
+  function carregarTextoLei(tid) {
+    if (textos[tid]) return Promise.resolve(textos[tid]);
+    return fetch(CDN + "leis/texto/" + encodeURIComponent(tid) + ".json", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(tid); return r.json(); })
+      .then(function (j) { textos[tid] = j; return j; }).catch(function () { return null; });
+  }
+  function blocosDaLei(tid) {
+    if (blocosCache[tid]) return blocosCache[tid];
+    var j = textos[tid];
+    if (!j) return null;
+    // "Art." sozinho na linha vira uma linha só com a seguinte
+    var ps = [], src = j.p || [];
+    for (var i = 0; i < src.length; i++) {
+      var t = String(src[i]).trim();
+      if (/^Art\.?$/.test(t) && i + 1 < src.length) { t = "Art. " + String(src[++i]).trim(); }
+      if (t) ps.push(t);
+    }
+    var palavras = function (a) { return a.reduce(function (n, x) { return n + x.split(/\s+/).length; }, 0); };
+    var unidades = [], atual = null;
+    ps.forEach(function (t) {
+      var m = /^Art\.?\s*(\d+(?:\.\d+)*[º°ª]?(?:-[A-Z]+)?)/.exec(t);
+      if (m || !atual) { atual = { ps: [], art: m ? m[1] : "" }; unidades.push(atual); }
+      atual.ps.push(t);
+    });
+    var blocos = [], b = null;
+    unidades.forEach(function (u) {
+      var w = palavras(u.ps);
+      if (!b || (b.w >= PALAVRAS_BLOCO) || (b.w >= 300 && b.w + w > PALAVRAS_BLOCO * 1.5)) { b = { ps: [], w: 0, de: "", ate: "" }; blocos.push(b); }
+      b.ps = b.ps.concat(u.ps); b.w += w;
+      if (u.art) { if (!b.de) b.de = u.art; b.ate = u.art; }
+    });
+    blocos.forEach(function (x, n) {
+      x.n = n + 1;
+      x.rotulo = x.de ? (x.de === x.ate ? "art. " + x.de : "arts. " + x.de + " a " + x.ate) : "parte " + x.n;
+      x.min = Math.max(4, Math.round(x.w / 90));
+    });
+    return (blocosCache[tid] = blocos);
+  }
+  function planosAtivos(rev) {     // [{ tid, desde }]
+    return Object.keys(rev || {}).filter(function (k) { return /^plano:/.test(k) && (rev[k] || []).length; })
+      .map(function (k) { return { tid: k.slice(6), desde: rev[k][0] }; })
+      .sort(function (a, b) { return a.desde < b.desde ? -1 : 1; });
+  }
+  function leiPorTexto(tid) {
+    var leis = g("LEIS_DATA") || {}, achada = null;
+    Object.keys(leis).some(function (mat) { return (leis[mat].leis || []).some(function (l) { if (idTexto(l.link) === tid) { achada = { nome: l.nome, numero: l.numero, chave: mat + ":" + slug(l.numero) }; return true; } }); });
+    return achada || { nome: (textos[tid] && textos[tid].nome) || tid, numero: "", chave: "" };
+  }
+  function nomeDaLeiPorTexto(tid) { return leiPorTexto(tid).nome; }
+  function candidatosAoPlano(rev) {
+    var leis = g("LEIS_DATA") || {}, ja = {}, vistos = {}, out = [];
+    planosAtivos(rev).forEach(function (p) { ja[p.tid] = true; });
+    Object.keys(leis).forEach(function (mat) {
+      (leis[mat].leis || []).forEach(function (l) {
+        var tid = idTexto(l.link);
+        if (!tid || ja[tid] || vistos[tid] || !indiceTextos || !indiceTextos[tid]) return;
+        vistos[tid] = true;
+        out.push({ tid: tid, nome: l.nome, numero: l.numero, principal: !!PRINCIPAIS[l.numero], citas: citacoesDaLei(l.numero) });
+      });
+    });
+    return out.sort(function (a, b) { return (b.principal - a.principal) || (b.citas - a.citas) || a.nome.localeCompare(b.nome); });
+  }
+  function proximoBloco(tid, rev) {   // primeiro bloco ainda não lido
+    var blocos = blocosDaLei(tid) || [], i = 0;
+    while (i < blocos.length && (rev["bloco:" + tid + ":" + blocos[i].n] || []).length) i++;
+    return { blocos: blocos, lidos: i, proximo: blocos[i] || null };
+  }
+  function lidoHoje(rev) {
+    var h = hoje();
+    return Object.keys(rev || {}).some(function (k) { return /^bloco:/.test(k) && (rev[k] || [])[0] === h; });
+  }
+  function leituraPendente(rev) {     // há plano com bloco por ler e a meta de leitura de hoje ainda não foi feita
+    return !lidoHoje(rev) && planosAtivos(rev).some(function (p) { return !!proximoBloco(p.tid, rev).proximo; });
+  }
+  function itensDeBlocos(rev) {
+    var out = [];
+    Object.keys(rev || {}).forEach(function (k) {
+      var m = /^bloco:(.+):(\d+)$/.exec(k);
+      if (!m || !(rev[k] || []).length) return;
+      var tid = m[1], n = +m[2], bl = (blocosDaLei(tid) || [])[n - 1], datas = rev[k];
+      var nome = nomeDaLeiPorTexto(tid);
+      out.push({ id: k, tipo: "Lei (bloco)", titulo: nome + " — " + (bl ? bl.rotulo : "bloco " + n), sub: "", lidaEm: datas[0], _rev: datas.slice(1),
+        meses: 6, motivo: "bloco de lei seca", min: MIN_REVISAO_BLOCO, bloco: { tid: tid, n: n }, citas: 0, href: "" });
+    });
+    return out;
+  }
+
   // ---- revisões ---------------------------------------------------------------
   function regraDaLei(numero) {
     if (PRINCIPAIS[numero]) return { meses: PRINCIPAL_MESES, motivo: "lei principal: " + PRINCIPAIS[numero] };
@@ -369,12 +488,13 @@
         meses: DECISAO_MESES, motivo: "informativo", href: "/p/diario-dos-informativos.html#cad=" + encodeURIComponent(p[0] + "|" + p[2]) });
     });
 
+    itensDeBlocos(rev).forEach(function (it) { out.push(it); });
     out.forEach(function (it) {
-      it.min = minutosDoItem(it);
+      it.min = it.min || minutosDoItem(it);
       var pr = prioridade(it, it.citas || 0);
       it.nivel = pr.nivel; it.cobrado = pr.motivo;
       if (it.meses > NIVEL[pr.nivel].meses) { it.meses = NIVEL[pr.nivel].meses; it.motivo = NIVEL[pr.nivel].nome + (pr.motivo ? " (" + pr.motivo + ")" : ""); }
-      var feitas = (rev[it.id] || []).filter(function (d) { return !it.lidaEm || d >= it.lidaEm; });
+      var feitas = it._rev || (rev[it.id] || []).filter(function (d) { return !it.lidaEm || d >= it.lidaEm; });
       it.ultimaRev = feitas.length ? feitas[feitas.length - 1] : null;
       it.nRev = feitas.length;                       // revisões já feitas desde a leitura
       var base = [it.lidaEm, it.ultimaRev].filter(Boolean).sort().pop() || null;
@@ -479,7 +599,7 @@
       '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
         '<span class="rv-meta">' + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
-      '<div class="rv-acoes">' + (it.tipo === "Súmula" || it.tipo === "Decisão" ? '<button type="button" class="rv-abrir" data-card="' + esc(it.id) + '">Abrir</button>'
+      '<div class="rv-acoes">' + (it.bloco ? '<button type="button" class="rv-abrir" data-bloco-ler="' + esc(it.bloco.tid + ":" + it.bloco.n) + '">Abrir</button>' : it.tipo === "Súmula" || it.tipo === "Decisão" ? '<button type="button" class="rv-abrir" data-card="' + esc(it.id) + '">Abrir</button>'
           : it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +
     "</li>";
@@ -526,13 +646,34 @@
       "</details>";
   }
 
+  function blocoPlano(o) {
+    var rev = o.rev, ativos = planosAtivos(rev), cand = candidatosAoPlano(rev), h = lidoHoje(rev);
+    var linhas = ativos.map(function (p) {
+      var x = proximoBloco(p.tid, rev), nome = leiPorTexto(p.tid).nome;
+      if (!x.blocos.length) return '<li class="rv-item"><div class="rv-texto"><b>' + esc(nome) + '</b><span class="rv-meta">Carregando o texto…</span></div></li>';
+      var pct = Math.round(100 * x.lidos / x.blocos.length);
+      return '<li class="rv-item"><div class="rv-texto"><b>' + esc(nome) + "</b>" +
+        '<span class="rv-barra"><i style="width:' + pct + '%"></i></span>' +
+        '<span class="rv-meta">' + (x.proximo ? "bloco " + x.proximo.n + " de " + x.blocos.length + " · " + x.proximo.rotulo + " · cerca de " + x.proximo.min + " min"
+          : "🎉 lei concluída: " + x.blocos.length + " blocos lidos") + "</span></div>" +
+        '<div class="rv-acoes">' + (x.proximo ? '<button type="button" class="rv-feito" data-bloco-ler="' + esc(p.tid + ":" + x.proximo.n) + '">' + (h ? "Ler mais um" : "📖 Ler agora") + "</button>" : "") + "</div></li>";
+    }).join("");
+    var seletor = cand.length
+      ? '<div class="rv-lote"><select class="rv-select" id="rv-plano-lei">' + cand.slice(0, 300).map(function (c) { return '<option value="' + esc(c.tid) + '">' + esc(c.nome + (c.principal ? " ⭐" : "")) + "</option>"; }).join("") + "</select>" +
+        '<button type="button" class="rv-mais" data-plano-ini="1">Começar esta lei</button></div>' : "";
+    return '<details class="rv-bloco" open><summary><span>📖 Lei seca em ritmo leve</span><span class="rv-n">' + (h ? "✔ meta de hoje" : ativos.length ? "1 bloco hoje" : "") + "</span></summary>" +
+      '<p class="rv-nota" style="margin:0.4rem 0">Meta mínima: <b>1 bloco por dia</b> (uns 10 minutos). Dia sem estudar não atrasa nada: o próximo bloco espera por você. Cada bloco lido volta em revisões curtas (1, 7, 30 e 90 dias).</p>' +
+      (linhas ? '<ul class="rv-lista">' + linhas + "</ul>" : '<p class="rv-vazio">Escolha uma lei para começar.</p>') + seletor + "</details>";
+  }
+
   function telaRevisoes(o) {
-    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o), plano = planoDeHoje(itens);
+    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o), plano = planoDeHoje(itens, leituraPendente(o.rev));
     // o que mais cai em prova vem primeiro; dentro do mesmo nível, o mais atrasado
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
       "<li><b>Revisão espaçada:</b> a 1ª revisão é 1 dia depois da leitura, a 2ª 7 dias depois, a 3ª 30 dias e a 4ª 90 dias depois da revisão anterior. Da 5ª em diante o intervalo é longo e depende do item:</li>" +
       "<li><b>Meta diária de " + fmtMin(MINUTOS_POR_DIA) + ":</b> as revisões atrasadas não aparecem todas de uma vez. A lista de hoje enche o tempo da meta com os itens mais cobrados primeiro; o resto espera na “Fila de atrasadas” e entra nos dias seguintes. Tempo estimado por item: súmula 1 min, decisão ou tese 3 min, informativo 12 min, lei 15 min (30 min as leis principais). O que você já revisou hoje conta no tempo.</li>" +
+      "<li><b>Lei seca em ritmo leve:</b> leis grandes (como o CTN) são divididas em blocos de cerca de 900 palavras, sempre fechando em artigo inteiro. A meta é 1 bloco por dia; o tempo do bloco já entra na meta de " + fmtMin(MINUTOS_POR_DIA) + " e as revisões se encaixam no resto. Cada bloco lido tem revisões curtas (3 min) aos 1, 7, 30 e 90 dias.</li>" +
       "<li><b>Prioridade pelo que mais cai em prova:</b> cada súmula, decisão ou tese é comparada com as provas de concurso já analisadas (as mesmas da página de estatísticas de cobrança). 🔥 <b>Muito cobrado</b> (5 ou mais provas, lei de base como CF/CC/CPC/CP/CPP/ECA, ou informativo com 4+ julgados cobrados) é revisado a cada 3 meses; 📝 <b>cobrado</b> (2 a 4 provas) a cada 4 meses. Dentro de cada bloco, esses itens aparecem primeiro.</li>" +
       "<li><b>Demais súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada 3 meses (são 🔥 muito cobradas).</li>" +
@@ -542,7 +683,7 @@
       "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo da revisão seguinte começa a contar.</li>" +
       "</ul></details>";
     if (!itens.length) {
-      return blocoAlteradas(alts, o) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
+      return blocoPlano(o) + blocoAlteradas(alts, o) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
     }
     return '<div class="rv-resumo">' +
         '<span class="rv-pilula rv-agora"><b>' + alts.length + "</b> " + (alts.length === 1 ? "lei alterada" : "leis alteradas") + " desde " + fmt(dataBaseAlteracoes(o).iso) + "</span>" +
@@ -551,6 +692,7 @@
         '<span class="rv-pilula rv-breve"><b>' + c.breve + "</b> nos próximos 30 dias</span>" +
         '<span class="rv-pilula"><b>' + c.emdia + "</b> em dia</span></div>" +
       regra +
+      blocoPlano(o) +
       blocoAlteradas(alts, o) +
       '<p class="rv-meta-dia">🎯 <b>Meta de hoje: cerca de ' + fmtMin(MINUTOS_POR_DIA) + "</b>" + (plano.feito ? " · já feito hoje: " + fmtMin(plano.feito) : "") +
         " · ainda na meta: " + fmtMin(plano.minutosMeta) + "</p>" +
@@ -654,6 +796,46 @@
     } else pintar(null);
   }
 
+  function abrirBloco(chave, el, o) {
+    var i = chave.lastIndexOf(":"), tid = chave.slice(0, i), n = +chave.slice(i + 1), bl = (blocosDaLei(tid) || [])[n - 1];
+    if (!bl) return;
+    var k = "bloco:" + tid + ":" + n, jaLido = (o.rev[k] || []).length > 0, lei = leiPorTexto(tid);
+    var fundo = document.createElement("div");
+    fundo.className = "rv-modal";
+    var tecla = function (e) { if (e.key === "Escape") fechar(); };
+    var fechar = function () { document.removeEventListener("keydown", tecla); if (fundo.parentNode) fundo.parentNode.removeChild(fundo); };
+    var corpo = bl.ps.map(function (t) {
+      var a = /^Art\.?\s*\d+(?:\.\d+)*[º°ª]?(?:-[A-Z]+)?\.?/.exec(t);
+      return a ? '<p class="rv-art"><b>' + esc(a[0]) + "</b>" + esc(t.slice(a[0].length)) + "</p>" : "<p>" + esc(t) + "</p>";
+    }).join("");
+    fundo.innerHTML = '<div class="rv-card" role="dialog" aria-modal="true"><button type="button" class="rv-card-x" data-fechar="1" aria-label="Fechar">×</button>' +
+      '<span class="rv-tipo">Lei seca</span><h3>' + esc(lei.nome + " — " + bl.rotulo) + '</h3><p class="rv-meta">Bloco ' + n + " de " + blocosDaLei(tid).length + " · cerca de " + bl.min + " min de leitura</p>" +
+      '<div class="rv-card-texto">' + corpo + "</div>" +
+      '<div class="rv-card-acoes"><button type="button" class="rv-feito" data-bloco-ok="1">' + (jaLido ? "✔ Revisei hoje" : "✔ Li este bloco") + "</button>" +
+      (lei.chave ? '<a class="rv-abrir" href="' + esc(PAGINA_LEIS + "#lei=" + encodeURIComponent(lei.chave)) + '" target="_blank" rel="noopener">Abrir a lei no Diário (para anotar)</a>' : "") + "</div></div>";
+    fundo.onclick = function (e) {
+      if (e.target === fundo || e.target.closest("[data-fechar]")) { fechar(); return; }
+      if (!e.target.closest("[data-bloco-ok]")) return;
+      var d = hoje(), local = lerRevLocal();
+      local[k] = (local[k] || []).filter(function (x) { return x !== d; }).concat([d]).sort();
+      try { localStorage.setItem(REV_KEY, JSON.stringify(local)); } catch (er) {}
+      if (o.salvarRev) o.salvarRev(k, local[k]);
+      o.rev = juntarRev(o.rev);
+      fechar();
+      render(el, o);
+    };
+    document.addEventListener("keydown", tecla);
+    document.body.appendChild(fundo);
+  }
+  function iniciarPlano(tid, el, o) {
+    var d = hoje(), local = lerRevLocal(), k = "plano:" + tid;
+    local[k] = [d];
+    try { localStorage.setItem(REV_KEY, JSON.stringify(local)); } catch (er) {}
+    if (o.salvarRev) o.salvarRev(k, local[k]);
+    o.rev = juntarRev(o.rev);
+    render(el, o);
+  }
+
   function render(el, o) {
     if (!el) return;
     if (!pronto()) {
@@ -667,10 +849,26 @@
       return;
     }
     o.rev = juntarRev(o.rev);
+    if (o.tab !== "historico") {
+      // lei do plano: baixa o índice de textos e o texto das leis em andamento (e os blocos já lidos) antes de desenhar
+      var precisa = [];
+      if (!indiceTextos) precisa.push(carregarIndiceTextos());
+      var tids = {};
+      planosAtivos(o.rev).forEach(function (p) { tids[p.tid] = true; });
+      Object.keys(o.rev).forEach(function (k) { var m = /^bloco:(.+):\d+$/.exec(k); if (m) tids[m[1]] = true; });
+      Object.keys(tids).forEach(function (t) { if (!textos[t] && !textos["_falhou:" + t]) precisa.push(carregarTextoLei(t).then(function (j) { if (!j) textos["_falhou:" + t] = true; })); });
+      if (precisa.length) {
+        el.innerHTML = '<p class="rv-vazio">Carregando…</p>';
+        Promise.all(precisa).then(function () { render(el, o); });
+        return;
+      }
+    }
     el.innerHTML = o.tab === "historico" ? telaHistorico(o) : telaRevisoes(o);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-bloco-ler],[data-plano-ini]");
       if (!b) return;
+      if (b.dataset.blocoLer) { abrirBloco(b.dataset.blocoLer, el, o); return; }
+      if (b.dataset.planoIni) { var sel = el.querySelector("#rv-plano-lei"); if (sel && sel.value) iniciarPlano(sel.value, el, o); return; }
       if (b.dataset.card) { abrirCard(b.dataset.card, el, o); return; }
       if (b.dataset.lote) {
         ui.confirmar = b.dataset.lote;
@@ -680,7 +878,7 @@
         var estado = b.dataset.loteSim, dd = hoje(), loc = lerRevLocal(), pacote = {};
         (function (todos) {
           if (estado === "semdata") return todos.filter(function (i) { return i.estado === "semdata"; });
-          var pl = planoDeHoje(todos); return estado === "fila" ? pl.fila : pl.meta;
+          var pl = planoDeHoje(todos, leituraPendente(o.rev)); return estado === "fila" ? pl.fila : pl.meta;
         })(itensDeRevisao(o.maps, o.rev)).forEach(function (i) {
           loc[i.id] = (loc[i.id] || []).filter(function (x) { return x !== dd; }).concat([dd]).sort();
           pacote[i.id] = loc[i.id];
@@ -714,7 +912,7 @@
   // cartão curto para a aba "Resumo" ("" enquanto os dados não chegam)
   function resumo(o) {
     if (!pronto()) return "";
-    var its = itensDeRevisao(o.maps, juntarRev(o.rev)), c = contar(its), na = leisAlteradas(o.maps, o).length, pl = planoDeHoje(its);
+    var its = itensDeRevisao(o.maps, juntarRev(o.rev)), c = contar(its), na = leisAlteradas(o.maps, o).length, pl = planoDeHoje(its, leituraPendente(juntarRev(o.rev)));
     if (!c.agora && !c.breve && !na) return "";
     return '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
       (pl.fila.length ? " · " + pl.fila.length + " na fila" : "") +

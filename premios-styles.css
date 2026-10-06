@@ -464,3 +464,7 @@
 .rv-card-acoes { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
 .rv-card-fonte { font-size: 0.8rem; }
 .rv-meta-dia { margin: 0.4rem 0 0.2rem; font-size: calc(0.88rem * var(--fs-scale, 1)); color: var(--ink-faint, #666); }
+.rv-barra { display: block; height: 6px; border-radius: 999px; background: var(--surface-line, #ddd); overflow: hidden; margin: 0.25rem 0; }
+.rv-barra i { display: block; height: 100%; background: var(--gold, #b7791f); }
+.rv-select { max-width: 100%; padding: 0.4rem 0.5rem; border-radius: 8px; border: 1px solid var(--surface-line, #ccc); background: var(--surface, #fff); color: inherit; font: inherit; }
+.rv-art { margin-top: 0.8rem; }
