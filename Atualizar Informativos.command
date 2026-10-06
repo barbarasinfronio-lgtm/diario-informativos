@@ -7,8 +7,8 @@
 # da Jurisprudência em Teses do STJ (scripts/atualizar_informativos.py); as
 # leis alteradas ficam no "Atualizar Leis.command" (pode rodar todo dia);
 # 3) lê os Informativos novos de STF e STJ, cria os cards do Diário das Decisões (informativos/)
-# e marca o que já foi cobrado em prova (provas/cobrancas.json); 4) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a limpeza do
-# cache do jsDelivr, então o site mostra a novidade em minutos.
+# e marca o que já foi cobrado em prova (provas/cobrancas.json); 4) grava o que achou em diario-data.js e stj/teses.json e envia para o main. O envio dispara sozinho a publicação no
+# GitHub Pages, então o site mostra a novidade em minutos.
 #
 # Se um tribunal falhar, os outros são gravados e enviados assim mesmo; a
 # janela avisa qual falhou.

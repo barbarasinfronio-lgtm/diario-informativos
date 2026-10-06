@@ -3,9 +3,7 @@ name: Dividir dados por ano
 # Quando você sobe um arquivo de dados grande (Constitucionalidade ou
 # Reclamações), este robô roda scripts/dividir_por_ano.py, que gera a pasta
 # "anos/" ao lado dele (index.json + um arquivo por ano). As páginas carregam
-# só os anos que precisam mostrar. Depois ele limpa o cache do jsDelivr dos
-# arquivos gerados (envios feitos por robôs não disparam o outro robô de
-# limpeza, então a limpeza é feita aqui mesmo).
+# só os anos que precisam mostrar.
 on:
   push:
     branches: [main]
@@ -59,18 +57,3 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
           echo "mudou=1" >> "$GITHUB_OUTPUT"
-
-      - name: Limpar cache do jsDelivr dos arquivos gerados
-        if: steps.salvar.outputs.mudou == '1'
-        run: |
-          base="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main"
-          # espera o jsDelivr enxergar o envio novo; limpa duas vezes (ver
-          # limpar-cache-jsdelivr.yml)
-          for espera in 60 120; do
-            sleep "$espera"
-            while read -r f; do
-              [ -z "$f" ] && continue
-              status=$(curl -sS -o /dev/null -w '%{http_code}' "$base/$f" || echo 000)
-              echo "$f -> HTTP $status"
-            done < alterados.txt
-          done

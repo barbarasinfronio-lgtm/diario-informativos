@@ -7,7 +7,7 @@
 # anota quais foram alteradas e quando (scripts/atualizar_informativos.py,
 # etapa LEIS) e guarda o texto de cada uma em leis/texto/ (botão "Leia-me" do
 # Diário de Leis); 3) grava em leis/alteracoes.json e leis/texto e envia para o main. O envio
-# dispara sozinho a limpeza do cache do jsDelivr, então o site mostra a
+# dispara sozinho a publicação no GitHub Pages, então o site mostra a
 # novidade em minutos (aba Novidades legislativas, em Meus Estudos: "Leis alteradas").
 #
 # Só mexe em leis/alteracoes.json e leis/texto — não toca nos Informativos nem nas Teses
