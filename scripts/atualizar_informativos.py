@@ -1587,7 +1587,7 @@ def leis_estaduais(hoje_iso):
     for m in re.finditer(r'\{\s*nome:\s*("(?:[^"\\]|\\.)*"),\s*numero:\s*("(?:[^"\\]|\\.)*"),\s*link:\s*"(https?://[^"]*)"', t):
         url = m.group(3)
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
-        eh_pdf = re.search(r"\.pdf($|\?)", url, re.I) is not None
+        eh_pdf = re.search(r"\.pdf($|\?)|/sdm_downloads/", url, re.I) is not None
         if "planalto.gov.br" in host or url in vistos:
             continue
         # PDFs de qualquer site (o número da lei é conferido antes de gravar)
@@ -1623,7 +1623,7 @@ def leis_estaduais(hoje_iso):
         feitas += 1
         host = re.sub(r"^www\.", "", urllib.parse.urlsplit(url).hostname or "")
         nao_existe = lambda x: re.search(r"P[áa]gina\s+N[ãa]o\s+Encontrada|ainda n[ãa]o foi disponibilizado", re.sub(r"<[^>]+>", " ", x)) is not None
-        if re.search(r"\.pdf($|\?)", url, re.I):   # PDF: baixa e lê o texto
+        if re.search(r"\.pdf($|\?)|/sdm_downloads/", url, re.I):   # PDF (ou link de download de PDF): baixa e lê o texto
             try:
                 status, tipo, corpo = buscar(url)
                 print(f"  {url} → HTTP {status}")
