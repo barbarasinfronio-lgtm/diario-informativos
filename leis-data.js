@@ -625,7 +625,7 @@ var LEIS_DATA = {
     { nome: "Estatuto da Terra", numero: "Lei nº 4.504/1964", link: "https://www.planalto.gov.br/ccivil_03/leis/l4504.htm" },
     { nome: "Contratos de integração vertical no agronegócio", numero: "Lei nº 13.288/2016", link: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13288.htm" },
     { nome: "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso", numero: "Lei Complementar (MT) nº 04/1990", link: "https://legislacao.mt.gov.br/mt/lei-complementar-n-04-1990-mato-grosso" },
-    { nome: "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará", numero: "Lei Estadual (PA) nº 5.810/1994", link: "https://www.igepps.pa.gov.br/sites/default/files/Lei%20n%C2%BA%205.810%20de%201994%2C%20at%C3%A9%20as%20altera%C3%A7%C3%B5es%20da%20Lei%20n%C2%BA%2010.287%20de%2015.12.2023.pdf" },
+    { nome: "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará", numero: "Lei Estadual (PA) nº 5.810/1994", link: "https://lex.pge.pa.gov.br/#/texto-integral/979" },
     { nome: "Loteamento e venda de terrenos para pagamento em prestações", numero: "Decreto-Lei nº 58/1937", link: "https://www.planalto.gov.br/ccivil_03/Decreto-Lei/1937-1946/Del058.htm" },
     { nome: "Percentuais mínimos de aplicação em ações e serviços públicos de saúde (regulamenta a EC nº 29/2000)", numero: "Lei Complementar nº 141/2012", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp141.htm" },
     { nome: "Define os casos de desapropriação por interesse social", numero: "Lei nº 4.132/1962", link: "https://www.planalto.gov.br/ccivil_03/leis/l4132.htm" },
