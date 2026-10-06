@@ -80,6 +80,16 @@ def main():
             {"processo": t["processo"], "data": t["data"], "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{ok} completado(s), {len(falhas)} sem sucesso.")
+    if a.enviar:
+        import subprocess
+        sh = lambda *x: subprocess.run(["git", *x], cwd=RAIZ).returncode
+        sh("add", "stf/rg", "curadoria/rg-textos-falhas.json", "curadoria/debug-stf")
+        if sh("diff", "--cached", "--quiet") != 0:
+            sh("commit", "-q", "-m", "Inteiro teor de temas de repercussão geral (do Mac)")
+            for _ in range(3):
+                if sh("push", "-q", "origin", "HEAD:main") == 0:
+                    print("✅ Enviado para o site."); break
+                sh("pull", "-q", "--rebase", "--autostash", "origin", "main")
 
 
 if __name__ == "__main__":
