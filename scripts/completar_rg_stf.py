@@ -21,7 +21,7 @@ import completar_extras_stf as ex  # noqa: E402
 robo = c.robo
 PASTA = RAIZ / "stf" / "rg"
 FALHAS = RAIZ / "curadoria" / "rg-textos-falhas.json"
-LIMITE = 400000
+LIMITE = 1500000
 
 
 def temas():
@@ -34,7 +34,7 @@ def temas():
     return out
 
 
-def acordao_inteiro_teor(classe, num, inc, tema, primeiro):
+def acordao_inteiro_teor(classe, num, inc, tema, primeiro, data_tema=""):
     """Tenta achar o ACÓRDÃO (ementa, relatório e votos) do tema, que não está na aba Decisões
     (ali só vem a ata/decisão de julgamento). Procura links de peças "Acórdão"/"Inteiro teor" nas
     páginas do processo e do tema. Na primeira vez guarda as páginas em curadoria/debug-stf/
@@ -55,13 +55,29 @@ def acordao_inteiro_teor(classe, num, inc, tema, primeiro):
         if primeiro:
             c.DEBUG.mkdir(parents=True, exist_ok=True)
             (c.DEBUG / f"rg{tema}-{nome}.html").write_text(pg[:300000], encoding="utf-8")
+        if nome == "tema" and _d(data_tema):
+            linhas = []
+            for tr in re.findall(r"(?is)<tr\b.*?</tr>", pg):
+                tds = [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"(?is)<td\b[^>]*>(.*?)</td>", tr)]
+                lk = re.search(r'(?is)href="([^"]*downloadPeca[^"]*)"[^>]*>\s*Inteiro teor do ac', tr)
+                if lk and tds and _d(tds[0]):
+                    linhas.append((_d(tds[0]), html_unescape(lk.group(1))))
+            depois = sorted(x for x in linhas if x[0] >= _d(data_tema))
+            antes = sorted((x for x in linhas if x[0] < _d(data_tema)), reverse=True)
+            esc = (depois or antes or [None])[0]
+            if esc:
+                preferido = esc[1]
+                print(f"    acórdão escolhido: publicado em {esc[0][6:]}/{esc[0][4:6]}/{esc[0][:4]} (julgamento do tema em {data_tema})")
         for m in re.finditer(r'(?is)<a\b[^>]*href="([^"]*(?:downloadPeca|downloadTexto|paginador)[^"]*)"[^>]*>(.*?)</a>', pg):
             rotulo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(2))).strip()
             contexto = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", pg[max(0, m.start() - 300):m.start()]))
             if re.search(r"(?i)ac[óo]rd[ãa]o|inteiro teor", rotulo + " " + contexto[-200:]):
                 achados.append(html_unescape(m.group(1)).replace("&amp;", "&"))
     melhor = ""
-    for href in dict.fromkeys(achados):
+    ordem = list(dict.fromkeys(achados))
+    if preferido:
+        ordem = [preferido]   # só este: é o acórdão do julgamento do tema
+    for href in ordem:
         url = href if href.startswith("http") else "https://portal.stf.jus.br" + (href if href.startswith("/") else "/processos/" + href)
         try:
             status, tipo, corpo = robo.buscar(url)
@@ -90,6 +106,7 @@ def main():
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
     ap.add_argument("--refazer-ata", action="store_true", help="busca de novo os temas que só têm a ata (sem o acórdão)")
+    ap.add_argument("--enviar", action="store_true", help="grava no git e envia ao site (stf/rg e curadoria/debug-stf)")
     a = ap.parse_args()
     PASTA.mkdir(parents=True, exist_ok=True)
     todos = temas()
@@ -123,7 +140,7 @@ def main():
                 time.sleep(a.espera)
             texto = ex.buscar(classe, num, inc[(classe, num)], t["data"])
             try:
-                inteiro = acordao_inteiro_teor(classe, num, inc[(classe, num)], t["tema"], primeiro=(ok == 0 and not falhas))
+                inteiro = acordao_inteiro_teor(classe, num, inc[(classe, num)], t["tema"], primeiro=(ok == 0 and not falhas), data_tema=t["data"])
             except robo.Falha:
                 inteiro = ""
             if len(inteiro) > len(texto):
