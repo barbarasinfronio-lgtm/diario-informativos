@@ -1520,7 +1520,7 @@ def paragrafos_do_site(t):
     return melhor
 
 
-ESTADUAIS_HOSTS = ("lex.pge.pa.gov.br", "legislabahia.ba.gov.br", "aacpdappls.net.ms.gov.br", "aleselegis.al.se.leg.br", "sistemas.pa.gov.br", "legisweb.com.br", "leisestaduais.com.br","legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
+ESTADUAIS_HOSTS = ("lex.pge.pa.gov.br", "ba.gov.br", "legislabahia.ba.gov.br", "aacpdappls.net.ms.gov.br", "aleselegis.al.se.leg.br", "sistemas.pa.gov.br", "legisweb.com.br", "leisestaduais.com.br","legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
                    "legislacao.sef.sc.gov.br", "legislacao.pr.gov.br", "al.rs.gov.br", "almg.gov.br",
                    "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
                    "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br", "legis.senado.leg.br")
