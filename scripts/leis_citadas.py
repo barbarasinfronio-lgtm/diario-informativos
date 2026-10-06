@@ -25,7 +25,7 @@ import atualizar_informativos as robo  # noqa: E402
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
 RE_LEI = re.compile(r"\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*/\s*(\d{4}|\d{2})\b", re.I)
-VERSAO = 2   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
+VERSAO = 3   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
 NOMES = {"lei": "Lei", "lc": "Lei Complementar", "dl": "Decreto-Lei", "decreto": "Decreto"}
 
 
@@ -86,6 +86,38 @@ def ja_no_diario():
     return out
 
 
+# número aproximado da primeira lei federal de cada ano (para descartar citações de leis estaduais ou com erro de digitação)
+_ANCORAS = {1960: 3700, 1965: 4700, 1970: 5500, 1975: 6200, 1980: 6800, 1985: 7500, 1990: 8000, 1995: 8900,
+            2000: 9900, 2005: 11000, 2010: 12200, 2015: 13200, 2020: 14000, 2025: 15200, 2030: 16400}
+
+
+def _inicio_do_ano(a):
+    a0 = max(1960, min(a, 2030))
+    i = a0 - a0 % 5
+    j = min(i + 5, 2030)
+    if i == j:
+        return _ANCORAS[i]
+    return _ANCORAS[i] + (_ANCORAS[j] - _ANCORAS[i]) * (a0 - i) / 5
+
+
+def plausivel(tipo, n, ano):
+    """Lei federal: o número tem de caber no ano (com folga). Lei complementar e decretos não passam por isso."""
+    n, a = int(n), int(ano)
+    if tipo != "lei" or a < 1960:
+        return True
+    return _inicio_do_ano(a) - 500 <= n <= _inicio_do_ano(a + 1) + 500
+
+
+def paragrafos_com_riscado(t):
+    """Leis REVOGADAS vêm inteiras dentro de <strike> no Planalto: aqui o texto riscado fica (é o texto histórico)."""
+    return robo.paragrafos_da_lei(re.sub(r"(?i)</?(?:strike|s|del)\b[^>]*>", "", t))
+
+
+def ano_confere(tipo, ano, paras):
+    """Mesmo número, outro ano? (ex.: o Decreto 2.100 de 1937 no lugar do de 1996). Lei complementar vale pelo número."""
+    return tipo == "lc" or re.search(rf"\b{ano}\b", " ".join(paras[:14])) is not None
+
+
 def com_ponto(n):
     n = int(n)
     return f"{n // 1000}.{n % 1000:03d}" if n >= 1000 else str(n)
@@ -136,20 +168,27 @@ def buscar_lei(tipo, n, ano, hoje):
             pg = robo.pagina(url, valida=lambda x: len(x) > 800)
         except robo.Falha:
             continue
+        riscado = "<strike" in pg.lower() or "<s>" in pg.lower()
+        paras = paragrafos_com_riscado(pg) if riscado else robo.paragrafos_da_lei(pg)
+        if not ano_confere(tipo, ano, paras):
+            print(f"    (o texto é de outro ano: \"{paras[0][:50] if paras else ''}\")")
+            continue
         antes = len(robo.ERRADOS)
         if robo.salvar_texto(url, pg, numero, hoje, numero=numero):
             return url, True
-        if len(robo.ERRADOS) == antes:      # "parece incompleto": guarda o começo da página para eu ajustar o leitor
+        if len(robo.ERRADOS) == antes and riscado:      # lei revogada: o texto inteiro está riscado
+            if robo.salvar_texto(url, pg, numero, hoje, extrator=paragrafos_com_riscado, numero=numero):
+                return url, True
+        if (robo.TEXTO_DIR / f"{robo.id_texto(url)}.json").exists() and len(robo.ERRADOS) == antes:
+            return url, True        # já estava gravada e não mudou
+        if len(robo.ERRADOS) == antes:      # ainda "incompleto": guarda o começo da página para eu ajustar o leitor
             try:
-                paras = robo.paragrafos_da_lei(pg)
                 dbg = robo.DEBUG_DIR / f"citada-{robo.id_texto(url)}.html"
-                if not dbg.exists() and len(list(robo.DEBUG_DIR.glob("citada-*.html"))) < 8:
+                if not dbg.exists() and len(list(robo.DEBUG_DIR.glob("citada-*.html"))) < 12:
                     robo.DEBUG_DIR.mkdir(parents=True, exist_ok=True)
                     dbg.write_text(f"<!-- {url}: {len(paras)} parágrafos, {sum(map(len, paras))} caracteres -->\n" + pg[:6000], encoding="utf-8")
             except Exception:   # noqa: BLE001
                 pass
-        if (robo.TEXTO_DIR / f"{robo.id_texto(url)}.json").exists() and len(robo.ERRADOS) == antes:
-            return url, True        # já estava gravada e não mudou
     return None, False
 
 
@@ -168,7 +207,7 @@ def main():
     else:
         cont = contar()
         diario = ja_no_diario()
-        alvos = [(k, v) for k, v in cont.most_common() if v >= a.minimo and k not in diario and k not in citadas
+        alvos = [(k, v) for k, v in cont.most_common() if v >= a.minimo and k not in diario and k not in citadas and plausivel(*k.split("-"))
                 and not (isinstance(falhas.get(k), dict) and falhas[k].get("v") == VERSAO)]
         print(f"{len(cont)} leis citadas no site; {len(alvos)} com {a.minimo}+ citações ainda sem texto.")
         alvos = alvos[:a.max]
