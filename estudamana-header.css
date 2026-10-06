@@ -326,3 +326,12 @@ body.collapsed-header .page_body .centered-top-container { padding-left: 0 !impo
 :root[data-theme="dark"] .comments .comments-content .datetime a { color: var(--em-leis-soft, #b8bfce) !important; }
 :root[data-theme="dark"] .comments .comments-content .user a { font-weight: 700; }
 :root[data-theme="dark"] .comments .comment .comment-actions a { color: var(--accent, #7aa2ff) !important; }
+
+/* Todo texto corrido do site justificado (parágrafos e itens de lista), com hifenização para
+   não abrir buracos entre as palavras. Títulos, botões e textos centralizados de propósito não entram. */
+.post-body p, .post-body li, .post-body dd, .rv-modal p, .rv-modal li {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.post-body p[style*="text-align:center"], .post-body p[style*="text-align: center"], .post-body p[align="center"] { text-align: center; }
