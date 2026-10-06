@@ -643,12 +643,32 @@
   // Texto de PDF → parágrafos: junta as linhas quebradas pela largura da página, separa por
   // itens numerados, títulos em CAIXA ALTA / "II - ..." e fim de parágrafo (linha curta que termina em ponto).
   function teorEmParagrafos(texto){
-    var linhas = String(texto || '').split('\n').map(function(s){ return s.replace(/\s+/g, ' ').trim(); });
+    var texto0 = String(texto || '');
+    var ementa = texto0.search(/E\s?M\s?E\s?N\s?T\s?A\s*:/);       // começa na ementa: antes só há capa e partes
+    if (ementa > 0 && ementa < 20000) texto0 = texto0.slice(ementa);
+    var linhas = texto0.split('\n').map(function(s){ return s.replace(/\s+/g, ' ').trim(); });
+    // qualificação das partes e cabeçalhos que se repetem (RECTE.(S), ADV.(A/S), AM. CURIAE…) não interessam ao estudo
+    var RX_PARTE = /^(?:RELATORA?|REDATORA?(?: DO)?|RECTE|RECDO|ADV|PROC|AM\. CURIAE|IMPTE|IMPDO|AGTE|AGDO|EMBTE|EMBDO|INTDO|INTE|PACTE|COATOR|REQTE|REQDO|LIT|ASSDO|ASSTE)\b[^a-z]*$/;
+    var RX_CAPA = /^(?:ACÓRDÃO|(?:RECURSO EXTRAORDINÁRIO|AGRAVO|AÇÃO DIRETA[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]*|ARGUIÇÃO[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]*|MANDADO[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]*|HABEAS CORPUS|RECLAMAÇÃO)(?: [A-ZÁÉÍÓÚÂÊÔÃÕÇ.() ]*)? \d[\d.]*(?: [A-ZÁÉÍÓÚÂÊÔÃÕÇ ]+)?)$/;
+    var filtradas = [], emParte = false;
+    linhas.forEach(function(s){
+      if (!s) { emParte = false; filtradas.push(s); return; }
+      if (RX_PARTE.test(s) || /^(?:RELATORA?|REDATORA?)\s*:/.test(s)) { emParte = true; return; }
+      if (RX_CAPA.test(s)) return;
+      if (emParte) {
+        var letras = s.replace(/[^A-Za-zÁÉÍÓÚÂÊÔÃÕÇáéíóúâêôãõç]/g, '');
+        if (/^[-:(")]/.test(s) || (letras.length >= 3 && letras === letras.toUpperCase() && s.length < 90)) return;   // continuação do nome da parte
+        emParte = false;
+      }
+      filtradas.push(s);
+    });
+    linhas = filtradas;
     var largos = linhas.filter(function(s){ return s.length > 40; }).map(function(s){ return s.length; }).sort(function(a, b){ return a - b; });
     var tipica = largos.length ? largos[Math.floor(largos.length * 0.9)] : 70;
     var blocos = [], atual = '', atualTitulo = false;
     function fecha(){ if (atual) blocos.push({ t: atual, h: atualTitulo }); atual = ''; atualTitulo = false; }
     var ehTitulo = function(s){
+      if (/^EMENTA\s*:/.test(s)) return true;
       if (s.length > 140 || /^[-:]/.test(s)) return false;
       if (/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ.()\/ ]{2,25}\s*:/.test(s)) return false;   // "RECTE.(S) : NOME": qualificação das partes
       var letras = s.replace(/[^A-Za-zÁÉÍÓÚÂÊÔÃÕÇáéíóúâêôãõç]/g, '');
