@@ -606,7 +606,7 @@ var LEIS_DATA = {
     { nome: "Regulamenta o Fundeb (Fundo de Manutenção e Desenvolvimento da Educação Básica)", numero: "Lei nº 14.113/2020", link: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l14113.htm" },
     { nome: "Institui o Sistema Nacional de Educação (SNE)", numero: "Lei Complementar nº 220/2025", link: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp220.htm" },
     { nome: "Relações entre as instituições federais de ensino superior/pesquisa e as fundações de apoio", numero: "Lei nº 8.958/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8958.htm" },
-    { nome: "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul", numero: "Lei Complementar (MS) nº 72/1994", link: "https://www.mpms.mp.br/leiorganica" },
+    { nome: "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul", numero: "Lei Complementar (MS) nº 72/1994", link: "https://www.mpms.mp.br/downloads/lei-organica-mpms-5e-v2.pdf" },
     { nome: "Regime Disciplinar da Polícia Federal e da Polícia Civil do Distrito Federal", numero: "Lei nº 15.047/2024", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15047.htm" },
     { nome: "Lei Orgânica da Polícia Civil do Estado da Bahia", numero: "Lei Estadual (BA) nº 11.370/2009", link: "https://www.ba.gov.br/policiacivil/sites/site-pcba/files/2025-01/LEI%20N%C2%BA%2011.370%20DE%2004%20DE%20FEVEREIRO%20DE%202009.pdf" },
     { nome: "Gestão de recursos humanos das agências reguladoras", numero: "Lei nº 9.986/2000", link: "https://www.planalto.gov.br/ccivil_03/leis/l9986.htm" },
