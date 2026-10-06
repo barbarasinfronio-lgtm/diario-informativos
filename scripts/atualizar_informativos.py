@@ -96,7 +96,15 @@ def _contexto_padrao():
 
 
 def _contexto_com_intermediario(host):
-    cert = ssl.get_server_certificate((host, 443), timeout=30)
+    # (o parâmetro timeout só existe no Python 3.10+; o do Mac costuma ser mais antigo)
+    _antes = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(30)
+    try:
+        cert = ssl.get_server_certificate((host, 443))
+    except OSError as e:
+        raise Falha(f"não consegui ler o certificado de {host}: {e}")
+    finally:
+        socket.setdefaulttimeout(_antes)
     texto = subprocess.run(["openssl", "x509", "-noout", "-text"], input=cert,
                            capture_output=True, text=True, timeout=30).stdout
     m = re.search(r"CA Issuers - URI:(\S+)", texto)
