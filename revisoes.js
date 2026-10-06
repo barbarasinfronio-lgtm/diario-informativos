@@ -359,6 +359,18 @@
       if (/^Art\.?$/.test(t) && i + 1 < src.length) { t = "Art. " + String(src[++i]).trim(); }
       if (t) ps.push(t);
     }
+    // tira o cabeçalho do Planalto/índice antes do texto (preâmbulo, 1º artigo ou título da lei)
+    var ini = -1;
+    for (var q = 0; q < ps.length && q < 200; q++) { if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; } }
+    if (ini > 0) ps = ps.slice(ini);
+    // o texto vem quebrado em linhas do tamanho da tela: junta as linhas de um mesmo parágrafo
+    var NOVO = /^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
+    var juntos = [];
+    ps.forEach(function (t) {
+      if (!juntos.length || NOVO.test(t)) juntos.push(t);
+      else juntos[juntos.length - 1] += " " + t;
+    });
+    ps = juntos;
     var palavras = function (a) { return a.reduce(function (n, x) { return n + x.split(/\s+/).length; }, 0); };
     var unidades = [], atual = null;
     ps.forEach(function (t) {
