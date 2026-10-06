@@ -311,15 +311,15 @@
     var caixa = document.createElement("div");
     caixa.setAttribute("role", "dialog");
     caixa.setAttribute("aria-modal", "true");
-    caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:#fff;color:#334155;border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
+    caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
     caixa.innerHTML =
-      '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:#64748b;">×</button>' +
-      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:18px;color:#1e293b;line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
-      '<p style="margin:0 0 10px;font-size:13px;color:#64748b;">' + escapeHtml(origem) + "</p>" +
-      '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #e2e8f0;">' +
-      '<button type="button" class="lei-leitor-lida" style="font-size:13px;font-weight:600;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
-      (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
-      '<span style="font-size:12px;color:#94a3b8;">Selecione um trecho para destacar ou anotar.</span></div>' +
+      '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
+      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:18px;color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
+      '<p style="margin:0 0 10px;font-size:13px;color:var(--ink-faint,#64748b);">' + escapeHtml(origem) + "</p>" +
+      '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--surface-line,#e2e8f0);">' +
+      '<button type="button" class="lei-leitor-lida" style="font-size:13px;font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
+      (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:var(--accent,#0d6efd);text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
+      '<span style="font-size:12px;color:var(--ink-faint,#94a3b8);">Selecione um trecho para destacar ou anotar.</span></div>' +
       '<div class="lei-leitor-texto" style="font-size:15px;line-height:1.65;text-align:justify;hyphens:auto;-webkit-hyphens:auto;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
     fundo.appendChild(caixa);
     var btnLida = caixa.querySelector(".lei-leitor-lida");
@@ -344,6 +344,9 @@
       c.dispatchEvent(new Event("change", { bubbles: true }));
       pintarLida();
     });
+    var estilo = document.createElement("style");
+    estilo.textContent = ".lei-leitor-texto p, .lei-leitor-texto strong { color: inherit !important; } .lei-leitor-texto p[style*='text-align:center'] { color: var(--ink, #1e293b) !important; }";
+    caixa.appendChild(estilo);
     document.addEventListener("keydown", tecla);
     document.body.appendChild(fundo);
     document.body.style.overflow = "hidden";
@@ -352,7 +355,7 @@
       var corpo = paragrafosDaLei(j.p || []).map(paragrafoHtml).join("");
       var area = caixa.querySelector(".lei-leitor-texto");
       area.innerHTML = corpo +
-        '<p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
+        '<p style="margin:14px 0 0;font-size:11px;color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
       if (window.EstudaManaCadernos) {
         EstudaManaCadernos.ligar(caixa, {
