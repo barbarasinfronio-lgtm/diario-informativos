@@ -13,7 +13,7 @@ on:
   push:
     branches: [main]
   workflow_run:
-    workflows: ["Gerar dados leves", "Dividir dados por ano", "Atualizar jurisprudência do TST"]
+    workflows: ["Gerar dados leves", "Dividir dados por ano"]
     types: [completed]
   schedule:
     - cron: "41 * * * *"
