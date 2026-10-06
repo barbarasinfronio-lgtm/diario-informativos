@@ -11,7 +11,7 @@ swiftc -O ocr.swift -o ocr); sem ele, é só listado no fim.
 import os, subprocess, sys, fitz
 RAIZ = sys.argv[1]
 SAIDA = os.path.join(RAIZ, "_texto")
-TIPOS = ("01 Objetivas", "02 Discursivas", "03 Sentenças", "04 Oral", "ENAM")
+TIPOS = ("01 Objetivas", "02 Discursivas", "03 Sentenças", "04 Oral", "ENAM", "Provas anteriores da FGV - Magistratura")
 vazios, feitos = [], 0
 for tipo in TIPOS:
     for pasta, _, arqs in os.walk(os.path.join(RAIZ, tipo)):

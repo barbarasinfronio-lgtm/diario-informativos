@@ -49,6 +49,18 @@ def cargo(sigla):
     return ""
 
 
+PASTA_FGV = "Provas anteriores da FGV - Magistratura"
+
+
+def ano_da_pasta(nome):
+    """"TJMT - Aplicada em 16-11-24" → 2024 · "TJSC - 2025" → 2025 · "TJPR - 2023-2024" → 2023 · "TJRJ 2024" → 2024."""
+    m = re.search(r"Aplicada em\s+\d{1,2}[-./]\d{1,2}[-./](\d{4}|\d{2})\b", nome, re.I)
+    if m:
+        return m[1] if len(m[1]) == 4 else "20" + m[1]
+    m = re.search(r"\b(20\d{2})\b", nome)
+    return m[1] if m else ""
+
+
 def unidades():
     """{(sigla, ano, etapa, banca): [arquivos .txt]}"""
     base = os.path.join(PROVAS_DIR, "_texto")
@@ -66,6 +78,24 @@ def unidades():
             ed = int(ed[1]) if ed else 1
             suf = " (reaplicação)" if "Reaplica" in extra else "" if ed == 1 or (ed == 1 and ano == "2024") else " (%dº exame)" % ed
             u[("ENAM" + suf, ano, "objetiva", "FGV")].append(f)
+            continue
+        if rel[0] == PASTA_FGV:
+            # "Provas anteriores da FGV - Magistratura/<Provas de 1ª fase | Provas de 2ª fase | Provas de 2ª fase - Outras bancas>/<TJxx - Aplicada em dd-mm-aa | TJxx - 2025>/arquivo"
+            if len(rel) < 4:
+                continue
+            m = re.match(r"\s*((?:TJ|TRF)\s?-?\s?[A-Z0-9]{1,3})\b", rel[2], re.I)
+            if not m:
+                continue
+            sigla = re.sub(r"[\s-]", "", m[1]).upper()
+            ano = ano_da_pasta(rel[2])
+            if not ano:
+                continue
+            fase1 = "1ª fase" in rel[1] or "1a fase" in rel[1].lower()
+            etapa = "objetiva" if fase1 else ("sentença" if re.search(r"senten[çc]a", nome, re.I) else "discursiva")
+            outras = "outras bancas" in rel[1].lower()
+            mb = re.search(r"fgv|cebraspe|cespe|vunesp|consulplan|fcc|iades|idecan|ibade|quadrix", nome + " " + rel[2], re.I)
+            banca = (mb[0].upper().replace("CEBRASPE", "CESPE") if mb else "OUTRAS" if outras else "FGV")
+            u[(sigla, ano, etapa, banca)].append(f)
             continue
         if rel[0] not in ETAPA or len(rel) < 4:
             continue
