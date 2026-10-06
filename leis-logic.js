@@ -295,6 +295,30 @@
     return out;
   }
 
+  // "Leia também": decisões, súmulas e resoluções que citam a lei ou tratam do mesmo assunto
+  // (leve/relacionados.json, gerado por scripts/gerar_relacionados.js)
+  var relacionadosP = null;
+  function carregarRelacionados() {
+    if (!relacionadosP) relacionadosP = fetch(CDN_BASE + "leve/relacionados.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    return relacionadosP;
+  }
+  function htmlRelacionados(rel, tid) {
+    var chaves = rel && rel.leis && rel.leis[tid];
+    if (!chaves || !chaves.length) return "";
+    var grupos = { "Súmula": [], "Decisão": [], "Resolução": [] };
+    chaves.forEach(function (k) { var it = rel.itens[k]; if (it && grupos[it[0]]) grupos[it[0]].push(it); });
+    var nomes = { "Súmula": "Súmulas", "Decisão": "Decisões e teses", "Resolução": "Resoluções" };
+    var corpo = ["Súmula", "Decisão", "Resolução"].filter(function (g) { return grupos[g].length; }).map(function (g) {
+      return '<div style="margin:6px 0 2px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint,#64748b);">' + nomes[g] + "</div>" +
+        '<ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.5;">' + grupos[g].map(function (it) {
+          return '<li style="margin:2px 0;"><a href="' + escapeHtml(it[2]) + '" target="_blank" rel="noopener" style="color:var(--accent,#0d6efd);text-decoration:none;">' + escapeHtml(it[1]) + "</a></li>";
+        }).join("") + "</ul>";
+    }).join("");
+    return '<details class="lei-leitor-rel" style="margin:0 0 12px;padding:8px 12px;border:1px solid var(--surface-line,#e2e8f0);border-radius:8px;background:var(--accent-soft,#f8fafc);">' +
+      '<summary style="cursor:pointer;font-size:14px;font-weight:700;color:var(--ink,#1e293b);">📚 Leia também <span style="font-weight:400;color:var(--ink-faint,#64748b);">(' + chaves.length + " itens sobre o mesmo assunto)</span></summary>" + corpo + "</details>";
+  }
+
   var leitorFechar = null;
   // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
   // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
@@ -354,6 +378,11 @@
       if (leitorFechar !== fechar) return;
       var corpo = paragrafosDaLei(j.p || []).map(paragrafoHtml).join("");
       var area = caixa.querySelector(".lei-leitor-texto");
+      carregarRelacionados().then(function (rel) {
+        if (leitorFechar !== fechar) return;
+        var h = htmlRelacionados(rel, tid);
+        if (h) area.insertAdjacentHTML("beforebegin", h);
+      });
       area.innerHTML = corpo +
         '<p style="margin:14px 0 0;font-size:11px;color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";

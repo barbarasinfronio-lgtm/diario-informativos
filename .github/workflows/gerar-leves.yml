@@ -23,6 +23,11 @@ on:
       - stj/repetitivos-scon.json
       - normas-citadas.js
       - scripts/gerar_leves.js
+      - scripts/gerar_relacionados.js
+      - leis-data.js
+      - normas-data.js
+      - sumulas-data.js
+      - leis/texto/citadas.json
       - scripts/limpar_decisoes.py
   schedule:
     - cron: "17 */3 * * *"
@@ -51,6 +56,10 @@ jobs:
 
       - name: Gerar leve/
         run: node scripts/gerar_leves.js
+
+      # "Leia também": decisões, súmulas e resoluções ligadas a cada lei (leve/relacionados.json)
+      - name: Gerar relacionados
+        run: node scripts/gerar_relacionados.js
 
       - name: Salvar os arquivos gerados
         id: salvar
