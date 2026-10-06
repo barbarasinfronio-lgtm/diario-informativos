@@ -640,6 +640,43 @@
   }
   // Temas de repercussão geral do STF: o inteiro teor do acórdão fica em stf/rg/<tema>.json
   // (scripts/completar_rg_stf.py, "Completar Teses STF.command"), baixado só ao abrir o card.
+  // Texto de PDF → parágrafos: junta as linhas quebradas pela largura da página, separa por
+  // itens numerados, títulos em CAIXA ALTA / "II - ..." e fim de parágrafo (linha curta que termina em ponto).
+  function teorEmParagrafos(texto){
+    var linhas = String(texto || '').split('\n').map(function(s){ return s.replace(/\s+/g, ' ').trim(); });
+    var largos = linhas.filter(function(s){ return s.length > 40; }).map(function(s){ return s.length; }).sort(function(a, b){ return a - b; });
+    var tipica = largos.length ? largos[Math.floor(largos.length * 0.9)] : 70;
+    var blocos = [], atual = '', atualTitulo = false;
+    function fecha(){ if (atual) blocos.push({ t: atual, h: atualTitulo }); atual = ''; atualTitulo = false; }
+    var ehTitulo = function(s){
+      if (s.length > 140 || /^[-:]/.test(s)) return false;
+      if (/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ.()\/ ]{2,25}\s*:/.test(s)) return false;   // "RECTE.(S) : NOME": qualificação das partes
+      var letras = s.replace(/[^A-Za-zÁÉÍÓÚÂÊÔÃÕÇáéíóúâêôãõç]/g, '');
+      return letras.length >= 4 && letras === letras.toUpperCase();
+    };
+    var ehItem = function(s){ return /^(?:\d{1,3}(?:\.\d+)*\.|\(?[a-z]\)|\([ivx]+\)|[ivx]+\))\s+\S/.test(s) || /^[A-ZÁÉÍÓÚÂÊÔÃÕÇ.()\/ ]{2,25}\s*:\s*\S/.test(s); };
+    for (var i = 0; i < linhas.length; i++) {
+      var s = linhas[i];
+      if (!s || /^\d{1,4}$/.test(s) || /^[A-Z]{1,6}\s*\d+(?:\.\d+)*\s*\/\s*[A-Z]{2}$/.test(s) || /^(?:Ementa e Acórdão|Supremo Tribunal Federal)(?: Supremo Tribunal Federal)?$/.test(s)) { if (!s) fecha(); continue; }   // vazia, nº de página ou cabeçalho "RE 928943 / SP"
+      if (ehTitulo(s)) {
+        if (atual && atualTitulo) atual += ' ' + s; else { fecha(); atual = s; atualTitulo = true; }
+        continue;
+      }
+      if (atualTitulo) fecha();
+      if (ehItem(s)) fecha();
+      if (atual) {
+        atual += /[-‐]$/.test(atual) ? '' : ' ';
+        atual += s;
+      } else atual = s;
+      var fim = /[.:;?!”"')]$/.test(s) && s.length < tipica * 0.72;
+      if (fim) fecha();
+    }
+    fecha();
+    return blocos.map(function(b){
+      return b.h ? '<p class="rg-h" style="margin:1.1em 0 .3em"><b>' + escapeHtml(b.t) + '</b></p>'
+                 : '<p style="margin:0 0 .65em">' + escapeHtml(b.t) + '</p>';
+    }).join('');
+  }
   function carregarTeorRG(d){
     fetch(BASE_CDN + 'stf/rg/' + encodeURIComponent(String(d.tema)) + '.json', { cache: 'no-cache' })
       .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
@@ -649,7 +686,7 @@
         if (!campos) return;
         var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
                 ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
-                '<div class="destaque-text" style="white-space:pre-wrap">' + escapeHtml(e.texto) + '</div></details>';
+                '<div class="destaque-text">' + teorEmParagrafos(e.texto) + '</div></details>';
         campos.insertAdjacentHTML('afterend', h);
       });
   }

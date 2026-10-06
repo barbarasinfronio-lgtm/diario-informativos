@@ -49,7 +49,7 @@ def tirar_linhas_duplicadas(t):
         if b is not None and a.strip() and a == b:
             i += 1       # descarta a primeira cópia, a seguinte entra no próximo passo
             continue
-        if b is not None and len(b) > 15 and a.endswith(b) and 0 < len(a) - len(b) <= 12:
+        if b is not None and len(b) > 15 and a.endswith(b) and 0 < len(a) - len(b) <= 30:
             m_ = re.match(r"^(\S+)\s+\1\s*$", a[:len(a) - len(b)].strip())   # "3. 3. " + texto
             ls[i + 1] = (m_.group(1) + " " + b) if m_ else b      # mantém a numeração, uma vez só
             i += 1
