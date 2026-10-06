@@ -595,7 +595,7 @@ var LEIS_DATA = {
     { nome: "Processo Administrativo do Estado de São Paulo", numero: "Lei Estadual (SP) nº 10.177/1998", link: "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html" },
     { nome: "Estatuto dos Servidores Públicos Civis do Estado do Maranhão", numero: "Lei Estadual (MA) nº 6.107/1994", link: "https://sapl.al.ma.leg.br/norma/2358" },
     { nome: "Estatuto dos Servidores Públicos Civis do Estado da Bahia", numero: "Lei Estadual (BA) nº 6.677/1994", link: "https://www.uesc.br/cadj/lei6677.pdf" },
-    { nome: "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia", numero: "Lei Estadual (BA) nº 11.357/2009", link: "https://leisestaduais.com.br/ba/lei-ordinaria-n-11357-2009-bahia-organiza-o-regime-proprio-de-previdencia-social-dos-servidores-publicos-do-estado-da-bahia-e-da-outras-providencias" },
+    { nome: "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia", numero: "Lei Estadual (BA) nº 11.357/2009", link: "https://www.legislabahia.ba.gov.br/documentos/lei-no-11357-de-06-de-janeiro-de-2009" },
     { nome: "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe", numero: "Lei Complementar (SE) nº 33/1996", link: "https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/html/c331996.html" },
     { nome: "Regime Próprio de Previdência Social do Distrito Federal", numero: "Lei Complementar (DF) nº 769/2008", link: "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=58020" },
     { nome: "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal", numero: "Lei Complementar (DF) nº 840/2011", link: "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=70196" },
