@@ -71,7 +71,7 @@ def recortar_acordao(t):
     """Fica só com o acórdão propriamente dito: da EMENTA até a assinatura do ministro
     (ementa, dispositivo e teses, "Vistos, relatados e discutidos…", data e nome do relator/redator).
     Relatório, votos, debates e anexos ficam de fora. Sem os dois marcadores, devolve o texto todo."""
-    ini = re.search(r"E\s?M\s?E\s?N\s?T\s?A\s*:", t)
+    ini = re.search(r"(?im)^[ \t]*E\s?M\s?E\s?N\s?T\s?A[ \t]*(?::|$)", t)   # "EMENTA:", "Ementa:" ou "EMENTA" sozinha na linha
     if not ini:
         return t
     fim = re.search(r"Bras[íi]lia,?\s+\d{1,2}\s*(?:º|o)?\s+de\s+[a-zç]+\s+de\s+\d{4}\.?", t[ini.start():], re.I)
