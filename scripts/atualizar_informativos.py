@@ -46,6 +46,7 @@ Sai com código 0 (tudo certo, com ou sem novidade) ou 1 (algum tribunal
 falhou).
 """
 import html
+from html.parser import HTMLParser
 import json
 import os
 import re
@@ -1261,12 +1262,127 @@ def id_texto(url):
     return _slug(caminho)
 
 
+class _SemRiscado(HTMLParser):
+    """Devolve o HTML sem o que está riscado: <strike>/<s>/<del> e qualquer elemento com
+    "line-through" no estilo (o Planalto marca assim a redação revogada). Acompanha as tags abertas,
+    então vale também quando o elemento riscado engloba vários parágrafos."""
+
+    SEM_FIM = {"br", "hr", "img", "meta", "link", "input", "col", "area", "base"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.saida, self.pilha = [], []     # pilha: [(tag, riscado)]
+        self.reabrir = []
+
+    def _riscado_aberto(self):
+        return any(r for _, r in self.pilha)
+
+    BLOCOS = {"p", "div", "tr", "li", "table", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6", "td", "th"}
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.SEM_FIM:
+            if tag == "br" and not self._riscado_aberto():
+                self.saida.append("<br>")
+            return
+        estilo = " ".join(v or "" for k, v in attrs if k in ("style", "class")).lower()
+        self.pilha.append((tag, tag in ("strike", "s", "del") or "line-through" in estilo))
+        if tag in self.BLOCOS and self.reabrir:       # riscado que ficou aberto no bloco anterior continua (como no navegador)
+            self.pilha.extend(self.reabrir)
+            self.reabrir = []
+
+    def handle_startendtag(self, tag, attrs):
+        if tag == "br" and not self._riscado_aberto():
+            self.saida.append("<br>")
+
+    def handle_endtag(self, tag):
+        achou = next((k for k in range(len(self.pilha) - 1, -1, -1) if self.pilha[k][0] == tag), None)
+        if achou is not None:
+            if tag in self.BLOCOS:
+                self.reabrir = [e for e in self.pilha[achou + 1:] if e[1]]
+            del self.pilha[achou:]
+        if tag in self.BLOCOS:          # o fim do bloco continua separando os parágrafos (mesmo se estava riscado)
+            self.saida.append(f"</{tag}>")
+
+    def handle_data(self, d):
+        if not self._riscado_aberto():
+            self.saida.append(d)
+
+    def handle_entityref(self, name):
+        if not self._riscado_aberto():
+            self.saida.append(f"&{name};")
+
+    def handle_charref(self, name):
+        if not self._riscado_aberto():
+            self.saida.append(f"&#{name};")
+
+
+def sem_riscado(t):
+    p = _SemRiscado()
+    try:
+        p.feed(t)
+        p.close()
+    except Exception:   # noqa: BLE001 — HTML muito quebrado: volta ao jeito simples
+        return re.sub(r"(?is)<(strike|s|del)\b[^>]*>.*?</\1>", " ", t)
+    return "".join(p.saida)
+
+
+_NOVO_PARAGRAFO = re.compile(r"^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|"
+                             r"(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)")
+_ROTULO = re.compile(r"^(Art\.\s*\d+[º°]?(?:-[A-Z]+)?|§\s*\d+[º°]?(?:-[A-Z]+)?|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-])")
+
+
+def _palavras(t):
+    return {w for w in re.split(r"[^a-zà-ú0-9]+", re.sub(r"\([^)]*\)", " ", t.lower())) if len(w) > 2}
+
+
+def _semelhantes(a, b):
+    A, B = _palavras(a), _palavras(b)
+    comum = len(A & B)
+    menor = min(len(A), len(B))
+    uniao = len(A) + len(B) - comum
+    return (menor >= 3 and uniao and comum / uniao >= 0.5) or (menor >= 5 and comum / menor >= 0.75)
+
+
+def juntar_linhas_da_lei(linhas):
+    """As linhas do Planalto vêm quebradas no tamanho da tela de origem: junta as de um mesmo parágrafo
+    (artigo, §, inciso, alínea e título começam parágrafo novo), devolve o ordinal "º" (1o → 1º) e tira a
+    redação antiga que o Planalto deixa ao lado da nova (dois parágrafos quase iguais, com o mesmo
+    rótulo, um depois do outro: o primeiro é a redação revogada). Mesmas regras do leitor (leis-logic.js)."""
+    ps = []
+    for k, t in enumerate(linhas):
+        if t == "Art." and k + 1 < len(linhas):
+            continue
+        if k and linhas[k - 1] == "Art.":
+            t = "Art. " + t
+        ps.append(t)
+    ps = [re.sub(r"\b([Nn])[o°](?=\s*\d)", r"\1º", re.sub(r"\b(\d{1,3})[o°](?![A-Za-zÀ-ú])", r"\1º", t)) for t in ps]
+    juntos = []
+    for t in ps:
+        if not juntos or _NOVO_PARAGRAFO.match(t):
+            juntos.append(t)
+        else:
+            juntos[-1] += " " + t
+    fora = set()
+    for i in range(len(juntos) - 1):
+        r = _ROTULO.match(juntos[i])
+        if not r:
+            continue
+        rot = re.sub(r"[-–—]$", "-", re.sub(r"\s+", "", r.group(0)))
+        for j in range(i + 1, min(i + 3, len(juntos))):
+            r2 = _ROTULO.match(juntos[j])
+            if r2 and re.sub(r"[-–—]$", "-", re.sub(r"\s+", "", r2.group(0))) == rot and _semelhantes(juntos[i], juntos[j]):
+                fora.add(i)
+                break
+    return [t for k, t in enumerate(juntos) if k not in fora]
+
+
 def paragrafos_da_lei(t):
     """Texto da lei, parágrafo por parágrafo, a partir da página do Planalto.
-    O que está riscado (<strike>: texto revogado) fica de fora; as notas
-    "(Redação dada pela…)" ficam."""
+    O que está riscado (texto revogado: <strike>/<s>/<del> ou estilo "line-through") fica de fora; as
+    notas "(Redação dada pela…)" ficam. As linhas quebradas são juntas em parágrafos e a redação
+    antiga repetida sai (juntar_linhas_da_lei)."""
     t = re.sub(r"(?is)<(script|style|head)\b.*?</\1>|<!--.*?-->", " ", t)
-    t = re.sub(r"(?is)<(strike|s|del)\b[^>]*>.*?</\1>", " ", t)
+    t = sem_riscado(t)
     t = re.sub(r"(?i)<br\s*/?>|</(p|div|tr|h[1-6]|li|table|blockquote)>", "\n", t)
     t = re.sub(r"(?i)</t[dh]>", " ", t)
     t = html.unescape(re.sub(r"<[^>]+>", "", t)).replace("\xa0", " ")
@@ -1279,7 +1395,7 @@ def paragrafos_da_lei(t):
     while out and out[0] in ("Presidência da República", "Casa Civil",
                              "Subchefia para Assuntos Jurídicos"):
         out.pop(0)
-    return out
+    return juntar_linhas_da_lei(out)
 
 
 def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None, numero=None):
