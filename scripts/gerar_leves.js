@@ -9,6 +9,9 @@
 //     "_f" diz de qual arquivo completo ele veio (rg, teses, extras, tst).
 //   - citacoes.json : quantas decisões citam cada lei (usado nas Revisões do
 //     Meu Progresso), calculado com o mesmo normas-citadas.js das páginas.
+//   - cobrancas.json : em quantas provas de concurso cada súmula/decisão já foi
+//     cobrada e, por edição de informativo, quantos julgados já caíram (de
+//     provas/cobrancas.json). As Revisões usam isso para priorizar o que mais cai.
 //
 // Uso: node scripts/gerar_leves.js   (roda sozinho no GitHub — ver
 // .github/workflows/gerar-leves.yml)
@@ -82,7 +85,26 @@ for (const [g, f] of [["ACORDAOS", "stj/acordaos/indice.json"], ["INFORMATIVOS",
   try { sobDemanda[g] = (JSON.parse(ler(f)).itens || []).length; } catch (e) { /* sem o arquivo: a página conta ao baixar */ }
 }
 
+// cobrança em provas (provas/cobrancas.json): nº de provas por item e, por edição de informativo, nº de julgados cobrados
+const cobrancas = { itens: {}, inf: {} };
+try {
+  const cob = JSON.parse(ler("provas/cobrancas.json"));
+  const nProvas = {};
+  for (const [k, v] of Object.entries(cob.itens || {})) nProvas[k] = new Set(v.map((x) => x[0])).size;
+  for (const [k, n] of Object.entries(nProvas)) if (!k.startsWith("dec:inf-")) cobrancas.itens[k] = n;
+  const idx = JSON.parse(ler("informativos/indice.json")).itens || [];
+  for (const x of idx) {
+    const n = nProvas["dec:inf-" + x[0]];
+    if (!n) continue;
+    const ano = String(x[7] || "").slice(-4);
+    const chave = String(x[1]).toLowerCase() + ":" + ano + ":" + x[2];
+    const e = cobrancas.inf[chave] || (cobrancas.inf[chave] = [0, 0]);
+    e[0] += 1; e[1] += n;       // julgados cobrados · total de cobranças
+  }
+} catch (e) { /* sem o arquivo: as Revisões seguem só pelo tempo */ }
+
 fs.mkdirSync(path.join(RAIZ, "leve"), { recursive: true });
+fs.writeFileSync(path.join(RAIZ, "leve/cobrancas.json"), JSON.stringify(cobrancas));
 fs.writeFileSync(path.join(RAIZ, "leve/decisoes.json"), JSON.stringify({ fontes: contagem, sobDemanda, campos: CAMPOS, tabelas, linhas }));
 fs.writeFileSync(path.join(RAIZ, "leve/citacoes.json"), JSON.stringify({ citacoes }));
 
