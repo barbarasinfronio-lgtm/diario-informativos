@@ -160,6 +160,14 @@
   function lerVistasAlt() {
     try { return JSON.parse(localStorage.getItem(VISTAS_ALT_KEY) || "{}") || {}; } catch (e) { return {}; }
   }
+  // endereço da lei no Diário de Leis do blog (#lei=<matéria>:<número em slug>)
+  function hrefLeiNoBlog(chave) {
+    var leis = g("LEIS_DATA") || {}, achada = "";
+    Object.keys(leis).some(function (mat) {
+      return (leis[mat].leis || []).some(function (l) { if (slug(l.numero) === chave) { achada = mat + ":" + chave; return true; } });
+    });
+    return PAGINA_LEIS + (achada ? "#lei=" + encodeURIComponent(achada) : "");
+  }
   function leisAlteradas(maps, o) {
     if (!alteracoes) return [];
     var hojeN = diaNum(hoje()), baseN = diaNum(dataBaseAlteracoes(o).iso), vistas = lerVistasAlt(), lidas = (maps && maps.lei) || {}, out = [];
@@ -319,7 +327,7 @@
         var e = lida((maps.sum || {})[org + ":" + s.numero]);
         if (!e) return;
         out.push({ id: "sum:" + org + ":" + s.numero, tipo: "Súmula", titulo: "Súmula " + s.numero + " — " + (b.label || org.toUpperCase()),
-          sub: String(s.texto || "").slice(0, 140), lidaEm: e.em, meses: SUMULA_MESES, motivo: "súmula", href: s.link || "/p/diario-das-sumulas.html" });
+          sub: String(s.texto || "").slice(0, 140), lidaEm: e.em, meses: SUMULA_MESES, motivo: "súmula", href: "/p/diario-das-sumulas.html#cad=" + encodeURIComponent(org + "|" + s.numero) });
       });
     });
 
@@ -337,7 +345,7 @@
       var e = lida(maps.inf[k]); if (!e) return;
       var p = k.split(":");
       out.push({ id: "inf:" + k, tipo: "Informativo", titulo: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1], sub: "", lidaEm: e.em,
-        meses: DECISAO_MESES, motivo: "informativo", href: "" });
+        meses: DECISAO_MESES, motivo: "informativo", href: "/p/diario-dos-informativos.html#cad=" + encodeURIComponent(p[0] + "|" + p[2]) });
     });
 
     out.forEach(function (it) {
@@ -461,7 +469,7 @@
       '<div class="rv-texto"><b>' + esc(a.nome) + "</b>" +
         '<span class="rv-meta">' + esc(a.numero + " · alterada " + (a.aprox ? "por volta de " : "em ") + fmt(a.quando) + (a.aprox ? " (data estimada)" : "") +
           (a.normas.length ? " por " + a.normas.join(", ") : "") + " · " + leitura) + "</span></div>" +
-      '<div class="rv-acoes">' + (a.link ? '<a class="rv-abrir" href="' + esc(a.link) + '" target="_blank" rel="noopener">Ver texto atualizado</a>' : "") +
+      '<div class="rv-acoes">' + '<a class="rv-abrir" href="' + esc(hrefLeiNoBlog(a.chave)) + '" target="_blank" rel="noopener">Abrir no blog</a>' +
         '<button type="button" class="rv-feito" data-alt-visto="' + esc(a.chave) + '" data-alt-em="' + esc(a.quando) + '">✔ Já vi</button></div>' +
     "</li>";
   }
