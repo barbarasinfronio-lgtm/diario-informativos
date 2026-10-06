@@ -33,6 +33,23 @@ def extras():
     return out
 
 
+class _SemRtf(robo.Falha):
+    pass
+
+
+def texto_da_aba(pg, data):
+    """Decisões antigas não têm arquivo RTF: o texto está na própria aba (até ~1.000 caracteres
+    por andamento). Pega os andamentos da data da decisão (ou os que dizem "Decisão")."""
+    itens = []
+    for item in re.split(r'(?=<div class="andamento-item")', pg):
+        txt = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", item))).strip()
+        if len(txt) < 150:
+            continue
+        itens.append((bool(data and data in txt), bool(re.search(r"(?i)decis[ãa]o|ementa|julgou|deferiu|indeferiu", txt)), txt))
+    pref = [t for d, k, t in itens if d] or [t for d, k, t in itens if k]
+    return "\n\n".join(pref[:3]).strip()
+
+
 def melhor_decisao(pg, data):
     """Entre os andamentos da aba Decisões, pega o arquivo "Decisão de Julgamento" (RTF):
     o do andamento com a mesma data; se não houver, o maior deles."""
@@ -44,7 +61,7 @@ def melhor_decisao(pg, data):
         txt = html.unescape(re.sub(r"<[^>]+>", " ", item))
         cands.append((data and data in txt, m[1]))
     if not cands:
-        raise robo.Falha("a aba Decisões não tem arquivo de decisão (RTF)")
+        raise _SemRtf()
     mesmos = [x for x in cands if x[0]]
     return (mesmos or cands)[:3]
 
@@ -52,7 +69,14 @@ def melhor_decisao(pg, data):
 def buscar(classe, num, inc, data):
     pg = robo.pagina(c.ABA.format(inc=inc, num=num, cls=classe))
     melhor = None
-    for _, id_ in melhor_decisao(pg, data):
+    try:
+        ids = melhor_decisao(pg, data)
+    except _SemRtf:
+        t = texto_da_aba(pg, data)
+        if len(t) < 150:
+            raise robo.Falha("a aba Decisões não tem arquivo de decisão (RTF) nem texto")
+        return t
+    for _, id_ in ids:
         status, _, corpo = robo.buscar(f"https://portal.stf.jus.br/processos/downloadTexto.asp?id={id_}&ext=RTF")
         if status != 200 or b"{\\rtf" not in corpo[:50]:
             continue
