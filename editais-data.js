@@ -7770,7 +7770,7 @@ var EDITAIS_DATA = [
     ["humanos", "Lei Estadual (BA) nº 11.612/2009"],
     ["humanos", "Lei Estadual (BA) nº 12.365/2011"],
     ["humanos", "Lei Estadual (BA) nº 12.575/2012"],
-    ["humanos", "Lei Estadual (BA) nº 12.925/2012"],
+    ["humanos", "Lei Estadual (BA) nº 12.925/2013"],
     ["humanos", "Lei Estadual (BA) nº 12.932/2014"],
     ["humanos", "Lei Estadual (BA) nº 13.182/2014"],
     ["humanos", "Lei Estadual (BA) nº 13.559/2016"],
