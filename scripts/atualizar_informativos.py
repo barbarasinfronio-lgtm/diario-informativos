@@ -1401,14 +1401,38 @@ ESTADUAIS_HOSTS = ("leisestaduais.com.br", "legisla.casacivil.go.gov.br", "leis.
                    "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
                    "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br", "legis.senado.leg.br")
 ESTADUAIS_ORCAMENTO = 1100
-EXTRATOR_VERSAO = 2   # sobe quando o leitor melhora: as falhas anteriores são tentadas de novo
+EXTRATOR_VERSAO = 3   # sobe quando o leitor melhora: as falhas anteriores são tentadas de novo
 DEBUG_DIR = RAIZ / "leis" / "texto-debug"
 
 
-def _alternativas(url, pg):
-    """Outros lugares onde o texto da lei pode estar, quando a página só traz a ficha."""
+def _numero_ano(numero):
+    """"Lei Estadual (PR) nº 12.726/1999" → ("lei", "12726", "1999"); LC → ("lc", ...)."""
+    m = re.search(r"n[ºo°]\s*([\d.]+)\s*/\s*(\d{4})", numero or "")
+    if not m:
+        return None
+    tipo = "lc" if re.match(r"(?i)lei complementar", numero) else ("decreto" if re.match(r"(?i)decreto", numero) else "lei")
+    return tipo, m.group(1).replace(".", "").lstrip("0") or "0", m.group(2)
+
+
+def _alternativas(url, pg, numero=""):
+    """Outros lugares onde o texto da lei pode estar, quando a página só traz a ficha
+    ou é de outra norma: PDF da API do Legisla Goiás, página /html/ da ALESC, busca
+    por número no Paraná."""
     out = []
     p = urllib.parse.urlsplit(url)
+    na = _numero_ano(numero)
+    host = re.sub(r"^www\.", "", p.hostname or "")
+    if host.endswith("legisla.casacivil.go.gov.br"):
+        m = re.match(r"/pesquisa_legislacao/(\d+)", p.path)
+        if m:
+            out.append(("pdf", f"https://legisla.casacivil.go.gov.br/api/v2/pesquisa/legislacoes/{m.group(1)}/pdf"))
+    if host == "leis.alesc.sc.gov.br" and na and na[0] in ("lei", "lc") and "/html/" not in p.path:
+        suf = "lei_complementar" if na[0] == "lc" else "lei"
+        out.append(("html", f"https://leis.alesc.sc.gov.br/html/{na[2]}/{na[1]}_{na[2]}_{suf}.html"))
+    if host == "legislacao.pr.gov.br" and na and na[0] in ("lei", "lc"):
+        for cod in ((1,) if na[0] == "lei" else (2, 3, 4, 5)):   # codTipoAto: 1 = lei ordinária; LC: tenta alguns
+            out.append(("html", "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto"
+                                f"&codTipoAto={cod}&nroAto={na[1]}&tipoVisualizacao=compilado"))
     if (p.hostname or "").startswith("sapl.") and re.fullmatch(r"/norma/\d+/?", p.path):
         out.append(("html", url.rstrip("/") + "/ta"))        # texto compilado do SAPL
     for m in re.finditer(r"(?i)(?:href|src)=[\"']([^\"']+\.pdf(?:\?[^\"']*)?)[\"']", pg or ""):
@@ -1528,9 +1552,9 @@ def leis_estaduais(hoje_iso):
         gravou = False
         try:
             gravou = salvar_texto(url, pg, nome, hoje_iso, extrator=paragrafos_do_site, numero=numero)
-            if not gravou and len(ERRADOS) == n_err:
-                # a página não traz o texto: tenta o caminho alternativo (SAPL /ta, PDF do site, arquivo do SINJ)
-                for tipo, alt in _alternativas(url, pg):
+            if not gravou and (len(ERRADOS) == n_err or "legislacao.pr.gov.br" in url):
+                # a página não traz o texto (ou abre outra norma): tenta o caminho alternativo (SAPL /ta, PDF do site, arquivo do SINJ, API do Legisla GO, página da ALESC, busca do PR)
+                for tipo, alt in _alternativas(url, pg, numero):
                     try:
                         if tipo == "pdf":
                             status, _tp, corpo = buscar(alt)
@@ -1542,7 +1566,7 @@ def leis_estaduais(hoje_iso):
                     except Falha:
                         continue
                     gravou = salvar_texto(url, txt, nome, hoje_iso, extrator=ext, numero=numero)
-                    if gravou or len(ERRADOS) > n_err:
+                    if gravou or (len(ERRADOS) > n_err and "legislacao.pr.gov.br" not in url):
                         break
         except OSError as e:
             print(f"  ATENÇÃO: {e}")
@@ -1557,7 +1581,9 @@ def leis_estaduais(hoje_iso):
                            "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
         else:
             falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
-                           "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"}
+                           "motivo": ("o site pede verificação anti-robô (Cloudflare): trocar o link por uma fonte oficial"
+                                      if re.search(r"Um momento|Just a moment|challenges\.cloudflare", pg or "") else
+                                      "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)")}
         if not (TEXTO_DIR / f"{id_texto(url)}.json").exists() and host not in sem_amostra:
             sem_amostra.add(host)   # uma amostra por site, para eu ver como a página é
             DEBUG_DIR.mkdir(parents=True, exist_ok=True)
