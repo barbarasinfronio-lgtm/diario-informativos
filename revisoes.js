@@ -13,11 +13,9 @@
  *   - Leis principais (CF, CC, CPC, CP, CPP e ECA): a cada 6 meses.
  *   - Demais leis: pelo número de decisões do Diário das Decisões que as
  *     citam (normas-citadas.js) — veja FAIXAS abaixo.
- *   - Leis do acervo alteradas desde a última visita (leis/alteracoes.json,
+ *   - Leis do acervo alteradas desde 01/01/2026 (leis/alteracoes.json,
  *     gerado pelo robô do Mac): aparecem como sugestão de revisão MESMO que a
- *     pessoa nunca tenha marcado a lei como lida. No primeiro acesso vale a
- *     data inicial (31/08/2026); depois, a data da visita anterior (guardada
- *     por estudamana-header.js em "estudamana-visitas").
+ *     pessoa nunca tenha marcado a lei como lida; "Já vi" tira o aviso.
  * A contagem começa na data da leitura (ou da última revisão). "Revisei hoje"
  * guarda a data neste navegador ("revisoes-feitas") e na conta
  * (progress-premios/<uid>, campo "revisoes").
@@ -155,21 +153,15 @@
   // leis/alteracoes.json: por lei (chave = slug do número), "ultimaAlteracao"
   // (data da norma que alterou por último, lida das notas do Planalto) e
   // "mudancas" (alterações novas, com a data em que o robô as percebeu).
-  var DATA_INICIAL_ALTERACOES = "2026-08-31";   // cálculo inicial (1º acesso)
+  var DATA_INICIAL_ALTERACOES = "2026-01-01";   // data-base fixa: tudo o que foi alterado desde 1º de janeiro de 2026
   var VISITAS_KEY = "estudamana-visitas";
   // Data a partir da qual as alterações contam: a da visita anterior, ou, se
   // não houver (1º acesso), a data inicial.
   // o = opções da página: com login, "visitaAnterior" vem da conta (string
   // AAAA-MM-DD, ou null se ainda não havia visita); sem login (undefined),
   // vale o que estiver neste navegador.
-  function dataBaseAlteracoes(o) {
-    if (o && o.visitaAnterior !== undefined) {
-      return isoOk(o.visitaAnterior) ? { iso: dia(o.visitaAnterior), inicial: false } : { iso: DATA_INICIAL_ALTERACOES, inicial: true };
-    }
-    try {
-      var v = JSON.parse(localStorage.getItem(VISITAS_KEY) || "{}") || {};
-      if (isoOk(v.anterior)) return { iso: dia(v.anterior), inicial: false };
-    } catch (e) {}
+  // data-base fixa (não muda com a última visita): "Já vi" é que tira cada aviso da lista
+  function dataBaseAlteracoes() {
     return { iso: DATA_INICIAL_ALTERACOES, inicial: true };
   }
   var VISTAS_ALT_KEY = "revisoes-alteracoes-vistas";
@@ -631,7 +623,7 @@
 
   function textoBaseAlt(o) {
     var b = dataBaseAlteracoes(o);
-    return b.inicial ? "desde " + fmt(b.iso) : "desde a sua última visita (" + fmt(b.iso) + ")";
+    return "desde " + fmt(b.iso);
   }
   function blocoAlteradas(alts, o) {
     return '<details class="rv-bloco" open><summary><span>📢 Leis alteradas ' + textoBaseAlt(o) + '</span><span class="rv-n">' + alts.length + "</span></summary>" +
@@ -691,7 +683,7 @@
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada 3 meses (são 🔥 muito cobradas).</li>" +
       "<li><b>Demais leis</b>, pelo número de decisões do Diário das Decisões que as citam: " +
         FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + " (citada em 10 ou mais decisões conta como 📝 cobrada: no máximo 4 meses).</li>" +
-      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde a sua última visita ao blog aparece como sugestão, mesmo que você nunca a tenha lido. No primeiro acesso vale a data inicial de " + fmt(DATA_INICIAL_ALTERACOES) + ". O Planalto quase sempre cita a norma que alterou só pelo ano; por isso o robô estima o dia (“data estimada”) pela ordem de numeração das leis.</li>" +
+      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde " + fmt(DATA_INICIAL_ALTERACOES) + " aparece como sugestão, mesmo que você nunca a tenha lido; “Já vi” tira o aviso da lista. O Planalto quase sempre cita a norma que alterou só pelo ano; por isso o robô estima o dia (“data estimada”) pela ordem de numeração das leis.</li>" +
       "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo da revisão seguinte começa a contar.</li>" +
       "</ul></details>";
     if (!itens.length) {
