@@ -477,7 +477,7 @@ var LEIS_DATA = {
     { nome: "Institui o sistema de logística reversa de embalagens plásticas", numero: "Decreto nº 12.688/2025", link: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12688.htm" },
     { nome: "Cria o Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)", numero: "Lei nº 11.516/2007", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/lei/l11516.htm" },
     { nome: "Preservação e proteção do patrimônio histórico, artístico, natural e cultural do Pará", numero: "Lei Estadual (PA) nº 5.629/1990", link: "https://sistemas.semas.pa.gov.br/legislacao/files/pdf/366.pdf" },
-    { nome: "Compensação financeira estadual pela exploração de recursos minerais", numero: "Lei Estadual (PA) nº 8.001/1990", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-8001-1990-para" },
+    { nome: "Compensação financeira estadual pela exploração de recursos minerais", numero: "Lei Estadual (PA) nº 8.001/1990", link: "https://bancodeleis.alepa.pa.gov.br/arquivos/lei8001_2014_11996.pdf" },
     { nome: "Código Estadual de Proteção aos Animais do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 9.593/2022", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/137348.pdf" },
     { nome: "Norma sobre mineração do Estado do Pará", numero: "Lei Estadual (PA) nº 7.031/2007", link: "https://bancodeleis.alepa.pa.gov.br/arquivos/lei7031_2007_76444.pdf" },
     { nome: "Compensação financeira estadual sobre exploração minerária (CFEM)", numero: "Lei Estadual (PA) nº 6.710/2005", link: "https://lex.pge.pa.gov.br/#/texto-integral/7505" },
