@@ -457,7 +457,8 @@
       '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
         '<span class="rv-meta">' + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
-      '<div class="rv-acoes">' + (it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
+      '<div class="rv-acoes">' + (it.tipo === "Súmula" || it.tipo === "Decisão" ? '<button type="button" class="rv-abrir" data-card="' + esc(it.id) + '">Abrir</button>'
+          : it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +
     "</li>";
   }
@@ -565,6 +566,67 @@
     return chips + html;
   }
 
+  // ---- card de súmula/decisão (abre aqui, sem sair da página) -----------------
+  function paragrafos(t) {
+    return String(t || "").split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean).map(function (x) { return "<p>" + esc(x) + "</p>"; }).join("");
+  }
+  function carregarDecisaoCompleta(d, id) {
+    var f = d && d._f, achar = function (lista) { return (lista || []).filter(function (x) { return String(x.id) === id; })[0]; };
+    if (f === "rg") return carregarJs("RG_REPETITIVOS_DATA", "rg-repetitivos-data.js").then(function () { return achar(g("RG_REPETITIVOS_DATA")); });
+    var arq = { teses: "stj/teses.json", extras: "stf/extras.json", tst: "tst/decisoes.json" }[f];
+    if (!arq) return Promise.resolve(null);
+    return jsonOu(arq).then(function (j) { return achar(j.itens); });
+  }
+  function conteudoCard(it, d) {
+    if (it.tipo === "Súmula") {
+      var p = it.id.split(":"), sums = g("SUMULAS_DATA") || {}, b = sums[p[1]], s = b && (b.sumulas || []).filter(function (x) { return String(x.numero) === p[2]; })[0];
+      return paragrafos(s && s.texto) + (s && s.link ? '<p class="rv-card-fonte"><a href="' + esc(s.link) + '" target="_blank" rel="noopener">Texto oficial no site do tribunal</a></p>' : "");
+    }
+    if (!d) return '<p class="rv-vazio">Carregando…</p>';
+    var out = "";
+    [["Tese", d.tese], ["Questão", d.questao], ["Destaque", d.destaque]].forEach(function (c) {
+      if (c[1] && (c[0] !== "Destaque" || c[1] !== d.tese)) out += '<h4>' + c[0] + "</h4>" + paragrafos(c[1]);
+    });
+    return out || '<p class="rv-vazio">Sem texto resumido; abra no Diário das Decisões.</p>';
+  }
+  function abrirCard(id, el, o) {
+    var it = itensDeRevisao(o.maps, o.rev).filter(function (i) { return i.id === id; })[0];
+    if (!it) return;
+    var fundo = document.createElement("div");
+    fundo.className = "rv-modal";
+    var fechar = function () { document.removeEventListener("keydown", tecla); if (fundo.parentNode) fundo.parentNode.removeChild(fundo); };
+    var tecla = function (e) { if (e.key === "Escape") fechar(); };
+    var pintar = function (d) {
+      fundo.innerHTML = '<div class="rv-card" role="dialog" aria-modal="true"><button type="button" class="rv-card-x" data-fechar="1" aria-label="Fechar">×</button>' +
+        '<span class="rv-tipo">' + esc(it.tipo) + "</span><h3>" + esc(it.titulo) + "</h3>" +
+        (it.cobrado ? '<p class="rv-card-cob">' + (it.nivel === 3 ? "🔥 " : "📝 ") + esc(it.cobrado) + "</p>" : "") +
+        (d && it.tipo === "Decisão" ? '<p class="rv-meta">' + esc([d.processo, d.relator, d.data].filter(Boolean).join(" · ")) + "</p>" : "") +
+        '<div class="rv-card-texto">' + conteudoCard(it, d) + "</div>" +
+        '<div class="rv-card-acoes"><button type="button" class="rv-feito" data-card-rev="1">✔ Revisei hoje</button>' +
+        (it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Ver no Diário</a>' : "") + "</div></div>";
+    };
+    pintar(null);
+    fundo.onclick = function (e) {
+      if (e.target === fundo || e.target.closest("[data-fechar]")) { fechar(); return; }
+      if (e.target.closest("[data-card-rev]")) {
+        var dd = hoje(), local = lerRevLocal();
+        local[id] = (local[id] || []).filter(function (x) { return x !== dd; }).concat([dd]).sort();
+        try { localStorage.setItem(REV_KEY, JSON.stringify(local)); } catch (er) {}
+        if (o.salvarRev) o.salvarRev(id, local[id]);
+        o.rev = juntarRev(o.rev);
+        fechar();
+        render(el, o);
+      }
+    };
+    document.addEventListener("keydown", tecla);
+    document.body.appendChild(fundo);
+    if (it.tipo === "Decisão") {
+      var k = id.slice(4), d0 = decisoesPorId && decisoesPorId[k];
+      carregarDecisaoCompleta(d0, k).then(function (d) { if (fundo.parentNode) pintar(d || d0 || {}); })
+        .catch(function () { if (fundo.parentNode) pintar(d0 || {}); });
+    } else pintar(null);
+  }
+
   function render(el, o) {
     if (!el) return;
     if (!pronto()) {
@@ -580,8 +642,9 @@
     o.rev = juntarRev(o.rev);
     el.innerHTML = o.tab === "historico" ? telaHistorico(o) : telaRevisoes(o);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card]");
       if (!b) return;
+      if (b.dataset.card) { abrirCard(b.dataset.card, el, o); return; }
       if (b.dataset.lote) {
         ui.confirmar = b.dataset.lote;
       } else if (b.dataset.loteNao) {

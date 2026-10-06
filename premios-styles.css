@@ -450,3 +450,16 @@
 
 .rv-cob { display: inline-block; padding: 0 .45rem; border-radius: 999px; font-size: .72rem; font-weight: 700; border: 1px solid var(--gold); color: var(--gold); }
 .rv-cob3 { background: var(--gold-soft); }
+
+/* Revisões: texto justificado e card de súmula/decisão */
+.rv-texto b, .rv-meta, .rv-card-texto p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.rv-abrir { cursor: pointer; font: inherit; }
+.rv-modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.rv-card { position: relative; width: min(720px, 100%); max-height: 88vh; overflow-y: auto; background: var(--surface, #fff); color: var(--ink, #111); border: 1px solid var(--surface-line, #ccc); border-radius: 14px; padding: 1.25rem 1.4rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+.rv-card h3 { margin: 0.5rem 2rem 0.4rem 0; font-size: calc(1.05rem * var(--fs-scale, 1)); line-height: 1.35; }
+.rv-card h4 { margin: 0.9rem 0 0.2rem; font-size: calc(0.8rem * var(--fs-scale, 1)); text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint, #666); }
+.rv-card-texto p { margin: 0.4rem 0; line-height: 1.6; font-size: calc(0.95rem * var(--fs-scale, 1)); }
+.rv-card-cob { margin: 0 0 0.3rem; font-weight: 600; color: var(--gold, #b7791f); font-size: calc(0.82rem * var(--fs-scale, 1)); }
+.rv-card-x { position: absolute; top: 0.6rem; right: 0.8rem; border: 0; background: none; color: inherit; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.rv-card-acoes { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
+.rv-card-fonte { font-size: 0.8rem; }
