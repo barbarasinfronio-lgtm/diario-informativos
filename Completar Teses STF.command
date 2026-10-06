@@ -11,7 +11,7 @@ echo "=== Completar textos do STF — $(date '+%d/%m/%Y %H:%M') ==="
 git checkout -q main 2>/dev/null
 git fetch -q origin main && git pull -q --rebase --autostash origin main \
   || { git rebase --abort 2>/dev/null; echo "ERRO: não consegui juntar com o main. Cole esta janela para a Claude."; fim 1; }
-python3 scripts/completar_rg_stf.py --max 100
+python3 scripts/completar_rg_stf.py --max 100 --refazer-ata
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
 if git diff --cached --quiet; then echo "Nada para enviar."; fim 0; fi
 git commit -q -m "Inteiro teor dos Temas de repercussão geral (do Mac)" || fim 1

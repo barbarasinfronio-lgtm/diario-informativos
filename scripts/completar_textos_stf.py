@@ -108,6 +108,13 @@ def achar_incidente(classe, num):
     raise robo.Falha("não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)")
 
 
+RX_LIXO_RTF = re.compile(r"\s*\\*\*?Normal;heading 1;.*", re.S)   # lista de estilos do Word (latentstyles) no fim do RTF
+
+
+def sem_lixo_rtf(t):
+    return RX_LIXO_RTF.sub("", t or "").rstrip()
+
+
 def rtf_para_texto(corpo):
     """RTF (bytes) → texto simples. Trata \\'xx (cp1252), \\uN (unicode), \\par e grupos de formatação."""
     t = corpo.decode("latin-1")
@@ -142,7 +149,7 @@ def rtf_para_texto(corpo):
     t = re.sub(r"\\[a-zA-Z]+-?\d* ?", "", t)
     t = t.replace("\\{", "{").replace("\\}", "}").replace("\\\\", "\\")
     t = re.sub(r"[{}]", "", t)
-    return re.sub(r"[ \t]+", " ", t).strip()
+    return sem_lixo_rtf(re.sub(r"[ \t]+", " ", t).strip())
 
 
 def texto_completo(truncado, classe, num, inc, refazer=False):

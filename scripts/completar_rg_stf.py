@@ -11,6 +11,7 @@ Roda no Mac (o portal do STF bloqueia os servidores do GitHub), pelo "Completar 
 O que já foi buscado não é buscado de novo; quem falhou é tentado na próxima vez.
 """
 import argparse, json, re, signal, sys, time
+from html import unescape as html_unescape
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -33,18 +34,76 @@ def temas():
     return out
 
 
+def acordao_inteiro_teor(classe, num, inc, tema, primeiro):
+    """Tenta achar o ACÓRDÃO (ementa, relatório e votos) do tema, que não está na aba Decisões
+    (ali só vem a ata/decisão de julgamento). Procura links de peças "Acórdão"/"Inteiro teor" nas
+    páginas do processo e do tema. Na primeira vez guarda as páginas em curadoria/debug-stf/
+    (rg<tema>-*.html) para eu ajustar o leitor se o formato for outro."""
+    q = f"incidente={inc}&numeroProcesso={num}&classeProcesso={classe}"
+    paginas = {
+        "pecas": f"https://portal.stf.jus.br/processos/abaPecas.asp?{q}",
+        "tema": f"https://portal.stf.jus.br/jurisprudenciaRepercussao/verAndamentoProcesso.asp?incidente={inc}&numeroTema={tema}",
+        "andamentos": f"https://portal.stf.jus.br/processos/abaAndamentos.asp?{q}",
+    }
+    achados = []
+    for nome, url in paginas.items():
+        try:
+            pg = robo.pagina(url)
+        except robo.Falha as e:
+            print(f"    (acórdão: {nome}: {str(e)[:80]})")
+            continue
+        if primeiro:
+            c.DEBUG.mkdir(parents=True, exist_ok=True)
+            (c.DEBUG / f"rg{tema}-{nome}.html").write_text(pg[:300000], encoding="utf-8")
+        for m in re.finditer(r'(?is)<a\b[^>]*href="([^"]*(?:downloadPeca|downloadTexto|paginador)[^"]*)"[^>]*>(.*?)</a>', pg):
+            rotulo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(2))).strip()
+            contexto = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", pg[max(0, m.start() - 300):m.start()]))
+            if re.search(r"(?i)ac[óo]rd[ãa]o|inteiro teor", rotulo + " " + contexto[-200:]):
+                achados.append(html_unescape(m.group(1)).replace("&amp;", "&"))
+    melhor = ""
+    for href in dict.fromkeys(achados):
+        url = href if href.startswith("http") else "https://portal.stf.jus.br" + (href if href.startswith("/") else "/processos/" + href)
+        try:
+            status, tipo, corpo = robo.buscar(url)
+        except robo.Falha:
+            continue
+        if status != 200:
+            continue
+        try:
+            if b"{\\rtf" in corpo[:50]:
+                t = c.rtf_para_texto(corpo)
+            elif corpo[:4] == b"%PDF":
+                t = robo.texto_de_pdf(corpo)
+            else:
+                continue
+        except Exception as e:   # noqa: BLE001
+            print(f"    (acórdão: não consegui ler {url[-60:]}: {str(e)[:60]})")
+            continue
+        if len(t) > len(melhor):
+            melhor = t
+    return melhor
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tema")
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
+    ap.add_argument("--refazer-ata", action="store_true", help="busca de novo os temas que só têm a ata (sem o acórdão)")
     a = ap.parse_args()
     PASTA.mkdir(parents=True, exist_ok=True)
     todos = temas()
     if a.tema:
         alvos = [t for t in todos if t["tema"] == a.tema.replace(".", "")]
     else:
-        feitos = {p.stem for p in PASTA.glob("*.json")}
+        feitos = set()
+        for p_ in PASTA.glob("*.json"):
+            try:
+                j = json.loads(p_.read_text(encoding="utf-8"))
+            except ValueError:
+                continue
+            if j.get("completo", False) or not a.refazer_ata:
+                feitos.add(p_.stem)
         alvos = [t for t in todos if t["tema"] not in feitos]
         alvos.sort(key=lambda t: (t["tema"] != "914", -int(re.sub(r"\D", "", t["tema"]) or 0)))   # 914 primeiro; depois os mais novos
         alvos = alvos[:a.max]
@@ -63,6 +122,17 @@ def main():
                 inc[(classe, num)] = c.achar_incidente(classe, num)
                 time.sleep(a.espera)
             texto = ex.buscar(classe, num, inc[(classe, num)], t["data"])
+            try:
+                inteiro = acordao_inteiro_teor(classe, num, inc[(classe, num)], t["tema"], primeiro=(ok == 0 and not falhas))
+            except robo.Falha:
+                inteiro = ""
+            if len(inteiro) > len(texto):
+                print(f"    acórdão inteiro: {len(inteiro)} caracteres (a ata tinha {len(texto)})")
+                texto = inteiro
+                completo = True
+            else:
+                print("    (só a ata/decisão de julgamento; o acórdão não foi achado)")
+                completo = False
             time.sleep(a.espera)
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
         except robo.Falha as e:
@@ -77,7 +147,7 @@ def main():
         ok += 1
         print(f"    {len(texto)} caracteres")
         (PASTA / f"{t['tema']}.json").write_text(json.dumps(
-            {"processo": t["processo"], "data": t["data"], "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            {"processo": t["processo"], "data": t["data"], "completo": completo, "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{ok} completado(s), {len(falhas)} sem sucesso.")
 
