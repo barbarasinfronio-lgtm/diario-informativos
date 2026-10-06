@@ -21,7 +21,7 @@ import completar_extras_stf as ex  # noqa: E402
 robo = c.robo
 PASTA = RAIZ / "stf" / "rg"
 FALHAS = RAIZ / "curadoria" / "rg-textos-falhas.json"
-LIMITE = 400000
+LIMITE = 1500000
 
 
 def temas():
@@ -157,7 +157,7 @@ def main():
                 time.sleep(a.espera)
             texto = ex.buscar(classe, num, inc[(classe, num)], t["data"])
             try:
-                inteiro = acordao_inteiro_teor(classe, num, inc[(classe, num)], t["tema"], primeiro=(ok == 0 and not falhas))
+                inteiro = acordao_inteiro_teor(classe, num, inc[(classe, num)], t["tema"], primeiro=(ok == 0 and not falhas), data_tema=t["data"])
             except robo.Falha:
                 inteiro = ""
             if len(inteiro) > len(texto):
