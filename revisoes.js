@@ -65,7 +65,7 @@
       if (i.bloco && i.lidaEm === hojeIso) feito += MIN_BLOCO;      // bloco lido hoje
     });
     var restante = MINUTOS_POR_DIA - feito - (leituraPendente ? MIN_BLOCO : 0), usado = 0, meta = [], fila = [];
-    itens.filter(function (i) { return i.estado === "agora"; })
+    itens.filter(function (i) { return i.estado === "agora" && i.tipo !== "Lei"; })      // lei inteira: vai pelo plano de lei seca, fora da meta
       .sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); })
       .forEach(function (i) {
         if (restante - usado >= i.min || (!meta.length && restante > 0)) { meta.push(i); usado += i.min; } else fila.push(i);
@@ -679,10 +679,11 @@
   function telaRevisoes(o) {
     var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), plano = planoDeHoje(itens, leituraPendente(o.rev));
     // o que mais cai em prova vem primeiro; dentro do mesmo nível, o mais atrasado
+    var leisAtrasadas = itens.filter(function (i) { return i.estado === "agora" && i.tipo === "Lei"; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); });
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
       "<li><b>Revisão espaçada:</b> a 1ª revisão é 1 dia depois da leitura, a 2ª 7 dias depois, a 3ª 30 dias e a 4ª 90 dias depois da revisão anterior. Da 5ª em diante o intervalo é longo e depende do item:</li>" +
-      "<li><b>Meta diária de " + fmtMin(MINUTOS_POR_DIA) + ":</b> as revisões atrasadas não aparecem todas de uma vez. A lista de hoje enche o tempo da meta com os itens mais cobrados primeiro; o resto espera na “Fila de atrasadas” e entra nos dias seguintes. Tempo estimado por item: súmula 1 min, decisão ou tese 3 min, informativo 12 min, lei 15 min (30 min as leis principais). O que você já revisou hoje conta no tempo.</li>" +
+      "<li><b>Meta diária de " + fmtMin(MINUTOS_POR_DIA) + ":</b> as revisões atrasadas não aparecem todas de uma vez. Leis lidas inteiras no Diário de Leis não entram na meta: o estudo de lei seca é feito aos poucos pelo plano “Lei seca em ritmo leve” e elas ficam num bloco à parte. A lista de hoje enche o tempo da meta com os itens mais cobrados primeiro; o resto espera na “Fila de atrasadas” e entra nos dias seguintes. Tempo estimado por item: súmula 1 min, decisão ou tese 3 min, informativo 12 min, lei 15 min (30 min as leis principais). O que você já revisou hoje conta no tempo.</li>" +
       "<li><b>Lei seca em ritmo leve:</b> leis grandes (como o CTN) são divididas em blocos de cerca de 900 palavras, sempre fechando em artigo inteiro. A meta é 1 bloco por dia; o tempo do bloco já entra na meta de " + fmtMin(MINUTOS_POR_DIA) + " e as revisões se encaixam no resto. Cada bloco lido tem revisões curtas (3 min) aos 1, 7, 30 e 90 dias.</li>" +
       "<li><b>Prioridade pelo que mais cai em prova:</b> cada súmula, decisão ou tese é comparada com as provas de concurso já analisadas (as mesmas da página de estatísticas de cobrança). 🔥 <b>Muito cobrado</b> (5 ou mais provas, lei de base como CF/CC/CPC/CP/CPP/ECA, ou informativo com 4+ julgados cobrados) é revisado a cada 3 meses; 📝 <b>cobrado</b> (2 a 4 provas) a cada 4 meses. Dentro de cada bloco, esses itens aparecem primeiro.</li>" +
       "<li><b>Demais súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
@@ -705,6 +706,7 @@
         " · ainda na meta: " + fmtMin(plano.minutosMeta) + "</p>" +
       listaRev("Meta de hoje (mais cobrados primeiro)", plano.meta, "agora", true, plano.feito >= MINUTOS_POR_DIA ? "Meta de hoje cumprida. 🎉" : "Nada para revisar agora. 🎉") +
       listaRev("Fila de atrasadas (entram na meta nos próximos dias)", plano.fila, "fila", false, "Nenhuma revisão atrasada na fila.") +
+      (leisAtrasadas.length ? listaRev("Leis lidas inteiras (fora da meta: estude pelo plano de lei seca)", leisAtrasadas, "leisfora", false, "") : "") +
       listaRev("Nos próximos 30 dias", por("breve"), "breve", false, "Nenhuma revisão nos próximos 30 dias.") +
       listaRev("Em dia — próximas revisões", por("emdia"), "emdia", false, "Nada em dia ainda.") +
       (c.semdata ? listaRev("Lidas antes de o site guardar a data", itens.filter(function (i) { return i.estado === "semdata"; }), "semdata", false, "") +
