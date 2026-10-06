@@ -272,28 +272,98 @@
     return '<p style="margin:4px 0;">' + e + "</p>";
   }
 
+  // Texto do Planalto vem quebrado em linhas do tamanho da tela de origem: junta as linhas de um mesmo parágrafo
+  // (artigo, §, inciso, alínea e título em maiúsculas começam parágrafo novo) e tira o cabeçalho/índice do começo.
+  function paragrafosDaLei(src) {
+    var ps = [];
+    for (var i = 0; i < src.length; i++) {
+      var t = String(src[i]).trim();
+      if (/^Art\.?$/.test(t) && i + 1 < src.length) t = "Art. " + String(src[++i]).trim();
+      if (t) ps.push(t);
+    }
+    var ini = -1;
+    for (var q = 0; q < ps.length && q < 200; q++) {
+      if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; }
+    }
+    if (ini > 0) ps = ps.slice(ini);
+    var NOVO = /^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
+    var out = [];
+    ps.forEach(function (t) {
+      if (!out.length || NOVO.test(t)) out.push(t);
+      else out[out.length - 1] += " " + t;
+    });
+    return out;
+  }
+
+  var leitorFechar = null;
+  // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
+  // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
   function abrirTexto(botao) {
     var cardEl = botao.closest(".lei-card");
-    var painel = cardEl && cardEl.querySelector(".lei-texto");
-    if (!painel) return;
-    if (painel.style.display !== "none") {
-      painel.style.display = "none";
-      botao.textContent = "📜 Leia-me";
-      return;
-    }
-    painel.style.display = "";
-    botao.textContent = "📜 Fechar";
-    if (painel.getAttribute("data-pronto")) return;
-    painel.innerHTML = '<p style="margin:0;color:#64748b;">Carregando o texto…</p>';
-    carregarTexto(botao.getAttribute("data-texto-id")).then(function (j) {
-      var corpo = (j.p || []).map(paragrafoHtml).join("");
-      painel.innerHTML =
-        '<div style="max-height:70vh;overflow:auto;padding:4px 2px;font-size:14px;line-height:1.6;color:#334155;">' + corpo + "</div>" +
-        '<p style="margin:8px 0 0;font-size:11px;color:#94a3b8;">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
-        ". Pode estar desatualizado: confira na fonte oficial (\u201cAbrir lei na íntegra\u201d).</p>";
-      painel.setAttribute("data-pronto", "1");
+    if (!cardEl) return;
+    if (leitorFechar) leitorFechar();
+    var chave = cardEl.getAttribute("data-chave"), tid = botao.getAttribute("data-texto-id");
+    var titulo = cardEl.getAttribute("data-cad-titulo") || "", origem = cardEl.getAttribute("data-cad-origem") || "";
+    var linkInteira = cardEl.querySelector('a[href^="http"]');
+    var lida = function () { var c = document.querySelector('.lei-check[data-chave="' + chave.replace(/"/g, '\\"') + '"]'); return !!(c && c.checked); };
+    var fundo = document.createElement("div");
+    fundo.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:12px;";
+    var caixa = document.createElement("div");
+    caixa.setAttribute("role", "dialog");
+    caixa.setAttribute("aria-modal", "true");
+    caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:#fff;color:#334155;border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
+    caixa.innerHTML =
+      '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:#64748b;">×</button>' +
+      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:18px;color:#1e293b;line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
+      '<p style="margin:0 0 10px;font-size:13px;color:#64748b;">' + escapeHtml(origem) + "</p>" +
+      '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #e2e8f0;">' +
+      '<button type="button" class="lei-leitor-lida" style="font-size:13px;font-weight:600;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
+      (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
+      '<span style="font-size:12px;color:#94a3b8;">Selecione um trecho para destacar ou anotar.</span></div>' +
+      '<div class="lei-leitor-texto" style="font-size:15px;line-height:1.65;text-align:justify;hyphens:auto;-webkit-hyphens:auto;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
+    fundo.appendChild(caixa);
+    var btnLida = caixa.querySelector(".lei-leitor-lida");
+    var pintarLida = function () { btnLida.textContent = lida() ? "✔ Lida — desmarcar" : "Marcar como lida"; };
+    pintarLida();
+    var fechar = function () {
+      document.removeEventListener("keydown", tecla);
+      if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();
+      if (fundo.parentNode) fundo.parentNode.removeChild(fundo);
+      document.body.style.overflow = "";
+      leitorFechar = null;
+    };
+    var tecla = function (e) { if (e.key === "Escape") fechar(); };
+    leitorFechar = fechar;
+    fundo.addEventListener("click", function (e) {
+      if (e.target === fundo || e.target.closest(".lei-leitor-x")) fechar();
+    });
+    btnLida.addEventListener("click", function () {
+      var c = document.querySelector('.lei-check[data-chave="' + chave.replace(/"/g, '\\"') + '"]');
+      if (!c) return;
+      c.checked = !c.checked;
+      c.dispatchEvent(new Event("change", { bubbles: true }));
+      pintarLida();
+    });
+    document.addEventListener("keydown", tecla);
+    document.body.appendChild(fundo);
+    document.body.style.overflow = "hidden";
+    carregarTexto(tid).then(function (j) {
+      if (leitorFechar !== fechar) return;
+      var corpo = paragrafosDaLei(j.p || []).map(paragrafoHtml).join("");
+      var area = caixa.querySelector(".lei-leitor-texto");
+      area.innerHTML = corpo +
+        '<p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
+        ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
+      if (window.EstudaManaCadernos) {
+        EstudaManaCadernos.ligar(caixa, {
+          fonte: "leis", item: chave, titulo: titulo, origem: origem,
+          abrir: cardEl.getAttribute("data-cad-abrir") || "",
+          areas: [caixa.querySelector(".lei-leitor-titulo"), area]
+        });
+      }
     }).catch(function () {
-      painel.innerHTML = '<p style="margin:0;color:#b91c1c;">Não consegui carregar o texto agora. Use \u201cAbrir lei na íntegra\u201d.</p>';
+      var area = caixa.querySelector(".lei-leitor-texto");
+      if (area) area.innerHTML = '<p style="margin:0;color:#b91c1c;">Não consegui carregar o texto agora. Use “Abrir lei na íntegra”.</p>';
     });
   }
 
