@@ -25,6 +25,7 @@ import atualizar_informativos as robo  # noqa: E402
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
 RE_LEI = re.compile(r"\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*/\s*(\d{4}|\d{2})\b", re.I)
+VERSAO = 2   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
 NOMES = {"lei": "Lei", "lc": "Lei Complementar", "dl": "Decreto-Lei", "decreto": "Decreto"}
 
 
@@ -95,7 +96,8 @@ def enderecos(tipo, n, ano):
     base = "https://www.planalto.gov.br/ccivil_03/"
     n, a = int(n), int(ano)
     d = com_ponto(n)
-    nomes = lambda pre: [f"{pre}{n}.htm", f"{pre.upper()}{n}.htm", f"{pre}{d}.htm"]
+    nomes = lambda pre: [f"{pre}{n}.htm", f"{pre.upper()}{n}.htm", f"{pre}{d}.htm"] + \
+        [f"{pre}{n}{suf}.htm" for suf in ("compilado", "compilada", "consol", "cons", "Compilado")]
     out = []
     if tipo == "lei":
         spans = [(2004, 2006), (2007, 2010), (2011, 2014), (2015, 2018), (2019, 2022), (2023, 2026)]
@@ -114,6 +116,7 @@ def enderecos(tipo, n, ano):
         out += [f"leis/lcp/{f}" for f in nomes("lcp")]
     elif tipo == "dl":
         out += [f"decreto-lei/del{n:04d}.htm", f"decreto-lei/Del{n:04d}.htm", f"decreto-lei/del{n}.htm",
+                f"decreto-lei/del{n:04d}compilado.htm", f"decreto-lei/del{n:04d}compilada.htm", f"decreto-lei/del{n}compilado.htm",
                 f"decreto-lei/1937-1946/del{n:04d}.htm", f"decreto-lei/1937-1946/Del{n:04d}.htm",
                 f"decreto-lei/1965-1988/del{n:04d}.htm", f"decreto-lei/1965-1988/Del{n:04d}.htm"]
     else:
@@ -136,6 +139,15 @@ def buscar_lei(tipo, n, ano, hoje):
         antes = len(robo.ERRADOS)
         if robo.salvar_texto(url, pg, numero, hoje, numero=numero):
             return url, True
+        if len(robo.ERRADOS) == antes:      # "parece incompleto": guarda o começo da página para eu ajustar o leitor
+            try:
+                paras = robo.paragrafos_da_lei(pg)
+                dbg = robo.DEBUG_DIR / f"citada-{robo.id_texto(url)}.html"
+                if not dbg.exists() and len(list(robo.DEBUG_DIR.glob("citada-*.html"))) < 8:
+                    robo.DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+                    dbg.write_text(f"<!-- {url}: {len(paras)} parágrafos, {sum(map(len, paras))} caracteres -->\n" + pg[:6000], encoding="utf-8")
+            except Exception:   # noqa: BLE001
+                pass
         if (robo.TEXTO_DIR / f"{robo.id_texto(url)}.json").exists() and len(robo.ERRADOS) == antes:
             return url, True        # já estava gravada e não mudou
     return None, False
@@ -156,7 +168,8 @@ def main():
     else:
         cont = contar()
         diario = ja_no_diario()
-        alvos = [(k, v) for k, v in cont.most_common() if v >= a.minimo and k not in diario and k not in citadas and k not in falhas]
+        alvos = [(k, v) for k, v in cont.most_common() if v >= a.minimo and k not in diario and k not in citadas
+                and not (isinstance(falhas.get(k), dict) and falhas[k].get("v") == VERSAO)]
         print(f"{len(cont)} leis citadas no site; {len(alvos)} com {a.minimo}+ citações ainda sem texto.")
         alvos = alvos[:a.max]
     ok = 0
@@ -172,7 +185,7 @@ def main():
             citadas[k] = robo.id_texto(url)
             ok += 1
         else:
-            falhas[k] = hoje
+            falhas[k] = {"v": VERSAO, "em": hoje}
             print("    não achei a norma no Planalto")
         CITADAS.write_text(json.dumps(citadas, ensure_ascii=False, indent=0), encoding="utf-8")
         FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=0), encoding="utf-8")
