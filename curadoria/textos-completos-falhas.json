@@ -106,13 +106,5 @@
  "STF_ADI_145_19891130_431": {
   "processo": "ADI 145",
   "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
- },
- "STF_Rcl_24473": {
-  "processo": "Rcl 24473",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "STF_Rcl_4361": {
-  "processo": "Rcl 4361",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  }
 }
