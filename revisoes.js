@@ -50,6 +50,27 @@
     "Lei nº 8.069/1990": "ECA"
   };
   var PRINCIPAL_MESES = 6;
+  // meta diária de revisão e tempo estimado de cada item (minutos)
+  var MINUTOS_POR_DIA = 60;
+  function minutosDoItem(it) {
+    if (it.tipo === "Súmula") return 1;
+    if (it.tipo === "Decisão") return 3;
+    if (it.tipo === "Informativo") return 12;
+    return it.motivo && /^lei principal/.test(it.motivo) ? 30 : 15;      // Lei
+  }
+  function fmtMin(m) { return m >= 60 ? Math.floor(m / 60) + " h" + (m % 60 ? " " + (m % 60) + " min" : "") : m + " min"; }
+  // separa o atraso em "meta de hoje" (cabe no tempo que falta) e "fila"; o que já foi revisado hoje conta no tempo
+  function planoDeHoje(itens) {
+    var hojeIso = hoje(), feito = 0;
+    itens.forEach(function (i) { if (i.ultimaRev === hojeIso) feito += i.min; });
+    var restante = MINUTOS_POR_DIA - feito, usado = 0, meta = [], fila = [];
+    itens.filter(function (i) { return i.estado === "agora"; })
+      .sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); })
+      .forEach(function (i) {
+        if (restante - usado >= i.min || (!meta.length && restante > 0)) { meta.push(i); usado += i.min; } else fila.push(i);
+      });
+    return { meta: meta, fila: fila, minutosMeta: usado, feito: feito };
+  }
   // demais leis: quanto mais citada nas decisões, mais curto o intervalo
   var FAIXAS = [
     { min: 10, meses: 6,  nome: "citada em 10 ou mais decisões" },
@@ -349,6 +370,7 @@
     });
 
     out.forEach(function (it) {
+      it.min = minutosDoItem(it);
       var pr = prioridade(it, it.citas || 0);
       it.nivel = pr.nivel; it.cobrado = pr.motivo;
       if (it.meses > NIVEL[pr.nivel].meses) { it.meses = NIVEL[pr.nivel].meses; it.motivo = NIVEL[pr.nivel].nome + (pr.motivo ? " (" + pr.motivo + ")" : ""); }
@@ -490,7 +512,7 @@
   function listaRev(titulo, itens, id, aberto, vazio) {
     var LIM = 40, todos = ui.verTodos[id], mostrar = todos ? itens : itens.slice(0, LIM);
     var lote = "";
-    if (itens.length > 1 && (id === "agora" || id === "semdata")) {      // limpar o atraso de uma vez (com confirmação na própria tela)
+    if (itens.length > 1 && (id === "agora" || id === "fila" || id === "semdata")) {      // limpar o atraso de uma vez (com confirmação na própria tela)
       lote = ui.confirmar === id
         ? '<div class="rv-lote"><span>Marcar <b>' + itens.length + '</b> itens como revisados hoje?</span>' +
           '<button type="button" class="rv-feito" data-lote-sim="' + id + '">✔ Sim, marcar todos</button>' +
@@ -505,11 +527,12 @@
   }
 
   function telaRevisoes(o) {
-    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o);
+    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o), plano = planoDeHoje(itens);
     // o que mais cai em prova vem primeiro; dentro do mesmo nível, o mais atrasado
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
       "<li><b>Revisão espaçada:</b> a 1ª revisão é 1 dia depois da leitura, a 2ª 7 dias depois, a 3ª 30 dias e a 4ª 90 dias depois da revisão anterior. Da 5ª em diante o intervalo é longo e depende do item:</li>" +
+      "<li><b>Meta diária de " + fmtMin(MINUTOS_POR_DIA) + ":</b> as revisões atrasadas não aparecem todas de uma vez. A lista de hoje enche o tempo da meta com os itens mais cobrados primeiro; o resto espera na “Fila de atrasadas” e entra nos dias seguintes. Tempo estimado por item: súmula 1 min, decisão ou tese 3 min, informativo 12 min, lei 15 min (30 min as leis principais). O que você já revisou hoje conta no tempo.</li>" +
       "<li><b>Prioridade pelo que mais cai em prova:</b> cada súmula, decisão ou tese é comparada com as provas de concurso já analisadas (as mesmas da página de estatísticas de cobrança). 🔥 <b>Muito cobrado</b> (5 ou mais provas, lei de base como CF/CC/CPC/CP/CPP/ECA, ou informativo com 4+ julgados cobrados) é revisado a cada 3 meses; 📝 <b>cobrado</b> (2 a 4 provas) a cada 4 meses. Dentro de cada bloco, esses itens aparecem primeiro.</li>" +
       "<li><b>Demais súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada 3 meses (são 🔥 muito cobradas).</li>" +
@@ -523,13 +546,17 @@
     }
     return '<div class="rv-resumo">' +
         '<span class="rv-pilula rv-agora"><b>' + alts.length + "</b> " + (alts.length === 1 ? "lei alterada" : "leis alteradas") + " desde " + fmt(dataBaseAlteracoes(o).iso) + "</span>" +
-        '<span class="rv-pilula rv-agora"><b>' + c.agora + "</b> para revisar agora</span>" +
+        '<span class="rv-pilula rv-agora"><b>' + plano.meta.length + "</b> na meta de hoje (" + fmtMin(plano.minutosMeta) + ")</span>" +
+        (plano.fila.length ? '<span class="rv-pilula"><b>' + plano.fila.length + "</b> atrasadas na fila</span>" : "") +
         '<span class="rv-pilula rv-breve"><b>' + c.breve + "</b> nos próximos 30 dias</span>" +
         '<span class="rv-pilula"><b>' + c.emdia + "</b> em dia</span></div>" +
       regra +
       blocoAlteradas(alts, o) +
-      listaRev("Para revisar agora", por("agora"), "agora", true, "Nada para revisar agora. 🎉") +
-      listaRev("Nos próximos 30 dias", por("breve"), "breve", c.agora === 0, "Nenhuma revisão nos próximos 30 dias.") +
+      '<p class="rv-meta-dia">🎯 <b>Meta de hoje: cerca de ' + fmtMin(MINUTOS_POR_DIA) + "</b>" + (plano.feito ? " · já feito hoje: " + fmtMin(plano.feito) : "") +
+        " · ainda na meta: " + fmtMin(plano.minutosMeta) + "</p>" +
+      listaRev("Meta de hoje (mais cobrados primeiro)", plano.meta, "agora", true, plano.feito >= MINUTOS_POR_DIA ? "Meta de hoje cumprida. 🎉" : "Nada para revisar agora. 🎉") +
+      listaRev("Fila de atrasadas (entram na meta nos próximos dias)", plano.fila, "fila", false, "Nenhuma revisão atrasada na fila.") +
+      listaRev("Nos próximos 30 dias", por("breve"), "breve", false, "Nenhuma revisão nos próximos 30 dias.") +
       listaRev("Em dia — próximas revisões", por("emdia"), "emdia", false, "Nada em dia ainda.") +
       (c.semdata ? listaRev("Lidas antes de o site guardar a data", itens.filter(function (i) { return i.estado === "semdata"; }), "semdata", false, "") +
         '<p class="rv-nota">Essas leituras são antigas e não têm data. Clique em “Revisei hoje” quando revisar e o prazo passa a contar.</p>' : "");
@@ -651,7 +678,10 @@
         ui.confirmar = null;
       } else if (b.dataset.loteSim) {
         var estado = b.dataset.loteSim, dd = hoje(), loc = lerRevLocal(), pacote = {};
-        itensDeRevisao(o.maps, o.rev).filter(function (i) { return i.estado === estado; }).forEach(function (i) {
+        (function (todos) {
+          if (estado === "semdata") return todos.filter(function (i) { return i.estado === "semdata"; });
+          var pl = planoDeHoje(todos); return estado === "fila" ? pl.fila : pl.meta;
+        })(itensDeRevisao(o.maps, o.rev)).forEach(function (i) {
           loc[i.id] = (loc[i.id] || []).filter(function (x) { return x !== dd; }).concat([dd]).sort();
           pacote[i.id] = loc[i.id];
         });
@@ -684,9 +714,10 @@
   // cartão curto para a aba "Resumo" ("" enquanto os dados não chegam)
   function resumo(o) {
     if (!pronto()) return "";
-    var c = contar(itensDeRevisao(o.maps, juntarRev(o.rev))), na = leisAlteradas(o.maps, o).length;
+    var its = itensDeRevisao(o.maps, juntarRev(o.rev)), c = contar(its), na = leisAlteradas(o.maps, o).length, pl = planoDeHoje(its);
     if (!c.agora && !c.breve && !na) return "";
-    return '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(c.agora, "revisão", "revisões") + "</b> para fazer agora" +
+    return '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
+      (pl.fila.length ? " · " + pl.fila.length + " na fila" : "") +
       (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") +
       (na ? " · 📢 " + plural(na, "lei alterada", "leis alteradas") + " " + textoBaseAlt(o) : "") + " <span>Ver revisões →</span></button>";
   }
