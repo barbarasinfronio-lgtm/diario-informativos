@@ -187,6 +187,33 @@
   }
 
   var citacoes = null;   // id da lei (normas-citadas) -> nº de decisões que a citam
+  // Prioridade pelo que mais cai em prova (leve/cobrancas.json, de provas/cobrancas.json):
+  // nível 3 = muito cobrado, 2 = cobrado em várias provas, 1 = cobrado uma vez, 0 = sem cobrança conhecida.
+  // Nível alto → revisa primeiro e com intervalo longo mais curto.
+  var COBRANCA = null;
+  var NIVEL = { 3: { meses: 3, nome: "muito cobrado" }, 2: { meses: 4, nome: "cobrado" }, 1: { meses: 99, nome: "cobrado 1 vez" }, 0: { meses: 99, nome: "" } };
+  function carregarCobrancas() {
+    return jsonOu("leve/cobrancas.json").then(function (j) { COBRANCA = j; }).catch(function () { COBRANCA = null; });
+  }
+  function nivelPorProvas(n) { return n >= 5 ? 3 : n >= 2 ? 2 : n >= 1 ? 1 : 0; }
+  function prioridade(it, citas) {
+    // devolve { nivel, motivo } para o item; a lei usa as decisões que a citam e ser lei principal
+    var n = 0, nivel = 0, txt = "";
+    if (it.tipo === "Súmula" || it.tipo === "Decisão") {
+      n = (COBRANCA && COBRANCA.itens && COBRANCA.itens[it.id]) || 0;
+      nivel = nivelPorProvas(n);
+      txt = n ? "cobrado em " + plural(n, "prova", "provas") : "";
+    } else if (it.tipo === "Informativo") {
+      var e = COBRANCA && COBRANCA.inf && COBRANCA.inf[it.id.slice(4)];
+      if (e) { nivel = e[0] >= 4 ? 3 : e[0] >= 2 ? 2 : 1; txt = plural(e[0], "julgado já cobrado", "julgados já cobrados") + " em provas"; }
+    } else if (it.tipo === "Lei") {
+      var principal = !!(it.motivo && /^lei principal/.test(it.motivo));
+      nivel = principal ? 3 : citas >= 10 ? 2 : citas >= 3 ? 1 : 0;
+      txt = principal ? "lei de base das provas" : citas >= 3 ? "citada em " + citas + " decisões" : "";
+    }
+    return { nivel: nivel, motivo: txt };
+  }
+
   var decisoesPorId = null;
   var preparando = null;
   // leve/ (scripts/gerar_leves.js): títulos das decisões e contagem de citações
@@ -224,7 +251,8 @@
         carregarJs("NormasCitadas", "normas-citadas.js"),
         carregarJs("LEIS_DATA", "leis-data.js"),
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
-        carregarAlteracoes()
+        carregarAlteracoes(),
+        carregarCobrancas()
       ]).then(function () {
         return jsonOu("leve/citacoes.json").then(function (r) {
           citacoes = r.citacoes || {};
@@ -278,7 +306,7 @@
     });
     Object.keys(porNumero).forEach(function (num) {
       var l = porNumero[num], r = regraDaLei(num);
-      out.push({ id: "lei:" + slug(num), tipo: "Lei", titulo: l.nome, sub: num, lidaEm: l.em, meses: r.meses, motivo: r.motivo,
+      out.push({ id: "lei:" + slug(num), tipo: "Lei", titulo: l.nome, sub: num, lidaEm: l.em, meses: r.meses, motivo: r.motivo, citas: citacoesDaLei(num),
         href: PAGINA_LEIS + "#lei=" + encodeURIComponent(l.chave) });
     });
 
@@ -313,6 +341,9 @@
     });
 
     out.forEach(function (it) {
+      var pr = prioridade(it, it.citas || 0);
+      it.nivel = pr.nivel; it.cobrado = pr.motivo;
+      if (it.meses > NIVEL[pr.nivel].meses) { it.meses = NIVEL[pr.nivel].meses; it.motivo = NIVEL[pr.nivel].nome + (pr.motivo ? " (" + pr.motivo + ")" : ""); }
       var feitas = (rev[it.id] || []).filter(function (d) { return !it.lidaEm || d >= it.lidaEm; });
       it.ultimaRev = feitas.length ? feitas[feitas.length - 1] : null;
       it.nRev = feitas.length;                       // revisões já feitas desde a leitura
@@ -412,11 +443,12 @@
       : it.dias === 0 ? "vence hoje"
       : "vence em " + fmt(it.vence);
     var base = it.base ? (it.ultimaRev && it.ultimaRev === it.base ? "revisada em " : "lida em ") + fmt(it.base) + " · " : "";
+    var selo = it.nivel ? '<span class="rv-cob rv-cob' + it.nivel + '" title="' + esc(it.cobrado) + '">' + (it.nivel === 3 ? "🔥 " : "📝 ") + esc(NIVEL[it.nivel].nome) + "</span> " : "";
     var plano = it.fase ? it.fase + " (" + it.intervalo + (/meses/.test(it.intervalo) ? ", " + it.motivo : "") + ")" : "";
     return '<li class="rv-item rv-' + it.estado + '">' +
       '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
-        '<span class="rv-meta">' + esc(base + plano + " · " + quando) + "</span></div>" +
+        '<span class="rv-meta">' + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
       '<div class="rv-acoes">' + (it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +
     "</li>";
@@ -465,13 +497,15 @@
 
   function telaRevisoes(o) {
     var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o);
-    var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return a.dias - b.dias; }); };
+    // o que mais cai em prova vem primeiro; dentro do mesmo nível, o mais atrasado
+    var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
       "<li><b>Revisão espaçada:</b> a 1ª revisão é 1 dia depois da leitura, a 2ª 7 dias depois, a 3ª 30 dias e a 4ª 90 dias depois da revisão anterior. Da 5ª em diante o intervalo é longo e depende do item:</li>" +
-      "<li><b>Súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
-      "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada " + PRINCIPAL_MESES + " meses.</li>" +
+      "<li><b>Prioridade pelo que mais cai em prova:</b> cada súmula, decisão ou tese é comparada com as provas de concurso já analisadas (as mesmas da página de estatísticas de cobrança). 🔥 <b>Muito cobrado</b> (5 ou mais provas, lei de base como CF/CC/CPC/CP/CPP/ECA, ou informativo com 4+ julgados cobrados) é revisado a cada 3 meses; 📝 <b>cobrado</b> (2 a 4 provas) a cada 4 meses. Dentro de cada bloco, esses itens aparecem primeiro.</li>" +
+      "<li><b>Demais súmulas, decisões, teses e informativos:</b> a cada " + SUMULA_MESES + " meses.</li>" +
+      "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada 3 meses (são 🔥 muito cobradas).</li>" +
       "<li><b>Demais leis</b>, pelo número de decisões do Diário das Decisões que as citam: " +
-        FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + ".</li>" +
+        FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + " (citada em 10 ou mais decisões conta como 📝 cobrada: no máximo 4 meses).</li>" +
       "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde a sua última visita ao blog aparece como sugestão, mesmo que você nunca a tenha lido. No primeiro acesso vale a data inicial de " + fmt(DATA_INICIAL_ALTERACOES) + ". O Planalto quase sempre cita a norma que alterou só pelo ano; por isso o robô estima o dia (“data estimada”) pela ordem de numeração das leis.</li>" +
       "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo da revisão seguinte começa a contar.</li>" +
       "</ul></details>";
@@ -587,5 +621,5 @@
   }
 
   window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo,
-    _teste: { itensDeRevisao: itensDeRevisao, leisAlteradas: leisAlteradas, definir: function (x) { if (x.citacoes) citacoes = x.citacoes; if (x.alteracoes) alteracoes = x.alteracoes; if (x.decisoes) decisoesPorId = x.decisoes; } } };
+    _teste: { itensDeRevisao: itensDeRevisao, leisAlteradas: leisAlteradas, definir: function (x) { if (x.citacoes) citacoes = x.citacoes; if (x.alteracoes) alteracoes = x.alteracoes; if (x.decisoes) decisoesPorId = x.decisoes; if (x.cobranca) COBRANCA = x.cobranca; } } };
 })();

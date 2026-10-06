@@ -19,6 +19,7 @@ on:
       - tst/decisoes.json
       - stj/acordaos/indice.json
       - informativos/indice.json
+      - provas/cobrancas.json
       - scripts/ligar_repetitivos.py
       - stj/repetitivos-scon.json
       - normas-citadas.js
