@@ -670,8 +670,14 @@
       (linhas ? '<ul class="rv-lista">' + linhas + "</ul>" : '<p class="rv-vazio">Escolha uma lei para começar.</p>') + seletor + "</details>";
   }
 
+  function telaNovidades(o) {
+    var alts = leisAlteradas(o.maps, o);
+    return '<p class="rv-nota" style="margin:0 0 0.6rem">O robô confere as leis do acervo no Planalto e avisa aqui o que mudou. Elas aparecem mesmo que você nunca tenha marcado a lei como lida; “Já vi” tira o aviso da lista.</p>' +
+      blocoAlteradas(alts, o);
+  }
+
   function telaRevisoes(o) {
-    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), alts = leisAlteradas(o.maps, o), plano = planoDeHoje(itens, leituraPendente(o.rev));
+    var itens = itensDeRevisao(o.maps, o.rev), c = contar(itens), plano = planoDeHoje(itens, leituraPendente(o.rev));
     // o que mais cai em prova vem primeiro; dentro do mesmo nível, o mais atrasado
     var por = function (e) { return itens.filter(function (i) { return i.estado === e; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); }); };
     var regra = '<details class="rv-regra"><summary>Como as revisões são calculadas</summary><ul>' +
@@ -683,21 +689,18 @@
       "<li><b>Leis principais</b> (CF, Código Civil, CPC, Código Penal, CPP e ECA): a cada 3 meses (são 🔥 muito cobradas).</li>" +
       "<li><b>Demais leis</b>, pelo número de decisões do Diário das Decisões que as citam: " +
         FAIXAS.map(function (f) { return f.nome + " → a cada " + f.meses + " meses"; }).join("; ") + " (citada em 10 ou mais decisões conta como 📝 cobrada: no máximo 4 meses).</li>" +
-      "<li><b>Leis alteradas:</b> qualquer lei do acervo alterada desde " + fmt(DATA_INICIAL_ALTERACOES) + " aparece como sugestão, mesmo que você nunca a tenha lido; “Já vi” tira o aviso da lista. O Planalto quase sempre cita a norma que alterou só pelo ano; por isso o robô estima o dia (“data estimada”) pela ordem de numeração das leis.</li>" +
       "<li>A contagem começa na data em que você marcou a leitura (ou na última revisão). Ao clicar em “Revisei hoje”, o prazo da revisão seguinte começa a contar.</li>" +
       "</ul></details>";
     if (!itens.length) {
-      return blocoPlano(o) + blocoAlteradas(alts, o) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
+      return blocoPlano(o) + regra + '<p class="rv-vazio">Ainda não há súmulas nem leis lidas. Quando você marcar a leitura nos Diários, as revisões aparecem aqui.</p>';
     }
     return '<div class="rv-resumo">' +
-        '<span class="rv-pilula rv-agora"><b>' + alts.length + "</b> " + (alts.length === 1 ? "lei alterada" : "leis alteradas") + " desde " + fmt(dataBaseAlteracoes(o).iso) + "</span>" +
         '<span class="rv-pilula rv-agora"><b>' + plano.meta.length + "</b> na meta de hoje (" + fmtMin(plano.minutosMeta) + ")</span>" +
         (plano.fila.length ? '<span class="rv-pilula"><b>' + plano.fila.length + "</b> atrasadas na fila</span>" : "") +
         '<span class="rv-pilula rv-breve"><b>' + c.breve + "</b> nos próximos 30 dias</span>" +
         '<span class="rv-pilula"><b>' + c.emdia + "</b> em dia</span></div>" +
       regra +
       blocoPlano(o) +
-      blocoAlteradas(alts, o) +
       '<p class="rv-meta-dia">🎯 <b>Meta de hoje: cerca de ' + fmtMin(MINUTOS_POR_DIA) + "</b>" + (plano.feito ? " · já feito hoje: " + fmtMin(plano.feito) : "") +
         " · ainda na meta: " + fmtMin(plano.minutosMeta) + "</p>" +
       listaRev("Meta de hoje (mais cobrados primeiro)", plano.meta, "agora", true, plano.feito >= MINUTOS_POR_DIA ? "Meta de hoje cumprida. 🎉" : "Nada para revisar agora. 🎉") +
@@ -853,7 +856,7 @@
       return;
     }
     o.rev = juntarRev(o.rev);
-    if (o.tab !== "historico") {
+    if (o.tab === "revisoes") {
       // lei do plano: baixa o índice de textos e o texto das leis em andamento (e os blocos já lidos) antes de desenhar
       var precisa = [];
       if (!indiceTextos) precisa.push(carregarIndiceTextos());
@@ -867,7 +870,7 @@
         return;
       }
     }
-    el.innerHTML = o.tab === "historico" ? telaHistorico(o) : telaRevisoes(o);
+    el.innerHTML = o.tab === "historico" ? telaHistorico(o) : o.tab === "novidades" ? telaNovidades(o) : telaRevisoes(o);
     el.onclick = function (ev) {
       var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-bloco-ler],[data-plano-ini]");
       if (!b) return;
@@ -917,11 +920,11 @@
   function resumo(o) {
     if (!pronto()) return "";
     var its = itensDeRevisao(o.maps, juntarRev(o.rev)), c = contar(its), na = leisAlteradas(o.maps, o).length, pl = planoDeHoje(its, leituraPendente(juntarRev(o.rev)));
-    if (!c.agora && !c.breve && !na) return "";
-    return '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
+    var rev = (c.agora || c.breve) ? '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
       (pl.fila.length ? " · " + pl.fila.length + " na fila" : "") +
-      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") +
-      (na ? " · 📢 " + plural(na, "lei alterada", "leis alteradas") + " " + textoBaseAlt(o) : "") + " <span>Ver revisões →</span></button>";
+      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") + " <span>Ver revisões →</span></button>" : "";
+    var nov = na ? '<button type="button" class="rv-cartao" data-tab="novidades">📢 <b>' + plural(na, "lei alterada", "leis alteradas") + "</b> " + textoBaseAlt(o) + " <span>Ver novidades →</span></button>" : "";
+    return rev + nov;
   }
 
   window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo,

@@ -107,7 +107,7 @@ súmula "a confirmar".
 As **leis** têm arquivo próprio, para rodar todo dia: **`Atualizar Leis.command`**
 (mesma pasta). Ele confere no Planalto as leis do acervo, anota as alterações
 (e a data da última alteração de cada lei) em `leis/alteracoes.json` e envia
-para o `main`; o site mostra em Meu Progresso > Revisões ("Leis alteradas").
+para o `main`; o site mostra em Meus Estudos > Novidades legislativas ("Leis alteradas").
 Cada rodada tem tempo máximo de 20 minutos; o que sobrar fica para a próxima,
 começando pelas leis conferidas há mais tempo. O `Atualizar Informativos.command`
 não confere mais as leis (só o `Atualizar Leis.command`).
