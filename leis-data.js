@@ -514,7 +514,7 @@ var LEIS_DATA = {
     { nome: "Cria o Instituto de Desenvolvimento Florestal do Estado do Pará (IDEFLOR) e o Fundo Estadual de Desenvolvimento Florestal (FUNDEFLOR)", numero: "Lei Estadual (PA) nº 6.963/2007", link: "https://www.semas.pa.gov.br/legislacao/normas/view/714030" },
     { nome: "Dispõe sobre a Política Estadual de Florestas e demais Formas de Vegetação do Pará", numero: "Lei Estadual (PA) nº 6.462/2002", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/506.pdf" },
     { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 6.517/2002", link: "https://semas.pa.gov.br/legislacao/normas/view/502" },
-    { nome: "Dispõe sobre a Política Estadual do Meio Ambiente do Pará", numero: "Lei Estadual (PA) nº 5.887/1995", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/424.pdf" },
+    { nome: "Dispõe sobre a Política Estadual do Meio Ambiente do Pará", numero: "Lei Estadual (PA) nº 5.887/1995", link: "https://lex.pge.pa.gov.br/#/texto-integral/2104" },
     { nome: "Proteção da fauna silvestre no Estado de Goiás", numero: "Lei Estadual (GO) nº 14.241/2002", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/81803/lei-14241" },
     { nome: "Institui a Política Estadual sobre Mudanças Climáticas do Estado de Goiás", numero: "Lei Estadual (GO) nº 16.497/2009", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/87206/lei-16497" },
     { nome: "Normas gerais para o licenciamento ambiental no Estado de Goiás", numero: "Lei Estadual (GO) nº 20.694/2019", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100893/lei-20694" },
