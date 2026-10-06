@@ -1520,7 +1520,7 @@ def paragrafos_do_site(t):
     return melhor
 
 
-ESTADUAIS_HOSTS = ("leisestaduais.com.br", "legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
+ESTADUAIS_HOSTS = ("lex.pge.pa.gov.br", "leisestaduais.com.br","legisla.casacivil.go.gov.br", "leis.alesc.sc.gov.br",
                    "legislacao.sef.sc.gov.br", "legislacao.pr.gov.br", "al.rs.gov.br", "almg.gov.br",
                    "legislacao.mt.gov.br", "al.mt.gov.br", "al.sp.gov.br", "sinj.df.gov.br",
                    "sapl.al.to.leg.br", "sapl.al.pi.leg.br", "sapl.al.ma.leg.br", "legis.senado.leg.br")
@@ -1637,6 +1637,33 @@ def leis_estaduais(hoje_iso):
                 continue
             n_err = len(ERRADOS)
             if salvar_texto(url, texto_pdf, nome, hoje_iso, extrator=paragrafos_de_pdf, numero=numero):
+                gravados += 1
+                falhas.pop(url, None)
+            elif len(ERRADOS) > n_err:
+                falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
+                               "motivo": f"abre outra norma (\"{ERRADOS[-1][3]}\")"}
+            continue
+        if host == "lex.pge.pa.gov.br":   # Lex (PGE-PA): API JSON pública, o link traz o id do ato
+            import json as _json
+            m_id = re.search(r"/(?:texto-integral|atos(?:/view)?)/(\d+)", url)
+            try:
+                if not m_id:
+                    raise Falha("link do Lex sem o id do ato (use https://lex.pge.pa.gov.br/#/texto-integral/<id>)")
+                status, _tipo, corpo = buscar(f"https://lex.pge.pa.gov.br/api/atos/{m_id.group(1)}")
+                print(f"  {url} → HTTP {status}")
+                if status != 200:
+                    raise Falha(f"HTTP {status} (o Lex recusou ou o id não existe)")
+                ato = _json.loads(corpo.decode("utf-8", "replace"))
+                ps = paragrafos_da_lei(str(ato.get("conteudo") or ""))
+                if ato.get("titulo"):
+                    ps.insert(0, re.sub(r"\s+", " ", str(ato["titulo"])).strip())
+            except (Falha, ValueError) as e:
+                print(f"  ATENÇÃO (lei estadual): {nome}: {str(e)[:300]}")
+                falhas[url] = {"v": EXTRATOR_VERSAO, "em": hoje_iso, "numero": numero, "nome": nome,
+                               "motivo": "erro ao abrir: " + str(e)[:140]}
+                continue
+            n_err = len(ERRADOS)
+            if salvar_texto(url, ps, nome, hoje_iso, extrator=lambda x: x, numero=numero):
                 gravados += 1
                 falhas.pop(url, None)
             elif len(ERRADOS) > n_err:
