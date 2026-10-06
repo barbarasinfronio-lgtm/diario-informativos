@@ -86,9 +86,11 @@ for (const [g, f] of [["ACORDAOS", "stj/acordaos/indice.json"], ["INFORMATIVOS",
 }
 
 // cobrança em provas (provas/cobrancas.json): nº de provas por item e, por edição de informativo, nº de julgados cobrados
-const cobrancas = { itens: {}, inf: {} };
+const cobrancas = { itens: {}, inf: {}, rotulos: {} };
 try {
   const cob = JSON.parse(ler("provas/cobrancas.json"));
+  // nome das decisões que já não estão na lista (ex.: removidas como repetidas) mas continuam lidas/revisadas
+  for (const [k, v] of Object.entries(cob.cards || {})) if (k.startsWith("dec:") && !k.startsWith("dec:inf-") && v.rotulo) cobrancas.rotulos[k] = v.rotulo + (v.fonte ? " — " + v.fonte : "");
   const nProvas = {};
   for (const [k, v] of Object.entries(cob.itens || {})) nProvas[k] = new Set(v.map((x) => x[0])).size;
   for (const [k, n] of Object.entries(nProvas)) if (!k.startsWith("dec:inf-")) cobrancas.itens[k] = n;

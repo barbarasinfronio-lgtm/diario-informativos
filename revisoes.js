@@ -480,7 +480,8 @@
     Object.keys(dmap).forEach(function (k) {
       var e = lida(dmap[k]); if (!e) return;
       var d = decisoesPorId && decisoesPorId[k];
-      var titulo = d ? (d.orgao || "") + " · " + (d.precedenteLabel || "Tema") + " " + (d.tema || "") + " — " + (d.titulo || "") : "Decisão " + k;
+      var titulo = d ? (d.orgao || "") + " · " + (d.precedenteLabel || "Tema") + " " + (d.tema || "") + " — " + (d.titulo || "")
+        : (COBRANCA && COBRANCA.rotulos && COBRANCA.rotulos["dec:" + k]) || "Decisão " + k;
       out.push({ id: "dec:" + k, tipo: "Decisão", titulo: titulo.replace(/\s+/g, " ").trim(), sub: d ? (d.processo || "") : "", lidaEm: e.em,
         meses: DECISAO_MESES, motivo: "decisão ou tese", href: "/p/diario-das-decisoes.html#abrir=" + encodeURIComponent(k) + "&busca=" + encodeURIComponent((d && (d.processo || d.titulo)) || "") });
     });
@@ -761,6 +762,7 @@
       return paragrafos(s && s.texto) + (s && s.link ? '<p class="rv-card-fonte"><a href="' + esc(s.link) + '" target="_blank" rel="noopener">Texto oficial no site do tribunal</a></p>' : "");
     }
     if (!d) return '<p class="rv-vazio">Carregando…</p>';
+    if (d.semDecisao) return d.texto ? paragrafos(d.texto) : '<p class="rv-vazio">Sem o texto desta decisão no site; abra no Diário das Decisões.</p>';
     var out = "";
     [["Tese", d.tese], ["Questão", d.questao], ["Destaque", d.destaque]].forEach(function (c) {
       if (c[1] && (c[0] !== "Destaque" || c[1] !== d.tese)) out += '<h4>' + c[0] + "</h4>" + paragrafos(c[1]);
@@ -800,8 +802,14 @@
     document.body.appendChild(fundo);
     if (it.tipo === "Decisão") {
       var k = id.slice(4), d0 = decisoesPorId && decisoesPorId[k];
-      carregarDecisaoCompleta(d0, k).then(function (d) { if (fundo.parentNode) pintar(d || d0 || {}); })
-        .catch(function () { if (fundo.parentNode) pintar(d0 || {}); });
+      var semDecisao = function () {      // decisão que saiu da lista (ex.: repetida): usa o texto do card de cobranças em provas
+        return jsonOu("provas/cobrancas.json").then(function (j) {
+          var cd = j.cards && j.cards["dec:" + k];
+          return { semDecisao: true, texto: cd ? cd.texto : "" };
+        }).catch(function () { return { semDecisao: true, texto: "" }; });
+      };
+      carregarDecisaoCompleta(d0, k).then(function (d) { return d || (d0 ? d0 : semDecisao()); }).catch(function () { return d0 || semDecisao(); })
+        .then(function (d) { if (fundo.parentNode) pintar(d); });
     } else pintar(null);
   }
 
