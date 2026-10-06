@@ -485,7 +485,7 @@ var LEIS_DATA = {
     { nome: "Lei Agrícola, Agrária e Fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 5.849/1994", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/240778.pdf" },
     { nome: "Participação do proprietário do solo na lavra de recursos minerais", numero: "Lei nº 8.901/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8901.htm" },
     { nome: "Código de Mineração", numero: "Decreto-Lei nº 227/1967", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0227.htm" },
-    { nome: "Macrozoneamento Ecológico-Econômico do Estado do Pará", numero: "Lei Estadual (PA) nº 6.745/2005", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-6745-2005-para-institui-o-macrozoneamento-ecologico-economico-do-estado-do-para" },
+    { nome: "Macrozoneamento Ecológico-Econômico do Estado do Pará", numero: "Lei Estadual (PA) nº 6.745/2005", link: "https://sistemas.semas.pa.gov.br/legislacao/files/pdf/483.pdf" },
     { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 7.731/2013", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-7731-2013-para" },
     { nome: "Compensação financeira pela exploração de recursos minerais (CFEM)", numero: "Lei nº 7.990/1989", link: "https://www.planalto.gov.br/ccivil_03/leis/l7990.htm" },
     { nome: "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)", numero: "Decreto-Lei nº 25/1937", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0025.htm" },
