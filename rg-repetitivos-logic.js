@@ -647,8 +647,9 @@
         if (!e || !e.texto || modalAtual !== d) return;
         var campos = modal.querySelector('.fields');
         if (!campos) return;
-        var h = '<div class="section-label">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') + '</div>' +
-                '<div class="destaque-text" style="white-space:pre-wrap">' + escapeHtml(e.texto) + '</div>';
+        var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
+                ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
+                '<div class="destaque-text" style="white-space:pre-wrap">' + escapeHtml(e.texto) + '</div></details>';
         campos.insertAdjacentHTML('afterend', h);
       });
   }

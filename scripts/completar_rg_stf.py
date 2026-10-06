@@ -34,6 +34,16 @@ def temas():
     return out
 
 
+RX_RODAPE = re.compile(r"(?m)^(?:Documento assinado digitalmente conforme MP.*|http://www\.stf\.jus\.br/portal/autenticacao/autenticarDocumento\.asp.*|Inteiro Teor do Acórdão - Página \d+ de \d+\s*|Supremo Tribunal Federal Supremo Tribunal Federal\s*)$\n?")
+
+
+def limpar_pdf(t):
+    """Tira do texto do PDF as linhas repetidas em toda página (assinatura digital, link de
+    autenticação, "Página N de M") e as linhas em branco em excesso."""
+    t = RX_RODAPE.sub("", t)
+    return re.sub(r"\n{3,}", "\n\n", t).strip()
+
+
 def _dnum(x):
     m = re.match(r"(\d{2})/(\d{2})/(\d{4})", x or "")
     return (m.group(3) + m.group(2) + m.group(1)) if m else ""
@@ -111,6 +121,7 @@ def acordao_inteiro_teor(classe, num, inc, tema, primeiro, data_tema=""):
         except Exception as e:   # noqa: BLE001
             print(f"    (acórdão: não consegui ler {url[-60:]}: {str(e)[:60]})")
             continue
+        t = limpar_pdf(t)
         print(f"    candidato: {rotulos.get(href, '?')!r} → {len(t)} caracteres")
         if len(t) > len(melhor):
             melhor = t
