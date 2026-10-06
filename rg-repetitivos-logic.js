@@ -638,6 +638,20 @@
       }
     });
   }
+  // Temas de repercussão geral do STF: o inteiro teor do acórdão fica em stf/rg/<tema>.json
+  // (scripts/completar_rg_stf.py, "Completar Teses STF.command"), baixado só ao abrir o card.
+  function carregarTeorRG(d){
+    fetch(BASE_CDN + 'stf/rg/' + encodeURIComponent(String(d.tema)) + '.json', { cache: 'no-cache' })
+      .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+      .then(function(e){
+        if (!e || !e.texto || modalAtual !== d) return;
+        var campos = modal.querySelector('.fields');
+        if (!campos) return;
+        var h = '<div class="section-label">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') + '</div>' +
+                '<div class="destaque-text" style="white-space:pre-wrap">' + escapeHtml(e.texto) + '</div>';
+        campos.insertAdjacentHTML('afterend', h);
+      });
+  }
   function openModal(d){
     if (d._f && !completo[d._f]) {
       modal.innerHTML = '<button class="close" aria-label="Fechar">✕</button><p style="padding:24px 4px">Carregando o texto completo…</p>';
@@ -698,6 +712,7 @@
     mostrarNormas(d);
     ligarCadernos(d);
     if (d.orgao === 'STJ' && d.tipo === 'repetitivo' && d.tema) carregarDetalheRep(d);
+    if (d.orgao === 'STF' && d.tipo === 'rg' && d.tema) carregarTeorRG(d);
   }
   function closeModal(){
     if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();
