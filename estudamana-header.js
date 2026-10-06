@@ -76,7 +76,7 @@ hide: [],
 
 // Nomes mais curtos para o menu (opcional). Formato: "endereco": "Nome".
 // Sem entrada aqui, vale o título da página no Blogger.
-labels: { "me-pague-um-cafe": "Doe um cafezinho" },
+labels: { "me-pague-um-cafe": "Doe um cafezinho", "meus-premios": "Meus Estudos" },
 
 // Texto/endereço do primeiro item (a página inicial). Use null para
 // não mostrar.
@@ -312,6 +312,13 @@ for (var i = 0; i < titulos.length; i++) if (TXT(titulos[i]) === alvo) { meu = t
 }
 if (!meu) return;
 meu.classList.add("em-titulo-pagina");
+// Página renomeada aqui (endereço /p/meus-premios.html continua o mesmo):
+// troca o título que está no conteúdo e o da aba do navegador.
+var novo = CONFIG.labels[slugOf(location.pathname)];
+if (novo && /meus-premios/.test(location.pathname)) {
+meu.textContent = novo;
+document.title = document.title.replace(/Meu(s)? (Progresso|Pr[e\u00ea]mios)/i, novo);
+}
 // Some o título do Blogger e qualquer outro título do conteúdo com o
 // mesmo texto (ex.: "Diário de Leis" aparecendo duas vezes).
 var texto = TXT(meu);
