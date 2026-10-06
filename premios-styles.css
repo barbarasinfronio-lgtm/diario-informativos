@@ -463,3 +463,4 @@
 .rv-card-x { position: absolute; top: 0.6rem; right: 0.8rem; border: 0; background: none; color: inherit; font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .rv-card-acoes { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; }
 .rv-card-fonte { font-size: 0.8rem; }
+.rv-meta-dia { margin: 0.4rem 0 0.2rem; font-size: calc(0.88rem * var(--fs-scale, 1)); color: var(--ink-faint, #666); }
