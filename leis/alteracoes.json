@@ -763,7 +763,7 @@
    "desde": "2026-09-29",
    "conferidaEm": "2026-10-06",
    "ultimaAlteracao": "2026-01-01",
-   "ultimaNorma": "Lei nº 15.512/2026",
+   "ultimaNorma": "Lei nº 15.426/2026",
    "ultimaAprox": true
   },
   "lei-n-7-210-1984": {
@@ -864,9 +864,9 @@
    "mudancas": [],
    "desde": "2026-09-29",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2022-12-25",
+   "ultimaAlteracao": "2022-12-27",
    "ultimaNorma": "Lei nº 14.509/2022",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-n-8-429-1992": {
    "numero": "Lei nº 8.429/1992",
@@ -1113,7 +1113,7 @@
    "mudancas": [],
    "desde": "2026-09-29",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-14",
+   "ultimaAlteracao": "2026-03-07",
    "ultimaNorma": "Lei nº 15.352/2026",
    "ultimaAprox": true
   },
@@ -1232,9 +1232,9 @@
    "mudancas": [],
    "desde": "2026-09-29",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-10-05",
+   "ultimaAlteracao": "2023-09-20",
    "ultimaNorma": "Lei nº 14.689/2023",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-n-12-850-2013": {
    "numero": "Lei nº 12.850/2013",
@@ -1468,7 +1468,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-07-12",
+   "ultimaAlteracao": "2023-07-09",
    "ultimaNorma": "Lei nº 14.620/2023",
    "ultimaAprox": true
   },
@@ -1518,9 +1518,9 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2019-07-02",
-   "ultimaNorma": "Medida Provisória nº 907/2019",
-   "ultimaAprox": true
+   "ultimaAlteracao": "2013-08-14",
+   "ultimaNorma": "Lei nº 12.853/2013",
+   "ultimaAprox": false
   },
   "lei-n-10-741-2003": {
    "numero": "Lei nº 10.741/2003",
@@ -1812,9 +1812,9 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2003-09-25",
+   "ultimaAlteracao": "2003-10-01",
    "ultimaNorma": "Lei nº 10.741/2003",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "decreto-n-9-921-2019": {
    "numero": "Decreto nº 9.921/2019",
@@ -1856,7 +1856,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-07-20",
+   "ultimaAlteracao": "2023-07-15",
    "ultimaNorma": "Lei nº 14.626/2023",
    "ultimaAprox": true
   },
@@ -1937,7 +1937,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2024-09-23",
+   "ultimaAlteracao": "2024-09-21",
    "ultimaNorma": "Lei nº 14.978/2024",
    "ultimaAprox": true
   },
@@ -2085,9 +2085,9 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2016-08-18",
+   "ultimaAlteracao": "2016-07-29",
    "ultimaNorma": "Lei nº 13.327/2016",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-n-13-655-2018": {
    "numero": "Lei nº 13.655/2018",
@@ -2421,7 +2421,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-14",
+   "ultimaAlteracao": "2026-03-07",
    "ultimaNorma": "Lei nº 15.352/2026",
    "ultimaAprox": true
   },
@@ -2606,9 +2606,9 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2024-10-12",
+   "ultimaAlteracao": "2024-10-09",
    "ultimaNorma": "Lei nº 14.994/2024",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-n-13-869-2019": {
    "numero": "Lei nº 13.869/2019",
@@ -2718,7 +2718,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-19",
+   "ultimaAlteracao": "2026-03-14",
    "ultimaNorma": "Lei nº 15.355/2026",
    "ultimaAprox": true
   },
@@ -2733,7 +2733,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-08",
+   "ultimaAlteracao": "2026-03-01",
    "ultimaNorma": "Lei nº 15.348/2026",
    "ultimaAprox": true
   },
@@ -3079,7 +3079,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-10-04",
+   "ultimaAlteracao": "2023-09-19",
    "ultimaNorma": "Lei nº 14.688/2023",
    "ultimaAprox": true
   },
@@ -3133,7 +3133,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "1962-12-09",
+   "ultimaAlteracao": "1962-12-04",
    "ultimaNorma": "Lei nº 4.161/1962",
    "ultimaAprox": true
   },
@@ -3177,7 +3177,7 @@
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
    "ultimaAlteracao": "2026-01-01",
-   "ultimaNorma": "Lei Complementar nº 225/2026",
+   "ultimaNorma": "Lei nº 15.525/2026",
    "ultimaAprox": true
   },
   "lei-n-9-020-1995": {
@@ -3506,7 +3506,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2009-10-19",
+   "ultimaAlteracao": "2009-10-24",
    "ultimaNorma": "Lei nº 12.063/2009",
    "ultimaAprox": true
   },
@@ -3549,8 +3549,8 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2025-10-05",
-   "ultimaNorma": "Lei nº 15.230/2025",
+   "ultimaAlteracao": "2025-10-07",
+   "ultimaNorma": "Lei Complementar nº 219/2025",
    "ultimaAprox": true
   },
   "lei-n-6-091-1974": {
@@ -3580,7 +3580,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2025-09-13",
+   "ultimaAlteracao": "2025-10-07",
    "ultimaNorma": "Lei Complementar nº 219/2025",
    "ultimaAprox": true
   },
@@ -3665,7 +3665,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2022-10-19",
+   "ultimaAlteracao": "2022-11-21",
    "ultimaNorma": "Lei nº 14.470/2022",
    "ultimaAprox": true
   },
@@ -4230,7 +4230,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-06-05",
+   "ultimaAlteracao": "2023-05-28",
    "ultimaNorma": "Lei nº 14.590/2023",
    "ultimaAprox": true
   },
@@ -4325,7 +4325,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-08-22",
+   "ultimaAlteracao": "2023-08-13",
    "ultimaNorma": "Lei nº 14.653/2023",
    "ultimaAprox": true
   },
@@ -4351,7 +4351,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-09-02",
+   "ultimaAlteracao": "2023-08-22",
    "ultimaNorma": "Lei nº 14.662/2023",
    "ultimaAprox": true
   },
@@ -4384,7 +4384,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-02-12",
+   "ultimaAlteracao": "2026-02-07",
    "ultimaNorma": "Lei nº 15.333/2026",
    "ultimaAprox": true
   },
@@ -4481,7 +4481,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-06-05",
+   "ultimaAlteracao": "2023-05-28",
    "ultimaNorma": "Lei nº 14.590/2023",
    "ultimaAprox": true
   },
@@ -4538,7 +4538,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2017-12-14",
+   "ultimaAlteracao": "2017-11-25",
    "ultimaNorma": "Lei nº 13.540/2017",
    "ultimaAprox": true
   },
@@ -4614,7 +4614,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-08",
+   "ultimaAlteracao": "2026-03-01",
    "ultimaNorma": "Lei nº 15.348/2026",
    "ultimaAprox": true
   },
@@ -4680,7 +4680,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-07-12",
+   "ultimaAlteracao": "2023-07-09",
    "ultimaNorma": "Lei nº 14.620/2023",
    "ultimaAprox": true
   },
@@ -5081,7 +5081,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2024-10-21",
+   "ultimaAlteracao": "2024-10-18",
    "ultimaNorma": "Lei nº 15.001/2024",
    "ultimaAprox": true
   },
@@ -5648,9 +5648,9 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-12-11",
+   "ultimaAlteracao": "2023-12-12",
    "ultimaNorma": "Lei nº 14.751/2023",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "decreto-n-50-215-1961": {
    "numero": "Decreto nº 50.215/1961",
@@ -5842,7 +5842,7 @@
    "mudancas": [],
    "desde": "2026-09-30",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2009-11-16",
+   "ultimaAlteracao": "2009-11-27",
    "ultimaNorma": "Lei nº 12.102/2009",
    "ultimaAprox": true
   },
@@ -6101,7 +6101,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2017-11-05",
+   "ultimaAlteracao": "2017-11-01",
    "ultimaNorma": "Lei nº 13.506/2017",
    "ultimaAprox": true
   },
@@ -6116,7 +6116,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2022-10-01",
+   "ultimaAlteracao": "2022-10-14",
    "ultimaNorma": "Lei nº 14.460/2022",
    "ultimaAprox": true
   },
@@ -6149,7 +6149,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-07-12",
+   "ultimaAlteracao": "2023-07-09",
    "ultimaNorma": "Lei nº 14.620/2023",
    "ultimaAprox": true
   },
@@ -6266,7 +6266,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-14",
+   "ultimaAlteracao": "2026-03-07",
    "ultimaNorma": "Lei nº 15.352/2026",
    "ultimaAprox": true
   },
@@ -6427,7 +6427,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2022-11-02",
+   "ultimaAlteracao": "2022-12-08",
    "ultimaNorma": "Lei nº 14.478/2022",
    "ultimaAprox": true
   },
@@ -6591,7 +6591,7 @@
    "conferidaEm": "2026-10-06",
    "ultimaAlteracao": "2023-12-12",
    "ultimaNorma": "Lei nº 14.752/2023",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-n-1-579-1952": {
    "numero": "Lei nº 1.579/1952",
@@ -6604,7 +6604,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2016-11-25",
+   "ultimaAlteracao": "2016-11-03",
    "ultimaNorma": "Lei nº 13.367/2016",
    "ultimaAprox": true
   },
@@ -6672,7 +6672,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2018-12-11",
+   "ultimaAlteracao": "2018-12-21",
    "ultimaNorma": "Lei nº 13.774/2018",
    "ultimaAprox": true
   },
@@ -6900,7 +6900,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2017-11-05",
+   "ultimaAlteracao": "2017-11-01",
    "ultimaNorma": "Lei nº 13.506/2017",
    "ultimaAprox": true
   },
@@ -6927,7 +6927,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2025-07-27",
+   "ultimaAlteracao": "2025-09-14",
    "ultimaNorma": "Lei Complementar nº 218/2025",
    "ultimaAprox": true
   },
@@ -7246,7 +7246,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-19",
+   "ultimaAlteracao": "2026-03-14",
    "ultimaNorma": "Lei nº 15.355/2026",
    "ultimaAprox": true
   },
@@ -7779,7 +7779,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-03-14",
+   "ultimaAlteracao": "2026-03-07",
    "ultimaNorma": "Lei nº 15.352/2026",
    "ultimaAprox": true
   },
@@ -7889,7 +7889,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2017-11-05",
+   "ultimaAlteracao": "2017-11-01",
    "ultimaNorma": "Lei nº 13.506/2017",
    "ultimaAprox": true
   },
@@ -7922,9 +7922,9 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2022-10-26",
+   "ultimaAlteracao": "2022-12-06",
    "ultimaNorma": "Lei nº 14.474/2022",
-   "ultimaAprox": true
+   "ultimaAprox": false
   },
   "lei-complementar-n-73-1993": {
    "numero": "Lei Complementar nº 73/1993",
@@ -8232,7 +8232,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-07-21",
+   "ultimaAlteracao": "2023-07-16",
    "ultimaNorma": "Lei nº 14.627/2023",
    "ultimaAprox": true
   },
@@ -8286,7 +8286,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2023-04-19",
+   "ultimaAlteracao": "2023-04-22",
    "ultimaNorma": "Lei nº 14.553/2023",
    "ultimaAprox": true
   },
@@ -8598,7 +8598,7 @@
    "mudancas": [],
    "desde": "2026-10-01",
    "conferidaEm": "2026-10-06",
-   "ultimaAlteracao": "2026-02-03",
+   "ultimaAlteracao": "2026-01-30",
    "ultimaNorma": "Lei nº 15.327/2026",
    "ultimaAprox": true
   },
