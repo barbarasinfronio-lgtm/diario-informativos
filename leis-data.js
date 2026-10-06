@@ -486,7 +486,7 @@ var LEIS_DATA = {
     { nome: "Participação do proprietário do solo na lavra de recursos minerais", numero: "Lei nº 8.901/1994", link: "https://www.planalto.gov.br/ccivil_03/leis/l8901.htm" },
     { nome: "Código de Mineração", numero: "Decreto-Lei nº 227/1967", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0227.htm" },
     { nome: "Macrozoneamento Ecológico-Econômico do Estado do Pará", numero: "Lei Estadual (PA) nº 6.745/2005", link: "https://sistemas.semas.pa.gov.br/legislacao/files/pdf/483.pdf" },
-    { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 7.731/2013", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-7731-2013-para" },
+    { nome: "Norma ambiental do Estado do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 7.731/2013", link: "https://bancodeleis.alepa.pa.gov.br/arquivos/lei7731_2013_86621.pdf" },
     { nome: "Compensação financeira pela exploração de recursos minerais (CFEM)", numero: "Lei nº 7.990/1989", link: "https://www.planalto.gov.br/ccivil_03/leis/l7990.htm" },
     { nome: "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)", numero: "Decreto-Lei nº 25/1937", link: "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0025.htm" },
     { nome: "Regulamenta a Lei de Terras (Lei nº 601/1850)", numero: "Decreto nº 1.318/1854", link: "https://www.planalto.gov.br/ccivil_03/decreto/historicos/dim/dim1318.htm" },
