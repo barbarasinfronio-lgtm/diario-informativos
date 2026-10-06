@@ -479,7 +479,7 @@ var LEIS_DATA = {
     { nome: "Preservação e proteção do patrimônio histórico, artístico, natural e cultural do Pará", numero: "Lei Estadual (PA) nº 5.629/1990", link: "https://sistemas.semas.pa.gov.br/legislacao/files/pdf/366.pdf" },
     { nome: "Compensação financeira estadual pela exploração de recursos minerais", numero: "Lei Estadual (PA) nº 8.001/1990", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-8001-1990-para" },
     { nome: "Código Estadual de Proteção aos Animais do Pará (citada no edital do concurso)", numero: "Lei Estadual (PA) nº 9.593/2022", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/137348.pdf" },
-    { nome: "Norma sobre mineração do Estado do Pará", numero: "Lei Estadual (PA) nº 7.031/2007", link: "https://leisestaduais.com.br/pa/lei-ordinaria-n-7031-2007-para-institui-o-cadastro-estadual-de-controle-monitoramento-e-fiscalizacao-das-atividades-de-lavra-exploracao-e-transporte-de-recursos-minerais" },
+    { nome: "Norma sobre mineração do Estado do Pará", numero: "Lei Estadual (PA) nº 7.031/2007", link: "https://bancodeleis.alepa.pa.gov.br/arquivos/lei7031_2007_76444.pdf" },
     { nome: "Compensação financeira estadual sobre exploração minerária (CFEM)", numero: "Lei Estadual (PA) nº 6.710/2005", link: "https://lex.pge.pa.gov.br/#/texto-integral/7505" },
     { nome: "Norma fundiária/ambiental do Estado do Pará", numero: "Lei Estadual (PA) nº 5.295/1985", link: "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/PA-Lei-n%C2%B0-5.295-de-23-de-dezembro-de-1985.pdf" },
     { nome: "Lei Agrícola, Agrária e Fundiária do Estado do Pará", numero: "Lei Estadual (PA) nº 5.849/1994", link: "https://www.semas.pa.gov.br/legislacao/files/pdf/240778.pdf" },
