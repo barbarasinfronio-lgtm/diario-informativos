@@ -67,21 +67,102 @@ def limpar_pdf(t):
     return re.sub(r"\n{3,}", "\n\n", t).strip()
 
 
+ULTIMO_RECORTE = {"ok": False, "motivo": ""}
+MAX_ACORDAO = 40000   # ementa + dispositivo + assinatura cabem em ~4 páginas (uns 12 mil caracteres)
+_MES = r"(?:janeiro|fevereiro|mar[çc]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro|jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)"
+# "Brasília, 21 de agosto de 2020." · "Brasília, Sessão Virtual de 19 a 26 de junho de 2020." · "Brasília, 21.8.2020"
+RX_BRASILIA = re.compile(
+    r"Bras[íi]lia,?\s*(?:[^\n]{0,60}?\d{1,2}\s*(?:º|o|°)?\s+de\s+" + _MES + r"\.?\s+de\s+\d{4}|\d{1,2}[./]\d{1,2}[./]\d{2,4})\.?", re.I)
+RX_CABECALHO_PAG = re.compile(r"^\s*(?:Ementa e Ac[óo]rd[ãa]o|Inteiro Teor do Ac[óo]rd[ãa]o.*|Supremo Tribunal Federal|[A-Za-z]{2,4}\s*\d[\d.]*\s*/\s*[A-Z]{2}|\d{1,3}|Documento assinado digitalmente.*)\s*$")
+RX_PARTE = re.compile(r"^[ \t]*[A-ZÀ-Ý][A-ZÀ-Ý.()/ ]{1,30}\s*:\s*\S")
+
+
+def _sem_cabecalho_de_pagina(t):
+    return "\n".join(l for l in t.split("\n") if not RX_CABECALHO_PAG.match(l))
+
+
+def _inicio_sem_rotulo(t):
+    """Acórdãos sem a palavra EMENTA (ementa vem logo depois da lista de partes e antes de "A C Ó R D Ã O"):
+    devolve a posição do começo da ementa, ou None."""
+    m = re.search(r"(?m)^[ \t]*(?:A\s+C\s+[ÓO]\s+R\s+D\s+[ÃA]\s+O\b|Vistos, relatados e discutidos)", t)
+    if not m or m.start() > 30000:
+        return None
+    linhas = t[:m.start()].split("\n")
+    pos, acum = 0, []
+    for l in linhas:
+        acum.append(pos)
+        pos += len(l) + 1
+    k = len(linhas) - 1
+    while k >= 0:
+        l = linhas[k]
+        if RX_PARTE.match(l):
+            break
+        k -= 1
+    if k < 0:
+        return None
+    k += 1
+    # continuação do nome da parte (linhas só em maiúsculas) e cabeçalhos de página
+    while k < len(linhas):
+        l, anterior = linhas[k], linhas[k - 1]
+        continuacao = (len(anterior) >= 45 and l.strip() and l == l.upper() and len(l) <= 60 and not l.rstrip().endswith(".") and not RX_PARTE.match(l))
+        if not (RX_CABECALHO_PAG.match(l) or continuacao):
+            break
+        k += 1
+    return acum[k] if k < len(acum) else None
+
+
 def recortar_acordao(t):
     """Fica só com o acórdão propriamente dito: da EMENTA até a assinatura do ministro
     (ementa, dispositivo e teses, "Vistos, relatados e discutidos…", data e nome do relator/redator).
-    Relatório, votos, debates e anexos ficam de fora. Sem os dois marcadores, devolve o texto todo."""
-    ini = re.search(r"(?im)^[ \t]*E\s?M\s?E\s?N\s?T\s?A[ \t]*(?::|$)", t)   # "EMENTA:", "Ementa:" ou "EMENTA" sozinha na linha
-    if not ini:
+    Relatório, votos, debates e anexos ficam de fora. Guarda em ULTIMO_RECORTE se deu certo e como.
+    A ementa começa no rótulo EMENTA ou, nos acórdãos sem rótulo, logo depois da lista de partes.
+    Sem começo achado devolve o texto todo se for curto (decisão de repercussão geral); com começo mas
+    sem o fim (ou com um recorte maior que MAX_ACORDAO) tenta outros marcadores e, no pior caso, corta no limite."""
+    ULTIMO_RECORTE.update(ok=False, motivo="")
+    if re.match(r"\s*Decis[ãa]o sobre Repercuss[ãa]o Geral", t[:200]):   # não tem ementa nem assinatura: fica como veio
+        ULTIMO_RECORTE.update(ok=True, motivo="decisão sobre repercussão geral (sem ementa)")
         return t
-    fim = re.search(r"Bras[íi]lia,?\s+\d{1,2}\s*(?:º|o)?\s+de\s+[a-zç]+\s+de\s+\d{4}\.?", t[ini.start():], re.I)
-    if not fim:
-        return t
-    resto = t[ini.start() + fim.end():]
-    # nome do ministro, "Relator/Redator para o acórdão" e "Documento assinado digitalmente"
-    ass = re.match(r"(?:\s*\n[^\n]{0,80}){1,5}?\s*\n[^\n]*[Dd]ocumento assinado digitalmente", resto)
-    corte = ini.start() + fim.end() + (ass.end() if ass else min(len(resto), 200))
-    return t[ini.start():corte].strip()
+    ini = (re.search(r"(?im)^[ \t]*E\s?M\s?E\s?N\s?T\s?A[ \t]*(?::|$)", t)      # "EMENTA:", "Ementa:" ou "EMENTA" sozinha na linha
+           or re.search(r"\bE\s?M\s?E\s?N\s?T\s?A\s*:", t))                      # "… EMENTA: …" no meio da linha (só maiúsculas)
+    sem = _inicio_sem_rotulo(t)
+    vistos = re.search(r"Vistos, relatados e discutidos", t)
+    if ini and vistos and ini.start() > vistos.start() and sem is not None:
+        ini = None          # o "EMENTA" achado está nos votos, depois do acórdão: vale o começo sem rótulo
+    inicio = ini.start() if ini else sem
+    if inicio is None:
+        ULTIMO_RECORTE.update(ok=len(t) <= MAX_ACORDAO, motivo="sem EMENTA")
+        return t if len(t) <= MAX_ACORDAO else t[:MAX_ACORDAO].rsplit("\n", 1)[0]
+    rotulo = "EMENTA" if ini else "ementa sem rótulo"
+    base = t[inicio:]
+    candidatos = []
+    # 1) "Brasília, data" + nome do ministro (+ "Relator" e "Documento assinado digitalmente")
+    fim = RX_BRASILIA.search(base)
+    if fim:
+        resto = base[fim.end():]
+        ass = re.match(r"(?:[^\n]*\n){1,9}?[^\n]*[Dd]ocumento assinado digitalmente[^\n]*", resto)
+        if ass:
+            extra = ass.end()
+        else:   # sem "Documento assinado": só as linhas curtas do nome do ministro, até o relatório
+            extra = 0
+            for l in resto.split("\n")[:5]:
+                if len(l) > 90 or re.match(r"\s*(?:Relat[óo]rio|R\s?E\s?L\s?A\s?T|Voto|V\s?O\s?T)", l):
+                    break
+                extra += len(l) + 1
+        candidatos.append(("Brasília + assinatura", fim.end() + extra))
+    # 2) primeiro "Documento assinado digitalmente" depois da ementa
+    m = re.search(r"[^\n]*[Dd]ocumento assinado digitalmente[^\n]*", base)
+    if m:
+        candidatos.append(("documento assinado", m.end()))
+    # 3) começo do relatório/voto
+    m = re.search(r"(?m)^[ \t]*(?:R\s?E\s?L\s?A\s?T\s?[ÓO]\s?R\s?I\s?O|V\s?O\s?T\s?O)\b", base[200:])
+    if m:
+        candidatos.append(("antes do relatório/voto", 200 + m.start()))
+    for nome, corte in candidatos:
+        if corte <= MAX_ACORDAO:
+            ULTIMO_RECORTE.update(ok=True, motivo=rotulo + " → " + nome)
+            return _sem_cabecalho_de_pagina(base[:corte]).strip()
+    ULTIMO_RECORTE.update(ok=False, motivo=rotulo + ": nenhum marcador de fim até " + str(MAX_ACORDAO) + " caracteres")
+    return _sem_cabecalho_de_pagina(base[:MAX_ACORDAO].rsplit("\n", 1)[0]).strip()
 
 
 def _dnum(x):
@@ -174,9 +255,26 @@ def main():
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
     ap.add_argument("--refazer-ata", action="store_true", help="busca de novo os temas que só têm a ata (sem o acórdão)")
+    ap.add_argument("--recortar-salvos", action="store_true", help="sem internet: refaz o recorte (ementa → assinatura) dos textos já guardados em stf/rg/")
     ap.add_argument("--enviar", action="store_true", help="grava no git e envia ao site (stf/rg e curadoria/debug-stf)")
     a = ap.parse_args()
     PASTA.mkdir(parents=True, exist_ok=True)
+    if a.recortar_salvos:
+        mudou = 0
+        for p_ in sorted(PASTA.glob("*.json")):
+            try:
+                j = json.loads(p_.read_text(encoding="utf-8"))
+            except ValueError:
+                continue
+            velho = j.get("texto", "")
+            novo = recortar_acordao(velho)
+            if ULTIMO_RECORTE["ok"] and len(novo) < len(velho) * 0.97:
+                j["texto"] = novo
+                p_.write_text(json.dumps(j, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+                mudou += 1
+                print(f"  Tema {p_.stem}: {len(velho)} → {len(novo)} caracteres ({ULTIMO_RECORTE['motivo']})")
+        print(f"{mudou} texto(s) recortado(s).")
+        return
     todos = temas()
     if a.tema:
         alvos = [t for t in todos if t["tema"] == a.tema.replace(".", "")]
@@ -214,7 +312,11 @@ def main():
             if len(inteiro) > len(texto):
                 print(f"    acórdão inteiro: {len(inteiro)} caracteres (a ata tinha {len(texto)})")
                 texto = recortar_acordao(inteiro)
-                print(f"    do EMENTA até a assinatura: {len(texto)} caracteres")
+                print(f"    do EMENTA até a assinatura: {len(texto)} caracteres ({ULTIMO_RECORTE['motivo']})")
+                if not ULTIMO_RECORTE["ok"]:
+                    c.DEBUG.mkdir(parents=True, exist_ok=True)
+                    (c.DEBUG / f"recorte-{t['tema']}.txt").write_text(inteiro[:6000] + "\n\n[…]\n\n" + "\n".join(l for l in inteiro.splitlines() if re.search(r"(?i)bras[íi]lia|assinado|ementa|relat[óo]rio|voto", l))[:6000], encoding="utf-8")
+                    print("    ⚠ recorte incerto: guardei curadoria/debug-stf/recorte-" + t["tema"] + ".txt para a Claude ver")
                 completo = True
             else:
                 print("    (só a ata/decisão de julgamento; o acórdão não foi achado)")
