@@ -27,16 +27,15 @@ Regras (por arquivo):
       segunda ganha código próprio (as duas ficam);
     - mesma data, relator e texto em reclamações diferentes → um card só.
   rg-repetitivos-data.js (Repercussão Geral e Repetitivos)
-    - sai: tema cancelado "em duplicidade com o Tema…";
-    - mesmo tribunal, tipo e número de tema ("1.229" = "1229") com a mesma tese
-      → fica o mais completo.
+    - sai: tema cancelado "em duplicidade com o Tema…". Repetidas e parecidas FICAM.
   stj/teses.json (Jurisprudência em Teses)
-    - sai: "Item retirado.";
-    - a mesma tese em duas edições → fica a da edição mais recente.
+    - sai: "Item retirado.". A mesma tese em outra edição ou parecida FICA.
   stf/extras.json (Omissões, Resumos, COVID-19)
-    - mesmo grupo e mesmo texto em processos diferentes → um card, processos juntos.
+    - nada sai nem é juntado.
   tst/decisoes.json
     - sai: item sem texto.
+  (Out/2026: as regras de repetida/parecida/juntar deixaram de valer para estas quatro listas, porque
+   as leituras e as revisões guardam o código de cada decisão; só saem as sem conteúdo.)
   stj/acordaos/indice.json · informativos/indice.json
     - repetidos (mesmo processo, data e ementa / mesmo órgão, edição e tese) → fica um;
     - acórdãos que só "não conhecem" do recurso/pedido saem, a não ser que
@@ -46,8 +45,8 @@ Regras (por arquivo):
     liminar ad referendum ainda não referendada, "nego seguimento", "julgo
     prejudicada", embargos decididos pelo relator…). Não vinculam e não ajudam
     na preparação; ficam só as do Plenário/Turma, que vinculam.
-  Todas as listas de teses/informativos: se a essência da tese é a mesma (texto
-    quase idêntico, mesmos números e mesmos nomes próprios) fica só a mais recente.
+  Informativos: se a essência da tese é a mesma (texto quase idêntico, mesmos números
+    e mesmos nomes próprios) fica só a mais recente.
   Controle: saem as decisões que o Informativo do STF já traz (mesma ação, data
     até 20 dias de diferença): o Informativo tem a tese e o estado de origem.
 """
@@ -456,22 +455,10 @@ def limpar_rg():
     lista = [d for d in lista if not re.match(r"em duplicidade com o tema", norm(d.get("tese")))]
     canceladas = antes - len(lista)
 
-    def peso(d):
-        return (len([v for v in d.values() if v not in (None, "", "—")]), len(str(d.get("tese") or "")) + len(str(d.get("destaque") or "")))
-    melhor, ordem = {}, []
-    for d in lista:
-        tema = re.sub(r"\D", "", str(d.get("tema") or ""))
-        t = norm(d.get("tese"))
-        k = (d.get("orgao"), d.get("tipo"), tema, t) if tema and t else ("unico", d.get("id"))
-        if k not in melhor:
-            melhor[k] = d
-            ordem.append(k)
-        elif peso(d) > peso(melhor[k]):
-            melhor[k] = d
-    final = [melhor[k] for k in ordem]
-    n0 = len(final)
-    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"), lambda d: d.get("orgao"))
-    resumo.append(f"Repercussão Geral/Repetitivos: {antes} → {len(final)} (canceladas por duplicidade {canceladas}, repetidas {len(lista) - n0}, tese parecida {parecidas})")
+    # decisões repetidas ou de tese parecida FICAM (a pessoa pode ter lido qualquer uma delas e as revisões
+    # guardam o código de cada uma); só saem as canceladas por duplicidade, que não têm conteúdo
+    final = lista
+    resumo.append(f"Repercussão Geral/Repetitivos: {antes} → {len(final)} (canceladas por duplicidade {canceladas})")
     gravar_js(f, p, final, s, i)
 
 
@@ -489,18 +476,11 @@ def limpar_teses():
     antes = len(lista)
     lista = [d for d in lista if norm(d.get("tese")) not in ("", "item retirado.", "item retirado")]
     retiradas = antes - len(lista)
-    mais_nova = {}
-    for d in lista:
-        t = norm(d.get("tese"))
-        if len(t) > 40 and (t not in mais_nova or edicao(d) > edicao(mais_nova[t])):
-            mais_nova[t] = d
-    final = [d for d in lista if len(norm(d.get("tese"))) <= 40 or mais_nova[norm(d.get("tese"))] is d]
-    n0 = len(final)
-    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"))
+    final = lista     # a mesma tese em outra edição ou parecida FICA; só saem os "Item retirado."
     obj["itens"] = final
     if "total" in obj:
         obj["total"] = len(final)
-    resumo.append(f"Teses do STJ: {antes} → {len(final)} (itens retirados {retiradas}, repetidas em outra edição {len(lista) - n0}, tese parecida {parecidas})")
+    resumo.append(f"Teses do STJ: {antes} → {len(final)} (itens retirados {retiradas})")
     gravar_json(f, obj, nl)
 
 
@@ -511,25 +491,9 @@ def limpar_extras():
     obj, nl = ler_json(f)
     lista = obj["itens"]
     antes = len(lista)
-    grupos, ordem = {}, []
-    for d in lista:
-        t = norm(d.get("tese"))
-        k = (d.get("grupo"), t) if len(t) > 60 else ("unico", d.get("id"))
-        if k not in grupos:
-            grupos[k] = []
-            ordem.append(k)
-        grupos[k].append(d)
-    final = []
-    for k in ordem:
-        g = grupos[k]
-        d = g[0]
-        if len(g) > 1:
-            d["processo"] = juntar_processos(g)
-        final.append(d)
-    n0 = len(final)
-    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"), lambda d: d.get("grupo"))
+    final = lista     # nada é juntado nem removido: cada decisão de referência tem o seu card
     obj["itens"] = final
-    resumo.append(f"Extras do STF: {antes} → {len(final)} (juntadas {antes - n0}, tese parecida {parecidas})")
+    resumo.append(f"Extras do STF: {antes} → {len(final)}")
     gravar_json(f, obj, nl)
 
 
@@ -541,12 +505,10 @@ def limpar_tst():
     lista = obj["itens"]
     antes = len(lista)
     final = [d for d in lista if norm(d.get("tese")) or norm(d.get("questao")) or norm(d.get("destaque"))]
-    n0 = len(final)
-    final, parecidas = tirar_parecidas(final, lambda d: d.get("tese"), lambda d: d.get("data"))
     obj["itens"] = final
     if "total" in obj:
         obj["total"] = len(final)
-    resumo.append(f"TST: {antes} → {len(final)} (sem texto {antes - n0}, tese parecida {parecidas})")
+    resumo.append(f"TST: {antes} → {len(final)} (sem texto {antes - len(final)})")
     gravar_json(f, obj, nl)
 
 
@@ -625,7 +587,6 @@ def main():
     if tudo or "decisoes" in alvos:
         limpar_rg()
         limpar_teses()
-        juntar_teses_e_temas()
         limpar_extras()
         limpar_tst()
         limpar_indice("stj/acordaos/indice.json", ["processo", "data", "titulo", "resultado"], "Acórdãos do STJ")
