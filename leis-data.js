@@ -594,7 +594,7 @@ var LEIS_DATA = {
     { nome: "Plano Nacional de Educação (PNE 2014-2024)", numero: "Lei nº 13.005/2014", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm" },
     { nome: "Processo Administrativo do Estado de São Paulo", numero: "Lei Estadual (SP) nº 10.177/1998", link: "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html" },
     { nome: "Estatuto dos Servidores Públicos Civis do Estado do Maranhão", numero: "Lei Estadual (MA) nº 6.107/1994", link: "https://sapl.al.ma.leg.br/norma/2358" },
-    { nome: "Estatuto dos Servidores Públicos Civis do Estado da Bahia", numero: "Lei Estadual (BA) nº 6.677/1994", link: "https://www.uesc.br/projur/lei6677.pdf" },
+    { nome: "Estatuto dos Servidores Públicos Civis do Estado da Bahia", numero: "Lei Estadual (BA) nº 6.677/1994", link: "https://www.uesc.br/cadj/lei6677.pdf" },
     { nome: "Norma administrativa do Estado da Bahia (citada no edital do concurso)", numero: "Lei Estadual (BA) nº 11.357/2009", link: "https://leisestaduais.com.br/ba/lei-ordinaria-n-11357-2009-bahia-organiza-o-regime-proprio-de-previdencia-social-dos-servidores-publicos-do-estado-da-bahia-e-da-outras-providencias" },
     { nome: "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe", numero: "Lei Complementar (SE) nº 33/1996", link: "https://leisestaduais.com.br/se/lei-complementar-n-33-1996-sergipe-institui-o-codigo-de-organizacao-e-de-procedimento-da-administracao-publica-do-estado-de-sergipe" },
     { nome: "Regime Próprio de Previdência Social do Distrito Federal", numero: "Lei Complementar (DF) nº 769/2008", link: "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=58020" },
