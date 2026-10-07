@@ -147,13 +147,54 @@
           numero: l.numero,
           link: l.link,
           uf: uf,
-          busca: semAcento(l.nome + " " + l.numero + " " + (bloco.label || "")),
+          busca: semAcento(l.nome + " " + l.numero + " " + (bloco.label || "") + " " + (SIGLAS_LEIS[l.numero] || "")),
           digitos: String(l.numero || "").replace(/\D/g, "")
         });
       });
     });
     return lista;
   }
+
+  // Siglas e apelidos de leis: a busca acha "CPC" no Código de Processo Civil (que não traz a sigla no nome),
+  // "CP", "CPP", "CC", "CDC", "LIA" etc. Chave = número da lei como está no leis-data.js.
+  var SIGLAS_LEIS = {
+    "CF/1988": "CF CRFB Constituição Federal CF/88",
+    "Lei nº 13.105/2015": "CPC NCPC novo CPC CPC/2015 CPC/15",
+    "Decreto-Lei nº 3.689/1941": "CPP",
+    "Decreto-Lei nº 2.848/1940": "CP",
+    "Lei nº 10.406/2002": "CC CC/2002",
+    "Lei nº 8.078/1990": "CDC",
+    "Decreto-Lei nº 5.452/1943": "CLT",
+    "Lei nº 5.172/1966": "CTN",
+    "Lei nº 8.069/1990": "ECA",
+    "Decreto-Lei nº 4.657/1942": "LINDB LICC",
+    "Lei nº 8.429/1992": "LIA improbidade",
+    "Lei nº 9.099/1995": "JEC LJE juizados especiais",
+    "Lei nº 12.016/2009": "MS lei do mandado de segurança",
+    "Lei nº 11.340/2006": "LMP violência doméstica",
+    "Lei nº 8.666/1993": "LLC lei de licitações antiga",
+    "Lei nº 14.133/2021": "NLL nova lei de licitações",
+    "Lei nº 7.210/1984": "LEP",
+    "Lei nº 8.072/1990": "LCH",
+    "Lei nº 11.343/2006": "drogas",
+    "Lei nº 9.784/1999": "LPA",
+    "Lei nº 8.112/1990": "RJU estatuto dos servidores federais",
+    "Lei nº 8.213/1991": "LBPS",
+    "Lei nº 6.015/1973": "LRP",
+    "Lei nº 11.101/2005": "LREF LFRE",
+    "Lei nº 6.404/1976": "LSA",
+    "Lei nº 13.146/2015": "LBI EPD",
+    "Lei nº 9.503/1997": "CTB",
+    "Lei nº 12.965/2014": "MCI",
+    "Lei nº 9.868/1999": "ADI ADC",
+    "Lei nº 9.882/1999": "ADPF",
+    "Lei nº 12.527/2011": "LAI",
+    "Lei nº 7.347/1985": "LACP",
+    "Lei nº 8.906/1994": "EOAB",
+    "Lei nº 8.625/1993": "LONMP",
+    "Lei nº 8.742/1993": "LOAS",
+    "Lei nº 8.080/1990": "SUS"
+  };
 
   // ---- editais e carreiras -------------------------------------------------
   // UF de um edital pela sigla: TJSP, MPMG, DPE-BA, PGE-GO, PC-AP, PCPR…
