@@ -18,6 +18,7 @@ on:
       - tst/decisoes.json
       - stj/acordaos/indice.json
       - informativos/indice.json
+      - controleconst/adi_dados.js
       - provas/cobrancas.json
       - scripts/ligar_repetitivos.py
       - stj/repetitivos-scon.json
@@ -32,6 +33,11 @@ on:
       - site/sumulas/sumulas-data.js
       - leis/texto/citadas.json
       - scripts/limpar_decisoes.py
+  # ADI/ADPF/ADC/ADO novas: o robô "Dividir dados por ano" separa o arquivo em controleconst/anos/ (e o envio dele não
+  # dispara o "push" acima); quando ele termina, este roda em seguida e já inclui as decisões novas em "Com julgados".
+  workflow_run:
+    workflows: ["Dividir dados por ano"]
+    types: [completed]
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
