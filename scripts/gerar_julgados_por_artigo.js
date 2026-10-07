@@ -106,9 +106,11 @@ function artigosCitados(texto, lei, doc) {
     seg = cortes[cortes.length - 1];
     if (cortes.length === 1 && /\b(?:da|do)\s+(?:Constitui[çc][ãa]o|Lei\b|Decreto|C[óo]digo\s+(?!de\s+Processo\s+Civil)|Regimento)/i.test(seg)) continue;     // "art. 30 da Lei 8.038 … CPC": o artigo é de outra lei
     const tok = /§§?s?\s*(\d+[ºo°]?(?:-[A-Z])?(?:\s*(?:,|e|a)\s*\d+[ºo°]?(?:-[A-Z])?)*)|(par[áa]grafo\s+[úu]nico)|(caput)|(inc(?:iso)?s?\.?\s+[IVXLC]+(?:\s*(?:,|e|a)\s*[IVXLC]+)*)|(al[íi]neas?\s+["“']?[a-z]["”']?)|(\d{1,4}(?:\.\d{3})?)\s*([ºo°])?(?:-([A-Z]))?(?!\s*\/\s*\d)/gi;
-    let t, atual = null;
+    let t, atual = null, fimAnt = 0;
     const lista = [];
     while ((t = tok.exec(seg))) {
+      const gap = seg.slice(fimAnt, t.index); fimAnt = tok.lastIndex;
+      if (t[6] && lista.length && !/^[\s,;]*(?:(?:e|ou|a|ao|às?|arts?\.|artigos?)[\s,]*)*$/i.test(gap)) break;     // texto no meio: o resto não é mais lista de artigos ("art. 876) … julgado. 2.")
       if (t[1]) {
         if (atual) t[1].split(/\s*(?:,|e|a)\s*/).forEach((p) => { const n = (p.match(/\d+(?:-[A-Z])?/) || [])[0]; if (n) atual.mods.add("§" + n); });
       } else if (t[2]) { if (atual) atual.mods.add("u"); }
@@ -168,7 +170,7 @@ for (const lei of LEIS_PILOTO) {
     const escolhidos = [];
     for (const c of cands) {
       if (escolhidos.length >= 2) break;
-      if (escolhidos.some((e) => e.doc.chave === c.doc.chave)) continue;
+      if (escolhidos.some((e) => e.doc.chave === c.doc.chave || e.doc.rotulo === c.doc.rotulo)) continue;     // mesmo julgado com dois cards
       escolhidos.push(c);
     }
     art[a] = escolhidos.map((c) => {
