@@ -1,0 +1,64 @@
+@import url("https://barbarasinfronio-lgtm.github.io/diario-informativos/estudamana-tokens.css");
+
+/* =====================================================================
+   cronograma-styles.css — visual da página "Meu Cronograma"
+   Usa as cores/fontes do estudamana-tokens.css (tema claro e escuro) e a
+   escala de letra dos botões A− A A+ (--fs-scale).
+   ===================================================================== */
+
+.cr-raiz { font-family: var(--font-sans, system-ui, sans-serif); color: var(--ink); max-width: 860px; margin: 0 auto; font-size: calc(1rem * var(--fs-scale, 1)); line-height: 1.5; }
+.cr-raiz h2 { font-family: var(--font-serif, Georgia, serif); font-size: calc(1.3rem * var(--fs-scale, 1)); margin: 0 0 0.5rem; }
+.cr-raiz h3 { font-family: var(--font-serif, Georgia, serif); font-size: calc(1.1rem * var(--fs-scale, 1)); margin: 1rem 0 0.5rem; }
+.cr-raiz a { color: var(--accent); }
+
+.cr-config { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem 1.2rem; background: var(--surface); border: 1px solid var(--surface-line); border-radius: var(--radius, 12px); padding: 1rem 1.1rem; margin-bottom: 1rem; }
+.cr-campo { display: flex; flex-direction: column; gap: 0.3rem; font-size: calc(0.9rem * var(--fs-scale, 1)); min-width: 0; }
+.cr-campo > span { font-weight: 700; color: var(--ink-soft); font-size: calc(0.8rem * var(--fs-scale, 1)); text-transform: uppercase; letter-spacing: 0.04em; }
+.cr-campo small { color: var(--ink-faint); font-size: calc(0.78rem * var(--fs-scale, 1)); }
+.cr-campo-largo { grid-column: 1 / -1; }
+.cr-campo select, .cr-campo input[type="date"] { font: inherit; padding: 0.45rem 0.6rem; border: 1px solid var(--surface-line); border-radius: 8px; background: var(--surface-2, var(--surface)); color: var(--ink); max-width: 100%; }
+.cr-opcoes { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.cr-opcao { font: inherit; font-size: calc(0.9rem * var(--fs-scale, 1)); padding: 0.4rem 0.8rem; border-radius: 999px; border: 1px solid var(--surface-line); background: var(--surface-2, var(--surface)); color: var(--ink); cursor: pointer; }
+.cr-opcao.ativa { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 700; }
+
+.cr-resumo { background: var(--surface); border: 1px solid var(--surface-line); border-left: 4px solid var(--accent); border-radius: var(--radius, 12px); padding: 0.8rem 1.1rem; margin-bottom: 1rem; }
+.cr-resumo p { margin: 0.3rem 0; font-size: calc(0.92rem * var(--fs-scale, 1)); }
+
+.cr-abas { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 0.8rem; }
+.cr-aba { font: inherit; padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid var(--surface-line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.cr-aba.ativa { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 700; }
+
+.cr-vazio { padding: 1rem; background: var(--surface); border: 1px dashed var(--surface-line); border-radius: var(--radius, 12px); color: var(--ink-soft); }
+
+.cr-dia, .cr-semana, .cr-mes { background: var(--surface); border: 1px solid var(--surface-line); border-radius: var(--radius, 12px); margin: 0 0 0.6rem; }
+.cr-dia > summary, .cr-semana > summary, .cr-mes > summary { cursor: pointer; padding: 0.65rem 0.9rem; list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem; }
+.cr-dia > summary::-webkit-details-marker, .cr-semana > summary::-webkit-details-marker, .cr-mes > summary::-webkit-details-marker { display: none; }
+.cr-dia > summary::before, .cr-semana > summary::before, .cr-mes > summary::before { content: "▸"; color: var(--ink-faint); margin-right: 0.3rem; }
+.cr-dia[open] > summary::before, .cr-semana[open] > summary::before, .cr-mes[open] > summary::before { content: "▾"; }
+.cr-semana, .cr-mes > .cr-semana { margin: 0.4rem 0.6rem; background: var(--surface-2, var(--surface)); }
+.cr-mes { padding-bottom: 0.2rem; }
+.cr-mes > .cr-dia { margin: 0.4rem 0.6rem; }
+.cr-semana > .cr-dia { margin: 0.4rem 0.6rem; background: var(--surface); }
+.cr-foco { color: var(--ink-soft); font-size: calc(0.9rem * var(--fs-scale, 1)); }
+.cr-prog { margin-left: auto; font-size: calc(0.8rem * var(--fs-scale, 1)); color: var(--ink-faint); }
+
+.cr-bloco { padding: 0.5rem 0.9rem 0.7rem; border-top: 1px solid var(--surface-line); }
+.cr-bloco-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; }
+.cr-bloco-curso .cr-bloco-topo b { color: var(--ink-soft); }
+.cr-bloco-lei .cr-bloco-topo b { color: var(--accent); }
+.cr-nota { margin: 0.2rem 0 0; font-size: calc(0.85rem * var(--fs-scale, 1)); color: var(--ink-faint); }
+.cr-min { font-size: calc(0.8rem * var(--fs-scale, 1)); color: var(--ink-faint); white-space: nowrap; }
+
+.cr-lista { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+.cr-item label { display: flex; align-items: flex-start; gap: 0.55rem; padding: 0.3rem 0; cursor: pointer; }
+.cr-item input[type="checkbox"] { margin-top: 0.3rem; flex: none; }
+.cr-item-corpo { flex: 1; min-width: 0; }
+.cr-item.feito .cr-item-corpo a { text-decoration: line-through; color: var(--ink-faint); }
+.cr-sub { display: block; color: var(--ink-faint); font-size: calc(0.8rem * var(--fs-scale, 1)); }
+.cr-tag { font-size: calc(0.7rem * var(--fs-scale, 1)); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gold, var(--accent)); border: 1px solid currentColor; border-radius: 999px; padding: 0 0.4rem; white-space: nowrap; }
+.cr-atrasados > summary b { color: var(--high-fg, var(--ink)); }
+.cr-rodape { color: var(--ink-faint); font-size: calc(0.8rem * var(--fs-scale, 1)); margin-top: 1rem; }
+
+@media (max-width: 640px) {
+  .cr-config { grid-template-columns: minmax(0, 1fr); }
+}

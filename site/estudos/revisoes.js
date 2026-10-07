@@ -219,6 +219,13 @@
   function carregarCobrancas() {
     return jsonOu("leve/cobrancas.json").then(function (j) { COBRANCA = j; }).catch(function () { COBRANCA = null; });
   }
+  // leve/destaques-informativos.json (scripts/gerar_destaques_informativos.js): dos informativos lidos, só os
+  // julgados que mais valem a revisão — os já cobrados em prova e os com "cara de prova". Sem o arquivo
+  // (null), o informativo inteiro volta à lista, como antes.
+  var DESTAQUES = null;
+  function carregarDestaques() {
+    return jsonOu("leve/destaques-informativos.json").then(function (j) { DESTAQUES = j || {}; }).catch(function () { DESTAQUES = null; });
+  }
   function nivelPorProvas(n) { return n >= 5 ? 3 : n >= 2 ? 2 : n >= 1 ? 1 : 0; }
   function prioridade(it, citas) {
     // devolve { nivel, motivo } para o item; a lei usa as decisões que a citam e ser lei principal
@@ -231,6 +238,10 @@
       }
       nivel = nivelPorProvas(n);
       txt = n ? "cobrado em " + plural(n, "prova", "provas") : "";
+    } else if (it.tipo === "Informativo" && it.destaques) {
+      n = it.destaques.reduce(function (m, d) { return Math.max(m, d[2] || 0); }, 0);
+      nivel = n ? nivelPorProvas(n) : 1;
+      txt = n ? "cobrado em " + plural(n, "prova", "provas") : "com cara de prova";
     } else if (it.tipo === "Informativo") {
       var e = COBRANCA && COBRANCA.inf && COBRANCA.inf[it.id.slice(4)];
       if (e) { nivel = e[0] >= 4 ? 3 : e[0] >= 2 ? 2 : 1; txt = plural(e[0], "julgado já cobrado", "julgados já cobrados") + " em provas"; }
@@ -283,7 +294,8 @@
         carregarJs("LEIS_DATA", "leis-data.js"),
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
         carregarAlteracoes(),
-        carregarCobrancas()
+        carregarCobrancas(),
+        carregarDestaques()
       ]).then(function () {
         return jsonOu("leve/citacoes.json").then(function (r) {
           citacoes = r.citacoes || {};
@@ -537,6 +549,16 @@
     Object.keys(maps.inf || {}).forEach(function (k) {
       var e = lida(maps.inf[k]); if (!e) return;
       var p = k.split(":");
+      var dest = DESTAQUES && DESTAQUES[String(p[0]).toUpperCase() + ":" + p[2]];
+      if (DESTAQUES && !dest) return;      // nada nesta edição com cara de prova: não manda revisar o informativo inteiro
+      if (dest) {
+        out.push({ id: "inf:" + k, tipo: "Informativo", tipoRotulo: "Decisões do informativo", destaques: dest, min: 3 * dest.length, lidaEm: e.em,
+          titulo: dest.map(function (d) { return d[1]; }).join(" · "),
+          sub: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1],
+          meses: DECISAO_MESES, motivo: "decisões do informativo",
+          href: "/p/diario-das-decisoes.html#abrir=" + encodeURIComponent(dest[0][0]) + "&busca=" + encodeURIComponent(dest[0][1]) });
+        return;
+      }
       out.push({ id: "inf:" + k, tipo: "Informativo", titulo: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1], sub: "", lidaEm: e.em,
         meses: DECISAO_MESES, motivo: "informativo", href: "/p/diario-dos-informativos.html#cad=" + encodeURIComponent(p[0] + "|" + p[2]) });
     });
@@ -649,9 +671,13 @@
     var selo = it.nivel ? '<span class="rv-cob rv-cob' + it.nivel + '" title="' + esc(it.cobrado) + '">' + (it.nivel === 3 ? "🔥 " : "📝 ") + esc(NIVEL[it.nivel].nome) + "</span> " : "";
     var plano = it.fase ? it.fase + " (" + it.intervalo + (/meses/.test(it.intervalo) ? ", " + it.motivo : "") + ")" : "";
     return '<li class="rv-item rv-' + it.estado + '">' +
-      '<span class="rv-tipo">' + esc(it.tipo) + "</span>" +
+      '<span class="rv-tipo">' + esc(it.tipoRotulo || it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
-        '<span class="rv-meta">' + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
+        (it.destaques ? '<span class="rv-dest">' + it.destaques.map(function (d) {
+          return '<a href="/p/diario-das-decisoes.html#abrir=' + encodeURIComponent(d[0]) + "&busca=" + encodeURIComponent(d[1]) + '" target="_blank" rel="noopener">' + esc(d[1]) + "</a>" +
+            (d[2] ? " (cobrado em " + plural(d[2], "prova", "provas") + ")" : " (cara de prova)") + (d[3] ? ": " + esc(d[3]) + "…" : "");
+        }).join("<br>") + "</span>" : "") +
+        '<span class="rv-meta">' + (it.sub ? esc(it.sub) + " · " : "") + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
       '<div class="rv-acoes">' + (it.bloco ? '<button type="button" class="rv-abrir" data-bloco-ler="' + esc(it.bloco.tid + ":" + it.bloco.n) + '">Abrir</button>' : it.tipo === "Súmula" || it.tipo === "Decisão" ? '<button type="button" class="rv-abrir" data-card="' + esc(it.id) + '">Abrir</button>'
           : it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +

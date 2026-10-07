@@ -23,6 +23,7 @@ site/            código das páginas (JS e CSS), uma pasta por tema:
   provas/          Estatísticas de cobrança em provas: estatisticas-provas-*
   estudos/         Meus Estudos: premios-*, revisoes
   cadernos/        Meus Cadernos (destaques e anotações): cadernos*
+  cronograma/      Meu Cronograma (plano de estudos semestral/anual): cronograma-*
   paginas/         páginas avulsas (Fontes e aviso)
 scripts/         robôs que atualizam os dados (Python/Node) — rodam no Mac ou no GitHub
 *.command        atalhos de duplo clique para os robôs do Mac
@@ -58,6 +59,7 @@ O arquivo de dados precisa ser carregado **antes** do de lógica.
 | Meus Grupos                  | —                       | `meus-grupos-logic.js`          | `diario-styles-v2.css`       |
 | Ranking de Informativos      | —                       | `ranking-informativos-logic.js` | `diario-styles-v2.css`       |
 | Estatísticas de cobrança (provas) | `provas/cobrancas.json` | `estatisticas-provas-logic.js` | `estatisticas-provas.css` |
+| Meu Cronograma (`/p/meu-cronograma.html`) | `leve/cronograma.json` (gerado por `scripts/gerar_cronograma.js`) | `cronograma-logic.js` | `cronograma-styles.css` |
 
 O **Diário de Leis** não segue mais o modelo "HTML pronto + script preenche":
 a página no Blogger só tem o esqueleto (`#select-edital`, `#select-estado`,
