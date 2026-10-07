@@ -553,8 +553,8 @@
       if (DESTAQUES && !dest) return;      // nada nesta edição com cara de prova: não manda revisar o informativo inteiro
       if (dest) {
         out.push({ id: "inf:" + k, tipo: "Informativo", tipoRotulo: "Info " + p[2], destaques: dest, min: 3 * dest.length, lidaEm: e.em,
-          titulo: dest.map(function (d) { return d[1]; }).join(" · "),
-          sub: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1],
+          titulo: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1],
+          sub: "",
           meses: DECISAO_MESES, motivo: "decisões do informativo",
           href: "/p/diario-das-decisoes.html#abrir=" + encodeURIComponent(dest[0][0]) + "&busca=" + encodeURIComponent(dest[0][1]) });
         return;
@@ -675,9 +675,10 @@
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
         (it.destaques ? '<span class="rv-dest">' + it.destaques.map(function (d) {
           return '<a href="/p/diario-das-decisoes.html#abrir=' + encodeURIComponent(d[0]) + "&busca=" + encodeURIComponent(d[1]) + '" target="_blank" rel="noopener">' + esc(d[1]) + "</a>" +
-            (d[2] ? " (cobrado em " + plural(d[2], "prova", "provas") + ")" : " (cara de prova)") + (d[3] ? ": " + esc(d[3]) + "…" : "");
+            (d[2] ? " · cobrado " + d[2] + "×" : "");
         }).join("<br>") + "</span>" : "") +
-        '<span class="rv-meta">' + (it.sub ? esc(it.sub) + " · " : "") + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando) + "</span></div>" +
+        '<span class="rv-meta">' + (it.destaques ? esc(base + (it.fase ? String(it.fase).replace(/ \(.*$/, "") + " · " : "") + quando)
+          : (it.sub ? esc(it.sub) + " · " : "") + selo + esc((it.cobrado ? it.cobrado + " · " : "") + base + plano + " · " + quando)) + "</span></div>" +
       '<div class="rv-acoes">' + (it.bloco ? '<button type="button" class="rv-abrir" data-bloco-ler="' + esc(it.bloco.tid + ":" + it.bloco.n) + '">Abrir</button>' : it.tipo === "Súmula" || it.tipo === "Decisão" ? '<button type="button" class="rv-abrir" data-card="' + esc(it.id) + '">Abrir</button>'
           : it.href ? '<a class="rv-abrir" href="' + esc(it.href) + '" target="_blank" rel="noopener">Abrir</a>' : "") +
         '<button type="button" class="rv-feito" data-rev="' + esc(it.id) + '">✔ Revisei hoje</button></div>' +
