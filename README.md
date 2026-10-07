@@ -222,6 +222,15 @@ Pastas lidas dentro de `Provas/` (no Mac): `01 Objetivas`, `02 Discursivas`, `03
 ou `TJSC - 2025`). Nessa última, a etapa vem da subpasta (1ª fase = objetiva) e do nome do arquivo
 ("sentença" = prova de sentença; o resto da 2ª fase = discursiva; espelhos de correção valem, gabaritos da 1ª fase não).
 
+## "Com julgados" (Diário de Leis, teste)
+
+Ao lado do botão "Leia-me" de uma lei aparece "⚖️ Com julgados": o texto da lei com, ao lado do artigo (ou do §), um número
+por decisão do site que trata dele — no máximo 2 por artigo; o número leva ao Diário das Decisões com a busca naquela decisão.
+`scripts/gerar_julgados_por_artigo.js` lê as decisões (repercussão geral, repetitivos, Jurisprudência em Teses, decisões extras do STF,
+ADI/ADPF/ADC/ADO e julgados dos informativos), acha onde cada uma cita a lei e grava `leis/julgados/<id do texto>.json`
+(+ `indice.json`, que diz quais leis têm o botão). Hoje só a Lei 13.105/2015 (CPC); para outra lei, acrescente uma entrada em
+`LEIS_PILOTO` no script. As indicações são automáticas — confira a decisão.
+
 ## Informativos em cards (Diário das Decisões)
 
 O grupo "Informativos" do Diário das Decisões mostra cada julgado dos
