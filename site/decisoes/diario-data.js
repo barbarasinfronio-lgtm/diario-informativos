@@ -2334,6 +2334,7 @@
 
   // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
   var STFPV_DATA = [
+    { edicao: 31, ano: 2026, data: "2026-10-09", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE31_2026_Partes1e2.pdf" },
     { edicao: 30, ano: 2026, data: "2026-10-02", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE30_2026_Partes1e2.pdf" },
     { edicao: 18, ano: 2026, data: "2026-06-05", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE18.2026.pdf" },
     { edicao: 12, ano: 2026, data: "2026-04-24", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVEa12_2026.pdf" },
