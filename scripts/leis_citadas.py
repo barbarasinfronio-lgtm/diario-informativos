@@ -57,7 +57,7 @@ def textos_do_site():
             yield " ".join(str(v) for v in x if isinstance(v, str))
     except (OSError, ValueError, KeyError):
         pass
-    s = (RAIZ / "rg-repetitivos-data.js").read_text(encoding="utf-8")
+    s = (RAIZ / "site/decisoes/rg-repetitivos-data.js").read_text(encoding="utf-8")
     for x in json.loads(s[s.index("["):s.rindex("]") + 1]):
         yield " ".join(str(x.get(k, "")) for k in ("titulo", "tese", "destaque", "questao"))
 
@@ -77,7 +77,7 @@ def contar():
 
 
 def ja_no_diario():
-    s = (RAIZ / "leis-data.js").read_text(encoding="utf-8")
+    s = (RAIZ / "site/leis/leis-data.js").read_text(encoding="utf-8")
     out = set()
     for m in re.finditer(r'numero:\s*"([^"]*)"', s):
         mm = re.match(r"(?i)\s*(Lei Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\b.*?(\d[\d.]*)\s*/\s*(\d{4})", m.group(1))

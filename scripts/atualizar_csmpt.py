@@ -115,7 +115,7 @@ def main():
              '\n    aviso: "Atenção: o site do MPT não indica quais foram revogadas, então todas aparecem aqui.",\n    normas: [\n'
              + "\n".join(linhas) + "\n  ]},\n  // <<< csmpt\n")
 
-    caminho = os.path.join(RAIZ, "normas-data.js")
+    caminho = os.path.join(RAIZ, "site/leis/normas-data.js")
     with open(caminho, encoding="utf-8") as f:
         texto = f.read()
     marcado = re.compile(r"  // >>> csmpt[^\n]*\n[\s\S]*?  // <<< csmpt\n")

@@ -21,8 +21,8 @@ const RAIZ = path.join(__dirname, "..");
 const ler = (f) => fs.readFileSync(path.join(RAIZ, f), "utf8");
 
 global.window = global;
-eval(ler("rg-repetitivos-data.js"));
-eval(ler("normas-citadas.js"));
+eval(ler("site/decisoes/rg-repetitivos-data.js"));
+eval(ler("site/leis/normas-citadas.js"));
 
 const fontes = {
   rg: RG_REPETITIVOS_DATA,

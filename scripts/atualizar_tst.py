@@ -102,7 +102,7 @@ def cancelada(r):
 
 # ---- Diário das Súmulas ------------------------------------------------------
 def atualizar_sumulas(sumulas):
-    caminho = os.path.join(RAIZ, "sumulas-data.js")
+    caminho = os.path.join(RAIZ, "site/sumulas/sumulas-data.js")
     with open(caminho, encoding="utf-8") as f:
         texto = f.read()
     m = re.search(r"\n  tst: \{\n[\s\S]*?\n  \},\n", texto)

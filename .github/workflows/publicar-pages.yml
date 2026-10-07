@@ -42,9 +42,24 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
+      # O código do site fica organizado por tema em site/<tema>/ (layout, conta, leis, decisoes,
+      # sumulas, editais, provas, estudos, cadernos, paginas). Os endereços publicados continuam
+      # os de sempre — https://barbarasinfronio-lgtm.github.io/diario-informativos/<arquivo> —,
+      # porque o Blogger e os arquivos do site se chamam uns aos outros por esses nomes. Por isso,
+      # aqui os arquivos de site/<tema>/ são copiados para a raiz do que vai ao ar.
+      - name: Montar o site
+        run: |
+          mkdir _site
+          tar --exclude='./.git' --exclude='./_site' --exclude='./site' -cf - . | tar -xf - -C _site
+          for f in site/*/*; do
+            nome="$(basename "$f")"
+            if [ -e "_site/$nome" ]; then echo "ERRO: $nome repetido em site/ ou na raiz"; exit 1; fi
+            cp "$f" "_site/$nome"
+          done
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - id: deploy
         uses: actions/deploy-pages@v4

@@ -25,7 +25,7 @@ LIMITE = 1500000
 
 
 def temas():
-    s = (RAIZ / "rg-repetitivos-data.js").read_text(encoding="utf-8")
+    s = (RAIZ / "site/decisoes/rg-repetitivos-data.js").read_text(encoding="utf-8")
     L = json.loads(s[s.index("["):s.rindex("]") + 1])
     out = []
     for d in L:

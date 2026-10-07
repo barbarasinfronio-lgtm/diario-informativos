@@ -1,6 +1,6 @@
 // Exporta (stdout) as súmulas e decisões do site para scripts/cobrancas_provas.py.
 const fs = require("fs"); global.window = global;
-eval(fs.readFileSync("sumulas-data.js", "utf8")); eval(fs.readFileSync("rg-repetitivos-data.js", "utf8"));
+eval(fs.readFileSync("site/sumulas/sumulas-data.js", "utf8")); eval(fs.readFileSync("site/decisoes/rg-repetitivos-data.js", "utf8"));
 const C = [];
 for (const k in SUMULAS_DATA) for (const s of (SUMULAS_DATA[k].sumulas || [])) C.push({ src: "sum", key: k + "|" + s.numero, org: k, num: String(s.numero), texto: s.texto });
 for (const d of RG_REPETITIVOS_DATA) C.push({ src: "dec", key: String(d.id), org: d.orgao, tipo: d.tipo, label: d.precedenteLabel || "Tema", num: String(d.tema), texto: d.tese || "" });

@@ -33,7 +33,7 @@ BLOCOS_CNJ = [  # Resolução CNJ nº 75/2009
 ]
 
 def indice_leis():
-    s = open(os.path.join(REPO, 'leis-data.js'), encoding='utf-8').read()
+    s = open(os.path.join(REPO, 'site/leis/leis-data.js'), encoding='utf-8').read()
     idx = {}
     mat = None
     for linha in s.split('\n'):
@@ -69,7 +69,7 @@ def dump(e):
 def main(pasta, itens_path):
     idx = indice_leis()
     itens = json.load(open(itens_path, encoding='utf-8'))
-    p = os.path.join(REPO, 'editais-data.js')
+    p = os.path.join(REPO, 'site/editais/editais-data.js')
     s = open(p, encoding='utf-8').read()
     novos = []
     for it in itens:

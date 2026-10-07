@@ -12,7 +12,7 @@ import collections, json, os, re, sys
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
 rd = lambda f: json.load(open(f, encoding="utf-8"))
-s = open("rg-repetitivos-data.js", encoding="utf-8").read()
+s = open("site/decisoes/rg-repetitivos-data.js", encoding="utf-8").read()
 R = json.loads(s[s.index("["):s.rindex("]") + 1])
 TEMAS = {str(d["tema"]): d for d in R if d.get("orgao") == "STJ" and d.get("tipo") == "repetitivo" and d.get("tema")}
 num = lambda p: re.sub(r"\D", "", re.sub(r"/[A-Z]{2}$", "", p or ""))

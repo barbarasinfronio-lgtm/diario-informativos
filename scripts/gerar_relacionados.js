@@ -11,11 +11,11 @@ const path = require("path");
 const RAIZ = path.join(__dirname, "..");
 const ler = (f) => fs.readFileSync(path.join(RAIZ, f), "utf8");
 global.window = global;
-eval(ler("normas-citadas.js"));
-eval(ler("leis-data.js"));
-eval(ler("sumulas-data.js"));
-eval(ler("normas-data.js"));
-eval(ler("rg-repetitivos-data.js"));
+eval(ler("site/leis/normas-citadas.js"));
+eval(ler("site/leis/leis-data.js"));
+eval(ler("site/sumulas/sumulas-data.js"));
+eval(ler("site/leis/normas-data.js"));
+eval(ler("site/decisoes/rg-repetitivos-data.js"));
 
 const norm = (t) => String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 const slug = (t) => norm(t).replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
