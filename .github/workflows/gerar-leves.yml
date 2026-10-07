@@ -12,7 +12,7 @@ on:
   push:
     branches: [main]
     paths:
-      - rg-repetitivos-data.js
+      - site/decisoes/rg-repetitivos-data.js
       - stj/teses.json
       - stf/extras.json
       - tst/decisoes.json
@@ -21,12 +21,12 @@ on:
       - provas/cobrancas.json
       - scripts/ligar_repetitivos.py
       - stj/repetitivos-scon.json
-      - normas-citadas.js
+      - site/leis/normas-citadas.js
       - scripts/gerar_leves.js
       - scripts/gerar_relacionados.js
-      - leis-data.js
-      - normas-data.js
-      - sumulas-data.js
+      - site/leis/leis-data.js
+      - site/leis/normas-data.js
+      - site/sumulas/sumulas-data.js
       - leis/texto/citadas.json
       - scripts/limpar_decisoes.py
   schedule:
@@ -64,7 +64,7 @@ jobs:
       - name: Salvar os arquivos gerados
         id: salvar
         run: |
-          git add -A leve stj/repetitivos rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json informativos/indice.json
+          git add -A leve stj/repetitivos site/decisoes/rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json informativos/indice.json
           if git diff --cached --quiet; then
             echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
           fi

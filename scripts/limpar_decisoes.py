@@ -214,7 +214,7 @@ def juntar_teses_e_temas():
     """A mesma tese aparece na Jurisprudência em Teses do STJ e como Tema
     (Repetitivo/Repercussão Geral). Fica um card só, com o conteúdo mais recente,
     e o número do outro vai em "tambem" (o card mostra os dois números)."""
-    f_rg, f_te = "rg-repetitivos-data.js", "stj/teses.json"
+    f_rg, f_te = "site/decisoes/rg-repetitivos-data.js", "stj/teses.json"
     p, rg, suf, ind = ler_js(f_rg)
     obj, nl = ler_json(f_te)
     teses = obj["itens"]
@@ -457,7 +457,7 @@ def limpar_reclamacoes():
 
 # ---- Repercussão Geral e Repetitivos ------------------------------------------
 def limpar_rg():
-    f = "rg-repetitivos-data.js"
+    f = "site/decisoes/rg-repetitivos-data.js"
     conferir_formato(f)
     p, lista, s, i = ler_js(f)
     antes = len(lista)

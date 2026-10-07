@@ -68,7 +68,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-ARQUIVO = RAIZ / "diario-data.js"
+ARQUIVO = RAIZ / "site/decisoes/diario-data.js"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 MESES = ["jan", "fev", "mar", "abr", "mai", "jun",
@@ -1228,7 +1228,7 @@ def leis_do_acervo():
     """(numero, nome, url) de cada lei do leis-data.js com texto no Planalto."""
     import json as _json
     try:
-        t = (RAIZ / "leis-data.js").read_text(encoding="utf-8")
+        t = (RAIZ / "site/leis/leis-data.js").read_text(encoding="utf-8")
     except OSError:
         return []
     out, vistos = [], set()
@@ -1598,7 +1598,7 @@ def leis_estaduais(hoje_iso):
     import json
     import time
     try:
-        t = (RAIZ / "leis-data.js").read_text(encoding="utf-8")
+        t = (RAIZ / "site/leis/leis-data.js").read_text(encoding="utf-8")
     except OSError:
         return 0
     lista, vistos = [], set()

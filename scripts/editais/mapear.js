@@ -1,8 +1,8 @@
 // jsc mapear.js -- <repo> <entrada.json>   (entrada: {secoes:[{nome, materia, texto}]})
 var window = this; var localStorage = { getItem: function () { return null; } };
 var REPO = arguments[0], ENT = JSON.parse(readFile(arguments[1]));
-load(REPO + '/leis-data.js'); window.LEIS_DATA = LEIS_DATA;
-load(REPO + '/normas-citadas.js');
+load(REPO + '/site/leis/leis-data.js'); window.LEIS_DATA = LEIS_DATA;
+load(REPO + '/site/leis/normas-citadas.js');
 var idx = {};
 Object.keys(LEIS_DATA).forEach(function (m) {
   LEIS_DATA[m].leis.forEach(function (l) {

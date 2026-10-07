@@ -15,7 +15,7 @@ ROBOS=(
   scripts/atualizar_csjt.py   # CSJT: resoluções e recomendações
   scripts/atualizar_csmpt.py  # CSMPT (MPT): resoluções
 )
-ARQUIVOS=(sumulas-data.js tst normas-data.js)
+ARQUIVOS=(site/sumulas/sumulas-data.js tst site/leis/normas-data.js)
 
 resultado=0
 for robo in "${ROBOS[@]}"; do

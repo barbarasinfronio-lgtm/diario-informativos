@@ -10,7 +10,38 @@ um pequeno script que busca `estudamana-header.js` com `fetch(..., {cache:'no-ca
 > `publicar-pages.yml` (ver [Automação](#automação)) publica o `main` a cada
 > envio; a mudança aparece em poucos minutos, sem cache para limpar.
 
+## Como o repositório está organizado
+
+```
+site/            código das páginas (JS e CSS), uma pasta por tema:
+  layout/          cabeçalho, cores e visual de card (estudamana-header, estudamana-tokens, cards-shared)
+  conta/           login e nuvem: conta-google, conta-email, nuvem-shared, grupos-shared, meus-grupos-logic
+  leis/            Diário de Leis e Resoluções: leis-*, normas-*
+  decisoes/        Diário dos Informativos e Diário das Decisões: diario-*, rg-repetitivos-*, ranking-informativos-logic
+  sumulas/         Diário das Súmulas: sumulas-*
+  editais/         Editais: editais-*
+  provas/          Estatísticas de cobrança em provas: estatisticas-provas-*
+  estudos/         Meus Estudos: premios-*, revisoes
+  cadernos/        Meus Cadernos (destaques e anotações): cadernos*
+  paginas/         páginas avulsas (Fontes e aviso)
+scripts/         robôs que atualizam os dados (Python/Node) — rodam no Mac ou no GitHub
+*.command        atalhos de duplo clique para os robôs do Mac
+.github/         robôs do GitHub Actions (publicar, gerar dados leves, dividir por ano)
+leis/ stf/ stj/ tst/ informativos/ controleconst/ reclamacoes/ provas/ leve/ curadoria/
+                 dados (JSON), uma pasta por assunto
+firestore.rules  regras do banco da conta
+```
+
+**Os endereços do site não mudaram.** O robô `publicar-pages.yml` copia os arquivos de
+`site/<tema>/` para a raiz do que vai ao ar, então o Blogger e os arquivos se chamam pelos
+mesmos nomes de sempre (`.../diario-informativos/leis-logic.js`). Por isso **os nomes dos arquivos
+em `site/` não podem se repetir**, e `<script src>` e `fetch` dentro do código continuam usando só o
+nome do arquivo (sem a pasta). Já os robôs (`scripts/`) leem e gravam os arquivos pelo caminho do
+repositório (`site/leis/leis-data.js`).
+
 ## Páginas e arquivos
+
+Nesta seção, os nomes de arquivo aparecem sem a pasta; ache cada um dentro de `site/<tema>/`.
 
 Cada página usa um par **`*-data.js`** (os dados) + **`*-logic.js`** (o comportamento).
 O arquivo de dados precisa ser carregado **antes** do de lógica.

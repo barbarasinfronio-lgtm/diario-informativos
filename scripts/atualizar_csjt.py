@@ -136,7 +136,7 @@ def main():
              '    normas: [\n'
              + "\n".join(linhas) + "\n  ]},\n  // <<< csjt\n")
 
-    caminho = os.path.join(RAIZ, "normas-data.js")
+    caminho = os.path.join(RAIZ, "site/leis/normas-data.js")
     with open(caminho, encoding="utf-8") as f:
         texto = f.read()
     marcado = re.compile(r"  // >>> csjt[^\n]*\n[\s\S]*?  // <<< csjt\n")
