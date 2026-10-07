@@ -84,7 +84,9 @@
       ".em-fontes a{color:var(--accent,#1f3a5f);font-weight:600;word-break:break-word}" +
       ".em-fontes .em-fontes-o-que{color:var(--ink-soft,#4a5064)}" +
       ".em-fontes .em-fontes-aviso{background:var(--surface-2,#efeadd);border-left:4px solid var(--accent,#1f3a5f);border-radius:8px;padding:12px 16px;margin:8px 0 20px}" +
-      ".em-fontes .em-fontes-aviso p{margin:6px 0}";
+      ".em-fontes .em-fontes-aviso p{margin:6px 0}" +
+      ".em-fontes .em-fontes-apagar{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #b3261e;background:transparent;color:#b3261e;cursor:pointer}" +
+      ".em-fontes .em-fontes-apagar:hover{background:#b3261e;color:#fff}.em-fontes .em-fontes-apagar:disabled{opacity:.6;cursor:default}";
     document.head.appendChild(st);
   }
 
@@ -110,10 +112,56 @@
     "<p>O que você marca no site (leis, súmulas e decisões lidas, revisões, cronograma, prêmios e anotações) fica salvo no próprio navegador do seu aparelho. " +
     "Se você entrar com sua conta, essas marcações também são guardadas na nuvem, vinculadas à sua conta, apenas para que apareçam em qualquer aparelho em que você entrar. " +
     "Esses dados servem somente para o funcionamento do site e para o seu estudo: <strong>não são vendidos, não são usados para publicidade nem para qualquer finalidade comercial</strong>, " +
-    "e não são entregues a terceiros. Você pode apagar suas marcações quando quiser.</p>" +
+    "e não são entregues a terceiros. Você pode apagar tudo quando quiser, com o botão abaixo.</p>" +
+    '<p><button type="button" class="em-fontes-apagar">Apagar todos os meus dados</button> <span class="em-fontes-apagar-msg" role="status"></span></p>' +
     "<h2>Direitos autorais</h2>" +
     "<p>Textos de leis, decisões judiciais e demais atos oficiais não são protegidos por direito autoral (Lei nº 9.610/1998, art. 8º, IV). " +
     "Os resumos, a organização, os filtros e as ferramentas do site são do Estuda Mana.</p>" +
     "<h2>Encontrou um erro?</h2>" +
     "<p>Avise pelos comentários no fim desta página, dizendo em qual Diário e qual item — corrigimos o quanto antes.</p>";
+
+  // ---- botão "Apagar todos os meus dados" ----------------------------------------------------------
+  var NUVEM = "https://barbarasinfronio-lgtm.github.io/diario-informativos/nuvem-shared.js";
+  var CHAVES_LOCAIS = /(^|[-_])(lid[oa]s|revisoes|cronograma|premios|conquistados|vistos|avatar|grupo|editais|normas|decisoes|sumulas|cadernos|notas)([-_]|$)|^(informativos|leis|sumulas)-/i;
+  var COLECOES = ["progress", "progress-leis", "progress-sumulas", "progress-decisoes", "progress-normas", "progress-adi", "progress-rcl", "progress-premios"];
+  var btn = raiz.querySelector(".em-fontes-apagar"), msg = raiz.querySelector(".em-fontes-apagar-msg");
+  function carregarNuvem() {
+    if (window.EstudaManaNuvem) return Promise.resolve();
+    return fetch(NUVEM, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error("nuvem"); return r.text(); })
+      .then(function (code) { (0, eval)(code + "\n//# sourceURL=" + NUVEM); });
+  }
+  function apagarNuvem(uid) {
+    var db = firebase.firestore();
+    var grupos = [];
+    try { grupos = JSON.parse(localStorage.getItem("informativos-grupo") || "[]"); if (!Array.isArray(grupos)) grupos = grupos && grupos.code ? [grupos] : []; } catch (e) { grupos = []; }
+    var tarefas = COLECOES.map(function (c) { return db.doc(c + "/" + uid).delete(); });
+    grupos.forEach(function (g) { if (g && g.code) tarefas.push(db.doc("groups/" + g.code + "/members/" + uid).delete()); });
+    tarefas.push(db.collection("cadernos/" + uid + "/marcas").get().then(function (snap) {
+      return Promise.all(snap.docs.map(function (d) { return d.ref.delete(); }));
+    }).then(function () { return db.doc("cadernos/" + uid).set({ cadernos: [], atualizadoEm: new Date().toISOString() }); }));
+    return Promise.all(tarefas);
+  }
+  function apagarLocal() {
+    var chaves = [];
+    try { for (var i = 0; i < localStorage.length; i++) chaves.push(localStorage.key(i)); } catch (e) { return 0; }
+    var n = 0;
+    chaves.forEach(function (k) { if (CHAVES_LOCAIS.test(k)) { try { localStorage.removeItem(k); n++; } catch (e) {} } });
+    return n;
+  }
+  if (btn) btn.addEventListener("click", function () {
+    if (!confirm("Apagar TODAS as suas marcações (lidos, revisões, cronograma, prêmios, cadernos e grupos), neste aparelho e na nuvem?\n\nIsso não pode ser desfeito.")) return;
+    btn.disabled = true; msg.textContent = " Apagando…";
+    carregarNuvem().then(function () { return window.EstudaManaNuvem.preparar(); }).catch(function () { return null; })
+      .then(function (uid) {
+        if (!uid) return { uid: null };
+        return apagarNuvem(uid).then(function () { return { uid: uid }; }, function () { return { uid: uid, erro: true }; });
+      })
+      .then(function (r) {
+        apagarLocal();
+        btn.disabled = false;
+        msg.textContent = r.erro ? " Apaguei neste aparelho, mas não consegui apagar da nuvem. Tente de novo em instantes."
+          : r.uid ? " Pronto: seus dados foram apagados deste aparelho e da nuvem."
+          : " Apaguei os dados deste aparelho. Se você usa uma conta, entre nela (Meu Progresso) e clique de novo para apagar também da nuvem.";
+      });
+  });
 })();
