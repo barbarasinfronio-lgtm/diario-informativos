@@ -19,7 +19,9 @@
    - o último dia de estudo da semana é de revisão da semana + questões;
    - quando uma fila acaba, o tempo dela passa para a outra.
    Cada item abre a página do site com aquele conteúdo (lei, súmula ou decisão) em outra aba.
-   O que a pessoa marca como feito fica neste navegador (localStorage "cronograma-feitos").
+   O que a pessoa marca como lido ou revisado vale também nos Diários e nas Revisões, e vice-versa (ver "progresso"
+   mais abaixo); as escolhas do cronograma ficam na conta (progress-premios/<uid>, campo "cronograma") e, sem login,
+   neste navegador.
    Dados: leve/cronograma.json (gerado por scripts/gerar_cronograma.js).
    ===================================================================== */
 (function () {
@@ -27,7 +29,6 @@
 
   var BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/";
   var CFG_KEY = "cronograma-config";
-  var FEITOS_KEY = "cronograma-feitos";
 
   var PAGINA_LEIS = "/p/diario-de-leis.html";
   var PAGINA_SUMULAS = "/p/diario-das-sumulas.html";
@@ -76,7 +77,9 @@
 
     // filas de lei seca por matéria (na ordem em que a matéria aparece no edital)
     var ordemMat = [], porMat = {};
+    var pular = ctx.pular || function () { return false; };      // já lido antes do início do plano
     ctx.leis.forEach(function (l) {
+      if (pular("lei", l.chave)) return;
       if (!porMat[l.mat]) { porMat[l.mat] = []; ordemMat.push(l.mat); }
       porMat[l.mat].push({ l: l, restante: l.min, total: l.min, parte: 0 });
     });
@@ -87,8 +90,8 @@
       porMat[m].sort(function (a, b) { return b.l.cit - a.l.cit; });   // sort estável: sem citações, mantém a ordem do edital
     });
     var jur = [];
-    ctx.sumulas.forEach(function (s) { jur.push({ tipo: "sumula", cob: s.cob, s: s, min: MIN_SUMULA }); });
-    ctx.decisoes.forEach(function (d) { jur.push({ tipo: "decisao", cob: d.cob, d: d, min: MIN_DECISAO }); });
+    ctx.sumulas.forEach(function (s) { if (!pular("sum", s.org + ":" + s.num)) jur.push({ tipo: "sumula", cob: s.cob, s: s, min: MIN_SUMULA }); });
+    ctx.decisoes.forEach(function (d) { if (!pular("dec", String(d.id))) jur.push({ tipo: "decisao", cob: d.cob, d: d, min: MIN_DECISAO }); });
     jur.sort(function (a, b) { return b.cob - a.cob; });
     var jurPos = 0;
 
@@ -124,6 +127,7 @@
         var inteira = tomar >= it.total;
         out.push({
           k: "lei:" + it.l.chave + ":" + it.parte, tipo: "lei", titulo: it.l.nome, mat: m, min: tomar,
+          st: "lei", sk: it.l.chave, rid: "lei:" + it.l.chave.split(":").slice(1).join(":"), ultima: it.restante <= 0.01,
           trecho: inteira ? "" : "trecho " + Math.round(de / it.total * 100) + "% a " + Math.round(ate / it.total * 100) + "%",
           href: PAGINA_LEIS + "#lei=" + encodeURIComponent(it.l.chave), cobr: it.l.cit
         });
@@ -145,6 +149,7 @@
         if (j.tipo === "sumula") {
           out.push({
             k: "sumula:" + j.s.org + ":" + j.s.num, tipo: "sumula", min: j.min, cobr: j.cob,
+            st: "sum", sk: j.s.org + ":" + j.s.num, rid: "sum:" + j.s.org + ":" + j.s.num, ultima: true,
             titulo: "Súmula " + j.s.num + " do " + (NOMES_ORG[j.s.org] || j.s.org.toUpperCase()), sub: j.s.sub,
             href: PAGINA_SUMULAS + "#cad=" + encodeURIComponent(j.s.org + "|" + j.s.num)
           });
@@ -152,6 +157,7 @@
           var nomeD = j.d.titulo.replace(/\s+—\s+.*$/, "");
           out.push({
             k: "decisao:" + j.d.id, tipo: "decisao", min: j.min, cobr: j.cob,
+            st: "dec", sk: String(j.d.id), rid: "dec:" + j.d.id, ultima: true,
             titulo: nomeD, sub: j.d.informativo ? j.d.titulo.replace(/^.*?—\s*/, "") + (j.cob >= 1 ? " · cobrado em prova" : " · cara de prova") : "",
             href: PAGINA_DECISOES + "#abrir=" + encodeURIComponent(j.d.id) + "&busca=" + encodeURIComponent(nomeD)
           });
@@ -168,7 +174,7 @@
           var m = minRevisao(it);
           if (usado + m > orcamento) return;
           usado += m;
-          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras });
+          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data) });
         });
       });
       return { itens: out, usado: usado };
@@ -189,7 +195,7 @@
           var m = minRevisao(it);
           if (usado + m > minRev) return;
           usado += m;
-          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0 });
+          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data) });
         });
         dia.blocos.push({ id: "revisao", titulo: "Revisão da semana", min: minRev, itens: itensRev, nota: itensRev.length ? "" : "Revise o que estudou nesta semana." });
         dia.blocos.push({ id: "questoes", titulo: "Questões e provas anteriores", min: minQ, itens: [], nota: "Resolva questões das matérias da semana. As páginas de Súmulas e Decisões mostram em quais provas cada item já foi cobrado." });
@@ -260,12 +266,127 @@
     return { leis: leis, sumulas: sumulas, decisoes: decisoes, orgs: orgs, materiasPrimeiro: orgs.indexOf("tst") >= 0 ? ["trabalhista"] : [] };
   }
 
-  // ---- interface ----------------------------------------------------------------------------------
+  // ---- progresso: conversa com os Diários e as Revisões -----------------------------------------
+  // O que a pessoa marca aqui vale lá, e o contrário: lei, súmula e decisão marcadas como lidas gravam nos mesmos
+  // lugares dos Diários (localStorage "leis-lidas", "sumulas-lidas", "decisoes-lidas" e, com login, progress-leis/,
+  // progress-sumulas/ e progress-decisoes/ — campo "map"); revisões gravam em "revisoes-feitas" e na conta
+  // (progress-premios/<uid>, campo "revisoes"), como o botão "Revisei hoje". O cronograma em si (as escolhas e os
+  // trechos de lei lidos) fica em progress-premios/<uid>, campo "cronograma".
+  var LOCAL = { lei: "leis-lidas", sum: "sumulas-lidas", dec: "decisoes-lidas" };
+  var CAMINHO = { lei: "progress-leis/", sum: "progress-sumulas/", dec: "progress-decisoes/" };
+  var REV_KEY = "revisoes-feitas";
+  var PARTES_KEY = "cronograma-partes";
+
   function lerJson(chave, padrao) {
     try { var v = JSON.parse(localStorage.getItem(chave) || "null"); return v == null ? padrao : v; } catch (e) { return padrao; }
   }
   function gravarJson(chave, v) { try { localStorage.setItem(chave, JSON.stringify(v)); } catch (e) {} }
+  function lida(v) { return v === true || !!(v && typeof v === "object" && v.lida); }
+  function dataDe(v) { return v && typeof v === "object" && /^\d{4}-\d{2}-\d{2}/.test(v.lidaEm || "") ? v.lidaEm.slice(0, 10) : null; }
+  function sufixoLei(chave) { return String(chave).split(":").slice(1).join(":"); }
 
+  function criarProgresso() {
+    var P = { uid: null, db: null, maps: { lei: {}, sum: {}, dec: {} }, rev: {}, partes: lerJson(PARTES_KEY, {}), cronogramaNuvem: null, leiPorSufixo: {} };
+
+    function juntarMapas(local, nuvem) {
+      var out = Object.assign({}, local);
+      Object.keys(nuvem || {}).forEach(function (k) {
+        var a = out[k], b = nuvem[k];
+        if (!lida(a) && lida(b)) out[k] = b;
+        else if (lida(a) && lida(b) && dataDe(b) && (!dataDe(a) || dataDe(b) < dataDe(a))) out[k] = b;
+      });
+      return out;
+    }
+    function indexar() {
+      P.leiPorSufixo = {};
+      Object.keys(P.maps.lei).forEach(function (k) {
+        if (lida(P.maps.lei[k])) { var sf = sufixoLei(k); if (!P.leiPorSufixo[sf] || (dataDe(P.maps.lei[k]) || "") < (dataDe(P.leiPorSufixo[sf]) || "9")) P.leiPorSufixo[sf] = P.maps.lei[k]; }
+      });
+    }
+    P.lerLocal = function () {
+      ["lei", "sum", "dec"].forEach(function (st) { P.maps[st] = juntarMapas(lerJson(LOCAL[st], {}), P.maps[st]); });
+      P.rev = juntarRev(lerJson(REV_KEY, {}), P.rev);
+      indexar();
+    };
+    function juntarRev(a, b) {
+      var out = {};
+      [a, b].forEach(function (m) {
+        Object.keys(m || {}).forEach(function (k) {
+          var set = {};
+          (out[k] || []).concat(m[k] || []).forEach(function (d) { if (/^\d{4}-\d{2}-\d{2}$/.test(d)) set[d] = true; });
+          out[k] = Object.keys(set).sort();
+        });
+      });
+      return out;
+    }
+    // login (se houver) e leitura do que está na conta
+    P.entrar = function () {
+      return (window.EstudaManaNuvem ? Promise.resolve() : carregarScript(BASE + "nuvem-shared.js")).then(function () {
+        return window.EstudaManaNuvem.preparar();
+      }).then(function (uid) {
+        P.uid = uid;
+        if (!uid) return;
+        P.db = firebase.firestore();
+      }).catch(function () { P.uid = null; });
+    };
+    P.carregarNuvem = function () {
+      if (!P.uid) return Promise.resolve();
+      var leituras = Object.keys(CAMINHO).map(function (st) {
+        return P.db.doc(CAMINHO[st] + P.uid).get().then(function (snap) {
+          var m = snap.exists && snap.data() && snap.data().map;
+          if (m) P.maps[st] = juntarMapas(P.maps[st], m);
+        }).catch(function () {});
+      });
+      leituras.push(P.db.doc("progress-premios/" + P.uid).get().then(function (snap) {
+        var d = snap.exists ? (snap.data() || {}) : {};
+        if (d.revisoes) P.rev = juntarRev(P.rev, d.revisoes);
+        P.cronogramaNuvem = d.cronograma || null;
+      }).catch(function () {}));
+      return Promise.all(leituras).then(function () {
+        // o que veio da conta também fica neste navegador (como fazem os Diários)
+        ["lei", "sum", "dec"].forEach(function (st) { gravarJson(LOCAL[st], juntarMapas(lerJson(LOCAL[st], {}), P.maps[st])); });
+        gravarJson(REV_KEY, juntarRev(lerJson(REV_KEY, {}), P.rev));
+        indexar();
+      });
+    };
+    P.entrada = function (st, chave) { return st === "lei" ? (P.leiPorSufixo[sufixoLei(chave)] || null) : (lida(P.maps[st][chave]) ? P.maps[st][chave] : null); };
+    // marca ou desmarca a leitura num Diário (mesmos formato e lugares dos Diários)
+    P.marcar = function (st, chave, valor) {
+      var hoje = iso(new Date()), local = lerJson(LOCAL[st], {});
+      var chaves = [chave];
+      if (st === "lei") Object.keys(Object.assign({}, local, P.maps.lei)).forEach(function (k) { if (sufixoLei(k) === sufixoLei(chave) && chaves.indexOf(k) < 0) chaves.push(k); });
+      var delta = {};
+      chaves.forEach(function (k) {
+        if (valor) { if (!lida(local[k])) local[k] = { lida: true, lidaEm: hoje }; P.maps[st][k] = local[k]; delta[k] = local[k]; }
+        else { delete local[k]; delete P.maps[st][k]; delta[k] = window.firebase && firebase.firestore ? firebase.firestore.FieldValue.delete() : null; }
+      });
+      gravarJson(LOCAL[st], local);
+      indexar();
+      if (P.db && P.uid) P.db.doc(CAMINHO[st] + P.uid).set({ map: delta, updatedAt: new Date().toISOString() }, { merge: true }).catch(function () {});
+    };
+    P.revisaoFeita = function (rid, depoisDe) { return (P.rev[rid] || []).some(function (d) { return d >= depoisDe; }); };
+    P.marcarRevisao = function (rid, valor) {
+      var hoje = iso(new Date()), local = lerJson(REV_KEY, {});
+      var lista = (local[rid] || []).filter(function (d) { return d !== hoje; });
+      if (valor) lista.push(hoje);
+      lista.sort();
+      local[rid] = lista; P.rev[rid] = lista;
+      gravarJson(REV_KEY, local);
+      if (P.db && P.uid) { var o = {}; o[rid] = lista; P.db.doc("progress-premios/" + P.uid).set({ revisoes: o, updatedAt: new Date().toISOString() }, { merge: true }).catch(function () {}); }
+    };
+    P.salvarCronograma = function (cfg) {
+      gravarJson(PARTES_KEY, P.partes);
+      if (P.db && P.uid) P.db.doc("progress-premios/" + P.uid).set({ cronograma: { cfg: cfg, partes: P.partes }, updatedAt: new Date().toISOString() }, { merge: true }).catch(function () {});
+    };
+    return P;
+  }
+
+  function carregarScript(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(url); return r.text(); })
+      .then(function (c) { (0, eval)(c + "\n//# sourceURL=" + url); });
+  }
+
+  // ---- interface ----------------------------------------------------------------------------------
   function configPadrao() {
     return { horas: 4, horizonte: "semestral", inicio: iso(new Date()), dias: [1, 2, 3, 4, 5, 6], pctCurso: 40, diaRevisao: 6, aba: "hoje" };
   }
@@ -281,13 +402,10 @@
     document.head.appendChild(link);
 
     var cfg = Object.assign(configPadrao(), lerJson(CFG_KEY, {}));
-    var feitos = lerJson(FEITOS_KEY, {});
-    var dados = null, S = null, plano = null, entradas = null;
+    var P = criarProgresso();
+    P.lerLocal();
+    var dados = null, S = null, plano = null, entradas = null, registro = {};
 
-    function carregarScript(url) {
-      return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(url); return r.text(); })
-        .then(function (c) { (0, eval)(c + "\n//# sourceURL=" + url); });
-    }
     var pEditais = window.EditaisShared && window.EditaisShared.__ready ? Promise.resolve() : carregarScript(BASE + "editais-shared.js");
     Promise.all([
       pEditais,
@@ -298,17 +416,62 @@
     }).then(function () {
       S.onChange(function () { recalcular(); desenhar(); });
       recalcular(); desenhar();
+      // login e dados da conta (o cronograma já aparece com o que está neste navegador)
+      return P.entrar().then(function () {
+        if (!P.uid) { avisoLogin(); return; }
+        return P.carregarNuvem().then(function () {
+          var n = P.cronogramaNuvem;
+          if (n && n.cfg) { cfg = Object.assign(configPadrao(), n.cfg); gravarJson(CFG_KEY, cfg); }
+          if (n && n.partes) { P.partes = Object.assign({}, P.partes, n.partes); gravarJson(PARTES_KEY, P.partes); }
+          else P.salvarCronograma(cfg);                       // primeira vez na conta: guarda o que estava neste navegador
+          recalcular(); desenhar();
+        });
+      });
     }).catch(function () {
       raiz.innerHTML = '<p class="cr-vazio">Não consegui carregar o cronograma agora. Tente de novo em alguns minutos.</p>';
     });
+    function avisoLogin() {
+      try { if (window.EstudaManaNuvem && window.EstudaManaNuvem.mostrarLogin) window.EstudaManaNuvem.mostrarLogin(raiz); } catch (e) {}
+    }
+    // voltando de outra aba (onde a pessoa marcou algo num Diário), puxa de novo
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState !== "visible" || !S) return;
+      P.lerLocal();
+      (P.uid ? P.carregarNuvem() : Promise.resolve()).then(function () { desenhar(); });
+    });
 
-    function salvarCfg() { gravarJson(CFG_KEY, cfg); }
+    function salvarCfg() { gravarJson(CFG_KEY, cfg); P.salvarCronograma(cfg); }
 
     function recalcular() {
       var ed = S && S.principal();
       if (!ed) { plano = null; entradas = null; return; }
       entradas = entradasDoEdital(ed, dados);
+      // o que já estava lido (nos Diários) antes do início do plano não entra de novo
+      entradas.pular = function (st, chave) {
+        var e = P.entrada(st, chave);
+        if (!e) return false;
+        var d = dataDe(e);
+        return !d || d < cfg.inicio;
+      };
       plano = montarPlano(cfg, entradas);
+    }
+
+    // ---- estado de cada item ----
+    function estaFeito(it) {
+      if (it.rid && it.dataPlano) return P.revisaoFeita(it.rid, it.dataPlano);          // revisão: feita neste dia ou depois
+      if (it.st && P.entrada(it.st, it.sk)) return true;                                   // já lido no Diário
+      return !!P.partes[it.k];
+    }
+    function marcarItem(it, valor) {
+      var hoje = iso(new Date());
+      if (it.rid && it.dataPlano) { P.marcarRevisao(it.rid, valor); return; }
+      if (it.st === "lei") {
+        if (valor) P.partes[it.k] = hoje; else delete P.partes[it.k];
+        if (it.ultima) P.marcar("lei", it.sk, valor);
+        P.salvarCronograma(cfg);
+        return;
+      }
+      if (it.st) P.marcar(it.st, it.sk, valor);
     }
 
     // ---- peças da tela ----
@@ -346,17 +509,19 @@
       var pct = r.leiMinTotal ? Math.min(100, Math.round(r.leiMinPlanejado / r.leiMinTotal * 100)) : 100;
       var disp = 0;
       plano.dias.forEach(function (d) { d.blocos.forEach(function (b) { if (b.id === "lei") disp += b.min; }); });
-      var txt = '<p><b>Lei seca:</b> o plano cobre <b>' + pct + "%</b> das leis do edital (" + fmtMin(r.leiMinPlanejado) + " de " + fmtMin(r.leiMinTotal) + " de leitura).";
+      var txt = '<p><b>Lei seca:</b> o plano cobre <b>' + pct + "%</b> das leis do edital que você ainda não leu (" + fmtMin(r.leiMinPlanejado) + " de " + fmtMin(r.leiMinTotal) + " de leitura).";
       if (pct < 100 && disp > 0) {
         var preciso = Math.ceil(h * (r.leiMinTotal / Math.max(1, r.leiMinPlanejado)) * 2) / 2;
         txt += " Para cobrir tudo neste prazo seriam necessárias cerca de <b>" + (preciso > 12 ? "mais de 12" : String(preciso).replace(".", ",")) + " h por dia</b> (ou um plano mais longo).";
       }
       txt += "</p>";
-      txt += '<p><b>Súmulas e decisões:</b> ' + r.sumulasPlanejadas + " de " + r.jurTotal + " itens, os mais cobrados em prova primeiro (" + entradas.orgs.map(function (o) { return NOMES_ORG[o] || o.toUpperCase(); }).join(", ") + " e decisões já cobradas).</p>";
+      txt += '<p><b>Súmulas e decisões:</b> ' + r.sumulasPlanejadas + " de " + r.jurTotal + " itens ainda não lidos, os mais cobrados em prova primeiro (" + entradas.orgs.map(function (o) { return NOMES_ORG[o] || o.toUpperCase(); }).join(", ") + ", decisões já cobradas e julgados de informativos com cara de prova).</p>";
+      txt += '<p class="cr-conta">' + (P.uid ? "✔ Seu cronograma e o que você marca aqui ficam salvos na sua conta e valem também nos Diários e nas Revisões." : "Entre com a sua conta para salvar o cronograma e sincronizar com os Diários e as Revisões. Sem entrar, tudo fica só neste navegador.") + "</p>";
       return '<section class="cr-resumo"><h2>Resumo do plano</h2>' + txt + "</section>";
     }
     function itemHtml(it) {
-      var feito = !!feitos[it.k];
+      registro[it.k] = it;
+      var feito = estaFeito(it);
       var etiqueta = it.revisao ? '<span class="cr-tag">revisar · ' + it.revisao + " d</span>" : (it.revisao === 0 ? '<span class="cr-tag">revisar</span>' : "");
       return '<li class="cr-item' + (feito ? " feito" : "") + '"><label><input type="checkbox" data-feito="' + esc(it.k) + '"' + (feito ? " checked" : "") + ">" +
         '<span class="cr-item-corpo"><a href="' + esc(it.href) + '" target="_blank" rel="noopener">' + esc(it.titulo) + "</a> " + etiqueta +
@@ -371,20 +536,20 @@
     }
     function progressoDia(dia) {
       var n = 0, f = 0;
-      dia.blocos.forEach(function (b) { b.itens.forEach(function (it) { n++; if (feitos[it.k]) f++; }); });
+      dia.blocos.forEach(function (b) { b.itens.forEach(function (it) { n++; if (estaFeito(it)) f++; }); });
       return { n: n, f: f };
-    }
-    function diaHtml(dia, aberto) {
-      var d = daIso(dia.data), pr = progressoDia(dia);
-      var foco = dia.revisaoSemanal ? "revisão da semana" : (dia.focoMat && dia.focoMat.length ? uniq(dia.focoMat).map(nomeMat).join(" e ") : "");
-      return '<details class="cr-dia"' + (aberto ? " open" : "") + "><summary><b>" + esc(fmtDia(d)) + "</b>" + (foco ? ' <span class="cr-foco">· ' + esc(foco) + "</span>" : "") +
-        '<span class="cr-prog">' + (pr.n ? pr.f + "/" + pr.n : "") + "</span></summary>" + dia.blocos.map(blocoHtml).join("") + "</details>";
     }
     function uniq(a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); }
     var NOMES_MAT = { civil: "Direito Civil", processual_civil: "Processo Civil", consumidor: "Direito do Consumidor", crianca: "Criança e Adolescente", penal: "Direito Penal",
       processual_penal: "Processo Penal", constitucional: "Direito Constitucional", eleitoral: "Direito Eleitoral", empresarial: "Direito Empresarial", tributario: "Direito Tributário",
       ambiental: "Direito Ambiental", administrativo: "Direito Administrativo", previdenciario: "Direito Previdenciário", humanos: "Direitos Humanos", trabalhista: "Direito do Trabalho" };
     function nomeMat(m) { return NOMES_MAT[m] || m; }
+    function diaHtml(dia, aberto) {
+      var d = daIso(dia.data), pr = progressoDia(dia);
+      var foco = dia.revisaoSemanal ? "revisão da semana" : (dia.focoMat && dia.focoMat.length ? uniq(dia.focoMat).map(nomeMat).join(" e ") : "");
+      return '<details class="cr-dia"' + (aberto ? " open" : "") + "><summary><b>" + esc(fmtDia(d)) + "</b>" + (foco ? ' <span class="cr-foco">· ' + esc(foco) + "</span>" : "") +
+        '<span class="cr-prog">' + (pr.n ? pr.f + "/" + pr.n : "") + "</span></summary>" + dia.blocos.map(blocoHtml).join("") + "</details>";
+    }
 
     function abaHoje() {
       var hojeIso = iso(new Date()), dia = plano.porData[hojeIso], html = "";
@@ -394,17 +559,17 @@
         if (proximo) html += "<h3>Próximo dia de estudo</h3>" + diaHtml(proximo, true);
         return html;
       }
-      // atrasados: itens de conteúdo novo dos últimos 7 dias que ficaram sem marcar
-      var atrasados = [];
+      // atrasados: conteúdo novo dos últimos 7 dias que ficou sem marcar
+      var atrasados = [], desde = iso(somaDias(new Date(), -7));
       plano.dias.forEach(function (d) {
-        if (d.data >= hojeIso || d.data < iso(somaDias(new Date(), -7))) return;
-        d.blocos.forEach(function (b) { if (b.id === "lei" || b.id === "jur") b.itens.forEach(function (it) { if (!feitos[it.k]) atrasados.push(it); }); });
+        if (d.data >= hojeIso || d.data < desde) return;
+        d.blocos.forEach(function (b) { if (b.id === "lei" || b.id === "jur") b.itens.forEach(function (it) { if (!estaFeito(it)) atrasados.push(it); }); });
       });
       html += "<h3>Hoje, " + esc(fmtDia(new Date())) + "</h3>" + diaHtml(dia, true);
       if (atrasados.length) html += '<details class="cr-dia cr-atrasados"><summary><b>Ficou para trás (últimos 7 dias): ' + atrasados.length + ' item(ns)</b></summary><ul class="cr-lista">' + atrasados.slice(0, 40).map(itemHtml).join("") + "</ul></details>";
       return html;
     }
-    function inicioSemana(d) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate() - ((d.getDay() + 6) % 7)); return x; }
+    function inicioSemana(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() - ((d.getDay() + 6) % 7)); }
     function abaSemana() {
       var seg = inicioSemana(new Date()), html = "", n = 0;
       for (var i = 0; i < 7; i++) {
@@ -418,8 +583,7 @@
       plano.dias.forEach(function (d) {
         var dt = daIso(d.data), mk = dt.getFullYear() + "-" + p2(dt.getMonth() + 1);
         if (!porMes[mk]) { porMes[mk] = {}; ordem.push(mk); }
-        var sk = d.semana;
-        (porMes[mk][sk] = porMes[mk][sk] || []).push(d);
+        (porMes[mk][d.semana] = porMes[mk][d.semana] || []).push(d);
       });
       return ordem.map(function (mk, idx) {
         var ano = mk.slice(0, 4), mes = +mk.slice(5) - 1;
@@ -441,18 +605,27 @@
     }
 
     function desenhar() {
-      var aberto = [].map.call(raiz.querySelectorAll("details[open]"), function (d) { return d.querySelector("summary").textContent; });
+      if (!S) return;
+      // refazer a tela fecharia o que a pessoa abriu: guarda e reabre (pelo texto do título)
+      var abertas = {};
+      [].forEach.call(raiz.querySelectorAll("details"), function (d) { abertas[d.querySelector("summary").firstChild.textContent + "|" + (d.querySelector("summary b") || {}).textContent] = d.open; });
+      var rolagem = window.pageYOffset;
+      registro = {};
       var html = painelConfig();
       if (!S.principal()) {
         html += '<p class="cr-vazio">Escolha a sua carreira ou edital para montar o cronograma. A escolha vale também para as páginas Editais e Diário de Leis.</p>';
       } else if (plano) {
         html += resumoPlano() + abas() + '<div class="cr-corpo">' + (cfg.aba === "plano" ? abaPlano() : cfg.aba === "semana" ? abaSemana() : abaHoje()) + "</div>" +
-          '<p class="cr-rodape">O plano é uma sugestão: ele muda sozinho se você mudar as horas, os dias ou o edital. O que você marca como feito fica neste navegador. Os tempos de leitura são estimativas (cerca de 100 palavras por minuto, com atenção e grifos).</p>';
+          '<p class="cr-rodape">O plano é uma sugestão: ele muda sozinho se você mudar as horas, os dias ou o edital. Os tempos de leitura são estimativas (cerca de 100 palavras por minuto, com atenção e grifos). Leis, súmulas e decisões que você já tinha lido antes da data de início não entram no plano.</p>';
       }
+      var painel = document.getElementById("account-panel");
       raiz.innerHTML = html;
+      if (painel && !painel.parentNode) raiz.parentNode.insertBefore(painel, raiz);
       [].forEach.call(raiz.querySelectorAll("details"), function (d) {
-        if (aberto.indexOf(d.querySelector("summary").textContent) >= 0) d.open = true;
+        var chave = d.querySelector("summary").firstChild.textContent + "|" + (d.querySelector("summary b") || {}).textContent;
+        if (Object.prototype.hasOwnProperty.call(abertas, chave)) d.open = abertas[chave];
       });
+      if (rolagem && Math.abs(window.pageYOffset - rolagem) > 40) window.scrollTo(0, rolagem);
     }
 
     raiz.addEventListener("click", function (e) {
@@ -477,10 +650,10 @@
       if (t.matches("[data-cfg-select]")) { cfg[t.getAttribute("data-cfg-select")] = +t.value; salvarCfg(); recalcular(); desenhar(); return; }
       if (t.matches("[data-cfg-input]")) { if (t.value) { cfg[t.getAttribute("data-cfg-input")] = t.value; salvarCfg(); recalcular(); desenhar(); } return; }
       if (t.matches("[data-feito]")) {
-        var k = t.getAttribute("data-feito");
-        if (t.checked) feitos[k] = iso(new Date()); else delete feitos[k];
-        gravarJson(FEITOS_KEY, feitos);
-        var li = t.closest(".cr-item"); if (li) li.classList.toggle("feito", t.checked);
+        var it = registro[t.getAttribute("data-feito")];
+        if (!it) return;
+        marcarItem(it, t.checked);
+        desenhar();
       }
     });
   }
