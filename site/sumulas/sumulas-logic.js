@@ -12,6 +12,10 @@
   // aparecer no item. Os contadores de progresso não mudam com a busca.
   var termosBusca = [];
   var buscaInfo = null;
+  // Link com o número (#cad=stj|7, vindo de Meus Cadernos, das Revisões ou do Meu Cronograma): mostra só aquela
+  // súmula. A busca de 1 só caractere ("7") é ignorada de propósito e, com 2 ou mais, acha o número dentro de
+  // outros textos — por isso o link não usa a caixa de busca.
+  var focoNumero = null;
 
   function semAcentoBusca(t) {
     return String(t == null ? "" : t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -41,6 +45,15 @@
   }
   function mostrarResultadoBusca(n, rotulo) {
     if (!buscaInfo) return;
+    if (focoNumero) {
+      buscaInfo.hidden = false;
+      buscaInfo.textContent = "Mostrando só a súmula nº " + focoNumero + ". ";
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "busca-limpar"; b.textContent = "Ver todas as súmulas";
+      b.addEventListener("click", function () { focoNumero = null; loteAtual = 0; render(); });
+      buscaInfo.appendChild(b);
+      return;
+    }
     buscaInfo.hidden = !termosBusca.length;
     buscaInfo.textContent = n === 1 ? "1 resultado" : n + " resultados";
   }
@@ -59,6 +72,7 @@
     buscaInfo.className = "busca-resultado";
     buscaInfo.hidden = true;
     function mudou() {
+      focoNumero = null;
       limpar.hidden = !input.value;
       // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
       var digitado = semAcentoBusca(input.value).trim();
@@ -272,6 +286,7 @@
 
   function filteredState() {
     return filteredBase().filter(function (r) {
+      if (focoNumero && String(r.numero) !== focoNumero) return false;
       return combinaBusca("súmula nº " + r.numero + " " + r.texto + " " + (r.materia || ""));
     });
   }
@@ -636,6 +651,12 @@
     if (SUMULAS_DATA[p[0]]) currentOrg = p[0];
     loteAtual = 0;
     var inp = document.querySelector(".busca-diario input");
+    if (p[1] && /^\d+$/.test(p[1])) {
+      termosBusca = []; if (inp) inp.value = "";
+      focoNumero = String(p[1]);
+      render();
+      return;
+    }
     if (inp && p[1]) { inp.value = p[1]; inp.dispatchEvent(new Event("input")); } else render();
   }
   abrirDoCaderno();
