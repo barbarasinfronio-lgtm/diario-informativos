@@ -1,7 +1,11 @@
 {
  "1483": {
   "processo": "RE 1616922",
-  "motivo": "nenhum arquivo de decisão abriu"
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "1412": {
+  "processo": "ARE 1.537.713",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  },
  "976": {
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
@@ -11,12 +15,388 @@
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
   "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  },
+ "713": {
+  "processo": "ARE 773.765",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "584": {
+  "processo": "ARE 655403",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
  "564": {
   "processo": "RE 637.485",
-  "motivo": "nenhum arquivo de decisão abriu"
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "560": {
+  "processo": "RE 633981",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "552": {
+  "processo": "RE 661941",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "518": {
+  "processo": "RE 660.933",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "489": {
+  "processo": "AI 810097",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "478": {
+  "processo": "RE 640.139",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "467": {
+  "processo": "AI 834262",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "466": {
+  "processo": "ARE 642137",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "464": {
+  "processo": "ARE 642841",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "463": {
+  "processo": "RE 637135",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "462": {
+  "processo": "AI 846912",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "461": {
+  "processo": "ARE 640713",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "460": {
+  "processo": "AI 846803",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "459": {
+  "processo": "RE 642442",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "458": {
+  "processo": "ARE 643085",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "453": {
+  "processo": "RE 549.560",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "451": {
+  "processo": "RE 635.729/SP",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "448": {
+  "processo": "RE 642.682",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "447": {
+  "processo": "ARE 642.827",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "446": {
+  "processo": "ARE 640523",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "444": {
+  "processo": "AI 845156",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "443": {
+  "processo": "ARE 640514",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "442": {
+  "processo": "RE 638706",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "440": {
+  "processo": "ARE 637.607",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "436": {
+  "processo": "AI 845109",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "435": {
+  "processo": "AI 842.063",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "433": {
+  "processo": "ARE 640671",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "431": {
+  "processo": "AI 831.223",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "430": {
+  "processo": "ARE 639.496",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "429": {
+  "processo": "ARE 640182",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "428": {
+  "processo": "ARE 641543",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "427": {
+  "processo": "AI 844143",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "426": {
+  "processo": "AI 839496",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "425": {
+  "processo": "AI 841473",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "424": {
+  "processo": "ARE 639228",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "422": {
+  "processo": "RE 636978",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "421": {
+  "processo": "AI 844474",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "420": {
+  "processo": "AI 843751",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "419": {
+  "processo": "AI 844777",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "418": {
+  "processo": "AI 843753",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "417": {
+  "processo": "ARE 640525",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "414": {
+  "processo": "RE 638.483",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "413": {
+  "processo": "AI 839695",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "412": {
+  "processo": "ARE 638.315",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "410": {
+  "processo": "RE 633.933",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "408": {
+  "processo": "ARE 637.975",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "407": {
+  "processo": "RE 633329",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "406": {
+  "processo": "AI 843287",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "405": {
+  "processo": "AI 841047",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "404": {
+  "processo": "AI 841445",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "401": {
+  "processo": "RE 633360",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "398": {
+  "processo": "AI 836810",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "397": {
+  "processo": "RE 633843",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "392": {
+  "processo": "RE 363.889",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "389": {
+  "processo": "AI 826496",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "388": {
+  "processo": "RE 613.033",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "387": {
+  "processo": "RE 633.703",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "378": {
+  "processo": "RE 632767",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "375": {
+  "processo": "RE 633244",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "367": {
+  "processo": "RE 631.102",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "357": {
+  "processo": "AI 825675",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "356": {
+  "processo": "AI 818688",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "354": {
+  "processo": "AI 808968",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "353": {
+  "processo": "AI 803140",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "343": {
+  "processo": "RE 580.871",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "341": {
+  "processo": "AI 823896",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "340": {
+  "processo": "RE 584.313",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "339": {
+  "processo": "AI 791.292/PE QO",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "338": {
+  "processo": "AI 758.533",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "334": {
+  "processo": "RE 630.501",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "333": {
+  "processo": "RE 629057",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "332": {
+  "processo": "RE 628914",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "331": {
+  "processo": "RE 628137",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "330": {
+  "processo": "RE 628002",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "320": {
+  "processo": "AI 738444",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "319": {
+  "processo": "AI 735933",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "318": {
+  "processo": "AI 800074",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "316": {
+  "processo": "RE 627637",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  },
  "314": {
   "processo": "RE 601.235",
-  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto"
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "310": {
+  "processo": "AI 804209",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "307": {
+  "processo": "RE 626468",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "306": {
+  "processo": "RE 611512",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "305": {
+  "processo": "RE 607.520",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "302": {
+  "processo": "RE 603.191",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "301": {
+  "processo": "RE 592887",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "295": {
+  "processo": "RE 612.360",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "294": {
+  "processo": "RE 612.359",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "292": {
+  "processo": "RE 611231",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "291": {
+  "processo": "RE 611230",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "290": {
+  "processo": "RE 611162",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "288": {
+  "processo": "RE 602883",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "287": {
+  "processo": "AI 790283",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "286": {
+  "processo": "AI 765567",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ },
+ "284": {
+  "processo": "RE 631.363",
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  }
 }
