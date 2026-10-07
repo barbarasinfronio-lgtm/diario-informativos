@@ -955,7 +955,19 @@
         return;
       }
     }
+    // refazer a tela fecharia as listas que a pessoa abriu (ex.: "Fila de atrasadas"): guarda quais estavam abertas
+    // (pelo título, que não muda quando o número de itens muda) e abre de novo
+    var abertas = {}, rolagem = window.pageYOffset;
+    [].forEach.call(el.querySelectorAll("details"), function (d) {
+      var t = d.querySelector("summary > span, summary");
+      if (t) abertas[t.textContent.trim()] = d.open;
+    });
     el.innerHTML = o.tab === "historico" ? telaHistorico(o) : o.tab === "novidades" ? telaNovidades(o) : telaRevisoes(o);
+    [].forEach.call(el.querySelectorAll("details"), function (d) {
+      var t = d.querySelector("summary > span, summary");
+      if (t && Object.prototype.hasOwnProperty.call(abertas, t.textContent.trim())) d.open = abertas[t.textContent.trim()];
+    });
+    if (rolagem && Math.abs(window.pageYOffset - rolagem) > 40) window.scrollTo(0, rolagem);
     el.onclick = function (ev) {
       var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-bloco-ler],[data-plano-ini]");
       if (!b) return;
