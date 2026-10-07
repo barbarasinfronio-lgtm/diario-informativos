@@ -342,13 +342,13 @@
     chaves.forEach(function (k) { var it = rel.itens[k]; if (it && grupos[it[0]]) grupos[it[0]].push(it); });
     var nomes = { "Súmula": "Súmulas", "Decisão": "Decisões e teses", "Resolução": "Resoluções" };
     var corpo = ["Súmula", "Decisão", "Resolução"].filter(function (g) { return grupos[g].length; }).map(function (g) {
-      return '<div style="margin:6px 0 2px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint,#64748b);">' + nomes[g] + "</div>" +
-        '<ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.5;">' + grupos[g].map(function (it) {
+      return '<div style="margin:6px 0 2px;font-size:calc(12px * var(--fs-scale,1));font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint,#64748b);">' + nomes[g] + "</div>" +
+        '<ul style="margin:0;padding-left:18px;font-size:calc(13px * var(--fs-scale,1));line-height:1.5;">' + grupos[g].map(function (it) {
           return '<li style="margin:2px 0;"><a href="' + escapeHtml(it[2]) + '" target="_blank" rel="noopener" style="color:var(--accent,#0d6efd);text-decoration:none;">' + escapeHtml(it[1]) + "</a></li>";
         }).join("") + "</ul>";
     }).join("");
     return '<details class="lei-leitor-rel" style="margin:0 0 12px;padding:8px 12px;border:1px solid var(--surface-line,#e2e8f0);border-radius:8px;background:var(--accent-soft,#f8fafc);">' +
-      '<summary style="cursor:pointer;font-size:14px;font-weight:700;color:var(--ink,#1e293b);">📚 Leia também <span style="font-weight:400;color:var(--ink-faint,#64748b);">(' + chaves.length + " itens sobre o mesmo assunto)</span></summary>" + corpo + "</details>";
+      '<summary style="cursor:pointer;font-size:calc(14px * var(--fs-scale,1));font-weight:700;color:var(--ink,#1e293b);">📚 Leia também <span style="font-weight:400;color:var(--ink-faint,#64748b);">(' + chaves.length + " itens sobre o mesmo assunto)</span></summary>" + corpo + "</details>";
   }
 
   var leitorFechar = null;
@@ -369,14 +369,14 @@
     caixa.setAttribute("aria-modal", "true");
     caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
     caixa.innerHTML =
-      '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
-      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:18px;color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
-      '<p style="margin:0 0 10px;font-size:13px;color:var(--ink-faint,#64748b);">' + escapeHtml(origem) + "</p>" +
+      '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:calc(26px * var(--fs-scale,1));line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
+      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
+      '<p style="margin:0 0 10px;font-size:calc(13px * var(--fs-scale,1));color:var(--ink-faint,#64748b);">' + escapeHtml(origem) + "</p>" +
       '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--surface-line,#e2e8f0);">' +
-      '<button type="button" class="lei-leitor-lida" style="font-size:13px;font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
-      (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:var(--accent,#0d6efd);text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
-      '<span style="font-size:12px;color:var(--ink-faint,#94a3b8);">Selecione um trecho para destacar ou anotar.</span></div>' +
-      '<div class="lei-leitor-texto" style="font-size:15px;line-height:1.65;text-align:justify;hyphens:auto;-webkit-hyphens:auto;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
+      '<button type="button" class="lei-leitor-lida" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
+      (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;color:var(--accent,#0d6efd);text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
+      '<span style="font-size:calc(12px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Selecione um trecho para destacar ou anotar.</span></div>' +
+      '<div class="lei-leitor-texto" style="font-size:calc(15px * var(--fs-scale,1));line-height:1.65;text-align:justify;hyphens:auto;-webkit-hyphens:auto;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
     fundo.appendChild(caixa);
     var btnLida = caixa.querySelector(".lei-leitor-lida");
     var pintarLida = function () { btnLida.textContent = lida() ? "✔ Lida — desmarcar" : "Marcar como lida"; };
@@ -416,7 +416,7 @@
         if (h) area.insertAdjacentHTML("beforebegin", h);
       });
       area.innerHTML = corpo +
-        '<p style="margin:14px 0 0;font-size:11px;color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
+        '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
       if (window.EstudaManaCadernos) {
         EstudaManaCadernos.ligar(caixa, {
@@ -442,22 +442,22 @@
       ' data-cad-origem="' + escapeHtml(lei.numero + " · " + badge) + '" data-cad-abrir="/p/diario-de-leis.html#lei=' + escapeHtml(encodeURIComponent(lei.chave)) + '"';
     return '<div class="lei-card" data-chave="' + escapeHtml(lei.chave) + '"' + cad + ' style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">' +
-      '<h3 style="margin:0;font-size:15px;font-weight:600;color:' + (lida ? "#94a3b8" : "#1e293b") + ';line-height:1.4;' + (lida ? "text-decoration:line-through;" : "") + '">' + escapeHtml(lei.nome) + "</h3>" +
-      '<span style="font-size:11px;font-weight:700;background:' + fundo + ";color:" + cor + ';padding:3px 8px;border-radius:12px;white-space:nowrap;">' + badge + "</span>" +
+      '<h3 style="margin:0;font-size:calc(15px * var(--fs-scale,1));font-weight:600;color:' + (lida ? "#94a3b8" : "#1e293b") + ';line-height:1.4;' + (lida ? "text-decoration:line-through;" : "") + '">' + escapeHtml(lei.nome) + "</h3>" +
+      '<span style="font-size:calc(11px * var(--fs-scale,1));font-weight:700;background:' + fundo + ";color:" + cor + ';padding:3px 8px;border-radius:12px;white-space:nowrap;">' + badge + "</span>" +
       "</div>" +
-      '<p style="margin:6px 0 10px;font-size:13px;color:#64748b;">' + escapeHtml(lei.numero) + "</p>" +
+      '<p style="margin:6px 0 10px;font-size:calc(13px * var(--fs-scale,1));color:#64748b;">' + escapeHtml(lei.numero) + "</p>" +
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">' +
       (lei.link
         ? '<span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">' +
-          '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' +
+          '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' +
           ((lei.textoId || idTexto(lei.link))
-            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:13px;font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto((lei.textoId || idTexto(lei.link))) ? "" : "display:none;") + '">📜 Leia-me</button>'
+            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto((lei.textoId || idTexto(lei.link))) ? "" : "display:none;") + '">📜 Leia-me</button>'
             : "") + "</span>"
         : "<span></span>") +
       (lei.removivel
-        ? '<button type="button" class="lei-remover" data-chave="' + escapeHtml(lei.chave) + '" style="font-size:12px;background:none;border:0;color:#94a3b8;text-decoration:underline;cursor:pointer;padding:0;">Tirar do meu Diário</button>'
+        ? '<button type="button" class="lei-remover" data-chave="' + escapeHtml(lei.chave) + '" style="font-size:calc(12px * var(--fs-scale,1));background:none;border:0;color:#94a3b8;text-decoration:underline;cursor:pointer;padding:0;">Tirar do meu Diário</button>'
         : "") +
-      '<label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#334155;cursor:pointer;user-select:none;">' +
+      '<label style="display:flex;align-items:center;gap:6px;font-size:calc(13px * var(--fs-scale,1));color:#334155;cursor:pointer;user-select:none;">' +
       '<input type="checkbox" class="lei-check" data-chave="' + escapeHtml(lei.chave) + '"' + (lida ? " checked" : "") + ' style="width:17px;height:17px;cursor:pointer;">' +
       (lida ? "Lida ✓" : "Já li esta lei") +
       '</label></div><div class="lei-texto" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #e2e8f0;"></div></div>';
@@ -473,7 +473,7 @@
     return ordem.map(function (mat) {
       var lidasNaMateria = grupos[mat].filter(function (l) { return isLida(l.chave); }).length;
       return '<details style="margin-bottom:10px;"' + (abrir ? " open" : "") + ">" +
-        '<summary style="cursor:pointer;font-weight:600;font-size:15px;color:var(--em-leis-ink,#334155);padding:8px 0;">' +
+        '<summary style="cursor:pointer;font-weight:600;font-size:calc(15px * var(--fs-scale,1));color:var(--em-leis-ink,#334155);padding:8px 0;">' +
         escapeHtml(mat) + ' <span style="color:var(--em-leis-faint,#94a3b8);font-weight:400;">(' + lidasNaMateria + " de " + grupos[mat].length + " lidas)</span></summary>" +
         '<div style="padding-top:6px;">' + grupos[mat].map(card).join("") + "</div>" +
         "</details>";
@@ -487,7 +487,7 @@
   function resumo(leis) {
     var lidasN = leis.filter(function (l) { return isLida(l.chave); }).length;
     if (!leis.length) return "";
-    return '<p class="lei-resumo" style="margin:0 0 12px;font-size:13px;font-weight:600;color:var(--em-leis-soft,#475569);">' +
+    return '<p class="lei-resumo" style="margin:0 0 12px;font-size:calc(13px * var(--fs-scale,1));font-weight:600;color:var(--em-leis-soft,#475569);">' +
       lidasN + " de " + leis.length + " lidas</p>";
   }
 
