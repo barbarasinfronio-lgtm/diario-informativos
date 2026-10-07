@@ -87,21 +87,25 @@ for (const x of JSON.parse(ler("informativos/indice.json")).itens || []) {   // 
 function artigosCitados(texto, lei, doc) {
   const out = {};
   const re = new RegExp(lei.alias, "gi");
-  let m;
+  let m, prevFim = 0;
   while ((m = re.exec(texto))) {
     if (!lei.explicita.test(m[0])) {      // "CPC" sem ano: só vale se a decisão é do CPC de 2015
       if (lei.explicita.test(texto.slice(Math.max(0, m.index - 40), m.index + m[0].length + 12))) { /* ano logo ao lado */ }
       else if (!doc.data || doc.data < lei.valeDesde) continue;
       else if (/CPC\s*\/\s*(?:19)?73|1973|Lei\s*(?:n[º°o.]*\s*)?5\.869/i.test(texto)) continue;       // fala do CPC antigo
     }
-    const pre = texto.slice(Math.max(0, m.index - 180), m.index);
+    const posAlias = texto.slice(m.index + m[0].length, m.index + m[0].length + 160);
+    const forma2 = /^\s*[,:]?\s*(?=arts?\.)/i.exec(posAlias);      // "CPC, art. 139, IV" (lei antes do artigo)
+    const pre = forma2 ? m[0] + " " + posAlias.slice(forma2[0].length).split(/\b(?:Lei\b|Decreto|CF\b|CLT\b|CP\b|CPP\b|CC\b|CDC\b|CTN\b|Constitui)/)[0] : texto.slice(Math.max(prevFim, m.index - 180), m.index);
+    prevFim = m.index + m[0].length;
     const i = Math.max(pre.lastIndexOf("art."), pre.lastIndexOf("arts."), pre.lastIndexOf("Art."), pre.lastIndexOf("Arts."), pre.lastIndexOf("artigo"), pre.lastIndexOf("artigos"));
     if (i < 0) continue;
-    let seg = pre.slice(i).replace(/^(?:arts?\.|artigos?)\s*/i, "").replace(/\b(?:do|da|dos|das|no|na)\s*$/i, "").split(/[;]/)[0];
+    let seg = pre.slice(i).replace(/^(?:arts?\.|artigos?)\s*/i, "").replace(/\b(?:do|da|dos|das|no|na)\s*$/i, "").split(/[;]/)[0].split(/\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/)[0];   // frase nova = fim da citação
     // quando há outra lei no meio ("art. 5º da CF e art. 85 do CPC"), só vale depois dela
     const cortes = seg.split(/\b(?:da|do)\s+(?:Constitui[çc][ãa]o|Lei\b|Decreto|C[óo]digo|CF\b|CLT\b|CP\b|CPP\b|CC\b|CDC\b|CTN\b)[^,;]*?(?:,\s*|\s+e\s+|\s+)(?=arts?\.)/i);
     seg = cortes[cortes.length - 1];
-    const tok = /§§?\s*(\d+[ºo°]?(?:-[A-Z])?(?:\s*(?:,|e|a)\s*\d+[ºo°]?(?:-[A-Z])?)*)|(par[áa]grafo\s+[úu]nico)|(caput)|(inc(?:iso)?s?\.?\s+[IVXLC]+(?:\s*(?:,|e|a)\s*[IVXLC]+)*)|(al[íi]neas?\s+["“']?[a-z]["”']?)|(\d{1,4}(?:\.\d{3})?)\s*([ºo°])?(?:-([A-Z]))?(?!\s*\/\s*\d)/gi;
+    if (cortes.length === 1 && /\b(?:da|do)\s+(?:Constitui[çc][ãa]o|Lei\b|Decreto|C[óo]digo\s+(?!de\s+Processo\s+Civil)|Regimento)/i.test(seg)) continue;     // "art. 30 da Lei 8.038 … CPC": o artigo é de outra lei
+    const tok = /§§?s?\s*(\d+[ºo°]?(?:-[A-Z])?(?:\s*(?:,|e|a)\s*\d+[ºo°]?(?:-[A-Z])?)*)|(par[áa]grafo\s+[úu]nico)|(caput)|(inc(?:iso)?s?\.?\s+[IVXLC]+(?:\s*(?:,|e|a)\s*[IVXLC]+)*)|(al[íi]neas?\s+["“']?[a-z]["”']?)|(\d{1,4}(?:\.\d{3})?)\s*([ºo°])?(?:-([A-Z]))?(?!\s*\/\s*\d)/gi;
     let t, atual = null;
     const lista = [];
     while ((t = tok.exec(seg))) {
@@ -113,7 +117,7 @@ function artigosCitados(texto, lei, doc) {
       else if (t[6]) {
         const n = parseInt(t[6].replace(".", ""), 10);
         const antes = seg.slice(Math.max(0, t.index - 6), t.index);
-        if ((n >= 1900 && n <= 2100 && !t[7]) || /n[º°o.]\s*$/i.test(antes) || /\/\s*$/.test(antes)) continue;
+        if ((n >= 1900 && n <= 2100 && !t[7]) || /n[º°o.]\s*$/i.test(antes) || /\/\s*$/.test(antes) || /\(\s*$/.test(antes)) continue;     // "(1)" é nota de rodapé
         if (n < 1 || n > 2200) continue;
         atual = { art: String(n) + (t[8] ? "-" + t[8].toUpperCase() : ""), mods: new Set() };
         lista.push(atual);
