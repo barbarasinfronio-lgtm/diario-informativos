@@ -326,34 +326,27 @@
       if (q && artAtual) paragrafosDoArt[artAtual]["§" + q[1] + (q[2] || "")] = true;
       else if (/^Par[áa]grafo único/i.test(t) && artAtual) paragrafosDoArt[artAtual].u = true;
     });
-    function chips(art, chave) {
-      var lista = jul.art[art] || [], out = "";
-      lista.forEach(function (e, n) {
+    // linha embaixo do artigo/§: "⚖️ Tema 1313 (STJ) — REsp 2.169.102 · ADI 7265" (cada um é um link; o mouse mostra o resumo)
+    function linha(art, chave) {
+      var lista = jul.art[art] || [], itens = [];
+      lista.forEach(function (e) {
         var mods = e[1], tem = paragrafosDoArt[art] || {};
         var vaiAqui;
         if (chave === "c") vaiAqui = mods.indexOf("c") >= 0 || !mods.some(function (m) { return tem[m]; });
         else vaiAqui = mods.indexOf(chave) >= 0;
         if (!vaiAqui) return;
         var d = jul.decisoes[e[0]];
-        out += '<a href="' + escapeHtml(d[1]) + '" target="_blank" rel="noopener" class="lei-julg" title="' + escapeHtml(d[0] + (d[2] ? " — " + d[2] : "")) + '" ' +
-          'style="display:inline-block;min-width:1.45em;text-align:center;margin-left:.3em;padding:0 .3em;border-radius:999px;background:var(--accent-soft,#e7f1ff);color:var(--accent,#0d6efd);border:1px solid var(--accent,#0d6efd);' +
-          'font-size:calc(11px * var(--fs-scale,1));font-weight:700;line-height:1.5;text-decoration:none;vertical-align:baseline;user-select:none;">' + (n + 1) + "</a>";
+        itens.push('<a href="' + escapeHtml(d[1]) + '" target="_blank" rel="noopener" class="lei-julg" title="' + escapeHtml(d[2] || d[0]) + '" ' +
+          'style="color:var(--accent,#0d6efd);font-weight:600;text-decoration:none;">' + escapeHtml(d[0]) + "</a>");
       });
-      return out;
+      return itens.length ? '<p class="lei-julg-linha" style="margin:2px 0 6px 14px;font-size:calc(12.5px * var(--fs-scale,1));line-height:1.4;text-align:left;user-select:none;color:var(--ink-faint,#64748b);">⚖️ ' + itens.join(" · ") + "</p>" : "";
     }
     return ps.map(function (t, k) {
       var art = artDe[k], h = paragrafoHtml(t);
       if (!art) return h;
-      var m = t.match(/^Art\.?\s*\d[\d.]*[º°ª]?(?:-[A-Z]+)?\.?/);
-      if (m) {
-        var c = chips(art, "c");
-        return c ? '<p style="margin:10px 0 4px;"><strong>' + escapeHtml(m[0]) + "</strong>" + c + escapeHtml(t.slice(m[0].length)) + "</p>" : h;
-      }
-      var q = t.match(/^(§\s*(\d+)[º°ª]?(-[A-Z]+)?\.?|Par[áa]grafo único\.?)/i);
-      if (q) {
-        var c2 = chips(art, q[2] ? "§" + q[2] + (q[3] || "") : "u");
-        if (c2) return '<p style="margin:4px 0;">' + escapeHtml(q[0]) + c2 + escapeHtml(t.slice(q[0].length)) + "</p>";
-      }
+      if (/^Art\.?\s*\d[\d.]*[º°ª]?(?:-[A-Z]+)?\.?/.test(t)) return h + linha(art, "c");
+      var q = t.match(/^(?:§\s*(\d+)[º°ª]?(-[A-Z]+)?|Par[áa]grafo único)/i);
+      if (q) return h + linha(art, q[1] ? "§" + q[1] + (q[2] || "") : "u");
       return h;
     }).join("");
   }
@@ -521,7 +514,7 @@
         carregarJulgados(tid).then(function (jul) {
           if (leitorFechar !== fechar) return;
           area.innerHTML = '<p style="margin:0 0 10px;padding:8px 10px;border-radius:8px;background:var(--accent-soft,#f1f5f9);font-size:calc(12.5px * var(--fs-scale,1));line-height:1.45;">' +
-            "⚖️ <b>Com julgados:</b> os números ao lado dos artigos levam a decisões do site que tratam deles (no máximo 2 por artigo). Passe o mouse para ver o resumo; clique para abrir no Diário das Decisões. " +
+            "⚖️ <b>Com julgados:</b> embaixo de cada artigo (ou §) estão as decisões do site que tratam dele, no máximo 2 por artigo. Passe o mouse para ver o resumo; clique para abrir no Diário das Decisões. " +
             "É uma versão de teste, só com algumas leis, e as indicações são automáticas: confira sempre a decisão.</p>" + corpoComJulgados(psLei, jul) +
             '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
             ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
