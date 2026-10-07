@@ -106,6 +106,11 @@
           ': <span class="em-fontes-o-que">' + esc(f[2]) + ".</span></li>";
       }).join("") + "</ul>";
     }).join("") +
+    "<h2>Como seus dados são salvos</h2>" +
+    "<p>O que você marca no site (leis, súmulas e decisões lidas, revisões, cronograma, prêmios e anotações) fica salvo no próprio navegador do seu aparelho. " +
+    "Se você entrar com sua conta, essas marcações também são guardadas na nuvem, vinculadas à sua conta, apenas para que apareçam em qualquer aparelho em que você entrar. " +
+    "Esses dados servem somente para o funcionamento do site e para o seu estudo: <strong>não são vendidos, não são usados para publicidade nem para qualquer finalidade comercial</strong>, " +
+    "e não são entregues a terceiros. Você pode apagar suas marcações quando quiser.</p>" +
     "<h2>Direitos autorais</h2>" +
     "<p>Textos de leis, decisões judiciais e demais atos oficiais não são protegidos por direito autoral (Lei nº 9.610/1998, art. 8º, IV). " +
     "Os resumos, a organização, os filtros e as ferramentas do site são do Estuda Mana.</p>" +
