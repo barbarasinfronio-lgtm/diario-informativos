@@ -24,6 +24,12 @@
   font-size: calc(0.95rem * var(--fs-scale));
 }
 
+/* prêmios conquistados desde a última visita (cartões logo abaixo do aviso) */
+.pz-novos { margin: 0 0 1.2rem; }
+.pz-novos .pz-card.is-new { box-shadow: 0 0 0 2px var(--gold); }
+.pz-novos-mais { margin: 0.5rem 0 0; font-size: calc(0.88rem * var(--fs-scale)); color: var(--ink-soft); }
+.pz-link { background: none; border: 0; padding: 0; color: var(--accent, inherit); text-decoration: underline; cursor: pointer; font: inherit; }
+
 /* leis alteradas depois de lidas */
 .pz-aviso-leis {
   background: var(--high-bg);

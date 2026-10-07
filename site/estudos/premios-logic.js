@@ -992,7 +992,13 @@
       return '<div class="pz-banner">🎉 Você já começa com <b>' + done + "</b> prêmio" + (done > 1 ? "s" : "") + " conquistado" + (done > 1 ? "s" : "") + "!</div>";
     }
     if (n) {
-      return '<div class="pz-banner">🎉 Você conquistou <b>' + n + "</b> prêmio" + (n > 1 ? "s" : "") + " novo" + (n > 1 ? "s" : "") + " desde a última visita!</div>";
+      var novos = state.data.awards.filter(function (a) { return state.novos[a.id]; });
+      var nomes = novos.slice(0, 4).map(function (a) { return a.icon + " <b>" + esc(a.title) + "</b>"; }).join(", ") + (novos.length > 4 ? " e mais " + (novos.length - 4) : "");
+      var cartoes = state.tab === "resumo"
+        ? '<section class="pz-novos"><div class="pz-grid">' + novos.slice(0, 6).map(cardHtml).join("") + "</div>" +
+          (novos.length > 6 ? '<p class="pz-novos-mais">…e mais ' + (novos.length - 6) + ' na aba <button type="button" class="pz-link" data-tab="todas">Todas</button>.</p>' : "") + "</section>"
+        : "";
+      return '<div class="pz-banner">🎉 Você conquistou <b>' + n + "</b> prêmio" + (n > 1 ? "s" : "") + " novo" + (n > 1 ? "s" : "") + " desde a última visita: " + nomes + ".</div>" + cartoes;
     }
     return "";
   }
