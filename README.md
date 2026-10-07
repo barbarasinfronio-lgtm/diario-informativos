@@ -216,6 +216,8 @@ partir do texto das provas (um .txt por prova, nome com banca, ano e órgão;
 gabaritos são ignorados). O Diário das Súmulas e o Diário das Decisões mostram
 "📝 Cobrada em …" nos cards, e a página de estatísticas usa o mesmo arquivo.
 
+Para ligar provas novas é só dar dois cliques em **`Atualizar Provas.command`** (pergunta a pasta Provas uma vez, tira o texto dos PDFs, liga às súmulas e decisões e envia ao site).
+
 Pastas lidas dentro de `Provas/` (no Mac): `01 Objetivas`, `02 Discursivas`, `03 Sentenças`, `04 Oral`,
 `ENAM` e `Provas anteriores da FGV - Magistratura/` (subpastas `Provas de 1ª fase`, `Provas de 2ª fase` e
 `Provas de 2ª fase - Outras bancas`, e dentro delas uma pasta por concurso, como `TJMT - Aplicada em 16-11-24`
