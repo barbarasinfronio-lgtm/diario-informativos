@@ -252,6 +252,71 @@
       });
   }
 
+  // "Com julgados" (scripts/gerar_julgados_por_artigo.js): leis cujo texto traz, ao lado de cada artigo, até 2
+  // decisões do site que tratam dele. leis/julgados/indice.json diz quais leis têm; <id>.json traz os dados.
+  var julgadosIdx = null, julgadosCache = {};
+  function carregarIndiceJulgados() {
+    return fetch(CDN_BASE + "leis/julgados/indice.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; })
+      .then(function (j) {
+        julgadosIdx = j || {};
+        Array.prototype.forEach.call(document.querySelectorAll(".lei-leia-julg"), function (b) {
+          if (julgadosIdx[b.getAttribute("data-texto-id")]) b.style.display = "";
+        });
+      });
+  }
+  function carregarJulgados(id) {
+    if (!julgadosCache[id]) julgadosCache[id] = fetch(CDN_BASE + "leis/julgados/" + encodeURIComponent(id) + ".json", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); });
+    return julgadosCache[id];
+  }
+  // Texto da lei com os números dos julgados: no "Art. N" (caput) e nos § que a decisão cita. Cada número leva ao
+  // Diário das Decisões com a busca na decisão. Devolve o HTML dos parágrafos.
+  function corpoComJulgados(ps, jul) {
+    var artAtual = null, paragrafosDoArt = {}, i, saida = [];
+    // 1ª passada: quais § cada artigo tem (para o julgado que cita um § que não existe cair no caput)
+    var artDe = [];
+    ps.forEach(function (t, k) {
+      var m = t.match(/^Art\.?\s*(\d[\d.]*)[º°ª]?(-[A-Z]+)?/);
+      if (m) { artAtual = m[1].replace(/\./g, "") + (m[2] || ""); paragrafosDoArt[artAtual] = {}; }
+      artDe[k] = artAtual;
+      var q = t.match(/^§\s*(\d+)[º°ª]?(-[A-Z]+)?/);
+      if (q && artAtual) paragrafosDoArt[artAtual]["§" + q[1] + (q[2] || "")] = true;
+      else if (/^Par[áa]grafo único/i.test(t) && artAtual) paragrafosDoArt[artAtual].u = true;
+    });
+    function chips(art, chave) {
+      var lista = jul.art[art] || [], out = "";
+      lista.forEach(function (e, n) {
+        var mods = e[1], tem = paragrafosDoArt[art] || {};
+        var vaiAqui;
+        if (chave === "c") vaiAqui = mods.indexOf("c") >= 0 || !mods.some(function (m) { return tem[m]; });
+        else vaiAqui = mods.indexOf(chave) >= 0;
+        if (!vaiAqui) return;
+        var d = jul.decisoes[e[0]];
+        out += '<a href="' + escapeHtml(d[1]) + '" target="_blank" rel="noopener" class="lei-julg" title="' + escapeHtml(d[0] + (d[2] ? " — " + d[2] : "")) + '" ' +
+          'style="display:inline-block;min-width:1.45em;text-align:center;margin-left:.3em;padding:0 .3em;border-radius:999px;background:var(--accent-soft,#e7f1ff);color:var(--accent,#0d6efd);border:1px solid var(--accent,#0d6efd);' +
+          'font-size:calc(11px * var(--fs-scale,1));font-weight:700;line-height:1.5;text-decoration:none;vertical-align:baseline;user-select:none;">' + (n + 1) + "</a>";
+      });
+      return out;
+    }
+    return ps.map(function (t, k) {
+      var art = artDe[k], h = paragrafoHtml(t);
+      if (!art) return h;
+      var m = t.match(/^Art\.?\s*\d[\d.]*[º°ª]?(?:-[A-Z]+)?\.?/);
+      if (m) {
+        var c = chips(art, "c");
+        return c ? '<p style="margin:10px 0 4px;"><strong>' + escapeHtml(m[0]) + "</strong>" + c + escapeHtml(t.slice(m[0].length)) + "</p>" : h;
+      }
+      var q = t.match(/^(§\s*(\d+)[º°ª]?(-[A-Z]+)?\.?|Par[áa]grafo único\.?)/i);
+      if (q) {
+        var c2 = chips(art, q[2] ? "§" + q[2] + (q[3] || "") : "u");
+        if (c2) return '<p style="margin:4px 0;">' + escapeHtml(q[0]) + c2 + escapeHtml(t.slice(q[0].length)) + "</p>";
+      }
+      return h;
+    }).join("");
+  }
+
   function carregarTexto(id) {
     if (textosCache[id]) return Promise.resolve(textosCache[id]);
     return fetch(TEXTO_BASE + encodeURIComponent(id) + ".json")
@@ -354,7 +419,7 @@
   var leitorFechar = null;
   // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
   // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
-  function abrirTexto(botao) {
+  function abrirTexto(botao, comJulgados) {
     var cardEl = botao.closest(".lei-card");
     if (!cardEl) return;
     if (leitorFechar) leitorFechar();
@@ -370,7 +435,7 @@
     caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
     caixa.innerHTML =
       '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:calc(26px * var(--fs-scale,1));line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
-      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + "</h2>" +
+      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + (comJulgados ? " — com julgados" : "") + "</h2>" +
       '<p style="margin:0 0 10px;font-size:calc(13px * var(--fs-scale,1));color:var(--ink-faint,#64748b);">' + escapeHtml(origem) + "</p>" +
       '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--surface-line,#e2e8f0);">' +
       '<button type="button" class="lei-leitor-lida" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
@@ -408,8 +473,22 @@
     document.body.style.overflow = "hidden";
     carregarTexto(tid).then(function (j) {
       if (leitorFechar !== fechar) return;
-      var corpo = paragrafosDaLei(j.p || []).map(paragrafoHtml).join("");
+      var psLei = paragrafosDaLei(j.p || []);
+      var corpo = psLei.map(paragrafoHtml).join("");
       var area = caixa.querySelector(".lei-leitor-texto");
+      if (comJulgados) {
+        carregarJulgados(tid).then(function (jul) {
+          if (leitorFechar !== fechar) return;
+          area.innerHTML = '<p style="margin:0 0 10px;padding:8px 10px;border-radius:8px;background:var(--accent-soft,#f1f5f9);font-size:calc(12.5px * var(--fs-scale,1));line-height:1.45;">' +
+            "⚖️ <b>Com julgados:</b> os números ao lado dos artigos levam a decisões do site que tratam deles (no máximo 2 por artigo). Passe o mouse para ver o resumo; clique para abrir no Diário das Decisões. " +
+            "É uma versão de teste, só com algumas leis, e as indicações são automáticas: confira sempre a decisão.</p>" + corpoComJulgados(psLei, jul) +
+            '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
+            ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
+        }).catch(function () {
+          area.innerHTML = '<p style="margin:0 0 8px;color:#b91c1c;">Não consegui carregar os julgados agora. Mostrando só o texto da lei.</p>' + corpo;
+        });
+        return;
+      }
       carregarRelacionados().then(function (rel) {
         if (leitorFechar !== fechar) return;
         var h = htmlRelacionados(rel, tid);
@@ -451,7 +530,8 @@
         ? '<span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">' +
           '<a href="' + escapeHtml(lei.link) + '" target="_blank" rel="noopener noreferrer" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;color:#0d6efd;text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' +
           ((lei.textoId || idTexto(lei.link))
-            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto((lei.textoId || idTexto(lei.link))) ? "" : "display:none;") + '">📜 Leia-me</button>'
+            ? '<button type="button" class="lei-leia" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + (temTexto((lei.textoId || idTexto(lei.link))) ? "" : "display:none;") + '">📜 Leia-me</button>' +
+            '<button type="button" class="lei-leia-julg" data-texto-id="' + escapeHtml((lei.textoId || idTexto(lei.link))) + '" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;background:none;border:0;color:#0d6efd;cursor:pointer;padding:0;' + ((julgadosIdx && julgadosIdx[(lei.textoId || idTexto(lei.link))]) ? "" : "display:none;") + '">⚖️ Com julgados</button>'
             : "") + "</span>"
         : "<span></span>") +
       (lei.removivel
@@ -755,8 +835,11 @@
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest(".lei-leia");
       if (b) abrirTexto(b);
+      var bj = e.target.closest && e.target.closest(".lei-leia-julg");
+      if (bj) abrirTexto(bj, true);
     });
     carregarIndiceTextos();
+    carregarIndiceJulgados();
 
     selectEdital.addEventListener("change", function () {
       gravarStorage(STORAGE_EDITAL, selectEdital.value);
