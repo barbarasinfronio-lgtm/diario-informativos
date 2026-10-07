@@ -60,6 +60,7 @@ import tempfile
 import time
 import unicodedata
 import urllib.error
+import http.client
 import urllib.parse
 import urllib.request
 import zlib
@@ -124,8 +125,15 @@ def _contexto_com_intermediario(host):
 _contextos = {}
 
 
+def _url_segura(url):
+    """Escapa espaços e outros caracteres que o urllib recusa (ex.: "/html/MSV 909-2009 VOL A.pdf"),
+    sem mexer no que já está escapado."""
+    return urllib.parse.quote(url, safe="%/:?&=#+;,@!$'()*~[]-._")
+
+
 def buscar(url):
     """Devolve (status, content-type, corpo em bytes). Erro de rede → Falha."""
+    url = _url_segura(url)
     host = urllib.parse.urlsplit(url).hostname
     if host not in _contextos:
         _contextos[host] = _contexto_padrao()
@@ -145,7 +153,7 @@ def buscar(url):
             destino = e.headers.get("Location") if e.code in (301, 302, 303, 307, 308) else None
             if destino and saltos < 5:
                 saltos += 1
-                url = urllib.parse.urljoin(url, destino)
+                url = _url_segura(urllib.parse.urljoin(url, destino))
                 host = urllib.parse.urlsplit(url).hostname
                 if host not in _contextos:
                     _contextos[host] = _contexto_padrao()
@@ -164,6 +172,8 @@ def buscar(url):
         except (socket.timeout, TimeoutError) as e:
             if tentativa == 3:
                 raise Falha(f"{url} → sem resposta ({e})")
+        except (http.client.InvalidURL, ValueError) as e:
+            raise Falha(f"{url} → endereço inválido ({e})")
     raise Falha(f"{url} → sem resposta")
 
 
