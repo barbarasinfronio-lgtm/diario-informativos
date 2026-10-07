@@ -674,7 +674,7 @@
       '<span class="rv-tipo">' + esc(it.tipoRotulo || it.tipo) + "</span>" +
       '<div class="rv-texto"><b>' + esc(it.titulo) + "</b>" +
         (it.destaques ? '<span class="rv-dest">' + it.destaques.map(function (d) {
-          return '<a href="/p/diario-das-decisoes.html#abrir=' + encodeURIComponent(d[0]) + "&busca=" + encodeURIComponent(d[1]) + '" target="_blank" rel="noopener">' + esc(d[1]) + "</a>" +
+          return '<button type="button" class="rv-dest-bt" data-inf-dec="' + esc(it.id + "|" + d[0]) + '">' + esc(nomeDestaque(d)) + "</button>" +
             (d[2] ? " · cobrado " + d[2] + "×" : "");
         }).join("<br>") + "</span>" : "") +
         '<span class="rv-meta">' + (it.destaques ? esc(base + (it.fase ? String(it.fase).replace(/ \(.*$/, "") + " · " : "") + quando)
@@ -889,6 +889,54 @@
     } else pintar(null);
   }
 
+  function nomeDestaque(d) {      // "ADI 7.495/DF, relator…" → "ADI 7.495/DF"; sigilo → começo da tese
+    var n = String(d[1] || "").replace(/,\s*rel.*$/i, "").replace(/,\s*julgamen.*$/i, "").trim();
+    if (!n || /segredo de justi/i.test(n)) n = (n ? "" : "") + String(d[3] || n).slice(0, 48).trim() + (d[3] && d[3].length > 48 ? "…" : "");
+    return n;
+  }
+  var indiceInf = null;
+  function abrirDecInf(chave, el, o) {
+    var p = chave.split("|"), itemId = p[0], decId = p[1];
+    var it = itensDeRevisao(o.maps, o.rev).filter(function (i) { return i.id === itemId; })[0];
+    var dest = it && (it.destaques || []).filter(function (d) { return d[0] === decId; })[0];
+    if (!it || !dest) return;
+    var fundo = document.createElement("div");
+    fundo.className = "rv-modal";
+    var fechar = function () { document.removeEventListener("keydown", tecla); if (fundo.parentNode) fundo.parentNode.removeChild(fundo); };
+    var tecla = function (e) { if (e.key === "Escape") fechar(); };
+    var pintar = function (x, resumo) {
+      fundo.innerHTML = '<div class="rv-card" role="dialog" aria-modal="true"><button type="button" class="rv-card-x" data-fechar="1" aria-label="Fechar">×</button>' +
+        '<span class="rv-tipo">' + esc(it.tipoRotulo) + "</span><h3>" + esc(nomeDestaque(dest)) + "</h3>" +
+        (dest[2] ? '<p class="rv-card-cob">📝 cobrado ' + dest[2] + " vez" + (dest[2] > 1 ? "es" : "") + " em prova</p>" : "") +
+        '<p class="rv-meta">' + esc(it.titulo + (x && x[6] ? " · " + x[6] : "")) + "</p>" +
+        '<div class="rv-card-texto">' + (x ? (x[4] ? "<h4>Título</h4>" + paragrafos(x[4]) : "") + (x[5] ? "<h4>Tese</h4>" + paragrafos(x[5]) : "") +
+          (resumo ? "<h4>Resumo</h4>" + paragrafos(resumo) : "") : (x === false ? '<p class="rv-vazio">Sem o texto aqui; abra no Diário das Decisões.</p>' : '<p class="rv-vazio">Carregando…</p>')) + "</div>" +
+        '<div class="rv-card-acoes"><button type="button" class="rv-feito" data-card-rev="1">✔ Revisei hoje</button>' +
+        '<a class="rv-abrir" href="/p/diario-das-decisoes.html#abrir=inf-' + encodeURIComponent(decId) + "&busca=" + encodeURIComponent(dest[1]) + '" target="_blank" rel="noopener">Ver no Diário</a></div></div>';
+    };
+    pintar(null);
+    fundo.onclick = function (e) {
+      if (e.target === fundo || e.target.closest("[data-fechar]")) { fechar(); return; }
+      if (e.target.closest("[data-card-rev]")) {
+        var dd = hoje(), local = lerRevLocal();
+        local[itemId] = (local[itemId] || []).filter(function (x) { return x !== dd; }).concat([dd]).sort();
+        try { localStorage.setItem(REV_KEY, JSON.stringify(local)); } catch (er) {}
+        if (o.salvarRev) o.salvarRev(itemId, local[itemId]);
+        o.rev = juntarRev(o.rev);
+        fechar();
+        render(el, o);
+      }
+    };
+    document.addEventListener("keydown", tecla);
+    document.body.appendChild(fundo);
+    (indiceInf || (indiceInf = jsonOu("informativos/indice.json"))).then(function (j) {
+      var x = (j.itens || []).filter(function (r) { return r[0] === decId; })[0];
+      if (!x) { pintar(false); return; }
+      pintar(x);
+      return jsonOu("informativos/c/" + String(x[8]).padStart(3, "0") + ".json").then(function (c) { if (fundo.parentNode) pintar(x, c[decId]); }, function () {});
+    }).catch(function () { if (fundo.parentNode) pintar(false); });
+  }
+
   function abrirBloco(chave, el, o) {
     var i = chave.lastIndexOf(":"), tid = chave.slice(0, i), n = +chave.slice(i + 1), bl = (blocosDaLei(tid) || [])[n - 1];
     if (!bl) return;
@@ -970,11 +1018,12 @@
     });
     if (rolagem && Math.abs(window.pageYOffset - rolagem) > 40) window.scrollTo(0, rolagem);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-bloco-ler],[data-plano-ini]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-inf-dec],[data-bloco-ler],[data-plano-ini]");
       if (!b) return;
       if (b.dataset.blocoLer) { abrirBloco(b.dataset.blocoLer, el, o); return; }
       if (b.dataset.planoIni) { var sel = el.querySelector("#rv-plano-lei"); if (sel && sel.value) iniciarPlano(sel.value, el, o); return; }
       if (b.dataset.card) { abrirCard(b.dataset.card, el, o); return; }
+      if (b.dataset.infDec) { abrirDecInf(b.dataset.infDec, el, o); return; }
       if (b.dataset.lote) {
         ui.confirmar = b.dataset.lote;
       } else if (b.dataset.loteNao) {
