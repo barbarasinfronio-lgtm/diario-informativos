@@ -1,11 +1,7 @@
 {
  "1483": {
   "processo": "RE 1616922",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "1412": {
-  "processo": "ARE 1.537.713",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+  "motivo": "nenhum arquivo de decisão abriu"
  },
  "976": {
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
@@ -15,40 +11,12 @@
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
   "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
  },
- "713": {
-  "processo": "ARE 773.765",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "584": {
-  "processo": "ARE 655403",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
  "564": {
   "processo": "RE 637.485",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+  "motivo": "nenhum arquivo de decisão abriu"
  },
- "560": {
-  "processo": "RE 633981",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "552": {
-  "processo": "RE 661941",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "518": {
-  "processo": "RE 660.933",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "489": {
-  "processo": "AI 810097",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "478": {
-  "processo": "RE 640.139",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
- },
- "467": {
-  "processo": "AI 834262",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ "314": {
+  "processo": "RE 601.235",
+  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto"
  }
 }
