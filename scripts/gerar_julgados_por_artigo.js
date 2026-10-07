@@ -43,10 +43,11 @@ function dataIso(s) {
 const docs = [];
 const hrefAbrir = (id, busca) => "/p/diario-das-decisoes.html#abrir=" + encodeURIComponent(id) + "&busca=" + encodeURIComponent(busca || "");
 for (const d of RG_REPETITIVOS_DATA) {
-  const rotulo = (d.precedenteLabel ? d.precedenteLabel + " " : "Tema ") + (d.tema || "") + " (" + (d.orgao || "") + ")";
+  const proc = String(d.processo || "").replace(/,\s*rel\..*$/i, "").trim();
+  const rotulo = (d.precedenteLabel ? d.precedenteLabel + " " : "Tema ") + (d.tema || "") + " (" + (d.orgao || "") + ")" + (proc ? " — " + proc : "");
   docs.push({
     chave: "dec:" + d.id, kind: "rg", repetitivo: /repetitiv|repercuss|IAC|IRDR/i.test((d.tipoNome || "") + " " + (d.precedenteLabel || "") + " " + (d.tipo || "")),
-    rotulo: d.tema ? rotulo : curto(d.titulo, 50), titulo: d.titulo, tese: d.tese || d.destaque || d.questao || "",
+    rotulo: d.tema ? curto(rotulo, 80) : curto((proc ? proc + " — " : "") + (d.titulo || ""), 80), titulo: d.titulo, tese: d.tese || d.destaque || d.questao || "",
     texto: [d.titulo, d.tese, d.questao, d.destaque, d.resumo].filter(Boolean).join(" . "), data: dataIso(d.data),
     href: hrefAbrir(d.id, d.processo || d.titulo)
   });
@@ -59,7 +60,7 @@ for (const d of JSON.parse(ler("stj/teses.json")).itens || []) {
 }
 for (const d of JSON.parse(ler("stf/extras.json")).itens || []) {
   docs.push({
-    chave: "dec:" + d.id, kind: "extras", rotulo: curto((d.processo ? d.processo + " — " : "") + (d.titulo || ""), 50), titulo: d.titulo, tese: d.tese || "",
+    chave: "dec:" + d.id, kind: "extras", rotulo: curto((d.processo ? d.processo + " — " : "") + (d.titulo || ""), 80), titulo: d.titulo, tese: d.tese || "",
     texto: [d.titulo, d.tese].filter(Boolean).join(" . "), data: dataIso(d.data), href: hrefAbrir(d.id, d.processo || d.titulo)
   });
 }
@@ -68,7 +69,7 @@ for (const f of fs.readdirSync(path.join(RAIZ, "controleconst/anos"))) {
   for (const d of JSON.parse(ler("controleconst/anos/" + f))) {
     docs.push({
       chave: "adi:" + d.id, kind: "adi", procedente: /procedente/i.test(d.resultado || "") && !/improcedente/i.test(d.resultado || ""),
-      rotulo: curto(d.processo || d.id, 40), titulo: d.processo, tese: d.tese || d.tema || d.resumo || "",
+      rotulo: curto(d.processo || d.id, 60), titulo: d.processo, tese: d.tese || d.tema || d.resumo || "",
       texto: [d.tema, d.tese, d.resumo].filter(Boolean).join(" . "), data: dataIso(d.data),
       href: "/p/diario-das-decisoes.html#busca=" + encodeURIComponent(d.processo || "")
     });
@@ -76,7 +77,7 @@ for (const f of fs.readdirSync(path.join(RAIZ, "controleconst/anos"))) {
 }
 for (const x of JSON.parse(ler("informativos/indice.json")).itens || []) {   // [id, orgao, informativo, area, titulo, tese, processo, data, parte]
   docs.push({
-    chave: "dec:inf-" + x[0], kind: "inf", rotulo: curto("Info " + x[1] + " " + x[2] + " — " + (x[4] || ""), 50), titulo: x[4], tese: x[5] || "",
+    chave: "dec:inf-" + x[0], kind: "inf", rotulo: curto(String(x[6] || x[4] || "").replace(/,\s*rel\..*$/i, "").replace(/\s*\([A-Za-z]+-\d+\)\s*$/, "") + " (Info " + x[1] + " " + x[2] + ")", 80), titulo: x[4], tese: x[5] || "",
     texto: [x[4], x[5]].filter(Boolean).join(" . "), data: dataIso(x[7]), href: hrefAbrir("inf-" + x[0], (x[6] || x[4] || "").replace(/,\s*rel\..*$/i, ""))      // no Diário das Decisões o card de informativo é "inf-<id>"
   });
 }
