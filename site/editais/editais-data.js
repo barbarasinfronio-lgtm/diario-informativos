@@ -30,6 +30,14 @@ var EDITAIS_DATA = [
   "editais": ["tjgo-59", "tjpe-2026", "tjrs-2026", "tjsp-192", "tjma-1-2022", "tjdft-1-2022", "tjms-2023", "tjba-2026", "tjsc-11-2025", "tjse-2024", "tjpa-1-2025", "tjam-1-2024", "tjce-91-2025", "tjmt-1-2024", "tjpr-1-2025", "tjto-1-2025", "tjmg-1-2026", "tjrj-li", "tjac-1-2018", "tjal-2-2019", "tjap-x-2021", "tjes-1-2023", "tjpb-53-2015", "tjpi-1-2015", "tjrn-1-2012", "tjro-xx-2019", "tjrr-1-2015"]
  },
  {
+  "id": "carreira-magistratura-trabalho",
+  "tipo": "carreira",
+  "secao": "carreira",
+  "sigla": "Carreira",
+  "titulo": "Magistratura do Trabalho",
+  "editais": ["csjt-magistratura-trabalho-2023"]
+ },
+ {
   "id": "carreira-promotor",
   "tipo": "carreira",
   "secao": "carreira",

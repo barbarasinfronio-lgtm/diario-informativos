@@ -24,6 +24,8 @@ on:
       - site/leis/normas-citadas.js
       - scripts/gerar_leves.js
       - scripts/gerar_relacionados.js
+      - scripts/gerar_cronograma.js
+      - scripts/gerar_destaques_informativos.js
       - site/leis/leis-data.js
       - site/leis/normas-data.js
       - site/sumulas/sumulas-data.js
@@ -60,6 +62,14 @@ jobs:
       # "Leia também": decisões, súmulas e resoluções ligadas a cada lei (leve/relacionados.json)
       - name: Gerar relacionados
         run: node scripts/gerar_relacionados.js
+
+      # decisões dos informativos que valem a revisão (leve/destaques-informativos.json)
+      - name: Gerar destaques de informativos
+        run: node scripts/gerar_destaques_informativos.js
+
+      # dados da página "Meu Cronograma" (leve/cronograma.json) — depende do arquivo acima
+      - name: Gerar dados do cronograma
+        run: node scripts/gerar_cronograma.js
 
       - name: Salvar os arquivos gerados
         id: salvar

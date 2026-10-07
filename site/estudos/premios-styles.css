@@ -408,6 +408,8 @@
 .rv-texto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.15rem; }
 .rv-texto b { font-weight: 600; font-size: calc(0.88rem * var(--fs-scale)); color: var(--ink); line-height: 1.35; }
 .rv-meta { font-size: calc(0.75rem * var(--fs-scale)); color: var(--ink-faint); }
+.rv-dest { display: block; margin: 0.25rem 0; font-size: calc(0.8rem * var(--fs-scale)); color: var(--ink-soft); line-height: 1.4; }
+.rv-dest a { font-weight: 600; }
 .rv-item.rv-agora .rv-meta { color: var(--gold); }
 .rv-acoes { display: flex; gap: 0.4rem; flex-shrink: 0; align-items: center; }
 .rv-abrir, .rv-feito {
