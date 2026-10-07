@@ -552,7 +552,7 @@
       var dest = DESTAQUES && DESTAQUES[String(p[0]).toUpperCase() + ":" + p[2]];
       if (DESTAQUES && !dest) return;      // nada nesta edição com cara de prova: não manda revisar o informativo inteiro
       if (dest) {
-        out.push({ id: "inf:" + k, tipo: "Informativo", tipoRotulo: "Decisões do informativo", destaques: dest, min: 3 * dest.length, lidaEm: e.em,
+        out.push({ id: "inf:" + k, tipo: "Informativo", tipoRotulo: "Info " + p[2], destaques: dest, min: 3 * dest.length, lidaEm: e.em,
           titulo: dest.map(function (d) { return d[1]; }).join(" · "),
           sub: "Informativo " + String(p[0]).toUpperCase() + " nº " + p[2] + "/" + p[1],
           meses: DECISAO_MESES, motivo: "decisões do informativo",
