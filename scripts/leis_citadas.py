@@ -144,6 +144,8 @@ def enderecos(tipo, n, ano):
             out += [f"leis/leis_2001/{f}" for f in nomes("l")]
         out += [f"leis/{f}" for f in nomes("l")]
         out += [f"leis/{a}/{f}" for f in nomes("l")]
+        for pasta in ("1950-1969", "1970-1979", "1980-1989", "1990-1999", "antigas", "anteriores", "L"):
+            out += [f"leis/{pasta}/{f}" for f in nomes("l")[:2]]
     elif tipo == "lc":
         out += [f"leis/lcp/{f}" for f in nomes("lcp")]
     elif tipo == "dl":
