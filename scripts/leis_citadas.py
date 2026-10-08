@@ -196,7 +196,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--teste")
     ap.add_argument("--max", type=int, default=150)
-    ap.add_argument("--minimo", type=int, default=3)
+    ap.add_argument("--minimo", type=int, default=1)
     a = ap.parse_args()
     hoje = robo.hoje()
     citadas = json.loads(CITADAS.read_text(encoding="utf-8")) if CITADAS.exists() else {}
