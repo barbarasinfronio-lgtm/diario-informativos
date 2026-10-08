@@ -25,7 +25,7 @@ import atualizar_informativos as robo  # noqa: E402
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
 RE_LEI = re.compile(r"\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*/\s*(\d{4}|\d{2})\b", re.I)
-VERSAO = 3   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
+VERSAO = 4   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
 NOMES = {"lei": "Lei", "lc": "Lei Complementar", "dl": "Decreto-Lei", "decreto": "Decreto"}
 
 
@@ -180,6 +180,9 @@ def buscar_lei(tipo, n, ano, hoje):
             return url, True
         if len(robo.ERRADOS) == antes and riscado:      # lei revogada: o texto inteiro está riscado
             if robo.salvar_texto(url, pg, numero, hoje, extrator=paragrafos_com_riscado, numero=numero):
+                return url, True
+        if len(robo.ERRADOS) == antes:      # norma curta (poucos parágrafos): aceita com a regra das leis curtas, se tiver artigos
+            if robo.salvar_texto(url, pg, numero, hoje, extrator=robo.paragrafos_da_lei, numero=numero):
                 return url, True
         if (robo.TEXTO_DIR / f"{robo.id_texto(url)}.json").exists() and len(robo.ERRADOS) == antes:
             return url, True        # já estava gravada e não mudou
