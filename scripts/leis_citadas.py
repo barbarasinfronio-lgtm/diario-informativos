@@ -15,7 +15,7 @@ Roda no Mac (o Planalto bloqueia os servidores do GitHub), pelo "Atualizar Leis.
     python3 scripts/leis_citadas.py --teste "Lei 12.973/2014"
     python3 scripts/leis_citadas.py --max 150 --minimo 2
 """
-import argparse, collections, glob, json, re, sys
+import argparse, collections, glob, json, re, sys, time
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -222,6 +222,10 @@ def main():
         except KeyboardInterrupt:
             print("\\ninterrompido; o que já foi buscado está guardado.")
             break
+        except Exception as e:   # noqa: BLE001 — conexão derrubada etc.: não conta como falha, tenta na próxima rodada
+            print(f"    erro de conexão ({type(e).__name__}); pulei esta, segue a próxima")
+            time.sleep(5)
+            continue
         if url:
             citadas[k] = robo.id_texto(url)
             ok += 1
