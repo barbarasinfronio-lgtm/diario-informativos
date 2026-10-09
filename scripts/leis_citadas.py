@@ -25,7 +25,7 @@ import atualizar_informativos as robo  # noqa: E402
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
 RE_LEI = re.compile(r"\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*/\s*(\d{4}|\d{2})\b", re.I)
-VERSAO = 4   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
+VERSAO = 5   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
 NOMES = {"lei": "Lei", "lc": "Lei Complementar", "dl": "Decreto-Lei", "decreto": "Decreto"}
 
 

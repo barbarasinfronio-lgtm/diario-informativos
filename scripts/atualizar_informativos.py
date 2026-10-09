@@ -1390,13 +1390,14 @@ def juntar_linhas_da_lei(linhas):
     return [t for k, t in enumerate(juntos) if k not in fora]
 
 
-def paragrafos_da_lei(t):
+def paragrafos_da_lei(t, manter_riscado=False):
     """Texto da lei, parágrafo por parágrafo, a partir da página do Planalto.
     O que está riscado (texto revogado: <strike>/<s>/<del> ou estilo "line-through") fica de fora; as
     notas "(Redação dada pela…)" ficam. As linhas quebradas são juntas em parágrafos e a redação
     antiga repetida sai (juntar_linhas_da_lei)."""
     t = re.sub(r"(?is)<(script|style|head)\b.*?</\1>|<!--.*?-->", " ", t)
-    t = sem_riscado(t)
+    if not manter_riscado:
+        t = sem_riscado(t)
     t = re.sub(r"(?i)<br\s*/?>|</(p|div|tr|h[1-6]|li|table|blockquote)>", "\n", t)
     t = re.sub(r"(?i)</t[dh]>", " ", t)
     t = html.unescape(re.sub(r"<[^>]+>", "", t)).replace("\xa0", " ")
@@ -1416,6 +1417,13 @@ def salvar_texto(url, pagina_html, nome, hoje_iso, extrator=None, numero=None):
     """Grava leis/texto/<id>.json se o texto mudou. True se gravou."""
     import json
     paragrafos = (extrator or paragrafos_da_lei)(pagina_html)
+    if not extrator and (len(paragrafos) < 5 or sum(map(len, paragrafos)) < 500):
+        # Lei inteira revogada: o Planalto risca o texto todo (ex.: Lei 4.898/1965), então ao tirar
+        # o riscado quase nada sobra. Nesse caso guarda o texto riscado mesmo (é a lei, só que revogada).
+        todos = paragrafos_da_lei(pagina_html, manter_riscado=True)
+        if len(todos) >= 5 and sum(map(len, todos)) >= 500:
+            print(f"  (\"{nome}\" está toda riscada/revogada no Planalto; guardei o texto como está)")
+            paragrafos = todos
     if extrator:   # leis estaduais: algumas são curtíssimas, mas têm de ter artigos
         curto = len(paragrafos) < 4 or sum(map(len, paragrafos)) < 250 \
             or not any(re.match(r"(?i)^art(igo|\.)", p) for p in paragrafos)
