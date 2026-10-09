@@ -2452,6 +2452,7 @@
   ];
 
   var TSE_DATA = [
+    { edicao: 13, ano: 2026, data: "2026-09-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-13-ano-28-de-01-a-15-de-setembro-de-2026" },
     { edicao: 12, ano: 2026, data: "2026-08-31", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-12-ano-28-de-16-a-31-de-agosto-de-2026" },
     { edicao: 11, ano: 2026, data: "2026-08-15", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/2026/tse-informativo-tse-no-11-ano-28-de-1o-a-15-de-agosto-de-2026" },
     { edicao: 10, ano: 2026, data: "2026-06-30", sumula: null, link: "https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/informativo-tse-no-10-ano-28-de-16-a-30-de-junho-de-2026" },
