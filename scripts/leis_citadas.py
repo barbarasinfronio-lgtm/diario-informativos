@@ -118,6 +118,17 @@ def ano_confere(tipo, ano, paras):
     return tipo == "lc" or re.search(rf"\b{ano}\b", " ".join(paras[:14])) is not None
 
 
+def ano_do_cabecalho(paras, n):
+    """Ano que consta no cabeçalho "LEI Nº 8.213, DE 24 DE JULHO DE 1991" (só se o número bate)."""
+    d = com_ponto(n).replace(".", r"\.?")
+    for t in paras[:10]:
+        m = re.search(rf"N[ºO°o.]*\s*0*{d}\b(.{{0,80}})", t, re.I)
+        anos = re.findall(r"\b((?:18|19|20)\d\d)\b", m[1]) if m else []
+        if anos:
+            return anos[-1]
+    return ""
+
+
 def com_ponto(n):
     n = int(n)
     return f"{n // 1000}.{n % 1000:03d}" if n >= 1000 else str(n)
@@ -172,10 +183,22 @@ def buscar_lei(tipo, n, ano, hoje):
             continue
         riscado = "<strike" in pg.lower() or "<s>" in pg.lower()
         paras = paragrafos_com_riscado(pg) if riscado else robo.paragrafos_da_lei(pg)
+        aproximado = False
         if not ano_confere(tipo, ano, paras):
-            print(f"    (o texto é de outro ano: \"{paras[0][:50] if paras else ''}\")")
-            continue
+            real = ano_do_cabecalho(paras, n)
+            if real and abs(int(real) - int(ano)) <= 2:    # a decisão errou o ano por pouco (ex.: Lei 8.213/1990, que é de 1991)
+                print(f"    (a norma é de {real}, não de {ano}; aceita: mesmo número, ano parecido)")
+                aproximado = True
+            else:
+                print(f"    (o texto é de outro ano: \"{paras[0][:50] if paras else ''}\")")
+                continue
         antes = len(robo.ERRADOS)
+        if aproximado:
+            if robo.salvar_texto(url, pg, numero, hoje, extrator=robo.paragrafos_da_lei):
+                return url, True
+            if (robo.TEXTO_DIR / f"{robo.id_texto(url)}.json").exists():
+                return url, True
+            continue
         if robo.salvar_texto(url, pg, numero, hoje, numero=numero):
             return url, True
         if len(robo.ERRADOS) == antes and riscado:      # lei revogada: o texto inteiro está riscado
