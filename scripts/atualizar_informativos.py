@@ -144,9 +144,13 @@ def buscar(url):
     })
     completou = False
     saltos = 0
-    for tentativa in (1, 2, 3):
+    # Internet lenta ou instável: espera mais pela resposta (120 s) e, se cair, tenta de novo
+    # com pausas crescentes (4 s, 10 s, 20 s) em vez de desistir de cara.
+    for tentativa in (1, 2, 3, 4):
+        if tentativa > 1:
+            time.sleep((4, 10, 20)[tentativa - 2])
         try:
-            with urllib.request.urlopen(req, context=_contextos[host], timeout=60) as r:
+            with urllib.request.urlopen(req, context=_contextos[host], timeout=120) as r:
                 return r.status, r.headers.get("Content-Type", ""), r.read()
         except urllib.error.HTTPError as e:
             # redirecionamento (o urllib de Python mais antigo não segue o 308)
@@ -159,7 +163,7 @@ def buscar(url):
                     _contextos[host] = _contexto_padrao()
                 req = urllib.request.Request(url, headers=req.headers)
                 continue
-            if e.code >= 500 and tentativa < 3:
+            if e.code >= 500 and tentativa < 4:
                 continue
             return e.code, e.headers.get("Content-Type", ""), b""
         except urllib.error.URLError as e:
@@ -167,11 +171,11 @@ def buscar(url):
                 _contextos[host] = _contexto_com_intermediario(host)
                 completou = True
                 continue
-            if tentativa == 3:
+            if tentativa == 4:
                 raise Falha(f"{url} → sem resposta ({e.reason})")
-        except (socket.timeout, TimeoutError) as e:
-            if tentativa == 3:
-                raise Falha(f"{url} → sem resposta ({e})")
+        except (socket.timeout, TimeoutError, ConnectionError, http.client.HTTPException) as e:
+            if tentativa == 4:
+                raise Falha(f"{url} → sem resposta ({type(e).__name__})")
         except (http.client.InvalidURL, ValueError) as e:
             raise Falha(f"{url} → endereço inválido ({e})")
     raise Falha(f"{url} → sem resposta")
