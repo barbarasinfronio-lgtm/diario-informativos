@@ -40,6 +40,7 @@ PADRAO = re.compile(r"padr|espelho|abordagem|gabarito-da-prova-discursiva|gabari
 def cargo(sigla):
     s = sigla.upper()
     if s.startswith("TRF"): return "Magistratura federal"
+    if s.startswith("TRT"): return "Magistratura do Trabalho"
     if s.startswith("TJ"): return "Magistratura estadual"
     if s.startswith("ENAM"): return "Magistratura (ENAM)"
     if s.startswith(("DPE", "DPDF", "DPU")): return "Defensoria Pública"
