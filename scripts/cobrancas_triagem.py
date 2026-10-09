@@ -165,17 +165,26 @@ def main():
             continue
         vistos[h] = f
         try:
-            txt = "".join(pg.get_text() for pg in list(fitz.open(p))[:3])
+            doc = fitz.open(p)
+            txt = "".join(pg.get_text() for pg in list(doc)[:3])
+            meta = doc.metadata or {}
         except Exception as e:      # noqa: BLE001
             nao.append((f, f"não abriu ({e})"))
             continue
-        txt = re.sub(r"pcimark\S*\s+\S+", " ", txt)
-        sig = sigla_de(txt, f)
+        txt = "\n".join(l for l in txt.split("\n") if "pcimark" not in l)      # marca d'água do PCI Concursos
+        extra = " ".join(str(meta.get(k) or "") for k in ("title", "subject", "keywords", "author"))
+        sig = sigla_de(txt + " " + extra, f)
         et = etapa_de(txt, f)
         if not sig or len(txt.strip()) < 80:
-            nao.append((f, "sem texto" if len(txt.strip()) < 80 else "órgão não identificado"))
+            ini = re.sub(r"\s+", " ", txt.strip())[:140]
+            nao.append((f, "sem texto" if len(txt.strip()) < 80 else f"órgão não identificado | começa com: {ini}"))
             continue
-        infos.append(dict(arq=f, p=p, sigla=sig, etapa=et, ano=anos_de(txt, f), n=concurso_de(txt), banca=banca_de(txt, f),
+        ano = anos_de(txt, f)
+        if not ano:       # sem ano no texto: tenta o ano de criação do PDF (a banca costuma gerar o caderno no ano da prova)
+            m = re.search(r"(20\d\d)", str(meta.get("creationDate") or ""))
+            if m and 2003 <= int(m[1]) <= 2025:
+                ano = m[1]
+        infos.append(dict(arq=f, p=p, sigla=sig, etapa=et, ano=ano, n=concurso_de(txt), banca=banca_de(txt, f),
                           civel=bool(re.search(r"c[ií]vel|civil", f, re.I)), penal=bool(re.search(r"penal|criminal", f, re.I))))
     # concurso que atravessa anos (objetiva em 2015, sentença em 2016): usa o menor ano do grupo
     grupos = collections.defaultdict(list)
