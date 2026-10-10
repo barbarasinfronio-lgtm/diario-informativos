@@ -629,7 +629,7 @@
           var f = window.EstudaManaLeiTexto.fatiar(t.ps, it.de, it.ate);
           var r = rotuloArtigos(f);
           sub.textContent = (r || it.trecho || "") + (f.inteira ? "" : " · só o trecho programado");
-          corpo.innerHTML = f.ps.map(window.EstudaManaLeiTexto.html).join("") +
+          corpo.innerHTML = window.EstudaManaLeiTexto.htmlTudo(f.ps) +
             '<p class="cr-card-fonte">Texto copiado do Planalto em ' + esc(t.em) + ". Pode estar desatualizado: confira na fonte oficial (“Abrir no Diário”).</p>";
         }).catch(function () { falha("Não consegui carregar o texto agora. Use “Abrir no Diário”."); });
       } else if (it.tipo === "sumula") {

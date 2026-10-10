@@ -483,6 +483,8 @@
   }
 
   var leitorFechar = null;
+  // lei-texto.js: divisões (Livro, Título, Capítulo…) centralizadas e artigos justificados no leitor
+  (function () { var sc = document.createElement("script"); sc.src = CDN_BASE + "lei-texto.js"; sc.async = true; document.head.appendChild(sc); })();
   // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
   // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
   function abrirTexto(botao, comJulgados) {
@@ -540,7 +542,7 @@
     carregarTexto(tid).then(function (j) {
       if (leitorFechar !== fechar) return;
       var psLei = paragrafosDaLei(j.p || []);
-      var corpo = psLei.map(paragrafoHtml).join("");
+      var corpo = window.EstudaManaLeiTexto ? window.EstudaManaLeiTexto.htmlTudo(psLei) : psLei.map(paragrafoHtml).join("");
       var area = caixa.querySelector(".lei-leitor-texto");
       if (comJulgados) {
         carregarJulgados(tid).then(function (jul) {
