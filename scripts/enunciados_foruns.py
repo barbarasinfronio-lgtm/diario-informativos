@@ -125,6 +125,31 @@ FPPC = [
 ]
 
 
+def ler_fppc(txt):
+    """Rol do FPPC (PDF oficial): '[(numero, texto, nota, situação)]'. Cancelados saem; a nota é 'arts. … — Grupo; redação…'."""
+    i = txt.find("Enunciados aprovados em Salvador")
+    b = txt[i:]
+    marcas, esp = [], 1
+    for m in re.finditer(r"(?m)^\s*(\d{1,3})\.\s*$", b):
+        if int(m.group(1)) == esp:
+            marcas.append(m)
+            esp += 1
+    out = []
+    for k, m in enumerate(marcas):
+        fim = marcas[k + 1].start() if k + 1 < len(marcas) else len(b)
+        s = re.sub(r"\s+", " ", b[m.end():fim]).strip()
+        g = re.search(r"\(Grupo:([^)]*)\)", s)
+        if not g or s.startswith("Cancelado"):
+            continue
+        corpo = s[:g.start()].strip()
+        corpo = re.sub(r"(?<=[A-Za-zÀ-ú])\d{1,3}(?=[.,;:\s)]|$)", "", corpo)   # remove o número de nota de rodapé colado
+        a = re.match(r"\(([^)]*(?:\([^)]*\))?[^)]*)\)\.?\s*(.*)$", corpo)
+        refs, texto = (a.group(1), a.group(2)) if a else ("", corpo)
+        nota = (refs + " — " if refs else "") + g.group(1).strip().rstrip(";")
+        out.append((int(m.group(1)), texto.strip(), nota, "vigente"))
+    return out
+
+
 # ------------------------------------------------------------------------- coletar / montar
 def pagina(url):
     import atualizar_informativos as robo   # urllib e, se o site recusar (403), Firefox invisível
@@ -179,7 +204,12 @@ def blocos_todos():
     cart = CACHE / "cartilha-tjmg.txt"
     if cart.exists():
         out.append(("enfam_cpc", "ENFAM — Enunciados sobre o CPC/2015 (Seminário 2015)", ENFAM_LINK, ler_enfam(cart.read_text(encoding="utf-8"))))
-    out.append(("fppc", "FPPC — Fórum Permanente de Processualistas Civis (CPC/2015)", FPPC_LINK, FPPC))
+    rol = CACHE / "fppc-rol.pdf"
+    fppc = FPPC
+    if rol.exists():
+        import fitz
+        fppc = ler_fppc("\n".join(p.get_text() for p in fitz.open(rol))) or FPPC
+    out.append(("fppc", "FPPC — Fórum Permanente de Processualistas Civis (CPC/2015)", FPPC_LINK, fppc))
     return out
 
 

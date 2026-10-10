@@ -97,13 +97,10 @@ def cobrados(chave, enunciados):
 def main():
     sys.path.insert(0, str(RAIZ / "scripts"))
     import enunciados_foruns as F
-    quais = sys.argv[1:] or ["fonaje", "enfam"]
+    quais = sys.argv[1:] or ["fonaje", "enfam", "fppc"]
     saida = RAIZ / "provas" / "enunciados-cobrados.json"
     res = json.loads(saida.read_text(encoding="utf-8")) if saida.exists() else {}
     for chave, rotulo, url, itens in F.blocos_todos():
-        if chave == "fppc":    # os 4 do FPPC foram escolhidos por já terem sido citados pelo número (ver enunciados_foruns.FPPC)
-            res[chave] = res.get(chave) or {str(n): [] for n, *_ in itens}
-            continue
         if chave.split("_")[0] not in quais:
             continue
         en = [(n, t) for n, t, nota, sit in itens if t]
