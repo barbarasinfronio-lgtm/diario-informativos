@@ -181,6 +181,27 @@ def js(x):
     return json.dumps(x, ensure_ascii=False)
 
 
+def formata_ref(raw):
+    """"Norma: Código Civil 2002 - Lei n. 10.406/2002 ART: 206 INC:V PAR:3; ART: 5;" → "Código Civil 2002 (Lei n. 10.406/2002): art. 206, § 3º, inc. V; art. 5º"."""
+    partes = []
+    for seg in re.split(r"Norma:\s*", raw or ""):
+        seg = seg.strip()
+        if not seg:
+            continue
+        nome = re.split(r"\s+ART:", seg, 1)[0].strip().rstrip(";").strip()
+        nome = re.sub(r"\s+-\s+(Lei|Decreto|Resolução|Emenda|Portaria|Medida|Constituição)", r" (\1", nome, 1)
+        if "(" in nome and not nome.endswith(")"):
+            nome += ")"
+        arts = []
+        for m in re.finditer(r"ART:\s*([\w.\-]+)((?:\s+(?:PAR|INC|ALI|LET|CAP|TIT|SEC):\s*[\w.\-]+)*)", seg):
+            t = "art. " + m.group(1)
+            for k, v in re.findall(r"(PAR|INC|ALI|LET|CAP|TIT|SEC):\s*([\w.\-]+)", m.group(2)):
+                t += ", " + {"PAR": "§ ", "INC": "inc. ", "ALI": "al. ", "LET": "alínea ", "CAP": "cap. ", "TIT": "tít. ", "SEC": "seç. "}[k] + v
+            arts.append(t)
+        partes.append(nome + (": " + "; ".join(arts) if arts else ""))
+    return " | ".join(partes)
+
+
 def bloco_js(chave, rotulo, itens):
     def numero(i):
         m = re.match(r"\d+", str(i["numero"]))
@@ -188,9 +209,9 @@ def bloco_js(chave, rotulo, itens):
     itens = sorted(itens, key=lambda i: (ordem_jornada(i["jornada"]), numero(i), i["id"]))
     linhas = []
     for i in itens:
-        ref = re.sub(r"\s*Norma:\s*", " ", i["referencia"]).strip()
+        ref = formata_ref(i["referencia"])
         campos = ["numero: %s" % js(int(numero(i)) if numero(i) else i["numero"]), "texto: %s" % js(i["texto"]),
-                  "materia: %s" % (js(i["comissao"]) if i["comissao"] else "null"),
+                  "materia: %s" % (js(re.sub(r"\s*\(inativo\)", "", i["comissao"])) if i["comissao"] else "null"),
                   "link: %s" % js("https://www.cjf.jus.br/enunciados/enunciado/%d" % i["id"]),
                   "jornada: %s" % js(re.sub(r"\s+Jornada.*$", " Jornada", i["jornada"]) if False else i["jornada"]),
                   "jid: %d" % i["id"]]
@@ -205,6 +226,15 @@ def montar():
     dados = lista_de_dados()
     if not dados:
         sys.exit("Sem cache: rode antes  python3 scripts/jornadas_cjf.py coletar")
+    vistos, unicos = set(), []
+    for d in dados:
+        k = (d["jornada"], d["numero"], d["texto"])
+        if k not in vistos:
+            vistos.add(k)
+            unicos.append(d)
+    if len(unicos) < len(dados):
+        print(f"{len(dados) - len(unicos)} enunciado(s) repetido(s) no CJF (mesmo número, Jornada e texto): ficou um só")
+    dados = unicos
     por = {}
     for d in dados:
         for chave, rotulo, rx in AREAS:
@@ -233,6 +263,7 @@ def montar():
         t = re.sub(re.escape(ordem_ini) + r"[\s\S]*?" + re.escape(ordem_fim), lambda m: ordem, t)
     else:
         t = t.replace('var SUMULAS_ORG_ORDER = [\n', 'var SUMULAS_ORG_ORDER = [\n' + ordem, 1)
+    t = re.sub(r"\}(\s*\n)(  // <jornadas-cjf> )", r"},\1\2", t)   # o bloco anterior precisa terminar com vírgula
     arq.write_text(t, encoding="utf-8")
     # justificativas, em arquivos de 100 ids (baixados só quando a pessoa abre o enunciado)
     pasta = RAIZ / "jornadas" / "justificativas"
