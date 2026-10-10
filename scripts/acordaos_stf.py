@@ -136,7 +136,17 @@ def coletar(de, ate):
 # (agravo contra decisão que não admitiu recurso: "ofensa reflexa", Súmula 279,
 # falta de prequestionamento...). O site guarda o que ensina algo.
 DESDE = "1988-10-05"   # Constituição de 1988; o que veio antes é de outra ordem constitucional
-SEM_MERITO_ATA = re.compile(r"n[ãa]o conhe|prejudicad|homolog|desist|negou seguimento|extin[gç]|perda de objeto|sem resolu", re.I)
+# "Sem mérito" vale só para a DECISÃO do Tribunal (o trecho depois do último "Decisão:"), nunca para voto vencido ou
+# ressalva ("…do Ministro X, que dela não conhecia"): isso derrubava julgamentos que o Tribunal conheceu e decidiu.
+NAO_DECIDE = re.compile(r"^(?:.{0,160}?)(?:n[ãa]o conhec(?:eu|eram|ido|imento)|prejudicad|homolog|desist|negou seguimento|extin[gç]|perda de objeto|sem resolu)", re.I)
+DECIDE = re.compile(r"julg(?:ou|aram) (?:\w+ ){0,3}(?:procedente|improcedente)|conced(?:eu|eram)|deneg(?:ou|aram)|deferi(?:u|ram)|deu(?:ram)? (?:parcial )?provimento|negou provimento|referend|fixou|declarou", re.I)
+
+
+def sem_merito(ata):
+    a = limpo(ata)
+    i = a.rfind("Decisão:")
+    dec = (a[i + 8:] if i >= 0 else a)[:260]
+    return bool(NAO_DECIDE.search(dec)) and not DECIDE.search(dec)
 PROCESSUAL = re.compile(
     r"ofensa (?:meramente |apenas )?(?:indireta|reflexa)|infraconstitucional"
     r"|S[úu]mulas? (?:n[ºo.]*\s*)?(?:279|280|281|282|283|284|356|287|288|735|7)\b"
@@ -169,7 +179,7 @@ def avaliar(d):
         return "excluir", "ementa curta"
     if sig.endswith("-RG"):
         return "excluir", "repercussão geral (já há o card do Tema)"
-    if SEM_MERITO_ATA.search(a) and not tese:
+    if sem_merito(d.get("acordao_ata")) and not tese:
         return "excluir", "ata sem mérito"
     if tese or d.get("is_repercussao_geral_merito"):
         return "incluir", "tese/repercussão geral"
@@ -234,7 +244,7 @@ def para(s):
     return "\n".join(p for p in (limpo(x) for x in re.split(r"\n\s*\n|\r", (s or "").replace("\u00a0", " "))) if p)
 
 
-def montar(teste=False):
+def montar(teste=False, refazer=False):
     itens, motivos, total = [], collections.Counter(), 0
     for arq in sorted(CACHE.glob("*.json.gz")):
         for d in json.load(gzip.open(arq, "rt", encoding="utf-8")):
@@ -261,6 +271,27 @@ def montar(teste=False):
         print(f"  {n:7d}  {ver:8s} {motivo}")
     if teste:
         return
+    if refazer:
+        gravar(itens)
+    else:
+        acrescentar(itens)
+
+
+def linha(i, ch):
+    return [i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], ch]
+
+
+def detalhe(i):
+    return {"ementa": i["ementa"], "ata": i["ata"], "tese": i["tese"], "tt": i["tt"], "tema": i["tema"],
+            "idx": i["idx"], "pub": i["pub"], "url": i["url"]}
+
+
+CAMPOS = ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "parte"]
+FONTE = "STF — pesquisa de jurisprudência (acórdãos)"
+
+
+def gravar(itens):
+    """Reescreve TUDO (só com --refazer: reorganiza as partes e o git vê todos os arquivos alterados)."""
     itens.sort(key=lambda i: (i["data"], i["id"]), reverse=True)
     base = RAIZ / "stf" / "acordaos"
     shutil.rmtree(base, ignore_errors=True)
@@ -269,16 +300,39 @@ def montar(teste=False):
     for k in range(0, len(itens), N):
         ch, det = k // N, {}
         for i in itens[k:k + N]:
-            indice.append([i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], ch])
-            det[i["id"]] = {"ementa": i["ementa"], "ata": i["ata"], "tese": i["tese"], "tt": i["tt"], "tema": i["tema"],
-                            "idx": i["idx"], "pub": i["pub"], "url": i["url"]}
+            indice.append(linha(i, ch))
+            det[i["id"]] = detalhe(i)
         with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
             json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
     with open(base / "indice.json", "w", encoding="utf-8") as f:
-        json.dump({"fonte": "STF — pesquisa de jurisprudência (acórdãos)",
-                   "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "parte"],
-                   "itens": indice}, f, ensure_ascii=False, separators=(",", ":"))
-    print("gravado em stf/acordaos/ —", collections.Counter(i["data"][:4] for i in itens).most_common(5), "...")
+        json.dump({"fonte": FONTE, "campos": CAMPOS, "itens": indice}, f, ensure_ascii=False, separators=(",", ":"))
+    print("gravado em stf/acordaos/ —", len(itens), "acórdãos")
+
+
+def acrescentar(novos):
+    """Só o que é NOVO: partes novas depois da última e linhas no fim do índice. O que já existe não é reescrito
+    (o git vê arquivos novos e o índice com linhas a mais, não 700 arquivos alterados)."""
+    base = RAIZ / "stf" / "acordaos"
+    man = base / "indice.json"
+    if not man.exists():
+        return gravar(list(novos))
+    ind = json.load(open(man, encoding="utf-8"))
+    ids = {r[0] for r in ind["itens"]}
+    novos = sorted((i for i in novos if i["id"] not in ids), key=lambda i: (i["data"], i["id"]), reverse=True)
+    if not novos:
+        print("nada novo para gravar.")
+        return
+    prox, N = max(r[8] for r in ind["itens"]) + 1, 250
+    for k in range(0, len(novos), N):
+        ch, det = prox + k // N, {}
+        for i in novos[k:k + N]:
+            ind["itens"].append(linha(i, ch))
+            det[i["id"]] = detalhe(i)
+        with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
+            json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
+    with open(man, "w", encoding="utf-8") as f:
+        json.dump(ind, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"acrescentados {len(novos)} acórdãos novos (partes {prox}–{prox + (len(novos) - 1) // N}); o resto ficou como estava.")
 
 
 def main():
@@ -287,10 +341,11 @@ def main():
     p.add_argument("--de", type=int, default=date.today().year - 1)
     p.add_argument("--ate", type=int, default=date.today().year)
     p.add_argument("--teste", action="store_true")
+    p.add_argument("--refazer", action="store_true", help="(montar) reescreve tudo em vez de só acrescentar o novo")
     a = p.parse_args()
     if a.passo == "coletar":
         sys.exit(1 if coletar(a.de, a.ate) else 0)
-    montar(a.teste)
+    montar(a.teste, a.refazer)
 
 
 if __name__ == "__main__":
