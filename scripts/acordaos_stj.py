@@ -89,17 +89,32 @@ def limpo(s):
     return re.sub(r"\s+", " ", (s or "").replace("_x000D_", " ")).strip()
 
 
+# O que NÃO decide nada: o recurso morre na admissibilidade. Vale para QUALQUER classe (REsp também),
+# lido no cabeçalho da ementa (os primeiros 400 caracteres, onde o STJ lista os fundamentos).
+INADMISSIBILIDADE = re.compile(
+    r"n[ãa]o conhec|n[ãa]o-conhec|intempestiv|extempor[âa]ne|inadmiss|\bdeserto|dese[r]?[çc][ãa]o|pressupostos? (?:recursais|de admissibilidade)"
+    r"|prequestion|S[úu]mulas? (?:n[ºo.]*\s*)?(?:5|7|83|126|211|282|283|284|356|518|568|735)\b"
+    r"|reexame (?:f[áa]tico|de provas|f[áa]tico-probat)|revolvimento|impugna[çc][ãa]o espec[ií]fica|defici[êe]ncia (?:na )?fundamenta"
+    r"|dissenso (?:pretoriano )?n[ãa]o|diverg[êe]ncia (?:jurisprudencial )?n[ãa]o|[óo]bice|falta de interesse recursal|perda (?:do )?objeto|prejudicad"
+    r"|ilegitimidade recursal|aus[êe]ncia de (?:novos )?argumentos|reitera[çc][ãa]o de argumentos|pr[óo]prios fundamentos|erro grosseiro|fungibilidade", re.I)
+
+
 def avaliar(d):
-    """('incluir'|'excluir', motivo) — mesma lógica do STF (ver acordaos_stf.py)."""
+    """('incluir'|'excluir', motivo) — mesma lógica do STF (ver acordaos_stf.py), mais rígida: sem conteúdo decisório
+    (não conhecido, intempestivo, deserto, Súmula 7/83/211/282/284 como fundamento etc.) não entra."""
     e, a = limpo(d.get("ementa")), limpo(d.get("decisao"))
     sig = d.get("siglaClasse") or ""
     tese = bool(limpo(d.get("teseJuridica"))) or bool(limpo(d.get("tema")))
     if len(e) < 120:
         return "excluir", "ementa curta"
+    if sig.startswith("ProAfR"):
+        return "excluir", "proposta de afetação (ainda sem tese)"
     if SEM_MERITO.search(a) and not tese:
         return "excluir", "decisão sem mérito"
     if tese:
         return "incluir", "tese/repetitivo"
+    if INADMISSIBILIDADE.search(e[:400]):
+        return "excluir", "resolvido por inadmissibilidade"
     if RECURSO.search(sig) and sig not in ("AR", "EREsp", "EAREsp", "EAg", "EDv"):
         if re.search(r"rejeitar|rejeit", a, re.I):
             return "excluir", "embargos rejeitados"
@@ -144,6 +159,7 @@ def resultado(dec):
 
 
 def gravar(itens):
+    """Reescreve TUDO (use só com --refazer: reorganiza partes e fatias, e o git vê todos os arquivos alterados)."""
     itens.sort(key=lambda i: (i["data"], i["id"]), reverse=True)
     base = RAIZ / "stj" / "acordaos"
     shutil.rmtree(base, ignore_errors=True)
@@ -152,17 +168,98 @@ def gravar(itens):
     for k in range(0, len(itens), N):
         ch, det = k // N, {}
         for i in itens[k:k + N]:
-            indice.append([i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], i["reg"], ch])
-            det[i["id"]] = {"ementa": i["ementa"], "dec": i["dec"], "inf": i["inf"], "notas": i["notas"], "pub": i["pub"]}
+            indice.append(linha_do_indice(i, ch))
+            det[i["id"]] = detalhe_de(i)
         with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
             json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
-    indice_fatiado.gravar(str(base / "indice.json"), {"fonte": "STJ — dados abertos, espelhos de acórdãos",
-                          "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"],
-                          "itens": indice})
+    indice_fatiado.gravar(str(base / "indice.json"), {"fonte": FONTE, "campos": CAMPOS, "itens": indice})
     print(f"gravado em stj/acordaos/ ({len(itens)} acórdãos)")
 
 
-def montar(teste=False, desde="2010"):
+FONTE = "STJ — dados abertos, espelhos de acórdãos"
+CAMPOS = ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"]
+
+
+def linha_do_indice(i, parte):
+    return [i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], i["reg"], parte]
+
+
+def detalhe_de(i):
+    return {"ementa": i["ementa"], "dec": i["dec"], "inf": i["inf"], "notas": i["notas"], "pub": i["pub"]}
+
+
+def acrescentar(novos):
+    """Acrescenta acórdãos NOVOS sem mexer no que já existe: partes novas (c/NNN.json depois da última) e linhas no fim
+    do índice. É o que as atualizações de rotina usam: o git só vê arquivos novos e a última fatia do índice."""
+    base = RAIZ / "stj" / "acordaos"
+    man = base / "indice.json"
+    if not man.exists():
+        return gravar(list(novos))
+    ind = indice_fatiado.ler(str(man))["itens"]
+    ids = {r[0] for r in ind}
+    novos = sorted((i for i in novos if i["id"] not in ids), key=lambda i: (i["data"], i["id"]), reverse=True)
+    if not novos:
+        print("nada novo para gravar.")
+        return
+    prox = max(r[9] for r in ind) + 1
+    linhas, N = [], 250
+    for k in range(0, len(novos), N):
+        ch, det = prox + k // N, {}
+        for i in novos[k:k + N]:
+            linhas.append(linha_do_indice(i, ch))
+            det[i["id"]] = detalhe_de(i)
+        with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
+            json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
+    indice_fatiado.acrescentar(str(man), linhas)
+    print(f"acrescentados {len(novos)} acórdãos novos (partes {prox}–{prox + (len(novos) - 1) // N}); o resto ficou como estava.")
+
+
+def podar(teste=False, desde="2010"):
+    """Tira do que já está em stj/acordaos o que o filtro ATUAL reprova, sem reorganizar nada: as fatias e as partes
+    ficam como estão, só perdem as linhas/acórdãos removidos (o git guarda só a diferença). O que não está no cache
+    (ex.: arquivos baixados à mão) nunca é removido."""
+    base = RAIZ / "stj" / "acordaos"
+    reprovados, motivos = set(), collections.Counter()
+    for arq in sorted(CACHE.glob("*/*.json")) + sorted(CACHE.glob("*/zip-*/*.json")):
+        if arq.name.startswith("_"):
+            continue
+        try:
+            lista = json.load(open(arq, encoding="utf-8"))
+        except ValueError:
+            continue
+        for d in lista:
+            if d.get("id") and avaliar(d)[0] == "excluir":
+                reprovados.add(str(d["id"]))
+    man = json.load(open(base / "indice.json", encoding="utf-8"))
+    removidos, antes = 0, man.get("total", 0)
+    for a in man["arquivos"]:
+        caminho = base / a
+        itens = json.load(open(caminho, encoding="utf-8"))["itens"]
+        ficam = [r for r in itens if r[0] not in reprovados]
+        removidos += len(itens) - len(ficam)
+        if len(ficam) != len(itens) and not teste:
+            with open(caminho, "w", encoding="utf-8") as f:
+                json.dump({"itens": ficam}, f, ensure_ascii=False, separators=(",", ":"))
+    apagados = 0
+    for caminho in sorted((base / "c").glob("*.json")):
+        det = json.load(open(caminho, encoding="utf-8"))
+        ficam = {k: v for k, v in det.items() if k not in reprovados}
+        if len(ficam) == len(det) or teste:
+            continue
+        apagados += len(det) - len(ficam)
+        if ficam:
+            with open(caminho, "w", encoding="utf-8") as f:
+                json.dump(ficam, f, ensure_ascii=False, separators=(",", ":"))
+        else:
+            caminho.unlink()
+    if not teste:
+        man["total"] = antes - removidos
+        with open(base / "indice.json", "w", encoding="utf-8") as f:
+            json.dump(man, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"{'(teste) ' if teste else ''}removidos {removidos} acórdãos do índice (antes {antes}, depois {antes - removidos}); {apagados} dos arquivos de ementa.")
+
+
+def montar(teste=False, desde="2010", refazer=False):
     itens, motivos, vistos, total = [], collections.Counter(), set(), 0
     for arq in sorted(CACHE.glob("*/*.json")) + sorted(CACHE.glob("*/zip-*/*.json")):
         if arq.name.startswith("_"):
@@ -199,7 +296,10 @@ def montar(teste=False, desde="2010"):
     print("  por década:", sorted(collections.Counter(i["data"][:3] + "0" for i in itens).items()))
     if teste:
         return itens
-    gravar(itens)
+    if refazer:
+        gravar(itens)
+    else:
+        acrescentar(itens)
 
 
 def listas_da_pasta(pasta):
@@ -227,19 +327,13 @@ def mesclar(pastas, desde="2010"):
     """Acrescenta ao que já está em stj/acordaos os acórdãos das pastas (arquivos baixados à mão do portal de
     dados abertos do STJ), sem apagar nada e sem repetir (pelo id). Mesmo filtro do "montar"."""
     base = RAIZ / "stj" / "acordaos"
-    itens, ids = [], set()
+    itens = []   # só os NOVOS: o que já existe não é lido nem reescrito
     try:
         ind = indice_fatiado.ler(str(base / "indice.json"))["itens"]
     except (OSError, ValueError, KeyError):
         ind = []
-    partes = {}
-    for r in ind:
-        det = partes.get(r[9]) or partes.setdefault(r[9], json.load(open(base / "c" / f"{r[9]:03d}.json", encoding="utf-8")))
-        d = det.get(r[0], {})
-        itens.append(dict(id=r[0], proc=r[1], org=r[2], rel=r[3], data=r[4], area=r[5], tit=r[6], res=r[7], reg=r[8],
-                          ementa=d.get("ementa", ""), dec=d.get("dec", ""), inf=d.get("inf", ""), notas=d.get("notas", ""), pub=d.get("pub", "")))
-        ids.add(r[0])
-    antes, motivos, lidos = len(itens), collections.Counter(), 0
+    ids = {str(r[0]) for r in ind}
+    antes, motivos, lidos = 0, collections.Counter(), 0
     for pasta in pastas:
         for nome, lista in listas_da_pasta(pasta):
             if not isinstance(lista, list):
@@ -271,16 +365,17 @@ def mesclar(pastas, desde="2010"):
     for (ver, motivo), n in motivos.most_common():
         print(f"  {n:7d}  {ver:8s} {motivo}")
     if len(itens) > antes:
-        gravar(itens)
+        acrescentar(itens)
     else:
         print("nada novo para gravar.")
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("passo", choices=["coletar", "montar", "mesclar"])
+    p.add_argument("passo", choices=["coletar", "montar", "mesclar", "podar"])
     p.add_argument("--pasta", action="append", default=[], help="(mesclar) pasta com os espelhos baixados à mão (JSON/ZIP); pode repetir")
     p.add_argument("--teste", action="store_true")
+    p.add_argument("--refazer", action="store_true", help="(montar) reescreve tudo do zero em vez de só acrescentar o novo")
     p.add_argument("--desde", default="2010", help="data mínima do julgamento, AAAA ou AAAAMMDD")
     a = p.parse_args()
     if a.passo == "coletar":
@@ -290,7 +385,10 @@ def main():
             sys.exit("informe --pasta <pasta com os JSON/ZIP dos espelhos>")
         mesclar(a.pasta, a.desde)
         return
-    montar(a.teste, a.desde)
+    if a.passo == "podar":
+        podar(a.teste, a.desde)
+        return
+    montar(a.teste, a.desde, a.refazer)
 
 
 if __name__ == "__main__":

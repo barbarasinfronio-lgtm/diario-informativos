@@ -38,3 +38,27 @@ def gravar(caminho, obj, fatia=FATIA):
     for velho in glob.glob(os.path.join(pasta, "indice-*.json")):
         if os.path.basename(velho) not in arquivos:
             os.remove(velho)
+
+
+def acrescentar(caminho, linhas, fatia=FATIA):
+    """Acrescenta linhas ao FIM do índice sem mexer nas fatias que já existem (só a última e o manifesto mudam;
+    o git não vê o resto como alterado). Cria uma fatia nova quando a última enche."""
+    pasta = os.path.dirname(caminho)
+    manifesto = json.load(open(caminho, encoding="utf-8"))
+    arquivos = list(manifesto["arquivos"])
+    ultima = os.path.join(pasta, arquivos[-1])
+    itens = json.load(open(ultima, encoding="utf-8"))["itens"]
+    total = manifesto.get("total", 0)
+    for linha in linhas:
+        if len(itens) >= fatia:
+            with open(ultima, "w", encoding="utf-8") as f:
+                json.dump({"itens": itens}, f, ensure_ascii=False, separators=(",", ":"))
+            arquivos.append(f"indice-{len(arquivos):03d}.json")
+            ultima, itens = os.path.join(pasta, arquivos[-1]), []
+        itens.append(linha)
+        total += 1
+    with open(ultima, "w", encoding="utf-8") as f:
+        json.dump({"itens": itens}, f, ensure_ascii=False, separators=(",", ":"))
+    manifesto["arquivos"], manifesto["total"] = arquivos, total
+    with open(caminho, "w", encoding="utf-8") as f:
+        json.dump(manifesto, f, ensure_ascii=False, separators=(",", ":"))
