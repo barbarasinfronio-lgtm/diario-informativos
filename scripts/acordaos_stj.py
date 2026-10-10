@@ -51,10 +51,14 @@ def coletar():
         if not curl(API + n, meta):
             falhas += 1
             continue
+        usados = set()
         for r in json.load(open(meta))["result"]["resources"]:
             if r["format"] not in ("JSON", "ZIP"):
                 continue
             nome = (r.get("name") or "").strip() or r["url"].rsplit("/", 1)[-1]   # o portal às vezes publica recurso sem nome
+            if nome in usados:   # dois recursos com o mesmo nome (ex.: Quinta Turma 20241130.json): guarda os dois
+                nome = f"{Path(nome).stem}-{r['id'][:8]}{Path(nome).suffix}"
+            usados.add(nome)
             arq = pasta / nome
             if arq.exists() and arq.stat().st_size == int(r.get("size") or arq.stat().st_size):
                 continue
