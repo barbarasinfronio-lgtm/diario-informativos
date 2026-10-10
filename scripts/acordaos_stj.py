@@ -21,6 +21,9 @@ Uso:  python3 scripts/acordaos_stj.py coletar
 import argparse, collections, glob, gzip, json, os, re, shutil, subprocess, sys, zipfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import indice_fatiado  # noqa: E402  (stj/acordaos/indice.json em fatias: ver scripts/indice_fatiado.py)
+
 RAIZ = Path(__file__).resolve().parent.parent
 CACHE = Path.home() / "EstudaMana" / "cache-stj-acordaos"
 API = "https://dadosabertos.web.stj.jus.br/api/3/action/package_show?id=espelhos-de-acordaos-"
@@ -152,10 +155,9 @@ def gravar(itens):
             det[i["id"]] = {"ementa": i["ementa"], "dec": i["dec"], "inf": i["inf"], "notas": i["notas"], "pub": i["pub"]}
         with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
             json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
-    with open(base / "indice.json", "w", encoding="utf-8") as f:
-        json.dump({"fonte": "STJ — dados abertos, espelhos de acórdãos",
-                   "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"],
-                   "itens": indice}, f, ensure_ascii=False, separators=(",", ":"))
+    indice_fatiado.gravar(str(base / "indice.json"), {"fonte": "STJ — dados abertos, espelhos de acórdãos",
+                          "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"],
+                          "itens": indice})
     print(f"gravado em stj/acordaos/ ({len(itens)} acórdãos)")
 
 
@@ -226,7 +228,7 @@ def mesclar(pastas, desde="2010"):
     base = RAIZ / "stj" / "acordaos"
     itens, ids = [], set()
     try:
-        ind = json.load(open(base / "indice.json", encoding="utf-8"))["itens"]
+        ind = indice_fatiado.ler(str(base / "indice.json"))["itens"]
     except (OSError, ValueError, KeyError):
         ind = []
     partes = {}

@@ -9,6 +9,9 @@ Decisões baixa só quando o card é aberto. Roda sozinho no GitHub a cada envio
 informativos/indice.json ou stj/acordaos/indice.json (gerar-leves.yml).
 """
 import collections, json, os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import indice_fatiado  # noqa: E402
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
 rd = lambda f: json.load(open(f, encoding="utf-8"))
@@ -19,7 +22,7 @@ num = lambda p: re.sub(r"\D", "", re.sub(r"/[A-Z]{2}$", "", p or ""))
 RX_TEMA = re.compile(r"tema\s*(?:repetitivo\s*)?(?:n[º°.o]*\s*)?(\d\.?\d{2,3})\b", re.I)
 
 # --- acórdãos
-ac = rd("stj/acordaos/indice.json")["itens"]
+ac = indice_fatiado.ler("stj/acordaos/indice.json")["itens"]
 por_num = collections.defaultdict(list)
 por_tema = collections.defaultdict(list)
 for x in ac:
