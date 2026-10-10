@@ -151,7 +151,7 @@
           out.push({
             k: "sumula:" + j.s.org + ":" + j.s.num, tipo: "sumula", min: j.min, cobr: j.cob,
             st: "sum", sk: j.s.org + ":" + j.s.num, rid: "sum:" + j.s.org + ":" + j.s.num, ultima: true,
-            titulo: "Súmula " + j.s.num + " do " + (NOMES_ORG[j.s.org] || j.s.org.toUpperCase()), sub: j.s.sub,
+            titulo: j.s.org === "stf_vinculante" ? "Súmula Vinculante nº " + j.s.num : "Súmula " + j.s.num + " do " + (NOMES_ORG[j.s.org] || j.s.org.toUpperCase()), sub: j.s.sub,
             href: PAGINA_SUMULAS + "#cad=" + encodeURIComponent(j.s.org + "|" + j.s.num)
           });
         } else {
