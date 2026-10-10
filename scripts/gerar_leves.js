@@ -81,7 +81,7 @@ for (const [f, lista] of Object.entries(fontes)) contagem[f] = lista.length;
 // listas baixadas só sob demanda (acórdãos, julgados de informativos): o total
 // vai junto, para o painel de números não mudar enquanto a página carrega
 const sobDemanda = {};
-for (const [g, f] of [["ACORDAOS", "stj/acordaos/indice.json"], ["INFORMATIVOS", "informativos/indice.json"]]) {
+for (const [g, f] of [["ACORDAOS", "stj/acordaos/indice.json"], ["ACORDAOS_STF", "stf/acordaos/indice.json"], ["INFORMATIVOS", "informativos/indice.json"]]) {
   try { sobDemanda[g] = (JSON.parse(ler(f)).itens || []).length; } catch (e) { /* sem o arquivo: a página conta ao baixar */ }
 }
 

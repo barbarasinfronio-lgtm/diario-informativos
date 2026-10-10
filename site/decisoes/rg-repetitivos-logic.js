@@ -23,12 +23,17 @@
   // quando a pessoa abre o grupo ou busca algo; a ementa de cada um vem de
   // stj/acordaos/c/NNN.json só quando o card é aberto.
   var ACORDAOS_BASE = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stj/acordaos/';
+  // Acórdãos do STF (pesquisa de jurisprudência do STF → scripts/acordaos_stf.py):
+  // só os com conteúdo de estudo, desde 1988. Mesmo molde do STJ: lista leve em
+  // stf/acordaos/indice.json e a ementa em stf/acordaos/c/NNN.json ao abrir o card.
+  var ACORDAOS_STF_BASE = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stf/acordaos/';
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
     COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
     INFORMATIVOS: { rotulo: 'Informativos', titulo: 'Julgados dos informativos do STJ e do STF — tese e resumo' },
-    ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' }
+    ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' },
+    ACORDAOS_STF: { rotulo: 'Acórdãos STF', titulo: 'Acórdãos do STF (Plenário e Turmas) com conteúdo de estudo — ementa, tese e resultado' }
   };
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
   // página não ficar pesada; com busca, mostra tudo o que combinar.
@@ -406,6 +411,23 @@
         d.tese = x.ementa;
         d.destaque = x.dec || d.destaque;
         d.historico = [x.pub ? 'Publicação: ' + x.pub : '', x.inf ? 'Informações complementares: ' + x.inf : '', x.notas ? 'Notas: ' + x.notas : ''].filter(Boolean).join('\n');
+      }
+    },
+    ACORDAOS_STF: {
+      base: ACORDAOS_STF_BASE, nome: 'os acórdãos do STF', carregando: 'Carregando a ementa…',
+      item: function(x){
+        return { id: 'stf-acordao-' + x[0], grupo: 'ACORDAOS_STF', orgao: 'STF', tipo: 'acordao', tipoNome: 'Acórdão · ' + x[2],
+          area: x[5], titulo: x[6], tese: x[6], destaque: x[7] ? x[7].charAt(0).toUpperCase() + x[7].slice(1) : '',
+          processo: x[1], relator: x[3], data: dataBr(x[4]), risco: 'Média',
+          motivo: 'acórdão julgado em ' + x[4].slice(0, 4) + ' — mostra como o STF vem decidindo no caso concreto',
+          _chave: x[0], _parte: x[8] };
+      },
+      completar: function(d, x){
+        d.tese = x.ementa;
+        d.destaque = x.ata || d.destaque;
+        if (x.tese) d.destaque = (x.tt ? x.tt + ': ' : 'Tese: ') + x.tese + (d.destaque ? '\n\n' + d.destaque : '');
+        d.historico = [x.tema ? 'Tema: ' + x.tema : '', x.idx ? 'Indexação: ' + x.idx : '', x.pub ? 'Publicação: ' + dataBr(x.pub) : ''].filter(Boolean).join('\n');
+        if (x.url) d.link = x.url;
       }
     },
     // Julgados dos informativos do STJ e do STF (scripts/informativos_cards.py).
@@ -1075,7 +1097,7 @@
       }
       porGrupo[g] = n;
     });
-    var acordaos = porGrupo.ACORDAOS, informativos = porGrupo.INFORMATIVOS;
+    var acordaos = porGrupo.ACORDAOS, acordaosStf = porGrupo.ACORDAOS_STF, informativos = porGrupo.INFORMATIVOS;
     var lidasCount = totalLidos();
     var el = document.getElementById('stats');
     el.innerHTML =
@@ -1088,6 +1110,7 @@
       (extras ? '<div class="stat"><b>' + extras + '</b><span>STF · Omissões, resumos e COVID-19</span></div>' : '') +
       (informativos ? '<div class="stat"><b>' + informativos + '</b><span>Julgados de informativos</span></div>' : '') +
       (acordaos ? '<div class="stat"><b>' + acordaos + '</b><span>STJ · Acórdãos de turmas</span></div>' : '') +
+      (acordaosStf ? '<div class="stat"><b>' + acordaosStf + '</b><span>STF · Acórdãos</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '') +
       (afetados ? '<div class="stat"><b>' + afetados + '</b><span>Em julgamento (fora do total)</span></div>' : '');
