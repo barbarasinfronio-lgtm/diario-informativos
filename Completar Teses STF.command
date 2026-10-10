@@ -6,13 +6,14 @@
 # bloqueia os servidores do GitHub).
 cd "$(dirname "$0")" || exit 1
 fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; exit "$1"; }
-ARQUIVOS=(stf/rg curadoria/rg-textos-falhas.json curadoria/debug-stf)
+ARQUIVOS=(stf/rg teor/indice.json curadoria/rg-textos-falhas.json curadoria/debug-stf)
 echo "=== Completar textos do STF — $(date '+%d/%m/%Y %H:%M') ==="
 git checkout -q main 2>/dev/null
 git fetch -q origin main && git pull -q --rebase --autostash origin main \
   || { git rebase --abort 2>/dev/null; echo "ERRO: não consegui juntar com o main. Cole esta janela para a Claude."; fim 1; }
 python3 scripts/completar_rg_stf.py --max 100 --refazer-ata
 python3 scripts/completar_rg_stf.py --recortar-salvos | tail -1     # garante só ementa → assinatura nos textos já guardados
+python3 scripts/teor_sob_pedido.py --so-indice | tail -1     # liga cada processo ao seu inteiro teor (vale para todos os cards dele)
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
 if git diff --cached --quiet; then echo "Nada para enviar."; fim 0; fi
 git commit -q -m "Inteiro teor dos Temas de repercussão geral (do Mac)" || fim 1
