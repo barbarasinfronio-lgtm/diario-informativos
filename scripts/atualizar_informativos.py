@@ -1253,6 +1253,36 @@ LEIS_ORCAMENTO = 1200
 
 
 TEXTO_DIR = RAIZ / "leis" / "texto"
+# Leis INTEIRAMENTE revogadas: o robô não procura mais o texto delas (nem as tenta de novo). Arquivo
+# leis/texto/revogadas.json {link: {"numero","nome","motivo","em","auto"}}. Entra sozinho quando a página
+# diz que a lei foi revogada e não traz texto; também pode ser editado à mão (ou me peça).
+REVOGADAS_ARQ = TEXTO_DIR / "revogadas.json"
+
+
+def leis_revogadas():
+    import json
+    try:
+        return json.loads(REVOGADAS_ARQ.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def marcar_revogada(url, numero, nome, motivo, hoje_iso, auto=True):
+    import json
+    r = leis_revogadas()
+    r[url] = {"numero": numero, "nome": nome, "motivo": motivo, "em": hoje_iso, "auto": auto}
+    TEXTO_DIR.mkdir(parents=True, exist_ok=True)
+    REVOGADAS_ARQ.write_text(json.dumps(r, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+
+
+RX_TODA_REVOGADA = re.compile(r"(?i)revogad[ao]s?\s+(?:integralmente\s+)?(?:pel[ao]s?|por)\b|situa[çc][ãa]o\s*:?\s*revogad|(?:norma|lei|ato)\s+(?:foi\s+)?(?:integralmente\s+)?revogad[ao]|totalmente\s+revogad")
+
+
+def pagina_de_lei_revogada(pg, paragrafos):
+    """A página diz, no começo, que a lei foi revogada e quase não traz texto da lei (nada de artigos em
+    quantidade): é lei inteiramente revogada, não texto incompleto."""
+    topo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", (pg or "")))[:3000]
+    return bool(RX_TODA_REVOGADA.search(topo)) and len(paragrafos) < 12
 
 
 def id_texto(url):
@@ -1639,7 +1669,10 @@ def leis_estaduais(hoje_iso):
     def em_espera(u):
         f = falhas.get(u) or {}
         return f.get("v") == EXTRATOR_VERSAO and f.get("em", "") >= limite   # falhou há pouco, com este leitor
-    lista = [x for x in lista if not em_espera(x[2])]
+    revog = leis_revogadas()
+    if any(x[2] in revog for x in lista):
+        print(f"  (leis estaduais: {sum(1 for x in lista if x[2] in revog)} inteiramente revogada(s); não procuro mais — leis/texto/revogadas.json)")
+    lista = [x for x in lista if not em_espera(x[2]) and x[2] not in revog]
     if n_antes != len(lista):
         print(f"  (leis estaduais: {n_antes - len(lista)} com link já conferido e falho; ver leis/texto-debug/links-errados.md)")
     lenta = lambda u: any(h in u for h in ("leisestaduais.com.br", "legisla.casacivil.go.gov.br"))
@@ -1751,6 +1784,11 @@ def leis_estaduais(hoje_iso):
                         break
         except OSError as e:
             print(f"  ATENÇÃO: {e}")
+            continue
+        if not gravou and len(ERRADOS) == n_err and pg and pagina_de_lei_revogada(pg, paragrafos_do_site(pg)):
+            print(f"  {numero}: a página diz que a lei está inteiramente revogada; não procuro mais (leis/texto/revogadas.json)")
+            marcar_revogada(url, numero, nome, "a página informa que a lei foi revogada", hoje_iso)
+            falhas.pop(url, None)
             continue
         if gravou:
             gravados += 1
