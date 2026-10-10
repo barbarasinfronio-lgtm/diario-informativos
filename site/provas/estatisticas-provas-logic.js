@@ -85,7 +85,7 @@
     });
     Object.keys(porBanca._v || {}).forEach(function (key) { var p = COB.provas[key.split(":")[0]]; porBanca[p.banca].lig++; });
     delete porBanca._v;
-    var bancas = Object.keys(porBanca).sort();
+    var bancas = Object.keys(porBanca).sort(function (a, b) { return a.localeCompare(b, "pt-BR", { sensitivity: "base", numeric: true }); });
 
     var todasFontes = {};
     Object.keys(COB.cards).forEach(function (k) { todasFontes[COB.cards[k].fonte] = 1; });
@@ -93,7 +93,7 @@
     root.innerHTML =
       '<div class="ep-filtros">' +
         '<label>Banca <select id="ep-banca"><option value="">Todas</option>' + bancas.map(function (b) { return '<option' + (b === filtro.banca ? " selected" : "") + ">" + esc(b) + "</option>"; }).join("") + "</select></label>" +
-        '<label>Fonte <select id="ep-fonte"><option value="">Todas</option>' + Object.keys(todasFontes).sort().map(function (f) { return '<option' + (f === filtro.fonte ? " selected" : "") + ">" + esc(f) + "</option>"; }).join("") + "</select></label>" +
+        '<label>Fonte <select id="ep-fonte"><option value="">Todas</option>' + Object.keys(todasFontes).sort(function (a, b) { return a.localeCompare(b, "pt-BR", { sensitivity: "base", numeric: true }); }).map(function (f) { return '<option' + (f === filtro.fonte ? " selected" : "") + ">" + esc(f) + "</option>"; }).join("") + "</select></label>" +
         '<input id="ep-busca" type="search" placeholder="Buscar súmula, tema ou assunto (ex.: falta grave)" value="' + esc(filtro.q) + '">' +
       "</div>" +
       '<div class="ep-numeros">' +

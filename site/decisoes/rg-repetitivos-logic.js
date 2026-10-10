@@ -130,6 +130,12 @@
     try { localStorage.setItem(LOCAL_KEY, JSON.stringify(map)); } catch(e){}
   }
   var lidos = readLocal();
+  // leitura marcada em outra aba (Cronograma, Revisões): atualiza os cards aqui
+  window.addEventListener('storage', function(e){
+    if(e.key !== LOCAL_KEY) return;
+    lidos = readLocal();
+    if(typeof render === 'function') render();
+  });
 
   // ---- Sincronização: conta (Firestore) + grupos de estudo ---------------
   // O progresso vai para "progress-decisoes/{uid}" e o total lido vira o

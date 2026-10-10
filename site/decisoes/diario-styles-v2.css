@@ -644,8 +644,21 @@
     font-weight: 600;
   }
 
+  /* Súmulas e Resoluções: caixa ao lado do número/texto, ponto e "Abrir" na mesma linha */
   .sumula-row {
-    grid-template-columns: 2rem 1fr auto auto;
+    grid-template-columns: 2rem minmax(0, 1fr) auto auto;
+    grid-template-areas: "check edition star open";
+    align-items: start;
+    column-gap: 0.6rem;
+  }
+  .sumula-row .check-wrap { justify-content: flex-start; padding-top: 0.12rem; }
+  .sumula-row .star, .sumula-row .open-link { align-self: start; }
+  @media (max-width: 600px) {
+    .sumula-row {
+      grid-template-columns: 2rem minmax(0, 1fr) auto;
+      grid-template-areas: "check edition star" "open open open";
+    }
+    .sumula-row .open-link { justify-self: end; }
   }
 
   .sumula-edition .num {

@@ -228,7 +228,8 @@
         uf: uf
       });
     });
-    porEdital.sort(function (a, b) { return a.nome.localeCompare(b.nome, "pt-BR"); });
+    var az = function (a, b) { return a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base", numeric: true }); };
+    porEdital.sort(az); carreiras.sort(az); federais.sort(az);
     return [
       { label: "Carreiras estaduais (você escolhe o estado)", itens: carreiras },
       { label: "Carreiras federais e exames nacionais", itens: federais },
@@ -780,7 +781,7 @@
     leis.forEach(function (l) { if (l.uf) porUf[l.uf] = (porUf[l.uf] || 0) + 1; });
     if (selectEstado) {
       selectEstado.innerHTML = '<option value="">Escolha o estado…</option>' +
-        ESTADOS.map(function (e) {
+        ESTADOS.slice().sort(function (a, b) { return a[1].localeCompare(b[1], "pt-BR", { sensitivity: "base" }); }).map(function (e) {
           var n = porUf[e[0]] || 0;
           return '<option value="' + e[0] + '">' + e[0] + " — " + escapeHtml(e[1]) +
             (n ? " (" + n + ")" : " (nenhuma ainda)") + "</option>";
@@ -927,6 +928,12 @@
     }
 
     window.__leisRender = render;
+    // leitura marcada em outra aba (Cronograma, Revisões): atualiza os cards aqui
+    window.addEventListener("storage", function (e) {
+      if (e.key !== LOCAL_KEY) return;
+      lidos = lerLidos();
+      render();
+    });
 
     // "Leia-me": abre/fecha o texto da lei dentro do próprio card.
     document.addEventListener("click", function (e) {

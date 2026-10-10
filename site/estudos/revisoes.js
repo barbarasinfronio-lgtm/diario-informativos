@@ -739,7 +739,7 @@
         '<div class="rv-acoes">' + (x.proximo ? '<button type="button" class="rv-feito" data-bloco-ler="' + esc(p.tid + ":" + x.proximo.n) + '">' + (h ? "Ler mais um" : "📖 Ler agora") + "</button>" : "") + "</div></li>";
     }).join("");
     var seletor = cand.length
-      ? '<div class="rv-lote"><select class="rv-select" id="rv-plano-lei">' + cand.slice(0, 300).map(function (c) { return '<option value="' + esc(c.tid) + '">' + esc(c.nome + (c.principal ? " ⭐" : "")) + "</option>"; }).join("") + "</select>" +
+      ? '<div class="rv-lote"><select class="rv-select" id="rv-plano-lei">' + cand.slice(0, 300).sort(function (a, b) { return a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base", numeric: true }); }).map(function (c) { return '<option value="' + esc(c.tid) + '">' + esc(c.nome + (c.principal ? " ⭐" : "")) + "</option>"; }).join("") + "</select>" +
         '<button type="button" class="rv-mais" data-plano-ini="1">Começar esta lei</button></div>' : "";
     return '<details class="rv-bloco" open><summary><span>📖 Lei seca em ritmo leve</span><span class="rv-n">' + (h ? "✔ meta de hoje" : ativos.length ? "1 bloco hoje" : "") + "</span></summary>" +
       '<p class="rv-nota" style="margin:0.4rem 0">Meta mínima: <b>1 bloco por dia</b> (uns 10 minutos). Dia sem estudar não atrasa nada: o próximo bloco espera por você. Cada bloco lido volta em revisões curtas (1, 7, 30 e 90 dias).</p>' +

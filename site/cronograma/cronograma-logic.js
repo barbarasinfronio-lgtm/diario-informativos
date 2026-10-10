@@ -151,7 +151,7 @@
           out.push({
             k: "sumula:" + j.s.org + ":" + j.s.num, tipo: "sumula", min: j.min, cobr: j.cob,
             st: "sum", sk: j.s.org + ":" + j.s.num, rid: "sum:" + j.s.org + ":" + j.s.num, ultima: true,
-            titulo: "Súmula " + j.s.num + " do " + (NOMES_ORG[j.s.org] || j.s.org.toUpperCase()), sub: j.s.sub,
+            titulo: j.s.org === "stf_vinculante" ? "Súmula Vinculante nº " + j.s.num : "Súmula " + j.s.num + " do " + (NOMES_ORG[j.s.org] || j.s.org.toUpperCase()), sub: j.s.sub,
             href: PAGINA_SUMULAS + "#cad=" + encodeURIComponent(j.s.org + "|" + j.s.num)
           });
         } else {
@@ -175,7 +175,7 @@
           var m = minRevisao(it);
           if (usado + m > orcamento) return;
           usado += m;
-          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
+          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk, st: it.st });
         });
       });
       return { itens: out, usado: usado };
@@ -196,7 +196,7 @@
           var m = minRevisao(it);
           if (usado + m > minRev) return;
           usado += m;
-          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
+          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk, st: it.st });
         });
         dia.blocos.push({ id: "revisao", titulo: "Revisão da semana", min: minRev, itens: itensRev, nota: itensRev.length ? "" : "Revise o que estudou nesta semana." });
         dia.blocos.push({ id: "questoes", titulo: "Questões e provas anteriores", min: minQ, itens: [], nota: "Resolva questões das matérias da semana. As páginas de Súmulas e Decisões mostram em quais provas cada item já foi cobrado." });
@@ -307,6 +307,12 @@
     P.lerLocal = function () {
       ["lei", "sum", "dec"].forEach(function (st) { P.maps[st] = juntarMapas(lerJson(LOCAL[st], {}), P.maps[st]); });
       P.rev = juntarRev(lerJson(REV_KEY, {}), P.rev);
+      indexar();
+    };
+    // relê tudo do navegador, descartando o que foi desmarcado em outra aba
+    P.reler = function () {
+      ["lei", "sum", "dec"].forEach(function (st) { P.maps[st] = lerJson(LOCAL[st], {}); });
+      P.rev = lerJson(REV_KEY, {});
       indexar();
     };
     function juntarRev(a, b) {
@@ -434,6 +440,16 @@
     function avisoLogin() {
       try { if (window.EstudaManaNuvem && window.EstudaManaNuvem.mostrarLogin) window.EstudaManaNuvem.mostrarLogin(raiz); } catch (e) {}
     }
+    // marcou numa aba aberta (Diário, Revisões): atualiza aqui na hora
+    window.addEventListener("storage", function (e) {
+      if (!S || !plano) return;
+      if (e.key === PARTES_KEY) { P.partes = Object.assign({}, P.partes, lerJson(PARTES_KEY, {})); desenhar(); return; }
+      if (e.key === LOCAL.lei || e.key === LOCAL.sum || e.key === LOCAL.dec || e.key === REV_KEY) {
+        // quem desmarcou lá some também aqui: relê os mapas do zero a partir do navegador
+        P.reler();
+        recalcular(); desenhar();
+      }
+    });
     // voltando de outra aba (onde a pessoa marcou algo num Diário), puxa de novo
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState !== "visible" || !S) return;
@@ -459,7 +475,11 @@
 
     // ---- estado de cada item ----
     function estaFeito(it) {
-      if (it.rid && it.dataPlano) return P.revisaoFeita(it.rid, it.dataPlano);          // revisão: feita neste dia ou depois
+      if (it.rid && it.dataPlano) {                                                         // revisão: feita neste dia ou depois
+        if (P.revisaoFeita(it.rid, it.dataPlano)) return true;
+        var e = it.st && P.entrada(it.st, it.sk), d = e && dataDe(e);                      // ou marcada como lida de novo num Diário
+        return !!(d && d >= it.dataPlano);
+      }
       if (it.st && P.entrada(it.st, it.sk)) return true;                                   // já lido no Diário
       return !!P.partes[it.k];
     }
@@ -478,8 +498,10 @@
     // ---- peças da tela ----
     function opcoesEditais() {
       var lista = S.data().filter(function (e) { return !e.emBreve && (e.leis || []).length; });
-      var carreiras = lista.filter(function (e) { return e.tipo === "carreira"; });
-      var editais = lista.filter(function (e) { return e.tipo !== "carreira"; });
+      var az = function (e) { return e.tipo === "carreira" ? e.titulo : (e.sigla + " — " + e.titulo + (e.cargo ? " (" + e.cargo + ")" : "")); };
+      var porNome = function (a, b) { return az(a).localeCompare(az(b), "pt-BR", { sensitivity: "base", numeric: true }); };
+      var carreiras = lista.filter(function (e) { return e.tipo === "carreira"; }).sort(porNome);
+      var editais = lista.filter(function (e) { return e.tipo !== "carreira"; }).sort(porNome);
       var atual = S.principalId();
       function op(e) { return '<option value="' + esc(e.id) + '"' + (e.id === atual ? " selected" : "") + ">" + esc(e.tipo === "carreira" ? e.titulo : (e.sigla + " — " + e.titulo + (e.cargo ? " (" + e.cargo + ")" : ""))) + "</option>"; }
       return '<option value="">Escolha a carreira ou o edital…</option>' +
@@ -633,6 +655,7 @@
             '<p class="cr-card-fonte">Texto copiado do Planalto em ' + esc(t.em) + ". Pode estar desatualizado: confira na fonte oficial (“Abrir no Diário”).</p>";
         }).catch(function () { falha("Não consegui carregar o texto agora. Use “Abrir no Diário”."); });
       } else if (it.tipo === "sumula") {
+        caixa.classList.add("cr-card-curto");
         var pt = String(it.sk).split(":");
         sub.textContent = it.sub ? "" : "Súmula";
         carregarSumula(pt[0], pt.slice(1).join(":")).then(function (m) {
@@ -642,6 +665,7 @@
           corpo.innerHTML = "<p>" + esc(m.texto) + "</p>" + (m.link ? '<p class="cr-card-fonte"><a href="' + esc(m.link) + '" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a></p>' : "");
         }).catch(function () { falha("Não consegui carregar a súmula agora. Use “Abrir no Diário”."); });
       } else {
+        caixa.classList.add("cr-card-curto");
         sub.textContent = it.sub || "";
         corpo.innerHTML = '<p>Use “Abrir no Diário” para ler a íntegra desta decisão. Depois volte aqui e marque como lida.</p>';
       }
