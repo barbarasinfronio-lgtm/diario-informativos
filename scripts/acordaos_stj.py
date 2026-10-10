@@ -15,6 +15,7 @@ Duas etapas (o filtro pode ser ajustado sem baixar tudo de novo):
                                               arquivo, carregados só ao abrir o card
 
 Uso:  python3 scripts/acordaos_stj.py coletar
+      python3 scripts/acordaos_stj.py mesclar --pasta "<pasta com os espelhos baixados à mão>"   (acrescenta, sem apagar nada)
       python3 scripts/acordaos_stj.py montar [--teste]
 """
 import argparse, collections, glob, gzip, json, os, re, shutil, subprocess, sys, zipfile
@@ -138,6 +139,26 @@ def resultado(dec):
     return (m[1] if m else "")[:90]
 
 
+def gravar(itens):
+    itens.sort(key=lambda i: (i["data"], i["id"]), reverse=True)
+    base = RAIZ / "stj" / "acordaos"
+    shutil.rmtree(base, ignore_errors=True)
+    (base / "c").mkdir(parents=True)
+    N, indice = 250, []
+    for k in range(0, len(itens), N):
+        ch, det = k // N, {}
+        for i in itens[k:k + N]:
+            indice.append([i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], i["reg"], ch])
+            det[i["id"]] = {"ementa": i["ementa"], "dec": i["dec"], "inf": i["inf"], "notas": i["notas"], "pub": i["pub"]}
+        with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
+            json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
+    with open(base / "indice.json", "w", encoding="utf-8") as f:
+        json.dump({"fonte": "STJ — dados abertos, espelhos de acórdãos",
+                   "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"],
+                   "itens": indice}, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"gravado em stj/acordaos/ ({len(itens)} acórdãos)")
+
+
 def montar(teste=False, desde="2010"):
     itens, motivos, vistos, total = [], collections.Counter(), set(), 0
     for arq in sorted(CACHE.glob("*/*.json")) + sorted(CACHE.glob("*/zip-*/*.json")):
@@ -175,33 +196,97 @@ def montar(teste=False, desde="2010"):
     print("  por década:", sorted(collections.Counter(i["data"][:3] + "0" for i in itens).items()))
     if teste:
         return itens
-    itens.sort(key=lambda i: (i["data"], i["id"]), reverse=True)
+    gravar(itens)
+
+
+def listas_da_pasta(pasta):
+    """Cada JSON de espelhos (lista de acórdãos) da pasta e subpastas; ZIPs são abertos na memória."""
+    for raiz, dirs, arqs in os.walk(os.path.expanduser(pasta)):
+        dirs[:] = [d for d in dirs if d != "node_modules"]
+        for a in sorted(arqs):
+            caminho = os.path.join(raiz, a)
+            try:
+                if a.lower().endswith(".json") and not a.startswith("_"):
+                    yield a, json.load(open(caminho, encoding="utf-8"))
+                elif a.lower().endswith(".zip"):
+                    with zipfile.ZipFile(caminho) as z:
+                        for nome in sorted(z.namelist()):
+                            if nome.lower().endswith(".json") and not os.path.basename(nome).startswith("_"):
+                                try:
+                                    yield f"{a}/{nome}", json.loads(z.read(nome).decode("utf-8"))
+                                except ValueError:
+                                    print(f"  (ignorado, JSON inválido: {a}/{nome})")
+            except (ValueError, OSError, zipfile.BadZipFile) as e:
+                print(f"  (ignorado, não abriu: {a}: {str(e)[:60]})")
+
+
+def mesclar(pastas, desde="2010"):
+    """Acrescenta ao que já está em stj/acordaos os acórdãos das pastas (arquivos baixados à mão do portal de
+    dados abertos do STJ), sem apagar nada e sem repetir (pelo id). Mesmo filtro do "montar"."""
     base = RAIZ / "stj" / "acordaos"
-    shutil.rmtree(base, ignore_errors=True)
-    (base / "c").mkdir(parents=True)
-    N, indice = 250, []
-    for k in range(0, len(itens), N):
-        ch, det = k // N, {}
-        for i in itens[k:k + N]:
-            indice.append([i["id"], i["proc"], i["org"], i["rel"], i["data"], i["area"], i["tit"], i["res"], i["reg"], ch])
-            det[i["id"]] = {"ementa": i["ementa"], "dec": i["dec"], "inf": i["inf"], "notas": i["notas"], "pub": i["pub"]}
-        with open(base / "c" / f"{ch:03d}.json", "w", encoding="utf-8") as f:
-            json.dump(det, f, ensure_ascii=False, separators=(",", ":"))
-    with open(base / "indice.json", "w", encoding="utf-8") as f:
-        json.dump({"fonte": "STJ — dados abertos, espelhos de acórdãos",
-                   "campos": ["id", "processo", "orgao", "relator", "data", "area", "titulo", "resultado", "registro", "parte"],
-                   "itens": indice}, f, ensure_ascii=False, separators=(",", ":"))
-    print("gravado em stj/acordaos/")
+    itens, ids = [], set()
+    try:
+        ind = json.load(open(base / "indice.json", encoding="utf-8"))["itens"]
+    except (OSError, ValueError, KeyError):
+        ind = []
+    partes = {}
+    for r in ind:
+        det = partes.get(r[9]) or partes.setdefault(r[9], json.load(open(base / "c" / f"{r[9]:03d}.json", encoding="utf-8")))
+        d = det.get(r[0], {})
+        itens.append(dict(id=r[0], proc=r[1], org=r[2], rel=r[3], data=r[4], area=r[5], tit=r[6], res=r[7], reg=r[8],
+                          ementa=d.get("ementa", ""), dec=d.get("dec", ""), inf=d.get("inf", ""), notas=d.get("notas", ""), pub=d.get("pub", "")))
+        ids.add(r[0])
+    antes, motivos, lidos = len(itens), collections.Counter(), 0
+    for pasta in pastas:
+        for nome, lista in listas_da_pasta(pasta):
+            if not isinstance(lista, list):
+                continue
+            lidos += 1
+            novos = 0
+            for d in lista:
+                if not isinstance(d, dict) or not d.get("id") or str(d["id"]) in ids:
+                    continue
+                dd = str(d.get("dataDecisao") or "")
+                if not re.match(r"\d{8}$", dd) or dd < desde:
+                    continue
+                ver, motivo = avaliar(d)
+                motivos[(ver, motivo)] += 1
+                if ver != "incluir":
+                    continue
+                e = para(d.get("ementa"))
+                h = cab(e)
+                ids.add(str(d["id"]))
+                novos += 1
+                itens.append(dict(id=str(d["id"]), proc=d["siglaClasse"] + " " + str(d["numeroProcesso"]),
+                    org=ORG.get(d["nomeOrgaoJulgador"], d["nomeOrgaoJulgador"].title()), rel=(d.get("ministroRelator") or "").title(),
+                    data=dd, area=next(v for v, rx in KW if re.search(rx, h.lower())), tit=titulo(h), res=resultado(d.get("decisao")),
+                    reg=d.get("numeroRegistro") or "", ementa=e, dec=para(d.get("decisao")), inf=para(d.get("informacoesComplementares")),
+                    notas=para(d.get("notas")), pub=re.sub(r"\s+", " ", d.get("dataPublicacao") or "")))
+            if novos:
+                print(f"  {nome}: {novos} acórdão(s) novo(s)")
+    print(f"{lidos} arquivo(s) lidos; {len(itens) - antes} acórdão(s) novo(s) (já havia {antes}):")
+    for (ver, motivo), n in motivos.most_common():
+        print(f"  {n:7d}  {ver:8s} {motivo}")
+    if len(itens) > antes:
+        gravar(itens)
+    else:
+        print("nada novo para gravar.")
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("passo", choices=["coletar", "montar"])
+    p.add_argument("passo", choices=["coletar", "montar", "mesclar"])
+    p.add_argument("--pasta", action="append", default=[], help="(mesclar) pasta com os espelhos baixados à mão (JSON/ZIP); pode repetir")
     p.add_argument("--teste", action="store_true")
     p.add_argument("--desde", default="2010", help="data mínima do julgamento, AAAA ou AAAAMMDD")
     a = p.parse_args()
     if a.passo == "coletar":
         sys.exit(1 if coletar() else 0)
+    if a.passo == "mesclar":
+        if not a.pasta:
+            sys.exit("informe --pasta <pasta com os JSON/ZIP dos espelhos>")
+        mesclar(a.pasta, a.desde)
+        return
     montar(a.teste, a.desde)
 
 
