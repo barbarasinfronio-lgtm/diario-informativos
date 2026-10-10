@@ -463,8 +463,8 @@
 /* Revisões: texto justificado e card de súmula/decisão */
 .rv-texto b, .rv-meta, .rv-card-texto p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 .rv-abrir { cursor: pointer; font: inherit; }
-.rv-modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; padding: 1rem; }
-.rv-card { position: relative; width: min(720px, 100%); max-height: 88vh; overflow-y: auto; background: var(--surface, #fff); color: var(--ink, #111); border: 1px solid var(--surface-line, #ccc); border-radius: 14px; padding: 1.25rem 1.4rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+.rv-modal { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; padding: 0; }
+.rv-card { position: relative; width: var(--em-card-w, 90vw); height: var(--em-card-h, 90vh); max-width: none; box-sizing: border-box; overflow-y: auto; background: var(--surface, #fff); color: var(--ink, #111); border: 1px solid var(--surface-line, #ccc); border-radius: 14px; padding: 1.25rem 1.4rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
 .rv-card h3 { margin: 0.5rem 2rem 0.4rem 0; font-size: calc(1.05rem * var(--fs-scale, 1)); line-height: 1.35; }
 .rv-card h4 { margin: 0.9rem 0 0.2rem; font-size: calc(0.8rem * var(--fs-scale, 1)); text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint, #666); }
 .rv-card-texto p { margin: 0.4rem 0; line-height: 1.6; font-size: calc(0.95rem * var(--fs-scale, 1)); }
