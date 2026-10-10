@@ -72,6 +72,19 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Pedidos de "adicionar lei" (Diário de Leis, busca sem resultado): quem entrou (conta de verdade) cria
+    // um pedido por busca; o robô do Mac (scripts/leis_sob_pedido.py) lê a lista sem entrar. Ninguém altera
+    // nem apaga pedidos. Sem dados pessoais no documento.
+    match /pedidos-leis/{id} {
+      allow get, list: if true;
+      allow create: if contaDeVerdade()
+                    && request.resource.data.keys().hasOnly(['consulta', 'em'])
+                    && id.size() <= 60
+                    && request.resource.data.consulta is string && request.resource.data.consulta.size() <= 120
+                    && request.resource.data.em is string && request.resource.data.em.size() <= 40;
+      allow update, delete: if false;
+    }
+
     // Meus Cadernos (destaques e anotações): cada pessoa só lê e grava o
     // próprio caderno — ninguém mais vê, nem os grupos de estudo.
     match /cadernos/{uid} {

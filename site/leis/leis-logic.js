@@ -625,6 +625,35 @@
     }).join("");
   }
 
+  // Busca sem resultado: o leitor pode pedir para a lei ser adicionada. O pedido vai para o Firestore
+  // (pedidos-leis/<busca>, só para quem entrou) e o robô do Mac (scripts/leis_sob_pedido.py) busca no Planalto.
+  function chavePedido(t) {
+    return semAcento(String(t || "")).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+  }
+  function caixaPedirLei(termo) {
+    if (!termo || !chavePedido(termo)) return "";
+    return '<div class="lei-pedido" data-consulta="' + escapeHtml(termo) + '" style="margin:8px 0 14px;padding:12px 14px;border:1px dashed #94a3b8;border-radius:8px;">' +
+      '<p class="lei-pedido-msg" style="margin:0 0 8px;font-size:calc(13px * var(--fs-scale,1));">Não achou <b>“' + escapeHtml(termo) + '”</b> no acervo? Peça para adicionarmos: um robô busca a lei no Planalto e ela entra aqui na próxima atualização.</p>' +
+      '<button type="button" class="lei-pedir" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:8px;padding:6px 12px;cursor:pointer;">➕ Pedir para adicionar</button></div>';
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".lei-pedir");
+    if (!b) return;
+    var caixa = b.closest(".lei-pedido"), msg = caixa.querySelector(".lei-pedido-msg");
+    var consulta = caixa.getAttribute("data-consulta") || "";
+    if (!(window.LeisIncluidas && LeisIncluidas.logado()) || !(window.firebase && firebase.firestore)) {
+      msg.textContent = "Para pedir uma lei, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página).";
+      return;
+    }
+    b.disabled = true;
+    firebase.firestore().doc("pedidos-leis/" + chavePedido(consulta)).set({ consulta: consulta.slice(0, 120), em: new Date().toISOString() })
+      .then(function () { b.textContent = "✅ Pedido enviado"; msg.textContent = "Pedido enviado! A lei entra no acervo na próxima atualização do site."; })
+      .catch(function (err) {
+        if (err && err.code === "permission-denied") { b.textContent = "✅ Já foi pedida"; msg.textContent = "Esta lei já tinha sido pedida. Ela entra no acervo quando o robô a buscar."; }
+        else { b.disabled = false; msg.textContent = "Não consegui enviar o pedido agora. Tente de novo."; }
+      });
+  });
+
   function aviso(texto) {
     return '<p style="color:#94a3b8;font-style:italic;">' + texto + "</p>";
   }
@@ -836,7 +865,7 @@
       var federais = leis.filter(function (l) { return !l.uf && atendeBusca(l, termo, digitos); });
       gridFederais.innerHTML = federais.length
         ? resumo(federais) + porMateria(federais, buscando)
-        : aviso("Nenhuma lei federal encontrada.");
+        : aviso("Nenhuma lei federal encontrada.") + (buscando ? caixaPedirLei(inputBusca ? inputBusca.value.trim() : "") : "");
 
       // Estaduais: depende do edital/carreira
       var uf = null, titulo = "🏛️ Leis Estaduais";
@@ -999,8 +1028,21 @@
     window.addEventListener("hashchange", abrirLeiDoLink);
   }
 
+  // Leis que leitores pediram para adicionar e o robô já trouxe (leis/pedidas.json, scripts/leis_sob_pedido.py):
+  // entram na lista como uma matéria própria.
+  function carregarPedidas() {
+    return fetch(CDN_BASE + "leis/pedidas.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (j && j.leis && j.leis.length) {
+          window.LEIS_DATA = window.LEIS_DATA || {};
+          window.LEIS_DATA.pedidas = { label: "Leis pedidas por leitores", leis: j.leis };
+        }
+      }).catch(function () {});
+  }
+
   Promise.all([
-    ensure("LEIS_DATA", "leis-data.js"),
+    ensure("LEIS_DATA", "leis-data.js").then(carregarPedidas),
     ensure("EDITAIS_DATA", "editais-data.js"),
     ensure("LeisIncluidas", "leis-incluidas.js"),
     domReady()

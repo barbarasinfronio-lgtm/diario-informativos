@@ -54,7 +54,7 @@ while sobrou_tempo; do
   fi
 done
 
-for passo in "Atender Pedidos de Inteiro Teor" "Atualizar Leis" "Atualizar Informativos" "Atualizar Provas"; do
+for passo in "Atender Pedidos de Inteiro Teor" "Atender Pedidos de Leis" "Atualizar Leis" "Atualizar Informativos" "Atualizar Provas"; do
   echo; echo "──────── $passo (uma vez) — $(date '+%H:%M') ────────"
   bash "./$passo.command" < /dev/null 2>&1 | tail -25
 done
