@@ -14,7 +14,7 @@ identificar fica onde está e é listado no fim (me mande a lista). Nada é apag
 Uso:  python3 scripts/cobrancas_triagem.py "<pasta Provas>" [--aplicar]   (sem --aplicar só mostra o plano)
 Precisa de PyMuPDF (pip install pymupdf). PDF só com imagem (sem texto) não é identificado.
 """
-import collections, hashlib, os, re, shutil, sys, unicodedata
+import collections, hashlib, json, os, re, shutil, sys, unicodedata
 
 import fitz
 
@@ -56,6 +56,7 @@ def uf_em(txt):
 
 
 def sigla_de(txt, nome):
+    txt = re.sub(r"\s+", " ", txt)        # o título da prova costuma vir quebrado em várias linhas
     t = sem_acento(txt[:5000]) + " " + sem_acento(nome)
     m = re.search(r"TRIBUNAL REGIONAL FEDERAL DA (\d)\s*[ªAO°]?\s*REGIAO|\bTRF\s*-?\s*(\d)\b|\b(\d)\s*[ªAO°]\s*REGIAO", t)
     if m and not re.search(r"TRIBUNAL REGIONAL DO TRABALHO", t[:1500]):
@@ -73,6 +74,9 @@ def sigla_de(txt, nome):
         uf = m[2] or uf_em(m[1])
         if uf:
             return "DPE-" + uf
+    m = re.search(r"DEFENSOR(?:A)? PUBLIC[OA] D[OAE]\w* ESTADO D[EAO]\s+([A-Z ]+)", t)
+    if m and uf_em(m[1]):
+        return "DPE-" + uf_em(m[1])
     if re.search(r"DEFENSORIA PUBLICA DO DISTRITO FEDERAL", t):
         return "DPDF"
     if re.search(r"MINISTERIO PUBLICO FEDERAL", t[:800]):
@@ -93,6 +97,7 @@ def sigla_de(txt, nome):
 
 
 def banca_de(txt, nome):
+    txt = re.sub(r"\s+", " ", txt)
     t = sem_acento(txt[:6000]) + " " + sem_acento(nome)
     for rx, b in [(r"CEBRASPE|CESPE", "CESPE"), (r"\bFGV\b|FUNDACAO GETULIO VARGAS", "FGV"), (r"\bFCC\b|FUNDACAO CARLOS CHAGAS", "FCC"),
                   (r"VUNESP", "VUNESP"), (r"FUNDATEC", "FUNDATEC"), (r"FAURGS", "FAURGS"), (r"NC-?UFPR|UFPR", "UFPR"),
@@ -133,7 +138,7 @@ def anos_de(txt, nome):
 
 
 def concurso_de(txt):
-    m = re.search(r"\b([IVXL]{1,6})\s*[ºo°]?\s*CONCURSO", sem_acento(txt[:4000]))
+    m = re.search(r"\b([IVXL]{1,6})\s*[ºo°]?\s*CONCURSO", re.sub(r"\s+", " ", sem_acento(txt[:4000])))
     if m:
         try:
             return romano(m[1])
@@ -141,6 +146,25 @@ def concurso_de(txt):
             pass
     m = re.search(r"CONCURSO (?:PUBLICO )?(?:N[ºO°.]*\s*)?(\d{1,3})\b", sem_acento(txt[:3000]))
     return int(m[1]) if m else 0
+
+
+def concurso_do_nome(nome):
+    """"juiz_xiv_prova_objetiva.pdf" → 14; "2_prova_escrita_xi.pdf" → 11."""
+    m = re.search(r"(?:^|[_\- ])((?:x{0,2})(?:ix|iv|v?i{0,3}))(?=[_\-. ])", nome.lower())
+    for cand in re.findall(r"(?:^|[_\- ])([ivxl]{1,6})(?=[_\-. ])", nome.lower()):
+        try:
+            return romano(cand.upper())
+        except KeyError:
+            pass
+    return 0
+
+
+# provas/triagem-manual.json:  {"anos": {"TRF4 14": 2010},  "arquivos": {"nome.pdf": {"sigla","n","ano","etapa","banca"}}}
+# Para o que o texto do PDF não diz (ex.: TRF4 não traz o ano; cópias sem órgão). Pode ser editado à mão.
+MANUAL = {"anos": {}, "arquivos": {}}
+_MAN = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "provas", "triagem-manual.json")
+if os.path.exists(_MAN):
+    MANUAL.update(json.load(open(_MAN, encoding="utf-8")))
 
 
 def md5(p):
@@ -173,18 +197,22 @@ def main():
             continue
         txt = "\n".join(l for l in txt.split("\n") if "pcimark" not in l)      # marca d'água do PCI Concursos
         extra = " ".join(str(meta.get(k) or "") for k in ("title", "subject", "keywords", "author"))
-        sig = sigla_de(txt + " " + extra, f)
-        et = etapa_de(txt, f)
-        if not sig or len(txt.strip()) < 80:
+        man = MANUAL["arquivos"].get(f, {})        # o que a Barbara/Claude já definiram para este arquivo
+        sig = man.get("sigla") or sigla_de(txt + " " + extra, f)
+        et = man.get("etapa") or etapa_de(txt, f)
+        if not sig or (len(txt.strip()) < 80 and not man):
             ini = re.sub(r"\s+", " ", txt.strip())[:140]
             nao.append((f, "sem texto" if len(txt.strip()) < 80 else f"órgão não identificado | começa com: {ini}"))
             continue
-        ano = anos_de(txt, f)
+        ano = str(man.get("ano") or "") or anos_de(txt, f)
         if not ano:       # sem ano no texto: tenta o ano de criação do PDF (a banca costuma gerar o caderno no ano da prova)
             m = re.search(r"(20\d\d)", str(meta.get("creationDate") or ""))
             if m and 2003 <= int(m[1]) <= 2025:
                 ano = m[1]
-        infos.append(dict(arq=f, p=p, sigla=sig, etapa=et, ano=ano, n=concurso_de(txt), banca=banca_de(txt, f),
+        n = man.get("n") or concurso_de(txt) or concurso_do_nome(f)
+        if not ano and n and f"{sig} {n}" in MANUAL["anos"]:     # "TRF4 14" → 2010 (provas/triagem-manual.json)
+            ano = str(MANUAL["anos"][f"{sig} {n}"])
+        infos.append(dict(arq=f, p=p, sigla=sig, etapa=et, ano=ano, n=n, banca=man.get("banca") or banca_de(txt, f),
                           civel=bool(re.search(r"c[ií]vel|civil", f, re.I)), penal=bool(re.search(r"penal|criminal", f, re.I))))
     # concurso que atravessa anos (objetiva em 2015, sentença em 2016): usa o menor ano do grupo
     grupos = collections.defaultdict(list)
@@ -198,9 +226,11 @@ def main():
                 x["ano"] = min(anos)
     TIPO = {"objetiva": "01 Objetivas", "discursiva": "02 Discursivas", "sentenca": "03 Sentenças", "oral": "04 Oral"}
     feitos = collections.Counter()
+    sem_ano = collections.defaultdict(list)
     for i in infos:
         if not i["ano"]:
-            nao.append((i["arq"], f"ano não identificado ({i['sigla']})"))
+            nao.append((i["arq"], f"ano não identificado ({i['sigla']}" + (f", concurso {i['n']}" if i["n"] else "") + ")"))
+            sem_ano[f"{i['sigla']} {i['n']}" if i["n"] else i["sigla"]].append(i["arq"])
             continue
         pasta_conc = f"{i['ano']} " + (f"{i['n']} " if i["n"] else "") + i["sigla"]
         if i["etapa"] == "gabarito":
@@ -227,6 +257,10 @@ def main():
     print(("(simulação) " if SIMULAR else "") + "arrumados:", dict(feitos), "| duplicados:", len(dup), "| não identificados:", len(nao))
     for f, motivo in nao:
         print(f"  ? {f}: {motivo}")
+    if sem_ano:
+        print("\nFaltam os ANOS destes concursos (me diga, ou preencha em provas/triagem-manual.json → \"anos\"):")
+        for k, v in sorted(sem_ano.items()):
+            print(f"  \"{k}\": ?    ({len(v)} arquivo(s), ex.: {v[0]})")
 
 
 if __name__ == "__main__":
