@@ -50,7 +50,11 @@ jobs:
       - name: Montar o site
         run: |
           mkdir _site
-          tar --exclude='./.git' --exclude='./_site' --exclude='./site' -cf - . | tar -xf - -C _site
+          # fora do que vai ao ar: o que só os robôs usam (o site não busca nada daqui)
+          tar --exclude='./.git' --exclude='./_site' --exclude='./site' \
+              --exclude='./curadoria' --exclude='./scripts' --exclude='./.github' \
+              --exclude='./stj/repetitivos-scon.json' --exclude='./stj/boletim-precedentes-raw.html' \
+              --exclude='./*.command' -cf - . | tar -xf - -C _site
           for f in site/*/*; do
             nome="$(basename "$f")"
             if [ -e "_site/$nome" ]; then echo "ERRO: $nome repetido em site/ ou na raiz"; exit 1; fi
