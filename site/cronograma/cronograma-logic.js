@@ -498,8 +498,10 @@
     // ---- peças da tela ----
     function opcoesEditais() {
       var lista = S.data().filter(function (e) { return !e.emBreve && (e.leis || []).length; });
-      var carreiras = lista.filter(function (e) { return e.tipo === "carreira"; });
-      var editais = lista.filter(function (e) { return e.tipo !== "carreira"; });
+      var az = function (e) { return e.tipo === "carreira" ? e.titulo : (e.sigla + " — " + e.titulo + (e.cargo ? " (" + e.cargo + ")" : "")); };
+      var porNome = function (a, b) { return az(a).localeCompare(az(b), "pt-BR", { sensitivity: "base", numeric: true }); };
+      var carreiras = lista.filter(function (e) { return e.tipo === "carreira"; }).sort(porNome);
+      var editais = lista.filter(function (e) { return e.tipo !== "carreira"; }).sort(porNome);
       var atual = S.principalId();
       function op(e) { return '<option value="' + esc(e.id) + '"' + (e.id === atual ? " selected" : "") + ">" + esc(e.tipo === "carreira" ? e.titulo : (e.sigla + " — " + e.titulo + (e.cargo ? " (" + e.cargo + ")" : ""))) + "</option>"; }
       return '<option value="">Escolha a carreira ou o edital…</option>' +

@@ -143,7 +143,7 @@
   function renderOrgaoSelect() {
     if (!orgaoSelect) return;
     orgaoSelect.innerHTML = "";
-    ORG_ORDER.forEach(function (key) {
+    ORG_ORDER.slice().sort(function (a, b) { return NORMAS_DATA[a].label.localeCompare(NORMAS_DATA[b].label, "pt-BR", { sensitivity: "base", numeric: true }); }).forEach(function (key) {
       var info = NORMAS_DATA[key];
       var opt = document.createElement("option");
       opt.value = key;

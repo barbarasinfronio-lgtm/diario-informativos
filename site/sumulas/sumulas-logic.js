@@ -240,7 +240,7 @@
     optTodos.textContent = "Todos os tribunais — busca geral";
     if (currentOrg === TODOS) optTodos.selected = true;
     tribunalSelect.appendChild(optTodos);
-    ORG_ORDER.forEach(function (key) {
+    ORG_ORDER.slice().sort(function (a, b) { return SUMULAS_DATA[a].label.localeCompare(SUMULAS_DATA[b].label, "pt-BR", { sensitivity: "base", numeric: true }); }).forEach(function (key) {
       var info = SUMULAS_DATA[key];
       var opt = document.createElement("option");
       opt.value = key;
@@ -269,7 +269,7 @@
   function materiasDisponiveis() {
     var set = {};
     rowsAtuais().forEach(function (r) { if (r.materia) set[r.materia] = true; });
-    return Object.keys(set).sort();
+    return Object.keys(set).sort(function (a, b) { return a.localeCompare(b, "pt-BR", { sensitivity: "base" }); });
   }
 
   function renderMateriaSelect() {
