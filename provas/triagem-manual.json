@@ -1,0 +1,5 @@
+{
+ "_nota": "Anos de concursos que o texto do PDF não informa (chave: SIGLA + nº do concurso). 13 e 14 do TRF4: conferir (2008 e 2010 pela página do TRF4 e notícias da época). 'arquivos' = ajuste por arquivo: {\"nome.pdf\": {\"sigla\":\"DPE-MG\",\"n\":9,\"ano\":2014,\"etapa\":\"objetiva\",\"banca\":\"FUMARC\"}}",
+ "anos": {"TRF4 13": 2008, "TRF4 14": 2010},
+ "arquivos": {}
+}
