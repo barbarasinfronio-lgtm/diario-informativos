@@ -291,6 +291,11 @@
    "link": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del0073.htm"
   },
   {
+   "nome": "Lei Complementar Estadual (PE) nº 28/2000",
+   "numero": "Lei Complementar Estadual (PE) nº 28/2000",
+   "link": "https://legis.alepe.pe.gov.br/texto.aspx?id=1044&tipo=TEXTOATUALIZADO"
+  },
+  {
    "nome": "Lei Complementar nº 132/2009",
    "numero": "Lei Complementar nº 132/2009",
    "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp132.htm"
@@ -1156,6 +1161,6 @@
   "Lei Estadual (PE) nº 11.781/2000": "ok",
   "Lei Estadual (PE) nº 17.116/2020": "ok",
   "Lei Complementar Estadual (PE) nº 100/2007": "nao-achei",
-  "Lei Complementar Estadual (PE) nº 28/2000": "nao-achei"
+  "Lei Complementar Estadual (PE) nº 28/2000": "ok"
  }
 }
