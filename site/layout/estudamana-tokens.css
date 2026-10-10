@@ -34,7 +34,7 @@
 
   /* Tipografia — tamanho. Todos os tamanhos de texto das páginas são
      multiplicados por este fator. 1 = como está hoje. */
-  --fs-scale: 1;
+  --fs-scale: 0.8;   /* letra padrão de 12 px (texto de 15 px × 0.8); o botão A reposiciona nesse valor */
 
   /* Formas e larguras */
   --radius: 14px;
