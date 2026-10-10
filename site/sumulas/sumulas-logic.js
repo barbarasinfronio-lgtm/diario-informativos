@@ -207,6 +207,20 @@
     });
   }
 
+  // leitura marcada em outra aba (Cronograma, Revisões, outro Diário): atualiza os cards aqui
+  window.addEventListener("storage", function (e) {
+    if (e.key !== LOCAL_KEY) return;
+    var map = readLocal();
+    ORG_ORDER.forEach(function (orgKey) {
+      stateByOrg[orgKey].forEach(function (row) {
+        var v = map[rowKey(orgKey, row)];
+        row.lida = !!(v && v.lida);
+        row.lidaEm = (v && v.lidaEm) || null;
+      });
+    });
+    render();
+  });
+
   function stateToMap() {
     var map = {};
     ORG_ORDER.forEach(function (orgKey) {

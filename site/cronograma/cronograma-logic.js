@@ -175,7 +175,7 @@
           var m = minRevisao(it);
           if (usado + m > orcamento) return;
           usado += m;
-          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
+          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk, st: it.st });
         });
       });
       return { itens: out, usado: usado };
@@ -196,7 +196,7 @@
           var m = minRevisao(it);
           if (usado + m > minRev) return;
           usado += m;
-          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
+          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk, st: it.st });
         });
         dia.blocos.push({ id: "revisao", titulo: "Revisão da semana", min: minRev, itens: itensRev, nota: itensRev.length ? "" : "Revise o que estudou nesta semana." });
         dia.blocos.push({ id: "questoes", titulo: "Questões e provas anteriores", min: minQ, itens: [], nota: "Resolva questões das matérias da semana. As páginas de Súmulas e Decisões mostram em quais provas cada item já foi cobrado." });
@@ -307,6 +307,12 @@
     P.lerLocal = function () {
       ["lei", "sum", "dec"].forEach(function (st) { P.maps[st] = juntarMapas(lerJson(LOCAL[st], {}), P.maps[st]); });
       P.rev = juntarRev(lerJson(REV_KEY, {}), P.rev);
+      indexar();
+    };
+    // relê tudo do navegador, descartando o que foi desmarcado em outra aba
+    P.reler = function () {
+      ["lei", "sum", "dec"].forEach(function (st) { P.maps[st] = lerJson(LOCAL[st], {}); });
+      P.rev = lerJson(REV_KEY, {});
       indexar();
     };
     function juntarRev(a, b) {
@@ -434,6 +440,16 @@
     function avisoLogin() {
       try { if (window.EstudaManaNuvem && window.EstudaManaNuvem.mostrarLogin) window.EstudaManaNuvem.mostrarLogin(raiz); } catch (e) {}
     }
+    // marcou numa aba aberta (Diário, Revisões): atualiza aqui na hora
+    window.addEventListener("storage", function (e) {
+      if (!S || !plano) return;
+      if (e.key === PARTES_KEY) { P.partes = Object.assign({}, P.partes, lerJson(PARTES_KEY, {})); desenhar(); return; }
+      if (e.key === LOCAL.lei || e.key === LOCAL.sum || e.key === LOCAL.dec || e.key === REV_KEY) {
+        // quem desmarcou lá some também aqui: relê os mapas do zero a partir do navegador
+        P.reler();
+        recalcular(); desenhar();
+      }
+    });
     // voltando de outra aba (onde a pessoa marcou algo num Diário), puxa de novo
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState !== "visible" || !S) return;
@@ -459,7 +475,11 @@
 
     // ---- estado de cada item ----
     function estaFeito(it) {
-      if (it.rid && it.dataPlano) return P.revisaoFeita(it.rid, it.dataPlano);          // revisão: feita neste dia ou depois
+      if (it.rid && it.dataPlano) {                                                         // revisão: feita neste dia ou depois
+        if (P.revisaoFeita(it.rid, it.dataPlano)) return true;
+        var e = it.st && P.entrada(it.st, it.sk), d = e && dataDe(e);                      // ou marcada como lida de novo num Diário
+        return !!(d && d >= it.dataPlano);
+      }
       if (it.st && P.entrada(it.st, it.sk)) return true;                                   // já lido no Diário
       return !!P.partes[it.k];
     }

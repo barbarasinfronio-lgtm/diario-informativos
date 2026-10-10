@@ -927,6 +927,12 @@
     }
 
     window.__leisRender = render;
+    // leitura marcada em outra aba (Cronograma, Revisões): atualiza os cards aqui
+    window.addEventListener("storage", function (e) {
+      if (e.key !== LOCAL_KEY) return;
+      lidos = lerLidos();
+      render();
+    });
 
     // "Leia-me": abre/fecha o texto da lei dentro do próprio card.
     document.addEventListener("click", function (e) {

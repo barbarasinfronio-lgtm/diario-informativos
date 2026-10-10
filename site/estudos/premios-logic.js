@@ -1101,6 +1101,26 @@
     else if (t.dataset.filter) { state.filter = t.dataset.filter; render(); }
   });
 
+  // Leitura ou revisão marcada em outra aba (Diários, Cronograma): atualiza aqui na hora
+  window.addEventListener("storage", function (e) {
+    var st = { "leis-lidas": "lei", "sumulas-lidas": "sum", "informativos-lidos": "inf", "decisoes-lidas": "dec", "normas-lidas": "norma" }[e.key];
+    var ehRev = e.key === "revisoes-feitas";
+    if (!st && !ehRev) return;
+    if (state.remote) {
+      if (st && state.remote.maps && state.remote.maps[st]) state.remote.maps[st] = load(e.key);
+      if (ehRev) {
+        var novo = load(e.key), rv = state.remote.rev = state.remote.rev || {};
+        Object.keys(novo).forEach(function (k) {
+          var set = {};
+          (rv[k] || []).concat(novo[k] || []).forEach(function (d) { set[d] = true; });
+          rv[k] = Object.keys(set).sort();
+        });
+      }
+    }
+    refresh();
+    render();
+  });
+
   // 1) pinta na hora com o que este navegador já tem;
   // 2) quando a nuvem responde, recalcula e mostra os prêmios novos.
   refresh();
