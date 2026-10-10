@@ -113,6 +113,60 @@
     return "<p>" + escapeHtml(t) + "</p>";
   }
 
+  // ---- texto da lei em HTML: divisões centralizadas, artigos justificados ----------------------
+  // Estilos em linha para valer tanto no cronograma quanto no Diário de Leis (cores herdadas do tema).
+  var ST_DIV = "margin:1.6rem 0 .2rem;text-align:center;font-weight:700;letter-spacing:.02em;color:inherit;";
+  var ST_NOME = "margin:.1rem 0 .9rem;text-align:center;font-weight:600;color:inherit;";
+  var ST_PARTE = "margin:1.8rem 0 .6rem;text-align:center;font-weight:700;letter-spacing:.35em;color:inherit;";
+  var ST_TEXTO = "margin:.5rem 0;text-align:justify;hyphens:auto;-webkit-hyphens:auto;color:inherit;";
+  var RX_LETRAS = /^(?:[A-ZÀ-Ý] ){2,}[A-ZÀ-Ý]$/;                 // "P A R T E"
+  var RX_PEDACO = /\s+(?=(?:T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\s+(?:[IVXLCDM]+|[ÚU]NIC[OA])\b)/i;
+  var RX_TITULO_LEI = /^((?:LEI|DECRETO)(?:-LEI|\s+COMPLEMENTAR)?\s+N[ºo°]\s*[\d.]+[^,]*,\s+DE\s+\d+\s+DE\s+[A-ZÇ]+\s+DE\s+\d{4})\b/i;
+  function ehNome(t) {   // linha curta que dá nome à divisão anterior ("DAS PESSOAS")
+    return t.length <= 120 && !/\.$/.test(t) && !numArt(t) && !/^(§|Par[áa]grafo|[IVXLCDM]+\s*[-–—]|[a-z]\))/.test(t) && !divisaoDaLei(t) && !RX_LETRAS.test(t);
+  }
+  function htmlTudo(ps) {
+    // "LEI Nº" + "10.406, DE ..." viram um só parágrafo
+    ps = ps.slice();
+    if (ps.length > 1 && /^(LEI|DECRETO)[^]{0,25}N[ºo°]\s*$/i.test(ps[0])) ps.splice(0, 2, ps[0] + " " + ps[1]);
+    var out = [], i = 0;
+    while (i < ps.length) {
+      var t = ps[i];
+      var tl = t.match(RX_TITULO_LEI);
+      if (tl && i < 3) {
+        out.push('<p style="' + ST_DIV + '">' + escapeHtml(tl[1]) + "</p>");
+        var pres = t.search(/O PRESIDENTE DA REP[ÚU]BLICA/i);
+        if (pres >= 0) out.push('<p style="' + ST_TEXTO + '">' + escapeHtml(t.slice(pres)) + "</p>");
+        i++; continue;
+      }
+      if (RX_LETRAS.test(t)) {                                       // "P A R T E" + "G E R A L" → PARTE GERAL
+        var palavras = [];
+        while (i < ps.length && RX_LETRAS.test(ps[i])) palavras.push(ps[i++].replace(/ /g, ""));
+        out.push('<p style="' + ST_PARTE + '">' + escapeHtml(palavras.join(" ")) + "</p>");
+        continue;
+      }
+      var pedacos = /^(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\b/i.test(t) && t.length < 400 ? t.split(RX_PEDACO) : [t];
+      var achou = false;
+      pedacos.forEach(function (x) {
+        var d = divisaoDaLei(x);
+        if (!d) return;
+        achou = true;
+        out.push('<p style="' + ST_DIV + '">' + escapeHtml(d.numero) + "</p>");
+        if (d.nome) out.push('<p style="' + ST_NOME + '">' + escapeHtml(d.nome) + "</p>");
+      });
+      if (achou) {
+        var ultimo = divisaoDaLei(pedacos[pedacos.length - 1]);
+        i++;
+        if (ultimo && !ultimo.nome && i < ps.length && ehNome(ps[i])) { out.push('<p style="' + ST_NOME + '">' + escapeHtml(ps[i]) + "</p>"); i++; }
+        continue;
+      }
+      var art = t.match(/^Art\.?\s*\d+[º°ª]?(?:-[A-Z]+)?\.?/);
+      out.push('<p style="' + ST_TEXTO + '">' + (art ? "<strong>" + escapeHtml(art[0]) + "</strong>" + escapeHtml(t.slice(art[0].length)) : escapeHtml(t)) + "</p>");
+      i++;
+    }
+    return out.join("");
+  }
+
   // Número do artigo que abre o parágrafo ("1º", "5-A") ou ""
   function numArt(t) {
     var m = String(t).match(/^Art\.?\s*(\d[\d.]*[º°ª]?(?:-[A-Z]+)?)/);
@@ -144,5 +198,5 @@
     return { ps: fatia, de: a, ate: b, primeiro: arts[0] || "", ultimo: arts[arts.length - 1] || "", inteira: a === 0 && b >= ps.length };
   }
 
-  window.EstudaManaLeiTexto = { carregar: carregar, paragrafos: paragrafosDaLei, html: html, fatiar: fatiar, escapeHtml: escapeHtml };
+  window.EstudaManaLeiTexto = { carregar: carregar, paragrafos: paragrafosDaLei, html: html, htmlTudo: htmlTudo, fatiar: fatiar, escapeHtml: escapeHtml };
 })();

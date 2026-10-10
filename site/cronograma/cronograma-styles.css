@@ -81,8 +81,7 @@
 .cr-card-link { font-size: calc(0.9rem * var(--fs-scale, 1)); font-weight: 600; color: var(--accent); text-decoration: none; }
 .cr-card-dica { font-size: calc(0.8rem * var(--fs-scale, 1)); color: var(--ink-faint); }
 .cr-card-titulo, .cr-card-sub { max-width: var(--em-card-texto-max, 62rem); margin-left: auto; margin-right: auto; padding-right: 2.5rem; box-sizing: border-box; }
-.cr-card-texto { max-width: var(--em-card-texto-max, 62rem); margin: 0 auto; font-size: calc(1.02rem * var(--fs-scale, 1)); line-height: 1.7; text-align: left; }
-.cr-card-texto p { margin: 0.4rem 0; color: inherit; }
+.cr-card-texto { max-width: var(--em-card-texto-max, 62rem); margin: 0 auto; font-size: calc(1.02rem * var(--fs-scale, 1)); line-height: 1.7; text-align: justify; }
 .cr-card-texto .cr-lei-art { margin: 0.9rem 0 0.3rem; }
 .cr-card-texto .cr-lei-div { margin: 1.4rem 0 0.4rem; text-align: center; font-weight: 700; color: var(--ink); }
 .cr-card-fonte { margin-top: 1.5rem; font-size: calc(0.8rem * var(--fs-scale, 1)); color: var(--ink-faint); }
