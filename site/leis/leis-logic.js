@@ -1041,14 +1041,21 @@
   // Leis que leitores pediram para adicionar e o robô já trouxe (leis/pedidas.json, scripts/leis_sob_pedido.py):
   // entram na lista como uma matéria própria.
   function carregarPedidas() {
-    return fetch(CDN_BASE + "leis/pedidas.json", { cache: "no-cache" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) {
-        if (j && j.leis && j.leis.length) {
-          window.LEIS_DATA = window.LEIS_DATA || {};
-          window.LEIS_DATA.pedidas = { label: "Leis pedidas por leitores", leis: j.leis };
-        }
-      }).catch(function () {});
+    function ler(arquivo, chave, rotulo) {
+      return fetch(CDN_BASE + arquivo, { cache: "no-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (j && j.leis && j.leis.length) {
+            window.LEIS_DATA = window.LEIS_DATA || {};
+            window.LEIS_DATA[chave] = { label: rotulo, leis: j.leis };
+          }
+        }).catch(function () {});
+    }
+    // leis/dos-editais.json: normas federais que os editais citam e que não estavam no Diário (scripts/leis_dos_editais.py)
+    return Promise.all([
+      ler("leis/pedidas.json", "pedidas", "Leis pedidas por leitores"),
+      ler("leis/dos-editais.json", "dos_editais", "Citadas nos editais")
+    ]);
   }
 
   Promise.all([
