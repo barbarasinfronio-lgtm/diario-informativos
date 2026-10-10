@@ -453,6 +453,16 @@
     if (st.p) return st.p;
     st.p = fetch(cfg.base + 'indice.json', { cache: 'no-cache' })
       .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      // índice grande em fatias (stj/acordaos): o indice.json lista os arquivos indice-000.json…, baixados juntos
+      .then(function(j){
+        if (!j.arquivos) return j;
+        return Promise.all(j.arquivos.map(function(a){
+          return fetch(cfg.base + a, { cache: 'no-cache' }).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); });
+        })).then(function(partes){
+          j.itens = [].concat.apply([], partes.map(function(p){ return p.itens || []; }));
+          return j;
+        });
+      })
       .then(function(j){
         DATA = DATA.concat((j.itens || []).map(cfg.item));
         st.prontos = true;

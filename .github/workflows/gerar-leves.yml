@@ -17,6 +17,7 @@ on:
       - stf/extras.json
       - tst/decisoes.json
       - stj/acordaos/indice.json
+      - stj/acordaos/indice-*.json
       - stf/acordaos/indice.json
       - informativos/indice.json
       - controleconst/adi_dados.js
@@ -86,7 +87,7 @@ jobs:
       - name: Salvar os arquivos gerados
         id: salvar
         run: |
-          git add -A leve leis/julgados stj/repetitivos site/decisoes/rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos/indice.json stf/acordaos/indice.json informativos/indice.json
+          git add -A leve leis/julgados stj/repetitivos site/decisoes/rg-repetitivos-data.js stj/teses.json stf/extras.json tst/decisoes.json stj/acordaos stf/acordaos/indice.json informativos/indice.json
           if git diff --cached --quiet; then
             echo "Nada mudou."; echo "mudou=0" >> "$GITHUB_OUTPUT"; exit 0
           fi

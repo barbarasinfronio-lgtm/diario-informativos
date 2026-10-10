@@ -21,6 +21,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 import atualizar_informativos as robo  # noqa: E402
+import indice_fatiado  # noqa: E402
 
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
@@ -53,7 +54,7 @@ def textos_do_site():
             if isinstance(x, dict):
                 yield " ".join(v for v in x.values() if isinstance(v, str))
     try:
-        for x in ld(RAIZ / "stj" / "acordaos" / "indice.json")["itens"]:
+        for x in indice_fatiado.ler(str(RAIZ / "stj" / "acordaos" / "indice.json"))["itens"]:
             yield " ".join(str(v) for v in x if isinstance(v, str))
     except (OSError, ValueError, KeyError):
         pass

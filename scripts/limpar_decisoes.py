@@ -58,6 +58,9 @@ import re
 import sys
 import unicodedata
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import indice_fatiado  # noqa: E402  (índice do STJ em fatias)
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RELATORIO = "--relatorio" in sys.argv
 resumo = []
@@ -94,10 +97,17 @@ def gravar_js(f, prefixo, lista, sufixo, indent):
 
 def ler_json(f):
     s = open(caminho(f), encoding="utf-8").read()
-    return json.loads(s), s.endswith("\n")
+    obj = json.loads(s)
+    if "arquivos" in obj:      # índice em fatias (stj/acordaos): junta todas; gravar_json divide de novo
+        obj = indice_fatiado.ler(caminho(f))
+    return obj, s.endswith("\n")
 
 
 def gravar_json(f, obj, nl):
+    if "arquivos" in obj:
+        if not RELATORIO:
+            indice_fatiado.gravar(caminho(f), obj)
+        return
     novo = json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + ("\n" if nl else "")
     if novo != open(caminho(f), encoding="utf-8").read() and not RELATORIO:
         open(caminho(f), "w", encoding="utf-8").write(novo)
@@ -111,6 +121,8 @@ def conferir_formato(f):
         ok = p + corpo + s == open(caminho(f), encoding="utf-8").read()
     else:
         o, nl = ler_json(f)
+        if "arquivos" in o:
+            return      # fatiado: não há "arquivo idêntico" para comparar
         ok = json.dumps(o, ensure_ascii=False, separators=(",", ":")) + ("\n" if nl else "") == open(caminho(f), encoding="utf-8").read()
     if not ok:
         print("  ! formato diferente do esperado em", f, "— o arquivo será regravado no formato padrão")
