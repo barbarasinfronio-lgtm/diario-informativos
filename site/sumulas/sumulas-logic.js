@@ -141,7 +141,7 @@
   var stateByOrg = {};
   ORG_ORDER.forEach(function (key) {
     stateByOrg[key] = SUMULAS_DATA[key].sumulas.map(function (d) {
-      return { numero: d.numero, texto: d.texto, materia: d.materia || classificarMateria(d), link: d.link, org: key, lida: false, lidaEm: null };
+      return { numero: d.numero, texto: d.texto, materia: d.materia || classificarMateria(d), link: d.link, org: key, lida: false, lidaEm: null, jornada: d.jornada || null, ref: d.ref || null, jid: d.jid || null };
     });
   });
 
@@ -161,6 +161,23 @@
   }
 
   function rowKey(orgKey, row) { return orgKey + ":" + row.numero; }
+
+  // "Súmula nº", "Súmula Vinculante nº" ou "Enunciado nº" (enunciados do TJTO e das Jornadas do CJF).
+  function rotuloNumero(org) {
+    return org === "stf_vinculante" ? "Súmula Vinculante nº " : (org === "tjto" || org.indexOf("cjf_") === 0) ? "Enunciado nº " : "Súmula nº ";
+  }
+
+  // Justificativa dos enunciados das Jornadas (jornadas/justificativas/NN.json, NN = id do CJF ÷ 100): só é
+  // baixada quando a pessoa clica em "Justificativa".
+  var JUST_BASE = "https://barbarasinfronio-lgtm.github.io/diario-informativos/jornadas/justificativas/";
+  var justParte = {};
+  function justificativaDe(jid) {
+    var n = ("0" + Math.floor(jid / 100)).slice(-2);
+    if (!justParte[n]) justParte[n] = fetch(JUST_BASE + n + ".json", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function (e) { delete justParte[n]; throw e; });
+    return justParte[n].then(function (p) { return p[String(jid)] || ""; });
+  }
 
   // Em quais provas de concurso cada súmula já foi cobrada
   // (scripts/cobrancas_provas.py → provas/cobrancas.json).
@@ -301,7 +318,7 @@
   function filteredState() {
     return filteredBase().filter(function (r) {
       if (focoNumero && String(r.numero) !== focoNumero) return false;
-      return combinaBusca("súmula nº " + r.numero + " " + r.texto + " " + (r.materia || ""));
+      return combinaBusca("súmula nº " + r.numero + " enunciado nº " + r.numero + " " + r.texto + " " + (r.materia || "") + " " + (r.jornada || "") + " " + (r.ref || ""));
     });
   }
 
@@ -377,7 +394,7 @@
       var rotuloOrg = SUMULAS_DATA[row.org].label.replace(/\s*\(\d+\)$/, "");
       li.setAttribute("data-cad-lista", "sumulas");
       li.setAttribute("data-cad-item", row.org + ":" + row.numero);
-      li.setAttribute("data-cad-titulo", (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : row.org === "tjto" ? "Enunciado nº " : "Súmula nº ") + row.numero);
+      li.setAttribute("data-cad-titulo", rotuloNumero(row.org) + row.numero);
       li.setAttribute("data-cad-origem", rotuloOrg);
       li.setAttribute("data-cad-abrir", "/p/diario-das-sumulas.html#cad=" + encodeURIComponent(row.org + "|" + row.numero));
 
@@ -387,7 +404,7 @@
       input.type = "checkbox";
       input.className = "check-box";
       input.checked = row.lida;
-      input.setAttribute("aria-label", "Marcar súmula nº " + row.numero + " como lida");
+      input.setAttribute("aria-label", "Marcar " + rotuloNumero(row.org).toLowerCase() + row.numero + (rotuloNumero(row.org) === "Enunciado nº " ? " como lido" : " como lida"));
       input.addEventListener("change", function () { toggle(row, input.checked); });
       checkWrap.appendChild(input);
 
@@ -395,12 +412,42 @@
       edition.className = "edition sumula-edition cad-lugar";
       var num = document.createElement("span");
       num.className = "num";
-      num.textContent = (row.org === "stf_vinculante" ? "Súmula Vinculante nº " : row.org === "tjto" ? "Enunciado nº " : "Súmula nº ") + row.numero;
+      num.textContent = rotuloNumero(row.org) + row.numero + (row.jornada ? " · " + row.jornada : "");
       var texto = document.createElement("p");
       texto.className = "sumula-texto cad-area";
       texto.textContent = row.texto;
       edition.appendChild(num);
       edition.appendChild(texto);
+      if (row.ref) {
+        var ref = document.createElement("p");
+        ref.className = "sumula-ref";
+        ref.textContent = "Referência legislativa: " + row.ref;
+        edition.appendChild(ref);
+      }
+      if (row.jid) {
+        var just = document.createElement("div");
+        just.className = "sumula-just";
+        var jbtn = document.createElement("button");
+        jbtn.type = "button";
+        jbtn.className = "sumula-just-btn";
+        jbtn.textContent = "Justificativa";
+        var jcorpo = document.createElement("p");
+        jcorpo.className = "sumula-just-texto";
+        jcorpo.hidden = true;
+        jbtn.addEventListener("click", function () {
+          if (!jcorpo.hidden) { jcorpo.hidden = true; jbtn.textContent = "Justificativa"; return; }
+          jcorpo.hidden = false; jbtn.textContent = "Ocultar justificativa";
+          if (jcorpo.getAttribute("data-ok")) return;
+          jcorpo.textContent = "Carregando…";
+          justificativaDe(row.jid).then(function (t) {
+            jcorpo.textContent = t || "Este enunciado não tem justificativa publicada pelo CJF.";
+            jcorpo.setAttribute("data-ok", "1");
+          }).catch(function () { jcorpo.textContent = "Não foi possível carregar a justificativa agora. Tente de novo."; });
+        });
+        just.appendChild(jbtn);
+        just.appendChild(jcorpo);
+        edition.appendChild(just);
+      }
       var cobs = cobrancasDe(row);
       if (cobs.length) {
         var cob = document.createElement("p");

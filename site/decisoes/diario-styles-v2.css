@@ -1061,3 +1061,10 @@
   font-size: calc(12px * var(--fs-scale));
   line-height: 1.35;
 }
+
+/* Enunciados das Jornadas do CJF (Diário das Súmulas): referência legislativa e justificativa sob demanda */
+.sumula-ref { margin: 4px 0 0; font-size: .82em; color: var(--ink-soft); }
+.sumula-just { margin-top: 6px; }
+.sumula-just-btn { font: inherit; font-size: .82em; padding: 2px 8px; border: 1px solid var(--surface-line); border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+.sumula-just-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.sumula-just-texto { margin: 6px 0 0; font-size: .9em; line-height: 1.5; white-space: pre-line; }
