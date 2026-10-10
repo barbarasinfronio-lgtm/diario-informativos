@@ -5693,9 +5693,64 @@ var SUMULAS_DATA = {
     ]
   },
   // </jornadas-cjf>
+  // <enunciados-foruns> (gerado por scripts/enunciados_foruns.py; não edite à mão)
+  fonaje_civel: {
+    label: "FONAJE — Enunciados Cíveis (Juizados Especiais)",
+    status: "disponivel",
+    sumulas: [
+      { numero: 4, texto: "Nos Juizados Especiais só se admite a ação de despejo prevista no art. 47, inciso III, da Lei 8.245/1991.", materia: null, link: "https://fonaje.amb.com.br/enunciados/" },
+      { numero: 8, texto: "As ações cíveis sujeitas aos procedimentos especiais não são admissíveis nos Juizados Especiais.", materia: null, link: "https://fonaje.amb.com.br/enunciados/" },
+      { numero: 10, texto: "A contestação poderá ser apresentada até a audiência de Instrução e Julgamento.", materia: null, link: "https://fonaje.amb.com.br/enunciados/" },
+      { numero: 33, texto: "É dispensável a expedição de carta precatória nos Juizados Especiais Cíveis, cumprindo-se os atos nas demais comarcas, mediante via postal, por ofício do Juiz, fax, telefone ou qualquer outro meio idôneo de comunicação.", materia: null, link: "https://fonaje.amb.com.br/enunciados/" },
+      { numero: 68, texto: "Somente se admite conexão em Juizado Especial Cível quando as ações puderem submeter-se à sistemática da Lei 9099/1995.", materia: null, link: "https://fonaje.amb.com.br/enunciados/" },
+      { numero: 84, texto: "Compete ao Presidente da Turma Recursal o juízo de admissibilidade do Recurso Extraordinário, salvo disposição em contrário", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "nova redação – XXII Encontro – Manaus/AM" },
+      { numero: 88, texto: "Não cabe recurso adesivo em sede de Juizado Especial, por falta de expressa previsão legal", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XV Encontro – Florianópolis/SC" },
+      { numero: 89, texto: "A incompetência territorial pode ser reconhecida de ofício no sistema de juizados especiais cíveis", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XVI Encontro – Rio de Janeiro/RJ" },
+      { numero: 91, texto: "O conflito de competência entre juízes de Juizados Especiais vinculados à mesma Turma Recursal será decidido por esta. Inexistindo tal vinculação, será decidido pela Turma Recursal para a qual for distribuído", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "nova redação – XXII Encontro – Manaus/AM" },
+      { numero: 120, texto: "A multa derivada de descumprimento de antecipação de tutela é passível de execução mesmo antes do trânsito em julgado da sentença", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XXI Encontro – Vitória/ES" },
+      { numero: 123, texto: "O art. 229 do CPC não se aplica aos processos cíveis que tramitam perante o Juizado Especial.", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "Novo texto por unanimidade de votos na Plenária do 51º Encontro Florianópolis/SC" },
+      { numero: 143, texto: "A decisão que põe fim aos embargos à execução de título judicial ou extrajudicial é sentença, contra a qual cabe apenas recurso inominado", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XXVIII Encontro – Salvador/BA" },
+      { numero: 163, texto: "Os procedimentos de tutela de urgência requeridos em caráter antecedente, na forma prevista nos arts. 303 a 310 do CPC/2015, são incompatíveis com o Sistema dos Juizados Especiais", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XXXVIII Encontro – Belo Horizonte-MG" },
+      { numero: 166, texto: "Nos Juizados Especiais Cíveis, o juízo prévio de admissibilidade do recurso será feito em primeiro grau", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "XXXIX Encontro – Maceió-AL" },
+      { numero: 172, texto: "Na hipótese de ficar caracterizado grupo econômico, as empresas individualmente consideradas não poderão demandar nos Juizados Especiais caso a receita bruta supere o limite para a Empresa de Pequeno Porte .", materia: null, link: "https://fonaje.amb.com.br/enunciados/", jornada: "49º Encontro – Rio de Janeiro – RJ" }
+    ]
+  },
+  fonaje_criminal: {
+    label: "FONAJE — Enunciados Criminais (Juizados Especiais)",
+    status: "disponivel",
+    sumulas: [
+      { numero: 1, texto: "A ausência injustificada do autor do fato à audiência preliminar implicará em vista dos autos ao Ministério Público para o procedimento cabível.", materia: null, link: "https://fonaje.amb.com.br/enunciados-criminais/" },
+      { numero: 48, texto: "O recurso em sentido estrito é incabível em sede de Juizados Especiais Criminais.", materia: null, link: "https://fonaje.amb.com.br/enunciados-criminais/" },
+      { numero: 65, texto: "Nas hipóteses do artigo 363, § 1º e § 4º do Código de Processo Penal, aplica-se o parágrafo único do artigo 66 da Lei nº 9.099/95", materia: null, link: "https://fonaje.amb.com.br/enunciados-criminais/", jornada: "XXV Encontro – São Luís/MA" },
+      { numero: 71, texto: "A expressão conciliação prevista no artigo 73 da Lei 9099/95 abrange o acordo civil e a transação penal, podendo a proposta do Ministério Público ser encaminhada pelo conciliador ou pelo juiz leigo, nos termos do artigo 76, § 3º, da mesma Lei", materia: null, link: "https://fonaje.amb.com.br/enunciados-criminais/", jornada: "XV Encontro – Florianópolis/SC" },
+      { numero: 119, texto: "É possível a mediação no âmbito do Juizado Especial Criminal", materia: null, link: "https://fonaje.amb.com.br/enunciados-criminais/", jornada: "XXIX Encontro – Bonito/MS" }
+    ]
+  },
+  enfam_cpc: {
+    label: "ENFAM — Enunciados sobre o CPC/2015 (Seminário 2015)",
+    status: "disponivel",
+    sumulas: [
+      { numero: 3, texto: "É desnecessário ouvir as partes quando a manifestação não puder influenciar na solução da causa.", materia: null, link: "https://www.enfam.jus.br/wp-content/uploads/2015/09/ENUNCIADOS-VERS%C3%83O-DEFINITIVA-.pdf" },
+      { numero: 53, texto: "O redirecionamento da execução fiscal para o sócio-gerente prescinde do incidente de desconsideração da personalidade jurídica previsto no art. 133 do CPC/2015.", materia: null, link: "https://www.enfam.jus.br/wp-content/uploads/2015/09/ENUNCIADOS-VERS%C3%83O-DEFINITIVA-.pdf" }
+    ]
+  },
+  fppc: {
+    label: "FPPC — Fórum Permanente de Processualistas Civis (CPC/2015)",
+    status: "disponivel",
+    sumulas: [
+      { numero: 10, texto: "Em caso de desmembramento do litisconsórcio multitudinário, a interrupção da prescrição retroagirá à data de propositura da demanda original.", materia: null, link: "https://www.fppc.com.br/", jornada: "arts. 113, §§ 1º e 2º, e 240, § 1º — Litisconsórcio, Intervenção de Terceiros e Resposta do Réu; redação revista no III FPPC-Rio" },
+      { numero: 117, texto: "Em caso de desmembramento do litisconsórcio multitudinário ativo, os efeitos mencionados no art. 240 são considerados produzidos desde o protocolo originário da petição inicial.", materia: null, link: "https://www.fppc.com.br/", jornada: "arts. 113 e 312 — Litisconsórcio e Intervenção de Terceiros" },
+      { numero: 135, texto: "A indisponibilidade do direito material não impede, por si só, a celebração de negócio jurídico processual.", materia: null, link: "https://www.fppc.com.br/", jornada: "art. 190 — Negócios Processuais" },
+      { numero: 446, texto: "Cabe ação monitória mesmo quando o autor for portador de título executivo extrajudicial.", materia: null, link: "https://www.fppc.com.br/", jornada: "arts. 785 e 700 — Execução" }
+    ]
+  },
+  // </enunciados-foruns>
 };
 
 var SUMULAS_ORG_ORDER = [
+  // <enunciados-foruns-ordem>
+  "fonaje_civel", "fonaje_criminal", "enfam_cpc", "fppc",
+  // </enunciados-foruns-ordem>
   // <jornadas-cjf-ordem>
   "cjf_civil", "cjf_comercial", "cjf_processual_civil", "cjf_litigios", "cjf_saude", "cjf_administrativo", "cjf_seguridade", "cjf_tributario", "cjf_penal", "cjf_notarial", "cjf_desportivo", "cjf_patrimonio", "cjf_ambiental", "cjf_racial",
   // </jornadas-cjf-ordem>
