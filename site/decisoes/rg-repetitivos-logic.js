@@ -709,23 +709,94 @@
                  : '<p style="margin:0 0 .65em">' + escapeHtml(b.t) + '</p>';
     }).join('');
   }
+  function inserirTeor(d, e){
+    if (!e || !e.texto || modalAtual !== d || modal.querySelector('.teor-rg')) return;
+    var campos = modal.querySelector('.fields');
+    if (!campos) return;
+    var pedido = modal.querySelector('.teor-pedido');
+    if (pedido) pedido.remove();
+    var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
+            ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
+            '<div class="destaque-text">' + teorEmParagrafos(e.texto) + '</div></details>';
+    campos.insertAdjacentHTML('afterend', h);
+    // o card já foi aberto: o inteiro teor entra na lista de textos que podem ser destacados e anotados (Meus Cadernos)
+    var area = modal.querySelector('.teor-rg .destaque-text');
+    if (area) carregarCadernos().then(function(){
+      if (modalAtual === d && window.EstudaManaCadernos && EstudaManaCadernos.adicionarArea) EstudaManaCadernos.adicionarArea(area);
+    }).catch(function(){});
+  }
   function carregarTeorRG(d){
     fetch(BASE_CDN + 'stf/rg/' + encodeURIComponent(String(d.tema)) + '.json', { cache: 'no-cache' })
       .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
-      .then(function(e){
-        if (!e || !e.texto || modalAtual !== d) return;
-        var campos = modal.querySelector('.fields');
-        if (!campos) return;
-        var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
-                ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
-                '<div class="destaque-text">' + teorEmParagrafos(e.texto) + '</div></details>';
-        campos.insertAdjacentHTML('afterend', h);
-        // o card já foi aberto: o inteiro teor entra na lista de textos que podem ser destacados e anotados (Meus Cadernos)
-        var area = modal.querySelector('.teor-rg .destaque-text');
-        if (area) carregarCadernos().then(function(){
-          if (modalAtual === d && window.EstudaManaCadernos && EstudaManaCadernos.adicionarArea) EstudaManaCadernos.adicionarArea(area);
-        }).catch(function(){});
+      .then(function(e){ inserirTeor(d, e); });
+  }
+
+  // ---- "Buscar inteiro teor": julgados do STF sem o acórdão ----------------
+  // O inteiro teor pronto fica em teor/<id do card>.json (teor/indice.json lista quais existem;
+  // scripts/teor_sob_pedido.py). Sem ele, o card mostra o botão: o clique grava um pedido no
+  // Firestore (pedidos-teor/<id>, só para quem entrou) e o robô do Mac busca no portal do STF.
+  var indiceTeor = null;
+  function carregarIndiceTeor(){
+    if (!indiceTeor) indiceTeor = fetch(BASE_CDN + 'teor/indice.json', { cache: 'no-cache' })
+      .then(function(r){ return r.ok ? r.json() : { ids: [] }; }).catch(function(){ return { ids: [] }; })
+      .then(function(j){ var m = {}; (j.ids || []).forEach(function(i){ m[i] = 1; }); return m; });
+    return indiceTeor;
+  }
+  var RX_PROCESSO_STF = /\b(?:ADI|ADC|ADPF|ADO|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp|ADIn)\b\.?\s*\d/;
+  function podePedirTeor(d){
+    return d.orgao === 'STF' && d.tipo !== 'rg' && d.id && RX_PROCESSO_STF.test(d.processo || '');
+  }
+  function usuarioLogado(){
+    try { var u = window.firebase && firebase.auth && firebase.apps && firebase.apps.length && firebase.auth().currentUser; return !!(u && !u.isAnonymous); }
+    catch (e) { return false; }
+  }
+  function docPedido(d){
+    return firebase.firestore().doc('pedidos-teor/' + String(d.id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40));
+  }
+  function mostrarPedidoTeor(d){
+    if (modalAtual !== d || modal.querySelector('.teor-rg, .teor-pedido')) return;
+    var campos = modal.querySelector('.fields');
+    if (!campos) return;
+    campos.insertAdjacentHTML('afterend',
+      '<div class="teor-pedido"><div class="section-label">Inteiro teor do acórdão</div>' +
+      '<p class="normas-aviso teor-msg">Este julgado ainda está sem o inteiro teor no site.</p>' +
+      '<button type="button" class="chip teor-buscar">🔎 Buscar inteiro teor</button></div>');
+    var box = modal.querySelector('.teor-pedido'), btn = box.querySelector('.teor-buscar'), msg = box.querySelector('.teor-msg');
+    function enviado(t){ btn.disabled = true; btn.textContent = '✅ Pedido enviado'; msg.textContent = t; }
+    if (window.firebase && firebase.apps && firebase.apps.length && firebase.firestore) {
+      docPedido(d).get().then(function(s){
+        if (s.exists && modalAtual === d) enviado('O pedido já foi feito. O robô busca no portal do STF e o texto entra aqui na próxima atualização do site.');
+      }).catch(function(){});
+    }
+    btn.addEventListener('click', function(){
+      if (!usuarioLogado()) {
+        msg.textContent = 'Para pedir o inteiro teor, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página).';
+        return;
+      }
+      btn.disabled = true;
+      docPedido(d).set({
+        id: String(d.id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40),
+        processo: String(d.processo || '').slice(0, 200),
+        data: String(d.data || '').slice(0, 20),
+        titulo: String(tituloDe(d) || '').slice(0, 300),
+        em: new Date().toISOString()
+      }).then(function(){
+        enviado('Pedido enviado! O robô busca o acórdão no portal do STF e o texto entra aqui na próxima atualização do site (em geral em até um dia).');
+      }).catch(function(e){
+        if (e && e.code === 'permission-denied') enviado('Este julgado já tinha sido pedido (ou o pedido não pôde ser gravado). O texto entra aqui quando o robô buscar.');
+        else { btn.disabled = false; msg.textContent = 'Não consegui enviar o pedido agora. Tente de novo.'; }
       });
+    });
+  }
+  function prepararTeorPedido(d){
+    carregarIndiceTeor().then(function(m){
+      if (modalAtual !== d) return;
+      if (m[d.id]) {
+        fetch(BASE_CDN + 'teor/' + encodeURIComponent(d.id) + '.json', { cache: 'no-cache' })
+          .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
+          .then(function(e){ inserirTeor(d, e); });
+      } else mostrarPedidoTeor(d);
+    });
   }
   // "Destaque" que só repete a tese (igual ou só o começo dela, com ou sem "…") não precisa aparecer duas vezes
   function destaqueRepetido(d){
@@ -795,6 +866,7 @@
     ligarCadernos(d);
     if (d.orgao === 'STJ' && d.tipo === 'repetitivo' && d.tema) carregarDetalheRep(d);
     if (d.orgao === 'STF' && d.tipo === 'rg' && d.tema) carregarTeorRG(d);
+    else if (podePedirTeor(d)) prepararTeorPedido(d);
   }
   function closeModal(){
     if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();
