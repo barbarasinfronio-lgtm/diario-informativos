@@ -25,7 +25,7 @@ import atualizar_informativos as robo  # noqa: E402
 CITADAS = robo.TEXTO_DIR / "citadas.json"
 FALHAS = robo.TEXTO_DIR / "citadas-falhas.json"
 RE_LEI = re.compile(r"\b(Lei\s+Complementar|Lei|LC|Decreto[\s-]Lei|Decreto)\s*(?:Federal\s*)?(?:n[ºo°.]*\s*)?(\d{1,3}(?:\.\d{3})*)\s*/\s*(\d{4}|\d{2})\b", re.I)
-VERSAO = 5   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
+VERSAO = 6   # sobe quando os endereços/leitor melhoram: as falhas anteriores são tentadas de novo
 NOMES = {"lei": "Lei", "lc": "Lei Complementar", "dl": "Decreto-Lei", "decreto": "Decreto"}
 
 
@@ -155,7 +155,7 @@ def enderecos(tipo, n, ano):
             out += [f"leis/leis_2001/{f}" for f in nomes("l")]
         out += [f"leis/{f}" for f in nomes("l")]
         out += [f"leis/{a}/{f}" for f in nomes("l")]
-        for pasta in ("1950-1969", "1970-1979", "1980-1989", "1990-1999", "antigas", "anteriores", "L"):
+        for pasta in ("1950-1969", "1970-1979", "1980-1988", "1980-1989", "1989-1994", "1989_1994", "1990-1999", "antigas", "anteriores", "L"):
             out += [f"leis/{pasta}/{f}" for f in nomes("l")[:2]]
     elif tipo == "lc":
         out += [f"leis/lcp/{f}" for f in nomes("lcp")]
@@ -169,7 +169,7 @@ def enderecos(tipo, n, ano):
             if i <= a <= j:
                 out += [f"_ato{i}-{j}/{a}/decreto/{f}" for f in nomes("d")]
         out += [f"decreto/{f}" for f in nomes("d")]
-        for pasta in ("1930-1949", "1950-1969", "1970-1979", "1980-1989", "1990-1994", "2003", "2002", "2001", "1996", "1930-1949"):
+        for pasta in ("1930-1949", "1950-1969", "1970-1979", "1980-1988", "1980-1989", "1989-1994", "1990-1994", "2003", "2002", "2001", "1996", "1930-1949"):
             out += [f"decreto/{pasta}/{f}" for f in nomes("d")[:2]]
     return [base + x for x in dict.fromkeys(out)]
 
