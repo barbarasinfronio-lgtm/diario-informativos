@@ -159,6 +159,8 @@ def main():
     ap.add_argument("--teste")
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
+    ap.add_argument("--com-reclamacoes", action="store_true", help="inclui as Reclamações (a página do STF não mostra o incidente delas; por ora ficam de fora)")
+    ap.add_argument("--refazer-falhas", action="store_true", help="tenta de novo as que já falharam (por padrão são puladas)")
     ap.add_argument("--so-aplicar", action="store_true", help="não busca nada; só acrescenta aos dados o que já está no cache")
     a = ap.parse_args()
     cache = ler_cache()
@@ -166,6 +168,14 @@ def main():
     pend = [x for x in todos if f"{x[0]} {x[1]}|{x[2]}" not in cache]
     por = collections.Counter(x[0] for x in pend)
     print(f"{len(todos)} decisões de informativos fora dos dados; {len(todos) - len(pend)} já buscadas; faltam {len(pend)}: {dict(por)}")
+    if not a.teste and not a.so_aplicar and not a.plano:
+        ant = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
+        n0 = len(pend)
+        if not a.com_reclamacoes:
+            pend = [x for x in pend if x[0] != "Rcl"]
+        if not a.refazer_falhas:   # só repete as que falharam por demora/conexão; as demais (sem incidente, sem decisão) não mudam
+            pend = [x for x in pend if f"{x[0]} {x[1]}|{x[2]}" not in ant or "passou de" in ant[f"{x[0]} {x[1]}|{x[2]}"]]
+        print(f"  pulando {n0 - len(pend)} (Reclamações e as que já falharam); vão {len(pend)}")
     if a.plano:
         return
     if a.so_aplicar:
