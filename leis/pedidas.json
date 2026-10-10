@@ -1,4 +1,12 @@
 {
- "leis": [],
- "pedidos": {}
+ "leis": [
+  {
+   "nome": "LEI Nº 9.140, DE 04 DE DEZEMBRO DE 1995. Texto compilado Reconhece como mortas pessoas desaparecidas em razão de participação, ou acusação de participação, em a",
+   "numero": "Lei nº 9.140/1995",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/l9140.htm"
+  }
+ ],
+ "pedidos": {
+  "lei-n-9-140": "ok"
+ }
 }
