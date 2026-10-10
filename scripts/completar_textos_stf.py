@@ -152,6 +152,11 @@ def rtf_para_texto(corpo):
     return sem_lixo_rtf(re.sub(r"[ \t]+", " ", t).strip())
 
 
+class SemTextoMaior(Exception):
+    """A decisão é antiga: o portal só tem o texto da própria aba (sem arquivo RTF) e ele não é maior que o
+    que já temos. Não há o que completar; a decisão não volta a ser tentada."""
+
+
 def texto_completo(truncado, classe, num, inc, refazer=False):
     pg = robo.pagina(ABA.format(inc=inc, num=num, cls=classe))
     prefixo = norm(truncado)[:160]
@@ -165,6 +170,9 @@ def texto_completo(truncado, classe, num, inc, refazer=False):
             continue
         m = re.search(r'downloadTexto\.asp\?id=(\d+)(?:&amp;|&)ext=RTF', item)
         if not m:
+            corpo = norm(re.sub(r"<[^>]+>", " ", html.unescape(item)))
+            if not refazer and len(corpo) <= len(norm(truncado)) + 150:
+                raise SemTextoMaior("o portal só tem este texto (decisão antiga, sem arquivo da decisão)")
             continue
         status, tipo, corpo = robo.buscar(f"https://portal.stf.jus.br/processos/downloadTexto.asp?id={m[1]}&ext=RTF")
         if status != 200 or b"{\\rtf" not in corpo[:50]:
@@ -256,6 +264,14 @@ def main():
             base = limpa_antigo(d[campo])[:90] if a.refazer else d[campo]
             novo = texto_completo(base, classe, num, incidentes[(classe, num)], refazer=a.refazer)
             time.sleep(a.espera)
+        except SemTextoMaior as e:
+            if hasattr(signal, "SIGALRM"): signal.alarm(0)
+            print(f"  {d['processo']} ({d.get('data') or d.get('dataJulgamento')}): {e}")
+            if not a.teste:
+                cache[d["id"]] = {"campo": campo, "texto": d[campo], "sem_mais": True}
+                CACHE.parent.mkdir(exist_ok=True)
+                CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=0), encoding="utf-8")
+            continue
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
             if "passou de" in str(e):
