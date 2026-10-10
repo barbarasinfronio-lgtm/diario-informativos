@@ -161,7 +161,7 @@ def concurso_do_nome(nome):
 
 # provas/triagem-manual.json:  {"anos": {"TRF4 14": 2010},  "arquivos": {"nome.pdf": {"sigla","n","ano","etapa","banca"}}}
 # Para o que o texto do PDF não diz (ex.: TRF4 não traz o ano; cópias sem órgão). Pode ser editado à mão.
-MANUAL = {"anos": {}, "arquivos": {}}
+MANUAL = {"anos": {}, "arquivos": {}, "antigas": []}
 _MAN = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "provas", "triagem-manual.json")
 if os.path.exists(_MAN):
     MANUAL.update(json.load(open(_MAN, encoding="utf-8")))
@@ -227,7 +227,15 @@ def main():
     TIPO = {"objetiva": "01 Objetivas", "discursiva": "02 Discursivas", "sentenca": "03 Sentenças", "oral": "04 Oral"}
     feitos = collections.Counter()
     sem_ano = collections.defaultdict(list)
+    antigas = set(MANUAL.get("antigas", []))
     for i in infos:
+        if i["arq"] in antigas or (i["n"] and f"{i['sigla']} {i['n']}" in antigas):     # fora dos últimos 10 anos: só guarda
+            dest = os.path.join(RAIZ, "_triagem", "antigas", f"{i['sigla']} {i['n']}".strip())
+            print(f"  {i['arq']}  →  _triagem/antigas/{os.path.basename(dest)}  (concurso antigo, fora dos 10 anos)")
+            if not SIMULAR:
+                os.makedirs(dest, exist_ok=True)
+                shutil.move(i["p"], os.path.join(dest, i["arq"]))
+            continue
         if not i["ano"]:
             nao.append((i["arq"], f"ano não identificado ({i['sigla']}" + (f", concurso {i['n']}" if i["n"] else "") + ")"))
             sem_ano[f"{i['sigla']} {i['n']}" if i["n"] else i["sigla"]].append(i["arq"])

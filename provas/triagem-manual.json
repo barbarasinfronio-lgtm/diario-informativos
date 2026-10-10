@@ -1,5 +1,38 @@
 {
- "_nota": "Anos de concursos que o texto do PDF não informa (chave: SIGLA + nº do concurso). 13 e 14 do TRF4: conferir (2008 e 2010 pela página do TRF4 e notícias da época). 'arquivos' = ajuste por arquivo: {\"nome.pdf\": {\"sigla\":\"DPE-MG\",\"n\":9,\"ano\":2014,\"etapa\":\"objetiva\",\"banca\":\"FUMARC\"}}",
- "anos": {"TRF4 13": 2008, "TRF4 14": 2010},
- "arquivos": {}
+ "_nota": "anos: SIGLA + nº do concurso → ano (conferidos por pesquisa: DPE-MG 9 = 2023, DPE-MT 5 = edital 2016 (UFMT), TRF2 19 = 2026, TRF4 17 = 2016; ESTIMADOS, conferir: DPE-PR 2017 (FCC), DPE-PE 2018 (FGV)). antigas: concursos de antes de 2016, só guardados em _triagem/antigas. arquivos: ajuste por nome de arquivo.",
+ "anos": {
+  "TRF4 17": 2016,
+  "TRF2 19": 2026,
+  "DPE-MG 9": 2023,
+  "DPE-MT 5": 2016,
+  "DPE-PR": 2017,
+  "DPE-PE": 2018
+ },
+ "arquivos": {
+  "prova_a01_tipo_001 (1).pdf": {
+   "sigla": "DPE-PR",
+   "ano": 2017,
+   "etapa": "objetiva",
+   "banca": "FCC"
+  },
+  "gabarito (6).pdf": {
+   "sigla": "DPE-MT",
+   "n": 5,
+   "ano": 2016,
+   "etapa": "gabarito",
+   "banca": "UFMT"
+  }
+ },
+ "antigas": [
+  "TRF4 8",
+  "TRF4 9",
+  "TRF4 10",
+  "TRF4 11",
+  "TRF4 12",
+  "TRF4 13",
+  "TRF4 14",
+  "TRF4 15",
+  "juiz_fed_trf2_4.pdf",
+  "segunda_prova_escrita_discursiva.pdf"
+ ]
 }
