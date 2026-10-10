@@ -27,12 +27,15 @@
   // só os com conteúdo de estudo, desde 1988. Mesmo molde do STJ: lista leve em
   // stf/acordaos/indice.json e a ementa em stf/acordaos/c/NNN.json ao abrir o card.
   var ACORDAOS_STF_BASE = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/stf/acordaos/';
+  // Acórdãos do TST dos órgãos que firmam entendimento (Pleno, SDC e SDIs; scripts/acordaos_tst.py).
+  var ACORDAOS_TST_BASE = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/tst/acordaos/';
   var GRUPOS = {
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
     COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
     INFORMATIVOS: { rotulo: 'Informativos', titulo: 'Julgados dos informativos do STJ e do STF — tese e resumo' },
     ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' },
+    ACORDAOS_TST: { rotulo: 'Acórdãos TST', titulo: 'Acórdãos do TST (Pleno, SDC, SDI-1 e SDI-2) com conteúdo de estudo — ementa e dispositivo' },
     ACORDAOS_STF: { rotulo: 'Acórdãos STF', titulo: 'Acórdãos do STF (Plenário e Turmas) com conteúdo de estudo — ementa, tese e resultado' }
   };
   // Sem busca, a lista mostra só as mais recentes (10 de cada vez), para a
@@ -411,6 +414,22 @@
         d.tese = x.ementa;
         d.destaque = x.dec || d.destaque;
         d.historico = [x.pub ? 'Publicação: ' + x.pub : '', x.inf ? 'Informações complementares: ' + x.inf : '', x.notas ? 'Notas: ' + x.notas : ''].filter(Boolean).join('\n');
+      }
+    },
+    ACORDAOS_TST: {
+      base: ACORDAOS_TST_BASE, nome: 'os acórdãos do TST', carregando: 'Carregando a ementa…',
+      item: function(x){
+        return { id: 'tst-acordao-' + x[0], grupo: 'ACORDAOS_TST', orgao: 'TST', tipo: 'acordao', tipoNome: 'Acórdão · ' + x[2],
+          area: x[5], titulo: x[6], tese: x[6], destaque: x[7] ? x[7].charAt(0).toUpperCase() + x[7].slice(1) : '',
+          processo: x[1], relator: x[3], data: dataBr(x[4]), risco: 'Média',
+          motivo: 'acórdão julgado em ' + x[4].slice(0, 4) + ' — mostra como o TST vem decidindo no caso concreto',
+          _chave: x[0], _parte: x[8] };
+      },
+      completar: function(d, x){
+        d.tese = x.ementa;
+        d.destaque = x.dispo ? x.dispo.charAt(0).toUpperCase() + x.dispo.slice(1) : d.destaque;
+        d.historico = x.pub ? 'Publicação: ' + dataBr(x.pub) : '';
+        if (x.url) d.link = x.url;
       }
     },
     ACORDAOS_STF: {
@@ -1107,7 +1126,7 @@
       }
       porGrupo[g] = n;
     });
-    var acordaos = porGrupo.ACORDAOS, acordaosStf = porGrupo.ACORDAOS_STF, informativos = porGrupo.INFORMATIVOS;
+    var acordaos = porGrupo.ACORDAOS, acordaosStf = porGrupo.ACORDAOS_STF, acordaosTst = porGrupo.ACORDAOS_TST, informativos = porGrupo.INFORMATIVOS;
     var lidasCount = totalLidos();
     var el = document.getElementById('stats');
     el.innerHTML =
@@ -1121,6 +1140,7 @@
       (informativos ? '<div class="stat"><b>' + informativos + '</b><span>Julgados de informativos</span></div>' : '') +
       (acordaos ? '<div class="stat"><b>' + acordaos + '</b><span>STJ · Acórdãos de turmas</span></div>' : '') +
       (acordaosStf ? '<div class="stat"><b>' + acordaosStf + '</b><span>STF · Acórdãos</span></div>' : '') +
+      (acordaosTst ? '<div class="stat"><b>' + acordaosTst + '</b><span>TST · Acórdãos</span></div>' : '') +
       '<div class="stat" style="color:var(--high-fg)"><b>' + alta + '</b><span>Risco alto</span></div>' +
       (canc ? '<div class="stat" style="color:var(--high-fg)"><b>' + canc + '</b><span>Canceladas/superadas</span></div>' : '') +
       (afetados ? '<div class="stat"><b>' + afetados + '</b><span>Em julgamento (fora do total)</span></div>' : '');

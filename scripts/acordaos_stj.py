@@ -54,10 +54,11 @@ def coletar():
         for r in json.load(open(meta))["result"]["resources"]:
             if r["format"] not in ("JSON", "ZIP"):
                 continue
-            arq = pasta / r["name"]
+            nome = (r.get("name") or "").strip() or r["url"].rsplit("/", 1)[-1]   # o portal às vezes publica recurso sem nome
+            arq = pasta / nome
             if arq.exists() and arq.stat().st_size == int(r.get("size") or arq.stat().st_size):
                 continue
-            print(f"{n}/{r['name']} ({int(r.get('size') or 0) // 10**6} MB)", flush=True)
+            print(f"{n}/{nome} ({int(r.get('size') or 0) // 10**6} MB)", flush=True)
             if not curl(r["url"], arq):
                 falhas += 1
                 continue
