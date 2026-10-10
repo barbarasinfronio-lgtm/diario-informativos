@@ -106,7 +106,7 @@ fallback: [
 // salva no navegador. Use fontSize: null para esconder os botões.
 // Aparecem em toda página de estudo (as mesmas onde o menu aparece) e
 // em qualquer página com um elemento data-em-font.
-fontSize: { min: 0.7, max: 1.6, step: 0.1, padrao: 0.8 },   // padrao 0.8 = letra do texto em 12 px (15 px × 0.8)
+fontSize: { min: 0.7, max: 1.6, step: 0.1, padrao: 0.93 },   // padrao 0.93 = letra do texto em 14 px (15 px × 0.93)
 
 // "Doe um cafezinho": um cartão no fim de toda página de estudo leva para
 // a página de apoio do blog ("pagina"). Essa página, no Blogger, tem só
