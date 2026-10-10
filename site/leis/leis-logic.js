@@ -359,10 +359,22 @@
   }
 
   // "Art. 5º", "§ 1º", "I -", títulos em maiúsculas… só para dar um respiro visual.
+  // Título de divisão da lei ("Seção II", "CAPÍTULO I – DAS DISPOSIÇÕES", "Seção II Das Sanções Administrativas"):
+  // número numa linha e o nome embaixo, os dois centralizados.
+  var RX_DIVISAO = /^(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\s+((?:[IVXLCDM]+|[ÚU]NIC[OA]|\d+)(?:-[A-Z])?)\s*(?:[-–—:]\s*)?(.*)$/i;
+  function divisaoDaLei(t) {
+    var m = RX_DIVISAO.exec(t);
+    if (!m || t.length >= 160) return null;
+    var nome = m[3].trim();
+    if (nome && (!/^[A-ZÀ-Ý]/.test(nome) || /\.$/.test(nome))) return null;
+    return { numero: m[1] + " " + m[2], nome: nome };
+  }
   function paragrafoHtml(t) {
     var e = escapeHtml(t);
-    if (/^(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])/i.test(t) && t.length < 140 && t === t.toUpperCase()) {
-      return '<p style="margin:16px 0 6px;font-weight:700;text-align:center;color:#1e293b;">' + e + "</p>";
+    var div = divisaoDaLei(t);
+    if (div) {
+      return '<p style="margin:16px 0 6px;font-weight:700;text-align:center;color:#1e293b;">' + escapeHtml(div.numero) +
+        (div.nome ? "<br>" + escapeHtml(div.nome) : "") + "</p>";
     }
     var art = t.match(/^Art\.?\s*\d+[º°ª]?(?:-[A-Z]+)?\.?/);
     if (art) {
@@ -399,6 +411,25 @@
     return ps.filter(function (_, k) { return !fora[k]; });
   }
 
+  // Duas regras de português na exibição: (1) depois de ":" o que vem em seguida (a pena, o desdobramento) vai
+  // para outro parágrafo; (2) título de Seção/Capítulo/Título que ficou grudado no fim do artigo anterior
+  // ("... dias-multa. Seção II Das Sanções Administrativas") vira parágrafo próprio, centralizado.
+  function separarPartes(ps) {
+    var out = [];
+    ps.forEach(function (t) {
+      t = t.replace(/([.;:)!?”"])\s+((?:PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\s+(?:[IVXLCDM]+|[ÚU]NIC[OA])\b)/gi, "$1\n$2");
+      t.split("\n").forEach(function (parte) {
+        if (divisaoDaLei(parte)) { out.push(parte); return; }
+        // ":" seguido de maiúscula, "Pena" ou marcador (§, inciso, alínea); não separa horas ("10:30") nem dentro de parênteses
+        var pedacos = parte.replace(/([^\d\s(][^()]*?):\s+(?=(?:Pena\b|[A-ZÀ-Ý§]|[IVXLCDM]+\s*[-–—]|[a-z]\)))/g, function (m, antes) {
+          return antes + ":\n";
+        }).split("\n");
+        pedacos.forEach(function (x) { x = x.trim(); if (x) out.push(x); });
+      });
+    });
+    return out;
+  }
+
   // Texto do Planalto vem quebrado em linhas do tamanho da tela de origem: junta as linhas de um mesmo parágrafo
   // (artigo, §, inciso, alínea e título em maiúsculas começam parágrafo novo) e tira o cabeçalho/índice do começo.
   function paragrafosDaLei(src) {
@@ -423,7 +454,7 @@
       if (!out.length || NOVO.test(t)) out.push(t);
       else out[out.length - 1] += " " + t;
     });
-    return tirarRedacoesAntigas(out);
+    return tirarRedacoesAntigas(separarPartes(out));
   }
 
   // "Leia também": decisões, súmulas e resoluções que citam a lei ou tratam do mesmo assunto
