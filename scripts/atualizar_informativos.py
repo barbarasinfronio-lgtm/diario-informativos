@@ -1281,8 +1281,10 @@ RX_TODA_REVOGADA = re.compile(r"(?i)revogad[ao]s?\s+(?:integralmente\s+)?(?:pel[
 def pagina_de_lei_revogada(pg, paragrafos):
     """A página diz, no começo, que a lei foi revogada e quase não traz texto da lei (nada de artigos em
     quantidade): é lei inteiramente revogada, não texto incompleto."""
-    topo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", (pg or "")))[:3000]
-    return bool(RX_TODA_REVOGADA.search(topo)) and len(paragrafos) < 12
+    todo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", (pg or "")))
+    # lei viva traz muitos artigos (e "(Revogado pelo art. X)" em dispositivos soltos): só vale página sem artigos
+    return (bool(RX_TODA_REVOGADA.search(todo[:1500])) and len(paragrafos) < 12
+            and len(re.findall(r"\bArt(?:igo|\.)\s*\d", todo)) <= 3)
 
 
 def id_texto(url):

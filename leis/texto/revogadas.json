@@ -1,23 +1,9 @@
 {
- "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100700/lei-20489": {
-  "auto": true,
-  "em": "2026-10-10",
-  "motivo": "a página informa que a lei foi revogada",
-  "nome": "Institui o Programa de Integridade (Compliance) exigível de empresas que contratam com a Administração Pública do Estado de Goiás",
-  "numero": "Lei Estadual (GO) nº 20.489/2019"
- },
  "https://leis.alesc.sc.gov.br/ato-normativo/20508": {
   "auto": false,
   "em": "2026-10-10",
   "motivo": "indicada como inteiramente revogada pela Barbara em 10/10/2026",
   "nome": "Fundo Estadual de Assistência Social de Santa Catarina",
   "numero": "Lei Estadual (SC) nº 17.819/2019"
- },
- "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=9403": {
-  "auto": true,
-  "em": "2026-10-10",
-  "motivo": "a página informa que a lei foi revogada",
-  "nome": "IPVA — Paraná",
-  "numero": "Lei Estadual (PR) nº 14.260/2003"
  }
 }
