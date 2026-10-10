@@ -27,6 +27,11 @@
    1) TEMA CLARO + valores que não mudam entre claro/escuro
    --------------------------------------------------------------------- */
 :root {
+  /* Card/modal de leitura: 90% da tela em todo o site (largura e altura) */
+  --em-card-w: 90vw;
+  --em-card-h: 90vh;
+  --em-card-texto-max: 62rem;   /* coluna de leitura (linhas longas cansam) */
+
   /* Tipografia — famílias */
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;

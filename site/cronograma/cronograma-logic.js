@@ -129,7 +129,8 @@
           k: "lei:" + it.l.chave + ":" + it.parte, tipo: "lei", titulo: it.l.nome, mat: m, min: tomar,
           st: "lei", sk: it.l.chave, rid: "lei:" + it.l.chave.split(":").slice(1).join(":"), ultima: it.restante <= 0.01,
           trecho: inteira ? "" : "trecho " + Math.round(de / it.total * 100) + "% a " + Math.round(ate / it.total * 100) + "%",
-          href: PAGINA_LEIS + "#lei=" + encodeURIComponent(it.l.chave), cobr: it.l.cit
+          href: PAGINA_LEIS + "#lei=" + encodeURIComponent(it.l.chave), cobr: it.l.cit,
+          tid: it.l.tid, de: de / it.total, ate: ate / it.total
         });
         usado += tomar;
         leiMinPlanejado += tomar;
@@ -174,7 +175,7 @@
           var m = minRevisao(it);
           if (usado + m > orcamento) return;
           usado += m;
-          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data) });
+          out.push({ k: "rev:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: atras, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
         });
       });
       return { itens: out, usado: usado };
@@ -195,7 +196,7 @@
           var m = minRevisao(it);
           if (usado + m > minRev) return;
           usado += m;
-          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data) });
+          itensRev.push({ k: "revsem:" + iso(data) + ":" + it.k, tipo: it.tipo, titulo: it.titulo, sub: it.trecho || it.sub || "", min: m, href: it.href, revisao: 0, rid: it.rid, dataPlano: iso(data), tid: it.tid, de: it.de, ate: it.ate, sk: it.sk });
         });
         dia.blocos.push({ id: "revisao", titulo: "Revisão da semana", min: minRev, itens: itensRev, nota: itensRev.length ? "" : "Revise o que estudou nesta semana." });
         dia.blocos.push({ id: "questoes", titulo: "Questões e provas anteriores", min: minQ, itens: [], nota: "Resolva questões das matérias da semana. As páginas de Súmulas e Decisões mostram em quais provas cada item já foi cobrado." });
@@ -240,7 +241,7 @@
       var d = dados.leis[chave];
       if (!d || vistos[chave]) return;
       vistos[chave] = true;
-      leis.push({ chave: chave, mat: p[0], nome: d[2] || p[1], min: d[0], cit: d[1] });
+      leis.push({ chave: chave, mat: p[0], nome: d[2] || p[1], min: d[0], cit: d[1], tid: d[3] || "" });
     });
     var mats = {};
     (edital.leis || []).forEach(function (p) { mats[p[0]] = true; });
@@ -524,8 +525,8 @@
       var feito = estaFeito(it);
       var etiqueta = it.revisao ? '<span class="cr-tag">revisar · ' + it.revisao + " d</span>" : (it.revisao === 0 ? '<span class="cr-tag">revisar</span>' : "");
       return '<li class="cr-item' + (feito ? " feito" : "") + '"><label><input type="checkbox" data-feito="' + esc(it.k) + '"' + (feito ? " checked" : "") + ">" +
-        '<span class="cr-item-corpo"><a href="' + esc(it.href) + '" target="_blank" rel="noopener">' + esc(it.titulo) + "</a> " + etiqueta +
-        (it.trecho ? '<span class="cr-sub"> — ' + esc(it.trecho) + "</span>" : "") +
+        '<span class="cr-item-corpo"><button type="button" class="cr-abrir" data-abrir="' + esc(it.k) + '" title="Ler aqui, sem sair da página">' + esc(it.titulo) + "</button> " + etiqueta +
+        (it.trecho ? '<span class="cr-sub">' + (it.tid ? '<span class="cr-trecho" data-trecho="' + esc(it.k) + '">' : "<span>") + esc(it.trecho) + "</span></span>" : "") +
         (it.sub ? '<span class="cr-sub">' + esc(it.sub.slice(0, 90)) + (it.sub.length >= 90 ? "…" : "") + "</span>" : "") +
         '</span><span class="cr-min">' + fmtMin(it.min) + "</span></label></li>";
     }
@@ -549,6 +550,101 @@
       var foco = dia.revisaoSemanal ? "revisão da semana" : (dia.focoMat && dia.focoMat.length ? uniq(dia.focoMat).map(nomeMat).join(" e ") : "");
       return '<details class="cr-dia"' + (aberto ? " open" : "") + "><summary><b>" + esc(fmtDia(d)) + "</b>" + (foco ? ' <span class="cr-foco">· ' + esc(foco) + "</span>" : "") +
         '<span class="cr-prog">' + (pr.n ? pr.f + "/" + pr.n : "") + "</span></summary>" + dia.blocos.map(blocoHtml).join("") + "</details>";
+    }
+
+
+    // ---- card de leitura: o que está programado para o dia, sem sair da página ----
+    function rotuloArtigos(f) {
+      if (!f.primeiro) return "";
+      return f.inteira ? "Lei inteira" : (f.primeiro === f.ultimo ? "Art. " + f.primeiro : "Arts. " + f.primeiro + " ao " + f.ultimo);
+    }
+    function carregarLeiTexto() {
+      return window.EstudaManaLeiTexto ? Promise.resolve() : carregarScript(BASE + "lei-texto.js");
+    }
+    // troca "trecho 0% a 9%" pelos artigos do dia ("Arts. 1º ao 19") nos itens visíveis
+    function rotularTrechos() {
+      var els = raiz.querySelectorAll("[data-trecho]");
+      if (!els.length) return;
+      carregarLeiTexto().then(function () {
+        [].forEach.call(els, function (el) {
+          var it = registro[el.getAttribute("data-trecho")];
+          if (!it || !it.tid || el.offsetParent === null || el.getAttribute("data-ok")) return;
+          window.EstudaManaLeiTexto.carregar(it.tid).then(function (t) {
+            var r = rotuloArtigos(window.EstudaManaLeiTexto.fatiar(t.ps, it.de, it.ate));
+            if (r) { el.textContent = r; el.setAttribute("data-ok", "1"); }
+          }).catch(function () {});
+        });
+      }).catch(function () {});
+    }
+    function carregarSumula(org, num) {
+      var pronto = window.SUMULAS_DATA ? Promise.resolve() : carregarScript(BASE + "sumulas-data.js");
+      return pronto.then(function () {
+        var b = window.SUMULAS_DATA && window.SUMULAS_DATA[org];
+        var lista = (b && b.sumulas) || [];
+        for (var i = 0; i < lista.length; i++) if (String(lista[i].numero) === String(num)) return lista[i];
+        return null;
+      });
+    }
+    var fecharCard = null;
+    function abrirCard(it) {
+      if (fecharCard) fecharCard();
+      var fundo = document.createElement("div");
+      fundo.className = "cr-modal";
+      var caixa = document.createElement("div");
+      caixa.className = "cr-card";
+      caixa.setAttribute("role", "dialog");
+      caixa.setAttribute("aria-modal", "true");
+      caixa.innerHTML =
+        '<button type="button" class="cr-card-x" aria-label="Fechar">×</button>' +
+        '<h2 class="cr-card-titulo">' + esc(it.titulo) + "</h2>" +
+        '<p class="cr-card-sub"></p>' +
+        '<div class="cr-card-acoes"><button type="button" class="cr-card-lido"></button>' +
+        '<a class="cr-card-link" href="' + esc(it.href) + '" target="_blank" rel="noopener noreferrer">Abrir no Diário ↗</a>' +
+        '<span class="cr-card-dica">' + esc(fmtMin(it.min)) + " de leitura" + (it.revisao != null ? " · revisão" : "") + "</span></div>" +
+        '<div class="cr-card-texto"><p class="cr-carregando">Carregando o texto…</p></div>';
+      fundo.appendChild(caixa);
+      var sub = caixa.querySelector(".cr-card-sub"), corpo = caixa.querySelector(".cr-card-texto"), btn = caixa.querySelector(".cr-card-lido");
+      var pintar = function () { btn.textContent = estaFeito(it) ? "✔ Lido — desmarcar" : "Marcar como lido"; btn.classList.toggle("feito", estaFeito(it)); };
+      pintar();
+      var fechar = function () {
+        document.removeEventListener("keydown", tecla);
+        if (fundo.parentNode) fundo.parentNode.removeChild(fundo);
+        document.body.style.overflow = "";
+        fecharCard = null;
+      };
+      var tecla = function (e) { if (e.key === "Escape") fechar(); };
+      fecharCard = fechar;
+      fundo.addEventListener("click", function (e) { if (e.target === fundo || e.target.closest(".cr-card-x")) fechar(); });
+      btn.addEventListener("click", function () { marcarItem(it, !estaFeito(it)); pintar(); desenhar(); });
+      document.addEventListener("keydown", tecla);
+      document.body.appendChild(fundo);
+      document.body.style.overflow = "hidden";
+      var falha = function (msg) { corpo.innerHTML = '<p class="cr-carregando">' + esc(msg) + "</p>"; };
+
+      if (it.tipo === "lei" || (it.tid && it.de != null)) {
+        sub.textContent = it.trecho || "";
+        if (!it.tid) { falha("O texto desta lei ainda não está no site: use “Abrir no Diário”."); return; }
+        carregarLeiTexto().then(function () { return window.EstudaManaLeiTexto.carregar(it.tid); }).then(function (t) {
+          if (fecharCard !== fechar) return;
+          var f = window.EstudaManaLeiTexto.fatiar(t.ps, it.de, it.ate);
+          var r = rotuloArtigos(f);
+          sub.textContent = (r || it.trecho || "") + (f.inteira ? "" : " · só o trecho programado");
+          corpo.innerHTML = f.ps.map(window.EstudaManaLeiTexto.html).join("") +
+            '<p class="cr-card-fonte">Texto copiado do Planalto em ' + esc(t.em) + ". Pode estar desatualizado: confira na fonte oficial (“Abrir no Diário”).</p>";
+        }).catch(function () { falha("Não consegui carregar o texto agora. Use “Abrir no Diário”."); });
+      } else if (it.tipo === "sumula") {
+        var pt = String(it.sk).split(":");
+        sub.textContent = it.sub ? "" : "Súmula";
+        carregarSumula(pt[0], pt.slice(1).join(":")).then(function (m) {
+          if (fecharCard !== fechar) return;
+          if (!m) { corpo.innerHTML = "<p>" + esc(it.sub || "") + "</p>"; return; }
+          sub.textContent = m.materia || "";
+          corpo.innerHTML = "<p>" + esc(m.texto) + "</p>" + (m.link ? '<p class="cr-card-fonte"><a href="' + esc(m.link) + '" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a></p>' : "");
+        }).catch(function () { falha("Não consegui carregar a súmula agora. Use “Abrir no Diário”."); });
+      } else {
+        sub.textContent = it.sub || "";
+        corpo.innerHTML = '<p>Use “Abrir no Diário” para ler a íntegra desta decisão. Depois volte aqui e marque como lida.</p>';
+      }
     }
 
     function abaHoje() {
@@ -626,9 +722,12 @@
         if (Object.prototype.hasOwnProperty.call(abertas, chave)) d.open = abertas[chave];
       });
       if (rolagem && Math.abs(window.pageYOffset - rolagem) > 40) window.scrollTo(0, rolagem);
+      rotularTrechos();
     }
 
     raiz.addEventListener("click", function (e) {
+      var ab = e.target.closest("[data-abrir]");
+      if (ab) { e.preventDefault(); var itA = registro[ab.getAttribute("data-abrir")]; if (itA) abrirCard(itA); return; }
       var b = e.target.closest("[data-cfg]");
       if (b) {
         var nome = b.getAttribute("data-cfg"), v = b.getAttribute("data-valor");
@@ -644,6 +743,7 @@
       var a = e.target.closest("[data-aba]");
       if (a) { cfg.aba = a.getAttribute("data-aba"); salvarCfg(); desenhar(); }
     });
+    raiz.addEventListener("toggle", rotularTrechos, true);
     raiz.addEventListener("change", function (e) {
       var t = e.target;
       if (t.matches("[data-edital]")) { S.setPrincipal(t.value); return; }

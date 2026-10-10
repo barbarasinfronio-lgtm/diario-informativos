@@ -166,16 +166,15 @@
   /* modal */
   .overlay{
     position:fixed; inset:0; background:rgba(20,22,30,.55); display:none; align-items:flex-start; justify-content:center;
-    padding:5vh 5vw; z-index:20; overflow-y:auto;
+    padding:0; z-index:20; overflow-y:auto;
   }
   .overlay.open{display:flex;}
   .modal{
-    background:var(--surface); border-radius:16px; width:100%; max-width:none; min-height:90vh; margin:0 auto;
+    background:var(--surface); border-radius:16px; width:var(--em-card-w,90vw); max-width:none; min-height:var(--em-card-h,90vh); margin:5vh auto;
     box-shadow:0 20px 60px rgba(0,0,0,.35); padding:22px 22px 26px; position:relative;
   }
   @media (max-width:640px){   /* celular: quase a tela toda */
-    .overlay{padding:2vh 2vw;}
-    .modal{min-height:96vh; padding:18px 16px 22px;}
+    .modal{padding:18px 16px 22px;}
   }
   .modal .close{
     position:absolute; top:14px; right:14px; background:var(--surface-2); border:1px solid var(--line);

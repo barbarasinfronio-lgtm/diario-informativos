@@ -1,5 +1,5 @@
 // gerar_cronograma.js — dados leves para a página "Meu Cronograma" (leve/cronograma.json):
-//   leis:     { "<matéria>:<número em slug>": [minutos de leitura, vezes citada nas decisões, nome da lei] }
+//   leis:     { "<matéria>:<número em slug>": [minutos de leitura, vezes citada nas decisões, nome da lei, id do texto] }
 //   sumulas:  { "<tribunal>": [[número, vezes cobrada em prova, começo do texto], …] }  (sem as canceladas)
 //   decisoes: [[id, vezes cobrada em prova, título], …]                               (só as já cobradas)
 //   informativos: [[id, processo, vezes cobrado, "STF 972"], …]   (julgados de informativos já cobrados ou com cara de prova)
@@ -55,7 +55,7 @@ for (const [mat, bloco] of Object.entries(LEIS_DATA)) {
     }
     let n = 0;
     try { const a = NormasCitadas.encontrar(l.numero).filter((x) => x.classe === "lei")[0]; if (a) n = cit[a.id] || 0; } catch (e) { /* ignora */ }
-    leis[chave] = [min, n, String(l.nome || l.numero).replace(/\s+/g, " ").slice(0, 90)];
+    leis[chave] = [min, n, String(l.nome || l.numero).replace(/\s+/g, " ").slice(0, 90), tid && indice[tid] ? tid : ""];   // 4º: id do texto (leis/texto/<id>.json) para o card de leitura
   }
 }
 

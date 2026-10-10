@@ -441,6 +441,7 @@
     }
     // o Planalto marca o ordinal com "o" sobrescrito, que vira "1o"/"8o" no texto: devolve o "º" (e "No 10.741" → "Nº 10.741")
     ps = ps.map(function (t) {
+      t = t.replace(/^(Art\.?\s*\d{1,3}(?:-[A-Z]+)?|§\s*\d{1,3})\s+[o°]\s+(?=\S)/, "$1º ");
       return t.replace(/\b(\d{1,3})[o°](?![A-Za-zÀ-ú])/g, "$1º").replace(/\b([Nn])[o°](?=\s*\d)/g, "$1º");
     });
     var ini = -1;
@@ -493,11 +494,11 @@
     var linkInteira = cardEl.querySelector('a[href^="http"]');
     var lida = function () { var c = document.querySelector('.lei-check[data-chave="' + chave.replace(/"/g, '\\"') + '"]'); return !!(c && c.checked); };
     var fundo = document.createElement("div");
-    fundo.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:12px;";
+    fundo.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:0;";
     var caixa = document.createElement("div");
     caixa.setAttribute("role", "dialog");
     caixa.setAttribute("aria-modal", "true");
-    caixa.style.cssText = "position:relative;width:min(820px,100%);max-height:92vh;overflow-y:auto;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:12px;padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.35);";
+    caixa.style.cssText = "position:relative;width:var(--em-card-w,90vw);height:var(--em-card-h,90vh);max-width:none;overflow-y:auto;box-sizing:border-box;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:14px;padding:22px clamp(16px,3vw,40px);box-shadow:0 12px 40px rgba(0,0,0,.35);";
     caixa.innerHTML =
       '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:calc(26px * var(--fs-scale,1));line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
       '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + (comJulgados ? " — com julgados" : "") + "</h2>" +
@@ -506,7 +507,7 @@
       '<button type="button" class="lei-leitor-lida" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +
       (linkInteira ? '<a href="' + escapeHtml(linkInteira.getAttribute("href")) + '" target="_blank" rel="noopener noreferrer" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;color:var(--accent,#0d6efd);text-decoration:none;">📖 Abrir lei na íntegra ↗</a>' : "") +
       '<span style="font-size:calc(12px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Selecione um trecho para destacar ou anotar.</span></div>' +
-      '<div class="lei-leitor-texto" style="font-size:calc(15px * var(--fs-scale,1));line-height:1.65;text-align:justify;hyphens:auto;-webkit-hyphens:auto;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
+      '<div class="lei-leitor-texto" style="max-width:var(--em-card-texto-max,62rem);margin:0 auto;font-size:calc(15px * var(--fs-scale,1));line-height:1.65;text-align:left;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
     fundo.appendChild(caixa);
     var btnLida = caixa.querySelector(".lei-leitor-lida");
     var pintarLida = function () { btnLida.textContent = lida() ? "✔ Lida — desmarcar" : "Marcar como lida"; };
