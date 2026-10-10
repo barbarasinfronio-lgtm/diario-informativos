@@ -633,6 +633,7 @@
             '<p class="cr-card-fonte">Texto copiado do Planalto em ' + esc(t.em) + ". Pode estar desatualizado: confira na fonte oficial (“Abrir no Diário”).</p>";
         }).catch(function () { falha("Não consegui carregar o texto agora. Use “Abrir no Diário”."); });
       } else if (it.tipo === "sumula") {
+        caixa.classList.add("cr-card-curto");
         var pt = String(it.sk).split(":");
         sub.textContent = it.sub ? "" : "Súmula";
         carregarSumula(pt[0], pt.slice(1).join(":")).then(function (m) {
@@ -642,6 +643,7 @@
           corpo.innerHTML = "<p>" + esc(m.texto) + "</p>" + (m.link ? '<p class="cr-card-fonte"><a href="' + esc(m.link) + '" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a></p>' : "");
         }).catch(function () { falha("Não consegui carregar a súmula agora. Use “Abrir no Diário”."); });
       } else {
+        caixa.classList.add("cr-card-curto");
         sub.textContent = it.sub || "";
         corpo.innerHTML = '<p>Use “Abrir no Diário” para ler a íntegra desta decisão. Depois volte aqui e marque como lida.</p>';
       }

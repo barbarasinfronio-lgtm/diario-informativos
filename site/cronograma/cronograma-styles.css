@@ -86,3 +86,7 @@
 .cr-card-texto .cr-lei-div { margin: 1.4rem 0 0.4rem; text-align: center; font-weight: 700; color: var(--ink); }
 .cr-card-fonte { margin-top: 1.5rem; font-size: calc(0.8rem * var(--fs-scale, 1)); color: var(--ink-faint); }
 .cr-carregando { color: var(--ink-faint); }
+
+/* súmula e decisão: texto curto, então o card se ajusta ao conteúdo (no máximo 90% da tela) */
+.cr-card.cr-card-curto { height: auto; max-height: var(--em-card-h, 90vh); width: min(var(--em-card-w, 90vw), 46rem); padding-bottom: 1.4rem; }
+.cr-card-curto .cr-card-titulo, .cr-card-curto .cr-card-sub, .cr-card-curto .cr-card-acoes, .cr-card-curto .cr-card-texto { max-width: none; }
