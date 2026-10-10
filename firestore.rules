@@ -56,6 +56,22 @@ service cloud.firestore {
       allow write: if dono(uid) && contaDeVerdade();
     }
 
+    // Pedidos de "Buscar inteiro teor" (Diário das Decisões): quem entrou (conta de verdade) cria um
+    // pedido por julgado; o robô do Mac (scripts/teor_sob_pedido.py) lê a lista sem entrar. Ninguém
+    // altera nem apaga pedidos. Sem dados pessoais no documento.
+    match /pedidos-teor/{id} {
+      allow get, list: if true;
+      allow create: if contaDeVerdade()
+                    && request.resource.data.keys().hasOnly(['id', 'processo', 'data', 'titulo', 'em'])
+                    && request.resource.data.id == id
+                    && id.size() <= 40
+                    && request.resource.data.processo is string && request.resource.data.processo.size() <= 200
+                    && request.resource.data.data is string && request.resource.data.data.size() <= 20
+                    && request.resource.data.titulo is string && request.resource.data.titulo.size() <= 300
+                    && request.resource.data.em is string && request.resource.data.em.size() <= 40;
+      allow update, delete: if false;
+    }
+
     // Meus Cadernos (destaques e anotações): cada pessoa só lê e grava o
     // próprio caderno — ninguém mais vê, nem os grupos de estudo.
     match /cadernos/{uid} {

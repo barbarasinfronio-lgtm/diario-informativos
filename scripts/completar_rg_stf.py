@@ -198,6 +198,8 @@ def acordao_inteiro_teor(classe, num, inc, tema, primeiro, data_tema=""):
         "pecas": f"https://portal.stf.jus.br/processos/abaPecas.asp?{q}",
         "andamentos": f"https://portal.stf.jus.br/processos/abaAndamentos.asp?{q}",
     }
+    if not tema:      # decisão que não é tema de repercussão geral (ex.: pedido de inteiro teor de um julgado)
+        del paginas["tema"]
     achados, rotulos, preferido = [], {}, None
     for nome, url in paginas.items():
         if preferido and not primeiro:
