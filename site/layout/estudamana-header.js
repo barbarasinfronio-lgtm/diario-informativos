@@ -106,7 +106,7 @@ fallback: [
 // salva no navegador. Use fontSize: null para esconder os botões.
 // Aparecem em toda página de estudo (as mesmas onde o menu aparece) e
 // em qualquer página com um elemento data-em-font.
-fontSize: { min: 0.85, max: 1.5, step: 0.1 },
+fontSize: { min: 0.7, max: 1.6, step: 0.1, padrao: 0.8 },   // padrao 0.8 = letra do texto em 12 px (15 px × 0.8)
 
 // "Doe um cafezinho": um cartão no fim de toda página de estudo leva para
 // a página de apoio do blog ("pagina"). Essa página, no Blogger, tem só
@@ -135,17 +135,18 @@ v = Math.round(v * 100) / 100;
 return Math.min(f.max, Math.max(f.min, v));
 }
 
+function defaultScale() { return CONFIG.fontSize && CONFIG.fontSize.padrao ? CONFIG.fontSize.padrao : 1; }
+
 function readScale() {
 try {
 var v = parseFloat(localStorage.getItem(FONT_KEY));
-return isFinite(v) ? clampScale(v) : 1;
-} catch (e) { return 1; }
+return isFinite(v) ? clampScale(v) : defaultScale();
+} catch (e) { return defaultScale(); }
 }
 
 function applyScale(v) {
 var root = document.documentElement;
-if (v === 1) root.style.removeProperty("--fs-scale");
-else root.style.setProperty("--fs-scale", String(v));
+root.style.setProperty("--fs-scale", String(v));
 }
 
 var fontScale = CONFIG.fontSize ? readScale() : 1;
@@ -155,7 +156,7 @@ function setScale(v) {
 fontScale = clampScale(v);
 applyScale(fontScale);
 try {
-if (fontScale === 1) localStorage.removeItem(FONT_KEY);
+if (fontScale === defaultScale()) localStorage.removeItem(FONT_KEY);
 else localStorage.setItem(FONT_KEY, String(fontScale));
 } catch (e) {}
 updateFontButtons();
@@ -205,8 +206,8 @@ if (!fontBox) return;
 fontBox.querySelector("[data-font=down]").disabled = fontScale <= f.min;
 fontBox.querySelector("[data-font=up]").disabled = fontScale >= f.max;
 var reset = fontBox.querySelector("[data-font=reset]");
-reset.disabled = fontScale === 1;
-reset.title = "Tamanho padr\u00e3o da letra (agora: " + Math.round(fontScale * 100) + "%)";
+reset.disabled = fontScale === defaultScale();
+reset.title = "Tamanho padr\u00e3o da letra (agora: " + Math.round(fontScale * 15) + " px)";
 }
 
 function buildFontControls() {
@@ -229,7 +230,7 @@ btn.title = b.label;
 btn.setAttribute("aria-label", b.label);
 btn.setAttribute("data-font", b.key);
 btn.addEventListener("click", function () {
-setScale(b.delta ? fontScale + b.delta : 1);
+setScale(b.delta ? fontScale + b.delta : defaultScale());
 });
 box.appendChild(btn);
 });
