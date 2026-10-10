@@ -16,7 +16,7 @@ sys.path.insert(0, str(RAIZ / "scripts"))
 import leis_citadas as lc  # noqa: E402
 robo = lc.robo
 
-FONTES = {"alesc": r"leis\.alesc\.sc\.gov\.br", "alrs": r"al\.rs\.gov\.br"}
+FONTES = {"alesc": r"leis\.alesc\.sc\.gov\.br"}   # uma entrada por Assembleia, com o leitor correspondente em LEITORES
 
 
 def entradas(padrao):
