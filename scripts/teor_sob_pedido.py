@@ -4,8 +4,10 @@ teor_sob_pedido.py — atende os pedidos de "Buscar inteiro teor" feitos no site
 
 Quem está lendo um julgado do STF sem o inteiro teor clica em "Buscar inteiro teor"; o site grava o pedido
 no Firestore (coleção pedidos-teor, um documento por card). Este robô lê os pedidos, busca o acórdão no
-portal do STF e grava teor/<id do card>.json {"processo","data","texto","completo","em"}; teor/indice.json
-lista os cards que já têm teor (o site abre o card e mostra o texto). Roda no Mac (o portal do STF
+portal do STF e grava teor/<classe>-<número>.json {"processo","data","texto","completo","em"}. O teor é do
+PROCESSO, não do card: se a mesma decisão aparece em dois cards (ex.: RE 1037396 como Tema e como julgado
+de informativo), o texto aparece nos dois. teor/indice.json {"p": {"RE 1037396": "teor/re-1037396.json"}}
+liga cada processo ao arquivo (inclui os acórdãos de stf/rg/); o site abre o card e mostra o texto. Roda no Mac (o portal do STF
 bloqueia os servidores do GitHub), pelo "Atender Pedidos de Inteiro Teor.command":
 
     python3 scripts/teor_sob_pedido.py --plano                       # só mostra os pedidos pendentes
@@ -51,20 +53,45 @@ def pedidos():
             return out
 
 
-def ler_indice():
-    return json.loads(INDICE.read_text(encoding="utf-8")) if INDICE.exists() else {"ids": []}
+def chave_de(processo):
+    """"RE 1037396" — o mesmo texto vale para todos os cards do mesmo processo."""
+    cl, num = di.principal(processo or "")
+    return f"{cl.upper()} {num}" if cl else ""
 
 
-def gravar(id_, processo, data, texto, completo):
+def arquivo_de(chave):
+    return "teor/" + re.sub(r"[^a-z0-9]+", "-", chave.lower()).strip("-") + ".json"
+
+
+def reconstruir_indice():
+    """teor/indice.json = processo → arquivo, juntando os pedidos atendidos (teor/) e os acórdãos dos
+    Temas de repercussão geral (stf/rg/). Se o processo está nos dois, vale o de teor/ (acórdão inteiro)."""
+    mapa = {}
+    for pasta, prefixo in ((RAIZ / "stf" / "rg", "stf/rg/"), (PASTA, "teor/")):
+        for f in sorted(pasta.glob("*.json")):
+            if f.name == "indice.json":
+                continue
+            try:
+                j = json.loads(f.read_text(encoding="utf-8"))
+            except ValueError:
+                continue
+            k = chave_de(j.get("processo", ""))
+            if k and j.get("texto"):
+                mapa[k] = prefixo + f.name
     PASTA.mkdir(exist_ok=True)
-    (PASTA / f"{id_}.json").write_text(json.dumps(
-        {"processo": processo, "data": data, "texto": texto, "completo": completo,
+    INDICE.write_text(json.dumps({"p": mapa}, ensure_ascii=False, separators=(",", ":"), sort_keys=True), encoding="utf-8")
+    return mapa
+
+
+def ler_indice():
+    return json.loads(INDICE.read_text(encoding="utf-8")) if INDICE.exists() else {"p": {}}
+
+
+def gravar(chave, data, texto, completo):
+    PASTA.mkdir(exist_ok=True)
+    (RAIZ / arquivo_de(chave)).write_text(json.dumps(
+        {"processo": chave, "data": data, "texto": texto, "completo": completo,
          "em": datetime.now(timezone.utc).strftime("%Y-%m-%d")}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    ind = ler_indice()
-    if id_ not in ind["ids"]:
-        ind["ids"].append(id_)
-        ind["ids"].sort()
-    INDICE.write_text(json.dumps(ind, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
 def buscar_teor(classe, num, inc, data):
@@ -89,6 +116,7 @@ def buscar_teor(classe, num, inc, data):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plano", action="store_true")
+    ap.add_argument("--so-indice", action="store_true", help="só refaz teor/indice.json (sem internet)")
     ap.add_argument("--teste")
     ap.add_argument("--data", default="")
     ap.add_argument("--max", type=int, default=30)
@@ -100,13 +128,22 @@ def main():
         texto, completo = buscar_teor(classe, num, inc, a.data)
         print(f"{len(texto)} caracteres; {'acórdão inteiro' if completo else 'só a decisão de julgamento'}\n" + "-" * 60 + "\n" + texto[:3000])
         return
-    feitos = set(ler_indice()["ids"])
+    if a.so_indice:
+        print(f"índice refeito: {len(reconstruir_indice())} processo(s) com inteiro teor.")
+        return
+    feitos = set(reconstruir_indice())
     todos = pedidos()
-    pend = [p for p in todos if p["id"] not in feitos]
-    print(f"{len(todos)} pedido(s) no site; {len(todos) - len(pend)} já atendidos; {len(pend)} pendente(s).")
+    pend, vistos = [], set()
+    for p in todos:          # um processo pedido por vários cards (ou já com teor) conta uma vez só
+        k = chave_de(p.get("processo", ""))
+        if k in feitos or (k and k in vistos):
+            continue
+        vistos.add(k)
+        pend.append(p)
+    print(f"{len(todos)} pedido(s) no site; {len(pend)} processo(s) pendente(s).")
     if a.plano:
         for p in pend:
-            print(f"  {p['id']}  {p.get('processo', '')[:70]}  ({p.get('data', '')})")
+            print(f"  {chave_de(p.get('processo', '')) or '?'}  ({p.get('data', '')})  {p.get('titulo', '')[:60]}")
         return
     falhas = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
     incid, ok = {}, 0
@@ -137,11 +174,12 @@ def main():
         except KeyboardInterrupt:
             print("\ninterrompido; o que já foi buscado está guardado.")
             break
-        gravar(p["id"], f"{cl} {num}", p.get("data", ""), texto, completo)
+        gravar(f"{cl} {num}", p.get("data", ""), texto, completo)
         falhas.pop(p["id"], None)
         ok += 1
         print(f"    {len(texto)} caracteres ({'acórdão inteiro' if completo else 'só a decisão de julgamento'})")
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
+    reconstruir_indice()
     print(f"{ok} pedido(s) atendido(s); {len(falhas)} sem sucesso no total.")
 
 

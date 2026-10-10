@@ -738,9 +738,17 @@
   var indiceTeor = null;
   function carregarIndiceTeor(){
     if (!indiceTeor) indiceTeor = fetch(BASE_CDN + 'teor/indice.json', { cache: 'no-cache' })
-      .then(function(r){ return r.ok ? r.json() : { ids: [] }; }).catch(function(){ return { ids: [] }; })
-      .then(function(j){ var m = {}; (j.ids || []).forEach(function(i){ m[i] = 1; }); return m; });
+      .then(function(r){ return r.ok ? r.json() : { p: {} }; }).catch(function(){ return { p: {} }; })
+      .then(function(j){ return j.p || {}; });
     return indiceTeor;
+  }
+  // "RE 1037396": o inteiro teor é do processo, então vale para todos os cards dele (ex.: o mesmo
+  // julgado como Tema de repercussão geral e como julgado de informativo)
+  function chaveProcesso(processo){
+    var t = String(processo || ''), m = t.match(/\(\s*(ADI|ADC|ADPF|ADO|Rcl)\s*-\s*(\d+)\s*\)/i);
+    if (m) return (m[1].toLowerCase() === 'rcl' ? 'RCL' : m[1].toUpperCase()) + ' ' + m[2];
+    m = t.match(/\b(ADI|ADC|ADPF|ADO|ADIn|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp)\b\.?\s*([\d.]+)/);
+    return m ? (m[1] === 'ADIn' ? 'ADI' : m[1].toUpperCase()) + ' ' + m[2].replace(/\./g, '') : '';
   }
   var RX_PROCESSO_STF = /\b(?:ADI|ADC|ADPF|ADO|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp|ADIn)\b\.?\s*\d/;
   function podePedirTeor(d){
@@ -791,8 +799,9 @@
   function prepararTeorPedido(d){
     carregarIndiceTeor().then(function(m){
       if (modalAtual !== d) return;
-      if (m[d.id]) {
-        fetch(BASE_CDN + 'teor/' + encodeURIComponent(d.id) + '.json', { cache: 'no-cache' })
+      var arq = m[chaveProcesso(d.processo)];
+      if (arq) {
+        fetch(BASE_CDN + arq, { cache: 'no-cache' })
           .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
           .then(function(e){ inserirTeor(d, e); });
       } else mostrarPedidoTeor(d);
