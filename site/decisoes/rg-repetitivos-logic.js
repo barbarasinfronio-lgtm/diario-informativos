@@ -695,10 +695,10 @@
       var e = j[String(d.tema)];
       if (!e || modalAtual !== d) return;
       var h = '';
-      if (e.ementa) h += '<div class="section-label">Ementa do acórdão' + (e.acordao ? ' — ' + escapeHtml(e.acordao) : '') + '</div><div class="destaque-text">' + escapeHtml(e.ementa) + '</div>';
-      if (e.infoTeor) h += '<div class="section-label">Informativo STJ nº ' + escapeHtml(e.info) + ' — inteiro teor</div><div class="destaque-text">' + escapeHtml(e.infoTeor) + '</div>';
+      if (e.ementa) h += '<div class="section-label">Ementa do acórdão' + (e.acordao ? ' — ' + escapeHtml(e.acordao) : '') + '</div><div class="destaque-text cad-tardio">' + escapeHtml(e.ementa) + '</div>';
+      if (e.infoTeor) h += '<div class="section-label">Informativo STJ nº ' + escapeHtml(e.info) + ' — inteiro teor</div><div class="destaque-text cad-tardio">' + escapeHtml(e.infoTeor) + '</div>';
       var campos = modal.querySelector('.fields');
-      if (campos && h) campos.insertAdjacentHTML('afterend', h);
+      if (campos && h) { campos.insertAdjacentHTML('afterend', h); areasTardias(d); }
       if (e.info && campos) {
         Array.prototype.forEach.call(campos.querySelectorAll('div'), function(x){
           var bt = x.querySelector('b');
@@ -968,8 +968,17 @@
         fonte: 'decisoes', item: d.id, titulo: tituloDe(d),
         origem: [d.orgao, (d.tipoNome || precedenteAreaLine(d).replace(/^ · /, '')), d.tema ? precedenteBadge(d) : '', (d.tambem || []).join(' · '), d.processo].filter(Boolean).join(' · '),
         abrir: linkDecisao(d),
-        areas: [].slice.call(modal.querySelectorAll('h2, .tese-text, .destaque-text, .historico-text'))
+        areas: [].slice.call(modal.querySelectorAll('h2, .tese-text, .destaque-text:not(.cad-tardio), .historico-text'))
       });
+      areasTardias(d);   // blocos que já tinham chegado antes de o marcador ligar
+    }).catch(function(){});
+  }
+  // Ementa do acórdão e Informativo dos repetitivos do STJ chegam depois de o card abrir: entram no marcador (Meus
+  // Cadernos) sempre depois dos textos de base e na ordem da tela, para as marcações não mudarem de lugar.
+  function areasTardias(d){
+    carregarCadernos().then(function(){
+      if (modalAtual !== d || !window.EstudaManaCadernos || !EstudaManaCadernos.adicionarArea) return;
+      [].slice.call(modal.querySelectorAll('.cad-tardio')).forEach(function(el){ EstudaManaCadernos.adicionarArea(el); });
     }).catch(function(){});
   }
   // Link vindo de Meus Cadernos: #abrir=<id>&busca=<processo> — busca e abre o card
