@@ -3,7 +3,7 @@
 Base: os 21 editais incluídos em 11/10/2026 (TCU 2015 e 2025; TCE-RS, RN, MS, SP, PE, SC, PR, PI, GO, BA, TO, PA, RO, ES, RR, PB, MA, AM; TCDF).
 Só entram aqui as disciplinas que mapeei (conhecimentos gerais e a especialidade de Direito/Controle Externo de cada edital). Outras especialidades (Contábeis, Economia, TI, Engenharia) citam mais normas técnicas que não foram varridas.
 
-## 1. Leis e decretos FEDERAIS que faltam no Diário de Leis (14)
+## 1. Leis e decretos FEDERAIS que faltavam no Diário de Leis (14) — incluídos em 11/10/2026 em "Citadas nos editais"
 
 | Norma | Assunto | Citada em |
 |---|---|---|
@@ -22,7 +22,7 @@ Só entram aqui as disciplinas que mapeei (conhecimentos gerais e a especialidad
 | Lei Complementar nº 152/2015 | Aposentadoria compulsória aos 75 anos | TCE-GO, TCE-RR |
 | Lei Complementar nº 95/1998 | Elaboração e redação das leis | TCE-SP |
 
-O robô `scripts/leis_dos_editais.py` busca essas no Planalto (roda no Mac). A Lei Complementar nº 94/1998 já está em "Citadas nos editais".
+O robô `scripts/leis_dos_editais.py` trouxe todas do Planalto (rodou em 11/10/2026). A Lei Complementar nº 94/1998 já está em "Citadas nos editais".
 
 **Grafias erradas nos editais (a norma já está no acervo):** "Lei nº 101/2000" é a Lei Complementar nº 101/2000 (LRF); "Lei nº 10.028/2001" é a Lei nº 10.028/2000.
 

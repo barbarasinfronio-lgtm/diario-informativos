@@ -15,7 +15,7 @@
   var CFG = window.PREMIOS_CONFIG;
   var KEYS = { inf: "informativos-lidos", lei: "leis-lidas", sum: "sumulas-lidas" };
   // só para as abas Histórico e Revisões (revisoes.js); não contam nos prêmios
-  var KEYS_EXTRA = { norma: "normas-lidas", dec: "decisoes-lidas", adi: "em_lidos_constitucionalidades", rcl: "em_lidos_reclamacoes" };
+  var KEYS_EXTRA = { norma: "normas-lidas", dec: "decisoes-lidas", adi: "em_lidos_constitucionalidades", rcl: "em_lidos_reclamacoes", aud: "auditoria-lidas" };
   var SEEN_KEY = "premios-vistos";
   var AVATAR_KEY = "informativos-avatar";
   var ORGS = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp"];
@@ -663,7 +663,7 @@
     };
     state.data = computeAll(maps, todayIso());
     Object.keys(KEYS_EXTRA).forEach(function (k) { maps[k] = remote[k] || load(KEYS_EXTRA[k]); });
-    // Decisões, Resoluções, Constitucionalidade e Reclamações também dão
+    // Decisões, Resoluções, Auditoria, Constitucionalidade e Reclamações também dão
     // pontos (1 por leitura, ou o valor de pontosPorLeitura em premios-data.js).
     var ctx = state.data.ctx, extra = 0;
     Object.keys(KEYS_EXTRA).forEach(function (k) {
@@ -733,7 +733,7 @@
 
   /* ---- Nuvem (Firestore): lê o progresso da mesma conta dos Diários ---- */
   var PATHS = { inf: "progress/", lei: "progress-leis/", sum: "progress-sumulas/", premios: "progress-premios/",
-                norma: "progress-normas/", dec: "progress-decisoes/", adi: "progress-adi/", rcl: "progress-rcl/" };
+                norma: "progress-normas/", dec: "progress-decisoes/", adi: "progress-adi/", rcl: "progress-rcl/", aud: "progress-auditoria/" };
 
   // Visita ao blog: "atual" = último momento de atividade; "anterior" = dia da
   // visita anterior. Uma visita nova começa após 30 minutos parado. Com login,
@@ -1103,7 +1103,7 @@
 
   // Leitura ou revisão marcada em outra aba (Diários, Cronograma): atualiza aqui na hora
   window.addEventListener("storage", function (e) {
-    var st = { "leis-lidas": "lei", "sumulas-lidas": "sum", "informativos-lidos": "inf", "decisoes-lidas": "dec", "normas-lidas": "norma" }[e.key];
+    var st = { "leis-lidas": "lei", "sumulas-lidas": "sum", "informativos-lidos": "inf", "decisoes-lidas": "dec", "normas-lidas": "norma", "auditoria-lidas": "aud" }[e.key];
     var ehRev = e.key === "revisoes-feitas";
     if (!st && !ehRev) return;
     if (state.remote) {

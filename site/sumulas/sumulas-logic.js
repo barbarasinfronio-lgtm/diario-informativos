@@ -354,7 +354,7 @@
 
     var info = currentOrg === TODOS ? { status: "disponivel", label: "Todos os tribunais" } : SUMULAS_DATA[currentOrg];
     ledeText.textContent = info.status === "disponivel"
-      ? "Súmulas, orientações jurisprudenciais, precedentes normativos e enunciados dos tribunais superiores, da Justiça Federal, do Trabalho, Eleitoral, Militar e dos Tribunais de Justiça, do TCU e das jornadas (CJF, FONAJE, ENFAM, FPPC). Escolha o tribunal, a matéria (quando disponível) e o tamanho do lote — vá lendo sem se sobrecarregar."
+      ? "Súmulas, orientações jurisprudenciais, precedentes normativos e enunciados dos tribunais superiores, da Justiça Federal, do Trabalho, Eleitoral, Militar e dos Tribunais de Justiça, do TCU e de Tribunais de Contas estaduais e das jornadas (CJF, FONAJE, ENFAM, FPPC). Escolha o tribunal, a matéria (quando disponível) e o tamanho do lote — vá lendo sem se sobrecarregar."
       : "Esse tribunal ainda está em preparação — as súmulas dele entram em breve.";
     footerSource.innerHTML = info.status === "disponivel"
       ? 'Texto oficial das súmulas — confira sempre a fonte no botão "Abrir" de cada linha. Se notar algum texto desatualizado ou incorreto, avise para correção.'
