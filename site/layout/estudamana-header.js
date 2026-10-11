@@ -576,6 +576,17 @@ style.parentNode.replaceChild(link, style);
 });
 }
 
+// Seletor com busca para listas longas (em-select.js): troca sozinho os <select>
+// com 8 ou mais opções. Se não carregar, os selects nativos continuam valendo.
+function loadSeletor() {
+if (window.EstudaManaSelect || document.querySelector("[data-em-select-js]")) return;
+var s = document.createElement("script");
+s.src = assetBase() + "em-select.js";
+s.async = true;
+s.setAttribute("data-em-select-js", "");
+document.head.appendChild(s);
+}
+
 function signature(list) {
 return list.map(function (p) { return p.path + "|" + p.title; }).join("\n");
 }
@@ -658,6 +669,7 @@ writeCache(fresh);
 }
 
 loadStyles();
+loadSeletor();
 if (document.readyState === "loading") {
 document.addEventListener("DOMContentLoaded", start);
 } else {
