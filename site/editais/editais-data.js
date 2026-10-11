@@ -16532,7 +16532,7 @@ var EDITAIS_DATA = [
     ["crianca", "Lei nº 8.069/1990"],
     ["administrativo", "Lei Complementar nº 75/1993"]
   ],
-  "extras": ["Lei Complementar Estadual nº 2/1990", "Lei nº 11.790/2008", "Resolução CNMP nº 118/2014", "Lei nº 14.208/2021", "Lei nº 14.197/2021", "Recomendação CNJ nº 87/2021", "Recomendação CNMP nº 90/2019", "Recomendação CNMP nº 61/2017", "Resolução CNMP nº 230/2021", "Resolução CNJ nº 425/2021", "Recomendação CNMP nº 53/2017", "Recomendação CNMP nº 80/2021", "Recomendação CNJ nº 81/2020", "Recomendação CNJ nº 119/2021", "Resolução CNJ nº 248/2020", "Recomendação CNMP nº 85/2021", "Lei Complementar Estadual nº 3/1990", "Resolução CNMP nº 23/2007"],
+  "extras": ["Lei Complementar Estadual nº 2/1990", "Lei nº 11.790/2008", "Resolução CNMP nº 118/2014", "Lei nº 14.208/2021", "Lei nº 14.197/2021", "Recomendação CNJ nº 87/2021", "Recomendação CNMP nº 90/2022", "Recomendação CNMP nº 61/2017", "Resolução CNMP nº 230/2021", "Resolução CNJ nº 425/2021", "Recomendação CNMP nº 53/2017", "Recomendação CNMP nº 80/2021", "Recomendação CNJ nº 81/2020", "Recomendação CNJ nº 119/2021", "Resolução CNJ nº 248/2020", "Recomendação CNMP nº 85/2021", "Lei Complementar Estadual nº 3/1990", "Resolução CNMP nº 23/2007"],
   "tipo": "edital"
  },
  {
