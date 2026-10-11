@@ -46,13 +46,15 @@ def achar_link(numero):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("pdf"); ap.add_argument("numero"); ap.add_argument("nome", nargs="?"); ap.add_argument("--link")
+    ap.add_argument("pdf"); ap.add_argument("numero"); ap.add_argument("nome", nargs="?"); ap.add_argument("--link"); ap.add_argument("--titulo", help="linha de título a pôr no topo (quando o OCR estraga o cabeçalho)"); ap.add_argument("--ocr", action="store_true", help="força o OCR (PDF com texto embutido de má qualidade)")
     a = ap.parse_args()
     import fitz
     texto = "\n".join(p.get_text() for p in fitz.open(a.pdf))
-    if len(texto.strip()) < 200:
+    if a.ocr or len(texto.strip()) < 200:
         print("  PDF escaneado: lendo com OCR do Mac…")
         texto = ocr_mac(a.pdf)
+    if a.titulo:
+        texto = a.titulo + "\n" + texto
     nome0, link0 = achar_link(a.numero)
     link, nome = a.link or link0, a.nome or nome0
     if not link or not nome:
