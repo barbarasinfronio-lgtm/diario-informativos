@@ -790,7 +790,7 @@ var LEIS_DATA = {
     { nome: "Política Estadual da Pessoa Idosa da Bahia", numero: "Lei Estadual (BA) nº 12.925/2013", link: "https://www.ba.gov.br/justica/sites/site-sjdh/files/2024-08/Leiordinaria129252013BahiaBAPOLITICAESTADUALPESSOAIDOSA.pdf" },
     { nome: "Política Estadual de Resíduos Sólidos da Bahia", numero: "Lei Estadual (BA) nº 12.932/2014", link: "https://reciclarecrescer.mpba.mp.br/wp-content/uploads/2024/02/LEI-No-12.932-DE-07-DE-JANEIRO-DE-2014.pdf" },
     { nome: "Estatuto da Igualdade Racial e de Combate à Intolerância Religiosa do Estado da Bahia", numero: "Lei Estadual (BA) nº 13.182/2014", link: "https://www.uesc.br/proape/arquivos/estatuto_da_igualdade_racial_bahia.pdf" },
-    { nome: "Plano Estadual de Educação da Bahia", numero: "Lei Estadual (BA) nº 13.559/2016", link: "https://educadores.educacao.ba.gov.br/sites/default/files/private/midiateca/documentos/2023/leino13559-2016pee1.pdf" },
+    { nome: "Plano Estadual de Educação da Bahia", numero: "Lei Estadual (BA) nº 13.559/2016", link: "https://www.legislabahia.ba.gov.br/documentos/lei-no-13559-de-11-de-maio-de-2016" },
     { nome: "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)", numero: "Lei Estadual (BA) nº 8.895/2003", link: "https://patrimonio.ipac.ba.gov.br/wp-content/uploads/2012/10/lei-8895.pdf" },
     { nome: "Aprova o Plano Nacional de Educação (2001)", numero: "Lei nº 10.172/2001", link: "https://www.planalto.gov.br/ccivil_03/leis/leis_2001/l10172.htm" },
     { nome: "Programa Nacional de Apoio ao Transporte do Escolar (PNATE)", numero: "Lei nº 10.880/2004", link: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.880.htm" },
