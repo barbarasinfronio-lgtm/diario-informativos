@@ -16,7 +16,8 @@ sys.path.insert(0, str(RAIZ / "scripts"))
 import leis_citadas as lc  # noqa: E402
 robo = lc.robo
 
-FONTES = {"alesc": r"leis\.alesc\.sc\.gov\.br"}   # uma entrada por Assembleia, com o leitor correspondente em LEITORES
+FONTES = {"alesc": r"leis\.alesc\.sc\.gov\.br",
+          "pa-pdf": r"(tjpa\.jus\.br/CMSPortal/VisualizarArquivo|pm\.pa\.gov\.br/images/PM1/ATUALIZADA)"}   # uma entrada por Assembleia, com o leitor correspondente em LEITORES
 
 
 def entradas(padrao):
@@ -44,7 +45,27 @@ def paragrafos_alesc(h):
     return out
 
 
-LEITORES = {"alesc": paragrafos_alesc}
+def paragrafos_pdf(texto):
+    """Texto de um PDF já extraído: junta as linhas quebradas até o próximo artigo, parágrafo, inciso ou alínea."""
+    linhas = [re.sub(r"\s+", " ", l).strip() for l in texto.replace("\xa0", " ").split("\n")]
+    linhas = [l for l in linhas if l and not re.fullmatch(r"\d{1,3}", l)]
+    out = []
+    for l in linhas:
+        if out and not re.match(r"(?i)^(Art\.|§|Parágrafo único|[IVXLC]+\s*[-–—]|[a-z]\)|CAP[ÍI]TULO|SE[ÇC][ÃA]O|T[ÍI]TULO|LEI\b|Belém,|Palácio)", l):
+            out[-1] += " " + l
+        else:
+            out.append(l)
+    return out
+
+
+LEITORES = {"alesc": paragrafos_alesc, "pa-pdf": paragrafos_pdf}
+
+
+def pdf_texto(url):
+    import fitz, urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    dados = urllib.request.urlopen(req, timeout=60).read()
+    return "\n".join(p.get_text() for p in fitz.open(stream=dados, filetype="pdf"))
 
 
 def main():
@@ -64,8 +85,11 @@ def main():
             continue
         print(f"  … {numero}", flush=True)
         try:
-            pg = robo.pagina(url, valida=lambda x: len(x) > 800)
-        except robo.Falha as e:
+            if a.fonte.endswith("-pdf"):
+                pg = pdf_texto(url)
+            else:
+                pg = robo.pagina(url, valida=lambda x: len(x) > 800)
+        except Exception as e:
             print(f"    não abriu: {e}")
             continue
         if robo.salvar_texto(url, pg, nome, hoje, extrator=LEITORES[a.fonte], numero=numero):
