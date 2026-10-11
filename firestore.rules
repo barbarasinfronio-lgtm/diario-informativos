@@ -43,6 +43,10 @@ service cloud.firestore {
       allow read: if dono(uid);
       allow write: if dono(uid) && contaDeVerdade();
     }
+    match /progress-auditoria/{uid} {
+      allow read: if dono(uid);
+      allow write: if dono(uid) && contaDeVerdade();
+    }
     match /progress-adi/{uid} {
       allow read: if dono(uid);
       allow write: if dono(uid) && contaDeVerdade();

@@ -36,7 +36,7 @@ initializeApp({ credential: cert(JSON.parse(readFileSync(keyPath, "utf8"))) });
 const db = getFirestore();
 
 const MAPS = { "progress/": "lidas", "progress-leis/": "lidasLeis", "progress-sumulas/": "lidasSumulas",
-               "progress-normas/": "lidasNormas", "progress-decisoes/": "lidasDecisoes",
+               "progress-normas/": "lidasNormas", "progress-auditoria/": "lidasAuditoria", "progress-decisoes/": "lidasDecisoes",
                "progress-adi/": "lidasAdi", "progress-rcl/": "lidasRcl" };
 const SO_LOCAIS = ["estrelasOuro"]; // não fica na nuvem: vale o maior
 

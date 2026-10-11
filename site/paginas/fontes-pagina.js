@@ -123,7 +123,7 @@
   // ---- botão "Apagar todos os meus dados" ----------------------------------------------------------
   var NUVEM = "https://barbarasinfronio-lgtm.github.io/diario-informativos/nuvem-shared.js";
   var CHAVES_LOCAIS = /(^|[-_])(lid[oa]s|revisoes|cronograma|premios|conquistados|vistos|avatar|grupo|editais|normas|decisoes|sumulas|cadernos|notas)([-_]|$)|^(informativos|leis|sumulas)-/i;
-  var COLECOES = ["progress", "progress-leis", "progress-sumulas", "progress-decisoes", "progress-normas", "progress-adi", "progress-rcl", "progress-premios"];
+  var COLECOES = ["progress", "progress-leis", "progress-sumulas", "progress-decisoes", "progress-normas", "progress-auditoria", "progress-adi", "progress-rcl", "progress-premios"];
   var btn = raiz.querySelector(".em-fontes-apagar"), msg = raiz.querySelector(".em-fontes-apagar-msg");
   function carregarNuvem() {
     if (window.EstudaManaNuvem) return Promise.resolve();

@@ -36,15 +36,16 @@
     { path: "progress-leis/", local: "leis-lidas" },
     { path: "progress-sumulas/", local: "sumulas-lidas" },
     { path: "progress-normas/", local: "normas-lidas" },
+    { path: "progress-auditoria/", local: "auditoria-lidas" },
     { path: "progress-decisoes/", local: "decisoes-lidas" },
     // estas duas guardam { id: "data ISO" } no navegador (iso: true)
     { path: "progress-adi/", local: "em_lidos_constitucionalidades", iso: true },
     { path: "progress-rcl/", local: "em_lidos_reclamacoes", iso: true }
   ];
   var LOCAL_CLEAR = [
-    "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "decisoes-lidas",
+    "informativos-lidos", "leis-lidas", "sumulas-lidas", "normas-lidas", "auditoria-lidas", "decisoes-lidas",
     "em_lidos_constitucionalidades", "em_lidos_reclamacoes", "leis-incluidas",
-    "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar",
+    "informativos-avatar", "leis-avatar", "sumulas-avatar", "normas-avatar", "auditoria-avatar",
     "informativos-grupo", "premios-vistos", "premios-conquistados",
     "editais-principal", "leis-filtro", "estudamana-menu-v1"
   ];

@@ -23,6 +23,7 @@
     { key: "lidasSumulas", label: "Diário das Súmulas" },
     { key: "lidasDecisoes", label: "Diário das Decisões" },
     { key: "lidasNormas", label: "Diário das Resoluções" },
+    { key: "lidasAuditoria", label: "Diário de Auditoria" },
     { key: "lidasAdi", label: "Diário de Constitucionalidade" },
     { key: "lidasRcl", label: "Diário das Reclamações" }
   ];

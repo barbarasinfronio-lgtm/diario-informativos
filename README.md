@@ -52,6 +52,7 @@ O arquivo de dados precisa ser carregado **antes** do de lógica.
 | Diário dos Informativos      | `diario-data.js`        | `diario-logic.js`               | `diario-styles-v2.css`       |
 | Diário de Leis               | `leis-data.js` + `editais-data.js` | `leis-logic.js`       | (embutido pela página)       |
 | Diário das Súmulas           | `sumulas-data.js`       | `sumulas-logic.js`              | `diario-styles-v2.css`       |
+| Diário de Auditoria (NBASP, NBC, MCASP, MTO, normas do TCU) | `auditoria-data.js` | `auditoria-logic.js` (usa `normas-logic.js`) | `diario-styles-v2.css` |
 | Diário das Resoluções (CNJ, CSJT, CNMP, CSMPT, CONAMA, CONANDA) | `normas-data.js` | `normas-logic.js` | `diario-styles-v2.css` |
 | Diário das Decisões — "Precedentes Qualificados" (STF, STJ, TST) | `rg-repetitivos-data.js` + `tst/decisoes.json` | `rg-repetitivos-logic.js` | `rg-repetitivos-styles.css` |
 | Editais                      | `editais-data.js`       | `editais-logic.js`              | `editais-styles.css`         |

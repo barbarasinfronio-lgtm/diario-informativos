@@ -3,7 +3,18 @@
   "use strict";
 
   // (dados carregados de normas-data.js, que roda antes deste arquivo)
-  var LOCAL_KEY = "normas-lidas";
+  // Outros Diários que reaproveitam este código (ex.: Diário de Auditoria,
+  // auditoria-logic.js) definem window.NORMAS_CONFIG antes de carregá-lo; sem
+  // ela, tudo funciona como Diário das Resoluções.
+  var CFG = window.NORMAS_CONFIG || {};
+  var NORMAS_DATA = CFG.data || window.NORMAS_DATA;
+  var NORMAS_ORG_ORDER = CFG.order || window.NORMAS_ORG_ORDER;
+  var PAGE_PATH = CFG.pagePath || "/p/diario-das-resolucoes.html";
+  var GROUP_FIELD = CFG.groupField || "lidasNormas";
+  var PROGRESS_COL = CFG.progressCol || "progress-normas";
+  var LOCAL_KEY = CFG.localKey || "normas-lidas";
+  // "Resolução nº 12/2020", mas "NBC TSP Estrutura Conceitual (R1)" (sem "nº" quando o número não começa por dígito)
+  function rotulo(row) { return row.tipo + (/^\d/.test(String(row.numero)) ? " nº " : " ") + row.numero; }
   var listRoot = document.getElementById("list-root");
 
   // ---- busca (a mesma do Diário das Decisões) ---------------------------
@@ -82,7 +93,7 @@
 
   // Boneco personalizável — mesmo esquema dos outros Diários
   // (grupos-shared.js), guardado sob uma chave própria.
-  var AVATAR_KEY = "normas-avatar";
+  var AVATAR_KEY = CFG.avatarKey || "normas-avatar";
   var avatarPref = GS.readAvatarPref(AVATAR_KEY);
 
   var ORG_ORDER = NORMAS_ORG_ORDER;
@@ -182,7 +193,7 @@
     ul.className = "list";
 
     var visiveis = list.filter(function (row) {
-      return combinaBusca(row.tipo + " nº " + row.numero + " " + row.numero + " " + row.ementa);
+      return combinaBusca(rotulo(row) + " " + row.numero + " " + row.ementa);
     });
     mostrarResultadoBusca(visiveis.length, ["norma", "normas"]);
 
@@ -192,9 +203,9 @@
       li.setAttribute("data-norma", currentOrg + ":" + row.tipo + ":" + row.numero);
       li.setAttribute("data-cad-lista", "normas");
       li.setAttribute("data-cad-item", currentOrg + ":" + row.tipo + ":" + row.numero);
-      li.setAttribute("data-cad-titulo", row.tipo + " nº " + row.numero);
+      li.setAttribute("data-cad-titulo", rotulo(row));
       li.setAttribute("data-cad-origem", NORMAS_DATA[currentOrg].label);
-      li.setAttribute("data-cad-abrir", "/p/diario-das-resolucoes.html#norma=" + encodeURIComponent(currentOrg + ":" + row.tipo + ":" + row.numero));
+      li.setAttribute("data-cad-abrir", PAGE_PATH + "#norma=" + encodeURIComponent(currentOrg + ":" + row.tipo + ":" + row.numero));
       if (destaque === currentOrg + ":" + row.tipo + ":" + row.numero) {
         li.style.boxShadow = "0 0 0 3px #f59e0b";
         li.style.borderRadius = "10px";
@@ -206,7 +217,7 @@
       input.type = "checkbox";
       input.className = "check-box";
       input.checked = row.lida;
-      input.setAttribute("aria-label", "Marcar " + row.tipo + " nº " + row.numero + " como lida");
+      input.setAttribute("aria-label", "Marcar " + rotulo(row) + " como lida");
       input.addEventListener("change", function () { toggle(row, input.checked); });
       checkWrap.appendChild(input);
 
@@ -214,7 +225,7 @@
       edition.className = "edition sumula-edition cad-lugar";
       var num = document.createElement("span");
       num.className = "num";
-      num.textContent = row.tipo + " nº " + row.numero;
+      num.textContent = rotulo(row);
       var texto = document.createElement("p");
       texto.className = "sumula-texto cad-area";
       texto.textContent = row.ementa;
@@ -330,7 +341,7 @@
   function renderMyPrizes() {
     if (!myPrizesEl || !GS) return;
     var codes = GS.readGroups().map(function (g) { return g.code; });
-    var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidasNormas", viewerId);
+    var tally = GS.tallyMyPrizes(codes, groupSnapshots, GROUP_FIELD, viewerId);
     GS.renderMyPrizes(myPrizesEl, tally, { hubHref: HUB_URL });
   }
 
@@ -345,7 +356,7 @@
     GS.readGroups().forEach(function (g) {
       GS.updateMember(g.code, viewerId, {
         name: g.name,
-        lidasNormas: totals.lidas,
+        [GROUP_FIELD]: totals.lidas,
         avatar: avatarPref,
         joinedAt: g.joinedAt
       }).catch(function () { /* melhor esforço — segue salvo localmente */ });
@@ -472,13 +483,13 @@
   if (!abrirNormaDoLink()) render();
   window.addEventListener("hashchange", abrirNormaDoLink);
 
-  // 2) progresso na conta de quem entrou (própria coleção "progress-normas")
+  // 2) progresso na conta de quem entrou (própria coleção, "progress-normas" por padrão)
   var progressUnsub = null;
 
   function bindUser(uid) {
     viewerId = uid;
     dbCap = firebase.firestore();
-    progressDoc = dbCap.doc("progress-normas/" + viewerId);
+    progressDoc = dbCap.doc(PROGRESS_COL + "/" + viewerId);
     dbReady = true;
     if (progressUnsub) { progressUnsub(); progressUnsub = null; }
     progressUnsub = progressDoc.onSnapshot(function (snap) {
