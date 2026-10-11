@@ -212,7 +212,7 @@ def main():
                 signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 2 minutos; pulei")))
                 signal.alarm(120)
             if (cl, num) not in incid:
-                incid[(cl, num)] = c.achar_incidente(cl.upper(), num)
+                incid[(cl, num)] = c.achar_incidente(cl if cl == "Rcl" else cl.upper(), num)
                 time.sleep(a.espera)
             t = ex.buscar(cl.upper(), num, incid[(cl, num)], data)
             time.sleep(a.espera)
