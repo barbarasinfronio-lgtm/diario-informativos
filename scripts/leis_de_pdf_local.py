@@ -17,6 +17,21 @@ import leis_leiame_estaduais as le  # noqa: E402
 robo = lc.robo
 
 
+def ocr_mac(pdf):
+    """PDF escaneado (sem texto): lê com o reconhecimento de texto da Apple (Vision) — só no Mac, precisa do Swift."""
+    import fitz, subprocess, tempfile
+    tmp = Path(tempfile.mkdtemp())
+    exe = tmp / "ocr"
+    subprocess.run(["swiftc", "-O", str(RAIZ / "scripts" / "ocr_mac.swift"), "-o", str(exe)], check=True, capture_output=True)
+    paginas = []
+    for i, p in enumerate(fitz.open(pdf)):
+        png = tmp / f"p{i:03d}.png"
+        p.get_pixmap(dpi=200).save(str(png))
+        paginas.append(str(png))
+    out = subprocess.run([str(exe)] + paginas, check=True, capture_output=True, text=True).stdout
+    return out.replace("<<<PAGINA>>>", "")
+
+
 def achar_link(numero):
     s = (RAIZ / "site" / "leis" / "leis-data.js").read_text(encoding="utf-8")
     for m in re.finditer(r'\{ nome: "((?:[^"\\]|\\.)*)", numero: "([^"]*)", link: "([^"]*)"', s):
@@ -35,6 +50,9 @@ def main():
     a = ap.parse_args()
     import fitz
     texto = "\n".join(p.get_text() for p in fitz.open(a.pdf))
+    if len(texto.strip()) < 200:
+        print("  PDF escaneado: lendo com OCR do Mac…")
+        texto = ocr_mac(a.pdf)
     nome0, link0 = achar_link(a.numero)
     link, nome = a.link or link0, a.nome or nome0
     if not link or not nome:
