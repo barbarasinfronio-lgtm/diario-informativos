@@ -58,8 +58,19 @@ def ler_cache():
     return json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
 
 
+# maior número que a classe já tem; acima disso o STF etiquetou errado (ex.: "ADI-34127" é o MS 34127)
+LIMITE_NUM = {"ADI": 8000, "ADPF": 1500, "ADC": 200, "ADO": 200}
+# motivos de falha que não se resolvem tentando de novo (o portal não tem o arquivo de decisão desses processos)
+FALHA_DEFINITIVA = ("não tem arquivo de decisão",)
+
+
+def definitiva(chave, falhas):
+    return any(m in falhas.get(chave, "") for m in FALHA_DEFINITIVA)
+
+
 def alvos():
     """Decisões dos informativos que ainda não estão nos dados: [(classe, num, data, card)]."""
+    falhas = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
     ja = set()
     for f in (CONTROLE, RECLAM):
         for d in c.ler_js(f)[1]:
@@ -71,6 +82,10 @@ def alvos():
         if cl not in CLASSES_CONTROLE + ("Rcl",) or (cl, num) in ja:
             continue
         if (cl, num, i[7]) in vistos:
+            continue
+        if cl in LIMITE_NUM and num.isdigit() and int(num) > LIMITE_NUM[cl]:
+            continue          # número impossível: processo de outra classe com etiqueta errada
+        if definitiva(f"{cl} {num}|{i[7]}", falhas):
             continue
         vistos.add((cl, num, i[7]))
         out.append((cl, num, i[7], i[0]))
