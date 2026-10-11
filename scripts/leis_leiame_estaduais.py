@@ -16,7 +16,9 @@ sys.path.insert(0, str(RAIZ / "scripts"))
 import leis_citadas as lc  # noqa: E402
 robo = lc.robo
 
+CORRECOES = {}
 FONTES = {"alesc": r"leis\.alesc\.sc\.gov\.br",
+          "df": r"sinj\.df\.gov\.br", "goias": r"legisla\.casacivil\.go\.gov\.br", "pdf-das-paginas": r"(sapl\.al\.pi\.leg\.br/norma|al\.mt\.gov\.br/norma-juridica|al\.rn\.leg\.br)",
           "pa-pdf": r"(tjpa\.jus\.br/CMSPortal/VisualizarArquivo|pm\.pa\.gov\.br/images/PM1/ATUALIZADA)"}   # uma entrada por Assembleia, com o leitor correspondente em LEITORES
 
 
@@ -58,14 +60,53 @@ def paragrafos_pdf(texto):
     return out
 
 
-LEITORES = {"alesc": paragrafos_alesc, "pa-pdf": paragrafos_pdf}
+LEITORES = {"df": paragrafos_pdf, "goias": paragrafos_alesc, "alesc": paragrafos_alesc, "pa-pdf": paragrafos_pdf, "pdf-das-paginas": paragrafos_pdf}
 
 
 def pdf_texto(url):
-    import fitz, urllib.request
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    dados = urllib.request.urlopen(req, timeout=60).read()
+    """Baixa o PDF do link; se o link abre uma página (SAPL do PI, ALMT), pega o PDF que ela oferece."""
+    import fitz, urllib.parse, urllib.request
+    def baixa(u):
+        return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=90).read()
+    dados = baixa(url)
+    if not dados.startswith(b"%PDF"):
+        h = dados.decode("utf-8", "replace")
+        m = re.search(r'href="([^"]*(?:/media/sapl/[^"]*\.pdf|storage\.al\.mt\.gov\.br/api/v1/download/[^"]*))"', h)
+        if not m:
+            raise ValueError("a página não oferece PDF")
+        dados = baixa(urllib.parse.urljoin(url, html.unescape(m.group(1))))
     return "\n".join(p.get_text() for p in fitz.open(stream=dados, filetype="pdf"))
+
+
+def go_api(numero, nome):
+    """Legisla Goiás: o link do Diário pode trazer o id errado; acha a norma pelo número/ano e devolve (id, html)."""
+    import json, urllib.request
+    m = re.search(r"([\d.]+)/(\d{4})", numero)
+    n, ano = m.group(1).replace(".", ""), m.group(2)
+    def api(u):
+        return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=60).read())
+    base = "https://legisla.casacivil.go.gov.br/api/v2/pesquisa/legislacoes"
+    achadas = api(f"{base}?numero={n}&ano={ano}")["resultados"]
+    tipo = ("Decreto" if "Decreto" in numero else "Complementar" if "Complementar" in numero else "Ordin")
+    ok = [r for r in achadas if tipo in r["tipo_legislacao"]["nome"]] or achadas
+    if not ok:
+        raise ValueError("não achei na API")
+    return ok[0]["id"], api(f"{base}/{ok[0]['id']}")["conteudo"]
+
+
+def df_sinj(url):
+    """SINJ-DF: a página da norma traz o nome do arquivo do texto atualizado; o texto fica em /sinj/Norma/<id>/<arquivo>."""
+    import ssl, urllib.request
+    ctx = ssl._create_unverified_context()
+    def baixa(u):
+        return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=90, context=ctx).read().decode("utf-8", "replace")
+    idn = re.search(r"id_norma=(\d+)", url).group(1)
+    arq = re.search(r'"ar_atualizado":\{"id_file":"[^"]*","filename":"([^"]+\.html?)"', baixa(url))
+    if not arq:
+        raise ValueError("sem texto atualizado em HTML")
+    h = baixa(f"https://www.sinj.df.gov.br/sinj/Norma/{idn}/{arq.group(1)}")
+    h = re.sub(r"(?is)<(script|style|head)\b.*?</\1>", "", h)
+    return html.unescape(re.sub(r"<[^>]+>", "\n", h)).replace("\xa0", " ")
 
 
 def main():
@@ -85,7 +126,16 @@ def main():
             continue
         print(f"  … {numero}", flush=True)
         try:
-            if a.fonte.endswith("-pdf"):
+            if a.fonte == "goias":
+                _id, pg = go_api(numero, nome)
+                if f"/{_id}/" not in url:
+                    print(f"    (o link do Diário trazia o id errado; certo: {_id})")
+                    novo = re.sub(r"/pesquisa_legislacao/\d+/", f"/pesquisa_legislacao/{_id}/", url)
+                    CORRECOES[url] = novo
+                    url = novo
+            elif a.fonte == "df":
+                pg = df_sinj(url)
+            elif a.fonte.endswith("-pdf") or a.fonte == "pdf-das-paginas":
                 pg = pdf_texto(url)
             else:
                 pg = robo.pagina(url, valida=lambda x: len(x) > 800)
@@ -96,6 +146,12 @@ def main():
             ok += 1
             print("    gravado")
         time.sleep(1)
+    if CORRECOES:   # corrige os links errados no Diário de Leis
+        arq = RAIZ / "site" / "leis" / "leis-data.js"
+        t = arq.read_text(encoding="utf-8")
+        for velho, novo in CORRECOES.items():
+            t = t.replace(velho, novo)
+        arq.write_text(t, encoding="utf-8")
     robo.indice_dos_textos()
     print(f"{ok} gravada(s).")
 

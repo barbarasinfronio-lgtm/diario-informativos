@@ -319,7 +319,7 @@ var LEIS_DATA = {
     { nome: "Processo de ação direta de inconstitucionalidade perante o Tribunal de Justiça de Santa Catarina", numero: "Lei Estadual (SC) nº 12.069/2001", link: "https://leis.alesc.sc.gov.br/html/2001/12069_2001_lei.html" },
     { nome: "Processo e julgamento da arguição de descumprimento de preceito fundamental (ADPF)", numero: "Lei nº 9.882/1999", link: "https://www.planalto.gov.br/ccivil_03/leis/l9882.htm" },
     { nome: "Estatuto Estadual de Promoção e Igualdade Étnico-Racial do Rio Grande do Norte", numero: "Lei Estadual (RN) nº 11.284/2022", link: "https://www.al.rn.leg.br/storage/legislacao/2023/x5bv6pt2c1g28ciaqr2b9oq0jt7u5w.pdf" },
-    { nome: "Compensação de débito tributário ou não tributário inscrito em dívida ativa com débito do Estado de Goiás decorrente de precatório judicial vencido", numero: "Lei Estadual (GO) nº 20.732/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100918/lei-20732" },
+    { nome: "Compensação de débito tributário ou não tributário inscrito em dívida ativa com débito do Estado de Goiás decorrente de precatório judicial vencido", numero: "Lei Estadual (GO) nº 20.732/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100955/lei-20732" },
     { nome: "Regulamenta o pagamento de precatórios mediante acordo direto com credores e fixa o limite de RPV no Estado de Goiás", numero: "Lei Estadual (GO) nº 17.034/2010", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/88867/lei-17034" },
   ]},
 
@@ -525,7 +525,7 @@ var LEIS_DATA = {
     { nome: "Regularização de passivos ambientais, compensação florestal e compensação por danos no Estado de Goiás", numero: "Lei Estadual (GO) nº 21.231/2022", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/104746/lei-21231" },
     { nome: "Normas de orientação à Política Estadual de Recursos Hídricos do Estado de Goiás", numero: "Lei Estadual (GO) nº 13.123/1997", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/82217/lei-13123" },
     { nome: "Institui a Política Estadual de Segurança e Eficiência de Barragens do Estado de Goiás", numero: "Lei Estadual (GO) nº 20.758/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100981/lei-20758" },
-    { nome: "Institui a Política Estadual de Incentivo à Economia Circular do Estado de Goiás", numero: "Lei Estadual (GO) nº 22.593/2024", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/108605/lei-22593" },
+    { nome: "Institui a Política Estadual de Incentivo à Economia Circular do Estado de Goiás", numero: "Lei Estadual (GO) nº 22.593/2024", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/108648/lei-22593" },
     { nome: "Pesca, aquicultura e proteção da fauna aquática no Estado de Goiás", numero: "Lei Estadual (GO) nº 13.025/1997", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/82116/lei-13025" },
     { nome: "Política Estadual de Recursos Hídricos e Sistema de Gerenciamento do Meio Ambiente e Recursos Hídricos do Pará", numero: "Lei Estadual (PA) nº 6.381/2001", link: "https://www.semas.pa.gov.br/2001/07/25/9760/" },
   ]},
@@ -675,7 +675,7 @@ var LEIS_DATA = {
     { nome: "Aprova o Regimento Interno da Procuradoria-Geral do Estado do Pará (PGE-PA)", numero: "Decreto Estadual (PA) nº 1.395/2021", link: "https://www.pge.pa.gov.br/sites/default/files/institucional/regimento.pdf" },
     { nome: "Decreto Estadual (PA) nº 534/2020", numero: "Decreto Estadual (PA) nº 534/2020", link: "https://www.sistemas.pa.gov.br/sisleis/legislacao/5256" },
     { nome: "Disciplina o regime jurídico das Organizações Sociais da Saúde (OSSs) no Estado de Goiás", numero: "Lei Estadual (GO) nº 21.740/2022", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/106518/lei-21740" },
-    { nome: "Institui o Código de Ética e Disciplina dos Militares do Estado de Goiás (CEDIME)", numero: "Lei Estadual (GO) nº 19.969/2018", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/99266/lei-19969" },
+    { nome: "Institui o Código de Ética e Disciplina dos Militares do Estado de Goiás (CEDIME)", numero: "Lei Estadual (GO) nº 19.969/2018", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/99843/lei-19969" },
     { nome: "Disciplina o pagamento dos adicionais de insalubridade e periculosidade aos servidores públicos do Estado de Goiás", numero: "Lei Estadual (GO) nº 19.573/2016", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/98889/lei-19573" },
     { nome: "Regime jurídico dos servidores públicos civis do Estado de Goiás, autarquias e fundações públicas estaduais (novo Estatuto do Servidor)", numero: "Lei Estadual (GO) nº 20.756/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100979/lei-20756" },
     { nome: "Regula o processo administrativo no âmbito da Administração Pública do Estado de Goiás", numero: "Lei Estadual (GO) nº 13.800/2001", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/81441/lei-13800" },
@@ -695,7 +695,7 @@ var LEIS_DATA = {
     { nome: "Regularização fundiária de imóveis urbanos do Estado de Goiás ocupados por organizações religiosas", numero: "Lei Estadual (GO) nº 20.229/2018", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/100164/lei-20229" },
     { nome: "Promoção da discriminação de terras devolutas estaduais mediante procedimento administrativo ou judicial", numero: "Lei Estadual (GO) nº 18.826/2015", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/92082/lei-18826" },
     { nome: "Contratação por tempo determinado para necessidade temporária de excepcional interesse público no Estado de Goiás", numero: "Lei Estadual (GO) nº 20.918/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/103634/lei-20918" },
-    { nome: "Estatuto dos Policiais Militares do Estado de Goiás", numero: "Lei Estadual (GO) nº 8.033/1975", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/85633/lei-8033" },
+    { nome: "Estatuto dos Policiais Militares do Estado de Goiás", numero: "Lei Estadual (GO) nº 8.033/1975", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/88165/lei-8033" },
   ]},
 
   previdenciario: { label: "Direito Previdenciário", leis: [
@@ -725,7 +725,7 @@ var LEIS_DATA = {
     { nome: "Modelo de gestão do Sistema de Proteção Social dos Militares do Estado do Tocantins", numero: "Lei Estadual (TO) nº 4.129/2023", link: "https://www.al.to.leg.br/arquivos/lei_4129-2023_66939.PDF" },
     { nome: "Dispõe sobre a contribuição para o custeio do RPPS dos Servidores Públicos do Rio Grande do Norte", numero: "Lei Estadual (RN) nº 11.109/2022", link: "https://www.al.rn.leg.br/storage/legislacao/2022/z24jcveqjbo4xq9txxyt3q1r4ehf9y.pdf" },
     { nome: "Sistema de Proteção Social dos Militares (SPSM) do Estado de Goiás", numero: "Lei Estadual (GO) nº 20.946/2020", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/103673/lei-20946" },
-    { nome: "Institui o regime de previdência complementar do Estado de Goiás (PREVCOM-GO)", numero: "Lei Estadual (GO) nº 19.179/2015", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/98292/lei-19179" },
+    { nome: "Institui o regime de previdência complementar do Estado de Goiás (PREVCOM-GO)", numero: "Lei Estadual (GO) nº 19.179/2015", link: "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/98359/lei-19179" },
   ]},
 
   humanos: { label: "Direitos Humanos", leis: [
