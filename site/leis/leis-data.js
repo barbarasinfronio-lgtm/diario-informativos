@@ -635,7 +635,7 @@ var LEIS_DATA = {
     { nome: "Contratação de pessoal por tempo determinado para necessidade temporária de excepcional interesse público", numero: "Lei nº 8.745/1993", link: "https://www.planalto.gov.br/ccivil_03/leis/l8745cons.htm" },
     { nome: "Regime de emprego público do pessoal da Administração federal direta, autárquica e fundacional", numero: "Lei nº 9.962/2000", link: "https://www.planalto.gov.br/ccivil_03/leis/l9962.htm" },
     { nome: "Regulamenta o Programa Minha Casa, Minha Vida", numero: "Decreto nº 7.499/2011", link: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/decreto/d7499.htm" },
-    { nome: "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul", numero: "Lei Complementar (RS) nº 16.263/2024", link: "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=67598&hId_FazSumula=&RF=1" },
+    { nome: "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul", numero: "Lei Complementar (RS) nº 16.263/2024", link: "https://ww3.al.rs.gov.br/filerepository/repLegis/arquivos/16.263.pdf" },
     { nome: "Contratação de bens e serviços de informática e automação pela Administração Pública federal", numero: "Decreto nº 7.174/2010", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/decreto/d7174.htm" },
     { nome: "Organizações Sociais do Estado de Santa Catarina", numero: "Lei Estadual (SC) nº 12.929/2004", link: "https://leis.alesc.sc.gov.br/html/2004/12929_2004_lei.html" },
     { nome: "Normas gerais para licitação e contratação de serviços de publicidade por agências de propaganda", numero: "Lei nº 12.232/2010", link: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12232.htm" },
