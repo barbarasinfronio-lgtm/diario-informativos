@@ -53,7 +53,7 @@ def paragrafos_pdf(texto):
     linhas = [l for l in linhas if l and not re.fullmatch(r"\d{1,3}", l)]
     out = []
     for l in linhas:
-        if out and not re.match(r"(?i)^(Art\.|§|Parágrafo único|[IVXLC]+\s*[-–—]|[a-z]\)|CAP[ÍI]TULO|SE[ÇC][ÃA]O|T[ÍI]TULO|LEI\b|Belém,|Palácio)", l):
+        if out and not re.match(r"(?i)^(Art\.|Artigo\s+\d|§|Parágrafo único|[IVXLC]+\s*[-–—]|[a-z]\)|CAP[ÍI]TULO|SE[ÇC][ÃA]O|T[ÍI]TULO|LEI\b|Belém,|Palácio)", l):
             out[-1] += " " + l
         else:
             out.append(l)
