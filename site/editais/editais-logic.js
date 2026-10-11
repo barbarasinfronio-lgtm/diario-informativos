@@ -109,6 +109,10 @@
       { titulo: "Estadual e do DF", teste: /^DP(E|DF)/ },
       { titulo: "Federal (DPU)", teste: /^DPU$/ }
     ] },
+    { titulo: "Controle Externo (Tribunais de Contas)", uniao: "carreira-auditor-controle-externo", grupos: [
+      { titulo: "Tribunais de Contas estaduais e do DF", teste: /^TC(E|DF)/ },
+      { titulo: "Tribunal de Contas da União (TCU)", teste: /^TCU$/ }
+    ] },
     { titulo: "Exames nacionais", grupos: [
       { titulo: "Magistratura (ENAM)", uniao: "exame-enam", teste: /^ENAM$/ },
       { titulo: "Cartórios (ENAC)", uniao: "exame-enac", teste: /^ENAC$/ },

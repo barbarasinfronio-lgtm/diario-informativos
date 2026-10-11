@@ -200,8 +200,8 @@
   // UF de um edital pela sigla: TJSP, MPMG, DPE-BA, PGE-GO, PC-AP, PCPR…
   function ufDaSigla(sigla) {
     var s = String(sigla || "").toUpperCase().replace(/[^A-Z]/g, "");
-    if (s === "TJDFT" || s === "MPDFT" || s === "PCDF" || s === "PGDF") return "DF";
-    var m = s.match(/^(TJ|MP|DPE|PGE|PC)([A-Z]{2})$/);
+    if (s === "TJDFT" || s === "MPDFT" || s === "PCDF" || s === "PGDF" || s === "TCDF") return "DF";
+    var m = s.match(/^(TJ|MP|DPE|PGE|PC|TCE)([A-Z]{2})$/);
     return m && UF_NOME[m[2]] ? m[2] : null;
   }
 
