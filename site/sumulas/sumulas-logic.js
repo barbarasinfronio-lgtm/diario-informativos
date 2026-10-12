@@ -559,7 +559,8 @@
           setNote("Sem sincronização aqui — salvo neste navegador.");
           return;
         }
-        setNote("Não foi possível salvar agora — salvo neste navegador.");
+        if (window.console) console.warn("[sumulas] não salvou na conta:", err && err.code, err && err.message);
+        setNote("Não foi possível salvar agora (" + ((err && err.code) || "erro") + ") — salvo neste navegador.");
       });
   }
 
@@ -791,7 +792,10 @@
       applyingRemote = false;
       if (reenviar) scheduleSync();
       scheduleGroupSync(); // o total da conta (não só deste aparelho) vai para os grupos
-    }, function () {});
+    }, function (err) {
+      if (window.console) console.warn("[sumulas] não leu a conta:", err && err.code, err && err.message);
+      setNote("Não foi possível ler sua conta (" + ((err && err.code) || "erro") + ") — usando o que está neste navegador.");
+    });
     subscribeAllGroups();
     pushProgressToGroups();
   }
