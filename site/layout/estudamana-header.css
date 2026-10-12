@@ -74,14 +74,16 @@
   font-weight: 600;
 }
 
-/* Celular: o menu vira uma faixa que rola para o lado, em vez de quebrar
-   em várias linhas. */
+/* Celular: o menu continua quebrando em várias linhas dentro da caixa (como na página inicial), só com
+   um pouco menos de espaço entre os itens. Antes ele virava uma faixa que rolava para o lado; como ela
+   não quebra linha, a largura "natural" era de ~1600 px e podia alargar a página inteira. */
 @media (max-width: 640px) {
   .em-header__list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    gap: 0.2rem;
+    padding: 0.3rem;
+  }
+  .em-header__link {
+    padding: 0.4rem 0.6rem;
   }
 }
 
