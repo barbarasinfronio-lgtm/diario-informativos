@@ -761,17 +761,26 @@
       if (!snap.exists) return;
       var data = snap.data();
       if (!data) return;
+      // gravação deste aparelho em andamento (ou o eco dela): a nuvem ainda não tem o que acabei de marcar ou
+      // desmarcar, então este retrato está desatualizado — ignora. Sem isso, cada eco disparava outra gravação.
+      if (gravando > 0 || publishTimer || (snap.metadata && snap.metadata.hasPendingWrites)) return;
       applyingRemote = true;
       var reenviar = false;
       if (data.map) {
         var remoto = data.map;
-        if (temPendente() || publishTimer) {
-          // há marcação deste aparelho que a nuvem ainda não confirmou: junta as duas (lida em qualquer uma = lida)
+        if (temPendente()) {
+          // sobrou marcação de antes (página recarregada antes de a nuvem confirmar): se a conta não tem
+          // alguma, junta as duas (lida em qualquer uma = lida) e envia uma vez; se já tem tudo, acabou.
           var local = stateToMap();
-          remoto = {};
-          Object.keys(data.map).forEach(function (k) { if (data.map[k] && data.map[k].lida) remoto[k] = data.map[k]; });
-          Object.keys(local).forEach(function (k) { if (!remoto[k]) remoto[k] = local[k]; });
-          reenviar = true;
+          var falta = Object.keys(local).some(function (k) { return !(data.map[k] && data.map[k].lida); });
+          if (falta) {
+            remoto = {};
+            Object.keys(data.map).forEach(function (k) { if (data.map[k] && data.map[k].lida) remoto[k] = data.map[k]; });
+            Object.keys(local).forEach(function (k) { if (!remoto[k]) remoto[k] = local[k]; });
+            reenviar = true;
+          } else {
+            setPendente(false);
+          }
         }
         // a conta guarda só as lidas: o que não está nela, ficou como não lida
         ORG_ORDER.forEach(function (orgKey) {
