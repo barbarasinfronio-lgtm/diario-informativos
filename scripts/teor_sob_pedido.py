@@ -14,6 +14,7 @@ bloqueia os servidores do GitHub), pelo "Atender Pedidos de Inteiro Teor.command
     python3 scripts/teor_sob_pedido.py --max 30                      # atende até 30 pedidos
     python3 scripts/teor_sob_pedido.py --teste "Rcl 38782" --data 03/11/2020   # busca e mostra, não grava
 
+Processos anotados à mão (número e tipo, sem texto) em curadoria/teor-lista.json entram na mesma fila.
 Pedidos que falharam ficam em curadoria/teor-pedidos-falhas.json e são tentados de novo na próxima rodada.
 """
 import argparse, json, re, signal, sys, time, urllib.parse
@@ -31,6 +32,7 @@ robo = c.robo
 PASTA = RAIZ / "teor"
 INDICE = PASTA / "indice.json"
 FALHAS = RAIZ / "curadoria" / "teor-pedidos-falhas.json"
+LISTA = RAIZ / "curadoria" / "teor-lista.json"   # processos anotados à mão: [{"processo","tipo","assunto"}]
 FIRESTORE = "https://firestore.googleapis.com/v1/projects/diariodeinformativos/databases/(default)/documents/pedidos-teor"
 API_KEY = "AIzaSyAe0g7Ps4d_uXvh1IiFTtDICwZ91YOUto0"      # a mesma chave pública que o site usa (site/conta/nuvem-shared.js)
 
@@ -51,6 +53,20 @@ def pedidos():
         token = j.get("nextPageToken", "")
         if not token:
             return out
+
+
+def lista_manual():
+    """Processos anotados à mão em curadoria/teor-lista.json (só número e tipo; o texto vem do portal do STF),
+    no mesmo formato dos pedidos do site. Atendidos junto com eles; o id começa com "lista-"."""
+    if not LISTA.exists():
+        return []
+    out = []
+    for it in json.loads(LISTA.read_text(encoding="utf-8")):
+        k = chave_de(it.get("processo", ""))
+        if k:
+            out.append({"id": "lista-" + arquivo_de(k)[5:-5], "processo": k, "data": it.get("data", ""),
+                        "titulo": f"{it.get('tipo', '')} — {it.get('assunto', '')}"})
+    return out
 
 
 def chave_de(processo):
@@ -132,7 +148,7 @@ def main():
         print(f"índice refeito: {len(reconstruir_indice())} processo(s) com inteiro teor.")
         return
     feitos = set(reconstruir_indice())
-    todos = pedidos()
+    todos = pedidos() + lista_manual()
     pend, vistos = [], set()
     for p in todos:          # um processo pedido por vários cards (ou já com teor) conta uma vez só
         k = chave_de(p.get("processo", ""))

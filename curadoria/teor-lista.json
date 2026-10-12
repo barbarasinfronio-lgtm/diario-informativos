@@ -1,0 +1,11 @@
+[
+ {"processo": "Rcl 3436",   "tipo": "Medida cautelar em reclamação (Rcl-MC)", "assunto": "ADI estadual: parâmetro de controle é só a Constituição Estadual"},
+ {"processo": "Rcl 383",    "tipo": "Reclamação",                             "assunto": "Normas de reprodução obrigatória: ADI estadual e RE"},
+ {"processo": "RE 353350",  "tipo": "Agravo regimental em RE (AgR-RE)",       "assunto": "RE só para normas centrais de repetição obrigatória"},
+ {"processo": "Rcl 370",    "tipo": "Reclamação",                             "assunto": "Normas de imitação; avocação de ADI estadual (TJ/MT)"},
+ {"processo": "Rcl 526",    "tipo": "Reclamação",                             "assunto": "Arguição incidente em ADI estadual"},
+ {"processo": "Pet 2859",   "tipo": "Medida cautelar em petição (Pet-MC)",    "assunto": "Efeitos da declaração de inconstitucionalidade do TJ; efeito suspensivo ao RE"},
+ {"processo": "RE 187142",  "tipo": "Recurso extraordinário",                 "assunto": "RE contra ADI estadual: eficácia erga omnes, sem comunicação ao Senado"},
+ {"processo": "Rcl 425",    "tipo": "Agravo regimental em reclamação (AgR-Rcl)", "assunto": "ADI simultânea no STF e no TJ"},
+ {"processo": "ADI 2361",   "tipo": "Ação direta de inconstitucionalidade",   "assunto": "ADI simultânea no STF e no TJ"}
+]
