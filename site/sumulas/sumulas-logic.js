@@ -85,6 +85,8 @@
     listRoot.parentNode.insertBefore(buscaInfo, listRoot);
   }
   var syncNote = document.getElementById("sync-note");
+  // reserva o espaço de duas linhas: sem isso a lista inteira descia/subia ~19 px a cada "Salvando…" / "Salvo"
+  if (syncNote) { syncNote.style.lineHeight = "1.4"; syncNote.style.minHeight = "2.8em"; }
   var ledeText = document.getElementById("lede-text");
   var footerSource = document.getElementById("footer-source");
 
