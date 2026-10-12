@@ -242,7 +242,8 @@
     var map = {};
     ORG_ORDER.forEach(function (orgKey) {
       stateByOrg[orgKey].forEach(function (row) {
-        map[rowKey(orgKey, row)] = { lida: row.lida, lidaEm: row.lidaEm };
+        // só as lidas: o documento da conta tinha uma entrada para cada súmula (10 mil, ~400 KB a cada clique)
+        if (row.lida) map[rowKey(orgKey, row)] = { lida: true, lidaEm: row.lidaEm };
       });
     });
     return map;
@@ -520,17 +521,39 @@
     publishTimer = setTimeout(doSync, 700);
   }
 
+  // "ainda não confirmado pela nuvem": fica no aparelho, para uma marcação não se perder se a página for
+  // recarregada antes de a nuvem responder (senão a versão antiga da conta apagaria a marcação)
+  var PENDENTE_KEY = "sumulas-pendente";
+  function setPendente(v) {
+    try { if (v) localStorage.setItem(PENDENTE_KEY, "1"); else localStorage.removeItem(PENDENTE_KEY); } catch (e) {}
+  }
+  function temPendente() {
+    try { return localStorage.getItem(PENDENTE_KEY) === "1"; } catch (e) { return false; }
+  }
+
+  var gravando = 0;   // gravações na nuvem ainda sem resposta
   function doSync() {
+    publishTimer = null;
     var map = stateToMap();
     writeLocal(map);
     if (!dbReady || !progressDoc) { setNote("Salvo neste navegador."); return; }
+    setPendente(true);
+    gravando++;
     setNote("Salvando…");
+    var demorou = setTimeout(function () {
+      setNote("A nuvem não respondeu — salvo neste navegador; tento de novo quando a conexão voltar.");
+    }, 8000);
     progressDoc.set({ map: map, avatar: avatarPref, updatedAt: new Date().toISOString() })
       .then(function () {
+        clearTimeout(demorou);
+        gravando--;
+        if (!publishTimer && !gravando) setPendente(false);
         setNote("Salvo — só para você.");
         setTimeout(function () { setNote(""); }, 1600);
       })
       .catch(function (err) {
+        clearTimeout(demorou);
+        gravando--;
         if (err && err.code === "permission-denied") {
           dbCap = null; progressDoc = null;
           setNote("Sem sincronização aqui — salvo neste navegador.");
@@ -738,7 +761,27 @@
       var data = snap.data();
       if (!data) return;
       applyingRemote = true;
-      if (data.map) { applyMap(data.map); writeLocal(data.map); }
+      var reenviar = false;
+      if (data.map) {
+        var remoto = data.map;
+        if (temPendente() || publishTimer) {
+          // há marcação deste aparelho que a nuvem ainda não confirmou: junta as duas (lida em qualquer uma = lida)
+          var local = stateToMap();
+          remoto = {};
+          Object.keys(data.map).forEach(function (k) { if (data.map[k] && data.map[k].lida) remoto[k] = data.map[k]; });
+          Object.keys(local).forEach(function (k) { if (!remoto[k]) remoto[k] = local[k]; });
+          reenviar = true;
+        }
+        // a conta guarda só as lidas: o que não está nela, ficou como não lida
+        ORG_ORDER.forEach(function (orgKey) {
+          stateByOrg[orgKey].forEach(function (row) {
+            var v = remoto[rowKey(orgKey, row)];
+            row.lida = !!(v && v.lida);
+            row.lidaEm = row.lida ? ((v && v.lidaEm) || null) : null;
+          });
+        });
+        writeLocal(remoto);
+      }
       if (data.avatar && GS.GENDER_BASE[data.avatar.gender] && GS.TONE_MOD[data.avatar.tone]) {
         avatarPref = { gender: data.avatar.gender, tone: data.avatar.tone };
         GS.writeAvatarPref(avatarPref, AVATAR_KEY);
@@ -746,6 +789,7 @@
       }
       render();
       applyingRemote = false;
+      if (reenviar) scheduleSync();
       scheduleGroupSync(); // o total da conta (não só deste aparelho) vai para os grupos
     }, function () {});
     subscribeAllGroups();
