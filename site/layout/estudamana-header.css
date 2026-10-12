@@ -9,17 +9,15 @@
 .em-header {
   box-sizing: border-box;
   margin: 0 auto 1.5rem;
-  max-width: min(100%, var(--page-width-reading));
+  /* Nunca mais largo que a tela. O menu não quebra linha (no celular rola para o lado), então a largura
+     "natural" dele é de ~1600 px; se o contêiner do tema se ajusta ao conteúdo, ele ficava desse tamanho
+     e a página inteira ganhava rolagem lateral. Um teto em "vw" é definido, então vale também nesse caso. */
+  max-width: min(var(--page-width-reading), calc(100vw - 2rem));
   font-family: var(--font-sans);
-  /* O menu não quebra linha (no celular rola para o lado), então a largura "natural" dele é de
-     ~1600 px. Se o contêiner do tema se ajusta ao conteúdo, ele ficava desse tamanho e a página
-     inteira ganhava rolagem lateral. "contain: inline-size" faz o menu não pedir largura nenhuma:
-     ele ocupa só o que o contêiner já tem. */
-  contain: inline-size;
 }
 
 .em-header--wide {
-  max-width: min(100%, var(--page-width-wide));
+  max-width: min(var(--page-width-wide), calc(100vw - 2rem));
 }
 
 .em-header *,
