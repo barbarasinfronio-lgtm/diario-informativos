@@ -40,12 +40,15 @@ PADRAO = re.compile(r"padr|espelho|abordagem|gabarito-da-prova-discursiva|gabari
 def cargo(sigla):
     s = sigla.upper()
     if s.startswith("TRF"): return "Magistratura federal"
-    if s.startswith("TRT"): return "Magistratura do Trabalho"
+    if s.startswith(("TRT", "CSJT")): return "Magistratura do Trabalho"
+    if s.startswith("CART"): return "Cartórios (notarial e registral)"
+    if s.startswith("PGM"): return "Advocacia pública"
     if s.startswith("TJ"): return "Magistratura estadual"
     if s.startswith("ENAM"): return "Magistratura (ENAM)"
     if s.startswith(("DPE", "DPDF", "DPU")): return "Defensoria Pública"
     if s.startswith(("MP", "MPF", "MPT")): return "Ministério Público"
-    if s.startswith("PC"): return "Delegado de Polícia"
+    if s.startswith(("PC", "PF")): return "Delegado de Polícia"
+    if s.startswith(("TCE", "TCU", "TCDF")): return "Auditor de Controle Externo"
     if s.startswith(("PGE", "PGM", "PGDF", "AGU")): return "Advocacia pública"
     return ""
 
@@ -174,7 +177,7 @@ for (sigla, ano, etapa, banca), arqs in sorted(unidades().items()):
         stats["já existia"] += 1; continue
     partes = []
     for f in sorted(arqs):
-        if re.search(r" \(\d\)\.txt$", f):   # cópia repetida ("arquivo (1).pdf")
+        if re.search(r" \(\d\)\.txt$", f) and re.sub(r" \(\d\)\.txt$", ".txt", f) in arqs:   # cópia repetida ("arquivo (1).pdf") — só se o original está na mesma pasta
             continue
         t = open(f, encoding="utf-8", errors="ignore").read()
         if len(t.strip()) < 200: stats["sem texto"] += 1; continue

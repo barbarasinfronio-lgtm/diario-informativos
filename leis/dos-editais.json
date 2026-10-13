@@ -1524,6 +1524,91 @@
    "nome": "Lei Estadual (SC) nº 18.302/2021",
    "numero": "Lei Estadual (SC) nº 18.302/2021",
    "link": "https://leis.alesc.sc.gov.br/html/2021/18302_2021_lei.html"
+  },
+  {
+   "nome": "Decreto Estadual (MG) nº 46.549/2014",
+   "numero": "Decreto Estadual (MG) nº 46.549/2014",
+   "link": "https://www.almg.gov.br/legislacao-mineira/texto/DEC/46549/2014/"
+  },
+  {
+   "nome": "Lei Complementar Estadual (MG) nº 65/2003",
+   "numero": "Lei Complementar Estadual (MG) nº 65/2003",
+   "link": "https://www.almg.gov.br/legislacao-mineira/texto/LCP/65/2003/"
+  },
+  {
+   "nome": "Lei Complementar Estadual (MG) nº 129/2013",
+   "numero": "Lei Complementar Estadual (MG) nº 129/2013",
+   "link": "https://www.almg.gov.br/legislacao-mineira/texto/LCP/129/2013/"
+  },
+  {
+   "nome": "Lei Estadual (MG) nº 5.406/1969",
+   "numero": "Lei Estadual (MG) nº 5.406/1969",
+   "link": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/5406/1969/"
+  },
+  {
+   "nome": "Lei Estadual (MG) nº 10.501/1991",
+   "numero": "Lei Estadual (MG) nº 10.501/1991",
+   "link": "https://www.almg.gov.br/legislacao-mineira/texto/LEI/10501/1991/"
+  },
+  {
+   "nome": "Lei Complementar Estadual (PR) nº 85/1999",
+   "numero": "Lei Complementar Estadual (PR) nº 85/1999",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=3&nroAto=85&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Complementar Estadual (PR) nº 249/2022",
+   "numero": "Lei Complementar Estadual (PR) nº 249/2022",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=3&nroAto=249&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 14.274/2003",
+   "numero": "Lei Estadual (PR) nº 14.274/2003",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=14274&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 22.130/2024",
+   "numero": "Lei Estadual (PR) nº 22.130/2024",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=22130&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 22.252/2024",
+   "numero": "Lei Estadual (PR) nº 22.252/2024",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=22252&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 13.331/2001",
+   "numero": "Lei Estadual (PR) nº 13.331/2001",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=13331&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 15.229/2006",
+   "numero": "Lei Estadual (PR) nº 15.229/2006",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=15229&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 15.608/2007",
+   "numero": "Lei Estadual (PR) nº 15.608/2007",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=15608&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 15.673/2007",
+   "numero": "Lei Estadual (PR) nº 15.673/2007",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=15673&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 16.751/2010",
+   "numero": "Lei Estadual (PR) nº 16.751/2010",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=16751&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 17.329/2012",
+   "numero": "Lei Estadual (PR) nº 17.329/2012",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=17329&tipoVisualizacao=compilado"
+  },
+  {
+   "nome": "Lei Estadual (PR) nº 18.700/2018",
+   "numero": "Lei Estadual (PR) nº 18.700/2018",
+   "link": "https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto&codTipoAto=1&nroAto=18700&tipoVisualizacao=compilado"
   }
  ],
  "tentadas": {

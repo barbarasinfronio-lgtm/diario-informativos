@@ -103,7 +103,7 @@ def achar_sapl(uf, tipo, n, ano):
             if not x.get("texto_integral"):
                 return None
             t = pdf_ou_ocr(http(x["texto_integral"].replace("http://", "https://"), binario=True, timeout=120))
-            return link, x["__str__"] + "\n" + t, x.get("ementa") or ""
+            return link, x["__str__"] + "\n" + t, x.get("ementa") or "", le.paragrafos_pdf
     return None
 
 
@@ -117,16 +117,38 @@ def achar_sc(tipo, n, ano):
         return None
     t = "\n".join(le.paragrafos_alesc(h))
     m = re.search(r"(?is)<title>(.*?)</title>", h)
-    return link, t, ""
+    return link, t, "", le.paragrafos_pdf
 
 
 def achar_go(tipo, n, ano):
     nome = {"lei": "Lei Estadual", "lc": "Lei Complementar Estadual", "dec": "Decreto Estadual"}[tipo]
     _id, pg = le.go_api(f"{nome} (GO) nº {n}/{ano}", nome)
-    return f"https://legisla.casacivil.go.gov.br/pesquisa_legislacao/{_id}/", "\n".join(le.paragrafos_alesc(pg)), ""
+    return f"https://legisla.casacivil.go.gov.br/pesquisa_legislacao/{_id}/", "\n".join(le.paragrafos_alesc(pg)), "", le.paragrafos_pdf
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SC": ("sc", None), "GO": ("go", None)}
+def achar_mg(tipo, n, ano):
+    t = {"lei": "LEI", "lc": "LCP", "dec": "DEC", "dl": "DEL"}[tipo]
+    link = f"https://www.almg.gov.br/legislacao-mineira/texto/{t}/{n}/{ano}/"
+    h = http(link)
+    if "Erro 404" in h[:3000]:
+        return None
+    return link, h, "", robo.paragrafos_do_site
+
+
+def achar_pr(tipo, n, ano):
+    cods = {"lei": (1,), "lc": (2, 3, 4, 5, 6), "dec": (7, 8, 9, 10, 11, 12)}.get(tipo, ())
+    for cod in cods:
+        link = ("https://www.legislacao.pr.gov.br/legislacao/exibirAto.do?action=localizarAto"
+                f"&codTipoAto={cod}&nroAto={n}&tipoVisualizacao=compilado")
+        h = http(link)
+        ps = robo.paragrafos_do_site(h)
+        num = rotulo("PR", tipo, n, ano)
+        if len(ps) >= 4 and robo.texto_confere(num, ps, link):
+            return link, h, "", robo.paragrafos_do_site
+    return None
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -137,6 +159,10 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "mg":
+        return achar_mg(tipo, n, ano)
+    if f == "pr":
+        return achar_pr(tipo, n, ano)
     return None
 
 
@@ -179,9 +205,9 @@ def main():
             falhas["-".join((tipo, n, ano, uf))] = hoje
             print("    não achei na fonte oficial")
             continue
-        link, texto, ementa = r
+        link, texto, ementa, extrator = r
         nome = (ementa.strip().capitalize()[:140] if ementa else num)
-        gravou = robo.salvar_texto(link, texto, nome, hoje, extrator=le.paragrafos_pdf, numero=num)
+        gravou = robo.salvar_texto(link, texto, nome, hoje, extrator=extrator, numero=num)
         if not gravou and not (robo.TEXTO_DIR / f"{robo.id_texto(link)}.json").exists():
             falhas["-".join((tipo, n, ano, uf))] = hoje
             continue

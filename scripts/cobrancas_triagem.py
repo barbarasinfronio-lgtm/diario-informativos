@@ -79,6 +79,31 @@ def sigla_de(txt, nome):
         return "DPE-" + uf_em(m[1])
     if re.search(r"DEFENSORIA PUBLICA DO DISTRITO FEDERAL", t):
         return "DPDF"
+    # Tribunais de Contas, Polícias, Procuradorias (Diário de Editais: Auditor, Delegado, Procurador)
+    if re.search(r"TRIBUNAL DE CONTAS DA UNIAO|\bTCU\b", t[:1500]):
+        return "TCU"
+    if re.search(r"TRIBUNAL DE CONTAS DO DISTRITO FEDERAL|\bTCDF\b|\bTC/DF\b", t[:1500]):
+        return "TCDF"
+    m = re.search(r"TRIBUNAL DE CONTAS D[OAE]\w*\s+(?:ESTADO\s+)?D?[EAO]?\s*([A-Z ]+)", t[:1500])
+    if m and uf_em(m[1]):
+        return "TCE-" + uf_em(m[1])
+    m = re.search(r"\bTCE\s*[-/]?\s*([A-Z]{2})\b", t[:1500])
+    if m and m[1] in UF.values():
+        return "TCE-" + m[1]
+    if re.search(r"POLICIA FEDERAL|DGP/PF|\bDGP\s*/\s*PF", t[:1500]):
+        return "PF"
+    m = re.search(r"\b(?:PC|PJC|SSP)\s*[-/]?\s*([A-Z]{2})\b", t[:1200])
+    if m and m[1] in UF.values():
+        return "PC-" + m[1]
+    if re.search(r"POLICIA (?:JUDICIARIA )?CIVIL", t[:1800]):
+        u = uf_em(t[:1800])
+        if u:
+            return "PC-" + u
+    m = re.search(r"PROCURADORIA[- ]GERAL DO ESTADO D[EAO]\s+([A-Z ]+)|\bPGE\s*[-/]?\s*([A-Z]{2})\b", t[:1500])
+    if m:
+        u = m[2] if m[2] in UF.values() else uf_em(m[1] or "")
+        if u:
+            return "PGE-" + u
     if re.search(r"MINISTERIO PUBLICO FEDERAL", t[:800]):
         return "MPF"
     if re.search(r"MINISTERIO PUBLICO DO TRABALHO", t[:800]):
@@ -127,6 +152,9 @@ def etapa_de(txt, nome):
 
 def anos_de(txt, nome):
     base = txt[:6000]
+    m = re.search(r"(?:Aplica[çc][ãa]o|Edital)\s*:\s*((?:200[3-9]|201\d|202[0-6]))", base)
+    if m:
+        return m[1]
     m = re.search(r"(?:Janeiro|Fevereiro|Mar[cç]o|Abril|Maio|Junho|Julho|Agosto|Setembro|Outubro|Novembro|Dezembro)\s*/\s*((?:19|20)\d\d)", base, re.I)
     if m:
         return m[1]
@@ -212,6 +240,8 @@ def main():
         n = man.get("n") or concurso_de(txt) or concurso_do_nome(f)
         if not ano and n and f"{sig} {n}" in MANUAL["anos"]:     # "TRF4 14" → 2010 (provas/triagem-manual.json)
             ano = str(MANUAL["anos"][f"{sig} {n}"])
+        if not ano and sig in MANUAL["anos"]:                     # só a sigla, sem nº do concurso ("TCE-PA": 2016)
+            ano = str(MANUAL["anos"][sig])
         infos.append(dict(arq=f, p=p, sigla=sig, etapa=et, ano=ano, n=n, banca=man.get("banca") or banca_de(txt, f),
                           civel=bool(re.search(r"c[ií]vel|civil", f, re.I)), penal=bool(re.search(r"penal|criminal", f, re.I))))
     # concurso que atravessa anos (objetiva em 2015, sentença em 2016): usa o menor ano do grupo
