@@ -45,6 +45,9 @@
     ".em-sel-painel{position:fixed;z-index:99999;display:flex;flex-direction:column;box-sizing:border-box;max-height:min(70vh,34rem);" +
       "background:var(--surface,#fff);color:var(--ink,#1c2130);border:1px solid var(--surface-line,#cbd5e1);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.35);" +
       "font-family:var(--font-sans,system-ui,sans-serif);font-size:calc(.95rem * var(--fs-scale,1));}" +
+    ".em-sel-topo{flex:none;display:flex;align-items:center;gap:.4rem;margin:.6rem .6rem .3rem;}" +
+    ".em-sel-topo .em-sel-busca{flex:1;min-width:0;margin:0;}" +
+    ".em-sel-fechar{display:none;flex:none;min-height:2.6rem;padding:0 .9rem;font:inherit;font-weight:600;color:inherit;background:var(--surface-2,var(--surface,#fff));border:1px solid var(--surface-line,#cbd5e1);border-radius:8px;cursor:pointer;}" +
     ".em-sel-busca{flex:none;margin:.6rem .6rem .3rem;padding:.55rem .7rem;font:inherit;color:inherit;background:var(--surface-2,var(--surface,#fff));border:1px solid var(--surface-line,#cbd5e1);border-radius:8px;}" +
     ".em-sel-busca:focus{outline:2px solid var(--accent,#1f3a5f);outline-offset:0;}" +
     ".em-sel-chips{flex:none;display:flex;flex-wrap:wrap;gap:.35rem;padding:.2rem .6rem .4rem;}" +
@@ -62,7 +65,7 @@
     ".em-sel-item.so-resto span.em-sel-resto{color:inherit;}" +
     ".em-sel-vazio{padding:1rem;color:var(--ink-faint,#8b90a0);text-align:center;}" +
     ".em-sel-contagem{flex:none;padding:.3rem .8rem .5rem;font-size:.75em;color:var(--ink-faint,#8b90a0);}" +
-    "@media (max-width:640px){.em-sel-painel{left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;max-height:none!important;border-radius:0;}" +
+    "@media (max-width:640px){.em-sel-painel{left:0!important;right:0!important;top:0!important;bottom:0!important;width:auto!important;max-height:none!important;border-radius:0;height:100vh;height:100dvh;}.em-sel-fechar{display:block;}.em-sel-busca{font-size:16px;}" +
       ".em-sel-item{padding:.75rem .7rem;}}";
 
   function norm(t) { return String(t == null ? "" : t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -138,7 +141,12 @@
       var busca = el("input", "em-sel-busca");
       busca.type = "search"; busca.placeholder = "Digite para buscar…"; busca.setAttribute("aria-label", "Buscar");
       busca.autocomplete = "off";
-      painel.appendChild(busca);
+      var topo = el("div", "em-sel-topo");
+      var fecharBtn = el("button", "em-sel-fechar", "Fechar");
+      fecharBtn.type = "button";
+      fecharBtn.addEventListener("click", function () { fechar(); btn.focus(); });
+      topo.appendChild(busca); topo.appendChild(fecharBtn);
+      painel.appendChild(topo);
       var chipsBox = null;
       if (chipsDef) {
         chipsBox = el("div", "em-sel-chips");
