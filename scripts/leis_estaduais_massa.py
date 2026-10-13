@@ -179,7 +179,19 @@ def achar_rs(tipo, n, ano):
     return tentar_pdfs("RS", tipo, n, ano, urls)
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+def achar_pe(tipo, n, ano):
+    import leis_pe_alepe as pe
+    if tipo not in ("lei", "lc"):
+        return None
+    i = pe.achar("Lei Complementar" if tipo == "lc" else "Lei Ordinária", int(n), int(ano))
+    if not i:
+        return None
+    link = f"{pe.BASE}texto.aspx?id={i}&tipo=TEXTOATUALIZADO"
+    pg = pe.curl(link)
+    return link, pg, "", pe.paragrafos
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -190,6 +202,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "pe":
+        return achar_pe(tipo, n, ano)
     if f == "rs":
         return achar_rs(tipo, n, ano)
     if f == "mg":
