@@ -148,7 +148,38 @@ def achar_pr(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+def tentar_pdfs(uf, tipo, n, ano, urls):
+    """Primeira URL de PDF que abre e cujo texto confere com o número da norma."""
+    num = rotulo(uf, tipo, n, ano)
+    for u in urls:
+        try:
+            dados = http(u, binario=True, timeout=90)
+        except OSError:
+            continue
+        if not dados.startswith(b"%PDF"):
+            continue
+        try:
+            t = pdf_ou_ocr(dados)
+        except Exception:   # noqa: BLE001 — PDF quebrado
+            continue
+        ps = le.paragrafos_pdf(t)
+        if len(ps) >= 4 and robo.texto_confere(num, ps, u):
+            return u, t, "", le.paragrafos_pdf
+    return None
+
+
+def achar_rs(tipo, n, ano):
+    N = lc.com_ponto(n)
+    q = urllib.parse.quote
+    comp, rep = "https://www.al.rs.gov.br/filerepository/replegiscomp/", "https://www.al.rs.gov.br/filerepository/repLegis/arquivos/"
+    nome = {"lei": "Lei", "lc": "Lei Complementar", "dec": "Decreto"}.get(tipo)
+    if not nome:
+        return None
+    urls = [comp + q(f"{nome} nº {N}.pdf"), rep + q(f"{nome.upper()} {N}.pdf"), rep + q(f"{N}.pdf"), rep + q(f"{nome.upper()} {n}.pdf")]
+    return tentar_pdfs("RS", tipo, n, ano, urls)
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -159,6 +190,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "rs":
+        return achar_rs(tipo, n, ano)
     if f == "mg":
         return achar_mg(tipo, n, ano)
     if f == "pr":
