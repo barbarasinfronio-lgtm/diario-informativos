@@ -191,7 +191,20 @@ def achar_pe(tipo, n, ano):
     return link, pg, "", pe.paragrafos
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+def achar_se(tipo, n, ano):
+    for pref in {"lei": ("l",), "lc": ("c",), "dec": ("d",)}.get(tipo, ()):
+        link = f"https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/html/{pref}{n}{ano}.html"
+        try:
+            h = http(link)
+        except OSError:
+            continue
+        ps = robo.paragrafos_do_site(h)
+        if len(ps) >= 4 and robo.texto_confere(rotulo("SE", tipo, n, ano), ps, link):
+            return link, h, "", robo.paragrafos_do_site
+    return None
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -202,6 +215,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "se":
+        return achar_se(tipo, n, ano)
     if f == "pe":
         return achar_pe(tipo, n, ano)
     if f == "rs":
