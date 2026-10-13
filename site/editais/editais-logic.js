@@ -92,14 +92,16 @@
     { titulo: "Ministério Público", grupos: [
       { titulo: "Estadual e do DF", uniao: "carreira-promotor", nome: "Promotor de Justiça", teste: /^MP(?!F$|T$|M$)/ },
       { titulo: "Federal (MPF)", teste: /^MPF$/ },
-      { titulo: "do Trabalho (MPT)", teste: /^MPT$/ }
+      { titulo: "do Trabalho (MPT)", teste: /^MPT$/ },
+      { titulo: "Militar (MPM)", uniao: "carreira-promotor-militar", nome: "Promotor de Justiça Militar", teste: /^MPM$/ }
     ] },
     { titulo: "Advocacia Pública", uniao: "carreira-advogado-publico", grupos: [
       { titulo: "Advogado da União (AGU)", teste: function (e) { return e.sigla === "AGU" && !/Procurador Federal/i.test(e.titulo); } },
       { titulo: "Procurador da Fazenda Nacional (PFN)", teste: /^PFN$/ },
       { titulo: "Procurador Federal", teste: function (e) { return /Procurador Federal/i.test(e.titulo); } },
       { titulo: "Procurador do Estado", uniao: "carreira-procurador-estado", nome: "Procurador do Estado", teste: /^PGE/ },
-      { titulo: "Procurador do DF", teste: /^PG-?DF/ }
+      { titulo: "Procurador do DF", teste: /^PG-?DF/ },
+      { titulo: "Procurador do Município", uniao: "carreira-procurador-municipio", nome: "Procurador do Município", teste: /^PGM-/ }
     ] },
     { titulo: "Delegado de Polícia", uniao: "carreira-delegado", grupos: [
       { titulo: "Polícia Civil", teste: /^PC/ },
@@ -112,6 +114,9 @@
     { titulo: "Controle Externo (Tribunais de Contas)", uniao: "carreira-auditor-controle-externo", grupos: [
       { titulo: "Tribunais de Contas estaduais e do DF", teste: /^TC(E|DF)/ },
       { titulo: "Tribunal de Contas da União (TCU)", teste: /^TCU$/ }
+    ] },
+    { titulo: "Cartórios (notários e registradores)", uniao: "carreira-cartorios", grupos: [
+      { titulo: "Concursos estaduais (Tribunais de Justiça)", teste: /^CART-/ }
     ] },
     { titulo: "Exames nacionais", grupos: [
       { titulo: "Magistratura (ENAM)", uniao: "exame-enam", teste: /^ENAM$/ },
