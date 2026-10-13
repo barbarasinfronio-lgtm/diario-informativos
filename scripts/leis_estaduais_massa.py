@@ -74,7 +74,12 @@ def http(u, binario=False, timeout=60):
     r = subprocess.run(["curl", "-sL", "-m", str(timeout), "-A", UA["User-Agent"], "--fail", u], capture_output=True)
     if r.returncode:
         raise OSError(f"curl {r.returncode} em {u[:70]}")
-    return r.stdout if binario else r.stdout.decode("utf-8", "replace")
+    if binario:
+        return r.stdout
+    try:
+        return r.stdout.decode("utf-8")
+    except UnicodeDecodeError:   # páginas antigas (ex.: ALESE) vêm em Windows-1252
+        return r.stdout.decode("cp1252", "replace")
 
 
 def pdf_ou_ocr(dados):
