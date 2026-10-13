@@ -13,7 +13,7 @@ leis/texto/ + leis/dos-editais.json (aparece em "Citadas nos editais" do Diário
 
 Nunca inventa: se a fonte não tem a norma (ou o número não confere), fica em leis/estaduais-falhas.json.
 """
-import argparse, html, json, os, re, sys, time, urllib.parse, urllib.request
+import argparse, html, json, os, re, subprocess, sys, time, urllib.parse, urllib.request
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -275,7 +275,46 @@ def achar_sp(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+def ext_df(t):
+    linhas = [l.strip() for l in t.split("\n")]
+    linhas = [l for l in linhas if l and not re.match(r"(?i)^(Legisla[çc][ãa]o correlata|Texto (Compilado|Original|Atualizado))\b", l)]
+    for i, l in enumerate(linhas[:30]):
+        if re.match(r"^(LEI|DECRETO)( COMPLEMENTAR| LEGISLATIVO)?\s*N", l):
+            linhas = linhas[i:]
+            break
+    return le.paragrafos_pdf("\n".join(linhas))
+
+
+def achar_df(tipo, n, ano):
+    import ssl
+    ch = {"lei": "46000000", "lc": "47000000", "dec": "27000000"}.get(tipo)
+    if not ch:
+        return None
+    r = subprocess.run(["curl", "-sk", "-m", "60", "-A", UA["User-Agent"], "-X", "POST",
+                        f"https://www.sinj.df.gov.br/sinj/ashx/Datatable/ResultadoDePesquisaNormaDatatable.ashx?tipo_pesquisa=norma&ch_tipo_norma={ch}&nr_norma={n}&ano_assinatura={ano}",
+                        "--data", "bbusca=sinj_norma&sEcho=1&iDisplayStart=0&iDisplayLength=10"], capture_output=True)
+    dados = json.loads(r.stdout.decode("utf-8", "replace"))["aaData"]
+    for x in dados:
+        s = x["_source"]
+        if str(s["nr_norma"]).lstrip("0") != n or not str(s.get("dt_assinatura", "")).endswith(str(ano)):
+            continue
+        for campo in ("ar_atualizado", "ar_texto", "ar_original"):
+            arq = (s.get(campo) or {}).get("filename")
+            if not arq or not re.search(r"\.html?$", arq):
+                continue
+            link = f"https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma={s['ch_norma']}"
+            h = subprocess.run(["curl", "-sk", "-m", "60", "-A", UA["User-Agent"], f"https://www.sinj.df.gov.br/sinj/Norma/{s['ch_norma']}/{arq}"], capture_output=True).stdout
+            try:
+                h = h.decode("utf-8")
+            except UnicodeDecodeError:
+                h = h.decode("cp1252", "replace")
+            t = re.sub(r"(?is)<(script|style|head)\b.*?</\1>", "", h)
+            t = html.unescape(re.sub(r"<[^>]+>", "\n", t)).replace("\xa0", " ")
+            return link, t, s.get("ds_ementa") or "", ext_df
+    return None
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -286,6 +325,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "df":
+        return achar_df(tipo, n, ano)
     if f == "sp":
         return achar_sp(tipo, n, ano)
     if f == "mt":
