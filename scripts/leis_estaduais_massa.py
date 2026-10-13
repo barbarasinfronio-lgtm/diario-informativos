@@ -93,6 +93,18 @@ def pdf_ou_ocr(dados):
     return t
 
 
+def doc_texto(dados, url):
+    """.doc/.docx/.odt/.rtf: converte com o textutil do Mac."""
+    import subprocess, tempfile
+    ext = re.search(r"\.(docx?|odt|rtf)$", url, re.I)
+    if not ext:
+        return ""
+    arq = Path(tempfile.mkdtemp()) / ("a." + ext.group(1).lower())
+    arq.write_bytes(dados)
+    r = subprocess.run(["textutil", "-convert", "txt", "-stdout", str(arq)], capture_output=True, text=True)
+    return r.stdout if r.returncode == 0 else ""
+
+
 TIPO_SAPL = {"lei": ("lei ordin", "lei estadual"), "lc": ("lei complementar",), "dec": ("decreto",), "dl": ("decreto-lei", "decreto lei")}
 
 
@@ -105,10 +117,22 @@ def achar_sapl(uf, tipo, n, ano):
         if ok:
             x = ok[0]
             link = f"https://{host}/norma/{x['id']}"
-            if not x.get("texto_integral"):
-                return None
-            t = pdf_ou_ocr(http(x["texto_integral"].replace("http://", "https://"), binario=True, timeout=120))
-            return link, x["__str__"] + "\n" + t, x.get("ementa") or "", le.paragrafos_pdf
+            cab = x["__str__"] + "\n"
+            tx = (x.get("texto_integral") or "").replace("http://", "https://")
+            if tx:
+                dados = http(tx, binario=True, timeout=120)
+                if dados.startswith(b"%PDF"):
+                    return link, cab + pdf_ou_ocr(dados), x.get("ementa") or "", le.paragrafos_pdf
+                t = doc_texto(dados, tx)
+                if t:
+                    return link, cab + t, x.get("ementa") or "", le.paragrafos_pdf
+            try:   # sem arquivo: o SAPL monta o texto compilado em /ta
+                h = http(link + "/ta")
+                ps = robo.paragrafos_do_site(h)
+                if len(ps) >= 4:
+                    return link, h, x.get("ementa") or "", robo.paragrafos_do_site
+            except OSError:
+                pass
     return None
 
 
