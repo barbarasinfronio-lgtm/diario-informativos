@@ -233,7 +233,49 @@ def achar_se(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+def achar_mt(tipo, n, ano):
+    seg = {"lei": "lei.ordinaria", "lc": "lei.complementar", "dec": "decreto"}.get(tipo)
+    if not seg:
+        return None
+    h = http("https://www.al.mt.gov.br/norma-juridica?almt_form_norma_juridica_ato_busca_avancada%5Bnumero%5D="
+             f"{n}&almt_form_norma_juridica_ato_busca_avancada%5Bano%5D={ano}")
+    ach = sorted(set(re.findall(r'href="(/norma-juridica/urn:lex:br;mato\.grosso:estadual:%s:[^";]*;%s)"' % (re.escape(seg), n), h)))
+    for path in ach:
+        link = "https://www.al.mt.gov.br" + path
+        urls = [link + "/gerar-pdf-redacao?tipoTexto=compilado", link + "/gerar-pdf-redacao"]
+        r = tentar_pdfs("MT", tipo, n, ano, urls)
+        if r:
+            return link, r[1], "", r[3]
+    return None
+
+
+def ext_alesp(h):
+    ps = le.paragrafos_alesc(h)
+    for i, l in enumerate(ps[:15]):
+        if re.match(r"(?i)^(lei|decreto)\b", l):
+            return ps[i:]
+    return ps
+
+
+def achar_sp(tipo, n, ano):
+    tp = {"lei": "Lei", "lc": "Lei Complementar", "dec": "Decreto", "dl": "Decreto-Lei"}[tipo]
+    r = json.loads(http(f"https://baleg-api-prd.al.sp.gov.br/normas?page=0&size=20&numero={n}&ano={ano}&sort=desc"))["content"]
+    for x in r:
+        if x["tipo"].strip().lower() != tp.lower() or str(x["nuNorma"]).lstrip("0") != n:
+            continue
+        for u in (x.get("urlTextoAtualizado"), x.get("urlIntegraListaPesquisa")):
+            if not u:
+                continue
+            try:
+                h = http(u.replace("http://", "https://"))
+            except OSError:
+                continue
+            if len(ext_alesp(h)) >= 4:
+                return u, h, x.get("dsEmenta") or "", ext_alesp
+    return None
+
+
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -244,6 +286,10 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "sp":
+        return achar_sp(tipo, n, ano)
+    if f == "mt":
+        return achar_mt(tipo, n, ano)
     if f == "se":
         return achar_se(tipo, n, ano)
     if f == "pe":
