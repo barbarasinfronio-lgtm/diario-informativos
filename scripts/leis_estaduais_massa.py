@@ -325,7 +325,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "MA": ("ma", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "RR": ("rr", None), "MA": ("ma", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -338,6 +338,8 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "rr":
+        return achar_rr(tipo, n, ano)
     if f == "ma":
         return achar_ma(tipo, n, ano)
     if f == "pa":
@@ -478,6 +480,30 @@ def achar_ma(tipo, n, ano):
         link = f"https://alemalegis.al.ma.leg.br/sapl/protocol/legal-norm/detail/{x['id']}"
         if len(ps) >= 4 and robo.texto_confere(rotulo("MA", tipo, n, ano), ps, link):
             return link, t, x.get("ement") or "", le.paragrafos_pdf
+    return None
+
+
+def achar_rr(tipo, n, ano):
+    """Assembleia de Roraima: PDFs digitalizados em /wp-content/uploads/2019/02/ (o site da busca bloqueia o robô)."""
+    nomes = {"lc": ["Lei-complementar-no.-{N}", "Lei-complementar-No.-{N}", "Lei-Complementar-no.-{N}", "Lei-Complementar-No.-{N}"],
+             "lei": ["Lei-ordinaria-no.-{N}", "Lei-ordinaria-No.-{N}", "Lei-Ordinaria-no.-{N}", "Lei-no.-{N}", "Lei-No.-{N}"]}.get(tipo)
+    if not nomes:
+        return None
+    for N in (n.zfill(3), n):
+        for modelo in nomes:
+            u = f"https://al.rr.leg.br/wp-content/uploads/2019/02/{modelo.format(N=N)}.pdf"
+            try:
+                dados = http(u, binario=True, timeout=120)
+            except OSError:
+                continue
+            if not dados.startswith(b"%PDF"):
+                continue
+            t = pdf_ou_ocr(dados)
+            cab = re.sub(r"\s+", " ", t[:1500])
+            if not (re.search(r"N\S{0,3}\s*0*%s\b" % re.escape(n), cab, re.I) and str(ano) in cab):
+                continue
+            t = rotulo("RR", tipo, n, ano).split(" (")[0].upper().replace("ESTADUAL", "").strip() + f" Nº {n}, DE {ano}.\n" + t
+            return u, t, "", le.paragrafos_pdf
     return None
 
 
