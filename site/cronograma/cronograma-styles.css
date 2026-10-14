@@ -94,3 +94,7 @@
 /* tese de repercussão geral/repetitivo/Jurisprudência em Teses dentro do card */
 .cr-card-texto h3 { margin: 1.1rem 0 0.3rem; font-size: calc(0.9rem * var(--fs-scale, 1)); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
 .cr-card-texto > .cr-card-fonte:first-child { margin-top: 0; }
+
+/* grupos do dia: matéria nova x matéria de revisão */
+.cr-grupo { margin: 1rem 0 0.3rem; padding-bottom: 0.2rem; font-size: calc(0.8rem * var(--fs-scale, 1)); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--surface-line); }
+.cr-grupo-nova { color: var(--accent); }
