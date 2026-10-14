@@ -484,6 +484,22 @@ var label = CONFIG.labels[slugOf(p.path)] || p.title;
 addItem(label, p.path, current === normPath(p.path));
 });
 
+// Celular: o menu vira um botão "☰ Menu · página atual" que abre a lista toda
+// (a faixa que rolava de lado deixava páginas escondidas).
+var atual = ul.querySelector(".is-current");
+var toggle = document.createElement("button");
+toggle.type = "button";
+toggle.className = "em-header__toggle";
+toggle.setAttribute("aria-expanded", "false");
+toggle.setAttribute("aria-controls", "em-header-lista");
+ul.id = "em-header-lista";
+toggle.innerHTML = '<span class="em-header__burger" aria-hidden="true">\u2630</span> <span>Menu</span>' +
+(atual ? ' <span class="em-header__atual">\u00b7 ' + atual.textContent.replace(/[&<>]/g, "") + "</span>" : "");
+toggle.addEventListener("click", function () {
+var aberto = nav.classList.toggle("is-open");
+toggle.setAttribute("aria-expanded", aberto ? "true" : "false");
+});
+nav.appendChild(toggle);
 nav.appendChild(ul);
 return nav;
 }
