@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1232, ano: 2026, data: "2026-10-13", sumula: null },
     { edicao: 1231, ano: 2026, data: "2026-10-05", sumula: null },
     { edicao: 1230, ano: 2026, data: "2026-09-28", sumula: null },
     { edicao: 1229, ano: 2026, data: "2026-09-21", sumula: null },
@@ -1240,6 +1241,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 905, ano: 2026, data: "2026-10-13", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0905" },
     { edicao: 904, ano: 2026, data: "2026-10-06", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0904" },
     { edicao: 903, ano: 2026, data: "2026-09-29", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0903" },
     { edicao: 902, ano: 2026, data: "2026-09-22", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0902" },
@@ -3276,6 +3278,7 @@
   ];
 
   var CNJ_DATA = [
+    { edicao: 14, ano: 2026, data: "2026-10-13", sumula: null, link: "https://atos.cnj.jus.br/files/original193459202610136ace87e350d8d.pdf" },
     { edicao: 13, ano: 2026, data: "2026-09-14", sumula: null, link: "https://atos.cnj.jus.br/files/original214336202609146aa86a88879c5.pdf" },
     { edicao: 12, ano: 2026, data: "2026-09-04", sumula: false, link: "https://atos.cnj.jus.br/files/original211412202609046a9b34a42f24f.pdf" },
     { edicao: 11, ano: 2026, data: "2026-08-24", sumula: false, link: "https://atos.cnj.jus.br/files/original220357202608246a8cbfcd25262.pdf" },
