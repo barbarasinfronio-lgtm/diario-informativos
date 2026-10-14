@@ -601,6 +601,30 @@
     color: var(--accent-ink);
   }
 
+  .org-tab { position: relative; }
+  .org-novo {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #e5484d;
+    border: 2px solid var(--bg, #fff);
+  }
+  .badge-novo {
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: #e5484d;
+    color: #fff;
+    font-size: 0.65em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
   .org-tab .count {
     opacity: 0.75;
     font-weight: 500;
