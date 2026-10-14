@@ -325,7 +325,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -338,6 +338,8 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "ms":
+        return achar_ms(tipo, n, ano)
     if f == "es":
         return achar_es(tipo, n, ano)
     if f == "ba":
@@ -397,6 +399,36 @@ def achar_rn(tipo, n, ano):
         ya = re.search(r"(\d{4})\s*$", titulo.strip())
         if mm and mm.group(1).replace(".", "").lstrip("0") == n and ya and ya.group(1) == str(ano):
             r = tentar_pdfs("RN", tipo, n, ano, [u])
+            if r:
+                return r
+    return None
+
+
+_MS = {}
+
+
+def achar_ms(tipo, n, ano):
+    vista = {"lc": "Lei%20Complementar", "lei": "Lei%20Estadual", "dec": "Decreto"}.get(tipo)
+    if not vista:
+        return None
+    base = "https://aacpdappls.net.ms.gov.br/appls/legislacao/secoge/govato.nsf"
+    chave = (vista, str(ano))
+    if chave not in _MS:
+        if vista == "Lei%20Complementar":   # visão sem categorias: tudo de uma vez
+            h = http(f"{base}/{vista}?OpenView&Start=1&Count=20000&ExpandView", timeout=180)
+        else:   # visão por ano: expande só a categoria do ano
+            capa = http(f"{base}/{vista}?OpenView", timeout=120)
+            anos = re.findall(r"(?<!\d)((?:19|20)\d\d)\s+\d+(?=\s|<)", re.sub(r"<[^>]+>", " ", capa))
+            if str(ano) not in anos:
+                _MS[chave] = []
+                return None
+            h = http(f"{base}/{vista}?OpenView&Start=1&Count=1000&Expand={anos.index(str(ano)) + 1}", timeout=180)
+        _MS[chave] = re.findall(r'<a href="([^"]*OpenDocument)"[^>]*>([^<]*)</a>', h)
+    for href, titulo in _MS[chave]:
+        mm = re.search(r"(?i)\bn\S{0,2}\s*([\d.]+)\s*,", titulo)
+        ya = re.search(r"(\d{4})\.?\s*$", titulo.strip())
+        if mm and mm.group(1).replace(".", "").lstrip("0") == n and ya and ya.group(1) == str(ano):
+            r = tentar_htmls("MS", tipo, n, ano, ["https://aacpdappls.net.ms.gov.br" + html.unescape(href)])
             if r:
                 return r
     return None
