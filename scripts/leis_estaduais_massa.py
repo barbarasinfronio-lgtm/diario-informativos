@@ -76,6 +76,8 @@ def http(u, binario=False, timeout=60):
         raise OSError(f"curl {r.returncode} em {u[:70]}")
     if binario:
         return r.stdout
+    if r.stdout[:2] in (b"\xff\xfe", b"\xfe\xff"):   # HTML em UTF-16 (ALES)
+        return r.stdout.decode("utf-16", "replace")
     try:
         return r.stdout.decode("utf-8")
     except UnicodeDecodeError:   # páginas antigas (ex.: ALESE) vêm em Windows-1252
@@ -323,7 +325,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -336,6 +338,8 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "es":
+        return achar_es(tipo, n, ano)
     if f == "ba":
         return achar_ba(tipo, n, ano)
     if f == "df":
@@ -396,6 +400,27 @@ def achar_rn(tipo, n, ano):
             if r:
                 return r
     return None
+
+
+def tentar_htmls(uf, tipo, n, ano, urls):
+    """Primeira URL de página HTML cujo texto confere com o número da norma."""
+    num = rotulo(uf, tipo, n, ano)
+    for u in urls:
+        try:
+            h = http(u)
+        except OSError:
+            continue
+        ps = robo.paragrafos_do_site(h)
+        if len(ps) >= 4 and robo.texto_confere(num, ps, u):
+            return u, h, "", robo.paragrafos_do_site
+    return None
+
+
+def achar_es(tipo, n, ano):
+    pref = {"lei": "LEI", "lc": "LEC", "dec": "DEC"}.get(tipo)
+    if not pref:
+        return None
+    return tentar_htmls("ES", tipo, n, ano, [f"https://www3.al.es.gov.br/Arquivo/Documents/legislacao/html/{pref}{n}{ano}.html"])
 
 
 def achar_ba(tipo, n, ano):
