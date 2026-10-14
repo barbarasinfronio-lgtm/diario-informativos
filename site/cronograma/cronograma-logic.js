@@ -607,6 +607,23 @@
         return null;
       });
     }
+    // Tese/decisão: Repercussão Geral e Repetitivos vêm de rg-repetitivos-data.js (id numérico) e as
+    // Jurisprudência em Teses do STJ de stj/teses.json (id "stj-jt-ed-tese"); o resto abre só no Diário.
+    var cacheTeses = null;
+    function carregarDecisao(id) {
+      id = String(id);
+      if (/^stj-jt-/.test(id)) {
+        var pronto = cacheTeses ? Promise.resolve(cacheTeses) : fetch(BASE + "stj/teses.json").then(function (r) { if (!r.ok) throw new Error("teses"); return r.json(); }).then(function (j) { return (cacheTeses = j.itens || []); });
+        return pronto.then(function (lista) { for (var i = 0; i < lista.length; i++) if (lista[i].id === id) return lista[i]; return null; });
+      }
+      if (!/^\d+$/.test(id)) return Promise.resolve(null);
+      var ok = window.RG_REPETITIVOS_DATA ? Promise.resolve() : carregarScript(BASE + "rg-repetitivos-data.js");
+      return ok.then(function () {
+        var lista = window.RG_REPETITIVOS_DATA || [];
+        for (var i = 0; i < lista.length; i++) if (String(lista[i].id) === id) return lista[i];
+        return null;
+      });
+    }
     var fecharCard = null;
     function abrirCard(it) {
       if (fecharCard) fecharCard();
@@ -667,7 +684,16 @@
       } else {
         caixa.classList.add("cr-card-curto");
         sub.textContent = it.sub || "";
-        corpo.innerHTML = '<p>Use “Abrir no Diário” para ler a íntegra desta decisão. Depois volte aqui e marque como lida.</p>';
+        var semTese = function () { corpo.innerHTML = '<p>Use “Abrir no Diário” para ler a íntegra desta decisão. Depois volte aqui e marque como lida.</p>'; };
+        carregarDecisao(it.sk).then(function (d) {
+          if (fecharCard !== fechar) return;
+          if (!d || !d.tese) { semTese(); return; }
+          var meta = [d.orgao, d.tipoNome || (d.tipo === "rg" ? "Repercussão Geral" : d.tipo === "repetitivo" ? "Recurso Repetitivo" : ""), d.processo, d.relator ? "Rel. " + d.relator : "", d.data].filter(Boolean).join(" · ");
+          sub.textContent = d.titulo || it.sub || "";
+          corpo.innerHTML = (meta ? '<p class="cr-card-fonte">' + esc(meta) + "</p>" : "") +
+            "<h3>Tese</h3><p>" + esc(d.tese) + "</p>" +
+            (d.destaque && d.destaque.replace(/\W+/g, "") !== d.tese.replace(/\W+/g, "") ? "<h3>Em destaque</h3><p>" + esc(d.destaque) + "</p>" : "");
+        }).catch(semTese);
       }
     }
 
