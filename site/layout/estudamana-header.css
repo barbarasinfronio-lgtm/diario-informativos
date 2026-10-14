@@ -74,17 +74,35 @@
   font-weight: 600;
 }
 
-/* Celular: o menu continua quebrando em várias linhas dentro da caixa (como na página inicial), só com
-   um pouco menos de espaço entre os itens. Antes ele virava uma faixa que rolava para o lado; como ela
-   não quebra linha, a largura "natural" era de ~1600 px e podia alargar a página inteira. */
+/* Celular: o menu vira um botão "☰ Menu · página atual" que abre a lista (uma página por linha, toque
+   grande). Fechado, ocupa uma linha só e não cobre a imagem do topo; antes a lista inteira ficava
+   aberta e espremida. */
+.em-header__toggle { display: none; }
 @media (max-width: 640px) {
-  .em-header__list {
-    gap: 0.2rem;
-    padding: 0.3rem;
+  .em-header { min-width: min(15rem, calc(100vw - 2rem)); }
+  .em-header__toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.55rem 0.9rem;
+    font: inherit;
+    font-size: calc(0.95rem * var(--fs-scale));
+    font-weight: 600;
+    text-align: left;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
   }
-  .em-header__link {
-    padding: 0.4rem 0.6rem;
-  }
+  .em-header__burger { font-size: 1.25em; line-height: 1; }
+  .em-header__atual { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; color: var(--ink-soft); }
+  .em-header__list { display: none; margin-top: 0.4rem; flex-direction: column; flex-wrap: nowrap; gap: 0.15rem; padding: 0.3rem; }
+  .em-header.is-open .em-header__list { display: flex; }
+  .em-header__link { padding: 0.7rem 0.8rem; white-space: normal; }
 }
 
 /* ---- botões de tamanho da letra (A− A A+) ----------------------------
