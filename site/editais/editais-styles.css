@@ -210,3 +210,12 @@
 .ed-top .ed-incluidas { margin-top: 0.8rem; }
 .ed-incluidas li.is-read { color: var(--done); }
 .ed-incluidas li.is-read::marker { content: "✓ "; }
+
+/* pedido de carreira: busca sem resultado e rodapé da lista */
+.ed-pedido { margin: 16px 0; padding: 14px 16px; border: 1px dashed var(--em-line, #94a3b8); border-radius: 10px; background: var(--em-surface, transparent); }
+.ed-pedido-vazio { border-style: solid; }
+.ed-pedido-msg { margin: 0 0 10px; font-size: calc(14px * var(--fs-scale, 1)); line-height: 1.45; }
+.ed-pedido-linha { display: flex; gap: 8px; flex-wrap: wrap; }
+.ed-pedido-campo { flex: 1 1 14rem; min-width: 0; font: inherit; padding: 8px 10px; border: 1px solid var(--em-line, #cbd5e1); border-radius: 8px; background: inherit; color: inherit; }
+.ed-pedir { font: inherit; font-weight: 600; padding: 8px 14px; border: 1px solid var(--em-line, #cbd5e1); border-radius: 8px; background: transparent; color: inherit; cursor: pointer; }
+.ed-pedir:disabled { opacity: .7; cursor: default; }

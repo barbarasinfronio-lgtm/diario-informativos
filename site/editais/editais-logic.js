@@ -87,13 +87,14 @@
     { titulo: "Magistratura", grupos: [
       { titulo: "Estadual", uniao: "carreira-magistratura-estadual", nome: "Magistratura Estadual", teste: /^TJ/ },
       { titulo: "Federal", uniao: "carreira-magistratura-federal", nome: "Magistratura Federal", teste: /^TRF/ },
-      { titulo: "do Trabalho", teste: /^(CSJT|TRT)/ }
+      { titulo: "do Trabalho", teste: /^(CSJT|TRT|TST)/ }
     ] },
     { titulo: "Ministério Público", grupos: [
-      { titulo: "Estadual e do DF", uniao: "carreira-promotor", nome: "Promotor de Justiça", teste: /^MP(?!F$|T$|M$)/ },
+      { titulo: "Estadual e do DF", uniao: "carreira-promotor", nome: "Promotor de Justiça", teste: /^MP(?!F$|T$|M$|C-)/ },
       { titulo: "Federal (MPF)", teste: /^MPF$/ },
       { titulo: "do Trabalho (MPT)", teste: /^MPT$/ },
-      { titulo: "Militar (MPM)", uniao: "carreira-promotor-militar", nome: "Promotor de Justiça Militar", teste: /^MPM$/ }
+      { titulo: "Militar (MPM)", uniao: "carreira-promotor-militar", nome: "Promotor de Justiça Militar", teste: /^MPM$/ },
+      { titulo: "de Contas (MPC)", uniao: "carreira-procurador-contas", nome: "Procurador de Contas", teste: /^MPC-/ }
     ] },
     { titulo: "Advocacia Pública", uniao: "carreira-advogado-publico", grupos: [
       { titulo: "Advogado da União (AGU)", teste: function (e) { return e.sigla === "AGU" && !/Procurador Federal/i.test(e.titulo); } },
@@ -113,7 +114,8 @@
     ] },
     { titulo: "Controle Externo (Tribunais de Contas)", uniao: "carreira-auditor-controle-externo", grupos: [
       { titulo: "Tribunais de Contas estaduais e do DF", teste: /^TC(E|DF)/ },
-      { titulo: "Tribunal de Contas da União (TCU)", teste: /^TCU$/ }
+      { titulo: "Tribunal de Contas da União (TCU)", teste: /^TCU$/ },
+      { titulo: "Auditor – Conselheiro Substituto (antigo Auditor Substituto)", uniao: "carreira-conselheiro-substituto", nome: "Auditor – Conselheiro Substituto", teste: /^CS-/ }
     ] },
     { titulo: "Cartórios (notários e registradores)", uniao: "carreira-cartorios", grupos: [
       { titulo: "Concursos estaduais (Tribunais de Justiça)", teste: /^CART-/ }
@@ -321,12 +323,48 @@
         '<div class="ed-area-body">' + (aberta ? montarCorpo() : "") + "</div></details>";
     }).join("");
 
-    if (buscando && !achados) html = '<p class="ed-vazio">Nenhum edital encontrado para essa busca.</p>';
-    areasRoot.innerHTML = html;
+    if (buscando && !achados) html = '<p class="ed-vazio">Nenhum edital encontrado para essa busca.</p>' + caixaPedirCarreira(inputBusca.value.trim(), true);
+    areasRoot.innerHTML = html + ((buscando && !achados) ? "" : caixaPedirCarreira("", false));
     topRoot.innerHTML = top;
     infoBusca.hidden = !buscando;
     infoBusca.textContent = achados + (achados === 1 ? " edital encontrado" : " editais encontrados");
   }
+
+
+  // Busca sem resultado (ou rodapé): o leitor pode solicitar uma carreira/concurso que ainda não temos. O pedido vai
+  // para o Firestore (pedidos-carreiras/<texto>, só para quem entrou); depois a equipe monta o edital, as provas e as leis
+  // (scripts/pedidos_carreira.py lista os pedidos pendentes).
+  function chavePedidoCarreira(t) {
+    return semAcento(String(t || "")).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+  }
+  function caixaPedirCarreira(termo, vazio) {
+    return '<div class="ed-pedido' + (vazio ? " ed-pedido-vazio" : "") + '">' +
+      '<p class="ed-pedido-msg">' + (vazio
+        ? "Não temos esse concurso ainda. Peça a carreira: a gente monta o <b>edital</b>, reúne as <b>provas</b> e as <b>leis</b> e avisa aqui no site."
+        : "Não achou o seu concurso ou a sua carreira? Peça para adicionarmos: edital, provas e leis.") + "</p>" +
+      '<div class="ed-pedido-linha"><input type="text" maxlength="120" class="ed-pedido-campo" value="' + esc(termo || "") +
+      '" placeholder="Ex.: Analista Judiciário TRT 8ª Região" aria-label="Carreira ou concurso que você quer">' +
+      '<button type="button" class="ed-pedir">➕ Solicitar carreira</button></div></div>';
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".ed-pedir");
+    if (!b) return;
+    var caixa = b.closest(".ed-pedido"), msg = caixa.querySelector(".ed-pedido-msg");
+    var campo = caixa.querySelector(".ed-pedido-campo");
+    var consulta = (campo.value || "").replace(/\s+/g, " ").trim();
+    if (consulta.length < 3 || !chavePedidoCarreira(consulta)) { msg.textContent = "Escreva a carreira ou o concurso que você quer (ex.: Analista Judiciário TRT 8ª Região)."; return; }
+    if (!(window.LeisIncluidas && LeisIncluidas.logado()) || !(window.firebase && firebase.firestore)) {
+      msg.textContent = "Para solicitar uma carreira, entre com o Google ou com e-mail e senha (quadro no topo da página).";
+      return;
+    }
+    b.disabled = true;
+    firebase.firestore().doc("pedidos-carreiras/" + chavePedidoCarreira(consulta)).set({ consulta: consulta.slice(0, 120), em: new Date().toISOString() })
+      .then(function () { b.textContent = "✅ Pedido enviado"; campo.disabled = true; msg.textContent = "Pedido enviado! Vamos montar o edital, as provas e as leis desse concurso e avisar aqui no site."; })
+      .catch(function (err) {
+        if (err && err.code === "permission-denied") { b.textContent = "✅ Já foi pedida"; campo.disabled = true; msg.textContent = "Alguém já pediu essa carreira. Ela entra no site quando a gente terminar de montar."; }
+        else { b.disabled = false; msg.textContent = "Não consegui enviar o pedido agora. Tente de novo."; }
+      });
+  });
 
   // esqueleto: principal · busca · áreas · rodapé
   root.innerHTML = '<div class="ed-top"></div>' +

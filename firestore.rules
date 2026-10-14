@@ -89,6 +89,19 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Pedidos de "solicitar carreira" (Diário de Editais, busca sem resultado ou rodapé): quem entrou (conta de
+    // verdade) cria um pedido por texto; a equipe lê a lista (scripts/pedidos_carreira.py) e monta edital, provas e
+    // leis. Ninguém altera nem apaga pedidos. Sem dados pessoais no documento.
+    match /pedidos-carreiras/{id} {
+      allow get, list: if true;
+      allow create: if contaDeVerdade()
+                    && request.resource.data.keys().hasOnly(['consulta', 'em'])
+                    && id.size() <= 60
+                    && request.resource.data.consulta is string && request.resource.data.consulta.size() >= 3 && request.resource.data.consulta.size() <= 120
+                    && request.resource.data.em is string && request.resource.data.em.size() <= 40;
+      allow update, delete: if false;
+    }
+
     // Meus Cadernos (destaques e anotações): cada pessoa só lê e grava o
     // próprio caderno — ninguém mais vê, nem os grupos de estudo.
     match /cadernos/{uid} {
