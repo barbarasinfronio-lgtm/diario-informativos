@@ -323,7 +323,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -334,6 +334,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "rn":
+        return achar_rn(tipo, n, ano)
     if f == "ba":
         return achar_ba(tipo, n, ano)
     if f == "df":
@@ -360,6 +362,40 @@ def rotulo(uf, tipo, n, ano):
     if uf == "DF":
         base = base.replace("Estadual", "Distrital")
     return f"{base} ({uf}) nº {lc.com_ponto(n)}/{ano}"
+
+
+_RN = {}
+
+
+def achar_rn(tipo, n, ano):
+    sec = {"lc": "leis-complementares", "lei": "leis-ordinarias"}.get(tipo)
+    if not sec:
+        return None
+    if sec not in _RN:
+        itens = []
+        pg = 1
+        while pg <= 40:
+            try:
+                h = http(f"https://www.al.rn.leg.br/legislacao/{sec}" + (f"?page={pg}" if pg > 1 else ""))
+            except OSError:
+                break
+            achados = re.findall(r"<a href='(https://www\.al\.rn\.leg\.br/storage/legislacao/[^']+)'[^>]*>.*?</i>\s*([^<]+)<", h, re.S)
+            if not achados:
+                break
+            itens += achados
+            if f"page={pg + 1}" not in h:
+                break
+            pg += 1
+        _RN[sec] = itens
+    for u, titulo in _RN[sec]:
+        m = re.search(r"n[ºo°]\s*([\d.]+)\s*(?:de|/)\s*[\d.]*?(\d{4})?\s*$", titulo.strip())
+        mm = re.search(r"n[ºo°]\s*([\d.]+)", titulo)
+        ya = re.search(r"(\d{4})\s*$", titulo.strip())
+        if mm and mm.group(1).replace(".", "").lstrip("0") == n and ya and ya.group(1) == str(ano):
+            r = tentar_pdfs("RN", tipo, n, ano, [u])
+            if r:
+                return r
+    return None
 
 
 def achar_ba(tipo, n, ano):
