@@ -138,6 +138,15 @@ def achar_sapl(uf, tipo, n, ano):
 
 def achar_sc(tipo, n, ano):
     sufixo = {"lei": "lei", "lc": "lei_complementar"}.get(tipo)
+    if tipo == "dec":   # decretos do Executivo: busca da ALESC por número e ano
+        r = http(f"https://leis.alesc.sc.gov.br/executivo?numero={n}&ano={ano}")
+        for i in dict.fromkeys(re.findall(r"ato-normativo/executivo/(\d+)", r)):
+            link = f"https://leis.alesc.sc.gov.br/ato-normativo/executivo/{i}"
+            h = http(link)
+            ps = robo.paragrafos_do_site(h)
+            if len(ps) >= 4 and robo.texto_confere(rotulo("SC", "dec", n, ano), ps, link):
+                return link, h, "", robo.paragrafos_do_site
+        return None
     if not sufixo:
         return None
     link = f"https://leis.alesc.sc.gov.br/html/{ano}/{n}_{ano}_{sufixo}.html"
