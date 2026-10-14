@@ -19,7 +19,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Magistratura Federal",
-  "editais": ["trf5-xvi", "trf2-154-2025", "trf1-xviii-2025", "trf3-xxi-2024", "trf6-1-2025", "trf4-xviii-2022"]
+  "editais": ["trf5-xvi", "trf2-154-2025", "trf1-xviii-2025", "trf3-xxi-2024", "trf6-1-2025", "trf4-xviii-2022", "trf1-xvii-2023", "trf3-xx-2021", "trf3-xix-2018", "trf2-2018", "trf5-2017", "trf2-2016", "trf4-2016", "trf1-2015", "trf3-xviii-2015"]
  },
  {
   "id": "carreira-magistratura-estadual",
@@ -27,7 +27,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Magistratura Estadual",
-  "editais": ["tjgo-59", "tjpe-2026", "tjrs-2026", "tjsp-192", "tjma-1-2022", "tjdft-1-2022", "tjms-2023", "tjba-2026", "tjsc-11-2025", "tjse-2024", "tjpa-1-2025", "tjam-1-2024", "tjce-91-2025", "tjmt-1-2024", "tjpr-1-2025", "tjto-1-2025", "tjmg-1-2026", "tjrj-li", "tjac-1-2018", "tjal-2-2019", "tjap-x-2021", "tjes-1-2023", "tjpb-53-2015", "tjpi-1-2015", "tjrn-1-2012", "tjro-xx-2019", "tjrr-1-2015", "tjsc-33-2026"]
+  "editais": ["tjgo-59", "tjpe-2026", "tjrs-2026", "tjsp-192", "tjma-1-2022", "tjdft-1-2022", "tjms-2023", "tjba-2026", "tjsc-11-2025", "tjse-2024", "tjpa-1-2025", "tjam-1-2024", "tjce-91-2025", "tjmt-1-2024", "tjpr-1-2025", "tjto-1-2025", "tjmg-1-2026", "tjrj-li", "tjac-1-2018", "tjal-2-2019", "tjap-x-2021", "tjes-1-2023", "tjpb-53-2015", "tjpi-1-2015", "tjrn-1-2012", "tjro-xx-2019", "tjrr-1-2015", "tjsc-33-2026", "tjms-2025", "tjpe-2024", "tjsp-191-2024", "tjsc-44-2024", "tjrj-2024", "tjsp-2023", "tjrj-2023", "tjgo-58-2023", "tjpr-2023", "tjsc-62-2023", "tjsc-11-2022", "tjpe-2022", "tjpr-2021", "tjgo-2021", "tjsp-2021", "tjmg-2021", "tjsc-2019", "tjrj-2019", "tjms-2019", "tjpa-2019", "tjrs-2019", "tjce-2018", "tjmg-2018", "tjmt-2018", "tjsp-2018", "tjba-2018", "tjpr-2018", "tjsp-2017", "tjrs-2017", "tjpr-2016", "tjrs-2015", "tjrj-2015", "tjam-2015"]
  },
  {
   "id": "carreira-magistratura-trabalho",
@@ -35,7 +35,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Magistratura do Trabalho",
-  "editais": ["csjt-magistratura-trabalho-2023"]
+  "editais": ["csjt-magistratura-trabalho-2023", "tst-2017", "trt2-2016", "trt1-2016", "trt4-2016", "trt3-2015"]
  },
  {
   "id": "carreira-promotor",
@@ -43,7 +43,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Promotor de Justiça",
-  "editais": ["mpsp-97", "mpmg-61", "mp-mt-promotor-2026", "mp-go-promotor-2025", "mp-ms-xxxi-promotor-2026", "mp-rj-xxxix-promotor-2026", "mpdft-33-2025", "mpba-1-2025", "mpes-1-2025", "mpma-1-2025", "mprs-51-2025", "mpsc-45-2025", "mpac-xiii-2022", "mpal-2012", "mpam-2022", "mpap-2021", "mpce-2019", "mppa-xiii-2022", "mppb-xv-2018", "mppe-2022", "mppi-2018", "mppr-2025", "mprn-2009", "mpro-xxiii-2023", "mprr-x-2022", "mpse-xxi-2022", "mpto-10-2021"]
+  "editais": ["mpsp-97", "mpmg-61", "mp-mt-promotor-2026", "mp-go-promotor-2025", "mp-ms-xxxi-promotor-2026", "mp-rj-xxxix-promotor-2026", "mpdft-33-2025", "mpba-1-2025", "mpes-1-2025", "mpma-1-2025", "mprs-51-2025", "mpsc-45-2025", "mpac-xiii-2022", "mpal-2012", "mpam-2022", "mpap-2021", "mpce-2019", "mppa-xiii-2022", "mppb-xv-2018", "mppe-2022", "mppi-2018", "mppr-2025", "mprn-2009", "mpro-xxiii-2023", "mprr-x-2022", "mpse-xxi-2022", "mpto-10-2021", "mpsp-2024", "mpms-2024", "mpsp-2023", "mpsc-2023", "mprs-2023", "mpmg-2023", "mpgo-2023", "mpba-2023", "mpms-2022", "mpsp-2021", "mpgo-2021", "mpsc-2020", "mpsp-2019", "mpmt-2019", "mpba-2018", "mpsp-2017", "mprr-2017", "mpgo-2016"]
  },
  {
   "id": "carreira-promotor-militar",
@@ -236,7 +236,7 @@ var EDITAIS_DATA = [
    "pgm-cuiaba-v-2024",
    "pgm-natal-2023",
    "pgm-boa-vista-2019"
-  ]
+  , "pgm-manaus-2026", "pgm-canoas-2026", "pgm-niteroi-2022", "pgm-criciuma-2021", "pgm-joao-pessoa-2018"]
  },
  {
   "id": "pgm-sp-8-2023",
@@ -2724,12 +2724,1712 @@ var EDITAIS_DATA = [
   "tipo": "edital"
  },
  {
+  "id": "carreira-procurador-contas",
+  "tipo": "carreira",
+  "secao": "carreira",
+  "sigla": "Carreira",
+  "titulo": "Procurador de Contas (Ministério Público de Contas)",
+  "editais": [
+   "mpc-df-2024",
+   "mpc-ms-2023",
+   "mpc-rj-ii-2022",
+   "mpc-ro-2019"
+  , "mpc-pe-2025"]
+ },
+ {
+  "id": "carreira-conselheiro-substituto",
+  "tipo": "carreira",
+  "secao": "carreira",
+  "sigla": "Carreira",
+  "titulo": "Auditor – Conselheiro Substituto (antigo Auditor Substituto de Conselheiro)",
+  "editais": [
+   "cs-pb-2022",
+   "cs-ac-2026"
+  , "cs-es-2022", "cs-mg-2017", "cs-df-2020"]
+ },
+ {
+  "id": "mpc-df-2024",
+  "sigla": "MPC-DF",
+  "cargo": "Procurador do Ministério Público de Contas junto ao TCDF",
+  "orgao": "Ministério Público de Contas do Distrito Federal (TCDF)",
+  "titulo": "Concurso para Procurador do MPC-DF",
+  "edital": "Edital nº 1 – TCDF – Procurador, de 2 de agosto de 2024 (atualizado até o Edital nº 10/2025)",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Controle Externo e Legislação Institucional",
+     "Direito Administrativo",
+     "Direito Constitucional",
+     "Direito Civil",
+     "Direito Processual de Contas",
+     "Direito Processual Civil",
+     "Direito Penal",
+     "Direito do Trabalho",
+     "Direito Ambiental",
+     "Direito Empresarial",
+     "Direito Financeiro e Econômico",
+     "Direito Previdenciário",
+     "Direito Tributário",
+     "Conhecimentos sobre o Distrito Federal"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "eleitoral",
+    "Lei Complementar nº 64/1990"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 11.462/2023"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 6.017/2007"
+   ],
+   [
+    "ambiental",
+    "Decreto nº 99.274/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "crianca",
+    "Lei nº 8.069/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 10.741/2003"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.433/1997"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.651/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.284/2006"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.212/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 8.213/1991"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 9.717/1998"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 10.887/2004"
+   ],
+   [
+    "penal",
+    "Lei nº 11.340/2006"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 51/1985",
+   "Lei Complementar nº 94/1998",
+   "Lei nº 7.289/1984",
+   "Lei nº 7.479/1986",
+   "Lei nº 10.486/2002",
+   "Lei nº 12.086/2009",
+   "Lei nº 9.784/1999",
+   "Lei nº 8.987/1995",
+   "Lei nº 11.079/2004",
+   "Lei nº 13.019/2014",
+   "Lei nº 13.460/2017",
+   "Lei nº 14.133/2021",
+   "Decreto nº 11.462/2023",
+   "Lei nº 11.107/2005",
+   "Decreto nº 6.017/2007",
+   "Lei nº 12.846/2013",
+   "Lei Distrital nº 6.112/2018",
+   "Decreto Distrital nº 40.388/2020",
+   "Lei nº 8.429/1992",
+   "Lei Complementar Distrital nº 840/2011",
+   "Lei Complementar nº 123/2006",
+   "Lei Complementar nº 64/1990",
+   "Lei nº 12.527/2011",
+   "Lei Distrital nº 4.990/2012",
+   "Lei nº 6.015/1973",
+   "Lei nº 8.069/1990",
+   "Lei nº 10.741/2003",
+   "Lei Complementar Distrital nº 1/1994",
+   "Lei nº 13.105/2015",
+   "Lei nº 12.694/2012",
+   "Lei nº 12.850/2013",
+   "Lei nº 13.869/2019",
+   "Lei nº 9.613/1998",
+   "Lei nº 6.938/1981",
+   "Decreto nº 99.274/1990",
+   "Lei nº 9.433/1997",
+   "Lei nº 12.651/2012",
+   "Lei nº 11.284/2006",
+   "Lei nº 9.985/2000",
+   "Lei Federal nº 6.404/1976",
+   "Lei nº 11.101/2005",
+   "Lei nº 4.320/1964",
+   "Lei Complementar nº 101/2000",
+   "Lei nº 8.212/1991",
+   "Lei nº 8.213/1991",
+   "Lei nº 9.717/1998",
+   "Lei nº10.486/2002",
+   "Lei nº 10.887/2004",
+   "Lei Complementar Distrital nº 769/2008",
+   "Lei nº 11.340/2006"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "mpc-ms-2023",
+  "sigla": "MPC-MS",
+  "cargo": "Procurador de Contas Substituto do Ministério Público de Contas",
+  "orgao": "Ministério Público de Contas de Mato Grosso do Sul (TCE/MS)",
+  "titulo": "Concurso para Procurador de Contas do MPC-MS",
+  "edital": "Edital nº 1 – TCE/MS Procurador, de 6 de setembro de 2023",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Controle Externo da Administração Pública e Legislação Institucional",
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Processual de Contas",
+     "Direito Penal",
+     "Direito Financeiro e Econômico",
+     "Direito Empresarial",
+     "Direito Previdenciário",
+     "Direito Tributário"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 178/2021"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 159/2017"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 7.892/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 6.017/2007"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "ambiental",
+    "Lei nº 6.938/1981"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.651/2012"
+   ],
+   [
+    "ambiental",
+    "Lei nº 9.985/2000"
+   ],
+   [
+    "civil",
+    "Lei nº 6.766/1979"
+   ],
+   [
+    "ambiental",
+    "Lei nº 10.257/2001"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.625/1993"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 10.028/2000",
+   "Lei nº 8.443/1992",
+   "Lei nº 9.784/1999",
+   "Lei nº 8.987/1995",
+   "Lei nº 11.079/2004",
+   "Lei nº 13.019/2014",
+   "Lei nº 13.460/2017",
+   "Lei nº 8.666/1993",
+   "Lei nº 14.133/2021",
+   "Lei nº 10.520/2002",
+   "Decreto nº 7.892/2013",
+   "Lei nº 12.462/2011",
+   "Lei Complementar nº 123/2006",
+   "Lei nº 11.107/2005",
+   "Decreto nº 6.017/2007",
+   "Lei Estadual nº 1.102/1990",
+   "Lei nº 9.605/1998",
+   "Lei nº 6.938/1981",
+   "Lei nº 12.651/2012",
+   "Lei nº 9.985/2000",
+   "Lei nº 6.766/1979",
+   "Lei nº 10.257/2001",
+   "Lei nº 8.625/1993",
+   "Lei Complementar Estadual nº 72/1994",
+   "Lei Complementar Estadual nº 160/2012",
+   "Lei Estadual nº 3877/2010",
+   "Lei nº 6.015/1973",
+   "Lei nº 13.105/2015",
+   "Lei nº 12.694/2012",
+   "Lei nº 12.850/2013",
+   "Lei nº 13.869/2019",
+   "Lei nº 9.613/1998",
+   "Lei nº 4.320/1964",
+   "Lei Complementar nº 101/2000",
+   "Lei Complementar nº 178/2021",
+   "Lei Complementar nº 159/2017",
+   "Lei nº 6.404/1976",
+   "Lei nº 11.101/2005",
+   "Leis nº 8.212/1991",
+   "Lei Estadual nº 3.150/2005",
+   "Lei Estadual nº 2.557/2002",
+   "Decreto Estadual nº 11.232/2003"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "mpc-rj-ii-2022",
+  "sigla": "MPC-RJ",
+  "cargo": "Procurador do Ministério Público junto ao TCE-RJ",
+  "orgao": "Ministério Público junto ao Tribunal de Contas do Estado do Rio de Janeiro",
+  "titulo": "II Concurso para Procurador do MP junto ao TCE-RJ",
+  "edital": "Edital nº 1 – TCE/RJ, de 31 de outubro de 2022",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Controle Externo da Administração Pública",
+     "Direito Administrativo",
+     "Direito Constitucional",
+     "Direito Civil",
+     "Direito Processual",
+     "Direito Penal",
+     "Direito Econômico",
+     "Direito Empresarial",
+     "Direito Financeiro",
+     "Direito Previdenciário",
+     "Direito Tributário"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 159/2017"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 178/2021"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 7.892/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 6.017/2007"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.625/1993"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "penal",
+    "Lei nº 10.028/2000"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 106/2003",
+   "Decreto-Lei nº 220/1975",
+   "Decreto nº 2.479/1979",
+   "Lei nº 220/1975",
+   "Lei Estadual nº 382/1980",
+   "Lei nº 9.784/1999",
+   "Lei Estadual nº 5.427/2009",
+   "Lei nº 8.987/1995",
+   "Lei nº 11.079/2004",
+   "Lei nº 13.019/2014",
+   "Lei nº 13.460/2017",
+   "Lei nº 8.666/1993",
+   "Lei nº 14.133/2021",
+   "Lei nº 10.520/2002",
+   "Decreto nº 7.892/2013",
+   "Lei nº 12.462/2011",
+   "Lei Complementar nº 123/2006",
+   "Lei nº 11.107/2005",
+   "Decreto nº 6.017/2007",
+   "Lei nº 8.625/1993",
+   "Lei nº 6.015/1973",
+   "Lei nº 13.105/2015",
+   "Lei nº 12.694/2012",
+   "Lei nº 12.850/2013",
+   "Lei nº 13.869/2019",
+   "Lei nº 9.613/1998",
+   "Lei Federal nº 6.404/1976",
+   "Lei nº 11.101/2005",
+   "Lei nº 4.320/1964",
+   "Lei Complementar nº 101/2000",
+   "Lei Complementar nº 159/2017",
+   "Lei Complementar nº 178/2021",
+   "Lei nº 10.028/2000",
+   "Leis nº 8.212/1991",
+   "Lei Complementar Estadual nº 195/2021",
+   "Leis Estaduais nº 3.189/1999"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "mpc-ro-2019",
+  "sigla": "MPC-RO",
+  "cargo": "Procurador do Ministério Público de Contas",
+  "orgao": "Ministério Público de Contas de Rondônia (TCE/RO)",
+  "titulo": "Concurso para Procurador do MPC-RO",
+  "edital": "Edital nº 1 – TCE/RO – Procurador, de 25 de julho de 2019",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Controle Externo da Administração Pública",
+     "Direito Administrativo",
+     "Direito Constitucional",
+     "Direito Civil",
+     "Direito Processual Civil",
+     "Direito Penal",
+     "Direito Econômico",
+     "Direito Empresarial",
+     "Direito Financeiro",
+     "Direito Previdenciário",
+     "Direito Tributário"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "eleitoral",
+    "Lei Complementar nº 64/1990"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 7.892/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 6.017/2007"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "penal",
+    "Lei nº 12.694/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 12.850/2013"
+   ],
+   [
+    "penal",
+    "Lei nº 4.898/1965"
+   ],
+   [
+    "penal",
+    "Lei nº 9.613/1998"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 68/1992",
+   "Lei Complementar nº 154/1996",
+   "Lei Complementar nº 93/1993",
+   "Decreto nº 6.135/2007",
+   "Decreto nº 83.936/1979",
+   "Lei nº 9.784/1999",
+   "Lei nº 8.987/1995",
+   "Lei nº 11.079/2004",
+   "Lei nº 13.019/2014",
+   "Lei nº 13.460/2017",
+   "Lei nº 8.666/1993",
+   "Lei nº 10.520/2002",
+   "Decreto nº 7.892/2013",
+   "Lei nº 12.462/2011",
+   "Lei Complementar nº 123/2006",
+   "Lei nº 11.107/2005",
+   "Decreto nº 6.017/2007",
+   "Lei Complementar nº 64/1990",
+   "Lei nº 6.015/1973",
+   "Lei nº 13.105/2015",
+   "Lei nº 12.694/2012",
+   "Lei nº 12.850/2013",
+   "Lei nº 4.898/1965",
+   "Lei nº 9.613/1998",
+   "Lei Federal nº 6.404/1976",
+   "Lei nº 11.101/2005",
+   "Lei nº 4.320/1964",
+   "Leis nº 8.212/1991",
+   "Lei Complementar Estadual nº 39/2002",
+   "Decreto nº 83.936, de 6 de setembro de 1979"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "cs-pb-2022",
+  "sigla": "CS-PB",
+  "cargo": "Auditor – Conselheiro Substituto",
+  "orgao": "Tribunal de Contas do Estado da Paraíba",
+  "titulo": "Concurso para Auditor – Conselheiro Substituto do TCE-PB",
+  "edital": "Edital nº 1 – TCE/PB – Auditor – Conselheiro Substituto, de 14 de julho de 2022",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Língua Portuguesa",
+     "Ética no Serviço Público",
+     "Noções de Informática",
+     "Controle Externo da Administração Pública",
+     "Legislação Específica",
+     "Noções de Administração Orçamentária e Financeira e Orçamento Público",
+     "Administração Pública",
+     "Direito Administrativo",
+     "Direito Constitucional",
+     "Direito Financeiro",
+     "Direito Previdenciário",
+     "Noções de Direito Penal",
+     "Contabilidade Pública",
+     "Contabilidade Geral",
+     "Auditoria",
+     "Noções de Direito Empresarial",
+     "Noções de Direito Tributário"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 7.892/2013"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 6.170/2007"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.303/2016"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 9.717/1998"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 9.796/1999"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 10.887/2004"
+   ],
+   [
+    "penal",
+    "Lei nº 10.028/2000"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "tributario",
+    "Lei nº 11.941/2009"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 11.101/2005"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 131/2009",
+   "Decreto nº 3.591/2000",
+   "Lei nº 18/1993",
+   "Lei nº 11.638/2007",
+   "Lei nº 12.249/2010",
+   "Lei nº 10.180/2001",
+   "Lei nº 8.429/1992",
+   "Lei nº 12.846/2013",
+   "Lei Complementar Estadual nº 58/2003",
+   "Lei Complementar nº 101/2000",
+   "Lei nº 4.320/1964",
+   "Lei nº 12.527/2011",
+   "Lei nº 8.666/1993",
+   "Lei nº 14.133/2021",
+   "Lei nº 10.520/2002",
+   "Decreto nº 7.892/2013",
+   "Lei nº 12.462/2011",
+   "Lei nº 13.303/2016",
+   "Lei nº 8.987/1995",
+   "Lei nº 11.079/2004",
+   "Lei nº 9.717/1998",
+   "Lei nº 9.796/1999",
+   "Lei nº 10.887/2004",
+   "Lei nº 10.028/2000",
+   "Lei nº 6.404/1976",
+   "Lei nº 11.941/2009",
+   "Decreto nº 6.170/2007",
+   "Lei nº 11.101/2005",
+   "Lei nº 6.830/1980"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "cs-ac-2026",
+  "sigla": "CS-AC",
+  "cargo": "Auditor – Conselheiro Substituto",
+  "orgao": "Tribunal de Contas do Estado do Acre",
+  "titulo": "Concurso para Auditor – Conselheiro Substituto do TCE-AC",
+  "edital": "Edital nº 1 – TCE/AC, de 1º de junho de 2026 (atualizado até o Edital nº 4)",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Civil",
+     "Direito Processual de Contas",
+     "Direito Processual Civil",
+     "Direito Penal",
+     "Direito Financeiro",
+     "Direito Empresarial",
+     "Direito Tributário",
+     "Direito Previdenciário",
+     "Controle Externo e Legislação Institucional",
+     "Auditoria Governamental",
+     "Administração Orçamentária e Financeira e Orçamento Público",
+     "Administração Pública",
+     "Contabilidade Geral",
+     "Contabilidade Pública",
+     "Economia do Setor Público e da Regulação",
+     "Socioeconômicos"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 178/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.113/2020"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.303/2016"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ]
+  ],
+  "extras": [
+   "Lei nº 8.443/1992",
+   "Lei nº 101/2000",
+   "Lei Federal nº 9.784/1999",
+   "Lei Federal nº 8.987/1995",
+   "Lei Federal nº 11.079/2004",
+   "Lei Federal nº 13.019/2014",
+   "Lei Federal nº 13.460/2017",
+   "Lei Federal nº 14.133/2021",
+   "Lei Federal nº 12.462/2011",
+   "Lei Federal nº 11.107/2005",
+   "Decreto Federal nº 6.017/2007",
+   "Lei Federal nº 12.846/2013",
+   "Lei Federal nº 8.429/1992",
+   "Lei complementar nº 39/1993",
+   "Lei Federal nº 13.303/2016",
+   "Lei federal nº 8.245/1991",
+   "Lei Complementar Estadual nº 38/1993",
+   "Lei federal nº 10.028/2000",
+   "Lei federal nº 8.137/1990",
+   "Lei federal nº 1.079/1950",
+   "Lei federal nº 13.869/2019",
+   "Lei Complementar Federal nº 123/2006",
+   "Lei Federal nº 6.404/1976",
+   "Lei Complementar federal nº 116/2003",
+   "Leis Federais nº 8.212/1991",
+   "Leis Complementares federais nº 108/2001",
+   "Lei Estadual nº 4.744/2025",
+   "Lei federal nº 4.320/1964",
+   "Lei nº 14.113/2020",
+   "Lei Complementar nº 178/2021"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "cs-es-2022",
+  "sigla": "CS-ES",
+  "cargo": "Conselheiro Substituto",
+  "orgao": "Tribunal de Contas do Estado do Espírito Santo",
+  "titulo": "Concurso para Conselheiro Substituto do TCE-ES",
+  "edital": "Edital nº 002/2022 – TCE/ES, de 31 de outubro de 2022",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Tributário",
+     "Direito Financeiro",
+     "Direito Civil",
+     "Direito Penal",
+     "Direito Previdenciário",
+     "Direito Processual",
+     "Controle Externo",
+     "Contabilidade",
+     "Economia",
+     "Administração Pública"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "civil",
+    "Decreto-Lei nº 4.657/1942"
+   ],
+   [
+    "administrativo",
+    "Decreto nº 7.892/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 14.133/2021"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.637/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.790/1999"
+   ],
+   [
+    "penal",
+    "Lei nº 10.028/2000"
+   ],
+   [
+    "previdenciario",
+    "Lei nº 9.717/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 621/2012",
+   "Lei nº 4.657/1942"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "cs-mg-2017",
+  "sigla": "CS-MG",
+  "cargo": "Auditor (Conselheiro Substituto)",
+  "orgao": "Tribunal de Contas do Estado de Minas Gerais",
+  "titulo": "Concurso para Auditor (Conselheiro Substituto) do TCE-MG",
+  "edital": "Edital nº 01/2017 – TCE/MG (retificado pelo Edital nº 02/2017)",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Financeiro",
+     "Direito Tributário",
+     "Direito Penal",
+     "Direito Civil",
+     "Controle Externo",
+     "Contabilidade",
+     "Economia do Setor Público e da Regulação",
+     "Administração Pública"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "administrativo",
+    "Lei Complementar nº 141/2012"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 116/2003"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "constitucional",
+    "Lei nº 1.079/1950"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "penal",
+    "Lei nº 10.028/2000"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 5.172/1966"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 102/2008"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "mpc-pe-2025",
+  "sigla": "MPC-PE",
+  "cargo": "Procurador do Tribunal de Contas",
+  "orgao": "Ministério Público de Contas de Pernambuco (TCE-PE)",
+  "titulo": "Concurso para Procurador do Tribunal de Contas de Pernambuco",
+  "edital": "Edital nº 01/2025 – TCE-PE",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Civil e Empresarial",
+     "Direito Processual",
+     "Direito Financeiro",
+     "Direito Tributário",
+     "Direito PrevidenciáRio",
+     "Direito Penal",
+     "Direito do Trabalho",
+     "Direito Individual do Trabalho",
+     "Direito Coletivo do Trabalho",
+     "Direito Ambiental",
+     "Direito Eleitoral",
+     "Controle Externo da AdministraçÃO PúBlica",
+     "Noções de Tecnologia da Informação e de Inteligência Artificial"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "eleitoral",
+    "Lei Complementar nº 64/1990"
+   ],
+   [
+    "humanos",
+    "Decreto nº 591/1992"
+   ],
+   [
+    "humanos",
+    "Decreto nº 592/1992"
+   ],
+   [
+    "humanos",
+    "Decreto nº 678/1992"
+   ],
+   [
+    "constitucional",
+    "Lei nº 9.868/1999"
+   ],
+   [
+    "constitucional",
+    "Lei nº 9.882/1999"
+   ],
+   [
+    "civil",
+    "Lei nº 13.709/2018"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 11.417/2006"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 11.418/2006"
+   ],
+   [
+    "constitucional",
+    "Lei nº 1.079/1950"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.637/1998"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.790/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.232/2010"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "civil",
+    "Lei nº 9.610/1998"
+   ],
+   [
+    "civil",
+    "Lei nº 13.146/2015"
+   ],
+   [
+    "civil",
+    "Lei nº 8.245/1991"
+   ],
+   [
+    "civil",
+    "Lei nº 13.874/2019"
+   ],
+   [
+    "civil",
+    "Lei nº 6.766/1979"
+   ],
+   [
+    "crianca",
+    "Lei nº 8.069/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 10.741/2003"
+   ],
+   [
+    "civil",
+    "Lei nº 5.478/1968"
+   ],
+   [
+    "civil",
+    "Lei nº 11.804/2008"
+   ],
+   [
+    "civil",
+    "Lei nº 8.009/1990"
+   ],
+   [
+    "civil",
+    "Lei nº 6.015/1973"
+   ],
+   [
+    "consumidor",
+    "Lei nº 8.078/1990"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "tributario",
+    "Lei nº 6.830/1980"
+   ],
+   [
+    "tributario",
+    "Lei nº 8.397/1992"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.651/2012"
+   ],
+   [
+    "penal",
+    "Lei nº 9.605/1998"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.305/2010"
+   ],
+   [
+    "ambiental",
+    "Lei nº 12.187/2009"
+   ],
+   [
+    "processual_penal",
+    "Lei nº 4.737/1965"
+   ],
+   [
+    "eleitoral",
+    "Lei nº 9.096/1995"
+   ],
+   [
+    "eleitoral",
+    "Lei nº 9.504/1997"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ]
+  ],
+  "extras": [
+   "Lei nº 13.334/2016",
+   "Lei nº 12.600/2004",
+   "Lei nº 9.709/1998"
+  ],
+  "tipo": "edital"
+ },
+ {
+  "id": "cs-df-2020",
+  "sigla": "CS-DF",
+  "cargo": "Auditor (Conselheiro-Substituto)",
+  "orgao": "Tribunal de Contas do Distrito Federal",
+  "titulo": "Concurso para Auditor (Conselheiro-Substituto) do TCDF",
+  "edital": "Edital nº 1/2020 – TCDF – Auditor (versão do Edital nº 12, de 11 de abril de 2022)",
+  "grupos": [
+   {
+    "nome": "Conhecimentos",
+    "disciplinas": [
+     "Direito Constitucional",
+     "Direito Administrativo",
+     "Direito Civil",
+     "Direito Penal",
+     "Direito Financeiro",
+     "Direito Empresarial",
+     "Direito Tributário",
+     "Direito Previdenciário",
+     "Conhecimentos Sobre O Distrito Federal",
+     "Controle Externo e Legislação Institucional",
+     "Auditoria Governamental",
+     "Administração Orçamentária e Financeira e Orçamento Público",
+     "Administração Pública",
+     "Contábeis",
+     "Contabilidade Pública",
+     "Economia do Setor Público e da Regulação"
+    ]
+   }
+  ],
+  "leis": [
+   [
+    "constitucional",
+    "CF/1988"
+   ],
+   [
+    "empresarial",
+    "Lei Complementar nº 123/2006"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 116/2003"
+   ],
+   [
+    "tributario",
+    "Lei Complementar nº 101/2000"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.527/2011"
+   ],
+   [
+    "administrativo",
+    "Lei nº 9.784/1999"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.987/1995"
+   ],
+   [
+    "administrativo",
+    "Lei nº 11.079/2004"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.019/2014"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.460/2017"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.666/1993"
+   ],
+   [
+    "administrativo",
+    "Lei nº 10.520/2002"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.462/2011"
+   ],
+   [
+    "ambiental",
+    "Lei nº 11.107/2005"
+   ],
+   [
+    "administrativo",
+    "Lei nº 12.846/2013"
+   ],
+   [
+    "administrativo",
+    "Lei nº 8.429/1992"
+   ],
+   [
+    "administrativo",
+    "Lei nº 13.303/2016"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.655/2018"
+   ],
+   [
+    "penal",
+    "Lei nº 10.028/2000"
+   ],
+   [
+    "penal",
+    "Lei nº 8.137/1990"
+   ],
+   [
+    "constitucional",
+    "Lei nº 1.079/1950"
+   ],
+   [
+    "penal",
+    "Lei nº 13.869/2019"
+   ],
+   [
+    "empresarial",
+    "Lei nº 6.404/1976"
+   ],
+   [
+    "administrativo",
+    "Lei nº 4.320/1964"
+   ],
+   [
+    "tributario",
+    "Lei nº 11.941/2009"
+   ],
+   [
+    "civil",
+    "Lei nº 10.406/2002"
+   ],
+   [
+    "processual_civil",
+    "Lei nº 13.105/2015"
+   ]
+  ],
+  "extras": [
+   "Lei Complementar nº 94/1998",
+   "Lei nº 11.638/2007"
+  ],
+  "tipo": "edital"
+ },
+ {
   "id": "exame-enam",
   "tipo": "carreira",
   "secao": "exame",
   "sigla": "Exame",
   "titulo": "ENAM — Exame Nacional da Magistratura",
-  "editais": ["enam-2026-2"]
+  "editais": ["enam-2026-2", "enam-2026-1", "enam-2025-2", "enam-2025-1", "enam-2024-2", "enam-2024-1"]
  },
  {
   "id": "carreira-delegado",
@@ -2745,7 +4445,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Defensor Público",
-  "editais": ["dpu-2017", "dpeba-2026", "dpesp-ix", "dpe-sc-defensor-2026", "dpe-rj-xxix-defensor-2026", "dpeac-2024", "dpeal-3-2017", "dpeam-v-2025", "dpeap-ii-2022", "dpece-viii-2022", "dpdf-ii-2019", "dpees-v-2023", "dpego-iii-2021", "dpema-vii-2026", "dpemg-ix-2023", "dpemt-vii-2025", "dpepa-v-2021", "dpepb-ii-2022", "dpepe-iv-2025", "dpems-xviii-2021", "dpepi-iv-2021", "dpepr-v-2024", "dpern-2015", "dpero-v-2022", "dperr-iii-2021", "dpers-vii-2025", "dpese-iv-2021", "dpeto-iv-2021"]
+  "editais": ["dpu-2017", "dpeba-2026", "dpesp-ix", "dpe-sc-defensor-2026", "dpe-rj-xxix-defensor-2026", "dpeac-2024", "dpeal-3-2017", "dpeam-v-2025", "dpeap-ii-2022", "dpece-viii-2022", "dpdf-ii-2019", "dpees-v-2023", "dpego-iii-2021", "dpema-vii-2026", "dpemg-ix-2023", "dpemt-vii-2025", "dpepa-v-2021", "dpepb-ii-2022", "dpepe-iv-2025", "dpems-xviii-2021", "dpepi-iv-2021", "dpepr-v-2024", "dpern-2015", "dpero-v-2022", "dperr-iii-2021", "dpers-vii-2025", "dpese-iv-2021", "dpeto-iv-2021", "dpesc-2024", "dperj-2023", "dpepr-2022", "dpemt-2022", "dpesc-2021", "dpers-2021", "dperj-2021", "dpeba-2021", "dpeam-2021", "dpemg-2019", "dpesp-2018", "dpers-2018", "dperj-2018", "dpema-2018", "dpero-2017", "dpepr-2017", "dpepe-2017", "dpeap-2017", "dpeam-2017", "dpemt-2016", "dpees-2016", "dpeba-2016"]
  },
  {
   "id": "carreira-advogado-publico",
@@ -13302,7 +15002,7 @@ var EDITAIS_DATA = [
   "secao": "carreira",
   "sigla": "Carreira",
   "titulo": "Procurador do Estado",
-  "editais": ["pgece-2021", "pge-al-procurador-2026", "pge-ac-procurador-2026", "pge-es-1-2025", "pge-mg-1-2022", "pge-to-1-2025", "pge-pi-2025", "pge-mt-9-2025", "pge-rn-23", "pge-pr-24-2024", "pge-pa-23", "pge-go-15-2024", "pge-am-procurador-2022", "pge-ap-procurador-2018", "pge-ba-procurador-2013", "pge-ma-procurador-2016", "pge-ms-procurador-2021", "pge-pb-procurador-2021", "pge-pe-procurador-2018", "pge-ro-procurador-2021", "pge-rr-procurador-2023", "pge-rs-procurador-2021", "pge-sc-procurador-2022", "pge-se-procurador-2023", "pge-sp-procurador-2018", "pge-rj-procurador-2020"]
+  "editais": ["pgece-2021", "pge-al-procurador-2026", "pge-ac-procurador-2026", "pge-es-1-2025", "pge-mg-1-2022", "pge-to-1-2025", "pge-pi-2025", "pge-mt-9-2025", "pge-rn-23", "pge-pr-24-2024", "pge-pa-23", "pge-go-15-2024", "pge-am-procurador-2022", "pge-ap-procurador-2018", "pge-ba-procurador-2013", "pge-ma-procurador-2016", "pge-ms-procurador-2021", "pge-pb-procurador-2021", "pge-pe-procurador-2018", "pge-ro-procurador-2021", "pge-rr-procurador-2023", "pge-rs-procurador-2021", "pge-sc-procurador-2022", "pge-se-procurador-2023", "pge-sp-procurador-2018", "pge-rj-procurador-2020", "pge-pa-procurador-2022", "pge-es-procurador-2022", "pge-go-procurador-2021", "pge-al-procurador-2021", "pge-sc-procurador-2018", "pge-to-procurador-2017", "pge-ac-procurador-2017", "pge-ms-procurador-2016"]
  },
  {
   "id": "carreira-auditor-controle-externo",
@@ -20394,6 +22094,19926 @@ var EDITAIS_DATA = [
   ],
   "extras": ["Lei Estadual nº 17.492/2018", "Resolução CNJ nº 165/2012", "Recomendação CNJ nº 98/2021", "Resolução CONANDA nº 169/2014", "Resolução CONANDA nº 231/2022", "Lei Estadual nº 10.297/1996", "Lei Estadual nº 13.136/2004", "Lei Estadual nº 16.342/2014", "Lei Estadual nº 6.745/1985"],
   "tipo": "edital"
+ },
+ {
+   "id": "tjms-2025",
+   "sigla": "TJMS",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Mato Grosso do Sul",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2025 – TJMS",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário e Financeiro",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 4.597/1942"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.026/2020"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Decreto-Lei nº 167/1967"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.024/1974"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.840/1980"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.913/1989"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 16.105/2015",
+     "Lei nº 4.597/1942",
+     "Lei nº 3.365/1941",
+     "Lei nº 167/1967",
+     "Lei nº 1.102/1990",
+     "Lei nº 2.207/2000",
+     "Lei nº 1.511/1994",
+     "Lei nº 3.779/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpe-2024",
+   "sigla": "TJPE",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Pernambuco",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2024 – TJPE",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Financeiro e Tributário",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.119/2021"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.966/2000"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 22.626/1933"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.058/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 7.962/2013"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 9.936/2019"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "consumidor",
+       "Lei nº 14.538/2023"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.597/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.129/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.240/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 100/2007",
+     "Lei Complementar nº 28/2000",
+     "Lei nº 911/1969",
+     "Lei nº 3.365/1941",
+     "Lei nº 10.471/2003",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 3.240/1941",
+     "Lei nº 13.303/2006",
+     "Lei nº 6.123/1968"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsp-191-2024",
+   "sigla": "TJSP",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de São Paulo",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJSP 2024",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Legislação Penal Especial",
+         "Legislação Penal e Processual Penal Especial"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.608/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.785/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.811/2024"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 182/2021"
+     ],
+     [
+       "empresarial",
+       "Lei nº 14.193/2021"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.260/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.532/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 14.597/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 2.889/1956"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Decreto nº 6.022/2007"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 199/2023"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 3.708/2019",
+     "Lei nº 14.344/2023",
+     "Lei nº 201/1967",
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsc-44-2024",
+   "sigla": "TJSC",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 44/2024 – TJSC",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Financeiro e Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.119/2021"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.966/2000"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 22.626/1933"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.058/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 7.962/2013"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 9.936/2019"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "consumidor",
+       "Lei nº 14.538/2023"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.597/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.129/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.240/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 3.365/1941",
+     "Lei nº 10.471/2003",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 3.240/1941",
+     "Lei nº 14.675/2009",
+     "Lei nº 13.303/2006"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrj-2024",
+   "sigla": "TJRJ",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJRJ 2024",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Economia"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsp-2023",
+   "sigla": "TJSP",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de São Paulo",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJSP 2023",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Legislação Penal Especial"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 182/2021"
+     ],
+     [
+       "empresarial",
+       "Lei nº 14.193/2021"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrj-2023",
+   "sigla": "TJRJ",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJRJ 2023",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjgo-58-2023",
+   "sigla": "TJGO",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Goiás",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2023 – TJGO",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário e Financeiro",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 4.597/1942"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.080/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.026/2020"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Decreto-Lei nº 167/1967"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.024/1974"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.840/1980"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.913/1989"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 16.105/2015",
+     "Lei nº 4.597/1942",
+     "Lei nº 3.365/1941",
+     "Lei nº 167/1967"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpr-2023",
+   "sigla": "TJPR",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Paraná",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2023 – TJPR",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Direito Previdenciário",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política",
+         "Economia"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.119/2021"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.966/2000"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.058/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 7.962/2013"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 9.936/2019"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.597/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 7.802/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.020/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei Complementar nº 108/2001"
+     ],
+     [
+       "previdenciario",
+       "Lei Complementar nº 109/2001"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 13.876/2019"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.212/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.129/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 10.471/2003",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 13.303/2006"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsc-62-2023",
+   "sigla": "TJSC",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 62/2023 – TJSC",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Financeiro e Tributário",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.119/2021"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.966/2000"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 22.626/1933"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.058/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 14.382/2022"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 7.962/2013"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 9.936/2019"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "consumidor",
+       "Lei nº 14.538/2023"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.597/2023"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 7.802/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.129/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.240/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 3.365/1941",
+     "Lei nº 10.471/2003",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 3.240/1941",
+     "Lei nº 14.675/2009",
+     "Lei nº 13.303/2006"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsc-11-2022",
+   "sigla": "TJSC",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 11/2022 – TJSC",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Financeiro e Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 4.597/1942"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 22.626/1933"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 6.091/1974"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 491/2010",
+     "Lei Complementar nº 339/2006",
+     "Lei Complementar nº 367/2006",
+     "Lei Complementar nº 413/2008",
+     "Lei nº 911/1969",
+     "Lei nº 4.597/1942",
+     "Lei nº 3.365/1941",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 14.675/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpe-2022",
+   "sigla": "TJPE",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Pernambuco",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2022 – TJPE",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Financeiro e Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 4.597/1942"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 22.626/1933"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 6.091/1974"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 100/2007",
+     "Lei Complementar nº 28/2000",
+     "Lei Complementar nº 423/2019",
+     "Lei nº 911/1969",
+     "Lei nº 4.597/1942",
+     "Lei nº 3.365/1941",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpr-2021",
+   "sigla": "TJPR",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Paraná",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2021 – TJPR",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Direito Previdenciário",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.058/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.020/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei Complementar nº 108/2001"
+     ],
+     [
+       "previdenciario",
+       "Lei Complementar nº 109/2001"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 13.876/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 10.471/2003",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjgo-2021",
+   "sigla": "TJGO",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Goiás",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 6/2021 – TJGO",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Direito Agrário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.637/1998"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.790/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 11.076/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.024/1974"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.840/1980"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 24/1975",
+     "Lei Complementar nº 160/2017",
+     "Lei Complementar nº 161/2020",
+     "Lei Complementar nº 144/2018",
+     "Decreto nº 7.904/2013",
+     "Lei nº 13.777/2018",
+     "Lei nº 911/1969",
+     "Lei nº 14.118/2021",
+     "Lei nº 8069/1990",
+     "Lei nº 9.129/1981",
+     "Lei nº 167/1967",
+     "Lei nº 4.657/1942",
+     "Lei nº 20.756/2020",
+     "Lei nº 18.025/2013",
+     "Lei nº 18.672/2014",
+     "Lei nº 13.800/2001",
+     "Lei nº 20.489/2019"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsp-2021",
+   "sigla": "TJSP",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de São Paulo",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJSP 2021",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjmg-2021",
+   "sigla": "TJMG",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Minas Gerais",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2021 – TJMG",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.176/2017"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.683/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942",
+     "Lei nº 911/1969",
+     "Lei nº 201/1967",
+     "Lei nº 3.688/1941",
+     "Lei nº 12.403/2011",
+     "Lei nº 200/1967"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsc-2019",
+   "sigla": "TJSC",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 10/2019 – TJSC",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política",
+         "Legislação Estadual"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 4.886/1965"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 491/2010",
+     "Lei Complementar nº 339/2006",
+     "Lei Complementar nº 367/2006",
+     "Lei Complementar nº 413/2008",
+     "Lei nº 16.342/2014",
+     "Lei nº 14.675/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrj-2019",
+   "sigla": "TJRJ",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJRJ 2019",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito do Consumidor",
+         "Direitos Difusos e Coletivos"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Processual Civil e Organização Judiciária",
+         "Direitos da Criança e do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 2044/1908",
+     "Lei nº 11.343/2003"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjms-2019",
+   "sigla": "TJMS",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Mato Grosso do Sul",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2019 – TJMS",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.840/1980"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Lei nº 911/1969",
+     "Lei nº 13.777/2018",
+     "Lei nº 167/1967",
+     "Lei nº 1.102/1990",
+     "Lei nº 2.207/2000"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpa-2019",
+   "sigla": "TJPA",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Pará",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJPA 2019",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 35/1979"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 6.091/1974"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 4.886/1965"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrs-2019",
+   "sigla": "TJRS",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio Grande do Sul",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 61/2019 – TJRS",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Língua Portuguesa"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Eleitoral",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Ambiental",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Noções Gerais de Direito e Formação Humanística",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjce-2018",
+   "sigla": "TJCE",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Ceará",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJCE 2018",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Organização Judiciária do Estado do Ceará"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 4.886/1965"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei nº 9.276/1996",
+     "Lei nº 9.826/1974",
+     "Lei nº 12.342/1994",
+     "Lei nº 12.483/1995"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjmg-2018",
+   "sigla": "TJMG",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Minas Gerais",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2018 – TJMG",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 200/1967"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.176/2017"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942",
+     "Lei nº 911/1969",
+     "Lei nº 200/1967"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjmt-2018",
+   "sigla": "TJMT",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Mato Grosso",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2018 – TJMT",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito do Consumidor",
+         "Direito Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito da Criança e do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsp-2018",
+   "sigla": "TJSP",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de São Paulo",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJSP 2018",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.365/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjba-2018",
+   "sigla": "TJBA",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de Bahia",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJBA 2018",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito das Pessoas com Deficiência",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Decreto nº 3.691/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.160/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 4.886/1965"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei nº 9.276/1996"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpr-2018",
+   "sigla": "TJPR",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Paraná",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2018 – TJPR",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 6.001/1973"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.020/1995"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 11.441/2007",
+     "Lei nº 10.471/2003",
+     "Lei nº 12.663/2012",
+     "Lei nº 3.688/1941",
+     "Lei nº 201/1967"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjsp-2017",
+   "sigla": "TJSP",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado de São Paulo",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJSP 2017",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrs-2017",
+   "sigla": "TJRS",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio Grande do Sul",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 63/2017 – TJRS",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Eleitoral",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Ambiental",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Noções Gerais de Direito e Formação Humanística",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjpr-2016",
+   "sigla": "TJPR",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Paraná",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 1/2016 – TJPR",
+   "grupos": [
+     {
+       "nome": "Conteúdo programático",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrs-2015",
+   "sigla": "TJRS",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio Grande do Sul",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital nº 12/2015 – TJRS",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Língua Portuguesa"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Eleitoral",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Ambiental",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Noções Gerais de Direito e Formação Humanística",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Lei nº 5.869/1973"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjrj-2015",
+   "sigla": "TJRJ",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJRJ 2015",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito do Consumidor"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Processual Civil e Legislação Processual Civil em Vigor",
+         "Organização Judiciária",
+         "Direitos da Criança e do Adolescente",
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 2044/1908",
+     "Lei nº 11.343/2003"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tjam-2015",
+   "sigla": "TJAM",
+   "cargo": "Juiz Substituto",
+   "orgao": "Tribunal de Justiça do Estado do Amazonas",
+   "titulo": "Concurso Público para Juiz Substituto",
+   "edital": "Edital de abertura – TJAM 2015",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Sociologia do Direito",
+         "Psicologia Judiciária",
+         "Ética e Estatuto Jurídico da Magistratura Nacional",
+         "Filosofia do Direito",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 4.886/1965"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei nº 9.276/1996",
+     "Lei nº 1.762/1986"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "enam-2026-1",
+   "sigla": "ENAM",
+   "cargo": "Exame Nacional da Magistratura 2026.1",
+   "orgao": "ENFAM",
+   "titulo": "5º Exame Nacional da Magistratura",
+   "edital": "Edital nº 1/2026 – ENFAM",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.711/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ]
+   ],
+   "extras": [],
+   "tipo": "edital"
+ },
+ {
+   "id": "enam-2025-2",
+   "sigla": "ENAM",
+   "cargo": "Exame Nacional da Magistratura 2025.2",
+   "orgao": "ENFAM",
+   "titulo": "4º Exame Nacional da Magistratura",
+   "edital": "Edital nº 2/2025 – ENFAM",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.711/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ]
+   ],
+   "extras": [],
+   "tipo": "edital"
+ },
+ {
+   "id": "enam-2025-1",
+   "sigla": "ENAM",
+   "cargo": "Exame Nacional da Magistratura 2025.1",
+   "orgao": "ENFAM",
+   "titulo": "3º Exame Nacional da Magistratura",
+   "edital": "Edital nº 1/2025 – ENFAM",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.711/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ]
+   ],
+   "extras": [],
+   "tipo": "edital"
+ },
+ {
+   "id": "enam-2024-2",
+   "sigla": "ENAM",
+   "cargo": "Exame Nacional da Magistratura 2024.2",
+   "orgao": "ENFAM",
+   "titulo": "2º Exame Nacional da Magistratura",
+   "edital": "Edital nº 2/2024 – ENFAM",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.711/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ]
+   ],
+   "extras": [],
+   "tipo": "edital"
+ },
+ {
+   "id": "enam-2024-1",
+   "sigla": "ENAM",
+   "cargo": "Exame Nacional da Magistratura 2024.1",
+   "orgao": "ENFAM",
+   "titulo": "1º Exame Nacional da Magistratura",
+   "edital": "Edital nº 1/2024 – ENFAM",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direitos Humanos",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.711/2023"
+     ],
+     [
+       "civil",
+       "Lei nº 14.195/2021"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "administrativo",
+       "Decreto-Lei nº 3.365/1941"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.230/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 592/1992"
+     ]
+   ],
+   "extras": [],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf1-xvii-2023",
+   "sigla": "TRF1",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 1ª Região",
+   "titulo": "Concurso Público para Juiz Federal Substituto da 1ª Região",
+   "edital": "Edital nº 1/2023",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Previdenciário"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Financeiro e Tributário",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Econômico e Proteção ao Consumidor"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Decreto nº 3.691/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.126/2005"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 8.160/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf3-xx-2021",
+   "sigla": "TRF3",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 3ª Região",
+   "titulo": "XX Concurso para Juiz Federal Substituto da 3ª Região",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Previdenciário",
+         "Direito Econômico e de Proteção ao Consumidor",
+         "Direito Econômico e De"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Financeiro",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado",
+         "Noções Gerais de Direito e Formação Humanística",
+         "Direito e Formação"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Decreto nº 3.691/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 11.126/2005"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 8.160/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 9.991/2019"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf3-xix-2018",
+   "sigla": "TRF3",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 3ª Região",
+   "titulo": "XIX Concurso para Juiz Federal Substituto da 3ª Região",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Previdenciário",
+         "Direito Financeiro e Tributário",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado",
+         "Direito Empresarial",
+         "Direito Econômico e de Proteção ao Consumidor",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Decreto nº 3.413/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 3.691/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 11.126/2005"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 8.160/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf2-2018",
+   "sigla": "TRF2",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 2ª Região",
+   "titulo": "Concurso Público para Juiz Federal Substituto da 2ª Região",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Previdenciário",
+         "Direito Econômico e de Proteção ao Consumidor"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Financeiro e Tributário",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "tst-2017",
+   "sigla": "TST",
+   "cargo": "Juiz do Trabalho Substituto",
+   "orgao": "Tribunal Superior do Trabalho",
+   "titulo": "Concurso Público Nacional para Juiz do Trabalho Substituto",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Administrativo",
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Processual do Trabalho",
+         "Direito Civil"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Direito Internacional e Comunitário",
+         "Direito Previdenciário",
+         "Direito Empresarial",
+         "Direitos Humanos e Direitos Humanos Sociais"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Constitucional e Direito Constitucional do Trabalho",
+         "Direito da Criança, do Adolescente e do Jovem",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.815/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 1232/1962",
+     "Lei nº 13.015/2014",
+     "Lei nº 7565/1986"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf5-2017",
+   "sigla": "TRF5",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 5ª Região",
+   "titulo": "Concurso Público para Juiz Federal Substituto da 5ª Região",
+   "edital": "Edital nº 1/2017",
+   "grupos": [
+     {
+       "nome": "Disciplinas",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Previdenciário",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Econômico e De",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Empresarial",
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público E",
+         "Noções Gerais de Direito E"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 8.935/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.697/2008"
+     ]
+   ],
+   "extras": [
+     "Lei nº 11.689/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf2-2016",
+   "sigla": "TRF2",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 2ª Região",
+   "titulo": "Concurso Público para Juiz Federal Substituto da 2ª Região",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Previdênciário",
+         "Direito Econômico e de Proteção ao Consumidor"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Financeiro e Tributário",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf4-2016",
+   "sigla": "TRF4",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 4ª Região",
+   "titulo": "Concurso para Juiz Federal Substituto da 4ª Região",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Previdenciário",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Econômico e de Proteção ao Consumidor",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Empresarial",
+         "Direito Financeiro e Tributário",
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trt2-2016",
+   "sigla": "TRT2",
+   "cargo": "Juiz do Trabalho Substituto",
+   "orgao": "Tribunal Regional do Trabalho da 2ª Região",
+   "titulo": "Concurso Público para Juiz do Trabalho Substituto da 2ª Região",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas",
+       "disciplinas": [
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Internacional e Comunitário",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Previdenciário",
+         "Direito da Criança e do Adolescente",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.815/2013"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 1232/1962",
+     "Lei nº 7565/1986"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trt1-2016",
+   "sigla": "TRT1",
+   "cargo": "Juiz do Trabalho Substituto",
+   "orgao": "Tribunal Regional do Trabalho da 1ª Região",
+   "titulo": "Concurso Público para Juiz do Trabalho Substituto da 1ª Região",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Processual do Trabalho",
+         "Direito Constitucional",
+         "Direito Civil",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Direito Internacional e Comunitário",
+         "Direito Empresarial",
+         "Direito Previdenciário"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Processual Civil Será Observado O Código de Processo Civil",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 1232/1962",
+     "Lei nº 7565/1986"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trt4-2016",
+   "sigla": "TRT4",
+   "cargo": "Juiz do Trabalho Substituto",
+   "orgao": "Tribunal Regional do Trabalho da 4ª Região",
+   "titulo": "Concurso Público para Juiz do Trabalho Substituto da 4ª Região",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Processual do Trabalho",
+         "Direito Constitucional",
+         "Direito Civil",
+         "Direito da Criança e do Adolescente"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Direito Internacional e Comunitário",
+         "Direito Previdenciário",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 1232/1962",
+     "Lei nº 7565/1986"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf1-2015",
+   "sigla": "TRF1",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 1ª Região",
+   "titulo": "Concurso Público para Juiz Federal Substituto da 1ª Região",
+   "edital": "Edital de abertura (2015)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Previdenciário"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Financeiro e Tributário",
+         "Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Econômico e Proteção ao Consumidor",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trf3-xviii-2015",
+   "sigla": "TRF3",
+   "cargo": "Juiz Federal Substituto",
+   "orgao": "Tribunal Regional Federal da 3ª Região",
+   "titulo": "XVIII Concurso para Juiz Federal Substituto da 3ª Região",
+   "edital": "Edital de abertura (2015)",
+   "grupos": [
+     {
+       "nome": "Disciplinas",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Previdenciário",
+         "Direito Financeiro e Tributário",
+         "Direito Ambiental",
+         "Direito Internacional Público e Privado",
+         "Direito Empresarial",
+         "Direito Econômico e de Proteção ao Consumidor",
+         "Noções Gerais de Direito e Formação Humanística"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Decreto nº 3.413/2000"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.990/2014"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 6.593/2008",
+     "Decreto nº 6.135/2007",
+     "Lei nº 11.254/2005"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "trt3-2015",
+   "sigla": "TRT3",
+   "cargo": "Juiz do Trabalho Substituto",
+   "orgao": "Tribunal Regional do Trabalho da 3ª Região",
+   "titulo": "Concurso Público para Juiz do Trabalho Substituto da 3ª Região",
+   "edital": "Edital nº 1/2015",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Processual do Trabalho",
+         "Direito Constitucional",
+         "Direito Civil"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Direito Internacional e Comunitário",
+         "Direito Previdenciário"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Comercial",
+         "Formação Continuada, de Formação de Formadores, e Outras Atividades De",
+         "Formação Inicial Ministrados Em Âmbito Nacional Pela Escola Nacional De",
+         "Formação e Aperfeiçoamento de Magistrados do Trabalho - Enamat e Em"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ]
+   ],
+   "extras": [
+     "Decreto-Lei nº 388/1968",
+     "Decreto nº 1.232/1962",
+     "Lei nº 7.565/1986",
+     "Lei nº 388/1968",
+     "Lei nº 6.087/1974"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsp-2024",
+   "sigla": "MPSP",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de São Paulo",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2024)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito Constitucional Brasileiro",
+         "Direito da Infância e da Juventude",
+         "Direito Comercial e Empresarial",
+         "Tutela de Interesses Difusos e Coletivos",
+         "Direitos Humanos",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direitos Políticos",
+         "Processo Penal Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 11.129/2022"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "crianca",
+       "Decreto nº 99.710/1990"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.956/2001"
+     ],
+     [
+       "humanos",
+       "Decreto nº 4.886/2003"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 65.810/1969"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.037/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 8.136/2013"
+     ],
+     [
+       "humanos",
+       "Decreto nº 9.571/2018"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 734/1993",
+     "Decreto nº 7.646/2011",
+     "Decreto nº 11.793/2023"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpms-2024",
+   "sigla": "MPMS",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado do Mato Grosso do Sul",
+   "titulo": "XXX Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2024)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Direito Civil"
+       ]
+     },
+     {
+       "nome": "Grupo V",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Tutela de Interesses Difusos, Coletivos e Individuais Homogêneos",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Financeiro",
+         "Direito Eleitoral",
+         "Direito Institucional do Ministério Público"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.848/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.113/2020"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.803/1980"
+     ],
+     [
+       "civil",
+       "Decreto nº 10.604/2021"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.921/2019"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 86/1996"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.053/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.639/2003"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.683/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.840/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 14.188/2021"
+     ],
+     [
+       "penal",
+       "Lei nº 14.245/2021"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Decreto nº 70.235/1972"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 72/1994",
+     "Lei nº 3.688/1941",
+     "Lei nº 201/1967",
+     "Lei nº 79/1950",
+     "Lei nº 4.657/1942",
+     "Lei nº 9096/1995"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpt-2023",
+   "sigla": "MPT",
+   "cargo": "Procurador do Trabalho",
+   "orgao": "Ministério Público do Trabalho",
+   "titulo": "23º Concurso Público para Procurador do Trabalho",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos",
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Ambiental do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direito Processual Civil",
+         "Direito Administrativo",
+         "Direito Civil e Direito de Empresa",
+         "Direito Penal",
+         "Direito Internacional",
+         "Teoria Geral, Evolução Histórica,",
+         "Direitos De",
+         "Direitos No",
+         "Formação Histórica,",
+         "Direito Fundamental à Vida, À"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 6.858/1980"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 9.029/1995"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsp-2023",
+   "sigla": "MPSP",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de São Paulo",
+   "titulo": "95º Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Política Nacional de Incentivo à Autocomposição no Âmbito do Ministério Público",
+         "Direito Constitucional",
+         "Teoria da Constituição",
+         "Direito Constitucional Brasileiro",
+         "Direito da Infância e da Juventude",
+         "Direito Comercial e Empresarial",
+         "Tutela de Interesses Difusos e Coletivos",
+         "Direitos Humanos",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direitos Políticos",
+         "Processo Penal Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 11.129/2022"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "crianca",
+       "Decreto nº 99.710/1990"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.956/2001"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.037/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 9.571/2018"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 734/1993",
+     "Decreto nº 7.646/2011"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsc-2023",
+   "sigla": "MPSC",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário e Financeiro",
+         "Direito Eleitoral",
+         "Criminologia e Política Criminal",
+         "Língua Portuguesa",
+         "Direito Falimentar",
+         "Processo Coletivo",
+         "Direito Ambiental",
+         "Direito do Consumidor",
+         "Direitos Humanos e Cidadania"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 10.024/2019"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 6.017/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.174/2010"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.892/2013"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.232/2010"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.005/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.129/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.080/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.142/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.637/1998"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.790/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 9.310/2018"
+     ],
+     [
+       "ambiental",
+       "Decreto-Lei nº 25/1937"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.726/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 9.265/1996"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 1.079/1950"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.868/1999"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.882/1999"
+     ],
+     [
+       "consumidor",
+       "Lei nº 14.181/2021"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.185/2015"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.819/2019"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 135/2010"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.053/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 13.445/2017"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 1.001/1969"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 13.260/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.344/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.675/2018"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 7.802/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 5.626/2005"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 6.660/2008"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 7.830/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.436/2002"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.708/2003"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.732/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.812/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.661/1988"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 1.002/1969"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.240/1941"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 10.446/2002"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.830/2013"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 10.522/2002"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 187/2021",
+     "Decreto-Lei nº 406/1968",
+     "Decreto nº 2.181/1977",
+     "Decreto nº 8.235/2014",
+     "Decreto nº 6.795/2009",
+     "Decreto nº 6.523/2008",
+     "Decreto nº 9.405/2018",
+     "Lei nº 13.872/2019",
+     "Lei nº 1.001/1969",
+     "Lei nº 12.850/1913",
+     "Lei nº 3.688/1941",
+     "Lei nº 201/1967",
+     "Lei nº 3.689/1941",
+     "Lei nº 1.002/1969",
+     "Lei nº 4.657/1942",
+     "Lei nº 16.601/2015",
+     "Lei nº 13.558/2005",
+     "Lei nº 9.748/1994",
+     "Lei nº 13.517/2005",
+     "Lei nº 15.133/2010",
+     "Lei nº 14.675/2009",
+     "Lei nº 12.854/2003",
+     "Lei nº 13.553/2005",
+     "Lei nº 14.661/2009",
+     "Lei nº 17.492/2018",
+     "Lei nº 25/1937",
+     "Lei nº 8.78/1990",
+     "Lei nº 11.436/2000",
+     "Lei nº 11.402/2000",
+     "Lei nº 14.234/2021",
+     "Lei nº 406/1968",
+     "Lei nº 3.240/1941",
+     "Lei nº 14.126/2021"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mprs-2023",
+   "sigla": "MPRS",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado do Rio Grande do Sul",
+   "titulo": "L Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Formação Acadêmica",
+         "Direito Institucional do Ministério Público",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direito Processual Civil",
+         "Tutela Provisória",
+         "Direito Civil",
+         "Direito de Empresa",
+         "Direito Registral",
+         "Direito Penal",
+         "Direito Penal do Inimigo",
+         "Direito Processual Penal",
+         "Direito da Criança e do Adolescente",
+         "Direito da Pessoa Idosa",
+         "Direito da Pessoa Com Deficiência",
+         "Direito do Consumidor",
+         "Direito Ambiental",
+         "Direito Urbanístico"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 7.499/2011"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 9.310/2018"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.124/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.977/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.587/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.608/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.425/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.478/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 10.133/2019"
+     ],
+     [
+       "civil",
+       "Decreto nº 10.604/2021"
+     ],
+     [
+       "civil",
+       "Decreto nº 11.483/2023"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.921/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 12.376/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.786/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.977/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 8.935/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 11.034/2022"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 11.150/2022"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 14.181/2021"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.010/2014"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.242/1991"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.956/2001"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.213/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.494/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 7.17/2010",
+     "Lei nº 9.831/1993",
+     "Lei nº 3.185/2015",
+     "Lei nº 11.672/2001",
+     "Lei nº 14.705/2015",
+     "Lei nº 11.445/2010",
+     "Lei nº 9.437/1997"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpmg-2023",
+   "sigla": "MPMG",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Minas Gerais",
+   "titulo": "LX Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direito Tributário e Financeiro",
+         "Direito Tributário",
+         "Direito Financeiro",
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 11.129/2022"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 9.310/2018"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.124/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.977/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.587/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.425/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.786/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 13.300/2016"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.185/2015"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.913/1989"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.639/2003"
+     ],
+     [
+       "humanos",
+       "Lei nº 11.645/2008"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpgo-2023",
+   "sigla": "MPGO",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Goiás",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Legislação do Ministério Público"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito, Deverão Demonstrar",
+         "Direito Processual Penal",
+         "Legislação Penal e Processual Penal Especial",
+         "Tutela dos Interesses Difusos, Coletivos e Individuais Homogêneos",
+         "Direito Administrativo",
+         "Direito Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "humanos",
+       "Decreto nº 10.932/2022"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.272/2019"
+     ],
+     [
+       "humanos",
+       "Lei nº 11.346/2006"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 159/2017"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942",
+     "Lei nº 13.341/2022"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpba-2023",
+   "sigla": "MPBA",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Bahia",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Direitos Transindividuais",
+         "Legislação Institucional"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.005/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.113/2020"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.587/2012"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.921/2019"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.185/2015"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 14.344/2022"
+     ],
+     [
+       "humanos",
+       "Decreto nº 10.502/2020"
+     ],
+     [
+       "humanos",
+       "Decreto nº 10.932/2022"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.083/2010"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.404/2010"
+     ],
+     [
+       "humanos",
+       "Decreto nº 9.296/2018"
+     ],
+     [
+       "humanos",
+       "Decreto nº 9.404/2018"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.172/2001"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.880/2004"
+     ],
+     [
+       "humanos",
+       "Lei nº 11.346/2006"
+     ],
+     [
+       "humanos",
+       "Lei nº 11.947/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 13.445/2017"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.344/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 6040/2007",
+     "Decreto nº 7.272/2010",
+     "Decreto nº 17.921/2017",
+     "Decreto nº 16.963/2016",
+     "Decreto nº 16.366/2015",
+     "Decreto nº 15.682/2014",
+     "Lei nº 13.204/2013",
+     "Lei nº 4.657/1942"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpms-2022",
+   "sigla": "MPMS",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado do Mato Grosso do Sul",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo V",
+       "disciplinas": [
+         "Tutela de Interesses Difusos, Coletivos e Individuais Homogêneos",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direito Institucional do Ministério Público"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.113/2020"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.080/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.142/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.803/1980"
+     ],
+     [
+       "civil",
+       "Decreto nº 10.604/2021"
+     ],
+     [
+       "civil",
+       "Decreto nº 9.921/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.053/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.639/2003"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.683/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.840/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.212/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 72/1994",
+     "Lei nº 10.001/2000",
+     "Lei nº 3.688/1941",
+     "Lei nº 201/1967",
+     "Lei nº 10.695/2003"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsp-2021",
+   "sigla": "MPSP",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de São Paulo",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Processual Penal",
+         "Direito da Infância e da Juventude",
+         "Direitos Humanos",
+         "Direito Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito Comercial e Empresarial",
+         "Tutela de Interesses Difusos e Coletivos",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direitos Políticos",
+         "Processo Penal Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 14.192/2021"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.639/2003"
+     ],
+     [
+       "humanos",
+       "Lei nº 11.645/2008"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 105/2002",
+     "Lei Complementar nº 734/1993",
+     "Lei nº 201/1967",
+     "Lei nº 14.208/2021",
+     "Lei nº 14.197/2021"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpgo-2021",
+   "sigla": "MPGO",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Goiás",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Legislação do Ministério Público"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Processual Penal",
+         "Legislação Penal e Processual Penal Especial",
+         "Tutela dos Interesses Difusos, Coletivos e Individuais Homogêneos",
+         "Direito Administrativo",
+         "Direito Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsc-2020",
+   "sigla": "MPSC",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2020)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral,",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Falimentar"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Processo Seletivo Preambular Objetivo Na Central de Atendimento ao Candidato Do",
+         "Língua Portuguesa",
+         "Processo Coletivo,",
+         "Direito Ambiental",
+         "Direito do Consumidor",
+         "Direito da Criança e Do",
+         "Processo Preambular Objetivo, Feita Com Base Nas Marcações das Folhas De"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 10.024/2019"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 6.017/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.174/2010"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.892/2013"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.232/2010"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.005/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.080/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.142/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.637/1998"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.790/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 9.310/2018"
+     ],
+     [
+       "ambiental",
+       "Decreto-Lei nº 25/1937"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 1.060/1950"
+     ],
+     [
+       "civil",
+       "Lei nº 10.048/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.726/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 9.265/1996"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 1.079/1950"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.868/1999"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.882/1999"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Decreto nº 9.603/2018"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.185/2015"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.819/2019"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 135/2010"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 7.053/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 13.445/2017"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 1.001/1969"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 13.260/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.344/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.840/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 7.802/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 5.626/2005"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 6.660/2008"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 7.830/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.436/2002"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.708/2003"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.419/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.732/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.812/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.661/1988"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.437/1992"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 1.002/1969"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.240/1941"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 10.446/2002"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.830/2013"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 10.522/2002"
+     ]
+   ],
+   "extras": [
+     "Decreto-Lei nº 406/1968",
+     "Decreto nº 8.235/2014",
+     "Decreto nº 6.795/2009",
+     "Decreto nº 6.523/2008",
+     "Decreto nº 9.405/2018",
+     "Lei nº 1.001/1969",
+     "Lei nº 13.869/1919",
+     "Lei nº 12.850/1913",
+     "Lei nº 3.688/1941",
+     "Lei nº 201/1967",
+     "Lei nº 3.689/1941",
+     "Lei nº 1.002/1969",
+     "Lei nº 4.657/1942",
+     "Lei nº 16.601/2015",
+     "Lei nº 13.558/2005",
+     "Lei nº 9.748/1994",
+     "Lei nº 13.517/2005",
+     "Lei nº 15.133/2010",
+     "Lei nº 14.675/2009",
+     "Lei nº 12.854/2003",
+     "Lei nº 13.553/2005",
+     "Lei nº 14.661/2009",
+     "Lei nº 17.492/2018",
+     "Lei nº 25/1937",
+     "Lei nº 11.436/2000",
+     "Lei nº 11.402/2000",
+     "Lei nº 12.101/2009",
+     "Lei nº 406/1968",
+     "Lei nº 3.240/1941"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpt-2019",
+   "sigla": "MPT",
+   "cargo": "Procurador do Trabalho",
+   "orgao": "Ministério Público do Trabalho",
+   "titulo": "21º Concurso Público para Procurador do Trabalho",
+   "edital": "Edital de abertura (2019)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos",
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direito Civil e de Empresa",
+         "Direito Processual Civil",
+         "Direito Administrativo",
+         "Direito Previdenciário da Seguridade Social",
+         "Direito Penal",
+         "Direito Internacional",
+         "Direito Comunitário",
+         "Direito Civil e Direito de Empresa",
+         "Processo ou Fase de Conhecimento, de Liquidação e de Execução ou Cumprimento De",
+         "Direito Internacional e Direito Comunitário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsp-2019",
+   "sigla": "MPSP",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de São Paulo",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2019)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito da Infância e da Juventude",
+         "Direito Comercial e Empresarial",
+         "Tutela de Interesses Difusos e Coletivos",
+         "Direitos Humanos",
+         "Direito Administrativo",
+         "Direito Eleitoral"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 734/1993"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpmt-2019",
+   "sigla": "MPMT",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado do Mato Grosso",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2019)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Língua Portuguesa",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito Humanos",
+         "Direito Eleitoral",
+         "Direito Administrativo",
+         "Direito Financeiro e Tributário",
+         "Direito Tributário",
+         "Direito Financeiro",
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.560/1992"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 1.079/1950"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Decreto nº 99.710/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.609/1998"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 3.688/1941"
+     ],
+     [
+       "penal",
+       "Lei nº 1.521/1951"
+     ],
+     [
+       "penal",
+       "Lei nº 10.028/2000"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 13.260/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 13.344/2016"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.176/1991"
+     ],
+     [
+       "penal",
+       "Lei nº 9.263/1996"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.459/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 416/2010",
+     "Lei Complementar nº 24/1975",
+     "Lei nº 3.688/1941",
+     "Lei nº 8.930/1994",
+     "Lei nº 11.464/2007",
+     "Lei nº 9.080/1995",
+     "Lei nº 9.695/1998",
+     "Lei nº 201/1967",
+     "Lei nº 11.705/2008",
+     "Lei nº 9.677/1998",
+     "Lei nº 13.497/2017",
+     "Lei nº 13.546/2017",
+     "Lei nº 4.657/1942",
+     "Lei nº 12.112/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpba-2018",
+   "sigla": "MPBA",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Bahia",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Processo Seletivo e Oportunamente As Divulgará, Com A Adequada Antecedência,",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direitos Transindividuais",
+         "Legislação Institucional",
+         "Direito, Devidamente Registrado Pelo Ministério da Educação no Ato da Inscrição"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ]
+   ],
+   "extras": [
+     "Lei nº 6.677/1994"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpt-2017",
+   "sigla": "MPT",
+   "cargo": "Procurador do Trabalho",
+   "orgao": "Ministério Público do Trabalho",
+   "titulo": "20º Concurso Público para Procurador do Trabalho",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos",
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direito Civil e de Empresa",
+         "Direito Processual Civil",
+         "Direito Administrativo",
+         "Direito Previdenciário da Seguridade Social",
+         "Direito Penal",
+         "Direito Internacional e Comunitário",
+         "Direito Civil e Direito de Empresa",
+         "Processo ou Fase de Conhecimento, de Liquidação e de Execução ou Cumprimento De",
+         "Direito Internacional e Direito Comunitário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpsp-2017",
+   "sigla": "MPSP",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de São Paulo",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito da Infância e da Juventude",
+         "Direito Comercial e Empresarial",
+         "Tutela de Interesses Difusos e Coletivos",
+         "Direitos Humanos",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Direito Ministrados Pelas Escolas do Ministério Público, da Magistratura e Da"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 734/1993"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mprr-2017",
+   "sigla": "MPRR",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Roraima",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Constitucional",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Tributário",
+         "Direito da Criança e do Adolescente",
+         "Direito do Consumidor",
+         "Direito Eleitoral",
+         "Direito Ambiental",
+         "Direito Agrário",
+         "Direito Empresarial",
+         "Legislação Extravagante",
+         "Legislação do Ministério Público",
+         "Língua Portuguesa",
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 6.017/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 6.170/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.892/2013"
+     ],
+     [
+       "administrativo",
+       "Lei Complementar nº 75/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.504/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 6.969/1981"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.629/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 1.318/1854"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Decreto-Lei nº 25/1937"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 7.508/2011"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 6.091/1974"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 6.996/1982"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.096/1995"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "empresarial",
+       "Lei nº 9.279/1996"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.551/2000"
+     ],
+     [
+       "humanos",
+       "Decreto nº 65.810/1969"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 4.737/1965"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.960/1989"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 3/1994",
+     "Lei Complementar nº 053/2001",
+     "Lei nº 9394/1996",
+     "Lei nº 11.689/2008",
+     "Lei nº 9.513/1997",
+     "Lei nº 7.444/1985",
+     "Lei nº 11.300/2006",
+     "Lei nº 12.034/2009",
+     "Lei nº 13.165/2015",
+     "Lei nº 25/1937",
+     "Lei nº 7.437/1985",
+     "Lei nº 10.678/2003"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpgo-2016",
+   "sigla": "MPGO",
+   "cargo": "Promotor de Justiça",
+   "orgao": "Ministério Público do Estado de Goiás",
+   "titulo": "Concurso Público para Promotor de Justiça Substituto",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Penal, Processual Penal e Legislação Criminal Especial",
+         "Direito Civil, Direito Processual Civil, Tutela de Interesses Difusos,",
+         "Direito Constitucional, Administrativo, Eleitoral e Legislação Do",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Legislação Penal e Processual Penal Especial",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Tutela dos Interesses Difusos, Coletivos e Individuais",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Eleitoral",
+         "Legislação do Ministério Público",
+         "Direito Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.625/1993"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 6.135/2007"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "mpf-2016",
+   "sigla": "MPF",
+   "cargo": "Procurador da República",
+   "orgao": "Ministério Público Federal",
+   "titulo": "Concurso Público para Procurador da República",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional e Metodologia Jurídica",
+         "Direitos das Comunidades Remanescentes de Quilombos e de Comunidades",
+         "Direito Eleitoral",
+         "Direito Administrativo e Direito Ambiental",
+         "Direito Tributário e Direito Financeiro",
+         "Direito Internacional Público e Privado",
+         "Direito Econômico e Direito do Consumidor",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Tutela Jurisdicional dos Direitos e Interesses Coletivos, Difusos e Individuais",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Princípios e Questões Relativas Aos Inquéritos Policiais e Investigações"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 1.079/1950"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 135/2010"
+     ],
+     [
+       "eleitoral",
+       "Lei Complementar nº 64/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 201/1967"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.694/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.212/1991"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 13.256/2016"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ],
+     [
+       "tributario",
+       "Lei nº 11.941/2009"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942",
+     "Lei nº 12.843/2013",
+     "Lei nº 201/1967"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpesc-2024",
+   "sigla": "DPE-SC",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2024)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito da Criança e do Adolescente",
+         "Direitos Humanos",
+         "Direito Penal",
+         "Direito Processual Penal e Execução Penal",
+         "Direito Civil e Empresarial",
+         "Direito Processual Civil",
+         "Direitos Difusos e Coletivos",
+         "Direito do Consumidor",
+         "Direito Administrativo e Direito Tributário",
+         "Filosofia do Direito e Sociologia Jurídica",
+         "Princípios e Atribuições Institucionais da Defensoria Pública",
+         "Direito Humanos",
+         "Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dperj-2023",
+   "sigla": "DPE-RJ",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Rio de Janeiro",
+   "titulo": "XXVIII Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2023)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direitos dos Titulares",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Empresarial",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito de Execução Penal",
+         "Princípios para A Proteção de Todas As Pessoas Submetidas A Qualquer Forma",
+         "Direito Constitucional",
+         "Direitos Humanos das Pessoas Em Situação de Vulnerabilidade"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 6.135/2007",
+     "Decreto nº 83.936/1979",
+     "Decreto nº 8.539/2015"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpepr-2022",
+   "sigla": "DPE-PR",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Paraná",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito da Criança e do Adolescente",
+         "Direitos Humanos",
+         "Direito Penal e Criminologia",
+         "Direito Processual Penal e Execução Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direitos Difusos e Coletivos",
+         "Direito do Consumidor",
+         "Direito Administrativo",
+         "Filosofia do Direito e Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpemt-2022",
+   "sigla": "DPE-MT",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Mato Grosso",
+   "titulo": "VI Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito da Criança e do Adolescente",
+         "Direito do Consumidor",
+         "Direitos Difusos e Coletivos",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito de Execução Penal",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direitos Humanos",
+         "Princípios e Atribuições Institucionais da Defensoria Pública"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Lei nº 11.689/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpesc-2021",
+   "sigla": "DPE-SC",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos",
+         "Direito Administrativo e Direito Tributário",
+         "Direito da Execução Penal",
+         "Direito da Criança e do Adolescente",
+         "Direito Civil e Direito Empresarial",
+         "Direito Processual Civil",
+         "Direito do Consumidor e Direitos Difusos e Coletivos",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Princípios e Atribuições Institucionais da Defensoria Pública",
+         "Sociologia Jurídica e Filosofia Jurídica",
+         "Direito Civil e Empresarial",
+         "Direitos Difusos e Coletivos",
+         "Filosofia Jurídica",
+         "Direito Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 132/2009",
+     "Lei nº 11.689/2008",
+     "Lei nº 14.069/2020",
+     "Lei nº 14.046/2020"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpers-2021",
+   "sigla": "DPE-RS",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Rio Grande do Sul",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito das Famílias"
+       ]
+     },
+     {
+       "nome": "Bloco IV",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito das Execuções"
+       ]
+     },
+     {
+       "nome": "Bloco V",
+       "disciplinas": [
+         "Direitos Humanos",
+         "Direito Institucional"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.979/2020"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.977/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 12.965/2014"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 4.591/1964"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.515/1977"
+     ],
+     [
+       "civil",
+       "Lei nº 8.899/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 9.278/1996"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "consumidor",
+       "Lei nº 9.656/1998"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.257/2016"
+     ],
+     [
+       "crianca",
+       "Lei nº 13.431/2017"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei nº 14.112/2020"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "humanos",
+       "Decreto nº 8.136/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.845/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.847/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 13.445/2017"
+     ],
+     [
+       "humanos",
+       "Lei nº 9.474/1997"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.742/1993"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.671/2008"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.037/2009"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 132/2009",
+     "Decreto nº 47.594/2010",
+     "Decreto nº 8.154/2013",
+     "Lei nº 6.766/1977",
+     "Lei nº 14.030/2020",
+     "Lei nº 14.046/2020",
+     "Lei nº 10.962/2004",
+     "Lei nº 13.455/2017",
+     "Lei nº 14.016/2020",
+     "Lei nº 2.848/1940",
+     "Lei nº 3.689/1941",
+     "Lei nº 6.368/1976",
+     "Lei nº 8.742/1992",
+     "Lei nº 8.069/1090"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dperj-2021",
+   "sigla": "DPE-RJ",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Tutela Coletiva",
+         "Direito Empresarial",
+         "Princípios Institucionais da Defensoria Pública",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito de Execução Penal",
+         "Direito Constitucional",
+         "Direitos Humanos das Pessoas Em Situação de Vulnerabilidade",
+         "Direito Administrativo",
+         "Direito da Criança e do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 141/2012"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.979/2020"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.142/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.637/1998"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei nº 4.657/1942"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpeba-2021",
+   "sigla": "DPE-BA",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado da Bahia",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direitos Humanos",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito da Seguridade Social",
+         "Direito Penal",
+         "Direito Processual Civil",
+         "Execução Penal e Direitos Humanos",
+         "Direito Processual Penal e Execução Penal",
+         "Direito Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.089/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 26/2006",
+     "Lei Complementar nº 46/2018",
+     "Lei nº 11.689/2008",
+     "Lei nº 6.677/1994"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpeam-2021",
+   "sigla": "DPE-AM",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Amazonas",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direitos Humanos",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito do Idoso",
+         "Direito do Consumidor",
+         "Direito à Saúde",
+         "Direito Antidiscriminatório"
+       ]
+     },
+     {
+       "nome": "Bloco IV",
+       "disciplinas": [
+         "Direito da Criança e do Adolescente",
+         "Direito Difusos e Coletivos",
+         "Filosofia e Sociologia Jurídica",
+         "Princípios e Atribuições Institucionais da Defensoria Pública"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Processual Penal e Execução Penal",
+         "Direitos Difusos e Coletivos",
+         "Filosofia, Filosofia do Direito, Sociologia e Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.852/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 13.869/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.807/1999"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 01/1990",
+     "Lei Complementar nº 132/2009",
+     "Lei nº 3.088/2006",
+     "Lei nº 4.333/2016",
+     "Lei nº 11.689/2008",
+     "Lei nº 14.069/2020",
+     "Lei nº 14.046/2020"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpemg-2019",
+   "sigla": "DPE-MG",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Minas Gerais",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2019)",
+   "grupos": [
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Legislação Especial",
+         "Direitos Humanos",
+         "Legislação Específica"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Constitucional, Financeiro e Tributário",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil e Empresarial",
+         "Direito Processual Civil",
+         "Direito de Execução Penal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 12.414/2011"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.671/2008"
+     ]
+   ],
+   "extras": [
+     "Lei nº 3.688/1941",
+     "Lei nº 11079/2004"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpesp-2018",
+   "sigla": "DPE-SP",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de São Paulo",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Processual Penal - Fábio Jacyntho Jorge",
+         "Direito Civil e Direito Empresarial - Bruna Simões França",
+         "Direitos Difusos e Coletivos - Aluísio Iunes Monti Ruggeri Re",
+         "Direito da Criança e do Adolescente - Flávio Américo Frasseto",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Penal",
+         "Direito Empresarial",
+         "Direito Processual Civil",
+         "Direitos Humanos",
+         "Filosofia do Direito e Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 132/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpers-2018",
+   "sigla": "DPE-RS",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Rio Grande do Sul",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Língua Portuguesa",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito das Execuções Penais",
+         "Direitos Humanos",
+         "Direito da Criança e do Adolescente",
+         "Direito Institucional",
+         "Direito da Criança do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "humanos",
+       "Decreto nº 8.136/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.847/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 9.474/1997"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.671/2008"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 8.154/2013"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dperj-2018",
+   "sigla": "DPE-RJ",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Rio de Janeiro",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Empresarial",
+         "Tutela Coletiva",
+         "Princípios Institucionais da Defensoria Pública",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito de Execução Penal",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito da Criança e do Adolescente"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 12.594/2012"
+     ],
+     [
+       "penal",
+       "Lei nº 12.984/2014"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpema-2018",
+   "sigla": "DPE-MA",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Maranhão",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Civil, Agrário e Comercial",
+         "Direito Penal",
+         "Direito Processual Civil",
+         "Direito Processual Penal",
+         "Direito de Execução Penal",
+         "Direito Administrativo",
+         "Formação Humanística",
+         "Direito do Consumidor",
+         "Direitos Humanos",
+         "Legislação e Princípios Institucionais da Defensoria Pública",
+         "Direito da Criança e do Adolescente",
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Lei nº 11.689/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpero-2017",
+   "sigla": "DPE-RO",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Rondônia",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direitos Humanos",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito do Consumidor",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Direito da Criança e do Adolescente",
+         "Sociologia Jurídica",
+         "Tutela Coletiva",
+         "Direito dos Idosos e das Pessoas Com Deficiência",
+         "Princípios e Funções Institucionais da Defensoria Pública"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Penal e Legislação Penal Especial",
+         "Teoria Geral do Direito e da Política"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 117/1994",
+     "Decreto nº 3956/2001",
+     "Lei nº 10.097/2000"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpepr-2017",
+   "sigla": "DPE-PR",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Paraná",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito da Criança e do Adolescente",
+         "Direitos Humanos",
+         "Direito Penal e Criminologia",
+         "Direito Processual Penal e Execução Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direitos Difusos e Coletivos",
+         "Direito do Consumidor",
+         "Direito Administrativo",
+         "Filosofia do Direito e Sociologia Jurídica",
+         "Direito Difusos e Coletivos e Direito do Consumidor",
+         "Filosofia do Direito e Sociologia Juridica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.318/2010"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 13.260/2016"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpepe-2017",
+   "sigla": "DPE-PE",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Pernambuco",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Constitucional",
+         "Direito da Infância e da Juventude",
+         "Direito das Execuções Penais",
+         "Direito do Consumidor",
+         "Direito Institucional",
+         "Direitos Humanos",
+         "Direito Tributário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Decreto nº 678/1992"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.671/2008"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 20/1998",
+     "Decreto nº 6.593/2008",
+     "Decreto nº 6.135/2007",
+     "Decreto nº 83.936/1979",
+     "Decreto nº 6.877/2008",
+     "Decreto nº 7.626/2011",
+     "Lei nº 5.247/1991",
+     "Lei nº 14.538/2011",
+     "Lei nº 9394/1996",
+     "Lei nº 11.689/2008",
+     "Lei nº 6.123/1968",
+     "Lei nº 9.513/1997",
+     "Lei nº 11.340/2016",
+     "Lei nº 11.788/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpeap-2017",
+   "sigla": "DPE-AP",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Amapá",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Direito Empresarial",
+         "Direito Tributário",
+         "Direitos Humanos",
+         "Direito Oficial ou Reconhecida Pelo Mec, Desde Que O"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.906/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 4.657/1942"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 24/1975",
+     "Decreto nº 3.248/2017",
+     "Lei nº 11.689/2008",
+     "Lei nº 8069/1990",
+     "Lei nº 4.657/1942"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpeam-2017",
+   "sigla": "DPE-AM",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Amazonas",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Bloco I",
+       "disciplinas": [
+         "Direitos Humanos",
+         "Direito Constitucional",
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Bloco II",
+       "disciplinas": [
+         "Direito Penal",
+         "Direito Processual Penal"
+       ]
+     },
+     {
+       "nome": "Bloco III",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito do Idoso",
+         "Direito do Consumidor",
+         "Direito Empresarial",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Bloco IV",
+       "disciplinas": [
+         "Direito da Criança e do Adolescente",
+         "Direito Difusos e Coletivos",
+         "Filosofia e Sociologia Jurídica",
+         "Sociologia Jurídica"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei Complementar nº 80/1994"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 57.663/1966"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 8.842/1994"
+     ],
+     [
+       "civil",
+       "Lei nº 9.492/1997"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 10.216/2001"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Decreto nº 2.044/1908"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 5.474/1968"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 7.357/1985"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 12.435/2011"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 01/1990",
+     "Lei nº 3.088/2006",
+     "Lei nº 11.689/2008",
+     "Lei nº 8069/1990"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpemt-2016",
+   "sigla": "DPE-MT",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado de Mato Grosso",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direitos Humanos",
+         "Organização da Defensoria",
+         "Direito do Consumidor",
+         "Direito Tributário",
+         "Direitos Difusos e Coletivos"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpees-2016",
+   "sigla": "DPE-ES",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado do Espírito Santo",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Civil e Empresarial",
+         "Direito Processual Civil e Métodos Consensuais de Soluções de Conflitos",
+         "Direito Penal e Criminologia",
+         "Direito Processual Penal e Execução Penal",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito da Criança e do Adolescente",
+         "Direito dos Idosos, das Pessoas Com Deficiência e das Mulheres",
+         "Direito do Consumidor",
+         "Direitos Humanos",
+         "Direito Previdenciário e Tributário",
+         "Direito Difusos e Coletivos",
+         "Princípios Institucionais e Legislação da Defensoria Pública",
+         "Direitos Difusos e Coletivos",
+         "Princípios Institucionais e Legislações da Defensoria Pública",
+         "Filosofia do Direito e Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 7.217/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.587/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "humanos",
+       "Lei nº 7.853/1989"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 12.313/2010"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 132/2009",
+     "Decreto nº 5.440/2005",
+     "Decreto nº 6.528/2008",
+     "Lei nº 5.869/1973"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "dpeba-2016",
+   "sigla": "DPE-BA",
+   "cargo": "Defensor Público",
+   "orgao": "Defensoria Pública do Estado da Bahia",
+   "titulo": "Concurso Público para Defensor Público",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direitos Humanos",
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Penal",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Filosofia do Direito",
+         "Sociologia Jurídica",
+         "Direito Processual Penal e Execução Penal",
+         "Direito do Consumidor",
+         "Direito da Criança e do Adolescente",
+         "Filosofia, Filosofia do Direito, Sociologia, Sociologia Jurídica"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 11.804/2008"
+     ],
+     [
+       "civil",
+       "Lei nº 5.478/1968"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Decreto nº 2.181/1997"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "humanos",
+       "Decreto nº 8.136/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 10.098/2000"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.847/2013"
+     ],
+     [
+       "humanos",
+       "Lei nº 9.474/1997"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 26/2006",
+     "Decreto nº 8.154/2013",
+     "Lei nº 11.689/2008",
+     "Lei nº 13.182/2014",
+     "Lei nº 6.677/1994"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pgm-manaus-2026",
+   "sigla": "PGM-Manaus",
+   "cargo": "Procurador do Município",
+   "orgao": "Procuradoria-Geral do Município de Manaus (AM)",
+   "titulo": "Concurso Público para Procurador do Município",
+   "edital": "Edital de abertura (2026)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Financeiro e Orçamentário",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Processual Civil",
+         "Direito do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direito Previdenciário",
+         "Direito Ambiental",
+         "Direito Municipal"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pgm-canoas-2026",
+   "sigla": "PGM-Canoas",
+   "cargo": "Procurador do Município",
+   "orgao": "Procuradoria-Geral do Município de Canoas (RS)",
+   "titulo": "Concurso Público para Procurador do Município",
+   "edital": "Edital de abertura (2026)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Língua Portuguesa",
+         "Legislação Profissional",
+         "Direito Administrativo",
+         "Direito Ambiental e Urbanístico",
+         "Direito Civil e Consumidor",
+         "Direito Constitucional",
+         "Direito do Trabalho e Processo do Trabalho",
+         "Direito Previdenciário",
+         "Direito Processual Civil",
+         "Direito Tributário e Financeiro"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.726/2018"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pgm-niteroi-2022",
+   "sigla": "PGM-Niteroi",
+   "cargo": "Procurador do Município",
+   "orgao": "Procuradoria-Geral do Município de Niterói (RJ)",
+   "titulo": "Concurso Público para Procurador do Município",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Administrativo, Urbanístico e Ambiental",
+         "Direito Constitucional",
+         "Direito Processual Civil",
+         "Direito Tributário e Financeiro",
+         "Direito Civil e Empresarial",
+         "Direito do Trabalho, Processual do Trabalho E",
+         "Direito, Excetuados Os Títulos Já Incluídos no Item",
+         "Direito do Trabalho, Processual do Trabalho e Previdenciário"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.232/2010"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.637/1998"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.790/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.977/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.089/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.026/2020"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto-Lei nº 911/1969"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 10.931/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 13.874/2019"
+     ],
+     [
+       "civil",
+       "Lei nº 14.010/2020"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.009/1990"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "civil",
+       "Lei nº 9.514/1997"
+     ],
+     [
+       "civil",
+       "Lei nº 9.610/1998"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "constitucional",
+       "Lei nº 13.300/2016"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.868/1999"
+     ],
+     [
+       "constitucional",
+       "Lei nº 9.882/1999"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.434/1997"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.212/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.213/1991"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 11.417/2006"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.016/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.140/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 4.717/1965"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 7.347/1985"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 8.038/1990"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.307/1996"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 9.507/1997"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "trabalhista",
+       "Lei nº 13.467/2017"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ],
+     [
+       "tributario",
+       "Lei nº 8.397/1992"
+     ]
+   ],
+   "extras": [
+     "Lei nº 13.334/2016",
+     "Lei nº 3.048/2013",
+     "Lei nº 911/1969",
+     "Lei nº 8.347/1992",
+     "Lei nº 3.605/2021",
+     "Lei nº 2.597/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-pa-procurador-2022",
+   "sigla": "PGE-PA",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado do Pará",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional,",
+         "Direito Administrativo,",
+         "Direito Financeiro,",
+         "Direito Tributário E",
+         "Direito Material E",
+         "Direitos Humanos,",
+         "Direito Civil, Direito"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 6.170/2007"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.846/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.303/2016"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.954/2019"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.504/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.629/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 1.318/1854"
+     ],
+     [
+       "ambiental",
+       "Decreto-Lei nº 25/1937"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 7.990/1989"
+     ],
+     [
+       "ambiental",
+       "Lei nº 8.901/1994"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 601/1850"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "eleitoral",
+       "Lei nº 9.504/1997"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.529/2011"
+     ],
+     [
+       "empresarial",
+       "Lei nº 6.404/1976"
+     ],
+     [
+       "penal",
+       "Decreto-Lei nº 2.848/1940"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 13.964/2019"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 10.259/2001"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ],
+     [
+       "tributario",
+       "Lei nº 4.595/1964"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 041/2002",
+     "Decreto nº 83.936/1979",
+     "Decreto nº 1.395/2021",
+     "Decreto nº 1.567/2005",
+     "Lei nº 7.492/1985",
+     "Lei nº 11.689/2008",
+     "Lei nº 6.017/1996",
+     "Lei nº 5.529/1989",
+     "Lei nº 11.101/1995",
+     "Lei nº 6.831/2001",
+     "Lei nº 25/1937",
+     "Lei nº 14.126/2021",
+     "Lei nº 13874/2019",
+     "Lei nº 4.947/1966",
+     "Lei nº 8.001/1990"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-es-procurador-2022",
+   "sigla": "PGE-ES",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado do Espírito Santo",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2022)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Previdenciário",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito do Trabalho",
+         "Direito Processual Do",
+         "Direito Ambiental"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 6.017/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.892/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 14.133/2021"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 14.119/2021"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "humanos",
+       "Lei nº 12.288/2010"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 9.717/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.655/2018"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 27/1996",
+     "Lei nº 11.689/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pgm-criciuma-2021",
+   "sigla": "PGM-Criciuma",
+   "cargo": "Procurador do Município",
+   "orgao": "Procuradoria-Geral do Município de Criciúma (SC)",
+   "titulo": "Concurso Público para Procurador do Município",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Língua Portuguesa",
+         "Direito Constitucional E",
+         "Direito Processual",
+         "Direito Administrativo e Direito",
+         "Direito Processual Civil",
+         "Direito Civil",
+         "Direito Tributário e Direito",
+         "Direito do Trabalho",
+         "Direito Constitucional e Direito Processual Constitucional",
+         "Direito Administrativo e Processual Administrativo",
+         "Direito Tributário e Direito Processual Tributário",
+         "Direito Processual do Trabalho",
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Ambiental e Urbanístico"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "civil",
+       "Decreto nº 20.910/1932"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "tributario",
+       "Lei nº 5.172/1966"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 287/2018",
+     "Lei nº 7.816/2020"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-go-procurador-2021",
+   "sigla": "PGE-GO",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado de Goiás",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Tributário",
+         "Direito Financeiro",
+         "Direito Civil",
+         "Direito Ambiental",
+         "Direito do Trabalho",
+         "Direito Previdenciário",
+         "Direito Processual Civil",
+         "Direito Processual do Trabalho",
+         "Direito Constitucional, Direito Civil E",
+         "Direito Administrativo e Direito"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ]
+   ],
+   "extras": [
+     "Lei nº 14.715/2004"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-al-procurador-2021",
+   "sigla": "PGE-AL",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado de Alagoas",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2021)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito do Trabalho",
+         "Direito Processual Do",
+         "Direito Financeiro",
+         "Direito Civil",
+         "Direito Empresarial",
+         "Direito Processual Civil",
+         "Direito Tributário",
+         "Direito Ambiental",
+         "Direito Previdenciário",
+         "Direito Previdenciário Na",
+         "Direito Processual do Trabalho",
+         "Direito Previdenciário Na Administração Pública",
+         "Direito do Trabalho e Direito Processual do Trabalho",
+         "Direito Civil e Empresarial"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Decreto nº 5.296/2004"
+     ],
+     [
+       "civil",
+       "Lei nº 12.764/2012"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 13.709/2018"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "humanos",
+       "Decreto nº 3.298/1999"
+     ],
+     [
+       "humanos",
+       "Decreto nº 6.949/2009"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 9.717/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 7/1991",
+     "Lei Complementar nº 24/1975",
+     "Lei Complementar nº 160/2017",
+     "Lei nº 14.126/2021",
+     "Lei nº 11.689/2008",
+     "Lei nº 5.077/1989",
+     "Lei nº 6.771/2006"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pgm-joao-pessoa-2018",
+   "sigla": "PGM-JoaoPessoa",
+   "cargo": "Procurador do Município",
+   "orgao": "Procuradoria-Geral do Município de João Pessoa (PB)",
+   "titulo": "Concurso Público para Procurador do Município",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Civil e Direito",
+         "Direito Processual Civil",
+         "Direito Constitucional",
+         "Direito do Trabalho e Direito",
+         "Direito Financeiro",
+         "Direito Previdenciário",
+         "Direito Tributário",
+         "Direito Urbanístico"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Decreto nº 6.017/2007"
+     ],
+     [
+       "administrativo",
+       "Decreto nº 7.892/2013"
+     ],
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.462/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 12.527/2011"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.019/2014"
+     ],
+     [
+       "administrativo",
+       "Lei nº 13.460/2017"
+     ],
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.112/1990"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.987/1995"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.394/1996"
+     ],
+     [
+       "administrativo",
+       "Lei nº 9.784/1999"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 6.514/2008"
+     ],
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.445/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.587/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.465/2017"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "civil",
+       "Lei nº 10.741/2003"
+     ],
+     [
+       "civil",
+       "Lei nº 13.146/2015"
+     ],
+     [
+       "civil",
+       "Lei nº 6.015/1973"
+     ],
+     [
+       "civil",
+       "Lei nº 6.766/1979"
+     ],
+     [
+       "civil",
+       "Lei nº 8.245/1991"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 8.934/1994"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 12.153/2009"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Decreto-Lei nº 3.689/1941"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 116/2003"
+     ],
+     [
+       "tributario",
+       "Lei nº 6.830/1980"
+     ]
+   ],
+   "extras": [
+     "Lei nº 9394/1996",
+     "Lei nº 11.689/2008",
+     "Lei nº 12.424/2001"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-sc-procurador-2018",
+   "sigla": "PGE-SC",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado de Santa Catarina",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2018)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito Ambiental",
+         "Direito Civil",
+         "Direito Constitucional",
+         "Princípios Constitucionais do Regime Jurídico dos Servidores Públicos Civis E",
+         "Direito do Trabalho",
+         "Direito Individual do Trabalho",
+         "Direito Coletivo do Trabalho",
+         "Direito Eleitoral",
+         "Direito Penal",
+         "Direito Processual",
+         "Direito Processual Civil",
+         "Direito Processual Administrativo",
+         "Direito Processual Constitucional",
+         "Direito Processual Tributário",
+         "Direito Processual do Trabalho",
+         "Direito Tributário",
+         "Tutela, Embargos e Demais Ações Cabíveis Em Matéria Tributária e Legislações"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "constitucional",
+       "CF/1988"
+     ]
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-to-procurador-2017",
+   "sigla": "PGE-TO",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado do Tocantins",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Disciplinas da prova",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Administrativo",
+         "Direito Civil",
+         "Direito Processual Civil",
+         "Direito Penal",
+         "Direito Processual Penal",
+         "Direito Financeiro e Tributário",
+         "Direito do Trabalho",
+         "Direito Processual do Trabalho",
+         "Direitos Difusos, Coletivos e Individuais Homogêneo"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 10.520/2002"
+     ],
+     [
+       "administrativo",
+       "Lei nº 11.079/2004"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.429/1992"
+     ],
+     [
+       "administrativo",
+       "Lei nº 8.666/1993"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 10.257/2001"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.105/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.107/2005"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.428/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.977/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.334/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.089/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 13.123/2015"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "civil",
+       "Lei nº 10.406/2002"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "crianca",
+       "Lei nº 8.069/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 10.671/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 10.826/2003"
+     ],
+     [
+       "penal",
+       "Lei nº 11.340/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 11.343/2006"
+     ],
+     [
+       "penal",
+       "Lei nº 12.850/2013"
+     ],
+     [
+       "penal",
+       "Lei nº 4.898/1965"
+     ],
+     [
+       "penal",
+       "Lei nº 7.716/1989"
+     ],
+     [
+       "penal",
+       "Lei nº 8.072/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 8.137/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.455/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.503/1997"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "penal",
+       "Lei nº 9.613/1998"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 7.210/1984"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.099/1995"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 9.296/1996"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 20/1999",
+     "Lei nº 10.519/2002",
+     "Lei nº 10.650/2003",
+     "Lei nº 11.794/2008",
+     "Lei nº 11.934/2009",
+     "Lei nº 13.186/2015",
+     "Lei nº 11.888/2008"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-ac-procurador-2017",
+   "sigla": "PGE-AC",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado do Acre",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2017)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Constitucional"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Administrativo"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo IV",
+       "disciplinas": [
+         "Direito do Trabalho e Direito Processual do Trabalho"
+       ]
+     },
+     {
+       "nome": "Grupo V",
+       "disciplinas": [
+         "Direito Tributário"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Civil e Direito Empresarial",
+         "Direito Financeiro",
+         "Direito Ambiental"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "administrativo",
+       "Lei nº 4.320/1964"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.284/2006"
+     ],
+     [
+       "ambiental",
+       "Lei nº 11.516/2007"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.187/2009"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.305/2010"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.433/1997"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.795/1999"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "empresarial",
+       "Lei Complementar nº 123/2006"
+     ],
+     [
+       "empresarial",
+       "Lei nº 12.441/2011"
+     ],
+     [
+       "humanos",
+       "Lei nº 5.197/1967"
+     ],
+     [
+       "penal",
+       "Lei nº 7.802/1989"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "processual_penal",
+       "Lei nº 11.101/2005"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 101/2000"
+     ]
+   ],
+   "extras": [
+     "Decreto nº 4.339/2002",
+     "Lei nº 12.690/2012",
+     "Lei nº 1.022/1992",
+     "Lei nº 1.117/1994",
+     "Lei nº 1.235/1997",
+     "Lei nº 1.426/2001",
+     "Lei nº 1.500/2003",
+     "Lei nº 1.530/2004",
+     "Lei nº 1.904/2007",
+     "Lei nº 2.024/2008",
+     "Lei nº 2.025/2008",
+     "Lei nº 2.302/2010",
+     "Lei nº 2.308/2010",
+     "Lei nº 11.959/2009"
+   ],
+   "tipo": "edital"
+ },
+ {
+   "id": "pge-ms-procurador-2016",
+   "sigla": "PGE-MS",
+   "cargo": "Procurador do Estado",
+   "orgao": "Procuradoria-Geral do Estado de Mato Grosso do Sul",
+   "titulo": "Concurso Público para Procurador do Estado",
+   "edital": "Edital de abertura (2016)",
+   "grupos": [
+     {
+       "nome": "Grupo I",
+       "disciplinas": [
+         "Direito Constitucional",
+         "Direito Processual Civil"
+       ]
+     },
+     {
+       "nome": "Grupo II",
+       "disciplinas": [
+         "Direito Administrativo",
+         "Direito da Seguridade Social"
+       ]
+     },
+     {
+       "nome": "Grupo III",
+       "disciplinas": [
+         "Direito Tributário",
+         "Direito Civil e Direito Empresarial"
+       ]
+     },
+     {
+       "nome": "Demais disciplinas",
+       "disciplinas": [
+         "Direito Ambiental",
+         "Direito do Trabalho e Processo do Trabalho"
+       ]
+     }
+   ],
+   "leis": [
+     [
+       "ambiental",
+       "Decreto nº 99.274/1990"
+     ],
+     [
+       "ambiental",
+       "Lei Complementar nº 140/2011"
+     ],
+     [
+       "ambiental",
+       "Lei nº 12.651/2012"
+     ],
+     [
+       "ambiental",
+       "Lei nº 6.938/1981"
+     ],
+     [
+       "ambiental",
+       "Lei nº 9.985/2000"
+     ],
+     [
+       "constitucional",
+       "CF/1988"
+     ],
+     [
+       "consumidor",
+       "Lei nº 8.078/1990"
+     ],
+     [
+       "penal",
+       "Lei nº 9.605/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 10.887/2004"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.212/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 8.213/1991"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 9.717/1998"
+     ],
+     [
+       "previdenciario",
+       "Lei nº 9.796/1999"
+     ],
+     [
+       "processual_civil",
+       "Decreto nº 7.830/2012"
+     ],
+     [
+       "processual_civil",
+       "Lei nº 13.105/2015"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 105/2001"
+     ],
+     [
+       "tributario",
+       "Lei Complementar nº 87/1996"
+     ]
+   ],
+   "extras": [
+     "Lei Complementar nº 57/1991",
+     "Lei nº 2.257/2001",
+     "Lei nº 2.259/2001",
+     "Lei nº 4.219/2012",
+     "Lei nº 2.207/2000"
+   ],
+   "tipo": "edital"
  }
 ];
 

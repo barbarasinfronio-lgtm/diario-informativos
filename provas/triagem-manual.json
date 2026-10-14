@@ -1,12 +1,35 @@
 {
- "_nota": "anos: SIGLA + nº do concurso → ano (conferidos por pesquisa: DPE-MG 9 = 2023, DPE-MT 5 = edital 2016 (UFMT), TRF2 19 = 2026, TRF4 17 = 2016; ESTIMADOS, conferir: DPE-PR 2017 (FCC), DPE-PE 2018 (FGV)). antigas: concursos de antes de 2016, só guardados em _triagem/antigas. arquivos: ajuste por nome de arquivo.",
+ "_nota": "anos: SIGLA + nº do concurso → ano (conferidos por pesquisa: DPE-MG 9 = 2023, DPE-MT 5 = edital 2016 (UFMT), TRF2 19 = 2026, TRF4 17 = 2016; ESTIMADOS, conferir: DPE-PR 2017 (FCC), DPE-PE 2018 (FGV)). antigas: concursos de antes de 2016, só guardados em _triagem/antigas. arquivos: ajuste por nome de arquivo. Em 13/10/2026: anos estimados pelo cabeçalho da prova/PCI: MPCE 2020, MPF 30º=2022, MPGO FGV=2025, MPMT FGV=2026, MPPI=2018 (prova aplicada em 2019), MPRJ XXXIX=2026, MPSC 41º=2019, DPE-PE FGV=2025, DPE-PR Fundatec=2024 (gabarito (4)); conferir. 13/10/2026 (auditor/delegado/procurador): PC-AM 2022 (FGV), PC-BA 2016 (curso de formação, Inaz), PC-MG 2018 (Fumarc), PC-PR 2021 (UFPR), PC-RJ 2021 (Cebraspe), PC-RS 2018 (Fundatec), PGE-AC VII=2017 (FMP), VIII=2026 (FGV), TCE-BA 2023, TCE-MG 2018, TCE-PA 2016 (Cespe), TCE-TO 2022, TCU 2022; conferir. juiz_federal_substituto.pdf = XVII concurso TRF2 (cita leis até set/2016, então prova de 2016), só imagem (OCR).",
  "anos": {
   "TRF4 17": 2016,
   "TRF2 19": 2026,
   "DPE-MG 9": 2023,
   "DPE-MT 5": 2016,
-  "DPE-PR": 2017,
-  "DPE-PE": 2018
+  "DPE-PR": 2024,
+  "DPE-PE": 2025,
+  "MPCE": 2020,
+  "MPF": 2022,
+  "MPGO": 2025,
+  "MPMT": 2026,
+  "MPPI": 2018,
+  "MPRJ 39": 2026,
+  "MPSC": 2019,
+  "PC-AM": 2022,
+  "PC-BA": 2016,
+  "PC-MG": 2018,
+  "PC-PR": 2021,
+  "PC-RJ": 2021,
+  "PC-RS": 2018,
+  "PGE-AC 7": 2017,
+  "PGE-AC 8": 2026,
+  "TCE-BA": 2023,
+  "TCE-MG": 2018,
+  "TCE-PA": 2016,
+  "TCE-TO": 2022,
+  "TCU": 2022,
+  "TCE-RR": 2024,
+  "TCE-PE": 2025,
+  "TCE-PI": 2025
  },
  "arquivos": {
   "prova_a01_tipo_001 (1).pdf": {
@@ -21,6 +44,302 @@
    "ano": 2016,
    "etapa": "gabarito",
    "banca": "UFMT"
+  },
+  "defensor_publico.pdf": {
+   "sigla": "DPE-PE",
+   "ano": 2025,
+   "etapa": "objetiva",
+   "banca": "FGV"
+  },
+  "gabarito (1).pdf": {
+   "sigla": "MPPI",
+   "ano": 2018,
+   "etapa": "gabarito",
+   "banca": "CESPE"
+  },
+  "promotor.pdf": {
+   "sigla": "MPPI",
+   "ano": 2018,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "gabarito (4).pdf": {
+   "sigla": "DPE-PR",
+   "ano": 2024,
+   "etapa": "gabarito",
+   "banca": "FUNDATEC"
+  },
+  "gabarito_definitivo.pdf": {
+   "sigla": "MPCE",
+   "ano": 2020,
+   "etapa": "gabarito",
+   "banca": "CESPE"
+  },
+  "promotor_de_justica_de_entrancia_inicial.pdf": {
+   "sigla": "MPCE",
+   "ano": 2020,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "gabarito_oficial.pdf": {
+   "sigla": "MPF",
+   "ano": 2022,
+   "etapa": "gabarito",
+   "banca": "MPF"
+  },
+  "procurador_da_republica.pdf": {
+   "sigla": "MPF",
+   "ano": 2022,
+   "etapa": "objetiva",
+   "banca": "MPF"
+  },
+  "promotor_de_justica_substituto.pdf": {
+   "sigla": "MPGO",
+   "ano": 2025,
+   "etapa": "objetiva",
+   "banca": "FGV"
+  },
+  "promotor_de_justica_substituto (1).pdf": {
+   "sigla": "MPMT",
+   "ano": 2026,
+   "etapa": "objetiva",
+   "banca": "FGV"
+  },
+  "promotor_de_justica_substituto (2).pdf": {
+   "sigla": "MPRJ",
+   "ano": 2026,
+   "etapa": "objetiva",
+   "banca": "FGV"
+  },
+  "gabarito (2).pdf": {
+   "sigla": "MPRJ",
+   "ano": 2026,
+   "etapa": "gabarito",
+   "banca": "FGV"
+  },
+  "promotor_de_justica_substituto (3).pdf": {
+   "sigla": "MPSC",
+   "ano": 2019,
+   "etapa": "objetiva",
+   "banca": "MPSC"
+  },
+  "procurador_do_estado_nivel_i.pdf": {
+   "sigla": "PGE-SP",
+   "ano": 2018,
+   "etapa": "objetiva",
+   "banca": "VUNESP"
+  },
+  "gabarito (8).pdf": {
+   "sigla": "PGE-SP",
+   "ano": 2018,
+   "etapa": "gabarito",
+   "banca": "VUNESP"
+  },
+  "gabarito (9).pdf": {
+   "sigla": "PGE-SP",
+   "ano": 2018,
+   "etapa": "gabarito",
+   "banca": "VUNESP"
+  },
+  "prova_a01_tipo_001.pdf": {
+   "sigla": "PGE-MT",
+   "ano": 2016,
+   "etapa": "objetiva",
+   "banca": "FCC"
+  },
+  "procurador (1).pdf": {
+   "sigla": "PGE-TO",
+   "ano": 2018,
+   "etapa": "objetiva",
+   "banca": "FCC"
+  },
+  "pv_discursiva_delegado.pdf": {
+   "sigla": "PC-PE",
+   "ano": 2016,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "pv_objetiva_delegado.pdf": {
+   "sigla": "PC-PE",
+   "ano": 2016,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_peca_cautelar.pdf": {
+   "sigla": "PC-PE",
+   "ano": 2016,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_questao_1.pdf": {
+   "sigla": "PC-PE",
+   "ano": 2016,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_questao_2.pdf": {
+   "sigla": "PC-PE",
+   "ano": 2016,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "delegado_de_policia_federal (1).pdf": {
+   "sigla": "PF",
+   "ano": 2025,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "delegado.pdf": {
+   "sigla": "PC-GO",
+   "ano": 2017,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "delegado_de_policia_substituto (2).pdf": {
+   "sigla": "PC-MG",
+   "ano": 2018,
+   "etapa": "objetiva",
+   "banca": "FUMARC"
+  },
+  "delegado_de_policia_civil_de_3classe.pdf": {
+   "sigla": "PC-PI",
+   "ano": 2018,
+   "etapa": "objetiva",
+   "banca": "NUCEPE"
+  },
+  "gabarito (7).pdf": {
+   "sigla": "PGE-PE",
+   "ano": 2018,
+   "etapa": "gabarito",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p2_estudo_caso.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p2_questao_1.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p2_questao_2.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p2_questao_3.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p2_questao_4.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p3_estudo_caso.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p3_questao_1.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p3_questao_2.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p3_questao_3.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "padrao_resposta_definitivo_p3_questao_4.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "discursiva",
+   "banca": "CESPE"
+  },
+  "gab_definitivo.pdf": {
+   "sigla": "TCE-PR",
+   "ano": 2024,
+   "etapa": "gabarito",
+   "banca": "CESPE"
+  },
+  "auditor_de_controle_externo_administracao (1).pdf": {
+   "sigla": "TCE-RO",
+   "ano": 2019,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "auditor_de_controle_externo_ciancias_contabeis.pdf": {
+   "sigla": "TCE-RO",
+   "ano": 2019,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "auditor_de_controle_externo_direito.pdf": {
+   "sigla": "TCE-RO",
+   "ano": 2019,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "auditor_de_controle_externo_economia.pdf": {
+   "sigla": "TCE-RO",
+   "ano": 2019,
+   "etapa": "objetiva",
+   "banca": "CESPE"
+  },
+  "auditor_de_controle_interno_administracao.pdf": {
+   "sigla": "TCE-SP",
+   "ano": 2025,
+   "etapa": "objetiva",
+   "banca": "VUNESP"
+  },
+  "auditor_de_controle_externo_administracao.pdf": {
+   "sigla": "TCE-TO",
+   "ano": 2022,
+   "etapa": "objetiva",
+   "banca": "FGV"
+  },
+  "procurador.pdf": {
+   "sigla": "PGE-AC",
+   "n": 7,
+   "ano": 2017,
+   "etapa": "objetiva",
+   "banca": "FMP"
+  },
+  "juiz_federal_substituto.pdf": {
+   "sigla": "TRF2",
+   "n": 17,
+   "ano": 2016,
+   "etapa": "objetiva",
+   "banca": "TRF2"
+  },
+  "delegado_de_policia_civil.pdf": {
+   "sigla": "PC-AC",
+   "ano": 2017,
+   "etapa": "objetiva",
+   "banca": "IBADE"
+  },
+  "delegado_de_policia (2).pdf": {
+   "sigla": "PC-MS",
+   "ano": 2021,
+   "etapa": "objetiva",
+   "banca": "FAPEC"
   }
  },
  "antigas": [
@@ -33,6 +352,21 @@
   "TRF4 14",
   "TRF4 15",
   "juiz_fed_trf2_4.pdf",
-  "segunda_prova_escrita_discursiva.pdf"
+  "segunda_prova_escrita_discursiva.pdf",
+  "juiz_xiii_escrita1.pdf",
+  "juiz_xiii_escrita2.pdf",
+  "pv_sentenca_penal.pdf",
+  "juiz_pv_objetiva.pdf",
+  "juiz_xiv_prova_objetiva.pdf",
+  "juiz_xiv_prova_sentencacivel.pdf",
+  "primeira_prova_escrita_discursiva.pdf",
+  "primeira_prova_escrita_discursiva (1).pdf",
+  "prova_objetiva_xi_juiz.pdf",
+  "prova_objetiva_xi_juiz (1).pdf",
+  "prova_sentenca_civil.pdf",
+  "pv_objetiva_juiz (1).pdf",
+  "pv_sentenca_civel.pdf",
+  "x_prova_objetiva.pdf",
+  "gab_preliminar_pv_objetiva.pdf"
  ]
 }
