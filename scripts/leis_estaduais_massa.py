@@ -325,7 +325,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -338,6 +338,8 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "pa":
+        return achar_pa(tipo, n, ano)
     if f == "ms":
         return achar_ms(tipo, n, ano)
     if f == "es":
@@ -431,6 +433,24 @@ def achar_ms(tipo, n, ano):
             r = tentar_htmls("MS", tipo, n, ano, ["https://aacpdappls.net.ms.gov.br" + html.unescape(href)])
             if r:
                 return r
+    return None
+
+
+def achar_pa(tipo, n, ano):
+    pref = {"lei": "lei ordin", "lc": "lei complementar", "dec": "decreto n", "dl": "decreto lei"}.get(tipo)
+    if not pref:
+        return None
+    r = json.loads(http(f"https://lex.pge.pa.gov.br/api/atos/busca?conteudo=&descritores=&numero={n}&ano={ano}&pagina=1&limite=20&texto_compilado=false&ordem=data_ato_d"))["resultados"]
+    for x in r:
+        tit = (x.get("titulo") or "").strip()
+        if not tit.lower().startswith(pref) or str(x.get("numero_formatado", "")).replace(".", "").lstrip("0") != n:
+            continue
+        a = json.loads(http(f"https://lex.pge.pa.gov.br/api/atos/{x['id']}", timeout=120))
+        ps = robo.paragrafos_da_lei(str(a.get("conteudo") or ""))
+        ps.insert(0, re.sub(r"(?i)(n[ºo°.]\s*)0+(\d)", r"\1\2", re.sub(r"\s+", " ", tit)))
+        ps = [re.sub(r"(?i)(n[ºo°.]\s*)0+(\d)", r"\1\2", q, count=1) if i < 3 else q for i, q in enumerate(ps)]
+        if len(ps) >= 5:
+            return f"https://lex.pge.pa.gov.br/?ato={x['id']}#/texto-integral/{x['id']}", ps, x.get("ementa") or "", (lambda z: z)
     return None
 
 
