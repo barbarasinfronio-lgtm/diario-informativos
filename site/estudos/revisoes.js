@@ -1067,13 +1067,23 @@
   function resumo(o) {
     if (!pronto()) return "";
     var its = itensDeRevisao(o.maps, juntarRev(o.rev)), c = contar(its), na = leisAlteradas(o.maps, o).length, pl = planoDeHoje(its, leituraPendente(juntarRev(o.rev)));
-    var rev = (c.agora || c.breve) ? '<button type="button" class="rv-cartao" data-tab="revisoes">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
+    var rev = (c.agora || c.breve) ? '<a class="rv-cartao" href="/p/meu-cronograma.html">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
       (pl.fila.length ? " · " + pl.fila.length + " na fila" : "") +
-      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") + " <span>Ver revisões →</span></button>" : "";
+      (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") + " <span>Ver no Meu Cronograma →</span></a>" : "";
     var nov = na ? '<button type="button" class="rv-cartao" data-tab="novidades">📢 <b>' + plural(na, "lei alterada", "leis alteradas") + "</b> " + textoBaseAlt(o) + " <span>Ver novidades →</span></button>" : "";
     return rev + nov;
   }
 
-  window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo,
+  // Para o Meu Cronograma (as revisões vivem lá): o que já venceu hoje, dos Diários lidos.
+  // itens: súmulas, decisões e informativos, o mais cobrado primeiro; leis: leis lidas inteiras (à parte).
+  function prepararParaCronograma() { return preparar().then(prepararTitulos); }
+  function devidas(o) {
+    var its = itensDeRevisao(o.maps || {}, juntarRev(o.rev)).filter(function (i) { return !i.bloco; });
+    var pl = planoDeHoje(its, false);
+    var leis = its.filter(function (i) { return i.estado === "agora" && i.tipo === "Lei"; }).sort(function (a, b) { return (b.nivel - a.nivel) || (a.dias - b.dias); });
+    return { itens: pl.meta.concat(pl.fila), leis: leis };
+  }
+
+  window.ProgressoRevisoes = { preparar: preparar, pronto: pronto, render: render, resumo: resumo, devidas: devidas, prepararParaCronograma: prepararParaCronograma,
     _teste: { itensDeRevisao: itensDeRevisao, leisAlteradas: leisAlteradas, definir: function (x) { if (x.citacoes) citacoes = x.citacoes; if (x.alteracoes) alteracoes = x.alteracoes; if (x.decisoes) decisoesPorId = x.decisoes; if (x.cobranca) COBRANCA = x.cobranca; } } };
 })();

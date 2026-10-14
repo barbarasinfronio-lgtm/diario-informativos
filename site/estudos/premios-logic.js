@@ -1004,7 +1004,7 @@
   }
 
   function renderTabs() {
-    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }, { id: "revisoes", label: "Revisões", icon: "🔁" }, { id: "novidades", label: "Novidades legislativas", icon: "📢" },
+    var tabs = [{ id: "resumo", label: "Resumo", icon: "✨" }, { id: "novidades", label: "Novidades legislativas", icon: "📢" },
       { id: "historico", label: "Histórico", icon: "🕘" }].concat(CATS.map(function (c) {
       return { id: c.id, label: c.label, icon: c.icon };
     })).concat([{ id: "todas", label: "Todas", icon: "🗂️" }]);
