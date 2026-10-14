@@ -680,5 +680,26 @@
   "numero": "Lei Estadual (BA) nº 11.357/2009",
   "nome": "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia",
   "motivo": "abre outra norma (\"Voltar ao Sumário ORIENTAÇÕES PARA O ANO ELEITORAL - 2026 1 Expediente Orientaçõ\")"
+ },
+ "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2015/3614/3614_texto_integral.pdf": {
+  "v": 3,
+  "em": "2026-10-14",
+  "numero": "Lei Estadual (PI) nº 6.709/2015",
+  "nome": "Reforma, regularização fundiária e colonização de terras devolutas rurais e urbanas do Estado do Piauí",
+  "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
+ },
+ "https://www.al.mt.gov.br/norma-juridica/urn:lex:br;mato.grosso:estadual:lei.ordinaria:1977-09-20;3922/gerar-pdf-redacao?tipoTexto=compilado": {
+  "v": 3,
+  "em": "2026-10-14",
+  "numero": "Lei Estadual (MT) nº 3.922/1977",
+  "nome": "Código de Terras do Estado de Mato Grosso",
+  "motivo": "abre outra norma (\"O GOVERNADOR DO ESTADO DE MATO GROSSO Faço saber que a Assembleia Legislativa do\")"
+ },
+ "https://www.legislabahia.ba.gov.br/documentos/lei-no-13559-de-11-de-maio-de-2016": {
+  "v": 3,
+  "em": "2026-10-14",
+  "numero": "Lei Estadual (BA) nº 13.559/2016",
+  "nome": "Plano Estadual de Educação da Bahia",
+  "motivo": "abre outra norma (\"Voltar ao Sumário ORIENTAÇÕES PARA O ANO ELEITORAL - 2026 1 Expediente Orientaçõ\")"
  }
 }
