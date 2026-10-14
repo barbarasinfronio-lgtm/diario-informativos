@@ -351,6 +351,32 @@ def rotulo(uf, tipo, n, ano):
     return f"{base} ({uf}) nº {lc.com_ponto(n)}/{ano}"
 
 
+def importar_cge_sc(page, tipo, n, ano):
+    """Página de download da CGE-SC (WordPress Download Manager): acha o arquivo por trás, grava e registra a norma."""
+    h = http(page)
+    dl = re.search(r'data-downloadurl="([^"]+)"', h)
+    if not dl:
+        return False
+    u = dl.group(1).replace("&#038;", "&").replace("&amp;", "&")
+    dados = http(u, binario=True, timeout=120)
+    num = rotulo("SC", tipo, n, ano)
+    if dados.startswith(b"%PDF"):
+        t, ext = pdf_ou_ocr(dados), le.paragrafos_pdf
+    else:
+        t, ext = dados.decode("utf-8", "replace") if not dados[:2] == b"PK" else (doc_texto(dados, u + ".docx") or ""), robo.paragrafos_do_site
+        if ext is robo.paragrafos_do_site and "<" not in t:
+            ext = le.paragrafos_pdf
+    k = re.search(r"(?is)(Regulamenta[^.]{10,250}|Disp[õo]e sobre[^.]{10,250}|Institui[^.]{10,250}|Estabelece[^.]{10,250})", t)
+    nome = re.sub(r"\s+", " ", k.group(1)).strip()[:160] if k else num
+    if not robo.salvar_texto(page, t, nome, robo.hoje(), extrator=ext, numero=num):
+        return False
+    d = json.loads(SAIDA.read_text(encoding="utf-8"))
+    d["leis"] = [x for x in d["leis"] if x["link"] != page] + [{"nome": nome, "numero": num, "link": page}]
+    SAIDA.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    robo.indice_dos_textos()
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plano", action="store_true")
