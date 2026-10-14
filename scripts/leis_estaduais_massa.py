@@ -323,7 +323,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -334,6 +334,8 @@ def buscar(uf, tipo, n, ano):
         return achar_sc(tipo, n, ano)
     if f == "go":
         return achar_go(tipo, n, ano)
+    if f == "ba":
+        return achar_ba(tipo, n, ano)
     if f == "df":
         return achar_df(tipo, n, ano)
     if f == "sp":
@@ -358,6 +360,20 @@ def rotulo(uf, tipo, n, ano):
     if uf == "DF":
         base = base.replace("Estadual", "Distrital")
     return f"{base} ({uf}) nº {lc.com_ponto(n)}/{ano}"
+
+
+def achar_ba(tipo, n, ano):
+    pref = {"lei": "lei-no-", "lc": "lei-complementar-no-", "dec": "decreto-no-"}.get(tipo)
+    if not pref:
+        return None
+    r = http("https://www.legislabahia.ba.gov.br/documentos?num=" + n)
+    for slug in dict.fromkeys(re.findall(r'href="/documentos/(' + re.escape(pref) + n + r'-de-[a-z0-9-]*?-' + str(ano) + r')"', r)):
+        link = "https://www.legislabahia.ba.gov.br/documentos/" + slug
+        h = http(link)
+        ps = robo.paragrafos_do_site(h)
+        if len(ps) >= 4 and robo.texto_confere(rotulo("BA", tipo, n, ano), ps, link):
+            return link, h, "", robo.paragrafos_do_site
+    return None
 
 
 def importar_cge_sc(page, tipo, n, ano):
