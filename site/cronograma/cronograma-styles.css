@@ -90,3 +90,7 @@
 /* súmula e decisão: texto curto, então o card se ajusta ao conteúdo (no máximo 90% da tela) */
 .cr-card.cr-card-curto { height: auto; max-height: var(--em-card-h, 90vh); width: min(var(--em-card-w, 90vw), 46rem); padding-bottom: 1.4rem; }
 .cr-card-curto .cr-card-titulo, .cr-card-curto .cr-card-sub, .cr-card-curto .cr-card-acoes, .cr-card-curto .cr-card-texto { max-width: none; }
+
+/* tese de repercussão geral/repetitivo/Jurisprudência em Teses dentro do card */
+.cr-card-texto h3 { margin: 1.1rem 0 0.3rem; font-size: calc(0.9rem * var(--fs-scale, 1)); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+.cr-card-texto > .cr-card-fonte:first-child { margin-top: 0; }
