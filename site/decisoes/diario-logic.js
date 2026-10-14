@@ -254,6 +254,37 @@
     return map;
   }
 
+  // Novidades: guarda, por aba, a data da edição mais recente já vista. Aba com edição mais nova
+  // ganha uma bolinha até ser aberta; as linhas novas ficam com o selo "novo" durante a visita.
+  // Sem registro anterior, vale "publicada nos últimos 14 dias".
+  var SEEN_KEY = "informativos-vistos";
+  var novosDaVisita = {};
+  function readSeen() {
+    try { return JSON.parse(localStorage.getItem(SEEN_KEY) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function isoData(r) { var m = /^\d{4}-\d{2}-\d{2}/.exec(r.data || ""); return m ? m[0] : ""; }
+  function limiteNovo(seen, key) {
+    if (seen[key]) return seen[key];
+    var d = new Date(); d.setDate(d.getDate() - 14);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function novasEdicoes(key) {
+    var lim = limiteNovo(readSeen(), key);
+    return stateByOrg[key].filter(function (r) { var d = isoData(r); return d && d > lim; });
+  }
+  function marcarVista(key) {
+    if (!novosDaVisita[key]) {
+      var set = {};
+      novasEdicoes(key).forEach(function (r) { set[rowKey(key, r)] = true; });
+      novosDaVisita[key] = set;
+    }
+    var maxD = "";
+    stateByOrg[key].forEach(function (r) { var d = isoData(r); if (d > maxD) maxD = d; });
+    if (!maxD) return;
+    var seen = readSeen();
+    if (seen[key] !== maxD) { seen[key] = maxD; try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (e) {} }
+  }
+
   function renderTabs() {
     tabsRoot.innerHTML = "";
     ORG_ORDER.forEach(function (key) {
@@ -262,7 +293,9 @@
       btn.className = "org-tab" + (key === currentOrg ? " active" : "");
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-selected", key === currentOrg ? "true" : "false");
-      btn.innerHTML = ORGS[key].label + '<span class="count">' + stateByOrg[key].length + "</span>";
+      var novas = (!novosDaVisita[key] && key !== currentOrg) ? novasEdicoes(key).length : 0;
+      btn.innerHTML = ORGS[key].label + '<span class="count">' + stateByOrg[key].length + "</span>" +
+        (novas ? '<span class="org-novo" title="' + novas + (novas > 1 ? " edições novas" : " edição nova") + '" aria-label="' + novas + ' novas"></span>' : "");
       btn.addEventListener("click", function () {
         if (currentOrg === key) return;
         currentOrg = key;
@@ -273,6 +306,7 @@
   }
 
   function render() {
+    marcarVista(currentOrg);
     renderTabs();
     ledeText.textContent = ORGS[currentOrg].lede;
     footerSource.innerHTML = ORGS[currentOrg].footer;
@@ -338,6 +372,13 @@
         date.textContent = fmtDate(row.data) + (row.tema ? " · " + row.tema : "");
         edition.appendChild(num);
         edition.appendChild(date);
+
+        if (novosDaVisita[currentOrg] && novosDaVisita[currentOrg][rowKey(currentOrg, row)]) {
+          var nv = document.createElement("span");
+          nv.className = "badge-novo";
+          nv.textContent = "novo";
+          num.appendChild(nv);
+        }
 
         var badge = document.createElement("span");
         if (row.sumula === true) {
