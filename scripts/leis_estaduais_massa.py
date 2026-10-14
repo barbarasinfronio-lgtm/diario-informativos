@@ -325,7 +325,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "MA": ("ma", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -338,6 +338,8 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "ma":
+        return achar_ma(tipo, n, ano)
     if f == "pa":
         return achar_pa(tipo, n, ano)
     if f == "ms":
@@ -451,6 +453,31 @@ def achar_pa(tipo, n, ano):
         ps = [re.sub(r"(?i)(n[ºo°.]\s*)0+(\d)", r"\1\2", q, count=1) if i < 3 else q for i, q in enumerate(ps)]
         if len(ps) >= 5:
             return f"https://lex.pge.pa.gov.br/?ato={x['id']}#/texto-integral/{x['id']}", ps, x.get("ementa") or "", (lambda z: z)
+    return None
+
+
+def achar_ma(tipo, n, ano):
+    tp = {"lei": "lei ordin", "lc": "lei complementar", "dec": "decreto"}.get(tipo)
+    if not tp:
+        return None
+    base = "https://alemalegis.al.ma.leg.br/api/v1/public/legal-norm"
+    r = json.loads(http(f"{base}/filter?page=0&size=20&sort=id,asc&number={n}&year={ano}"))["content"]
+    for x in r:
+        if not x["legalNormType"]["description"].lower().startswith(tp) or str(x["number"]).lstrip("0") != n:
+            continue
+        det = json.loads(http(f"{base}/{x['id']}"))
+        ft = det.get("fullText") or {}
+        if not ft.get("id"):
+            continue
+        url = json.loads(http(f"{base}/presigned-url/{ft['id']}?expirationInMinutes=60"))["url"]
+        dados = http(url, binario=True, timeout=120)
+        if not dados.startswith(b"%PDF"):
+            continue
+        t = pdf_ou_ocr(dados)
+        ps = le.paragrafos_pdf(t)
+        link = f"https://alemalegis.al.ma.leg.br/sapl/protocol/legal-norm/detail/{x['id']}"
+        if len(ps) >= 4 and robo.texto_confere(rotulo("MA", tipo, n, ano), ps, link):
+            return link, t, x.get("ement") or "", le.paragrafos_pdf
     return None
 
 
