@@ -26,7 +26,7 @@ SAIDA = RAIZ / "leis" / "dos-editais.json"
 FALHAS = RAIZ / "leis" / "estaduais-falhas.json"
 UA = {"User-Agent": "Mozilla/5.0"}
 SAPL = {"AC": "sapl.al.ac.leg.br", "AL": "sapl.al.al.leg.br", "AM": "sapl.al.am.leg.br", "MT": "sapl.al.mt.leg.br",
-        "PB": "sapl.al.pb.leg.br", "PI": "sapl.al.pi.leg.br", "RO": "sapl.al.ro.leg.br", "TO": "sapl.al.to.leg.br"}
+        "PB": "sapl.al.pb.leg.br", "RR": "sapl.al.rr.leg.br", "PI": "sapl.al.pi.leg.br", "RO": "sapl.al.ro.leg.br", "TO": "sapl.al.to.leg.br"}
 RE_NUM = re.compile(r"(\d[\d.]*)\s*/\s*(\d{2,4})")
 
 
@@ -339,7 +339,11 @@ def buscar(uf, tipo, n, ano):
     if f == "rn":
         return achar_rn(tipo, n, ano)
     if f == "rr":
-        return achar_rr(tipo, n, ano)
+        try:
+            r = achar_sapl("RR", tipo, n, ano)
+        except Exception:   # noqa: BLE001 — o SAPL de Roraima às vezes bloqueia: cai nos PDFs
+            r = None
+        return r or achar_rr(tipo, n, ano)
     if f == "ma":
         return achar_ma(tipo, n, ano)
     if f == "pa":
