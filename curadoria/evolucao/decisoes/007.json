@@ -1,0 +1,150 @@
+[
+ {
+  "k": "informativo:860f928812",
+  "assunto": "Prazo prescricional para cobrança do FGTS",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Orientação jurisprudencial anterior (STF e TST)",
+    "texto": "O prazo prescricional para a cobrança judicial de valores devidos ao FGTS era de 30 anos."
+   },
+   {
+    "ref": "ARE 709.212/DF (STF, Plenário, 13/11/2014)",
+    "data": "2014-11-13",
+    "k": "informativo:860f928812",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito do Trabalho"
+ },
+ {
+  "k": "informativo:6f90b61471",
+  "assunto": "Ação penal contra governador e autorização da Assembleia Legislativa",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Orientação anterior do STF",
+    "texto": "Era necessária a autorização prévia da assembleia legislativa para a instauração de ação penal contra o governador, orientação que privilegiava a autonomia dos Estados-membros e o princípio federativo."
+   },
+   {
+    "ref": "ADI 4764/AC (STF, 04/05/2017) — mutação constitucional e superação de jurisprudência",
+    "data": "2017-05-04",
+    "k": "informativo:6f90b61471",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Constitucional"
+ },
+ {
+  "k": "informativo:d1d7773614",
+  "assunto": "Execução provisória da pena após condenação em segunda instância",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Orientação do STF até 2009",
+    "texto": "Não havia óbice à execução da sentença penal condenatória quando pendentes apenas recursos sem efeito suspensivo (especial e extraordinário)."
+   },
+   {
+    "ref": "HC 84.078/MG (STF, Plenário, 05/02/2009)",
+    "data": "2009-02-05",
+    "k": "informativo:ba56f105ba",
+    "texto": "$tese"
+   },
+   {
+    "ref": "HC 126.292/SP (STF, Plenário, 17/02/2016)",
+    "data": "2016-02-17",
+    "k": "informativo:9771fb126b",
+    "texto": "$tese"
+   },
+   {
+    "ref": "HC 152.752/PR (STF, Plenário, 04/04/2018)",
+    "data": "2018-04-04",
+    "k": "informativo:6eca699c78",
+    "texto": "$tese"
+   },
+   {
+    "ref": "ADC 43, 44 e 54 (STF, Plenário, 07/11/2019)",
+    "data": "2019-11-07",
+    "k": "informativo:0bd5b2515a",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "informativo:1041d99441",
+  "assunto": "Foro por prerrogativa de função: alcance e permanência após o fim do cargo",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Súmula 394/STF",
+    "texto": "$sumula:stf:394"
+   },
+   {
+    "ref": "Inq 687 QO (STF, Plenário, 25/08/1999) — cancelamento da Súmula 394",
+    "data": "1999-08-25",
+    "k": "informativo:d1ec19fa3c",
+    "texto": "Depois de cessado o exercício da função, não deve manter-se o foro por prerrogativa de função, porque cessada a investidura a que essa prerrogativa é inerente. O Tribunal cancelou a Súmula 394."
+   },
+   {
+    "ref": "AP 937 QO/RJ (STF, Plenário, 03/05/2018)",
+    "data": "2018-05-03",
+    "k": "informativo:5dfe4e9ac1",
+    "texto": "$tese"
+   },
+   {
+    "ref": "HC 232.627/DF (STF, 2024)",
+    "k": "informativo:1041d99441",
+    "texto": "$tese",
+    "data": "2024-03-11"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Constitucional"
+ },
+ {
+  "k": "informativo:8df508ddb5",
+  "assunto": "Demarcação de terras indígenas e marco temporal",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Teoria do fato indígena (marco temporal)",
+    "texto": "O reconhecimento do direito às terras tradicionalmente ocupadas pelos indígenas dependia da ocupação na data da promulgação da Constituição (5/10/1988) e da existência de conflito físico ou controvérsia judicial nessa mesma data."
+   },
+   {
+    "ref": "RE 1.017.365/SC (STF, Plenário, 27/09/2023) — “mudança de posicionamento jurisprudencial”",
+    "data": "2023-09-27",
+    "k": "informativo:8df508ddb5",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Constitucional"
+ },
+ {
+  "k": "informativo:cdd03b0bca",
+  "assunto": "Depósito prévio para recorrer na via administrativa (Súmula Vinculante 21)",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Entendimento inicial do STF",
+    "texto": "Era constitucional a exigência de depósito prévio como condição de admissibilidade de recurso administrativo."
+   },
+   {
+    "ref": "ADPF 156/DF (STF, 18/08/2011)",
+    "data": "2011-08-18",
+    "k": "informativo:cdd03b0bca",
+    "texto": "$tese"
+   },
+   {
+    "ref": "Súmula Vinculante 21/STF",
+    "texto": "$sumula:stf_vinculante:21"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Administrativo"
+ }
+]

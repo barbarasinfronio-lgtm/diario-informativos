@@ -68,7 +68,12 @@ def carregar_temas():
 
 def limpa(t):
     t = re.sub(r"^\s*\[[^\]]{3,60}\]\s*", "", t or "")
-    return re.sub(r"\s+", " ", t.replace("_x000D_", " ")).strip()
+    t = re.sub(r"\s+", " ", t.replace("_x000D_", " ")).strip()
+    # resumos do STF começam com o título repetido ("Execução provisória – 2Execução provisória – 2 …"): tira a repetição
+    m = re.match(r"^(.{8,200}?)(?:\s*[-–]\s*\d+)?\s*\1(?:\s*[-–]\s*\d+)?\s*[-–]?\s*(.*)$", t)
+    if m and len(m.group(2)) > 20:
+        t = m.group(2).strip()
+    return (t[:1000].rsplit(" ", 1)[0] + "…") if len(t) > 1050 else t
 
 
 def resolve(txt, cand, sumulas, temas):
