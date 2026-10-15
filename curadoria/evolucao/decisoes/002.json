@@ -1,0 +1,97 @@
+[
+ {
+  "k": "informativo:a1867bb626",
+  "assunto": "Creditamento de PIS/COFINS no regime monofásico",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Primeiro entendimento do STJ",
+    "texto": "O benefício do art. 17 da Lei 11.033/2004 somente se aplicaria aos contribuintes do regime específico REPORTO, sem alcançar o sistema não cumulativo da COFINS e do PIS (entendimento depois superado por ambas as Turmas)."
+   },
+   {
+    "ref": "1ª e 2ª Turmas (divergência até 2021)",
+    "data": "2017-01-01",
+    "texto": "A Segunda Turma continuou decidindo reiteradamente pela impossibilidade de creditamento no regime monofásico; a Primeira Turma, em 2017, alterou seu posicionamento quanto à possibilidade desse creditamento."
+   },
+   {
+    "ref": "EDv nos EAREsp 1.109.354/SP (1ª Seção, 14/04/2021)",
+    "data": "2021-04-14",
+    "k": "informativo:a1867bb626",
+    "texto": "Prevaleceu o entendimento da Segunda Turma: o art. 17 da Lei 11.033/2004 não derrogou as Leis 10.637/2002 e 10.833/2003. $tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Tributário"
+ },
+ {
+  "k": "informativo:d03ea8e977",
+  "assunto": "Cultivo doméstico de Cannabis para fins medicinais",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Antes da uniformização",
+    "texto": "A Quinta Turma ainda não acompanhava a Sexta Turma sobre o tema; a ausência de regulamentação da ANVISA/Ministério da Saúde era tratada como obstáculo."
+   },
+   {
+    "ref": "REsp 1.972.092-SP (6ª Turma, DJe 30/06/2022)",
+    "data": "2022-06-30",
+    "texto": "O plantio e a aquisição das sementes de Cannabis sativa para fins medicinais não configuram conduta criminosa, mesmo sem regulamentação."
+   },
+   {
+    "ref": "AgRg no HC 783.717-PR (5ª Turma, 13/09/2023) — uniformização das Turmas Criminais",
+    "data": "2023-09-13",
+    "k": "informativo:d03ea8e977",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ },
+ {
+  "k": "informativo:e1c6a466c2",
+  "assunto": "Penhora de faturamento na execução fiscal",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "CPC/1973, art. 677 e Lei 6.830/1980, art. 11, § 1º",
+    "texto": "A penhora do faturamento era possível apenas como medida excepcional, dependente da comprovação do exaurimento infrutífero das diligências para localizar outros bens do devedor."
+   },
+   {
+    "ref": "Evolução jurisprudencial do STJ",
+    "texto": "Manteve-se o caráter excepcional, mas flexibilizou-se: dispensou-se a prova do exaurimento das diligências quando o juiz verificasse que os bens existentes eram de difícil alienação."
+   },
+   {
+    "ref": "Lei 11.382/2006 (reforma do CPC/1973)",
+    "data": "2006-12-22",
+    "texto": "A penhora de faturamento deixou de ser medida excepcional e passou a figurar com relativa prioridade na ordem dos bens sujeitos à constrição (art. 655, VII, do CPC/1973)."
+   },
+   {
+    "ref": "REsp 1.835.864-SP (STJ, 18/04/2024)",
+    "data": "2024-04-18",
+    "k": "informativo:e1c6a466c2",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Civil"
+ },
+ {
+  "k": "informativo:7f29d5a7dd",
+  "assunto": "Gravação ambiental por um dos interlocutores com a participação dos órgãos de persecução",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Entendimento anterior do STJ (superado)",
+    "texto": "A gravação ambiental feita por um dos interlocutores, sem o conhecimento do outro, era admitida como prova válida, inclusive com a cooperação de órgãos de persecução penal."
+   },
+   {
+    "ref": "AgRg no RHC 150.343-GO (STJ, 15/08/2023) — superação de entendimento anterior",
+    "data": "2023-08-15",
+    "k": "informativo:7f29d5a7dd",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ }
+]

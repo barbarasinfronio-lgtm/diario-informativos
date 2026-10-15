@@ -1,0 +1,282 @@
+[
+ {
+  "k": "informativo:d1ec19fa3c",
+  "assunto": "Foro por prerrogativa de função após deixar o cargo (Súmula 394/STF)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 394/STF",
+    "texto": "$sumula:stf:394"
+   },
+   {
+    "ref": "Inq 687-SP (QO) — Plenário do STF, 25/08/1999",
+    "data": "1999-08-25",
+    "k": "informativo:d1ec19fa3c",
+    "texto": "Depois de cessado o exercício da função, não deve manter-se o foro por prerrogativa de função, porque cessada a investidura a que essa prerrogativa é inerente. O Tribunal cancelou a Súmula 394, preservada a validade dos atos praticados e das decisões proferidas com base na orientação anterior."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "informativo:79f3f281c7",
+  "assunto": "Imunidade de deputados estaduais (Súmula 3/STF)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 3/STF",
+    "texto": "$sumula:stf:3"
+   },
+   {
+    "ref": "HC 87164/RJ (STF, 04/04/2006)",
+    "data": "2006-04-04",
+    "k": "informativo:79f3f281c7",
+    "texto": "Como a Constituição determina que se apliquem às Assembleias Legislativas dos Estados e do DF as normas sobre imunidades parlamentares dos integrantes do Congresso Nacional, ficou superada a tese da Súmula 3/STF, segundo a qual a imunidade dos deputados estaduais era restrita à Justiça do Estado."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Constitucional"
+ },
+ {
+  "k": "informativo:a0b947ab09",
+  "assunto": "Legitimidade de entidades de classe de segundo grau para a ação direta (art. 103, IX, CF)",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Entendimento anterior do STF",
+    "texto": "As entidades de classe de segundo grau (as chamadas “associações de associações”) eram excluídas do rol de legitimados à ação direta."
+   },
+   {
+    "ref": "ADI 3153-AgR (Plenário, 12/08/2004; Informativo STF 356)",
+    "data": "2004-08-12",
+    "k": "informativo:a0b947ab09",
+    "texto": "O Plenário abandonou o entendimento que excluía as entidades de classe de segundo grau do rol dos legitimados à ação direta."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Constitucional"
+ },
+ {
+  "k": "informativo:dbe00cf2cb",
+  "assunto": "Desaposentação no RGPS (Tema 563/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 563/STJ (Primeira Seção)",
+    "texto": "A Primeira Seção havia consolidado o entendimento de que os benefícios previdenciários são direitos patrimoniais disponíveis, admitindo desistência por seus titulares, sem necessidade de devolver os valores recebidos para a concessão de nova aposentadoria."
+   },
+   {
+    "ref": "REsp 1.334.488-SC (Primeira Seção, 27/03/2019) — revisão do Tema 563, em adequação ao RE 661.256/SC (STF)",
+    "data": "2019-03-27",
+    "k": "informativo:dbe00cf2cb",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Previdenciário"
+ },
+ {
+  "k": "informativo:ab9d487693",
+  "assunto": "Prescrição de infração disciplinar também capitulada como crime (art. 142, § 2º, Lei 8.112/1990)",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "MS 13.926/DF (3ª Seção, 2013) e MS 15.462/DF (1ª Seção, 2011) — entendimento dominante",
+    "texto": "A aplicação do prazo prescricional previsto na lei penal exigia a demonstração da existência de apuração criminal da conduta do servidor."
+   },
+   {
+    "ref": "EDv nos EREsp 1.656.383-SC (1ª Seção, 05/09/2018), aplicado no MS 20.857-DF (22/05/2019)",
+    "data": "2019-05-22",
+    "k": "informativo:ab9d487693",
+    "texto": "A Primeira Seção superou seu posicionamento anterior: diante da independência das esferas administrativa e criminal, a existência de apuração criminal não é pré-requisito para usar o prazo prescricional penal. Tese: “O prazo prescricional previsto na lei penal se aplica às infrações disciplinares também capituladas como crime independentemente da apuração criminal da conduta do servidor.”"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Administrativo"
+ },
+ {
+  "k": "informativo:5b77285771",
+  "assunto": "IPI na importação de veículo para uso próprio (Tema 695/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 695/STJ (REsp repetitivo analisado em 25/02/2015)",
+    "data": "2015-02-25",
+    "texto": "Não incide IPI sobre veículo importado para uso próprio, tendo em vista que o fato gerador do tributo é a operação de natureza mercantil ou assemelhada e, ainda, por aplicação do princípio da não cumulatividade."
+   },
+   {
+    "ref": "REsp 1.396.488-SC (1ª Seção, 25/09/2019) — revisão do Tema 695, em adequação ao RE 723.651/PR (Tema 643/STF)",
+    "data": "2019-09-25",
+    "k": "informativo:5b77285771",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Tributário"
+ },
+ {
+  "k": "informativo:dc3c06aea0",
+  "assunto": "Inadimplemento da pena de multa e extinção da punibilidade (Tema 931/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 931/STJ — REsp 1.519.777/SP (Terceira Seção)",
+    "texto": "Cumprida a pena privativa de liberdade (ou a restritiva de direitos que a substituiu), o inadimplemento da sanção pecuniária não obsta o reconhecimento da extinção da punibilidade."
+   },
+   {
+    "ref": "ADI 3.150/DF (STF)",
+    "texto": "A alteração do art. 51 do Código Penal pela Lei 9.268/1996 não retirou o caráter de sanção criminal da pena de multa; a primazia para a execução cabe ao Ministério Público e o inadimplemento obsta a extinção da punibilidade."
+   },
+   {
+    "ref": "AgRg no REsp 1.850.903-SP (STJ, 28/04/2020)",
+    "k": "informativo:6620fcda6d",
+    "texto": "$tese"
+   },
+   {
+    "ref": "REsp 2.090.454-SP (3ª Seção, 28/02/2024) — revisão do Tema 931",
+    "data": "2024-02-28",
+    "k": "informativo:dc3c06aea0",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ },
+ {
+  "k": "informativo:32ac348f0f",
+  "assunto": "Juros compensatórios na desapropriação (Tema 126 e Súmula 408/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Tema 126/STJ e Súmula 408/STJ (mesma redação)",
+    "texto": "Nas ações de desapropriação, os juros compensatórios incidentes após a Medida Provisória 1.577, de 11/06/1997, devem ser fixados em 6% ao ano até 13/09/2001 e, a partir de então, em 12% ao ano, na forma da Súmula 618/STF."
+   },
+   {
+    "ref": "Pet 12.344-DF (1ª Seção, 28/10/2020) — revisão do Tema 126 e cancelamento da Súmula 408, após a ADI 2332 (STF)",
+    "data": "2020-10-28",
+    "k": "informativo:32ac348f0f",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Administrativo"
+ },
+ {
+  "k": "informativo:80cb84800c",
+  "assunto": "IR e CSLL sobre a taxa Selic na repetição de indébito (Tema 505/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 505/STJ (tese original)",
+    "texto": "Incidência do IR e da CSLL sobre a taxa Selic recebida na repetição de indébito tributário (a tese foi modificada em 2023 justamente para afastar essa incidência)."
+   },
+   {
+    "ref": "RE 1.063.187/SC (STF, Plenário, 27/09/2021) — Tema 962/RG",
+    "data": "2021-09-27",
+    "texto": "É inconstitucional a incidência do IRPJ e da CSLL sobre os valores atinentes à taxa Selic recebidos em razão de repetição de indébito tributário."
+   },
+   {
+    "ref": "REsp 1.138.695-SC (STJ, 26/04/2023) — modificação do Tema 505",
+    "data": "2023-04-26",
+    "k": "informativo:80cb84800c",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Tributário"
+ },
+ {
+  "k": "informativo:2c51754708",
+  "assunto": "Suicídio nos dois primeiros anos do seguro de vida (Súmulas 105/STF, 61 e 610/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 105/STF",
+    "texto": "$sumula:stf:105"
+   },
+   {
+    "ref": "Súmula 61/STJ (cancelada em 25/04/2018)",
+    "texto": "$sumula:stj:61"
+   },
+   {
+    "ref": "Súmula 610/STJ (2018)",
+    "texto": "$sumula:stj:610"
+   },
+   {
+    "ref": "REsp 1.721.716-PR (3ª Turma, 10/12/2019) — modulação dos efeitos da nova súmula",
+    "data": "2019-12-10",
+    "k": "informativo:2c51754708",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Civil"
+ },
+ {
+  "k": "informativo:57dd41cd30",
+  "assunto": "Devolução de valores pagos por erro da Administração ao servidor (Tema 531/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 531/STJ — REsp 1.244.182/PB",
+    "texto": "Quando a Administração Pública interpreta erroneamente uma lei, resultando em pagamento indevido ao servidor de boa-fé, cria-se falsa expectativa de legalidade dos valores, o que impede o desconto/devolução ao erário."
+   },
+   {
+    "ref": "REsp 1.769.306-AL (1ª Seção, 10/03/2021) — revisão da tese do Tema 531",
+    "data": "2021-03-10",
+    "k": "informativo:57dd41cd30",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Administrativo"
+ },
+ {
+  "k": "tema:129",
+  "assunto": "Contribuição previdenciária patronal sobre o terço constitucional de férias (Tema 479/STJ)",
+  "tipo": "superacao",
+  "etapas": [
+   {
+    "ref": "Tema 479/STJ",
+    "texto": "Natureza indenizatória do terço constitucional de férias e, por isso, não incidência da contribuição previdenciária patronal."
+   },
+   {
+    "ref": "Tema 985/STF (31/08/2020)",
+    "data": "2020-08-31",
+    "texto": "É legítima a incidência de contribuição social sobre o valor satisfeito a título de terço constitucional de férias."
+   },
+   {
+    "ref": "STJ, juízo de retratação — cancelamento do Tema 479 (13/05/2026)",
+    "data": "2026-05-13",
+    "k": "tema:129",
+    "texto": "A tese do Tema 479/STJ foi cancelada em razão da superação pelo Tema 985/STF: reconhece-se a incidência da contribuição previdenciária patronal sobre o terço constitucional de férias gozadas, com eficácia ex nunc a partir da publicação da ata de julgamento do mérito."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Tributário"
+ },
+ {
+  "k": "tema:129",
+  "assunto": "Contribuição previdenciária patronal sobre o salário-maternidade (Tema 739/STJ)",
+  "tipo": "superacao",
+  "etapas": [
+   {
+    "ref": "Tema 739/STJ",
+    "texto": "Natureza salarial do salário-maternidade, com legitimidade da incidência da contribuição previdenciária patronal."
+   },
+   {
+    "ref": "Tema 72/STF (05/08/2020)",
+    "data": "2020-08-05",
+    "texto": "É inconstitucional a incidência de contribuição previdenciária a cargo do empregador sobre o salário-maternidade."
+   },
+   {
+    "ref": "STJ, juízo de retratação — cancelamento do Tema 739 (13/05/2026)",
+    "data": "2026-05-13",
+    "k": "tema:129",
+    "texto": "A tese do Tema 739/STJ (salário-maternidade) também fica cancelada, em razão do Tema 72/STF."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Tributário"
+ }
+]

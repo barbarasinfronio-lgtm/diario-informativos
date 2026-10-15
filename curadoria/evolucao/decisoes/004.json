@@ -1,0 +1,76 @@
+[
+ {
+  "k": "informativo:75b61787b1",
+  "assunto": "Reconhecimento de pessoa e art. 226 do CPP",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Jurisprudência majoritária do STJ (até 2020)",
+    "texto": "A inobservância das formalidades do art. 226 do CPP para o reconhecimento de pessoa não era causa de nulidade: não se tratava de exigências, mas de meras recomendações."
+   },
+   {
+    "ref": "HC 598.886/SC (6ª Turma, 27/10/2020) — rompimento com a posição majoritária",
+    "data": "2020-10-27",
+    "texto": "Nova interpretação do art. 226 do CPP: a inobservância do procedimento descrito no dispositivo torna inválido o reconhecimento da pessoa suspeita."
+   },
+   {
+    "ref": "REsp 1.953.602-SP (STJ, 11/06/2025) — Tema 1258/STJ",
+    "data": "2025-06-11",
+    "k": "informativo:75b61787b1",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "informativo:f408d3ff83",
+  "assunto": "Acordo de não persecução penal na Justiça Militar",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Súmula 18/STM (2022) e AgRg no HC 628.275/SP (5ª Turma do STJ, 14/03/2023)",
+    "data": "2023-03-14",
+    "texto": "O ANPP não se aplicava aos crimes militares, sob o fundamento de que o legislador deixou de incluir o instituto no Código de Processo Penal Militar."
+   },
+   {
+    "ref": "HC 232.254/PE (STF, 2ª Turma, 2024)",
+    "data": "2024-01-01",
+    "texto": "A orientação jurisprudencial se alterou: o STF passou a admitir o ANPP no âmbito militar, a partir de interpretação sistemática do art. 28-A, § 2º, do CPP e do art. 3º do CPPM."
+   },
+   {
+    "ref": "HC 993.294-MG (STJ, 05/08/2025) — adequação ao STF",
+    "data": "2025-08-05",
+    "k": "informativo:f408d3ff83",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "informativo:7b2d818375",
+  "assunto": "Interrogatório do adolescente na apuração de ato infracional (art. 400 do CPP)",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Entendimento consolidado no STJ",
+    "texto": "O art. 400 do CPP (interrogatório ao final da instrução) não se aplicava à apuração de ato infracional, em razão da especialidade do art. 184 do ECA (oitiva na audiência de apresentação)."
+   },
+   {
+    "ref": "Mudança do entendimento do STJ (28/02/2023) — adequação ao STF",
+    "data": "2023-02-28",
+    "k": "informativo:7b2d818375",
+    "texto": "$tese"
+   },
+   {
+    "ref": "Tema 1269/STJ — REsp 2.088.626-RS (08/10/2025)",
+    "data": "2025-10-08",
+    "k": "informativo:3e6fdab68b",
+    "texto": "$tese O novo entendimento é aplicável aos processos com instrução encerrada após 3/3/2016; a nulidade deve ser alegada no momento oportuno, sob pena de preclusão."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito da Criança e do Adolescente"
+ }
+]

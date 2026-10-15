@@ -1,0 +1,78 @@
+[
+ {
+  "k": "informativo:17c87443b0",
+  "assunto": "Data-base para nova progressão de regime",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Terceira Seção do STJ (Quinta e Sexta Turmas)",
+    "texto": "O termo inicial para a obtenção de nova progressão era a data do efetivo ingresso no regime anterior, e não a data da decisão judicial que concedeu o benefício nem a do preenchimento dos requisitos do art. 112 da LEP."
+   },
+   {
+    "ref": "HC 369.774-RS (STJ, 22/11/2016) — a Quinta Turma alinha-se ao STF",
+    "data": "2016-11-22",
+    "k": "informativo:17c87443b0",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "informativo:cfad9f964b",
+  "assunto": "Tráfico privilegiado e hediondez (Súmula 512/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 512/STJ — Tema 600/STJ (3ª Seção, 13/03/2013)",
+    "texto": "$sumula:stj:512"
+   },
+   {
+    "ref": "Pet 11.796-DF (Corte Especial, 23/11/2016) — adequação ao HC 118.533-MS (STF)",
+    "data": "2016-11-23",
+    "k": "informativo:cfad9f964b",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ },
+ {
+  "k": "informativo:198286307f",
+  "assunto": "Danos morais por protesto irregular de título de crédito",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Entendimento que prevalecia nas duas Turmas de direito privado",
+    "texto": "O protesto irregular de título de crédito ocasionava danos morais in re ipsa."
+   },
+   {
+    "ref": "REsp 1.536.035-PR (3ª Turma, 26/10/2021) — “em verdadeiro overruling”",
+    "data": "2021-10-26",
+    "k": "informativo:198286307f",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Civil"
+ },
+ {
+  "k": "informativo:f230be71f9",
+  "assunto": "Honorários contratuais pagos com recursos do FUNDEF/FUNDEB",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Duas Turmas da Primeira Seção do STJ (entendimento pacificado)",
+    "texto": "Vedação ao pagamento de honorários advocatícios contratuais com recursos do FUNDEF/FUNDEB, inclusive com os juros moratórios dos precatórios."
+   },
+   {
+    "ref": "ADPF 528 (STF) e AREsp 1.369.724-AL (2ª Turma, 02/08/2022) — modificação do entendimento do STJ",
+    "data": "2022-08-02",
+    "k": "informativo:f230be71f9",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Administrativo"
+ }
+]

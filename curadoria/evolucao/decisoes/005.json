@@ -1,0 +1,64 @@
+[
+ {
+  "k": "informativo:d3aea3deb7",
+  "assunto": "Depósito judicial em garantia e encargos da mora (Tema 677/STJ)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 677/STJ — REsp 1.348.640/RS (Corte Especial)",
+    "texto": "Na fase de execução, o depósito judicial do montante (integral ou parcial) da condenação extingue a obrigação do devedor, nos limites da quantia depositada (sem que a Corte Especial tivesse examinado, à época, o efeito do depósito sobre a mora)."
+   },
+   {
+    "ref": "REsp 1.820.963-SP (Corte Especial, 19/10/2022) — revisão do Tema 677",
+    "data": "2022-10-19",
+    "k": "informativo:d3aea3deb7",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Civil"
+ },
+ {
+  "k": "informativo:69295bd72e",
+  "assunto": "Imunidade de jurisdição de Estado estrangeiro por violação de direitos humanos",
+  "tipo": "superacao",
+  "etapas": [
+   {
+    "ref": "Orientação anterior do STJ (RO 109-RJ — caso Changri-lá)",
+    "texto": "Estado estrangeiro gozava de imunidade de jurisdição quanto a atos de império, mesmo em período de guerra (a República Federal da Alemanha não respondia pelo afundamento do barco pesqueiro brasileiro em 1943)."
+   },
+   {
+    "ref": "ARE 954.858/RJ (STF, Plenário, 23/08/2021) — Tema 944/RG",
+    "data": "2021-08-23",
+    "texto": "Os atos ilícitos praticados por Estados estrangeiros em violação a direitos humanos não gozam de imunidade de jurisdição."
+   },
+   {
+    "ref": "RO 109-RJ (STJ, 4ª Turma, 07/06/2022) — juízo de retratação: “superação (overruling) da jurisprudência desta Corte”",
+    "data": "2022-06-07",
+    "k": "informativo:69295bd72e",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Internacional"
+ },
+ {
+  "k": "informativo:a2b6f6a8de",
+  "assunto": "Prazo para ações coletivas de consumo e a ação popular (art. 21 da Lei 4.717/1965)",
+  "tipo": "superacao",
+  "etapas": [
+   {
+    "ref": "Orientação anterior do STJ",
+    "texto": "Aplicava-se, por analogia, o prazo prescricional de 5 anos da ação popular (art. 21 da Lei 4.717/1965) às ações coletivas de consumo."
+   },
+   {
+    "ref": "REsp 1.736.091-PE (3ª Turma, 14/05/2019) — “superação (overruling)”",
+    "data": "2019-05-14",
+    "k": "informativo:a2b6f6a8de",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito do Consumidor"
+ }
+]

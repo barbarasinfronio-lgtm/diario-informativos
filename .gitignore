@@ -4,3 +4,5 @@ provas/pasta-das-provas.txt
 stj/pasta-scon.txt
 informativos/pasta-md.txt
 stj/pasta-acordaos.txt
+curadoria/evolucao/candidatos-acordaos-*.jsonl
+curadoria/evolucao/sumulas.json
