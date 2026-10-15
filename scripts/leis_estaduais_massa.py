@@ -467,7 +467,24 @@ def achar_ms(tipo, n, ano):
     return None
 
 
+def achar_pa_alepa(tipo, n, ano):
+    """Banco de Leis da Alepa: busca por número/ano/tipo e PDF da norma."""
+    cod = {"lei": "3", "lc": "4", "dec": "2"}.get(tipo)
+    if not cod:
+        return None
+    h = http(f"https://bancodeleis.alepa.pa.gov.br/index.php?codigo={n}&ano={ano}&tipo={cod}")
+    for href in dict.fromkeys(re.findall(r'href="(arquivos/lei[^"]*\.pdf)"', h)):
+        r = tentar_pdfs("PA", tipo, n, ano, ["https://bancodeleis.alepa.pa.gov.br/" + urllib.parse.quote(href, safe="/%")])
+        if r:
+            return r
+    return None
+
+
 def achar_pa(tipo, n, ano):
+    return achar_pa_lex(tipo, n, ano) or achar_pa_alepa(tipo, n, ano)
+
+
+def achar_pa_lex(tipo, n, ano):
     pref = {"lei": "lei ordin", "lc": "lei complementar", "dec": "decreto n", "dl": "decreto lei"}.get(tipo)
     if not pref:
         return None
