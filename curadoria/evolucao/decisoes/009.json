@@ -1,0 +1,36 @@
+[
+ {
+  "k": "acordao:1106690",
+  "assunto": "ICMS sobre demanda contratada de energia: legitimidade do consumidor final",
+  "tipo": "mudanca",
+  "area": "Direito Tributário",
+  "etapas": [
+   {
+    "ref": "Jurisprudência anterior do STJ",
+    "texto": "Entendimento anterior do STJ (o acórdão de 2012 registra que a Corte “passou a admitir a ilegitimidade” do consumidor final, ao rever a jurisprudência anterior, que o admitia como parte na repetição do ICMS sobre a demanda contratada)."
+   },
+   {
+    "ref": "AgRg no Ag 1.307.725 (STJ, 2012)",
+    "k": "acordao:1106690",
+    "texto": "Revendo jurisprudência anterior, o STJ passou a reconhecer a ilegitimidade ativa do consumidor final (contribuinte de fato) para a demanda de repetição do indébito do ICMS nas operações internas, pois o conceito de contribuinte deve ser extraído do art. 4º da LC 87/96."
+   }
+  ]
+ },
+ {
+  "k": "acordao:000492565",
+  "assunto": "Súmula 470/STJ: legitimidade do MP para ação civil pública (DPVAT)",
+  "tipo": "cancelamento",
+  "area": "Direito Processual Civil",
+  "etapas": [
+   {
+    "ref": "Súmula 470/STJ",
+    "texto": "$sumula:stj:470"
+   },
+   {
+    "ref": "REsp 858.056 (STJ, 2015)",
+    "k": "acordao:000492565",
+    "texto": "Cancelamento da Súmula 470/STJ (arts. 12, parágrafo único, III, e 125, §§ 1º e 3º, do RISTJ): mantido o acórdão estadual que reconhecera a legitimidade ativa do Ministério Público Estadual e determinara o retorno dos autos à primeira instância."
+   }
+  ]
+ }
+]
