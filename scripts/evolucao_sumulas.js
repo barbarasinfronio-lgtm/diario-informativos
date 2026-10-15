@@ -7,7 +7,7 @@ const ctx = { window: {} };
 vm.createContext(ctx);
 vm.runInContext(s + "\nthis.D = SUMULAS_DATA;", ctx);
 const out = [];
-for (const k of Object.keys(ctx.D)) for (const x of (ctx.D[k].sumulas || [])) out.push({ trib: k, numero: x.numero, texto: x.texto, link: x.link || "" });
+for (const k of Object.keys(ctx.D)) for (const x of (ctx.D[k].sumulas || [])) out.push({ trib: k, label: ctx.D[k].label || k, numero: x.numero, texto: x.texto, link: x.link || "" });
 fs.mkdirSync(path.join(raiz, "curadoria/evolucao"), { recursive: true });
 fs.writeFileSync(path.join(raiz, "curadoria/evolucao/sumulas.json"), JSON.stringify(out));
 console.log(out.length + " súmulas exportadas");
