@@ -603,6 +603,23 @@ s.setAttribute("data-em-select-js", "");
 document.head.appendChild(s);
 }
 
+// VLibras (Governo Federal): tradução do português para Libras, com o avatar Vlibras. Widget oficial,
+// carregado uma vez por página; o botão azul aparece na lateral e abre o tradutor ao clicar.
+function loadVLibras() {
+if (document.querySelector("[vw]") || window.__emVLibras) return;
+window.__emVLibras = true;
+var box = document.createElement("div");
+box.setAttribute("vw", "");
+box.className = "enabled";
+box.innerHTML = '<div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>';
+document.body.appendChild(box);
+var s = document.createElement("script");
+s.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+s.async = true;
+s.onload = function () { try { new window.VLibras.Widget("https://vlibras.gov.br/app"); } catch (e) {} };
+document.head.appendChild(s);
+}
+
 function signature(list) {
 return list.map(function (p) { return p.path + "|" + p.title; }).join("\n");
 }
@@ -686,6 +703,7 @@ writeCache(fresh);
 
 loadStyles();
 loadSeletor();
+if (document.body) loadVLibras(); else document.addEventListener("DOMContentLoaded", loadVLibras);
 if (document.readyState === "loading") {
 document.addEventListener("DOMContentLoaded", start);
 } else {
