@@ -89,9 +89,11 @@
  "ADPF 675": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
  "SS 5365": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
  "MS 37059": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
- "STP 174": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
+ "STP 174": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
  "Rcl 39923": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
- "MS 37056": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
+ "MS 37056": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
  "Pet 8766": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
- "Rcl 39871": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+ "Rcl 39871": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
+ "ADPF 672": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
+ "SL 1309": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
 }
