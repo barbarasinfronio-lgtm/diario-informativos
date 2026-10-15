@@ -170,13 +170,14 @@ def main():
             print(f"  ? {p['id']}: não entendi o processo {p.get('processo', '')[:60]!r}")
             continue
         cl = cl.upper()
+        cl_portal = {"RCL": "Rcl", "PET": "Pet", "INQ": "Inq"}.get(cl, cl)   # o portal do STF só acha Rcl/Pet/Inq com essa grafia
         print(f"  … {cl} {num} ({p.get('data', '')})", flush=True)
         try:
             if hasattr(signal, "SIGALRM"):
                 signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 3 minutos; pulei")))
                 signal.alarm(180)
             if (cl, num) not in incid:
-                incid[(cl, num)] = c.achar_incidente(cl, num)
+                incid[(cl, num)] = c.achar_incidente(cl_portal, num)
                 time.sleep(a.espera)
             texto, completo = buscar_teor(cl, num, incid[(cl, num)], p.get("data", ""))
             time.sleep(a.espera)

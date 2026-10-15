@@ -32,6 +32,7 @@ CONTROLE = "controleconst/adi_dados.js"
 RECLAM = "reclamacoes/reclamacoes-data.js"
 CLASSES_CONTROLE = ("ADI", "ADC", "ADPF", "ADO")
 RX_PROC = re.compile(r"\b(ADI|ADC|ADPF|ADO|ADIn|Rcl|RE|ARE|MS|HC|AP|Pet|ACO|Inq|MI|SL|RHC|RMS)\s*([\d.]+)")
+RX_PROC_MAIUSC = re.compile(r"\b(ADI|ADC|ADPF|ADO|ADIn|Rcl|RE|ARE|MS|HC|AP|Pet|ACO|Inq|MI|SL|RHC|RMS)\s*([\d.]+)", re.I)
 RX_ETIQUETA = re.compile(r"\(\s*(ADI|ADC|ADPF|ADO|Rcl)\s*-\s*(\d+)\s*\)", re.I)
 
 
@@ -46,7 +47,14 @@ def principal(processo):
         cl = m[1].upper() if m[1].lower() != "rcl" else "Rcl"
         return cl, m[2]
     m = RX_PROC.search(processo or "")
-    return (m[1].replace("ADIn", "ADI"), m[2].replace(".", "")) if m else (None, None)
+    if m:
+        return m[1].replace("ADIn", "ADI"), m[2].replace(".", "")
+    # pedidos da lista do site vêm em MAIÚSCULAS ("RCL 3436", "PET 2859"): aceita e usa a grafia do portal
+    m = RX_PROC_MAIUSC.search(processo or "")
+    if m:
+        cl = m[1].upper().replace("ADIN", "ADI")
+        return {"RCL": "Rcl", "PET": "Pet", "INQ": "Inq"}.get(cl, cl), m[2].replace(".", "")
+    return None, None
 
 
 def iso(d):          # 03/11/2020 → 2020-11-03
