@@ -222,6 +222,17 @@ def achar_rs(tipo, n, ano):
 def achar_pe(tipo, n, ano):
     """Alepe Legis: endereço direto por tipo/número/ano (tiponorma 1 = lei, 2 = lei complementar)."""
     import leis_pe_alepe as pe
+    if tipo == "dec":   # Decretos do Executivo: a lista do ano traz o id de cada um
+        lst = http(f"https://legis.alepe.pe.gov.br/lista.aspx?tiponorma=6&ano={ano}", timeout=180)
+        for i, nome in re.findall(r"<a href='texto\.aspx\?id=(\d+)[^>]*>(Decreto[^<]*)</a>", lst):
+            if nome.strip().endswith(" " + lc.com_ponto(n)) or nome.strip().endswith(lc.com_ponto(n)):
+                for tp in ("TEXTOATUALIZADO", "TEXTOORIGINAL"):
+                    link = f"https://legis.alepe.pe.gov.br/texto.aspx?id={i}&tipo={tp}"
+                    pg = http(link)
+                    ps = robo.paragrafos_do_site(pg)
+                    if len(ps) >= 4 and robo.texto_confere(rotulo("PE", tipo, n, ano), ps, link):
+                        return link, pg, "", robo.paragrafos_do_site
+        return None
     tn = {"lei": 1, "lc": 2}.get(tipo)
     if not tn:
         return None
