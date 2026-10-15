@@ -1,0 +1,142 @@
+[
+ {
+  "k": "informativo:af8f33d0fe",
+  "assunto": "Ação penal na lesão corporal leve contra a mulher (Lei Maria da Penha)",
+  "tipo": "revisao",
+  "etapas": [
+   {
+    "ref": "Tema 177/STJ — REsp 1.097.042/DF (3ª Seção, DJe 21/05/2010)",
+    "data": "2010-05-21",
+    "texto": "A ação penal nos crimes de lesão corporal leve cometidos em detrimento da mulher, no âmbito doméstico e familiar, é pública condicionada à representação da vítima."
+   },
+   {
+    "ref": "ADI 4.424/DF (STF, Plenário, 09/02/2012)",
+    "data": "2012-02-09",
+    "texto": "O STF julgou procedente a ação, com efeito erga omnes, atribuindo interpretação conforme à Constituição aos arts. 12, I, 16 e 41 da Lei 11.340/2006 (ação pública incondicionada)."
+   },
+   {
+    "ref": "Pet 11.805-DF (3ª Seção, 10/05/2017) — revisão do Tema 177 e Súmula 542/STJ",
+    "data": "2017-05-10",
+    "k": "informativo:af8f33d0fe",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ },
+ {
+  "k": "informativo:c96b9753c7",
+  "assunto": "Desconto de empréstimo em conta-corrente onde se recebe salário (Súmula 603/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 603/STJ (promulgada em 26/02/2018)",
+    "texto": "$sumula:stj:603"
+   },
+   {
+    "ref": "REsp 1.555.722-SP (STJ, 22/08/2018) — a Segunda Seção cancelou a Súmula 603",
+    "data": "2018-08-22",
+    "k": "informativo:c96b9753c7",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito do Consumidor"
+ },
+ {
+  "k": "informativo:80b6609b99",
+  "assunto": "Venda premiada e crime contra o sistema financeiro",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "CC 121.146/MA (3ª Seção, junho de 2012)",
+    "data": "2012-06-01",
+    "texto": "As operações denominadas compra premiada ou venda premiada (promessa de aquisição de bens, mediante formação de grupos, com pagamentos mensais e sorteios) não constituem atividades financeiras para fins de incidência da Lei 7.492/1986."
+   },
+   {
+    "ref": "CC 160.077-PA (3ª Seção, 10/10/2018) — “mudança de entendimento em curto espaço de tempo”",
+    "data": "2018-10-10",
+    "k": "informativo:80b6609b99",
+    "texto": "$tese"
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ },
+ {
+  "k": "acordao:000530054",
+  "assunto": "Contribuição sindical e competência (Súmula 222/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 222/STJ",
+    "texto": "$sumula:stj:222"
+   },
+   {
+    "ref": "CC 130.762 (1ª Seção, 23/04/2014)",
+    "data": "2014-04-23",
+    "k": "acordao:000530054",
+    "texto": "Após a Emenda Constitucional 45/2004, que alterou o art. 114, III, da Constituição, ficou superada a diretriz da Súmula 222/STJ: compete à Justiça do Trabalho processar e julgar as ações relativas à contribuição sindical prevista no art. 578 da CLT."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Civil"
+ },
+ {
+  "k": "acordao:585086",
+  "assunto": "Competência para julgar desvio de verbas do FUNDEF",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Orientação até então pacificada na Terceira Seção",
+    "texto": "Pelo contexto do acórdão, a competência da Justiça Federal dependia da existência de complementação de verbas federais ao FUNDEF."
+   },
+   {
+    "ref": "CC 119.305/SP e CC 123.817 (3ª Seção, 12/09/2012)",
+    "data": "2012-09-12",
+    "k": "acordao:585086",
+    "texto": "Mudando a jurisprudência até então pacificada, a Terceira Seção passou a entender ser da competência da Justiça Federal a apuração, no âmbito penal, de malversação de verbas públicas oriundas do FUNDEF, independentemente da complementação de verbas federais, dado o caráter nacional da política de educação (interesse da União)."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "acordao:000406612",
+  "assunto": "Atuação do Ministério Público estadual perante o STJ",
+  "tipo": "mudanca",
+  "etapas": [
+   {
+    "ref": "Orientação anterior do STJ",
+    "texto": "O Ministério Público estadual não atuava perante o STJ (a Corte passou a admitir essa atuação em 2014)."
+   },
+   {
+    "ref": "AgRg nos EREsp 1.256.973/RS (3ª Seção, DJe 06/11/2014)",
+    "data": "2014-11-06",
+    "k": "acordao:000406612",
+    "texto": "A Corte passou a admitir a atuação do Parquet estadual perante o STJ."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Processual Penal"
+ },
+ {
+  "k": "acordao:000595691",
+  "assunto": "Intimidação com arma de brinquedo no roubo (Súmula 174/STJ)",
+  "tipo": "cancelamento",
+  "etapas": [
+   {
+    "ref": "Súmula 174/STJ (cancelada em 24/10/2002)",
+    "texto": "$sumula:stj:174"
+   },
+   {
+    "ref": "HC 228.259 (STJ, 24/04/2012) — após o cancelamento da Súmula 174",
+    "data": "2012-04-24",
+    "k": "acordao:000595691",
+    "texto": "Com o cancelamento da Súmula 174/STJ, ficou assentado que a simples atemorização da vítima pelo emprego de simulacro de arma de fogo, como a arma de brinquedo, não mais é suficiente para configurar a causa especial de aumento de pena do roubo."
+   }
+  ],
+  "ev": 0,
+  "area": "Direito Penal"
+ }
+]
