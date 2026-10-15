@@ -917,6 +917,7 @@
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(tituloDe(d)) + '</h2>' +
+      '<p class="lido-topo" style="margin:4px 0 12px"><button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button></p>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
         : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
@@ -932,8 +933,7 @@
       (cobrancasDe(d).length ? '<div class="section-label">Cobrado em provas</div><ul class="cobrado-lista">' + cobrancasDe(d).map(function(c){ return '<li>' + escapeHtml(c.rotulo) + (c.questoes.length ? ' — questão ' + c.questoes.join(', ') : '') + '</li>'; }).join('') + '</ul>' : '') +
       (d.link ? '<a class="fonte-link" href="' + escapeHtml(d.link) + '" target="_blank" rel="noopener">Fonte oficial ↗</a>' : '') +
       '<div class="normas-box" hidden></div>' +
-      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>' +
-      '<p style="margin-top:14px"><button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button></p>';
+      '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
     modal.querySelector('.lido-modal').addEventListener('click', function(){
       marcarLido(d, !isRead(lidos[d.id]));
