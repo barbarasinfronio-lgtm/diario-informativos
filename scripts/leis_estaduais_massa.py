@@ -220,15 +220,17 @@ def achar_rs(tipo, n, ano):
 
 
 def achar_pe(tipo, n, ano):
+    """Alepe Legis: endereço direto por tipo/número/ano (tiponorma 1 = lei, 2 = lei complementar)."""
     import leis_pe_alepe as pe
-    if tipo not in ("lei", "lc"):
+    tn = {"lei": 1, "lc": 2}.get(tipo)
+    if not tn:
         return None
-    i = pe.achar("Lei Complementar" if tipo == "lc" else "Lei Ordinária", int(n), int(ano))
-    if not i:
-        return None
-    link = f"{pe.BASE}texto.aspx?id={i}&tipo=TEXTOATUALIZADO"
-    pg = pe.curl(link)
-    return link, pg, "", pe.paragrafos
+    link = f"https://legis.alepe.pe.gov.br/texto.aspx?tiponorma={tn}&numero={n}&complemento=0&ano={ano}&tipo=&url="
+    pg = http(link)
+    ps = pe.paragrafos(pg)
+    if len(ps) >= 4 and robo.texto_confere(rotulo("PE", tipo, n, ano), ps, link):
+        return link, pg, "", pe.paragrafos
+    return None
 
 
 def achar_se(tipo, n, ano):
