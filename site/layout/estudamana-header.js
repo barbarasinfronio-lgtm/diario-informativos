@@ -620,6 +620,16 @@ s.onload = function () { try { new window.VLibras.Widget("https://vlibras.gov.br
 document.head.appendChild(s);
 }
 
+// Leitores de tela (NVDA, JAWS, VoiceOver) e teclado: ver em-acessibilidade.js
+function loadAcessibilidade() {
+if (window.EstudaManaAcessibilidade || document.querySelector("[data-em-a11y-js]")) return;
+var s = document.createElement("script");
+s.src = assetBase() + "em-acessibilidade.js";
+s.async = true;
+s.setAttribute("data-em-a11y-js", "");
+document.head.appendChild(s);
+}
+
 function signature(list) {
 return list.map(function (p) { return p.path + "|" + p.title; }).join("\n");
 }
@@ -703,6 +713,7 @@ writeCache(fresh);
 
 loadStyles();
 loadSeletor();
+loadAcessibilidade();
 if (document.body) loadVLibras(); else document.addEventListener("DOMContentLoaded", loadVLibras);
 if (document.readyState === "loading") {
 document.addEventListener("DOMContentLoaded", start);
