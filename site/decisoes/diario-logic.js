@@ -489,6 +489,7 @@
     if (!row) return;
     row.lida = value;
     row.lidaEm = value ? todayIso() : null;
+    try { var man = lerJsonLocal(MANUAL_KEY); man[rowKey(orgKey, row)] = true; localStorage.setItem(MANUAL_KEY, JSON.stringify(man)); } catch (e) {}
     render();
     if (!applyingRemote) {
       scheduleSync();
@@ -653,6 +654,57 @@
   abrirDoCaderno();
   window.addEventListener("hashchange", abrirDoCaderno);
 
+  // Informativo lido pelas decisões: quando todos os julgados de uma edição já foram lidos no Diário das Decisões
+  // (ids "inf-<id>" em "decisoes-lidas", local e na conta), a edição é marcada como lida aqui. A lista de julgados de
+  // cada edição vem de leve/informativos-julgados.json (scripts/gerar_destaques_informativos.js). Edição que a pessoa
+  // marcou ou desmarcou na mão ("informativos-manual") não é mexida: quem desmarcar não a vê marcada de novo.
+  var JULGADOS_URL = "https://barbarasinfronio-lgtm.github.io/diario-informativos/leve/informativos-julgados.json";
+  var MANUAL_KEY = "informativos-manual";
+  var julgadosPorEdicao = null, julgadosCarregando = false, decisoesNuvem = {};
+  function lerJsonLocal(chave) { try { return JSON.parse(localStorage.getItem(chave) || "{}") || {}; } catch (e) { return {}; } }
+  function lidaDec(v) { return !!(v && (v === true || v.lida)); }
+  function cruzarDecisoes() {
+    var local = lerJsonLocal("decisoes-lidas"), lidas = {}, temInf = false;
+    [local, decisoesNuvem].forEach(function (m) {
+      Object.keys(m || {}).forEach(function (k) {
+        if (k.indexOf("inf-") !== 0 || !lidaDec(m[k])) return;
+        temInf = true;
+        var d = (m[k] && m[k].lidaEm) ? String(m[k].lidaEm).slice(0, 10) : "";
+        if (!lidas[k] || d > lidas[k]) lidas[k] = d || lidas[k] || "-";
+      });
+    });
+    if (!temInf) return;
+    if (!julgadosPorEdicao) {
+      if (julgadosCarregando) return;
+      julgadosCarregando = true;
+      fetch(JULGADOS_URL).then(function (r) { if (!r.ok) throw new Error("julgados"); return r.json(); })
+        .then(function (j) { julgadosPorEdicao = j; cruzarDecisoes(); })
+        .catch(function () { julgadosCarregando = false; });
+      return;
+    }
+    var manual = lerJsonLocal(MANUAL_KEY), mudou = false;
+    Object.keys(julgadosPorEdicao).forEach(function (ed) {
+      var p = ed.split(":"), orgKey = p[0].toLowerCase();
+      if (!stateByOrg[orgKey]) return;
+      var ids = julgadosPorEdicao[ed];
+      if (!ids.length || !ids.every(function (id) { return lidas["inf-" + id]; })) return;
+      var row = stateByOrg[orgKey].find(function (r) { return String(r.edicao) === p[1]; });
+      if (!row || row.lida) return;
+      var chave = rowKey(orgKey, row);
+      if (manual[chave]) return;
+      var ultima = ids.reduce(function (mx, id) { var d = lidas["inf-" + id]; return d && d !== "-" && d > mx ? d : mx; }, "");
+      row.lida = true;
+      row.lidaEm = ultima || todayIso();
+      mudou = true;
+    });
+    if (!mudou) return;
+    render();
+    if (!applyingRemote) { scheduleSync(); scheduleGroupSync(); }
+  }
+  window.addEventListener("storage", function (e) { if (e.key === "decisoes-lidas") cruzarDecisoes(); });
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") cruzarDecisoes(); });
+  cruzarDecisoes();
+
   // 2) se a pessoa entrou (Google ou e-mail e senha — ver conta-google.js),
   // reconcilia com o progresso salvo dela e liga a escuta em tempo real.
   // O documento de cada visitante vive em progress/<uid> — ninguém mais lê
@@ -685,6 +737,12 @@
     });
     subscribeAllGroups();
     pushProgressToGroups();
+    try {
+      dbCap.doc("progress-decisoes/" + viewerId).get().then(function (snap) {
+        var d = snap.exists ? snap.data() : null;
+        if (d && d.map) { decisoesNuvem = d.map; cruzarDecisoes(); }
+      }).catch(function () {});
+    } catch (e) {}
   }
 
   if (window.firebase && window.DIARIO_FIREBASE_CONFIG) {

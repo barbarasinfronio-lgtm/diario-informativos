@@ -11,6 +11,7 @@
 //      de cobrado × não cobrado) e (b) o quanto a área do direito costuma cair (ex.: processo penal).
 //      Só entram os 15% melhores de todos os informativos; o resto não é indicado.
 //
+// Também gera leve/informativos-julgados.json (todos os julgados de cada edição; ver o fim do arquivo).
 // Uso: node scripts/gerar_destaques_informativos.js   (roda no GitHub junto com gerar_leves.js)
 const fs = require("fs");
 const path = require("path");
@@ -77,3 +78,12 @@ for (const [k, lista] of porEd) {
 fs.writeFileSync(path.join(RAIZ, "leve/destaques-informativos.json"), JSON.stringify(saida));
 const kb = Math.round(fs.statSync(path.join(RAIZ, "leve/destaques-informativos.json")).size / 1024);
 console.log(`leve/destaques-informativos.json: ${Object.keys(saida).length} de ${porEd.size} edições com destaque, ${kb} KB (cobrados: ${npos}, corte de nota: ${corte.toFixed(2)})`);
+
+// ---- todos os julgados de cada edição (leve/informativos-julgados.json) ------------------------------
+// { "STF:1232": ["<id>", …], "STJ:905": […] } — o Diário de Informativos usa para marcar a edição como lida
+// quando todos os julgados dela já foram lidos no Diário das Decisões (ids "inf-<id>" em decisoes-lidas).
+// Fica aqui porque este script já roda no robô "Gerar dados leves" sempre que informativos/indice.json muda.
+const julgadosPorEdicao = {};
+for (const x of idx) (julgadosPorEdicao[x[1] + ":" + x[2]] = julgadosPorEdicao[x[1] + ":" + x[2]] || []).push(x[0]);
+fs.writeFileSync(path.join(RAIZ, "leve/informativos-julgados.json"), JSON.stringify(julgadosPorEdicao));
+console.log(`leve/informativos-julgados.json: ${Object.keys(julgadosPorEdicao).length} edições, ${Math.round(fs.statSync(path.join(RAIZ, "leve/informativos-julgados.json")).size / 1024)} KB`);
