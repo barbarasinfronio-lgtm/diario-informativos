@@ -216,6 +216,10 @@ def achar_rs(tipo, n, ano):
     if not nome:
         return None
     urls = [comp + q(f"{nome} nº {N}.pdf"), rep + q(f"{nome.upper()} {N}.pdf"), rep + q(f"{N}.pdf"), rep + q(f"{nome.upper()} {n}.pdf")]
+    if tipo == "dec":
+        urls += [rep + q(f"DEC {N}.pdf"), rep + q(f"DEC {n}.pdf")]
+    if tipo == "lc":   # compiladas: "Lec nº 09.230.pdf" (número com zero à esquerda quando tem 4 dígitos)
+        urls += [comp + q(f"Lec nº {N}.pdf"), comp + q(f"Lec nº 0{N}.pdf")]
     return tentar_pdfs("RS", tipo, n, ano, urls)
 
 
