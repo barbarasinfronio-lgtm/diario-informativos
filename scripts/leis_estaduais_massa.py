@@ -342,7 +342,7 @@ def achar_df(tipo, n, ano):
     return None
 
 
-FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "RR": ("rr", None), "MA": ("ma", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
+FONTE = {**{uf: ("sapl", None) for uf in SAPL}, "BA": ("ba", None), "ES": ("es", None), "AM": ("am", None), "RR": ("rr", None), "MA": ("ma", None), "PA": ("pa", None), "MS": ("ms", None), "RN": ("rn", None), "DF": ("df", None), "SP": ("sp", None), "MT": ("mt", None), "SE": ("se", None), "PE": ("pe", None), "RS": ("rs", None), "SC": ("sc", None), "GO": ("go", None), "MG": ("mg", None), "PR": ("pr", None)}
 
 
 def buscar(uf, tipo, n, ano):
@@ -355,6 +355,12 @@ def buscar(uf, tipo, n, ano):
         return achar_go(tipo, n, ano)
     if f == "rn":
         return achar_rn(tipo, n, ano)
+    if f == "am":
+        try:
+            r = achar_sapl("AM", tipo, n, ano)
+        except Exception:   # noqa: BLE001
+            r = None
+        return r or achar_am(tipo, n, ano)
     if f == "rr":
         try:
             r = achar_sapl("RR", tipo, n, ano)
@@ -560,6 +566,64 @@ def achar_ba(tipo, n, ano):
         ps = robo.paragrafos_do_site(h)
         if len(ps) >= 4 and robo.texto_confere(rotulo("BA", tipo, n, ano), ps, link):
             return link, h, "", robo.paragrafos_do_site
+    return None
+
+
+def texto_legisla_am(h):
+    """Legisla.AM (Imprensa Oficial do Amazonas): recorta o texto da norma (do título até 'Este texto não substitui…')."""
+    b = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", "", h)
+    b = re.sub(r"(?i)<br\s*/?>|</(p|div|li|tr|h\d)>", "\n", b)
+    tx = html.unescape(re.sub(r"<[^>]+>", "", b)).replace("\xa0", " ")
+    tx = re.sub(r"[ \t]+", " ", tx)
+    k = max(tx.rfind("Baixar diário"), 0)
+    mm = re.search(r"(?m)^\s*((?:LEI|DECRETO|EMENDA)[^\n]*\d{4})\s*$", tx[k:])
+    ini = k + mm.start() if mm else k
+    fim = re.search(r"(?i)Este texto n[ãa]o substitui|Ficou com d[úu]vida|Rua Doutor Machado|O reposit[óo]rio de leis do Estado", tx[ini:])
+    seg = tx[ini:][: fim.start()] if fim else tx[ini:]
+    return re.sub(r"(?m)^\s*$\n?", "", seg)
+
+
+def importar_legisla_am(url, tipo, n, ano, nome=None):
+    h = http(url)
+    t = texto_legisla_am(h)
+    t = re.sub(r"(N\S{0,3}\s*)0+(\d)", r"\1\2", t, count=1)   # "N.º 06" -> "N.º 6"
+    num = rotulo("AM", tipo, n, ano)
+    nome = nome or re.sub(r"\s+", " ", (t.split("\n")[1] if "\n" in t else num))[:160].capitalize()
+    if not robo.salvar_texto(url, t, nome, robo.hoje(), extrator=le.paragrafos_pdf, numero=num):
+        return False
+    d = json.loads(SAIDA.read_text(encoding="utf-8"))
+    d["leis"] = [x for x in d["leis"] if x["link"] != url] + [{"nome": nome, "numero": num, "link": url}]
+    SAIDA.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    robo.indice_dos_textos()
+    return True
+
+
+def achar_am(tipo, n, ano):
+    """Legisla.AM: lista do tipo/ano (paginada) -> 'Texto integral' da norma de número n."""
+    cod = {"lc": "10", "lei": "12", "dec": "41536"}.get(tipo)
+    if not cod:
+        return None
+    padrao = re.compile(r"N\S{0,3}\s*0*" + re.escape(lc.com_ponto(n)).replace("\\.", r"\.?") + r"\b")
+    for pag in range(1, 30):
+        h = http(f"https://legisla.imprensaoficial.am.gov.br/diario_am/{cod}/{ano}" + (f"?page={pag}" if pag > 1 else ""))
+        # cada norma: bloco com o título e o link "Texto integral"
+        blocos = re.split(r"(?=<a[^>]+href=\"/diario_am/%s/%s/\d+/\d+)" % (cod, ano), h)
+        achou = False
+        for b in blocos[1:]:
+            href = re.match(r'<a[^>]+href="(/diario_am/\d+/\d{4}/\d+/\d+)', b)
+            if not href:
+                continue
+            achou = True
+            ant = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", blocos[blocos.index(b) - 1]))[-300:]
+            if padrao.search(ant) and not re.search(r"(?i)decreto n", ant[-150:]) == (tipo != "dec"):
+                url = "https://legisla.imprensaoficial.am.gov.br" + href.group(1)
+                t = texto_legisla_am(http(url))
+                t = re.sub(r"(N\S{0,3}\s*)0+(\d)", r"\1\2", t, count=1)
+                ps = le.paragrafos_pdf(t)
+                if len(ps) >= 4 and robo.texto_confere(rotulo("AM", tipo, n, ano), ps, url):
+                    return url, t, "", le.paragrafos_pdf
+        if not achou or f"page={pag + 1}" not in h:
+            break
     return None
 
 
