@@ -50,6 +50,16 @@
       ]
     },
     {
+      titulo: "Auditoria e contabilidade pública",
+      itens: [
+        ["Instituto Rui Barbosa (IRB)", "https://nbasp.irbcontas.org.br", "Normas Brasileiras de Auditoria do Setor Público (NBASP)"],
+        ["Conselho Federal de Contabilidade (CFC)", "https://www.cfc.org.br", "normas brasileiras de contabilidade (NBC TSP, NBC TA, NBC TASP e NBC TI)"],
+        ["Tesouro Nacional", "https://www.gov.br/tesouronacional", "Manual de Contabilidade Aplicada ao Setor Público (MCASP), Manual de Demonstrativos Fiscais (MDF) e portarias"],
+        ["Secretaria de Orçamento Federal (SOF)", "https://www.gov.br/planejamento", "Manual Técnico de Orçamento (MTO)"],
+        ["Tribunal de Contas da União (TCU)", "https://pesquisa.apps.tcu.gov.br", "regimento interno, resoluções e instruções normativas, e normas de auditoria"]
+      ]
+    },
+    {
       titulo: "Súmulas dos tribunais estaduais",
       itens: [
         ["Sites oficiais dos Tribunais de Justiça", "", "súmulas e enunciados de cada TJ, com o link para a página oficial"]
