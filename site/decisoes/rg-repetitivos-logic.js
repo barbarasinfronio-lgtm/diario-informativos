@@ -308,11 +308,27 @@
     if(state.risk !== 'all' && d.risco !== state.risk) return false;
     if(state.area && d.area !== state.area) return false;
     var ts = termosBusca();
+    // "informativo 553" (ou "info 553", "inf. 553"): é o NÚMERO da edição, não a palavra solta + qualquer "553" do texto
+    var ni = numeroInformativo();
+    if (ni) {
+      if (String(d.info == null ? '' : d.info).replace(/^0+/, '') !== ni.num) return false;
+      ts = ni.resto;
+    }
     if(ts.length){
       var hay = textoBusca(d);
       for (var i = 0; i < ts.length; i++) if (!contem(hay, ts[i])) return false;
     }
     return true;
+  }
+  // Se a busca pede uma edição de informativo, devolve { num, resto } (resto = os outros termos da busca)
+  var RX_INFORMATIVO = /(?:^|\s)(?:informativo|info|inf)\.?\s*(stj|stf|tst|tse)?\s*(?:n[º°o.]*\s*)?(\d{1,4})(?!\d)/;
+  var infoCache = { q: null, v: null };
+  function numeroInformativo(){
+    if (infoCache.q === state.q) return infoCache.v;
+    var q = semAcento(state.q), m = RX_INFORMATIVO.exec(q), v = null;
+    if (m) v = { num: m[2].replace(/^0+/, ''), resto: (q.replace(m[0], ' ') + (m[1] ? ' ' + m[1] : '')).split(/\s+/).filter(Boolean) };
+    infoCache = { q: state.q, v: v };
+    return v;
   }
   // "dd/mm/aaaa" ou "aaaa-mm-dd" → "aaaammdd" (para ordenar por data)
   function chaveData(v){
