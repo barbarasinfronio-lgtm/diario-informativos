@@ -699,7 +699,6 @@
           '</label>' +
           '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
           '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
-        '<button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button>' +
           (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') + tambemTags(d) +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
           (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
@@ -952,6 +951,7 @@
       '<div class="top-row">' +
         '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
         '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
+        '<button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button>' +
         (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') + tambemTags(d) +
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
