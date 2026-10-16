@@ -166,9 +166,9 @@ def parse_stf(blocos, info):
 # ------------------------------------------------------------------ STJ
 ROTULO = [("processo", r"PROCESSO\b"), ("ramo", r"RAMO DO DIREITO\b"), ("tema", r"TEMA\b"),
           ("destaque", r"DESTAQUE"), ("teor", r"INFORMAÇÕES DO INTEIRO TEOR\b"),
-          ("adic", r"INFORMAÇÕES ADICIONAIS\b")]
+          ("adic", r"(?:INFORMAÇÕES ADICIONAIS|Saiba mais)\b")]   # "Saiba mais:" (página do STJ) já é rodapé do julgado, não inteiro teor
 RUIDO_STJ = re.compile(r"^(Informativo de Jurisprudência( n\.? ?\d+.*)?|processo\.stj\.jus\.br/\S+ \d+/\d+"
-                       r"|Este periódico destaca.*|Número \d+ Brasília.*|VÍDEO DO JULGAMENTO.*)$", re.I)
+                       r"|Este periódico destaca.*|Número \d+ Brasília.*|VÍDEO DO JULGAMENTO.*|Compartilhe:?|/jurisprudencia/\S+)$", re.I)
 SECAO = re.compile(r"^(RECURSOS REPETITIVOS|CORTE ESPECIAL|(PRIMEIRA|SEGUNDA|TERCEIRA) SEÇÃO|"
                    r"(PRIMEIRA|SEGUNDA|TERCEIRA|QUARTA|QUINTA|SEXTA) TURMA|QUESTÃO DE ORDEM)\s*$", re.I)
 
