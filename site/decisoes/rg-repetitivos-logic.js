@@ -114,6 +114,25 @@
   // Julgados de informativos importados antes de o robô guardar os parágrafos chegam num bloco só. Aqui o texto é
   // repartido em parágrafos (em fim de frase, a cada ~600 caracteres, ou antes de "Ademais", "Por fim", "Assim"…)
   // para ler melhor. Texto que já traz parágrafos (linha em branco) não é mexido.
+  // Relator(a) e relator(a) para o acórdão, lidos do texto do processo dos julgados de informativos
+  // ("REsp 1.894.973-PR, Rel. Ministro Raul Araújo, Rel. para acórdão Ministra Maria Isabel Gallotti, …",
+  // "RE 888815/RS, rel. orig. Min. Roberto Barroso, red. p/ o acórdão Min. Alexandre de Moraes, …").
+  function nomesDoProcesso(proc){
+    var rel = [], red = [];
+    function junta(lista, nome){
+      nome = (nome || '').replace(/\s+/g, ' ').replace(/[\s.]+$/, '').trim();
+      if (nome.length > 3 && nome.length < 70 && !/[\d.]/.test(nome) && nome.split(' ').length <= 6 && lista.indexOf(nome) < 0) lista.push(nome);
+    }
+    var T = '(?:(?:Min[a-z]*|Des[a-z]*|Juiz[a-z]*)\\.*\\s*)*';                                  // título é opcional ("rel. Marco Aurélio"); aceita erros de digitação da fonte
+    var NOME = '((?:(?!\\s(?:julgamento|julgado|sess[ãa]o|DJ\\w*)\\b)[^,;(\\d])+)';             // até vírgula, parêntese, número ou "julgamento"
+    var rxRed = new RegExp('(?:rel\\.?\\s*(?:p\\/|para)\\s*(?:o\\s*)?ac(?:[óo]rd[ãa]o|\\.)|red\\.\\s*p\\/\\s*(?:o\\s*)?ac(?:[óo]rd[ãa]o|\\.))\\s*' + T + NOME, 'gi');
+    var rxRel = new RegExp('(?:relator(?:ia|a)?|rel\\.)(?!\\s*(?:p\\/|para))(?:\\s*(?:orig|origin|subst|venc?)[a-zá]*\\.?)?,?\\s*' + T + NOME, 'gi'), m;
+    while ((m = rxRed.exec(proc || ''))) junta(red, m[1]);
+    while ((m = rxRel.exec(proc || ''))) junta(rel, m[1]);
+    if (!rel.length) { m = /^[^,]+,\s*Ministr[oa]\s+([^,;(]+),/.exec(proc || ''); if (m) junta(rel, m[1]); }
+    if (!rel.length) { m = /(?:^|,)\s*(?:Min[a-z]*\.?\s+)?([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^,;(\d.]+?),\s*(?:rel|red)\.\s*p\//.exec(proc || ''); if (m) junta(rel, m[1]); }   // "…, Ellen Gracie, rel. p/ acórdão Min. …"
+    return { relator: rel.join(', '), redator: red.join(', ') };
+  }
   var ABREV_PAR = /^(arts?|n|nº|nos|inc|incs|al|p|pp|fl|fls|min|rel|ed|cf|dec|etc|s|ss|v|cap|par|dr|dra|sr|sra|rec|resp|resps|ag|hc|rhc|re|are|adi|adpf|adc)$/i;
   var COMECO_PAR = /^(Ademais|Por fim|Assim|Ainda|No caso|Nesse contexto|Nesse sentido|Dessa forma|Em suma|Com efeito|Portanto|Logo|Contudo|Todavia|No entanto|Isso posto|Diante disso|Ressalte-se|Cumpre)\b/;
   function paragrafar(t){
@@ -500,7 +519,7 @@
         var org = x[1];
         return { id: 'inf-' + x[0], grupo: 'INFORMATIVOS', orgao: org, tipo: 'informativo',
           tipoNome: 'Informativo ' + org + (x[2] ? ' nº ' + x[2] : ''),
-          area: x[3], titulo: x[4], tese: paragrafar(x[5]), processo: x[6], data: x[7], info: x[2], risco: 'Alta',
+          area: x[3], titulo: x[4], tese: paragrafar(x[5]), processo: x[6], relator: nomesDoProcesso(x[6]).relator, redator: nomesDoProcesso(x[6]).redator, data: x[7], info: x[2], risco: 'Alta',
           motivo: 'julgado divulgado em informativo — é a fonte que as bancas mais usam para cobrar jurisprudência recente',
           link: org === 'STJ' ? 'https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=' + ('0000' + x[2]).slice(-4) + '.cod.'
             : 'https://portal.stf.jus.br/textos/verTexto.asp?servico=informativoSTF&pagina=Informativo' + x[2],
@@ -680,6 +699,7 @@
           '</label>' +
           '<span class="tag-org ' + escapeHtml(d.orgao) + '">' + escapeHtml(d.orgao) + '</span>' +
           '<span class="badge risk-' + escapeHtml(d.risco) + '">Risco ' + escapeHtml(rotuloRisco(d.risco)) + '</span>' +
+        '<button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button>' +
           (d.tema ? '<span class="tag-tema">' + escapeHtml(precedenteBadge(d)) + '</span>' : '') + tambemTags(d) +
           (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
           (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
@@ -939,7 +959,6 @@
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(tituloDe(d)) + '</h2>' +
-      '<p class="lido-topo" style="margin:4px 0 12px"><button type="button" class="chip lido-modal' + (isRead(lidos[d.id]) ? ' active' : '') + '">' + textoBotaoLido(d) + '</button></p>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
         : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
@@ -947,6 +966,7 @@
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
+        (d.redator ? '<div><b>Relator(a) para o acórdão</b>' + escapeHtml(d.redator) + '</div>' : '') +
         '<div><b>' + (d.status==='afetado' ? 'Afetação' : (d.tipo==='oj' || d.tipo==='pn' || d.tipo==='teses') ? 'Publicação' : 'Julgamento') + '</b>' + escapeHtml(d.data||'—') + '</div>' +
         (d.tipo==='teses' || d.grupo ? '' : '<div><b>Informativo</b>' + escapeHtml(d.info||'—') + '</div>') +
         (d.suspensao ? '<div><b>Suspensão nacional</b>' + escapeHtml(d.suspensao.replace(/^Suspensão nacional /, '')) + '</div>' : '') +
