@@ -2,6 +2,8 @@
 # Atender Pedidos de Inteiro Teor.command — dê DOIS CLIQUES (no Mac, na pasta do repositório).
 # Quem lê um julgado do STF sem inteiro teor clica em "Buscar inteiro teor" no site. Este comando lê esses
 # pedidos, busca o acórdão no portal do STF e envia o texto ao site. 30 por vez; rode de novo para continuar.
+# STJ: o botão "Buscar o acórdão" traz a ementa e a decisão dos dados abertos do STJ (os que o "Atualizar Acordaos STJ.command" baixa);
+# se o pedido for de um mês que ainda não foi baixado, a janela avisa para rodar aquele comando antes. O voto do STJ não vem de lá.
 # Só roda no Mac (o portal do STF bloqueia os servidores do GitHub).
 cd "$(dirname "$0")" || exit 1
 fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; exit "$1"; }

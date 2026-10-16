@@ -504,7 +504,7 @@
     caixa.style.cssText = "position:relative;width:var(--em-card-w,90vw);height:var(--em-card-h,90vh);max-width:none;overflow-y:auto;box-sizing:border-box;background:var(--surface,#fff);color:var(--ink,#334155);border:1px solid var(--surface-line,#e2e8f0);border-radius:14px;padding:22px clamp(16px,3vw,40px);box-shadow:0 12px 40px rgba(0,0,0,.35);";
     caixa.innerHTML =
       '<button type="button" class="lei-leitor-x" aria-label="Fechar" style="position:absolute;top:8px;right:14px;border:0;background:none;font-size:calc(26px * var(--fs-scale,1));line-height:1;cursor:pointer;color:var(--ink-faint,#64748b);">×</button>' +
-      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + (comJulgados ? " — com julgados" : "") + "</h2>" +
+      '<h2 class="lei-leitor-titulo" style="margin:0 28px 2px 0;text-align:justify;hyphens:auto;font-size:calc(18px * var(--fs-scale,1));color:var(--ink,#1e293b);line-height:1.35;">' + escapeHtml(titulo) + (comJulgados ? " — com julgados" : "") + "</h2>" +
       '<p style="margin:0 0 10px;font-size:calc(13px * var(--fs-scale,1));color:var(--ink-faint,#64748b);">' + escapeHtml(origem) + "</p>" +
       '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--surface-line,#e2e8f0);">' +
       '<button type="button" class="lei-leitor-lida" style="font-size:calc(13px * var(--fs-scale,1));font-weight:600;border:1px solid var(--surface-line,#cbd5e1);background:var(--accent-soft,#f8fafc);color:var(--ink,#334155);border-radius:8px;padding:6px 12px;cursor:pointer;"></button>' +

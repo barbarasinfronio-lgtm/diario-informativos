@@ -27,6 +27,7 @@ import completar_textos_stf as c        # noqa: E402
 import completar_extras_stf as ex       # noqa: E402
 import completar_rg_stf as rg           # noqa: E402
 import decisoes_dos_informativos as di  # noqa: E402  (principal(): classe e número de um card de informativo)
+import teor_stj as ts  # noqa: E402  (julgados do STJ: acórdão — ementa e decisão — dos dados abertos)
 robo = c.robo
 
 PASTA = RAIZ / "teor"
@@ -70,7 +71,11 @@ def lista_manual():
 
 
 def chave_de(processo):
-    """"RE 1037396" — o mesmo texto vale para todos os cards do mesmo processo."""
+    """"RE 1037396" (STF) ou "STJ AGINT NO RESP 2840133" — o mesmo texto vale para todos os cards do mesmo processo."""
+    if str(processo or "").startswith("STJ "):
+        return processo
+    if ts.eh_stj(processo):
+        return ts.chave_stj(processo)
     cl, num = di.principal(processo or "")
     return f"{cl.upper()} {num}" if cl else ""
 
@@ -103,11 +108,13 @@ def ler_indice():
     return json.loads(INDICE.read_text(encoding="utf-8")) if INDICE.exists() else {"p": {}}
 
 
-def gravar(chave, data, texto, completo):
+def gravar(chave, data, texto, completo, rotulo=""):
     PASTA.mkdir(exist_ok=True)
-    (RAIZ / arquivo_de(chave)).write_text(json.dumps(
-        {"processo": chave, "data": data, "texto": texto, "completo": completo,
-         "em": datetime.now(timezone.utc).strftime("%Y-%m-%d")}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    dados = {"processo": chave, "data": data, "texto": texto, "completo": completo,
+             "em": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+    if rotulo:
+        dados["rotulo"] = rotulo      # o site usa no lugar de "Inteiro teor do acórdão" (STJ: só ementa e decisão)
+    (RAIZ / arquivo_de(chave)).write_text(json.dumps(dados, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
 def buscar_teor(classe, num, inc, data):
@@ -138,6 +145,10 @@ def main():
     ap.add_argument("--max", type=int, default=30)
     ap.add_argument("--espera", type=float, default=1.5)
     a = ap.parse_args()
+    if a.teste and ts.eh_stj(a.teste):
+        texto, _ = ts.buscar(a.teste, a.data)
+        print(f"{len(texto)} caracteres (ementa e decisão)\n" + "-" * 60 + "\n" + texto[:3000])
+        return
     if a.teste:
         classe, num = c.processo_principal(a.teste)
         inc = c.achar_incidente(classe, num)
@@ -164,6 +175,20 @@ def main():
     falhas = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
     incid, ok = {}, 0
     for p in pend[:a.max]:
+        if ts.eh_stj(p.get("processo", "")):          # STJ: espelho do acórdão nos dados abertos (sem internet, sem bloqueio)
+            chave = ts.chave_stj(p["processo"])
+            print(f"  … {chave} ({p.get('data', '')})", flush=True)
+            try:
+                texto, completo = ts.buscar(p["processo"], p.get("data", ""))
+            except LookupError as e:
+                falhas[p["id"]] = {"processo": chave, "motivo": str(e)[:200]}
+                print(f"    sem sucesso: {e}")
+                continue
+            gravar(chave, p.get("data", ""), texto, completo, "Acórdão (ementa e decisão)")
+            falhas.pop(p["id"], None)
+            ok += 1
+            print(f"    {len(texto)} caracteres (ementa e decisão)")
+            continue
         cl, num = di.principal(p.get("processo", ""))
         if not cl:
             falhas[p["id"]] = {"processo": p.get("processo", "")[:100], "motivo": "não entendi o número do processo"}
