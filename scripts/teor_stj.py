@@ -44,13 +44,26 @@ def chave_stj(texto):
     return f"STJ {p[0].upper()} {p[1]}" if p else ""
 
 
-def _arquivos(data):
-    """Arquivos diários do cache de até ~6 meses depois da data do julgamento (a publicação vem depois)."""
+def _arquivos(ini, fim):
+    """Arquivos do cache cujo nome (data de fechamento do mês) cai entre as duas datas."""
     if not CACHE.exists():
         return []
-    ini = data.strftime("%Y%m%d")
-    fim = (data + timedelta(days=190)).strftime("%Y%m%d")
-    return sorted(f for f in CACHE.glob("*/*.json") if ini <= f.stem <= fim)
+    i, f = ini.strftime("%Y%m%d"), fim.strftime("%Y%m%d")
+    return sorted(x for x in CACHE.glob("*/*.json") if i <= x.stem <= f)
+
+
+_lidos = {}
+
+
+def _ler(arq):
+    """Cada arquivo é lido uma vez por rodada (vários pedidos usam os mesmos meses)."""
+    if arq not in _lidos:
+        try:
+            j = json.loads(arq.read_text(encoding="utf-8"))
+        except ValueError:
+            j = []
+        _lidos[arq] = j if isinstance(j, list) else []
+    return _lidos[arq]
 
 
 def mais_recente_no_cache():
@@ -59,34 +72,40 @@ def mais_recente_no_cache():
 
 
 def achar_espelho(processo, data_ddmmaaaa):
-    """O registro do espelho do acórdão (dict) ou levanta LookupError com o motivo."""
+    """O registro do espelho do acórdão (dict) ou levanta LookupError com o motivo.
+    Se o texto do processo traz "julgado em dd/mm/aaaa" (julgados de informativos), vale essa data, com tolerância de
+    3 dias: é o acórdão exato. Sem ela (repetitivos, teses…), vale o acórdão da mesma classe e número mais perto da
+    data do card, até 2 anos antes."""
     p = processo_stj(processo)
     if not p:
         raise LookupError("não entendi o número do processo")
     classe, num = p
+    m = re.search(r"julgad[oa] em (\d{1,2})/(\d{1,2})/(\d{4})", str(processo))
+    estrito = bool(m)
     try:
-        data = datetime.strptime(data_ddmmaaaa, "%d/%m/%Y")
+        alvo = datetime(int(m[3]), int(m[2]), int(m[1])) if m else datetime.strptime(data_ddmmaaaa, "%d/%m/%Y")
     except ValueError:
         raise LookupError("o card não tem a data do julgamento")
+    tolerancia = 3 if estrito else 730
     achados = []
-    for f in _arquivos(data):
-        try:
-            lista = json.loads(f.read_text(encoding="utf-8"))
-        except ValueError:
-            continue
-        for r in lista if isinstance(lista, list) else []:
+    for f in _arquivos(alvo - timedelta(days=tolerancia), alvo + timedelta(days=60 + (0 if estrito else 120))):
+        for r in _ler(f):
             if str(r.get("numeroProcesso", "")).lstrip("0") != num.lstrip("0"):
                 continue
             dd = str(r.get("dataDecisao") or "")
-            if not re.fullmatch(r"\d{8}", dd) or abs((datetime.strptime(dd, "%Y%m%d") - data).days) > 3:
+            if not re.fullmatch(r"\d{8}", dd):
+                continue
+            dias = (datetime.strptime(dd, "%Y%m%d") - alvo).days
+            if abs(dias) > tolerancia:
                 continue
             igual = re.sub(r"\s+", "", str(r.get("siglaClasse") or "")).lower() == re.sub(r"\s+", "", classe).lower()
-            achados.append((igual, r))
+            acordao = "ACÓRDÃO" in str(r.get("tipoDeDecisao") or "").upper()
+            achados.append((not igual, not acordao, abs(dias), -len(r.get("ementa") or ""), r))
     if achados:
-        achados.sort(key=lambda a: (not a[0], -len(a[1].get("ementa") or "")))
-        return achados[0][1]
+        achados.sort(key=lambda a: a[:4])
+        return achados[0][4]
     novo = mais_recente_no_cache()
-    if not novo or novo < data.strftime("%Y%m%d"):
+    if not novo or novo < alvo.strftime("%Y%m%d"):
         raise LookupError("os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")")
     raise LookupError("não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)")
 
