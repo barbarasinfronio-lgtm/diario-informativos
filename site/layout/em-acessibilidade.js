@@ -84,7 +84,9 @@
     } else d.setAttribute("aria-label", "Janela");
   }
   function dialogosVisiveis() {
-    var lista = [].slice.call(document.querySelectorAll('[role="dialog"]'));
+    // só janelas de verdade (modais): a barrinha de destacar/anotar (.cad-barra, role=dialog sem aria-modal) aparece ao
+    // selecionar texto e não pode receber foco, senão a seleção se desfaz e ela some
+    var lista = [].slice.call(document.querySelectorAll('[role="dialog"][aria-modal="true"],.em-sel-painel'));
     var rg = document.querySelector("#overlay.open .modal");               // Repercussão Geral e Repetitivos
     if (rg) { if (!rg.getAttribute("role")) { rg.setAttribute("role", "dialog"); rg.setAttribute("aria-modal", "true"); } if (lista.indexOf(rg) < 0) lista.push(rg); }
     return lista.filter(visivel);
