@@ -701,5 +701,40 @@
   "numero": "Lei Estadual (BA) nº 13.559/2016",
   "nome": "Plano Estadual de Educação da Bahia",
   "motivo": "abre outra norma (\"Voltar ao Sumário ORIENTAÇÕES PARA O ANO ELEITORAL - 2026 1 Expediente Orientaçõ\")"
+ },
+ "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/PA-Lei-n%C2%B0-5.295-de-23-de-dezembro-de-1985.pdf": {
+  "v": 3,
+  "em": "2026-10-16",
+  "numero": "Lei Estadual (PA) nº 5.295/1985",
+  "nome": "Norma fundiária/ambiental do Estado do Pará",
+  "motivo": "erro ao abrir: https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/PA-Lei-n%C2%B0-5.295-de-23-de-dezembro-de-1985.pdf → sem resposta ([Errno 54] Con"
+ },
+ "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf": {
+  "v": 3,
+  "em": "2026-10-16",
+  "numero": "Lei Estadual (PA) nº 8.878/2019",
+  "nome": "Regularização fundiária no Estado do Pará",
+  "motivo": "erro ao abrir: http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf → sem resposta (ConnectionResetError)"
+ },
+ "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.835-DE-03-DE-MAIO-DE-1979.pdf": {
+  "v": 3,
+  "em": "2026-10-16",
+  "numero": "Lei Estadual (PA) nº 4.835/1979",
+  "nome": "Legitimação de terras públicas do Estado do Pará",
+  "motivo": "erro ao abrir: https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.835-DE-03-DE-MAIO-DE-1979.pdf → sem resposta ([Errno 54] Connection rese"
+ },
+ "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.884-DE-11-DE-DEZEMBRO-DE-1979.pdf": {
+  "v": 3,
+  "em": "2026-10-16",
+  "numero": "Lei Estadual (PA) nº 4.884/1979",
+  "nome": "Norma fundiária do Estado do Pará",
+  "motivo": "erro ao abrir: https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.884-DE-11-DE-DEZEMBRO-DE-1979.pdf → sem resposta ([Errno 54] Connection "
+ },
+ "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-N%C2%B0-82-DE-15-DE-SETEMBRO-DE-1892.pdf": {
+  "v": 3,
+  "em": "2026-10-16",
+  "numero": "Lei Estadual (PA) nº 82/1892",
+  "nome": "Norma fundiária histórica do Estado do Pará",
+  "motivo": "erro ao abrir: http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-N%C2%B0-82-DE-15-DE-SETEMBRO-DE-1892.pdf → sem resposta (ConnectionResetError)"
  }
 }
