@@ -111,6 +111,28 @@
     var d = new Date(), p = function(n){ return String(n).padStart(2,'0'); };
     return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate());
   }
+  // Julgados de informativos importados antes de o robô guardar os parágrafos chegam num bloco só. Aqui o texto é
+  // repartido em parágrafos (em fim de frase, a cada ~600 caracteres, ou antes de "Ademais", "Por fim", "Assim"…)
+  // para ler melhor. Texto que já traz parágrafos (linha em branco) não é mexido.
+  var ABREV_PAR = /^(arts?|n|nº|nos|inc|incs|al|p|pp|fl|fls|min|rel|ed|cf|dec|etc|s|ss|v|cap|par|dr|dra|sr|sra|rec|resp|resps|ag|hc|rhc|re|are|adi|adpf|adc)$/i;
+  var COMECO_PAR = /^(Ademais|Por fim|Assim|Ainda|No caso|Nesse contexto|Nesse sentido|Dessa forma|Em suma|Com efeito|Portanto|Logo|Contudo|Todavia|No entanto|Isso posto|Diante disso|Ressalte-se|Cumpre)\b/;
+  function paragrafar(t){
+    if (!t || typeof t !== 'string' || t.indexOf('\n') >= 0 || t.length < 900) return t;
+    var frases = [], ini = 0, rx = /([.!?”"])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ“"])/g, m;
+    while ((m = rx.exec(t))) {
+      var antes = t.slice(ini, m.index + 1), ult = /([\wºª/]+)\.?$/.exec(t.slice(0, m.index + (m[1] === '.' ? 0 : 1)));
+      if (m[1] === '.' && ult && (ABREV_PAR.test(ult[1]) || /^\d+$/.test(ult[1]) && /^\d/.test(t.slice(rx.lastIndex)))) continue;
+      frases.push(antes); ini = rx.lastIndex;
+    }
+    frases.push(t.slice(ini));
+    var paras = [], atual = '';
+    frases.forEach(function(f){
+      if (atual && (atual.length >= 600 || (atual.length >= 250 && COMECO_PAR.test(f)))) { paras.push(atual); atual = ''; }
+      atual += (atual ? ' ' : '') + f;
+    });
+    if (atual) { if (paras.length && atual.length < 200) paras[paras.length - 1] += ' ' + atual; else paras.push(atual); }
+    return paras.join('\n\n');
+  }
   function isRead(v){ return !!(v && (v === true || v.lida)); }
   function readLocal(){
     var map = {};
@@ -478,13 +500,13 @@
         var org = x[1];
         return { id: 'inf-' + x[0], grupo: 'INFORMATIVOS', orgao: org, tipo: 'informativo',
           tipoNome: 'Informativo ' + org + (x[2] ? ' nº ' + x[2] : ''),
-          area: x[3], titulo: x[4], tese: x[5], processo: x[6], data: x[7], info: x[2], risco: 'Alta',
+          area: x[3], titulo: x[4], tese: paragrafar(x[5]), processo: x[6], data: x[7], info: x[2], risco: 'Alta',
           motivo: 'julgado divulgado em informativo — é a fonte que as bancas mais usam para cobrar jurisprudência recente',
           link: org === 'STJ' ? 'https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=' + ('0000' + x[2]).slice(-4) + '.cod.'
             : 'https://portal.stf.jus.br/textos/verTexto.asp?servico=informativoSTF&pagina=Informativo' + x[2],
           _chave: x[0], _parte: x[8] };
       },
-      completar: function(d, x){ d.destaque = x; }
+      completar: function(d, x){ d.destaque = paragrafar(x); }
     }
   };
   var sobDemanda = {};  // grupo -> { p, prontos, partes }

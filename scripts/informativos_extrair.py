@@ -39,6 +39,11 @@ def _limpa(t):
     return t.strip()
 
 
+def _paragrafos(blocos):
+    """Blocos → texto com os parágrafos separados por linha em branco ("\n\n"); o site mostra assim."""
+    return "\n\n".join(b for b in (_limpa(x) for x in blocos) if b)
+
+
 def blocos_do_texto(texto):
     """Texto corrido → blocos (parágrafos separados por linha em branco)."""
     return [b for b in (_limpa(x) for x in re.split(r"\n\s*\n", texto or "")) if b]
@@ -149,7 +154,7 @@ def parse_stf(blocos, info):
         if not corpo:
             continue
         tese = _corta(corpo[0])
-        teor = " ".join(corpo)
+        teor = _paragrafos(corpo)
         proc = _limpa(marca)
         tit = re.split(r",\s*relator", proc)[0]
         itens.append(dict(org="STF", info=str(info), area=ramo or _area_kw(tese, proc), tit=tit[:260],
@@ -227,7 +232,7 @@ def parse_stj(blocos, info):
                 campos[cur].append(b)
         proc = _limpa(" ".join(campos["processo"]))
         dest = _limpa(" ".join(campos["destaque"]))
-        teor = _limpa(" ".join(campos["teor"]))
+        teor = _paragrafos(campos["teor"])
         if not proc or not dest or not teor:
             if os.environ.get("INF_DEBUG"):
                 print("  descartado:", bool(proc), bool(dest), bool(teor), (blks[0] if blks else "")[:80])
