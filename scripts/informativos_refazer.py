@@ -11,7 +11,7 @@ Roda no Mac (o STJ barra o GitHub), pelo "Refazer Informativos STJ.command". Par
   3) apaga os julgados antigos da edição e grava os novos (--substituir): o que não mudou mantém o mesmo id,
      e com ele as marcações de lido; os cards que estavam colados são trocados pelos separados.
 
-Uso:  python3 scripts/informativos_refazer.py             # as edições que parecem coladas (tese com mais de 900 caracteres)
+Uso:  python3 scripts/informativos_refazer.py             # as edições com julgados colados ou com lixo da página no texto
       python3 scripts/informativos_refazer.py 905 901     # só estas
       python3 scripts/informativos_refazer.py --listar    # só mostra quais seriam
 """
@@ -25,8 +25,15 @@ import informativos_extrair as ie  # noqa: E402
 
 
 def edicoes_suspeitas():
+    """STJ com tese longa demais (julgados colados) ou com lixo da página no inteiro teor ("Saiba mais:", "Compartilhe:")."""
     d = json.loads((RAIZ / "informativos" / "indice.json").read_text(encoding="utf-8"))
-    return sorted({int(x[2]) for x in d["itens"] if x[1] == "STJ" and str(x[2]).isdigit() and len(x[5]) > 900}, reverse=True)
+    por_id = {x[0]: x for x in d["itens"] if x[1] == "STJ" and str(x[2]).isdigit()}
+    eds = {int(x[2]) for x in por_id.values() if len(x[5]) > 900}
+    for f in (RAIZ / "informativos" / "c").glob("*.json"):
+        for k, v in json.loads(f.read_text(encoding="utf-8")).items():
+            if k in por_id and ("Saiba mais:" in v or "Compartilhe" in v):
+                eds.add(int(por_id[k][2]))
+    return sorted(eds, reverse=True)
 
 
 def main():
