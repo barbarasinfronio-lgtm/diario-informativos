@@ -499,14 +499,6 @@
     document.getElementById("stat-total").textContent = total;
     document.getElementById("stat-pct").textContent = total ? Math.round((lidas / total) * 100) + "%" : "0%";
     document.getElementById("progress-fill").style.width = (total ? (lidas / total) * 100 : 0) + "%";
-    var starLine = document.getElementById("stat-stars");
-    if (starLine) {
-      var totalLidasGeral = 0;
-      ORG_ORDER.forEach(function (k) { stateByOrg[k].forEach(function (r) { if (r.lida) totalLidasGeral++; }); });
-      starLine.textContent = totalLidasGeral
-        ? GS.bonecoCarreira(avatarPref) + " " + totalLidasGeral + " súmula" + (totalLidasGeral === 1 ? "" : "s") + " no total"
-        : "";
-    }
   }
 
   var viewerId = null;

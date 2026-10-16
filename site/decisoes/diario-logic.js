@@ -429,17 +429,10 @@
 
     var total = state.length;
     var lidas = state.filter(function (r) { return r.lida; }).length;
-    var estrelasOuro = state.filter(function (r) { return r.lida && isSameWeek(r.data, r.lidaEm); }).length;
     document.getElementById("stat-count").textContent = lidas;
     document.getElementById("stat-total").textContent = total;
     document.getElementById("stat-pct").textContent = total ? Math.round((lidas / total) * 100) + "%" : "0%";
     document.getElementById("progress-fill").style.width = (total ? (lidas / total) * 100 : 0) + "%";
-    var starLine = document.getElementById("stat-stars");
-    if (starLine) {
-      starLine.textContent = lidas
-        ? GS.linhaPremio(avatarPref, lidas, estrelasOuro)
-        : "";
-    }
   }
 
   // Identidade do visitante: a conta (Google ou e-mail e senha) em que a
