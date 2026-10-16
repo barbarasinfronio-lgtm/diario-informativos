@@ -9,7 +9,8 @@ também funciona sozinho:
     python3 scripts/informativos_extrair.py STF 1227 Informativo_stf_1227.pdf
     python3 scripts/informativos_extrair.py STJ 902 GetPDFINFJ902.pdf --gravar
 
-Sem --gravar só mostra o que encontrou. O formato dos cards é o mesmo de
+Sem --gravar só mostra o que encontrou. Com --substituir (junto de --gravar) a edição é refeita: os julgados
+que já estavam gravados dela saem e entram os lidos agora (use quando uma edição saiu com julgados colados). O formato dos cards é o mesmo de
 scripts/informativos_cards.py (que refaz tudo a partir do JSON consolidado).
 
 Leitura do PDF: PyMuPDF (já usado em cobrancas_extrair_texto.py) separa os
@@ -203,6 +204,11 @@ def parse_stj(blocos, info):
         if em_adic and (nome in ("processo", "ramo", "tema", "destaque") or SECAO.match(b)):
             itens_blocos.append(atual)
             atual, em_adic = [], False
+        elif nome == "processo" and any(_rotulo(x)[0] == "teor" for x in atual):
+            # julgado sem "INFORMAÇÕES ADICIONAIS": o PROCESSO seguinte abre um julgado novo (antes os campos
+            # do próximo julgado eram colados no anterior: tema, tese e inteiro teor de dois ou três juntos)
+            itens_blocos.append(atual)
+            atual, em_adic = [], False
         if em_adic:
             atual.append(b)          # legislação, súmulas, "saiba mais"…: fica fora dos campos
         else:
@@ -285,11 +291,33 @@ def edicoes_gravadas(base=BASE):
     return r
 
 
-def acrescentar(itens, base=BASE):
+def _tirar_edicao(d, org, info, base):
+    """Apaga de informativos/ os julgados de uma edição (para refazê-la). Devolve quantos saíram."""
+    fora = {x[0] for x in d["itens"] if x[1] == org and str(x[2]) == str(info)}
+    if not fora:
+        return 0
+    partes = {x[8] for x in d["itens"] if x[0] in fora}
+    d["itens"] = [x for x in d["itens"] if x[0] not in fora]
+    for p in partes:
+        arq = base / "c" / f"{p:03d}.json"
+        if arq.exists():
+            det = json.loads(arq.read_text(encoding="utf-8"))
+            for k in fora:
+                det.pop(k, None)
+            arq.write_text(json.dumps(det, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return len(fora)
+
+
+def acrescentar(itens, base=BASE, substituir=False):
     """Põe os julgados em informativos/. Devolve a lista de ids gravados.
-    Julgado que já está (mesmo id, ou mesma tese no mesmo informativo) é ignorado."""
+    Julgado que já está (mesmo id, ou mesma tese no mesmo informativo) é ignorado.
+    substituir=True: antes, apaga os julgados que já estavam gravados das edições destes itens
+    (para refazer uma edição que saiu errada; os julgados iguais mantêm o mesmo id, e com ele as marcações de lido)."""
     f = base / "indice.json"
     d = json.loads(f.read_text(encoding="utf-8"))
+    if substituir:
+        for org, info in {(i["org"], i["info"]) for i in itens}:
+            _tirar_edicao(d, org, info, base)
     ja_id = {x[0] for x in d["itens"]}
     ja_tese = {(x[1], x[2], _norm(x[5])[:120]) for x in d["itens"]}
     novos = []
@@ -329,4 +357,4 @@ if __name__ == "__main__":
         print(f"- [{i['area']}] {i['tit']} · {i['data']}\n    tese: {i['tese'][:160]}\n    proc: {i['proc'][:120]}\n    teor: {len(i['teor'])} caracteres")
     print(len(its), "julgado(s)")
     if "--gravar" in sys.argv:
-        print(len(acrescentar(its)), "novo(s) gravado(s)")
+        print(len(acrescentar(its, substituir="--substituir" in sys.argv)), "novo(s) gravado(s)")
