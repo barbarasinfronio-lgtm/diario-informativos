@@ -829,8 +829,10 @@
     if (!campos) return;
     var pedido = modal.querySelector('.teor-pedido');
     if (pedido) pedido.remove();
-    var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">Inteiro teor do acórdão' + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
+    var h = '<details class="teor-rg" open><summary class="section-label" style="cursor:pointer">' + escapeHtml(e.rotulo || 'Inteiro teor do acórdão') + (e.processo ? ' — ' + escapeHtml(e.processo) : '') +
             ' (' + Math.round(e.texto.length / 1000).toLocaleString('pt-BR') + ' mil caracteres)</summary>' +
+            (e.rotulo && e.texto.indexOf('\n\nEMENTA:') > 0   // STJ: o cabeçalho (órgão julgador, relator, datas) vem antes da ementa
+              ? '<p class="normas-aviso" style="margin:.4rem 0 .6rem">' + e.texto.slice(0, e.texto.indexOf('\n\nEMENTA:')).split('\n').slice(1).map(escapeHtml).join(' · ') + '</p>' : '') +
             '<div class="destaque-text">' + teorEmParagrafos(e.texto) + '</div></details>';
     campos.insertAdjacentHTML('afterend', h);
     // o card já foi aberto: o inteiro teor entra na lista de textos que podem ser destacados e anotados (Meus Cadernos)
@@ -858,7 +860,14 @@
   }
   // "RE 1037396": o inteiro teor é do processo, então vale para todos os cards dele (ex.: o mesmo
   // julgado como Tema de repercussão geral e como julgado de informativo)
-  function chaveProcesso(processo){
+  // STJ: "AgInt no REsp 2.111.222-SP, Rel. …" → { classe: "AgInt no REsp", num: "2111222" } (a chave é a classe com os "no/na" + o número:
+  // cada acórdão do mesmo processo — o REsp, o AgInt, os embargos — é um texto diferente)
+  function processoSTJ(processo){
+    var m = /^((?:[A-Za-z]{2,10}\s+(?:no|na|nos|nas)\s+)*[A-Za-z]{2,10})\s+([\d.]{3,})/.exec(String(processo || '').trim());
+    return m ? { classe: m[1].replace(/\s+/g, ' '), num: m[2].replace(/\./g, '') } : null;
+  }
+  function chaveProcesso(processo, orgao){
+    if (orgao === 'STJ') { var q = processoSTJ(processo); return q ? 'STJ ' + q.classe.toUpperCase() + ' ' + q.num : ''; }
     var t = String(processo || ''), m = t.match(/\(\s*(ADI|ADC|ADPF|ADO|Rcl)\s*-\s*(\d+)\s*\)/i);
     if (m) return (m[1].toLowerCase() === 'rcl' ? 'RCL' : m[1].toUpperCase()) + ' ' + m[2];
     m = t.match(/\b(ADI|ADC|ADPF|ADO|ADIn|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp)\b\.?\s*([\d.]+)/);
@@ -866,6 +875,7 @@
   }
   var RX_PROCESSO_STF = /\b(?:ADI|ADC|ADPF|ADO|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp|ADIn)\b\.?\s*\d/;
   function podePedirTeor(d){
+    if (d.orgao === 'STJ') return !!(d.id && d.tipo !== 'acordao' && processoSTJ(d.processo));     // acórdão (ementa e decisão) dos dados abertos do STJ
     return d.orgao === 'STF' && d.tipo !== 'rg' && d.id && RX_PROCESSO_STF.test(d.processo || '');
   }
   function usuarioLogado(){
@@ -879,15 +889,16 @@
     if (modalAtual !== d || modal.querySelector('.teor-rg, .teor-pedido')) return;
     var campos = modal.querySelector('.fields');
     if (!campos) return;
+    var stj = d.orgao === 'STJ', portal = stj ? 'nos dados abertos do STJ' : 'no portal do STF';
     campos.insertAdjacentHTML('afterend',
-      '<div class="teor-pedido"><div class="section-label">Inteiro teor do acórdão</div>' +
-      '<p class="normas-aviso teor-msg">Este julgado ainda está sem o inteiro teor no site.</p>' +
-      '<button type="button" class="chip teor-buscar">🔎 Buscar inteiro teor</button></div>');
+      '<div class="teor-pedido"><div class="section-label">' + (stj ? 'Acórdão (ementa e decisão)' : 'Inteiro teor do acórdão') + '</div>' +
+      '<p class="normas-aviso teor-msg">' + (stj ? 'Este julgado ainda está sem o acórdão (ementa e decisão) no site.' : 'Este julgado ainda está sem o inteiro teor no site.') + '</p>' +
+      '<button type="button" class="chip teor-buscar">' + (stj ? '🔎 Buscar o acórdão' : '🔎 Buscar inteiro teor') + '</button></div>');
     var box = modal.querySelector('.teor-pedido'), btn = box.querySelector('.teor-buscar'), msg = box.querySelector('.teor-msg');
     function enviado(t){ btn.disabled = true; btn.textContent = '✅ Pedido enviado'; msg.textContent = t; }
     if (window.firebase && firebase.apps && firebase.apps.length && firebase.firestore) {
       docPedido(d).get().then(function(s){
-        if (s.exists && modalAtual === d) enviado('O pedido já foi feito. O robô busca no portal do STF e o texto entra aqui na próxima atualização do site.');
+        if (s.exists && modalAtual === d) enviado('O pedido já foi feito. O robô busca ' + portal + ' e o texto entra aqui na próxima atualização do site.');
       }).catch(function(){});
     }
     btn.addEventListener('click', function(){
@@ -903,7 +914,7 @@
         titulo: String(tituloDe(d) || '').slice(0, 300),
         em: new Date().toISOString()
       }).then(function(){
-        enviado('Pedido enviado! O robô busca o acórdão no portal do STF e o texto entra aqui na próxima atualização do site (em geral em até um dia).');
+        enviado('Pedido enviado! O robô busca o acórdão ' + portal + ' e o texto entra aqui na próxima atualização do site (em geral em até um dia).');
       }).catch(function(e){
         if (e && e.code === 'permission-denied') enviado('Este julgado já tinha sido pedido (ou o pedido não pôde ser gravado). O texto entra aqui quando o robô buscar.');
         else { btn.disabled = false; msg.textContent = 'Não consegui enviar o pedido agora. Tente de novo.'; }
@@ -913,7 +924,7 @@
   function prepararTeorPedido(d){
     carregarIndiceTeor().then(function(m){
       if (modalAtual !== d) return;
-      var arq = m[chaveProcesso(d.processo)];
+      var arq = m[chaveProcesso(d.processo, d.orgao)];
       if (arq) {
         fetch(BASE_CDN + arq, { cache: 'no-cache' })
           .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })

@@ -72,7 +72,7 @@
   background: var(--surface, #fff); color: var(--ink, #1c2130); border: 1px solid var(--surface-line, #ddd); border-radius: 14px;
   padding: 1.4rem clamp(16px, 3vw, 40px) 2rem; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); font-family: var(--font-sans, system-ui, sans-serif); }
 .cr-card-x { position: sticky; float: right; top: 0; border: 0; background: none; color: var(--ink-faint, #666); font-size: 2rem; line-height: 1; cursor: pointer; }
-.cr-card-titulo { font-family: var(--font-serif, Georgia, serif); font-size: calc(1.4rem * var(--fs-scale, 1)); line-height: 1.3; margin: 0 2.5rem 0.2rem 0; color: var(--ink, #1c2130); }
+.cr-card-titulo { font-family: var(--font-serif, Georgia, serif); font-size: calc(1.4rem * var(--fs-scale, 1)); line-height: 1.3; margin: 0 2.5rem 0.2rem 0; color: var(--ink, #1c2130); text-align: justify; hyphens: auto; }
 .cr-card-sub { margin: 0 0 0.8rem; font-size: calc(0.95rem * var(--fs-scale, 1)); font-weight: 600; color: var(--accent); }
 .cr-card-sub:empty { display: none; }
 .cr-card-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding-bottom: 0.8rem; margin-bottom: 1rem; border-bottom: 1px solid var(--surface-line, #ddd); max-width: var(--em-card-texto-max, 62rem); margin-left: auto; margin-right: auto; }
