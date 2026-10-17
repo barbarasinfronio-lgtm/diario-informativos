@@ -1,26 +1,32 @@
 {
  "1483": {
   "processo": "RE 1616922",
-  "motivo": "nenhum arquivo de decisão abriu"
+  "motivo": "nenhum arquivo de decisão abriu",
+  "tentativas": 3
  },
  "976": {
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
+  "tentativas": 3
  },
  "966": {
   "processo": "Rcl 88.319 ED-MC-Ref/SP",
-  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)"
+  "motivo": "não achei o 'incidente' do processo (páginas guardadas em curadoria/debug-stf/)",
+  "tentativas": 3
  },
  "564": {
   "processo": "RE 637.485",
-  "motivo": "nenhum arquivo de decisão abriu"
+  "motivo": "nenhum arquivo de decisão abriu",
+  "tentativas": 3
  },
  "314": {
   "processo": "RE 601.235",
-  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto"
+  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
+  "tentativas": 3
  },
  "282": {
   "processo": "RE 424.053",
-  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto"
+  "motivo": "a aba Decisões não tem arquivo de decisão (RTF) nem texto",
+  "tentativas": 3
  }
 }

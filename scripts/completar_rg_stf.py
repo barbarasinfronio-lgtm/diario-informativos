@@ -256,6 +256,7 @@ def main():
     ap.add_argument("--tema")
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
+    ap.add_argument("--refazer-falhas", action="store_true", help="tenta de novo os temas que já falharam 3 vezes")
     ap.add_argument("--refazer-ata", action="store_true", help="busca de novo os temas que só têm a ata (sem o acórdão)")
     ap.add_argument("--recortar-salvos", action="store_true", help="sem internet: refaz o recorte (ementa → assinatura) dos textos já guardados em stf/rg/")
     ap.add_argument("--enviar", action="store_true", help="grava no git e envia ao site (stf/rg e curadoria/debug-stf)")
@@ -289,11 +290,24 @@ def main():
                 continue
             if j.get("completo", False) or not a.refazer_ata:
                 feitos.add(p_.stem)
-        alvos = [t for t in todos if t["tema"] not in feitos]
+        # temas que já falharam 3 vezes não voltam para o começo da fila (o 1483, por exemplo, ficava sempre em 1º lugar e
+        # gastava até 2 min por execução sem nunca dar certo); --refazer-falhas tenta de novo
+        try:
+            antigas = json.loads(FALHAS.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            antigas = {}
+        desistidos = set() if a.refazer_falhas else {k for k, v in antigas.items() if v.get("tentativas", 1) >= 3}
+        alvos = [t for t in todos if t["tema"] not in feitos and t["tema"] not in desistidos]
+        if desistidos:
+            print(f"{len(desistidos)} tema(s) pulado(s) por já terem falhado 3 vezes (--refazer-falhas tenta de novo): {', '.join(sorted(desistidos, key=int))}")
         alvos.sort(key=lambda t: (t["tema"] != "914", -int(re.sub(r"\D", "", t["tema"]) or 0)))   # 914 primeiro; depois os mais novos
         alvos = alvos[:a.max]
     print(f"{len(alvos)} tema(s) para buscar; {len(list(PASTA.glob('*.json')))} já feitos.")
     falhas, inc, ok = {}, {}, 0
+    try:
+        previas = json.loads(FALHAS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        previas = {}
     for t in alvos:
         classe, num = c.processo_principal(t["processo"])
         if not classe:
@@ -328,7 +342,7 @@ def main():
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
             if "passou de" in str(e): robo._firefox_fechar()
-            falhas[t["tema"]] = {"processo": t["processo"], "motivo": str(e)[:200]}
+            falhas[t["tema"]] = {"processo": t["processo"], "motivo": str(e)[:200], "tentativas": previas.get(t["tema"], {}).get("tentativas", 0) + 1}
             print(f"    sem sucesso: {e}")
             continue
         except KeyboardInterrupt:
@@ -338,6 +352,8 @@ def main():
         print(f"    {len(texto)} caracteres")
         (PASTA / f"{t['tema']}.json").write_text(json.dumps(
             {"processo": t["processo"], "data": t["data"], "completo": completo, "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    feitos_agora = {q.stem for q in PASTA.glob("*.json")}
+    falhas = {**{k: v for k, v in previas.items() if k not in feitos_agora and k not in falhas and any(t["tema"] == k for t in todos)}, **falhas}
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{ok} completado(s), {len(falhas)} sem sucesso.")
     if a.enviar:
