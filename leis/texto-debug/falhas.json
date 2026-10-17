@@ -736,5 +736,19 @@
   "numero": "Lei Estadual (PA) nº 82/1892",
   "nome": "Norma fundiária histórica do Estado do Pará",
   "motivo": "erro ao abrir: http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-N%C2%B0-82-DE-15-DE-SETEMBRO-DE-1892.pdf → sem resposta (ConnectionResetError)"
+ },
+ "https://lex.pge.pa.gov.br/?ato=2104#/texto-integral/2104": {
+  "v": 3,
+  "em": "2026-10-17",
+  "numero": "Lei Estadual (PA) nº 5.887/1995",
+  "nome": "Dispõe sobre a Política Estadual do Meio Ambiente do Pará",
+  "motivo": "erro ao abrir: https://lex.pge.pa.gov.br/api/atos/2104 → sem resposta ([Errno 60] Operation timed out)"
+ },
+ "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html": {
+  "v": 3,
+  "em": "2026-10-17",
+  "numero": "Lei Estadual (SP) nº 10.177/1998",
+  "nome": "Processo Administrativo do Estado de São Paulo",
+  "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  }
 }
