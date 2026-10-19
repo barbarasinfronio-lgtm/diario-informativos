@@ -151,6 +151,24 @@
       linkFn: function (row) { return row.link; },
       footer: 'Fonte oficial: <a href="https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao" target="_blank" rel="noopener">cnmp.mp.br</a> — o CNMP descontinuou o "Informativo de Jurisprudência" (até 2019) e passou a publicar o "Boletim da Sessão", aqui tratado como equivalente; cobre de 2017 a 2026. Numeração contínua até 2022 (edições 1 a 89), reiniciada a cada ano a partir de 2023. Sessões canceladas (sem boletim) não entram na lista. Súmulas não verificadas — o índice não traz as ementas.'
     },
+    tjce: {
+      label: "TJCE", key: "tjce", data: TJCE_DATA,
+      lede: "Informativo de Jurisprudência do TJCE, edição mensal. Cobre de agosto de 2024 em diante.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjce.jus.br/informativo-jurisprudencia/" target="_blank" rel="noopener">tjce.jus.br</a> — o link leva ao PDF da edição. A data é o último dia do mês a que o informativo se refere (a publicação sai no mês seguinte). As edições especiais semestrais (série histórica 2022 a 2024) não estão na lista. Súmulas não verificadas.'
+    },
+    tjpe: {
+      label: "TJPE", key: "tjpe", data: TJPE_DATA,
+      lede: "Informativo de Jurisprudência do TJPE, edição mensal. Cobre de maio de 2024 em diante.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://portal.tjpe.jus.br/web/jurisprudencia/informativo-de-jurisprudencia" target="_blank" rel="noopener">portal.tjpe.jus.br</a> — o TJPE não numera as edições: aqui o "nº" é o número do mês (9 = setembro) do ano indicado, e a data é o último dia desse mês. Os informativos de 2019 a 2023 ficam em pastas à parte no site e ainda não estão na lista. Súmulas não verificadas.'
+    },
+    tjsc: {
+      label: "TJSC", key: "tjsc", data: TJSC_DATA,
+      lede: "Informativo da Jurisprudência Catarinense, edição mensal. Cobre desde outubro de 2012.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjsc.jus.br/web/jurisprudencia/informativos-da-jurisprudencia" target="_blank" rel="noopener">tjsc.jus.br</a> — o TJSC não tem endereço por edição: o link leva à consulta, onde você escolhe o número do informativo. Algumas edições antigas não aparecem na lista do site. Súmulas não verificadas.'
+    },
     tjdft: {
       label: "TJDFT", key: "tjdft", data: TJDFT_DATA,
       lede: "Informativo de Jurisprudência do TJDFT, edição quinzenal. Cobre o histórico desde dezembro de 2000.",
@@ -164,7 +182,7 @@
       footer: 'Fonte oficial: <a href="https://bd.tjmg.jus.br/collections/c4bd64ae-089d-446c-966f-2ba332a0cbf5" target="_blank" rel="noopener">Biblioteca Digital do TJMG</a> — julgados selecionados do TJMG e dos tribunais superiores; o link leva à página do boletim, com o PDF. Numeração contínua. Súmulas não verificadas.'
     }
   };
-  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp", "tjdft", "tjmg"];
+  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp", "tjce", "tjdft", "tjmg", "tjpe", "tjsc"];
   var currentOrg = "stf";
 
   var stateByOrg = {};
@@ -299,7 +317,7 @@
 
   // Tribunais de Justiça estaduais ficam agrupados numa aba só ("TJs"), com uma segunda fileira de abas
   // (TJDFT, TJMG...), para o menu não crescer a cada tribunal que entra.
-  var GRUPOS = [{ key: "tjs", label: "Tribunais de Justiça", membros: ["tjdft", "tjmg"], depoisDe: "cnmp" }];
+  var GRUPOS = [{ key: "tjs", label: "Tribunais de Justiça", membros: ["tjce", "tjdft", "tjmg", "tjpe", "tjsc"], depoisDe: "cnmp" }];
   var ultimoDoGrupo = {};
   var subTabsRoot = document.getElementById("org-subtabs");
   if (!subTabsRoot) {
