@@ -150,9 +150,21 @@
       lede: "Boletim da Sessão do CNMP (sucessor do antigo Informativo de Jurisprudência). Cobre desde 2017.",
       linkFn: function (row) { return row.link; },
       footer: 'Fonte oficial: <a href="https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao" target="_blank" rel="noopener">cnmp.mp.br</a> — o CNMP descontinuou o "Informativo de Jurisprudência" (até 2019) e passou a publicar o "Boletim da Sessão", aqui tratado como equivalente; cobre de 2017 a 2026. Numeração contínua até 2022 (edições 1 a 89), reiniciada a cada ano a partir de 2023. Sessões canceladas (sem boletim) não entram na lista. Súmulas não verificadas — o índice não traz as ementas.'
+    },
+    tjdft: {
+      label: "TJDFT", key: "tjdft", data: TJDFT_DATA,
+      lede: "Informativo de Jurisprudência do TJDFT, edição quinzenal. Cobre o histórico desde dezembro de 2000.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjdft.jus.br/consultas/jurisprudencia/informativos" target="_blank" rel="noopener">tjdft.jus.br</a> — seleção de julgados do Tribunal de Justiça do Distrito Federal e dos Territórios, por órgão julgador; o link leva à página da edição. Numeração contínua desde 2000. O site do TJDFT não tem algumas edições antigas (por exemplo, os nºs 204 a 224 e 227 a 281, de 2010 a 2014), que por isso ficam fora da lista. Súmulas não verificadas.'
+    },
+    tjmg: {
+      label: "TJMG", key: "tjmg", data: TJMG_DATA,
+      lede: "Boletim de Jurisprudência do TJMG, edição quinzenal. Cobre desde 2010 (a série começa no nº 76; os nºs 1 a 75 saíram num volume único).",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://bd.tjmg.jus.br/collections/c4bd64ae-089d-446c-966f-2ba332a0cbf5" target="_blank" rel="noopener">Biblioteca Digital do TJMG</a> — julgados selecionados do TJMG e dos tribunais superiores; o link leva à página do boletim, com o PDF. Numeração contínua. Súmulas não verificadas.'
     }
   };
-  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp"];
+  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp", "tjdft", "tjmg"];
   var currentOrg = "stf";
 
   var stateByOrg = {};

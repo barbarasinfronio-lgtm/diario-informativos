@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 atualizar_informativos.py — verifica e ACRESCENTA os Informativos novos de
-STF, STJ, TSE, CNJ, TST e CNMP em diario-data.js.
+STF, STJ, TSE, CNJ, TST, CNMP, TJDFT e TJMG em diario-data.js.
 
 Roda no Mac, só quando a Barbara abre "Atualizar Informativos.command" (na
 raiz do repositório), uma vez por semana. NÃO tem agendamento.
@@ -27,6 +27,10 @@ Como cada um é conferido:
   CNJ   tabela de atos.cnj.jus.br/jurisprudencia (tipo, número, data, PDF).
   TST   busca no JusLaboris por "Informativo TST: n. 315 (… 2026)"
         (data = fim do período do título; não inclui o "TST Execução").
+  TJDFT páginas das edições do Informativo de Jurisprudência do TJDFT (número e ano vêm do endereço; data = "Publicação"
+        ou fim do "Período"); numeração contínua desde 2000.
+  TJMG  API da Biblioteca Digital do TJMG (coleção "Boletim de Jurisprudência": número, data e endereço do item);
+        quinzenal, numeração contínua.
   CNMP  lista "Boletim de Sessão - 11ª Sessão Ordinária 06/08/2026 - Edição
         nº 11/2026" (sessões canceladas ficam de fora, como no Diário).
 
@@ -940,6 +944,88 @@ def cnmp(dados):
                         "link": urllib.parse.urljoin(url, html.unescape(m.group(1)))})
     if not achadas:
         raise Falha("não achei nenhum Boletim de Sessão na página do CNMP — a página mudou?")
+    novas = filtrar_novas(achadas, dados.registradas(var))
+    if novas:
+        dados.inserir(var, novas, com_link=True)
+    return novas
+
+
+def data_tjdft(texto, n):
+    """Data da edição n do Informativo do TJDFT, lida na página da edição: "Publicação: 14 de outubro de 2026"
+    (edições novas), o fim do "Período : 16 a 30 de junho de 2006" (as de meados da série) ou a primeira data do
+    corpo da página (as mais antigas, sem período). None se a página não for dessa edição ou não tiver data."""
+    t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html.unescape(re.sub(r"<script.*?</script>|<style.*?</style>", "", texto, flags=re.S))))
+    if not re.search(rf"Informativo de Jurisprud\S+ n\.?\S*\s*{n}\b", t):
+        return None
+
+    def ultima(trecho):
+        for dia, mes, ano in reversed(re.findall(r"(\d{1,2})\S*\s+de\s+([A-Za-z\u00e7\u00c7]+)\s+(?:de\s+)?(\d{4})", trecho or "")):
+            if mes_num(mes):
+                return iso(ano, mes_num(mes), dia)
+        return None
+    for m in re.finditer(r"Informativo de Jurisprud\S+ n\.?\s*" + str(n) + r"\s*Per\S+\s*:\s*(.{0,70}?)(?=\s*(?:Publica|Vers|Esta|$))"
+                         r"(?:\s*Publica\S+\s*:\s*(\d{1,2}\S*\s+de\s+\w+\s+de\s+\d{4}))?", t):
+        d = ultima(m.group(2)) or ultima(m.group(1))
+        if d:
+            return d
+    i = t.find("Informativo de Jurisprud")
+    j = t.find("Informativo de Jurisprud", i + 5)
+    corpo = t[j if j > 0 else i:]
+    d = ultima(corpo[:2500])
+    if d:
+        return d
+    m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", corpo)
+    return iso(m.group(3), m.group(2), m.group(1)) if m else None
+
+
+def tjdft(dados):
+    var = "TJDFT_DATA"
+    base = "https://www.tjdft.jus.br/consultas/jurisprudencia/informativos"
+    t = pagina(base)
+    vistas = {}
+    for m in re.finditer(r"informativos/(\d{4})/informativo-de-jurisprudencia-n-(?:o-)?(\d+)", t):
+        vistas.setdefault(int(m.group(2)), int(m.group(1)))
+    if not vistas:
+        raise Falha("não achei nenhuma edição do Informativo do TJDFT na página de informativos — a página mudou?")
+    ultimo = dados.registradas(var)[0][0]  # numeração contínua desde 2000
+    novas = []
+    for n, ano in sorted(vistas.items()):
+        if n <= ultimo:
+            continue
+        for slug in (f"n-{n}", f"n-o-{n}"):
+            url = f"{base}/{ano}/informativo-de-jurisprudencia-{slug}"
+            try:
+                data = data_tjdft(pagina(url), n)
+            except Falha:
+                continue
+            if data:
+                novas.append({"edicao": n, "ano": ano, "data": data, "link": url})
+                break
+    if novas:
+        dados.inserir(var, novas, com_link=True)
+    return novas
+
+
+def tjmg(dados):
+    var = "TJMG_DATA"
+    url = ("https://bd.tjmg.jus.br/server/api/discover/search/objects?scope=c4bd64ae-089d-446c-966f-2ba332a0cbf5"
+           "&sort=dc.date.issued,DESC&size=20&page=0&dsoType=ITEM")
+    t = pagina(url)
+    try:
+        objetos = json.loads(t)["_embedded"]["searchResult"]["_embedded"]["objects"]
+    except (ValueError, KeyError):
+        raise Falha("a biblioteca digital do TJMG não devolveu a lista de Boletins — a API mudou?")
+    achadas = []
+    for o in objetos:
+        item = o["_embedded"]["indexableObject"]
+        md = item.get("metadata", {})
+        titulo = md.get("dc.title", [{}])[0].get("value", "")
+        data = md.get("dc.date.issued", [{}])[0].get("value", "")[:10]
+        n = re.search(r"Boletim de Jurisprud\S+ n\S*\s*(\d+)\s*$", titulo)
+        if n and re.fullmatch(r"\d{4}-\d{2}-\d{2}", data):
+            achadas.append({"edicao": int(n.group(1)), "data": data, "link": f"https://bd.tjmg.jus.br/items/{item['uuid']}"})
+    if not achadas:
+        raise Falha("não achei nenhum Boletim de Jurisprudência do TJMG na biblioteca digital — a API mudou?")
     novas = filtrar_novas(achadas, dados.registradas(var))
     if novas:
         dados.inserir(var, novas, com_link=True)
@@ -2169,7 +2255,7 @@ def cobrancas_informativos(dados):
     return []
 
 
-TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp),
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp), ("TJDFT", tjdft), ("TJMG", tjmg),
              ("TESES", teses), ("LEIS", leis)]
 
 
