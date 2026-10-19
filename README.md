@@ -131,7 +131,7 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
   Referenciais da PGE-PA, Atos Normativos e Deliberações da Defensoria de SP etc.), um bloco por órgão em
   `normas-data.js`; para incluir um órgão, escreva o coletor e registre em `ORGAOS`.
 
-### Informativos (STF, STF PV, STJ, STJ Extra, TSE, CNJ, TST, CNMP, TJDFT, TJMG, TJCE, TJPE, TJSC) — no Mac, só quando você manda
+### Informativos (STF, STF PV, STJ, STJ Extra, TSE, CNJ, TST, CNMP, TJDFT, TJMG, TJAM, TJCE, TJES, TJPE, TJPR, TJRJ, TJSC) — no Mac, só quando você manda
 
 STF, STJ, TSE e TST recusam os servidores do GitHub (403 ou sem resposta;
 testado em 28-29/09/2026). Por isso a verificação dos Informativos roda no

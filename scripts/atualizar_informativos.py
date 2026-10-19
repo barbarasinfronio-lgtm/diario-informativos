@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 atualizar_informativos.py — verifica e ACRESCENTA os Informativos novos de
-STF, STJ, TSE, CNJ, TST, CNMP, TJDFT, TJMG, TJCE, TJPE e TJSC em diario-data.js.
+STF, STJ, TSE, CNJ, TST, CNMP, TJDFT, TJMG, TJAM, TJCE, TJES, TJPE, TJPR, TJRJ e TJSC em diario-data.js.
 
 Roda no Mac, só quando a Barbara abre "Atualizar Informativos.command" (na
 raiz do repositório), uma vez por semana. NÃO tem agendamento.
@@ -31,8 +31,9 @@ Como cada um é conferido:
         ou fim do "Período"); numeração contínua desde 2000.
   TJMG  API da Biblioteca Digital do TJMG (coleção "Boletim de Jurisprudência": número, data e endereço do item);
         quinzenal, numeração contínua.
-  TJCE, TJPE, TJSC  coletores em informativos_tjs.py (lista de PDFs do TJCE; pastas por ano do TJPE; seletor de
-        edições da consulta do TJSC).
+  TJAM, TJCE, TJES, TJPE, TJPR, TJRJ, TJSC  coletores em informativos_tjs.py (boletins do NUGEPAC/TJAM, lista de PDFs do
+        TJCE, boletins do NUGEP/TJES, pastas por ano do TJPE, boletins de precedentes do TJPR, Ementário Temático do
+        TJRJ, seletor de edições da consulta do TJSC).
   CNMP  lista "Boletim de Sessão - 11ª Sessão Ordinária 06/08/2026 - Edição
         nº 11/2026" (sessões canceladas ficam de fora, como no Diário).
 
@@ -1051,7 +1052,7 @@ def _tj_estadual(chave):
     return conferir
 
 
-tjce, tjpe, tjsc = _tj_estadual("tjce"), _tj_estadual("tjpe"), _tj_estadual("tjsc")
+tjam, tjce, tjes, tjpe, tjpr, tjrj, tjsc = (_tj_estadual(c) for c in ("tjam", "tjce", "tjes", "tjpe", "tjpr", "tjrj", "tjsc"))
 
 
 # ================================================================ Teses do STJ
@@ -2277,7 +2278,7 @@ def cobrancas_informativos(dados):
     return []
 
 
-TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp), ("TJDFT", tjdft), ("TJMG", tjmg), ("TJCE", tjce), ("TJPE", tjpe), ("TJSC", tjsc),
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp), ("TJDFT", tjdft), ("TJMG", tjmg), ("TJAM", tjam), ("TJCE", tjce), ("TJES", tjes), ("TJPE", tjpe), ("TJPR", tjpr), ("TJRJ", tjrj), ("TJSC", tjsc),
              ("TESES", teses), ("LEIS", leis)]
 
 

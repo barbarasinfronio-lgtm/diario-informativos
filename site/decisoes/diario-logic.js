@@ -151,6 +151,30 @@
       linkFn: function (row) { return row.link; },
       footer: 'Fonte oficial: <a href="https://www.cnmp.mp.br/portal/institucional/comissoes/comissao-de-acompanhamento-legislativo-e-jurisprudencia/jurisprudenciacalj/boletim-da-sessao" target="_blank" rel="noopener">cnmp.mp.br</a> — o CNMP descontinuou o "Informativo de Jurisprudência" (até 2019) e passou a publicar o "Boletim da Sessão", aqui tratado como equivalente; cobre de 2017 a 2026. Numeração contínua até 2022 (edições 1 a 89), reiniciada a cada ano a partir de 2023. Sessões canceladas (sem boletim) não entram na lista. Súmulas não verificadas — o índice não traz as ementas.'
     },
+    tjam: {
+      label: "TJAM", key: "tjam", data: TJAM_DATA,
+      lede: "Boletim Informativo do NUGEPAC/TJAM, quinzenal: precedentes qualificados (IRDR, IAC, repetitivos, repercussão geral) e ações coletivas. Cobre desde 2019.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjam.jus.br/index.php/nucleo-de-gerenciamento-de-precedentes" target="_blank" rel="noopener">tjam.jus.br</a> — não é um informativo de acórdãos: é o boletim do Núcleo de Gerenciamento de Precedentes do TJAM. O link leva ao PDF; a data é o fim do período da edição. Numeração reiniciada a cada ano. Súmulas não verificadas.'
+    },
+    tjes: {
+      label: "TJES", key: "tjes", data: TJES_DATA,
+      lede: "Boletim do NUGEP do TJES, mensal: precedentes e jurisprudência do tribunal. Cobre desde janeiro de 2021.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjes.jus.br/institucional/vice-presidencia/nugepnac/boletins-informativos/" target="_blank" rel="noopener">tjes.jus.br</a> — boletim do Núcleo de Gerenciamento de Precedentes (NUGEPNAC) do TJES, não um informativo de acórdãos. O número é o do mês (08 = agosto), e a data é o último dia desse mês. O link leva ao PDF. Súmulas não verificadas.'
+    },
+    tjpr: {
+      label: "TJPR", key: "tjpr", data: TJPR_DATA,
+      lede: "Boletins de Precedentes do TJPR (1ª Vice-Presidência e NUGEPNAC): semanais desde novembro de 2025, bimestrais de 2017 a 2025 e mensais do NURER de 2015 e 2016.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://www.tjpr.jus.br/nugep-boletins-informativos" target="_blank" rel="noopener">tjpr.jus.br</a> — boletins de precedentes (repetitivos, IRDR, IAC, repercussão geral), não um informativo de acórdãos. Os boletins semanais de 2025 foram numerados de 101 a 107, para não repetir os números dos bimestrais do mesmo ano; nos bimestrais e mensais a data é o último dia do período. O link leva ao PDF. Súmulas não verificadas.'
+    },
+    tjrj: {
+      label: "TJRJ", key: "tjrj", data: TJRJ_DATA,
+      lede: "Ementário de Jurisprudência Temático do TJRJ, mensal: seleção de ementas do tribunal sobre um tema do mês, com link para o inteiro teor.",
+      linkFn: function (row) { return row.link; },
+      footer: 'Fonte oficial: <a href="https://portaltj.tjrj.jus.br/web/portal-conhecimento/juridico/ementarios-de-jurisprudencia-ed-especial" target="_blank" rel="noopener">portaltj.tjrj.jus.br</a> — o Ementário não tem número: o "nº" é o número do mês (9 = setembro), e o tema da edição aparece ao lado. A página do tribunal só mantém as edições mais recentes (a partir de outubro de 2024). Súmulas não verificadas.'
+    },
     tjce: {
       label: "TJCE", key: "tjce", data: TJCE_DATA,
       lede: "Informativo de Jurisprudência do TJCE, edição mensal. Cobre de agosto de 2024 em diante.",
@@ -182,7 +206,7 @@
       footer: 'Fonte oficial: <a href="https://bd.tjmg.jus.br/collections/c4bd64ae-089d-446c-966f-2ba332a0cbf5" target="_blank" rel="noopener">Biblioteca Digital do TJMG</a> — julgados selecionados do TJMG e dos tribunais superiores; o link leva à página do boletim, com o PDF. Numeração contínua. Súmulas não verificadas.'
     }
   };
-  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp", "tjce", "tjdft", "tjmg", "tjpe", "tjsc"];
+  var ORG_ORDER = ["stf", "stfpv", "stj", "stjbp", "stjx", "tse", "cnj", "tst", "cnmp", "tjam", "tjce", "tjdft", "tjes", "tjmg", "tjpe", "tjpr", "tjrj", "tjsc"];
   var currentOrg = "stf";
 
   var stateByOrg = {};
@@ -317,7 +341,7 @@
 
   // Tribunais de Justiça estaduais ficam agrupados numa aba só ("TJs"), com uma segunda fileira de abas
   // (TJDFT, TJMG...), para o menu não crescer a cada tribunal que entra.
-  var GRUPOS = [{ key: "tjs", label: "Tribunais de Justiça", membros: ["tjce", "tjdft", "tjmg", "tjpe", "tjsc"], depoisDe: "cnmp" }];
+  var GRUPOS = [{ key: "tjs", label: "Tribunais de Justiça", membros: ["tjam", "tjce", "tjdft", "tjes", "tjmg", "tjpe", "tjpr", "tjrj", "tjsc"], depoisDe: "cnmp" }];
   var ultimoDoGrupo = {};
   var subTabsRoot = document.getElementById("org-subtabs");
   if (!subTabsRoot) {
