@@ -583,6 +583,9 @@
     margin: 1.1rem 0 0.2rem;
   }
 
+  .org-subtabs { margin: 0.35rem 0 0.2rem 0.6rem; padding-left: 0.7rem; border-left: 2px solid var(--surface-line); }
+  .org-subtabs[hidden] { display: none; }
+
   .org-tab {
     font-family: inherit;
     font-size: calc(0.82rem * var(--fs-scale));

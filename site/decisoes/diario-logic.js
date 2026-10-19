@@ -297,24 +297,63 @@
     if (seen[key] !== maxD) { seen[key] = maxD; try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (e) {} }
   }
 
+  // Tribunais de Justiça estaduais ficam agrupados numa aba só ("TJs"), com uma segunda fileira de abas
+  // (TJDFT, TJMG...), para o menu não crescer a cada tribunal que entra.
+  var GRUPOS = [{ key: "tjs", label: "Tribunais de Justiça", membros: ["tjdft", "tjmg"], depoisDe: "cnmp" }];
+  var ultimoDoGrupo = {};
+  var subTabsRoot = document.getElementById("org-subtabs");
+  if (!subTabsRoot) {
+    subTabsRoot = document.createElement("div");
+    subTabsRoot.id = "org-subtabs";
+    subTabsRoot.className = "org-tabs org-subtabs";
+    subTabsRoot.setAttribute("role", "tablist");
+    tabsRoot.parentNode.insertBefore(subTabsRoot, tabsRoot.nextSibling);
+  }
+  function grupoDe(key) {
+    return GRUPOS.filter(function (g) { return g.membros.indexOf(key) >= 0; })[0] || null;
+  }
+
+  function criarAba(key, rotulo, total, novas, ativa, aoClicar, destino) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "org-tab" + (ativa ? " active" : "");
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", ativa ? "true" : "false");
+    btn.innerHTML = rotulo + '<span class="count">' + total + "</span>" +
+      (novas ? '<span class="org-novo" title="' + novas + (novas > 1 ? " edições novas" : " edição nova") + '" aria-label="' + novas + ' novas"></span>' : "");
+    btn.addEventListener("click", aoClicar);
+    destino.appendChild(btn);
+  }
+  function novasDe(key) { return (!novosDaVisita[key] && key !== currentOrg) ? novasEdicoes(key).length : 0; }
+
   function renderTabs() {
     tabsRoot.innerHTML = "";
-    ORG_ORDER.forEach(function (key) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "org-tab" + (key === currentOrg ? " active" : "");
-      btn.setAttribute("role", "tab");
-      btn.setAttribute("aria-selected", key === currentOrg ? "true" : "false");
-      var novas = (!novosDaVisita[key] && key !== currentOrg) ? novasEdicoes(key).length : 0;
-      btn.innerHTML = ORGS[key].label + '<span class="count">' + stateByOrg[key].length + "</span>" +
-        (novas ? '<span class="org-novo" title="' + novas + (novas > 1 ? " edições novas" : " edição nova") + '" aria-label="' + novas + ' novas"></span>' : "");
-      btn.addEventListener("click", function () {
+    subTabsRoot.innerHTML = "";
+    var emGrupo = grupoDe(currentOrg);
+    if (emGrupo) ultimoDoGrupo[emGrupo.key] = currentOrg;
+    function abaOrg(key, destino) {
+      criarAba(key, ORGS[key].label, stateByOrg[key].length, novasDe(key), key === currentOrg, function () {
         if (currentOrg === key) return;
         currentOrg = key;
         render();
-      });
-      tabsRoot.appendChild(btn);
+      }, destino);
+    }
+    function abaGrupo(g) {
+      var total = 0, novas = 0;
+      g.membros.forEach(function (m) { total += stateByOrg[m].length; novas += novasDe(m); });
+      criarAba(g.key, g.label, total, novas, emGrupo === g, function () {
+        if (emGrupo === g) return;
+        currentOrg = ultimoDoGrupo[g.key] || g.membros[0];
+        render();
+      }, tabsRoot);
+    }
+    ORG_ORDER.forEach(function (key) {
+      if (grupoDe(key)) return;
+      abaOrg(key, tabsRoot);
+      GRUPOS.forEach(function (g) { if (g.depoisDe === key) abaGrupo(g); });
     });
+    subTabsRoot.hidden = !emGrupo;
+    if (emGrupo) emGrupo.membros.forEach(function (m) { abaOrg(m, subTabsRoot); });
   }
 
   function render() {
