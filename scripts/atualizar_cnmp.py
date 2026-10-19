@@ -52,6 +52,7 @@ TIPOS = [  # (regex do começo do título, tipo mostrado)
     (r"RECOMENDA[ÇC][ÃA]O", "Recomendação"),
     (r"EMENDA REGIMENTAL", "Emenda Regimental"),
     (r"REGIMENTO INTERNO", "Regimento Interno"),
+    (r"PROVIMENTO", "Provimento"),  # da Corregedoria Nacional do MP (só existem desde 2025)
 ]
 MESES = {m: i + 1 for i, m in enumerate(
     "janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro".split())}
@@ -170,12 +171,18 @@ def main():
               file=sys.stderr)
         sys.exit(1)
 
-    # a chave de leitura é <órgão>:<número>; Resolução e Recomendação podem repetir o número no mesmo ano
+    # a chave de leitura é <órgão>:<número>; Resolução e Recomendação podem repetir o número no mesmo ano.
+    # Provimento fica de fora da contagem (para não mudar a chave das normas que já existiam) e só ganha
+    # o prefixo se repetir o número de outra norma.
     contagem = {}
     for n in normas:
-        contagem[n["numero"]] = contagem.get(n["numero"], 0) + 1
+        if n["tipo"] != "Provimento":
+            contagem[n["numero"]] = contagem.get(n["numero"], 0) + 1
     for n in normas:
-        if contagem[n["numero"]] > 1 and n["tipo"] != "Resolução":
+        if n["tipo"] == "Provimento":
+            if n["numero"] in contagem:
+                n["numero"] = "Prov. " + n["numero"]
+        elif contagem[n["numero"]] > 1 and n["tipo"] != "Resolução":
             n["numero"] = {"Recomendação": "Rec. ", "Resolução Conjunta": "Conj. ", "Emenda Regimental": "Em. "}.get(
                 n["tipo"], "") + n["numero"]
 
@@ -188,7 +195,7 @@ def main():
         json.dumps(n[k], ensure_ascii=False) for k in ("tipo", "numero", "ementa", "link")) for n in normas]
     bloco = ("  // >>> cnmp (gerado por scripts/atualizar_cnmp.py a partir de cnmp.mp.br/portal/atos-e-normas — não editar à mão)\n"
              f'  cnmp: {{ label: {json.dumps(LABEL, ensure_ascii=False)}, status: "disponivel", '
-             '\n    descricao: "Resoluções, Recomendações, Resoluções Conjuntas, Emendas Regimentais e Regimento Interno do CNMP, conforme a lista oficial Atos e Normas (cnmp.mp.br). Vá marcando conforme for lendo.",'
+             '\n    descricao: "Resoluções, Recomendações, Resoluções Conjuntas, Emendas Regimentais, Regimento Interno e Provimentos da Corregedoria Nacional do CNMP, conforme a lista oficial Atos e Normas (cnmp.mp.br). Vá marcando conforme for lendo.",'
              '\n    aviso: "Atenção: a lista do CNMP não indica quais normas foram revogadas, então todas aparecem aqui. Confira a vigência no link antes de estudar.",\n    normas: [\n'
              + "\n".join(linhas) + "\n  ]},\n  // <<< cnmp\n")
 

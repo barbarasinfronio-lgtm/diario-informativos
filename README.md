@@ -123,6 +123,10 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
   (bloco `csjt` de `normas-data.js`).
 - **`scripts/atualizar_csmpt.py`**: Resoluções do CSMPT/MPT (bloco `csmpt` de
   `normas-data.js`).
+- **`scripts/atualizar_cnj_provimentos.py`** e **`scripts/atualizar_cnmp.py`**: Provimentos das
+  Corregedorias Nacionais do CNJ (linhas `Provimento` do bloco `cnj`) e do CNMP (bloco `cnmp`) em
+  `normas-data.js`. Rodam no Mac quando você manda (`Atualizar Provimentos.command`, também chamado
+  pelo `Rodar Tudo.command`).
 
 ### Informativos (STF, STF PV, STJ, STJ Extra, TSE, CNJ, TST, CNMP) — no Mac, só quando você manda
 
