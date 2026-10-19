@@ -37,6 +37,16 @@ def temas():
 RX_RODAPE = re.compile(r"(?m)^(?:Documento assinado digitalmente conforme MP.*|http://www\.stf\.jus\.br/portal/autenticacao/autenticarDocumento\.asp.*|Inteiro Teor do Acórdão - Página \d+ de \d+\s*|Supremo Tribunal Federal Supremo Tribunal Federal\s*)$\n?")
 
 
+def incidente_do_tema(tema):
+    """Número interno ("incidente") do processo paradigma, lido da página do Tema no portal do STF."""
+    try:
+        t = robo.pagina("https://portal.stf.jus.br/jurisprudenciaRepercussao/tema.asp?num=" + tema)
+    except robo.Falha:
+        return ""
+    m = re.search(r"verAndamentoProcesso\.asp\?incidente=(\d+)", t) or re.search(r"incidente=(\d+)", t)
+    return m[1] if m else ""
+
+
 def tirar_linhas_duplicadas(t):
     """O texto de PDFs do STF sai com cada linha duas vezes (camada de texto dupla); as numeradas
     saem como "3. 3. Definição…" seguida de "Definição…". Fica só uma cópia de cada."""
@@ -288,7 +298,7 @@ def main():
                 j = json.loads(p_.read_text(encoding="utf-8"))
             except ValueError:
                 continue
-            if j.get("completo", False) or not a.refazer_ata:
+            if j.get("completo", False) or j.get("tentou_acordao") or not a.refazer_ata:   # só-ata já refeito uma vez não volta à fila
                 feitos.add(p_.stem)
         # temas que já falharam 3 vezes não voltam para o começo da fila (o 1483, por exemplo, ficava sempre em 1º lugar e
         # gastava até 2 min por execução sem nunca dar certo); --refazer-falhas tenta de novo
@@ -318,7 +328,8 @@ def main():
                 signal.signal(signal.SIGALRM, lambda *_: (_ for _ in ()).throw(robo.Falha("passou de 2 minutos; pulei")))
                 signal.alarm(150)
             if (classe, num) not in inc:
-                inc[(classe, num)] = c.achar_incidente(classe, num)
+                # a página do próprio Tema já traz o incidente (a busca por classe/número falha nos processos antigos)
+                inc[(classe, num)] = incidente_do_tema(t["tema"]) or c.achar_incidente(classe, num)
                 time.sleep(a.espera)
             texto = ex.buscar(classe, num, inc[(classe, num)], t["data"])
             try:
@@ -351,7 +362,7 @@ def main():
         ok += 1
         print(f"    {len(texto)} caracteres")
         (PASTA / f"{t['tema']}.json").write_text(json.dumps(
-            {"processo": t["processo"], "data": t["data"], "completo": completo, "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+            {"processo": t["processo"], "data": t["data"], "completo": completo, **({} if completo else {"tentou_acordao": True}), "texto": texto[:LIMITE]}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     feitos_agora = {q.stem for q in PASTA.glob("*.json")}
     falhas = {**{k: v for k, v in previas.items() if k not in feitos_agora and k not in falhas and any(t["tema"] == k for t in todos)}, **falhas}
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
