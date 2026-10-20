@@ -211,6 +211,29 @@ não manda o intermediário (caso do STF).
 Para incluir outra fonte que precise de conexão no Brasil, acrescente o robô
 em `scripts/rodar_no_mac.sh`. Log: `~/EstudaMana/atualizar-tst.log`.
 
+### Pedidos de julgados (Diário das Decisões) — no Mac, só quando você manda
+
+Quem busca no Diário das Decisões um julgado que não está no site (ex.: "EDcl no AgInt no REsp 1880254/MT") e a busca
+não acha nada vê o botão **➕ Pedir este julgado** (só aparece quando a busca tem um número de processo; precisa estar
+logado). O clique grava um pedido no Firestore (`pedidos-julgados/<busca>`: só o texto digitado e a data, sem dados
+pessoais). **`Atender Pedidos de Julgados.command`** lê os pedidos (`scripts/julgados_sob_pedido.py`), entende a classe
+com os "no/na" (`EDcl no AgInt no REsp`), o número e a UF, procura o acórdão nos dados abertos do STJ já baixados
+(`~/EstudaMana/cache-stj-acordaos/`, os mesmos do `Atualizar Acordaos STJ.command`) e o acrescenta ao grupo "Acórdãos STJ"
+(`stj/acordaos/`) **sem passar pelo filtro de conteúdo**: quem pediu quer aquele julgado, mesmo que uma rodada normal o
+descartasse (embargos rejeitados, recurso só processual). Aceita só o STJ por enquanto; classe que só existe no STF (RE,
+ARE, ADI…) fica registrada como "não suportado". Se o acórdão é mais novo que a última coleta, o pedido fica pendente: rode
+o `Atualizar Acordaos STJ.command` e este de novo. O resultado de cada pedido fica em `curadoria/julgados-pedidos.json`
+(`feitos` e `falhas`). O `Rodar Tudo.command` roda este passo logo depois de `Atualizar Acórdãos`.
+Teste sem gravar: `python3 scripts/julgados_sob_pedido.py --teste "EDcl no AgInt no REsp 1880254/MT"`; só listar os
+pedidos: `--plano`.
+
+> **Uma vez só:** publicar as regras do Firestore. O bloco `match /pedidos-julgados/{id}` de `firestore.rules` precisa ser
+> colado em Firestore Database > Regras (console do Firebase) e publicado; sem isso o botão mostra "Já foi pedido" (o
+> Firestore recusa a gravação) e o robô não lê nada.
+
+Na busca do Diário das Decisões, a UF depois do número ("1880254/MT", "2840133-RN") é ignorada, porque o índice guarda
+"REsp 1880254", sem a UF.
+
 ## Backups
 
 Cópias do HTML das páginas do Blogger ficam fora deste repositório (pasta

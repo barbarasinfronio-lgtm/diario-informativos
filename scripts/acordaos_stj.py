@@ -263,6 +263,19 @@ def podar(teste=False, desde="2010"):
     print(f"{'(teste) ' if teste else ''}removidos {removidos} acórdãos do índice (antes {antes}, depois {antes - removidos}); {apagados} dos arquivos de ementa.")
 
 
+def item_do_espelho(d):
+    """O item (como entra no índice) de um registro do espelho de acórdãos, sem passar pelo filtro avaliar().
+    Usado por montar() e por scripts/julgados_sob_pedido.py (julgados pedidos por leitores)."""
+    dd = str(d.get("dataDecisao") or "")
+    e = para(d.get("ementa"))
+    h = cab(e)
+    return dict(id=str(d["id"]), proc=d["siglaClasse"] + " " + str(d["numeroProcesso"]),
+        org=ORG.get(d["nomeOrgaoJulgador"], d["nomeOrgaoJulgador"].title()), rel=(d.get("ministroRelator") or "").title(),
+        data=dd, area=next(v for v, rx in KW if re.search(rx, h.lower())), tit=titulo(h), res=resultado(d.get("decisao")),
+        reg=d.get("numeroRegistro") or "", ementa=e, dec=para(d.get("decisao")), inf=para(d.get("informacoesComplementares")),
+        notas=para(d.get("notas")), pub=re.sub(r"\s+", " ", d.get("dataPublicacao") or ""))
+
+
 def montar(teste=False, desde="2010", refazer=False):
     itens, motivos, vistos, total = [], collections.Counter(), set(), 0
     for arq in sorted(CACHE.glob("*/*.json")) + sorted(CACHE.glob("*/zip-*/*.json")):
@@ -287,13 +300,7 @@ def montar(teste=False, desde="2010", refazer=False):
             motivos[(ver, motivo)] += 1
             if ver != "incluir":
                 continue
-            e = para(d.get("ementa"))
-            h = cab(e)
-            itens.append(dict(id=str(d["id"]), proc=d["siglaClasse"] + " " + str(d["numeroProcesso"]),
-                org=ORG.get(d["nomeOrgaoJulgador"], d["nomeOrgaoJulgador"].title()), rel=(d.get("ministroRelator") or "").title(),
-                data=dd, area=next(v for v, rx in KW if re.search(rx, h.lower())), tit=titulo(h), res=resultado(d.get("decisao")),
-                reg=d.get("numeroRegistro") or "", ementa=e, dec=para(d.get("decisao")), inf=para(d.get("informacoesComplementares")),
-                notas=para(d.get("notas")), pub=re.sub(r"\s+", " ", d.get("dataPublicacao") or "")))
+            itens.append(item_do_espelho(d))
     print(f"{total} acórdãos no cache; {len(itens)} com conteúdo de estudo (desde {desde}):")
     for (ver, motivo), n in motivos.most_common():
         print(f"  {n:7d}  {ver:8s} {motivo}")
