@@ -33,6 +33,9 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 import atualizar_informativos as robo  # noqa: E402  (Firefox invisível, Falha)
+import julgados_pedidos_ids  # noqa: E402  (acórdãos pedidos por leitores: o filtro não os reprova)
+
+PEDIDOS = julgados_pedidos_ids.ids("STF")
 
 CACHE = Path.home() / "EstudaMana" / "cache-stf-acordaos"
 PAGINA = "https://jurisprudencia.stf.jus.br/pages/search"
@@ -171,6 +174,8 @@ def avaliar(d):
     original ou recurso com razões de mérito). Não tem: não conhecimento,
     prejudicado, homologação de desistência, embargos rejeitados, agravo que só
     repete a barreira de admissibilidade."""
+    if str(d.get("id")).replace("sjur", "") in PEDIDOS:
+        return "incluir", "pedido de leitor"
     e, a = limpo(d.get("ementa_texto")), limpo(d.get("acordao_ata"))
     sig = d.get("processo_classe_processual_unificada_sigla") or ""
     cls = d.get("processo_classe_processual_unificada_classe_sigla") or ""
@@ -244,6 +249,22 @@ def para(s):
     return "\n".join(p for p in (limpo(x) for x in re.split(r"\n\s*\n|\r", (s or "").replace("\u00a0", " "))) if p)
 
 
+def item_do_acordao(d):
+    """O item (como entra no índice) de um registro da pesquisa de jurisprudência do STF, sem passar pelo filtro avaliar().
+    Usado por montar() e por scripts/julgados_sob_pedido.py (julgados pedidos por leitores)."""
+    h = cabecalho(d["ementa_texto"])
+    return dict(
+        id=str(d["id"]).replace("sjur", ""), proc=d["titulo"],
+        org=ORGAOS.get(d.get("orgao_julgador"), d.get("orgao_julgador") or ""),
+        rel=(d.get("relator_acordao_nome") or d.get("relator_processo_nome") or "").title(),
+        data=d["julgamento_data"].replace("-", ""), area=area_de(d, h), tit=h,
+        res=resultado(d.get("acordao_ata")), ementa=para(re.sub(r"^\s*ementa\s*:?\s*", "", d["ementa_texto"], flags=re.I)),
+        ata=para(d.get("acordao_ata")), tese=para(d.get("documental_tese_texto")),
+        tt=limpo(d.get("documental_tese_tipo")), tema=limpo(d.get("documental_tese_tema_texto")),
+        idx=re.sub(r"^vide ementa\.?$", "", limpo(d.get("documental_indexacao_texto")).lstrip("- "), flags=re.I), pub=(d.get("publicacao_data") or "").replace("-", ""),
+        url=d.get("inteiro_teor_url") or "")
+
+
 def montar(teste=False, refazer=False):
     itens, motivos, total = [], collections.Counter(), 0
     for arq in sorted(CACHE.glob("*.json.gz")):
@@ -255,17 +276,7 @@ def montar(teste=False, refazer=False):
             motivos[(ver, motivo)] += 1
             if ver != "incluir":
                 continue
-            h = cabecalho(d["ementa_texto"])
-            itens.append(dict(
-                id=str(d["id"]).replace("sjur", ""), proc=d["titulo"],
-                org=ORGAOS.get(d.get("orgao_julgador"), d.get("orgao_julgador") or ""),
-                rel=(d.get("relator_acordao_nome") or d.get("relator_processo_nome") or "").title(),
-                data=d["julgamento_data"].replace("-", ""), area=area_de(d, h), tit=h,
-                res=resultado(d.get("acordao_ata")), ementa=para(re.sub(r"^\s*ementa\s*:?\s*", "", d["ementa_texto"], flags=re.I)),
-                ata=para(d.get("acordao_ata")), tese=para(d.get("documental_tese_texto")),
-                tt=limpo(d.get("documental_tese_tipo")), tema=limpo(d.get("documental_tese_tema_texto")),
-                idx=re.sub(r"^vide ementa\.?$", "", limpo(d.get("documental_indexacao_texto")).lstrip("- "), flags=re.I), pub=(d.get("publicacao_data") or "").replace("-", ""),
-                url=d.get("inteiro_teor_url") or ""))
+            itens.append(item_do_acordao(d))
     print(f"{total} acórdãos no cache; {len(itens)} com conteúdo de estudo (desde {DESDE}):")
     for (ver, motivo), n in motivos.most_common():
         print(f"  {n:7d}  {ver:8s} {motivo}")

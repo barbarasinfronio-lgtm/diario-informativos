@@ -1,12 +1,13 @@
 #!/bin/bash
 # Atender Pedidos de Julgados.command — dê DOIS CLIQUES (no Mac, na pasta do repositório).
 # Quem busca um julgado que não está no Diário das Decisões (ex.: "EDcl no AgInt no REsp 1880254/MT") pode clicar em
-# "Pedir este julgado". Este comando lê esses pedidos, procura o acórdão nos dados abertos do STJ (os que o
-# "Atualizar Acordaos STJ.command" baixa) e o inclui no site, no grupo "Acórdãos STJ". 20 por vez.
-# Se o acórdão for mais novo que a última coleta, o pedido fica pendente: rode o "Atualizar Acordaos STJ" e este de novo.
+# "Pedir este julgado". Este comando lê esses pedidos, descobre o tribunal pela classe (REsp → STJ, RE e ADI → STF…),
+# procura o acórdão nos dados que os "Atualizar Acórdãos" já baixaram e o inclui no acervo do tribunal. 20 por vez.
+# STJ e STF por enquanto; TST, TSE e STM ficam registrados em curadoria/julgados-pedidos.json.
+# Se o acórdão for mais novo que a última coleta, o pedido fica pendente: rode o "Atualizar Acórdãos" e este de novo.
 cd "$(dirname "$0")" || exit 1
 fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; exit "$1"; }
-ARQUIVOS=(stj/acordaos curadoria/julgados-pedidos.json)
+ARQUIVOS=(stj/acordaos stf/acordaos curadoria/julgados-pedidos.json)
 echo "=== Pedidos de julgados — $(date '+%d/%m/%Y %H:%M') ==="
 git checkout -q main 2>/dev/null
 git fetch -q origin main && git pull -q --rebase --autostash origin main \

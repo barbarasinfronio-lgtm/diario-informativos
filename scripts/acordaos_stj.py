@@ -23,6 +23,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import indice_fatiado  # noqa: E402  (stj/acordaos/indice.json em fatias: ver scripts/indice_fatiado.py)
+import julgados_pedidos_ids  # noqa: E402  (acórdãos pedidos por leitores: o filtro não os reprova)
+
+PEDIDOS = julgados_pedidos_ids.ids("STJ")
 
 RAIZ = Path(__file__).resolve().parent.parent
 CACHE = Path.home() / "EstudaMana" / "cache-stj-acordaos"
@@ -106,6 +109,8 @@ INADMISSIBILIDADE = re.compile(
 def avaliar(d):
     """('incluir'|'excluir', motivo) — mesma lógica do STF (ver acordaos_stf.py), mais rígida: sem conteúdo decisório
     (não conhecido, intempestivo, deserto, Súmula 7/83/211/282/284 como fundamento etc.) não entra."""
+    if str(d.get("id")) in PEDIDOS:
+        return "incluir", "pedido de leitor"
     e, a = limpo(d.get("ementa")), limpo(d.get("decisao"))
     sig = d.get("siglaClasse") or ""
     tese = bool(limpo(d.get("teseJuridica"))) or bool(limpo(d.get("tema")))

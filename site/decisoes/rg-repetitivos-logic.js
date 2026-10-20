@@ -893,7 +893,7 @@
   }
   // ---- "Pedir este julgado": busca com número de processo e sem resultado -------------------
   // O clique grava um pedido no Firestore (pedidos-julgados/<busca>, só para quem entrou) e o robô do Mac
-  // (scripts/julgados_sob_pedido.py) procura o acórdão nos dados abertos do STJ e o inclui no grupo "Acórdãos STJ".
+  // (scripts/julgados_sob_pedido.py) descobre o tribunal pela classe, procura o acórdão e o inclui no acervo dele (STJ ou STF).
   var RX_NUM_PROCESSO = /(?:\d{1,3}(?:\.\d{3})+|\d{4,9})/;
   function chavePedidoJulgado(t){
     return semAcento(String(t || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
@@ -915,8 +915,8 @@
       box.setAttribute('data-consulta', consulta);
       box.innerHTML =
         '<p class="pedido-julgado-msg" style="margin:0 0 10px">Não achou <b>“' + escapeHtml(consulta) + '”</b> no site? Peça para adicionarmos: ' +
-        'um robô procura o acórdão nos dados abertos do STJ e ele entra aqui, em “Acórdãos STJ”, na próxima atualização do site ' +
-        '(por enquanto o pedido vale para julgados do STJ: REsp, AREsp, AgInt, EDcl, HC, RMS…).</p>' +
+        'um robô descobre o tribunal pela classe do processo (REsp → STJ, RE e ADI → STF…), procura o acórdão e ele entra aqui, no grupo do tribunal, ' +
+        'na próxima atualização do site (por enquanto o robô busca no STJ e no STF; pedidos do TST, TSE e STM ficam registrados).</p>' +
         '<button type="button" class="chip pedido-julgado-btn">➕ Pedir este julgado</button>';
       var btn = box.querySelector('.pedido-julgado-btn'), msg = box.querySelector('.pedido-julgado-msg');
       btn.addEventListener('click', function(){

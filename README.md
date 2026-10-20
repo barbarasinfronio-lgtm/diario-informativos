@@ -217,13 +217,21 @@ Quem busca no Diário das Decisões um julgado que não está no site (ex.: "EDc
 não acha nada vê o botão **➕ Pedir este julgado** (só aparece quando a busca tem um número de processo; precisa estar
 logado). O clique grava um pedido no Firestore (`pedidos-julgados/<busca>`: só o texto digitado e a data, sem dados
 pessoais). **`Atender Pedidos de Julgados.command`** lê os pedidos (`scripts/julgados_sob_pedido.py`), entende a classe
-com os "no/na" (`EDcl no AgInt no REsp`), o número e a UF, procura o acórdão nos dados abertos do STJ já baixados
-(`~/EstudaMana/cache-stj-acordaos/`, os mesmos do `Atualizar Acordaos STJ.command`) e o acrescenta ao grupo "Acórdãos STJ"
-(`stj/acordaos/`) **sem passar pelo filtro de conteúdo**: quem pediu quer aquele julgado, mesmo que uma rodada normal o
-descartasse (embargos rejeitados, recurso só processual). Aceita só o STJ por enquanto; classe que só existe no STF (RE,
-ARE, ADI…) fica registrada como "não suportado". Se o acórdão é mais novo que a última coleta, o pedido fica pendente: rode
-o `Atualizar Acordaos STJ.command` e este de novo. O resultado de cada pedido fica em `curadoria/julgados-pedidos.json`
-(`feitos` e `falhas`). O `Rodar Tudo.command` roda este passo logo depois de `Atualizar Acórdãos`.
+com os "no/na" (`EDcl no AgInt no REsp`), o número e a UF e **descobre o tribunal pela classe**: `REsp`, `AREsp`, `AgInt`…
+só existem no STJ; `RE`, `ARE`, `ADI`, `ADPF`… só no STF; `RR`, `AIRR` só no TST; `REspe` só no TSE. Classes que existem em
+mais de um (`HC`, `RHC`, `MS`, `RMS`, `Rcl`, `Pet`) são procuradas em todos; escrever o tribunal na busca ("STF HC 123456")
+escolhe onde procurar. O STF escreve a cadeia ao contrário e o robô converte: `ED no AgR no RE 1037396` = `RE 1037396 AgR-ED`.
+
+O robô procura o acórdão nos dados que os robôs de acórdãos já baixaram (STJ: `~/EstudaMana/cache-stj-acordaos/`; STF:
+`~/EstudaMana/cache-stf-acordaos/`) e o acrescenta ao acervo do tribunal (`stj/acordaos/`, `stf/acordaos/`) **sem passar pelo
+filtro de conteúdo**: quem pediu quer aquele julgado, mesmo que uma rodada normal o descartasse (embargos rejeitados, recurso
+só processual). Os ids incluídos ficam em `incluidos` (por tribunal) em `curadoria/julgados-pedidos.json`, e os robôs dos
+acervos (`julgados_pedidos_ids.py`) não os reprovam nem os podam depois. Se o acórdão é mais novo que a última coleta, o pedido
+fica pendente: rode o `Atualizar Acórdãos.command` e este de novo. **TST, TSE e STM:** o tribunal é reconhecido, mas ainda não
+há fonte para buscar um acórdão qualquer (o acervo do TST só tem os precedentes vinculantes e TSE e STM não têm acervo no
+site); o pedido fica como `sem-fonte:<tribunal>` e volta a ser tentado quando o tribunal entrar na lista `FONTES` do script.
+O resultado de cada pedido fica em `feitos` e `falhas` do mesmo arquivo. O `Rodar Tudo.command` roda este passo logo depois
+de `Atualizar Acórdãos`.
 Teste sem gravar: `python3 scripts/julgados_sob_pedido.py --teste "EDcl no AgInt no REsp 1880254/MT"`; só listar os
 pedidos: `--plano`.
 
