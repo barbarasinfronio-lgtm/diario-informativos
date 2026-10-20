@@ -317,7 +317,9 @@
   }
 
   function semAcento(t){ return String(t == null ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/(\d)\.(?=\d)/g, '$1'); }
-  function termosBusca(){ return semAcento(state.q).split(/\s+/).filter(Boolean); }
+  // "REsp 1880254/MT" e "AREsp 2840133-RN": a UF depois do número do processo não impede de achar o card (o índice guarda
+  // "REsp 1880254", sem a UF). "547/2024" (número/ano) não é afetado: a UF tem de ser de letras.
+  function termosBusca(){ return semAcento(state.q).replace(/(\d{4,})\s*[\/-]\s*([a-z]{2})(?![a-z0-9])/g, '$1').split(/\s+/).filter(Boolean); }
   // Siglas curtas (2 ou 3 letras: IR, STF, ECA) só valem como palavra inteira —
   // senão "ir" acharia "direito", "irregular"… Números e termos maiores: trecho.
   function contem(h, t){
@@ -584,6 +586,7 @@
   }
   function render(){
     aplicarAliases();
+    atualizarPedidoJulgado(false);
     Object.keys(SOB_DEMANDA).forEach(function(g){ if (!estadoSD(g).prontos && (state.org === g || termosBusca().length)) carregarSobDemanda(g); });
     // busca precisa do texto completo (tese, destaque…), não só da lista leve
     if (termosBusca().length) fontesIncompletas().forEach(function(f){ completarFonte(f).catch(function(){}); });
@@ -639,6 +642,7 @@
     var buscaTotal = ts.length && state.org === 'all' && state.risk === 'all' && !state.area;
     var meu = ++seqBusca;
     var extras = [];
+    var extrasProntos = !buscaTotal;
     function desenharTudo(){
       var todos = list.map(function(d){ return { d: d, k: chaveData(d.data) }; })
         .concat(extras.map(function(x){ return { x: x.it, c: x.c, k: chaveData(x.c.dataDe(x.it)) }; }));
@@ -662,6 +666,7 @@
         document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando ' + aguardando.map(function(g){ return SOB_DEMANDA[g].nome; }).join(' e ') + '…';
         if (SOB_DEMANDA[state.org]) document.getElementById('empty').hidden = true;
       }
+      atualizarPedidoJulgado(ts.length > 0 && todos.length === 0 && !aguardando.length && !fontesIncompletas().length && extrasProntos);
       grid.innerHTML = '';
       todos.slice(0, mostrar).forEach(function(t){
         if (t.d) desenharCard(t.d); else grid.appendChild(t.c.cartao(t.x));
@@ -680,6 +685,7 @@
       })).then(function(partes){
         if (meu !== seqBusca) return;
         extras = [].concat.apply([], partes);
+        extrasProntos = true;
         desenharTudo();
       });
     }
@@ -884,6 +890,50 @@
   }
   function docPedido(d){
     return firebase.firestore().doc('pedidos-teor/' + String(d.id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40));
+  }
+  // ---- "Pedir este julgado": busca com número de processo e sem resultado -------------------
+  // O clique grava um pedido no Firestore (pedidos-julgados/<busca>, só para quem entrou) e o robô do Mac
+  // (scripts/julgados_sob_pedido.py) descobre o tribunal pela classe, procura o acórdão e o inclui no acervo dele (STJ ou STF).
+  var RX_NUM_PROCESSO = /(?:\d{1,3}(?:\.\d{3})+|\d{4,9})/;
+  function chavePedidoJulgado(t){
+    return semAcento(String(t || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  }
+  function atualizarPedidoJulgado(mostrar){
+    var box = document.getElementById('pedidoJulgado');
+    var campo = document.getElementById('q');
+    var consulta = String((campo && campo.value) || state.q || '').trim().replace(/\s+/g, ' ');
+    if (!mostrar || !consulta || !RX_NUM_PROCESSO.test(consulta) || !chavePedidoJulgado(consulta)) { if (box) box.hidden = true; return; }
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'pedidoJulgado';
+      box.style.cssText = 'margin:16px 0;padding:14px 16px;border:1px dashed var(--surface-line,#94a3b8);border-radius:12px;';
+      var vazio = document.getElementById('empty');
+      if (vazio && vazio.parentNode) vazio.parentNode.insertBefore(box, vazio.nextSibling);
+      else { var g = document.getElementById('grid'); g.parentNode.insertBefore(box, g); }
+    }
+    if (box.getAttribute('data-consulta') !== consulta) {
+      box.setAttribute('data-consulta', consulta);
+      box.innerHTML =
+        '<p class="pedido-julgado-msg" style="margin:0 0 10px">Não achou <b>“' + escapeHtml(consulta) + '”</b> no site? Peça para adicionarmos: ' +
+        'um robô descobre o tribunal pela classe do processo (REsp → STJ, RE e ADI → STF…), procura o acórdão e ele entra aqui, no grupo do tribunal, ' +
+        'na próxima atualização do site (por enquanto o robô busca no STJ e no STF; pedidos do TST, TSE e STM ficam registrados).</p>' +
+        '<button type="button" class="chip pedido-julgado-btn">➕ Pedir este julgado</button>';
+      var btn = box.querySelector('.pedido-julgado-btn'), msg = box.querySelector('.pedido-julgado-msg');
+      btn.addEventListener('click', function(){
+        if (!usuarioLogado() || !(window.firebase && firebase.firestore)) {
+          msg.textContent = 'Para pedir um julgado, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página).';
+          return;
+        }
+        btn.disabled = true;
+        firebase.firestore().doc('pedidos-julgados/' + chavePedidoJulgado(consulta)).set({ consulta: consulta.slice(0, 120), em: new Date().toISOString() })
+          .then(function(){ btn.textContent = '✅ Pedido enviado'; msg.textContent = 'Pedido enviado! O julgado entra no site na próxima atualização (em geral em até um dia).'; })
+          .catch(function(e){
+            if (e && e.code === 'permission-denied') { btn.textContent = '✅ Já foi pedido'; msg.textContent = 'Este julgado já tinha sido pedido. Ele entra no site quando o robô o buscar.'; }
+            else { btn.disabled = false; msg.textContent = 'Não consegui enviar o pedido agora. Tente de novo.'; }
+          });
+      });
+    }
+    box.hidden = false;
   }
   function mostrarPedidoTeor(d){
     if (modalAtual !== d || modal.querySelector('.teor-rg, .teor-pedido')) return;
