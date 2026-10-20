@@ -5,7 +5,7 @@
  },
  "STF_ADI_2691_20030602_4042": {
   "processo": "ADI 2691",
-  "motivo": "não achei o andamento (ou o link 'Decisão de Julgamento') na aba Decisões (página guardada em curadoria/debug-stf/)"
+  "motivo": "https://portal.stf.jus.br/processos/abaDecisoes.asp?incidente=2031930&numeroProcesso=2691&classeProcesso=ADI&numeroTema= → sem resposta ([Errno 8] nodename nor servname provided, or not known)"
  },
  "STF_ADI_145_19891130_431": {
   "processo": "ADI 145",
