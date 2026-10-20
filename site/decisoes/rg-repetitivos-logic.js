@@ -663,10 +663,11 @@
       if (ts.length && fontesIncompletas().length) document.getElementById('countLine').textContent += ' — carregando os textos completos para a busca…';
       var aguardando = aguardandoSobDemanda(ts);
       if (aguardando.length) {
-        document.getElementById('countLine').textContent += (todos.length ? ' — ' : '') + 'carregando ' + aguardando.map(function(g){ return SOB_DEMANDA[g].nome; }).join(' e ') + '…';
+        document.getElementById('countLine').textContent += ' — carregando ' + aguardando.map(function(g){ return SOB_DEMANDA[g].nome; }).join(' e ') + '…';
         if (SOB_DEMANDA[state.org]) document.getElementById('empty').hidden = true;
       }
-      atualizarPedidoJulgado(ts.length > 0 && todos.length === 0 && !aguardando.length && !fontesIncompletas().length && extrasProntos);
+      // mostra a caixa já quando a busca está sem resultado, mesmo que o acervo ainda esteja carregando (o robô avisa se o julgado já está no site)
+      atualizarPedidoJulgado(ts.length > 0 && todos.length === 0, aguardando.length > 0 || fontesIncompletas().length > 0 || !extrasProntos);
       grid.innerHTML = '';
       todos.slice(0, mostrar).forEach(function(t){
         if (t.d) desenharCard(t.d); else grid.appendChild(t.c.cartao(t.x));
@@ -898,7 +899,7 @@
   function chavePedidoJulgado(t){
     return semAcento(String(t || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
   }
-  function atualizarPedidoJulgado(mostrar){
+  function atualizarPedidoJulgado(mostrar, carregando){
     var box = document.getElementById('pedidoJulgado');
     var campo = document.getElementById('q');
     var consulta = String((campo && campo.value) || state.q || '').trim().replace(/\s+/g, ' ');
@@ -917,7 +918,8 @@
         '<p class="pedido-julgado-msg" style="margin:0 0 10px">Não achou <b>“' + escapeHtml(consulta) + '”</b> no site? Peça para adicionarmos: ' +
         'um robô descobre o tribunal pela classe do processo (REsp → STJ, RE e ADI → STF…), procura o acórdão e ele entra aqui, no grupo do tribunal, ' +
         'na próxima atualização do site (por enquanto o robô busca no STJ e no STF; pedidos do TST, TSE e STM ficam registrados).</p>' +
-        '<button type="button" class="chip pedido-julgado-btn">➕ Pedir este julgado</button>';
+        '<button type="button" class="chip pedido-julgado-btn">➕ Pedir este julgado</button>' +
+        '<span class="pedido-julgado-nota" style="margin-left:10px;font-size:.85em;opacity:.8" hidden>A busca ainda está conferindo o acervo: se o julgado aparecer, não precisa pedir.</span>';
       var btn = box.querySelector('.pedido-julgado-btn'), msg = box.querySelector('.pedido-julgado-msg');
       btn.addEventListener('click', function(){
         if (!usuarioLogado() || !(window.firebase && firebase.firestore)) {
@@ -933,6 +935,8 @@
           });
       });
     }
+    var nota = box.querySelector('.pedido-julgado-nota');
+    if (nota) nota.hidden = !carregando;
     box.hidden = false;
   }
   function mostrarPedidoTeor(d){
