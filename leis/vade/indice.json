@@ -72,11 +72,11 @@
   "nome": "Gestão de Florestas Públicas"
  },
  "ato2004-2006-2006-lei-l11340": {
-  "dispositivos": 25,
+  "dispositivos": 28,
   "nome": "Lei Maria da Penha"
  },
  "ato2004-2006-2006-lei-l11343": {
-  "dispositivos": 66,
+  "dispositivos": 68,
   "nome": "Lei de Drogas"
  },
  "ato2004-2006-2006-lei-l11346": {
@@ -736,7 +736,7 @@
   "nome": "Lei do Governo Digital"
  },
  "ato2019-2022-2021-lei-l14133": {
-  "dispositivos": 108,
+  "dispositivos": 113,
   "nome": "Nova Lei de Licitações"
  },
  "ato2019-2022-2021-lei-l14164": {
@@ -964,7 +964,7 @@
   "nome": "Feminicídio vicário — altera o Código Penal"
  },
  "constituicao-constituicao": {
-  "dispositivos": 472,
+  "dispositivos": 539,
   "nome": "Constituição Federal"
  },
  "decreto-1930-1949-d20910": {
@@ -1128,7 +1128,7 @@
   "nome": "Código de Processo Penal Militar"
  },
  "decreto-lei-del2848compilado": {
-  "dispositivos": 150,
+  "dispositivos": 213,
   "nome": "Código Penal"
  },
  "decreto-lei-del3365": {
@@ -1168,7 +1168,7 @@
   "nome": "Inscrição eleitoral"
  },
  "leis-2002-l10406compilada": {
-  "dispositivos": 449,
+  "dispositivos": 503,
   "nome": "Código Civil"
  },
  "leis-2002-l10436": {
@@ -1216,7 +1216,7 @@
   "nome": "Crédito consignado em folha de pagamento"
  },
  "leis-2003-l10-826": {
-  "dispositivos": 34,
+  "dispositivos": 38,
   "nome": "Estatuto do Desarmamento"
  },
  "leis-l10028": {
@@ -1424,7 +1424,7 @@
   "nome": "Processos perante o STJ e o STF (recursos)"
  },
  "leis-l8069": {
-  "dispositivos": 160,
+  "dispositivos": 174,
   "nome": "Estatuto da Criança e do Adolescente"
  },
  "leis-l8072": {
@@ -1432,7 +1432,7 @@
   "nome": "Lei dos Crimes Hediondos"
  },
  "leis-l8078compilado": {
-  "dispositivos": 74,
+  "dispositivos": 89,
   "nome": "Código de Defesa do Consumidor"
  },
  "leis-l8080": {

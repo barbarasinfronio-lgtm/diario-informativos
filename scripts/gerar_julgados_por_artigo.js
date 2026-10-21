@@ -26,6 +26,42 @@ const LEIS_PILOTO = [
     valeDesde: "2016-03-18",      // antes disso, "CPC" sem ano é o de 1973
     // citados só para descrever o rito dos recursos repetitivos / repercussão geral (não é "o julgado trata do artigo")
     ritoRepetitivo: ["1036", "1037", "1038", "1039", "1040", "1041", "1035", "1.036", "1.037", "1.038", "1.039", "1.040", "1.041", "1.035"]
+  },
+  {
+    tid: "decreto-lei-del2848compilado", nome: "Código Penal (Decreto-Lei nº 2.848/1940)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:C[óo]digo\\s+Penal(?!\\s+Militar)|\\bCP\\b|Decreto-Lei\\s+(?:n[º°o.]*\\s*)?2\\.848(?:\\s*\\/\\s*(?:19)?40)?)"
+  },
+  {
+    tid: "leis-2002-l10406compilada", nome: "Código Civil (Lei nº 10.406/2002)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:C[óo]digo\\s+Civil(?!\\s+de\\s+1916)|\\bCC(?:\\s*\\/\\s*(?:20)?02)?\\b|Lei\\s+(?:n[º°o.]*\\s*)?10\\.406(?:\\s*\\/\\s*(?:20)?02)?)"
+  },
+  {
+    tid: "leis-l8078compilado", nome: "Código de Defesa do Consumidor (Lei nº 8.078/1990)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:C[óo]digo\\s+de\\s+Defesa\\s+do\\s+Consumidor|\\bCDC\\b|Lei\\s+(?:n[º°o.]*\\s*)?8\\.078(?:\\s*\\/\\s*(?:19)?90)?)"
+  },
+  {
+    tid: "constituicao-constituicao", nome: "Constituição Federal de 1988", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Constitui[çc][ãa]o\\s+Federal|\\bCF(?:\\s*\\/\\s*(?:19)?88)?\\b|\\bCRFB(?:\\s*\\/\\s*(?:19)?88)?\\b)"
+  },
+  {
+    tid: "leis-l8069", nome: "Estatuto da Criança e do Adolescente (Lei nº 8.069/1990)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Estatuto\\s+da\\s+Crian[çc]a\\s+e\\s+do\\s+Adolescente|\\bECA\\b|Lei\\s+(?:n[º°o.]*\\s*)?8\\.069(?:\\s*\\/\\s*(?:19)?90)?)"
+  },
+  {
+    tid: "ato2019-2022-2021-lei-l14133", nome: "Lei de Licitações e Contratos (Lei nº 14.133/2021)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Lei\\s+(?:n[º°o.]*\\s*)?14\\.133(?:\\s*\\/\\s*(?:20)?21)?|Nova\\s+Lei\\s+de\\s+Licita[çc][õo]es)"
+  },
+  {
+    tid: "ato2004-2006-2006-lei-l11340", nome: "Lei Maria da Penha (Lei nº 11.340/2006)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Lei\\s+(?:n[º°o.]*\\s*)?11\\.340(?:\\s*\\/\\s*(?:20)?06)?|Lei\\s+Maria\\s+da\\s+Penha)"
+  },
+  {
+    tid: "ato2004-2006-2006-lei-l11343", nome: "Lei de Drogas (Lei nº 11.343/2006)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Lei\\s+(?:n[º°o.]*\\s*)?11\\.343(?:\\s*\\/\\s*(?:20)?06)?|Lei\\s+de\\s+Drogas|Lei\\s+Antidrogas)"
+  },
+  {
+    tid: "leis-2003-l10-826", nome: "Estatuto do Desarmamento (Lei nº 10.826/2003)", explicita: /./, valeDesde: "1900-01-01", ritoRepetitivo: [],
+    alias: "(?:Lei\\s+(?:n[º°o.]*\\s*)?10\\.826(?:\\s*\\/\\s*(?:20)?03)?|Estatuto\\s+do\\s+Desarmamento)"
   }
 ];
 

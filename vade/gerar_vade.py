@@ -244,6 +244,12 @@ def linhas(a, an):
         out.append(('Súms. Vincs.' if pl else 'Súm. Vinc.') if t == 'Súm. Vinc.' else ('Súms.' if pl else 'Súm.')); out[-1] += f' nº{"s" if pl else ""} {lista(ns)} {g}.'
     for g, ns in enun.items():
         out.append(f'Enunciado{"s" if len(ns) > 1 else ""} nº{"s" if len(ns) > 1 else ""} {lista(ns)} {g}.')
+    for k_, ns_ in atos.items():
+        base = {}
+        for x_ in ns_:
+            n0 = x_.split(' (art')[0]
+            if n0 not in base or ' (art' in x_: base[n0] = x_
+        atos[k_] = list(base.values())
     for (t, g), ns in atos.items():
         out.append(f'{plural(t) if len(ns) > 1 else t} nº{"s" if len(ns) > 1 else ""} {lista(ns)} {g}.')
     for g, ns in temas.items():
@@ -254,7 +260,14 @@ def linhas(a, an):
         jts = sorted(dict.fromkeys(jts), key=int)
         out.append(('Jurisprudência em Teses do STJ, edições nºs ' if len(jts) > 1 else 'Jurisprudência em Teses do STJ, edição nº ') + lista(jts) + '.')
     if julg: out.append('; '.join(dict.fromkeys(julg)) + '.')
-    out += livres
+    for r in livres:
+        if r.startswith('Tratados:'):
+            for it in r[len('Tratados:'):].strip().rstrip('.').split('; '):
+                m = re.match(r'^(.*?) \((Decreto nº [\d./]+)\), (arts?\. .*)$', it.strip())
+                if not m: out.append(it.strip().rstrip('.') + '.'); continue
+                nome, dec, arts = m.groups()
+                out.append(f'{arts[0].upper() + arts[1:]} d{"o" if nome.startswith(("Pacto", "Protocolo", "Acordo", "Tratado")) else "a"} {nome} ({dec}).')
+        else: out.append(r)
     return out
 NAO_ESTE = r'(?!\s*,?\s*(?:d[aoe]s?\s+)?(?:Lei|Decreto|C[óo]digo|Constitui|CF\b|CPC|CC\b|CP\b|CLT|Provimento|Resolu|LC\b|Lei\s+Complementar|Estatuto|CTN|CDC))'
 INT = re.compile(r'\barts?\.?\s*(\d+(?:\.\d{3})*)\s*[º°o]?(?:(?:\s*-\s*|(?<=\d))((?-i:[A-Z]))(?![A-Za-zÀ-ú]))?((?:\s*,\s*(?:parágrafo único|(?-i:[IVXL]+)\b|§\s*\d+\s*[º°o]?))*)', re.I)
