@@ -729,5 +729,40 @@
   "numero": "Lei Estadual (PR) nº 12.726/1999",
   "nome": "Institui a Política Estadual de Recursos Hídricos e cria o Sistema Estadual de Gerenciamento de Recursos Hídricos do Paraná",
   "motivo": "erro ao abrir: https://progestao.ana.gov.br/acoes-estados/pr/lei-12-726-99_pr.pdf → sem resposta ([Errno 51] Network is unreachable)"
+ },
+ "https://ww3.al.rs.gov.br/filerepository/repLegis/arquivos/LEI 14.254.pdf": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei Estadual (RS) nº 14.254/2013",
+  "nome": "Conselhos Estaduais e Municipais dos Direitos da Pessoa Idosa do Rio Grande do Sul",
+  "motivo": "erro ao abrir: https://ww3.al.rs.gov.br/filerepository/repLegis/arquivos/LEI%2014.254.pdf → sem resposta (EOF occurred in violation of protocol (_ssl.c:112"
+ },
+ "https://ww3.al.rs.gov.br/filerepository/replegiscomp/Lei%20n%C2%BA%2014.705.pdf": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei (RS) nº 14.705/2015",
+  "nome": "Plano Estadual de Educação do Rio Grande do Sul",
+  "motivo": "erro ao abrir: https://ww3.al.rs.gov.br/filerepository/replegiscomp/Lei%20n%C2%BA%2014.705.pdf → sem resposta (EOF occurred in violation of protocol (_ssl."
+ },
+ "https://ww3.al.rs.gov.br/filerepository/replegiscomp/Lei%20n%C2%BA%209.831.pdf": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei (RS) nº 9.831/1993",
+  "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul",
+  "motivo": "erro ao abrir: https://ww3.al.rs.gov.br/filerepository/replegiscomp/Lei%20n%C2%BA%209.831.pdf → sem resposta (EOF occurred in violation of protocol (_ssl.c"
+ },
+ "https://www.tjba.jus.br/juizadosespeciais/wp-content/uploads/joomla_uploads/pdf/legislacao/LOJ_10845_2007-ORGANIZACAO-JUDICIARIA.pdf": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei Estadual (BA) nº 10.845/2007",
+  "nome": "Organização e Divisão Judiciária do Estado da Bahia (Código de Organização Judiciária)",
+  "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
+ },
+ "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=5549&hId_FazSumula=&RF=1": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei nº 6.537/1973",
+  "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul",
+  "motivo": "erro ao abrir: sem resposta (EOF occurred in violation of protocol (_ssl.c:1129))"
  }
 }
