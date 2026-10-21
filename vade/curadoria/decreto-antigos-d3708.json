@@ -1,0 +1,11 @@
+{
+ "numero_regex": "3\\.708",
+ "sem_base": true,
+ "aliases": [
+  "Decreto\\s*(?:n[º°o.]*)?\\s*3\\.708(?:\\s*/\\s*(?:1919|19)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1919)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

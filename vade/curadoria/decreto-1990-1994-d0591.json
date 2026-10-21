@@ -1,0 +1,11 @@
+{
+ "numero_regex": "591",
+ "sem_base": true,
+ "aliases": [
+  "Decreto\\s*(?:n[º°o.]*)?\\s*591(?:\\s*/\\s*(?:1992|92)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1992)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""Vade mecum para todas as leis federais do Diário de Leis (Lei, Lei Complementar, Decreto-Lei, Decreto).
+
+  python3 vade/gerar_todas.py            # cria vade/curadoria/<id>.json (automático) para quem não tem e roda o gerador em paralelo
+  python3 vade/gerar_todas.py --so-curadoria
+
+A curadoria manual (arquivo existente sem "auto": true) nunca é sobrescrita. Leis estaduais ficam de fora por enquanto:
+as súmulas/atos que citam "Lei Estadual nº X" não dizem de que Estado, então exigem cruzar com o tribunal local.
+"""
+import json, os, re, subprocess, sys, glob
+from concurrent.futures import ThreadPoolExecutor
+R = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+sys.path.insert(0, f'{R}/scripts')
+import atualizar_informativos as robo
+
+JS = """const fs=require('fs');global.window=global;
+(0,eval)(fs.readFileSync('site/leis/leis-data.js','utf8').replace(/^(var|const|let) (\\w+) =/mg,'globalThis.$2 ='));
+const d=globalThis.LEIS_DATA||{};let o=[];for(const k in d){for(const l of (d[k].leis||[])) o.push([l.nome,l.numero,l.link||'',l.textoId||''])}
+console.log(JSON.stringify(o))"""
+RX = re.compile(r'^(Lei Complementar|Lei|Decreto-Lei|Decreto)\s+n[º°o]?\s*([\d.]+)(?:\s*/\s*(\d{4}))?', re.I)
+
+def regex_num(n):
+    return re.escape(n).replace('\\.', '\\.')
+
+def curadoria(tipo, num, ano, nome):
+    n = regex_num(num)
+    t = tipo.lower()
+    sufixo = r'(?:\s*/\s*(?:19|20)?\d\d|\s*,\s*de\s+(?:\d{1,2}\S*\s+de\s+\w+\s+de\s+)?\d{4})?'
+    if t == 'lei':
+        return {"numero_regex": n, "aliases": [], "deste": "desta Lei"}
+    if t == 'lei complementar':
+        return {"numero_regex": n, "sem_base": True, "aliases": [r'Lei\s+Complementar\s*(?:n[º°o.]*)?\s*' + n + sufixo, r'\bLC\s*(?:n[º°o.]*)?\s*' + n + sufixo], "deste": "desta Lei Complementar"}
+    if t == 'decreto-lei':
+        return {"numero_regex": n, "sem_base": True, "aliases": [r'Decreto-Lei\s*(?:n[º°o.]*)?\s*' + n + sufixo], "deste": "deste Decreto-Lei"}
+    # Decreto: o número recomeça todo ano — só vale citação com o ano
+    a2 = ano[-2:]
+    return {"numero_regex": n, "sem_base": True,
+            "aliases": [r'Decreto\s*(?:n[º°o.]*)?\s*' + n + r'(?:\s*/\s*(?:' + ano + '|' + a2 + r')|\s*,\s*de\s+(?:\d{1,2}\S*\s+de\s+\w+\s+de\s+)?' + ano + ')'], "deste": "deste Decreto"}
+
+def main():
+    L = json.loads(subprocess.check_output(['node', '-e', JS], text=True, cwd=R))
+    feitos = {}
+    for nome, numero, link, tid in L:
+        m = RX.match(numero or '')
+        if not m or 'estadual' in (numero or '').lower() or 'planalto.gov.br' not in (link or ''): continue   # só federais (Planalto)
+        i = tid or (robo.id_texto(link) if link else '')
+        if not i or not os.path.exists(f'{R}/leis/texto/{i}.json'): continue
+        tipo, num, ano = m.group(1), m.group(2), m.group(3) or ''
+        if tipo.lower() == 'decreto' and not ano: continue
+        f = f'{R}/vade/curadoria/{i}.json'
+        if os.path.exists(f) and not json.load(open(f)).get('auto'): continue
+        c = curadoria(tipo, num, ano, nome); c.update({"vinculos": {}, "excluir": [], "auto": True})
+        json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
+        feitos[i] = nome
+    print(len(feitos), 'leis com curadoria automática')
+    if '--so-curadoria' in sys.argv: return
+    ids = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/vade/curadoria/*.json'))
+    env = dict(os.environ, VADE_SO_SITE='1')
+    def roda(i):
+        r = subprocess.run([sys.executable, f'{R}/vade/gerar_vade.py', i], capture_output=True, text=True, env=env)
+        return i, (r.stdout.strip().splitlines() or [''])[-1], r.returncode, r.stderr[-200:]
+    with ThreadPoolExecutor(4) as ex:
+        res = list(ex.map(roda, ids))
+    erros = [r for r in res if r[2]]
+    for i, _, _, e in erros[:20]: print('ERRO', i, e.strip().splitlines()[-1:] )
+    ix = {}
+    for f in glob.glob(f'{R}/leis/vade/*.json'):
+        i = os.path.basename(f)[:-5]
+        if i == 'indice': continue
+        d = json.load(open(f)); ix[i] = {"nome": d.get('nome', ''), "dispositivos": sum(len(v) for v in d['art'].values())}
+    json.dump(ix, open(f'{R}/leis/vade/indice.json', 'w'), ensure_ascii=False, indent=1, sort_keys=True)
+    print(len(ids), 'leis processadas;', len(ix), 'com remissões;', len(erros), 'erros')
+
+main()

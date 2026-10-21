@@ -1,0 +1,11 @@
+{
+ "numero_regex": "50\\.215",
+ "sem_base": true,
+ "aliases": [
+  "Decreto\\s*(?:n[º°o.]*)?\\s*50\\.215(?:\\s*/\\s*(?:1961|61)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1961)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

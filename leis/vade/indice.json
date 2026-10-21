@@ -1,4 +1,76 @@
 {
+ "al-rs-gov-br-legis-m010-m0100099-asp-hid-tipo-texto-hid-todasnormas-5549-hid-faz-8b183720": {
+  "dispositivos": 4,
+  "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul"
+ },
+ "ato2004-2006-2004-decreto-d5015": {
+  "dispositivos": 1,
+  "nome": "Convenção da ONU contra o Crime Organizado Transnacional (Palermo)"
+ },
+ "ato2004-2006-2004-decreto-d5296": {
+  "dispositivos": 33,
+  "nome": "Regulamenta as Leis nº 10.048/2000 e nº 10.098/2000 (acessibilidade)"
+ },
+ "ato2004-2006-2004-lei-l10-880": {
+  "dispositivos": 10,
+  "nome": "Programa Nacional de Apoio ao Transporte do Escolar (PNATE)"
+ },
+ "ato2004-2006-2004-lei-l10-887": {
+  "dispositivos": 32,
+  "nome": "Disciplina a aplicação de dispositivos da EC nº 41/2003 (cálculo de proventos e pensões do RPPS)"
+ },
+ "ato2004-2006-2004-lei-l10-931": {
+  "dispositivos": 69,
+  "nome": "Patrimônio de afetação / cédulas de crédito imobiliário"
+ },
+ "ato2004-2006-2004-lei-l10-973": {
+  "dispositivos": 28,
+  "nome": "Lei de Inovação Tecnológica"
+ },
+ "ato2004-2006-2004-lei-l11076": {
+  "dispositivos": 59,
+  "nome": "Títulos de crédito do agronegócio"
+ },
+ "ato2004-2006-2004-lei-l11079": {
+  "dispositivos": 28,
+  "nome": "Parcerias Público-Privadas (PPP)"
+ },
+ "ato2004-2006-2005-decreto-d5626": {
+  "dispositivos": 6,
+  "nome": "Regulamenta a Lei da Libras (Língua Brasileira de Sinais)"
+ },
+ "ato2004-2006-2005-lei-l11101": {
+  "dispositivos": 210,
+  "nome": "Falências e recuperação judicial (crimes falimentares)"
+ },
+ "ato2004-2006-2005-lei-l11105": {
+  "dispositivos": 20,
+  "nome": "Lei de Biossegurança"
+ },
+ "ato2004-2006-2005-lei-l11107": {
+  "dispositivos": 7,
+  "nome": "Lei dos Consórcios Públicos"
+ },
+ "ato2004-2006-2005-lei-l11124": {
+  "dispositivos": 11,
+  "nome": "Sistema Nacional de Habitação de Interesse Social"
+ },
+ "ato2004-2006-2005-lei-l11126": {
+  "dispositivos": 1,
+  "nome": "Cão-guia em locais públicos e transporte coletivo para pessoas com deficiência visual"
+ },
+ "ato2004-2006-2006-decreto-d5687": {
+  "dispositivos": 1,
+  "nome": "Convenção das Nações Unidas contra a Corrupção (Mérida)"
+ },
+ "ato2004-2006-2006-decreto-d5903": {
+  "dispositivos": 7,
+  "nome": "Práticas infracionais nas relações de consumo (oferta e preços)"
+ },
+ "ato2004-2006-2006-lei-l11284": {
+  "dispositivos": 55,
+  "nome": "Gestão de Florestas Públicas"
+ },
  "ato2004-2006-2006-lei-l11340": {
   "dispositivos": 25,
   "nome": "Lei Maria da Penha"
@@ -7,40 +79,1856 @@
   "dispositivos": 66,
   "nome": "Lei de Drogas"
  },
+ "ato2004-2006-2006-lei-l11346": {
+  "dispositivos": 2,
+  "nome": "Sistema Nacional de Segurança Alimentar e Nutricional (SISAN)"
+ },
+ "ato2004-2006-2006-lei-l11417": {
+  "dispositivos": 2,
+  "nome": "Edição, revisão e cancelamento de súmula vinculante"
+ },
+ "ato2004-2006-2006-lei-l11418": {
+  "dispositivos": 3,
+  "nome": "Regulamenta a repercussão geral no recurso extraordinário (CPC/1973)"
+ },
+ "ato2004-2006-2006-lei-l11419": {
+  "dispositivos": 21,
+  "nome": "Informatização do processo judicial"
+ },
+ "ato2004-2006-2006-lei-l11428": {
+  "dispositivos": 22,
+  "nome": "Lei da Mata Atlântica"
+ },
+ "ato2007-2010-2007-decreto-d6017": {
+  "dispositivos": 15,
+  "nome": "Regulamenta a Lei dos Consórcios Públicos"
+ },
+ "ato2007-2010-2007-decreto-d6022": {
+  "dispositivos": 5,
+  "nome": "Institui o Sistema Público de Escrituração Digital (SPED)"
+ },
+ "ato2007-2010-2007-decreto-d6029": {
+  "dispositivos": 14,
+  "nome": "Sistema de Gestão da Ética do Poder Executivo Federal"
+ },
+ "ato2007-2010-2007-decreto-d6040": {
+  "dispositivos": 1,
+  "nome": "Política Nacional de Povos e Comunidades Tradicionais"
+ },
+ "ato2007-2010-2007-decreto-d6063": {
+  "dispositivos": 42,
+  "nome": "Promulga a Convenção sobre os Direitos das Pessoas com Deficiência (texto anterior à internalização com status constitucional)"
+ },
+ "ato2007-2010-2007-decreto-d6170": {
+  "dispositivos": 18,
+  "nome": "Convênios e contratos de repasse"
+ },
+ "ato2007-2010-2007-decreto-d6307": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre os benefícios eventuais de que trata a Lei Orgânica da Assistência Social"
+ },
+ "ato2007-2010-2007-lei-l11445": {
+  "dispositivos": 36,
+  "nome": "Lei do Saneamento Básico"
+ },
+ "ato2007-2010-2007-lei-l11516": {
+  "dispositivos": 17,
+  "nome": "Cria o Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)"
+ },
+ "ato2007-2010-2008-decreto-d6514": {
+  "dispositivos": 62,
+  "nome": "Infrações e sanções administrativas ambientais"
+ },
+ "ato2007-2010-2008-decreto-d6660": {
+  "dispositivos": 61,
+  "nome": "Regulamenta a Lei da Mata Atlântica (Lei nº 11.428/2006)"
+ },
+ "ato2007-2010-2008-lei-l11645": {
+  "dispositivos": 1,
+  "nome": "Ensino de história e cultura afro-brasileira e indígena"
+ },
+ "ato2007-2010-2008-lei-l11671": {
+  "dispositivos": 3,
+  "nome": "Inclusão de presos em estabelecimentos penais federais"
+ },
+ "ato2007-2010-2008-lei-l11672": {
+  "dispositivos": 1,
+  "nome": "Regulamenta o julgamento de recursos especiais repetitivos no STJ (CPC/1973)"
+ },
+ "ato2007-2010-2008-lei-l11697": {
+  "dispositivos": 20,
+  "nome": "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)"
+ },
+ "ato2007-2010-2008-lei-l11719": {
+  "dispositivos": 3,
+  "nome": "Altera o CPP — resposta à acusação, absolvição sumária e sentença"
+ },
+ "ato2007-2010-2008-lei-l11804": {
+  "dispositivos": 0,
+  "nome": "Alimentos gravídicos"
+ },
+ "ato2007-2010-2009-decreto-d6949": {
+  "dispositivos": 1,
+  "nome": "Convenção sobre os Direitos das Pessoas com Deficiência"
+ },
+ "ato2007-2010-2009-decreto-d7037": {
+  "dispositivos": 1,
+  "nome": "Programa Nacional de Direitos Humanos (PNDH-3)"
+ },
+ "ato2007-2010-2009-decreto-d7053": {
+  "dispositivos": 1,
+  "nome": "Política Nacional para a População em Situação de Rua"
+ },
+ "ato2007-2010-2009-lei-l11941": {
+  "dispositivos": 90,
+  "nome": "Refis da Crise — parcelamento especial de débitos tributários federais"
+ },
+ "ato2007-2010-2009-lei-l11947": {
+  "dispositivos": 16,
+  "nome": "Programa Nacional de Alimentação Escolar (PNAE)"
+ },
+ "ato2007-2010-2009-lei-l11952": {
+  "dispositivos": 41,
+  "nome": "Regularização fundiária das ocupações em terras da União (Amazônia Legal e demais áreas rurais)"
+ },
+ "ato2007-2010-2009-lei-l11977": {
+  "dispositivos": 55,
+  "nome": "Programa Minha Casa Minha Vida e regularização fundiária"
+ },
+ "ato2007-2010-2009-lei-l12010": {
+  "dispositivos": 14,
+  "nome": "Lei Nacional da Adoção"
+ },
+ "ato2007-2010-2009-lei-l12016": {
+  "dispositivos": 13,
+  "nome": "Lei do Mandado de Segurança"
+ },
+ "ato2007-2010-2009-lei-l12037": {
+  "dispositivos": 5,
+  "nome": "Identificação criminal do civilmente identificado"
+ },
+ "ato2007-2010-2009-lei-l12153": {
+  "dispositivos": 20,
+  "nome": "Juizados Especiais da Fazenda Pública"
+ },
+ "ato2007-2010-2009-lei-l12187": {
+  "dispositivos": 3,
+  "nome": "Política Nacional sobre Mudança do Clima"
+ },
+ "ato2007-2010-2010-decreto-d7083": {
+  "dispositivos": 4,
+  "nome": "Programa Mais Educação"
+ },
+ "ato2007-2010-2010-decreto-d7174": {
+  "dispositivos": 10,
+  "nome": "Contratação de bens e serviços de informática e automação pela Administração Pública federal"
+ },
+ "ato2007-2010-2010-decreto-d7217": {
+  "dispositivos": 26,
+  "nome": "Regulamenta a Lei do Saneamento Básico (Lei nº 11.445/2007)"
+ },
+ "ato2007-2010-2010-decreto-d7404": {
+  "dispositivos": 50,
+  "nome": "Regulamenta a Política Nacional de Resíduos Sólidos"
+ },
+ "ato2007-2010-2010-lei-l12232": {
+  "dispositivos": 17,
+  "nome": "Normas gerais para licitação e contratação de serviços de publicidade por agências de propaganda"
+ },
+ "ato2007-2010-2010-lei-l12288": {
+  "dispositivos": 19,
+  "nome": "Estatuto da Igualdade Racial"
+ },
+ "ato2007-2010-2010-lei-l12305": {
+  "dispositivos": 41,
+  "nome": "Política Nacional de Resíduos Sólidos"
+ },
+ "ato2007-2010-2010-lei-l12313": {
+  "dispositivos": 2,
+  "nome": "Assistência jurídica ao preso — altera a Lei de Execução Penal"
+ },
+ "ato2007-2010-2010-lei-l12318": {
+  "dispositivos": 2,
+  "nome": "Lei da Alienação Parental"
+ },
+ "ato2007-2010-2010-lei-l12334": {
+  "dispositivos": 11,
+  "nome": "Política Nacional de Segurança de Barragens"
+ },
+ "ato2007-2010-2010-lei-l12376": {
+  "dispositivos": 2,
+  "nome": "Altera a ementa da LINDB (Lei de Introdução às Normas do Direito Brasileiro)"
+ },
+ "ato2011-2014-2011-decreto-d7499": {
+  "dispositivos": 21,
+  "nome": "Regulamenta o Programa Minha Casa, Minha Vida"
+ },
+ "ato2011-2014-2011-decreto-d7508": {
+  "dispositivos": 8,
+  "nome": "Regulamenta a Lei nº 8.080/1990 para dispor sobre a organização do Sistema Único de Saúde (SUS), o planejamento da saúde, a assistência à saúde e a articulação interfederativa"
+ },
+ "ato2011-2014-2011-decreto-d7581": {
+  "dispositivos": 73,
+  "nome": "Regulamenta o RDC"
+ },
+ "ato2011-2014-2011-lei-l12414": {
+  "dispositivos": 17,
+  "nome": "Lei do Cadastro Positivo"
+ },
+ "ato2011-2014-2011-lei-l12435": {
+  "dispositivos": 8,
+  "nome": "Altera a LOAS (Sistema Único de Assistência Social — SUAS)"
+ },
+ "ato2011-2014-2011-lei-l12441": {
+  "dispositivos": 2,
+  "nome": "Cria a Empresa Individual de Responsabilidade Limitada (EIRELI), alterando o Código Civil"
+ },
+ "ato2011-2014-2011-lei-l12462": {
+  "dispositivos": 16,
+  "nome": "Regime Diferenciado de Contratações (RDC)"
+ },
+ "ato2011-2014-2011-lei-l12527": {
+  "dispositivos": 33,
+  "nome": "Lei de Acesso à Informação"
+ },
+ "ato2011-2014-2011-lei-l12529": {
+  "dispositivos": 58,
+  "nome": "Lei de Defesa da Concorrência"
+ },
+ "ato2011-2014-2011-lei-l12562": {
+  "dispositivos": 4,
+  "nome": "Representação interventiva (ADI interventiva)"
+ },
+ "ato2011-2014-2012-decreto-d7724": {
+  "dispositivos": 55,
+  "nome": "Regulamenta a Lei de Acesso à Informação"
+ },
+ "ato2011-2014-2012-decreto-d7746": {
+  "dispositivos": 4,
+  "nome": "Contratações públicas sustentáveis"
+ },
+ "ato2011-2014-2012-decreto-d7830": {
+  "dispositivos": 17,
+  "nome": "Institui o Sistema de Cadastro Ambiental Rural (CAR)"
+ },
+ "ato2011-2014-2012-lei-l12587": {
+  "dispositivos": 17,
+  "nome": "Política Nacional de Mobilidade Urbana"
+ },
+ "ato2011-2014-2012-lei-l12594": {
+  "dispositivos": 72,
+  "nome": "Sistema Nacional de Atendimento Socioeducativo (SINASE)"
+ },
+ "ato2011-2014-2012-lei-l12608": {
+  "dispositivos": 19,
+  "nome": "Política Nacional de Proteção e Defesa Civil"
+ },
+ "ato2011-2014-2012-lei-l12618": {
+  "dispositivos": 44,
+  "nome": "Institui o regime de previdência complementar dos servidores públicos federais (Funpresp)"
+ },
+ "ato2011-2014-2012-lei-l12651": {
+  "dispositivos": 75,
+  "nome": "Código Florestal"
+ },
+ "ato2011-2014-2012-lei-l12683": {
+  "dispositivos": 6,
+  "nome": "Altera a Lei de Lavagem de Dinheiro"
+ },
+ "ato2011-2014-2012-lei-l12694": {
+  "dispositivos": 8,
+  "nome": "Organizações criminosas armadas ou milícias (integra o CP)"
+ },
+ "ato2011-2014-2012-lei-l12711": {
+  "dispositivos": 4,
+  "nome": "Lei de Cotas no ensino superior e técnico"
+ },
+ "ato2011-2014-2012-lei-l12732": {
+  "dispositivos": 1,
+  "nome": "Direito ao início do tratamento oncológico em até 60 dias do diagnóstico"
+ },
+ "ato2011-2014-2012-lei-l12737": {
+  "dispositivos": 3,
+  "nome": "Tipificação criminal de delitos informáticos"
+ },
+ "ato2011-2014-2012-lei-l12764": {
+  "dispositivos": 5,
+  "nome": "Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista (Lei Berenice Piana)"
+ },
+ "ato2011-2014-2013-decreto-d7892": {
+  "dispositivos": 18,
+  "nome": "Sistema de Registro de Preços"
+ },
+ "ato2011-2014-2013-decreto-d7962": {
+  "dispositivos": 5,
+  "nome": "Contratação no comércio eletrônico"
+ },
+ "ato2011-2014-2013-decreto-d7983": {
+  "dispositivos": 12,
+  "nome": "Orçamento de referência em obras e serviços de engenharia"
+ },
+ "ato2011-2014-2013-decreto-d8136": {
+  "dispositivos": 6,
+  "nome": "Regulamento do Sistema Nacional de Promoção da Igualdade Racial (Sinapir)"
+ },
+ "ato2011-2014-2013-lei-l12783": {
+  "dispositivos": 53,
+  "nome": "Prorrogação das concessões de energia elétrica"
+ },
+ "ato2011-2014-2013-lei-l12813": {
+  "dispositivos": 10,
+  "nome": "Conflito de interesses no Poder Executivo federal"
+ },
+ "ato2011-2014-2013-lei-l12815": {
+  "dispositivos": 37,
+  "nome": "Novo marco regulatório dos portos"
+ },
+ "ato2011-2014-2013-lei-l12830": {
+  "dispositivos": 2,
+  "nome": "Investigação criminal conduzida pelo delegado de polícia"
+ },
+ "ato2011-2014-2013-lei-l12846": {
+  "dispositivos": 11,
+  "nome": "Lei Anticorrupção"
+ },
+ "ato2011-2014-2013-lei-l12847": {
+  "dispositivos": 10,
+  "nome": "Sistema Nacional de Prevenção e Combate à Tortura"
+ },
+ "ato2011-2014-2013-lei-l12850": {
+  "dispositivos": 20,
+  "nome": "Lei das Organizações Criminosas"
+ },
+ "ato2011-2014-2013-lei-l12852": {
+  "dispositivos": 8,
+  "nome": "Estatuto da Juventude"
+ },
+ "ato2011-2014-2013-lei-l12886": {
+  "dispositivos": 1,
+  "nome": "Institui o dia nacional de combate à discriminação racial nas escolas (citada no edital)"
+ },
+ "ato2011-2014-2014-lei-l12965": {
+  "dispositivos": 15,
+  "nome": "Marco Civil da Internet"
+ },
+ "ato2011-2014-2014-lei-l12990": {
+  "dispositivos": 1,
+  "nome": "Reserva de vagas para negros em concursos públicos federais"
+ },
+ "ato2011-2014-2014-lei-l13005": {
+  "dispositivos": 7,
+  "nome": "Plano Nacional de Educação (PNE 2014-2024)"
+ },
+ "ato2011-2014-2014-lei-l13010": {
+  "dispositivos": 4,
+  "nome": "Lei Menino Bernardo (Lei da Palmada) — direito da criança e do adolescente a serem educados sem castigos físicos"
+ },
+ "ato2011-2014-2014-lei-l13019": {
+  "dispositivos": 35,
+  "nome": "Marco Regulatório das Organizações da Sociedade Civil (MROSC)"
+ },
+ "ato2011-2014-2014-lei-l13058": {
+  "dispositivos": 2,
+  "nome": "Guarda compartilhada"
+ },
+ "ato2011-2014-2014-lei-l13060": {
+  "dispositivos": 0,
+  "nome": "Uso de instrumentos de menor potencial ofensivo por agentes de segurança"
+ },
+ "ato2015-2018-2015-decreto-d8420": {
+  "dispositivos": 35,
+  "nome": "Regulamento da Lei Anticorrupção (revogado pelo Decreto 11.129/2022)"
+ },
+ "ato2015-2018-2015-decreto-d8424": {
+  "dispositivos": 22,
+  "nome": "Regulamenta o seguro-defeso do pescador artesanal"
+ },
+ "ato2015-2018-2015-lei-l13089": {
+  "dispositivos": 24,
+  "nome": "Estatuto da Metrópole"
+ },
+ "ato2015-2018-2015-lei-l13097": {
+  "dispositivos": 144,
+  "nome": "Concentração de atos na matrícula do imóvel (eficácia dos registros públicos perante terceiros)"
+ },
  "ato2015-2018-2015-lei-l13105": {
   "dispositivos": 763,
   "nome": "Código de Processo Civil"
+ },
+ "ato2015-2018-2015-lei-l13123": {
+  "dispositivos": 20,
+  "nome": "Lei da Biodiversidade"
+ },
+ "ato2015-2018-2015-lei-l13129": {
+  "dispositivos": 8,
+  "nome": "Altera a Lei de Arbitragem"
+ },
+ "ato2015-2018-2015-lei-l13140": {
+  "dispositivos": 21,
+  "nome": "Lei de Mediação"
+ },
+ "ato2015-2018-2015-lei-l13146": {
+  "dispositivos": 54,
+  "nome": "Estatuto da Pessoa com Deficiência (LBI)"
+ },
+ "ato2015-2018-2015-lei-l13178": {
+  "dispositivos": 4,
+  "nome": "Ratificação de registros de imóveis rurais na faixa de fronteira"
+ },
+ "ato2015-2018-2015-lei-l13185": {
+  "dispositivos": 1,
+  "nome": "Programa de combate à intimidação sistemática (bullying)"
+ },
+ "ato2015-2018-2016-decreto-d8660": {
+  "dispositivos": 1,
+  "nome": "Convenção da Apostila de Haia — supressão da legalização de documentos públicos estrangeiros"
+ },
+ "ato2015-2018-2016-decreto-d8750": {
+  "dispositivos": 4,
+  "nome": "Institui o Conselho Nacional dos Povos e Comunidades Tradicionais"
+ },
+ "ato2015-2018-2016-lei-l13243": {
+  "dispositivos": 32,
+  "nome": "Marco Legal de Ciência, Tecnologia e Inovação"
+ },
+ "ato2015-2018-2016-lei-l13256": {
+  "dispositivos": 7,
+  "nome": "Altera a Lei nº 13.105/2015 quanto ao juízo de admissibilidade dos recursos especial e extraordinário"
+ },
+ "ato2015-2018-2016-lei-l13257": {
+  "dispositivos": 36,
+  "nome": "Marco Legal da Primeira Infância"
+ },
+ "ato2015-2018-2016-lei-l13260": {
+  "dispositivos": 8,
+  "nome": "Lei Antiterrorismo"
+ },
+ "ato2015-2018-2016-lei-l13288": {
+  "dispositivos": 3,
+  "nome": "Contratos de integração vertical no agronegócio"
+ },
+ "ato2015-2018-2016-lei-l13300": {
+  "dispositivos": 5,
+  "nome": "Mandado de Injunção"
+ },
+ "ato2015-2018-2016-lei-l13301": {
+  "dispositivos": 4,
+  "nome": "Medidas de vigilância em saúde (dengue, chikungunya, zika)"
+ },
+ "ato2015-2018-2016-lei-l13303": {
+  "dispositivos": 60,
+  "nome": "Lei das Estatais"
+ },
+ "ato2015-2018-2016-lei-l13344": {
+  "dispositivos": 8,
+  "nome": "Prevenção e repressão ao tráfico de pessoas"
+ },
+ "ato2015-2018-2017-decreto-d9176": {
+  "dispositivos": 1,
+  "nome": "Convenção sobre a Cobrança Internacional de Alimentos"
+ },
+ "ato2015-2018-2017-lei-l13425": {
+  "dispositivos": 15,
+  "nome": "Prevenção e combate a incêndio e desastres em estabelecimentos"
+ },
+ "ato2015-2018-2017-lei-l13431": {
+  "dispositivos": 18,
+  "nome": "Escuta especializada e depoimento especial"
+ },
+ "ato2015-2018-2017-lei-l13445": {
+  "dispositivos": 32,
+  "nome": "Lei de Migração"
+ },
+ "ato2015-2018-2017-lei-l13448": {
+  "dispositivos": 17,
+  "nome": "Relicitação e prorrogação antecipada de contratos de parceria"
+ },
+ "ato2015-2018-2017-lei-l13460": {
+  "dispositivos": 8,
+  "nome": "Participação, proteção e defesa dos direitos do usuário do serviço público"
+ },
+ "ato2015-2018-2017-lei-l13465": {
+  "dispositivos": 139,
+  "nome": "Regularização fundiária urbana e rural"
+ },
+ "ato2015-2018-2017-lei-l13467": {
+  "dispositivos": 19,
+  "nome": "Reforma Trabalhista (altera a CLT)"
+ },
+ "ato2015-2018-2017-lei-l13475": {
+  "dispositivos": 39,
+  "nome": "Lei do Aeronauta — regulamenta a profissão"
+ },
+ "ato2015-2018-2018-decreto-d9296": {
+  "dispositivos": 7,
+  "nome": "Institui o Fórum de Governança da Internet no Brasil e altera composição de conselho de acessibilidade"
+ },
+ "ato2015-2018-2018-decreto-d9310": {
+  "dispositivos": 86,
+  "nome": "Regularização Fundiária Urbana (REURB)"
+ },
+ "ato2015-2018-2018-decreto-d9311": {
+  "dispositivos": 37,
+  "nome": "Regulamenta a vistoria e avaliação de imóveis rurais para reforma agrária"
+ },
+ "ato2015-2018-2018-decreto-d9404": {
+  "dispositivos": 3,
+  "nome": "Altera o Decreto do Conselho Nacional dos Direitos da Pessoa com Deficiência"
+ },
+ "ato2015-2018-2018-decreto-d9507": {
+  "dispositivos": 6,
+  "nome": "Regras para execução indireta de serviços continuados na Administração Pública federal"
+ },
+ "ato2015-2018-2018-decreto-d9571": {
+  "dispositivos": 3,
+  "nome": "Diretrizes Nacionais sobre Empresas e Direitos Humanos"
+ },
+ "ato2015-2018-2018-decreto-d9603": {
+  "dispositivos": 8,
+  "nome": "Regulamenta o sistema de garantia de direitos da criança e do adolescente vítima ou testemunha de violência"
+ },
+ "ato2015-2018-2018-lei-l13655": {
+  "dispositivos": 4,
+  "nome": "Segurança jurídica na criação e aplicação do direito público (altera a LINDB)"
+ },
+ "ato2015-2018-2018-lei-l13675": {
+  "dispositivos": 16,
+  "nome": "Institui o Sistema Único de Segurança Pública (SUSP)"
+ },
+ "ato2015-2018-2018-lei-l13709": {
+  "dispositivos": 46,
+  "nome": "LGPD"
+ },
+ "ato2015-2018-2018-lei-l13786": {
+  "dispositivos": 8,
+  "nome": "Resolução de contrato de imóvel em incorporação (distrato)"
+ },
+ "ato2015-2018-2018-lei-l13787": {
+  "dispositivos": 2,
+  "nome": "Dispõe sobre a digitalização e a utilização de sistemas informatizados para a guarda, armazenamento e manuseio de prontuário de paciente"
+ },
+ "ato2019-2022-2019-decreto-d10024": {
+  "dispositivos": 31,
+  "nome": "Pregão eletrônico"
+ },
+ "ato2019-2022-2019-decreto-d10088": {
+  "dispositivos": 7,
+  "nome": "Convenção nº 169 da OIT sobre Povos Indígenas e Tribais"
+ },
+ "ato2019-2022-2019-decreto-d10133": {
+  "dispositivos": 5,
+  "nome": "Programa Viver — Envelhecimento Ativo e Saudável"
+ },
+ "ato2019-2022-2019-decreto-d9830": {
+  "dispositivos": 18,
+  "nome": "Regulamenta os arts. 20 a 30 da LINDB"
+ },
+ "ato2019-2022-2019-decreto-d9847": {
+  "dispositivos": 18,
+  "nome": "Regulamenta o Estatuto do Desarmamento (armas e munições)"
+ },
+ "ato2019-2022-2019-decreto-d9921": {
+  "dispositivos": 14,
+  "nome": "Consolida atos normativos federais sobre a temática da pessoa idosa"
+ },
+ "ato2019-2022-2019-decreto-d9936": {
+  "dispositivos": 9,
+  "nome": "Regulamenta o Cadastro Positivo"
+ },
+ "ato2019-2022-2019-lei-l13812": {
+  "dispositivos": 6,
+  "nome": "Política Nacional de Busca de Pessoas Desaparecidas"
+ },
+ "ato2019-2022-2019-lei-l13819": {
+  "dispositivos": 3,
+  "nome": "Política Nacional de Prevenção da Automutilação e do Suicídio"
+ },
+ "ato2019-2022-2019-lei-l13840": {
+  "dispositivos": 20,
+  "nome": "Altera a Lei de Drogas para tratar da internação voluntária e involuntária de pessoas com transtornos decorrentes do uso de drogas"
+ },
+ "ato2019-2022-2019-lei-l13848": {
+  "dispositivos": 49,
+  "nome": "Lei das Agências Reguladoras"
+ },
+ "ato2019-2022-2019-lei-l13853": {
+  "dispositivos": 8,
+  "nome": "Altera a LGPD (Autoridade Nacional de Proteção de Dados)"
+ },
+ "ato2019-2022-2019-lei-l13869": {
+  "dispositivos": 9,
+  "nome": "Abuso de Autoridade"
+ },
+ "ato2019-2022-2019-lei-l13874": {
+  "dispositivos": 25,
+  "nome": "Lei de Liberdade Econômica"
+ },
+ "ato2019-2022-2019-lei-l13876": {
+  "dispositivos": 7,
+  "nome": "Competência federal delegada e benefícios previdenciários"
+ },
+ "ato2019-2022-2019-lei-l13954": {
+  "dispositivos": 32,
+  "nome": "Reorganiza os processos de trabalho e o Sistema de Proteção Social dos Militares das Forças Armadas"
+ },
+ "ato2019-2022-2019-lei-l13964": {
+  "dispositivos": 35,
+  "nome": "Pacote Anticrime"
+ },
+ "ato2019-2022-2020-decreto-d10201": {
+  "dispositivos": 5,
+  "nome": "Limites para transação e acordos (Lei 9.469/1997)"
+ },
+ "ato2019-2022-2020-decreto-d10502": {
+  "dispositivos": 5,
+  "nome": "Política Nacional de Educação Especial (Educação Inclusiva)"
+ },
+ "ato2019-2022-2020-decreto-d10592": {
+  "dispositivos": 57,
+  "nome": "Regulamenta a regularização fundiária de imóveis rurais"
+ },
+ "ato2019-2022-2020-lei-l13977": {
+  "dispositivos": 4,
+  "nome": "Lei Romeo Mion — cadastro nacional de crianças e adolescentes desaparecidos"
+ },
+ "ato2019-2022-2020-lei-l13979": {
+  "dispositivos": 16,
+  "nome": "Medidas de enfrentamento da emergência de saúde pública (COVID-19)"
+ },
+ "ato2019-2022-2020-lei-l13988": {
+  "dispositivos": 38,
+  "nome": "Lei de Transação Tributária"
+ },
+ "ato2019-2022-2020-lei-l14010": {
+  "dispositivos": 14,
+  "nome": "Regime Jurídico Emergencial e Transitório das relações de Direito Privado (RJET)"
+ },
+ "ato2019-2022-2020-lei-l14026": {
+  "dispositivos": 58,
+  "nome": "Novo Marco Legal do Saneamento Básico"
+ },
+ "ato2019-2022-2020-lei-l14063": {
+  "dispositivos": 16,
+  "nome": "Assinaturas eletrônicas em interações com entes públicos"
+ },
+ "ato2019-2022-2020-lei-l14112": {
+  "dispositivos": 69,
+  "nome": "Atualiza a legislação de recuperação judicial, extrajudicial e falência (altera a Lei nº 11.101/2005)"
+ },
+ "ato2019-2022-2020-lei-l14113": {
+  "dispositivos": 92,
+  "nome": "Regulamenta o Fundeb (Fundo de Manutenção e Desenvolvimento da Educação Básica)"
+ },
+ "ato2019-2022-2021-decreto-d10604": {
+  "dispositivos": 3,
+  "nome": "Altera o Decreto nº 9.921/2019 (temática da pessoa idosa)"
+ },
+ "ato2019-2022-2021-decreto-d10692": {
+  "dispositivos": 6,
+  "nome": "Institui a Política Nacional de Proteção e Defesa Civil (PNPDEC) em nível regulamentar"
+ },
+ "ato2019-2022-2021-lei-l14119": {
+  "dispositivos": 18,
+  "nome": "Pagamento por Serviços Ambientais"
+ },
+ "ato2019-2022-2021-lei-l14129": {
+  "dispositivos": 36,
+  "nome": "Lei do Governo Digital"
  },
  "ato2019-2022-2021-lei-l14133": {
   "dispositivos": 108,
   "nome": "Nova Lei de Licitações"
  },
+ "ato2019-2022-2021-lei-l14164": {
+  "dispositivos": 2,
+  "nome": "Inclusão de conteúdo sobre prevenção de acidentes e primeiros socorros nos currículos escolares"
+ },
+ "ato2019-2022-2021-lei-l14181": {
+  "dispositivos": 2,
+  "nome": "Superendividamento do consumidor"
+ },
+ "ato2019-2022-2021-lei-l14188": {
+  "dispositivos": 5,
+  "nome": "Programa Sinal Vermelho contra a violência doméstica; tipifica a violência psicológica contra a mulher"
+ },
+ "ato2019-2022-2021-lei-l14192": {
+  "dispositivos": 3,
+  "nome": "Combate à violência política contra a mulher"
+ },
+ "ato2019-2022-2021-lei-l14193": {
+  "dispositivos": 36,
+  "nome": "Sociedade Anônima do Futebol (SAF)"
+ },
+ "ato2019-2022-2021-lei-l14195": {
+  "dispositivos": 60,
+  "nome": "Ambiente de negócios (citação, prescrição intercorrente, sociedades)"
+ },
+ "ato2019-2022-2021-lei-l14230": {
+  "dispositivos": 15,
+  "nome": "Altera a Lei de Improbidade Administrativa"
+ },
+ "ato2019-2022-2021-lei-l14238": {
+  "dispositivos": 1,
+  "nome": "Estatuto da Pessoa com Câncer"
+ },
+ "ato2019-2022-2021-lei-l14245": {
+  "dispositivos": 4,
+  "nome": "Altera o Programa de Proteção a Vítimas e Testemunhas (Provita)"
+ },
+ "ato2019-2022-2022-decreto-d10932": {
+  "dispositivos": 1,
+  "nome": "Convenção Interamericana contra o Racismo"
+ },
+ "ato2019-2022-2022-decreto-d10936": {
+  "dispositivos": 53,
+  "nome": "Regulamenta a Política Nacional de Resíduos Sólidos"
+ },
+ "ato2019-2022-2022-decreto-d11034": {
+  "dispositivos": 9,
+  "nome": "Regulamenta o Serviço de Atendimento ao Consumidor (SAC)"
+ },
+ "ato2019-2022-2022-decreto-d11129": {
+  "dispositivos": 49,
+  "nome": "Regulamenta a Lei Anticorrupção"
+ },
+ "ato2019-2022-2022-decreto-d11150": {
+  "dispositivos": 4,
+  "nome": "Preservação e não comprometimento do mínimo existencial"
+ },
+ "ato2019-2022-2022-lei-l14289": {
+  "dispositivos": 4,
+  "nome": "Torna obrigatório o sigilo sobre a condição de pessoa vivendo com HIV, hepatites crônicas, hanseníase ou tuberculose, inclusive na administração pública"
+ },
+ "ato2019-2022-2022-lei-l14322": {
+  "dispositivos": 1,
+  "nome": "Estelionato sentimental (golpe do amor) — altera o Código Penal"
+ },
+ "ato2019-2022-2022-lei-l14341": {
+  "dispositivos": 5,
+  "nome": "Altera a Lei de Improbidade Administrativa (Lei nº 14.230/2021) e institui normas sobre superendividamento"
+ },
+ "ato2019-2022-2022-lei-l14344": {
+  "dispositivos": 14,
+  "nome": "Lei Henry Borel — violência doméstica contra criança/adolescente"
+ },
+ "ato2019-2022-2022-lei-l14382": {
+  "dispositivos": 45,
+  "nome": "Sistema Eletrônico de Registros Públicos (SERP)"
+ },
+ "ato2019-2022-2022-lei-l14430": {
+  "dispositivos": 23,
+  "nome": "Marco Legal das Garantias / Certificado de Recebíveis"
+ },
+ "ato2019-2022-2022-lei-l14443": {
+  "dispositivos": 3,
+  "nome": "Altera o Código Civil quanto à gestação por substituição e reprodução assistida"
+ },
+ "ato2019-2022-2022-lei-l14510": {
+  "dispositivos": 6,
+  "nome": "Regulamenta a telessaúde no Brasil"
+ },
+ "ato2023-2026-2023-decreto-d11462": {
+  "dispositivos": 36,
+  "nome": "Regulamenta o Sistema de Registro de Preços no âmbito da Administração Pública Federal (arts. 82 a 86 da Lei nº 14.133/2021)"
+ },
+ "ato2023-2026-2023-decreto-d11483": {
+  "dispositivos": 8,
+  "nome": "Conselho Nacional dos Direitos da Pessoa Idosa (CNDI)"
+ },
+ "ato2023-2026-2023-decreto-d11491": {
+  "dispositivos": 1,
+  "nome": "Convenção sobre o Crime Cibernético (Budapeste)"
+ },
+ "ato2023-2026-2023-decreto-d11599": {
+  "dispositivos": 29,
+  "nome": "Diretrizes para a Política Nacional de Resíduos Sólidos quanto a logística reversa"
+ },
+ "ato2023-2026-2023-decreto-d11777": {
+  "dispositivos": 1,
+  "nome": "Promulga o Segundo Protocolo Facultativo ao Pacto Internacional sobre Direitos Civis e Políticos (abolição da pena de morte)"
+ },
+ "ato2023-2026-2023-lei-l14532": {
+  "dispositivos": 3,
+  "nome": "Tipifica racismo por injúria racial"
+ },
+ "ato2023-2026-2023-lei-l14538": {
+  "dispositivos": 2,
+  "nome": "Planos de saúde — reconstrução mamária (altera a Lei 9.656/1998)"
+ },
+ "ato2023-2026-2023-lei-l14548": {
+  "dispositivos": 3,
+  "nome": "Regras de viagem nacional/internacional e vedações à entrega de produtos e serviços a crianças e adolescentes"
+ },
+ "ato2023-2026-2023-lei-l14597": {
+  "dispositivos": 50,
+  "nome": "Lei Geral do Esporte"
+ },
+ "ato2023-2026-2023-lei-l14701": {
+  "dispositivos": 17,
+  "nome": "Marco temporal — terras indígenas"
+ },
+ "ato2023-2026-2023-lei-l14711": {
+  "dispositivos": 45,
+  "nome": "Marco Legal das Garantias"
+ },
+ "ato2023-2026-2023-lei-l14735": {
+  "dispositivos": 10,
+  "nome": "Lei Orgânica Nacional das Polícias Civis"
+ },
+ "ato2023-2026-2023-lei-l14755": {
+  "dispositivos": 7,
+  "nome": "Política Nacional de Direitos das Populações Atingidas por Barragens"
+ },
+ "ato2023-2026-2023-lei-l14785": {
+  "dispositivos": 23,
+  "nome": "Lei dos Agrotóxicos (Lei de Pesticidas)"
+ },
+ "ato2023-2026-2023-lei-l14790": {
+  "dispositivos": 10,
+  "nome": "Apostas de quota fixa (bets)"
+ },
+ "ato2023-2026-2024-decreto-d12341": {
+  "dispositivos": 7,
+  "nome": "Regulamenta o uso da força e de instrumentos de menor potencial ofensivo"
+ },
+ "ato2023-2026-2024-lei-l14811": {
+  "dispositivos": 8,
+  "nome": "Lei Antibullying (criminaliza bullying e cyberbullying)"
+ },
+ "ato2023-2026-2024-lei-l14821": {
+  "dispositivos": 6,
+  "nome": "Política Nacional de Trabalho Digno e Cidadania para a População em Situação de Rua"
+ },
+ "ato2023-2026-2024-lei-l14826": {
+  "dispositivos": 1,
+  "nome": "Altera a Lei Maria da Penha para tratar da violência doméstica e familiar contra a criança e o adolescente"
+ },
+ "ato2023-2026-2024-lei-l14904": {
+  "dispositivos": 8,
+  "nome": "Plano de adaptação à mudança do clima"
+ },
+ "ato2023-2026-2024-lei-l14905": {
+  "dispositivos": 5,
+  "nome": "Atualização monetária e juros — altera o Código Civil"
+ },
+ "ato2023-2026-2024-lei-l14967": {
+  "dispositivos": 45,
+  "nome": "Estatuto da Segurança Privada e da Segurança das Instituições Financeiras"
+ },
+ "ato2023-2026-2024-lei-l15042": {
+  "dispositivos": 45,
+  "nome": "Institui o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE)"
+ },
+ "ato2023-2026-2024-lei-l15047": {
+  "dispositivos": 5,
+  "nome": "Regime Disciplinar da Polícia Federal e da Polícia Civil do Distrito Federal"
+ },
+ "ato2023-2026-2025-decreto-d12688": {
+  "dispositivos": 22,
+  "nome": "Institui o sistema de logística reversa de embalagens plásticas"
+ },
+ "ato2023-2026-2025-lei-l15100": {
+  "dispositivos": 1,
+  "nome": "Restrições ao uso de celulares em escolas e conteúdo curricular sobre prevenção à violência contra a mulher"
+ },
+ "ato2023-2026-2025-lei-l15190": {
+  "dispositivos": 65,
+  "nome": "Lei Geral do Licenciamento Ambiental"
+ },
+ "ato2023-2026-2025-lei-l15211": {
+  "dispositivos": 20,
+  "nome": "Estatuto Digital da Criança e do Adolescente"
+ },
+ "ato2023-2026-2025-lei-l15224": {
+  "dispositivos": 6,
+  "nome": "Política Nacional de Combate à Perda e ao Desperdício de Alimentos"
+ },
+ "ato2023-2026-2025-lei-l15228": {
+  "dispositivos": 9,
+  "nome": "Dispõe sobre o uso, a conservação, a proteção e a recuperação do bioma Pantanal"
+ },
+ "ato2023-2026-2025-lei-l15240": {
+  "dispositivos": 1,
+  "nome": "Abandono afetivo"
+ },
+ "ato2023-2026-2025-lei-l15300": {
+  "dispositivos": 6,
+  "nome": "Licenciamento Ambiental Especial (converte a MP nº 1.308/2025)"
+ },
+ "ato2023-2026-2026-lei-l15358": {
+  "dispositivos": 43,
+  "nome": "Lei Antifacção — organizações criminosas armadas"
+ },
+ "ato2023-2026-2026-lei-l15384": {
+  "dispositivos": 4,
+  "nome": "Feminicídio vicário — altera o Código Penal"
+ },
  "constituicao-constituicao": {
   "dispositivos": 472,
   "nome": "Constituição Federal"
+ },
+ "decreto-1930-1949-d20910": {
+  "dispositivos": 4,
+  "nome": "Prescrição contra a Fazenda Pública"
+ },
+ "decreto-1950-1969-d65810": {
+  "dispositivos": 0,
+  "nome": "Convenção sobre a Eliminação de Todas as Formas de Discriminação Racial"
+ },
+ "decreto-1990-1994-d99710": {
+  "dispositivos": 0,
+  "nome": "Convenção sobre os Direitos da Criança"
+ },
+ "decreto-2001-d3956": {
+  "dispositivos": 0,
+  "nome": "Convenção Interamericana contra a Discriminação das Pessoas com Deficiência"
+ },
+ "decreto-2002-d4388": {
+  "dispositivos": 0,
+  "nome": "Promulga o Estatuto de Roma do Tribunal Penal Internacional"
+ },
+ "decreto-2003-d4886": {
+  "dispositivos": 2,
+  "nome": "Política Nacional de Promoção da Igualdade Racial"
+ },
+ "decreto-2003-d4887": {
+  "dispositivos": 6,
+  "nome": "Titulação das terras de quilombos"
+ },
+ "decreto-antigos-d3708": {
+  "dispositivos": 0,
+  "nome": "Sociedades por quotas de responsabilidade limitada (antigo regime)"
+ },
+ "decreto-antigos-d57663": {
+  "dispositivos": 0,
+  "nome": "Lei Uniforme de Genebra (letra de câmbio e nota promissória)"
+ },
+ "decreto-antigos-d99274": {
+  "dispositivos": 8,
+  "nome": "Regulamenta a Política Nacional do Meio Ambiente"
+ },
+ "decreto-d0678": {
+  "dispositivos": 0,
+  "nome": "Convenção Americana sobre Direitos Humanos (Pacto de São José)"
+ },
+ "decreto-d1171": {
+  "dispositivos": 1,
+  "nome": "Código de Ética do Servidor Público Federal"
+ },
+ "decreto-d2181": {
+  "dispositivos": 45,
+  "nome": "Sistema Nacional de Defesa do Consumidor (SNDC)"
+ },
+ "decreto-d22626": {
+  "dispositivos": 2,
+  "nome": "Usura — limitação de juros"
+ },
+ "decreto-d2740": {
+  "dispositivos": 0,
+  "nome": "Regulamenta a Lei nº 9.394/1996 quanto à educação infantil/rede de ensino"
+ },
+ "decreto-d3048": {
+  "dispositivos": 440,
+  "nome": "Regulamento da Previdência Social"
+ },
+ "decreto-d3087": {
+  "dispositivos": 0,
+  "nome": "Promulga a Convenção da Haia sobre adoção internacional"
+ },
+ "decreto-d3298": {
+  "dispositivos": 5,
+  "nome": "Política Nacional para a Integração da Pessoa com Deficiência"
+ },
+ "decreto-d3413": {
+  "dispositivos": 0,
+  "nome": "Convenção sobre os Aspectos Civis do Sequestro Internacional de Crianças"
+ },
+ "decreto-d3551": {
+  "dispositivos": 1,
+  "nome": "Institui o Registro de Bens Culturais de Natureza Imaterial e o Programa Nacional do Patrimônio Imaterial"
+ },
+ "decreto-d3555": {
+  "dispositivos": 3,
+  "nome": "Regulamento do Pregão"
+ },
+ "decreto-d3691": {
+  "dispositivos": 1,
+  "nome": "Regulamenta a Lei nº 8.899/1994 (passe livre no transporte coletivo interestadual)"
+ },
+ "decreto-d70235cons": {
+  "dispositivos": 18,
+  "nome": "Processo Administrativo Fiscal Federal"
+ },
+ "decreto-historicos-dim-dim1318": {
+  "dispositivos": 33,
+  "nome": "Regulamenta a Lei de Terras (Lei nº 601/1850)"
+ },
+ "decreto-historicos-dpl-dpl2044-1908": {
+  "dispositivos": 3,
+  "nome": "Letra de câmbio e nota promissória"
+ },
+ "decreto-lei-1937-1946-del058": {
+  "dispositivos": 6,
+  "nome": "Loteamento e venda de terrenos para pagamento em prestações"
+ },
+ "decreto-lei-1937-1946-del3240": {
+  "dispositivos": 4,
+  "nome": "Sequestro de bens de indiciados por crimes de que resulte prejuízo à Fazenda Pública"
+ },
+ "decreto-lei-1937-1946-del3931": {
+  "dispositivos": 5,
+  "nome": "Lei de Introdução ao Código de Processo Penal"
+ },
+ "decreto-lei-1937-1946-del4597": {
+  "dispositivos": 2,
+  "nome": "Prescrição das dívidas das autarquias e entidades paraestatais"
+ },
+ "decreto-lei-1937-1946-del6259": {
+  "dispositivos": 15,
+  "nome": "Altera dispositivos da Lei de Contravenções Penais"
+ },
+ "decreto-lei-1965-1988-del0911": {
+  "dispositivos": 23,
+  "nome": "Alienação fiduciária de bens móveis"
+ },
+ "decreto-lei-del0025": {
+  "dispositivos": 10,
+  "nome": "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)"
+ },
+ "decreto-lei-del0147": {
+  "dispositivos": 1,
+  "nome": "Lei Orgânica da Procuradoria-Geral da Fazenda Nacional (PGFN)"
+ },
+ "decreto-lei-del0167": {
+  "dispositivos": 14,
+  "nome": "Cédula de crédito rural"
+ },
+ "decreto-lei-del0200": {
+  "dispositivos": 37,
+  "nome": "Reforma Administrativa Federal"
+ },
+ "decreto-lei-del0201": {
+  "dispositivos": 1,
+  "nome": "Responsabilidade de prefeitos e vereadores"
+ },
+ "decreto-lei-del0227": {
+  "dispositivos": 21,
+  "nome": "Código de Mineração"
+ },
+ "decreto-lei-del0667": {
+  "dispositivos": 5,
+  "nome": "Reorganiza as Polícias Militares e os Corpos de Bombeiros Militares"
+ },
+ "decreto-lei-del1001": {
+  "dispositivos": 76,
+  "nome": "Código Penal Militar"
+ },
+ "decreto-lei-del1002": {
+  "dispositivos": 104,
+  "nome": "Código de Processo Penal Militar"
  },
  "decreto-lei-del2848compilado": {
   "dispositivos": 150,
   "nome": "Código Penal"
  },
+ "decreto-lei-del3365": {
+  "dispositivos": 20,
+  "nome": "Desapropriação por utilidade pública"
+ },
+ "decreto-lei-del3688": {
+  "dispositivos": 6,
+  "nome": "Lei das Contravenções Penais"
+ },
+ "decreto-lei-del3689compilado": {
+  "dispositivos": 206,
+  "nome": "Código de Processo Penal"
+ },
+ "decreto-lei-del3914": {
+  "dispositivos": 0,
+  "nome": "Lei de Introdução ao Código Penal"
+ },
+ "decreto-lei-del4657compilado": {
+  "dispositivos": 8,
+  "nome": "LINDB"
+ },
+ "decreto-lei-del5452": {
+  "dispositivos": 219,
+  "nome": "CLT"
+ },
+ "leis-1950-1969-l5249": {
+  "dispositivos": 1,
+  "nome": "Ação pública — representação"
+ },
+ "leis-1980-1988-l6840": {
+  "dispositivos": 2,
+  "nome": "Títulos de Crédito Comercial"
+ },
+ "leis-1980-1988-l6996": {
+  "dispositivos": 1,
+  "nome": "Inscrição eleitoral"
+ },
  "leis-2002-l10406compilada": {
   "dispositivos": 449,
   "nome": "Código Civil"
+ },
+ "leis-2002-l10436": {
+  "dispositivos": 0,
+  "nome": "Lei da Libras — Língua Brasileira de Sinais"
+ },
+ "leis-2002-l10446": {
+  "dispositivos": 1,
+  "nome": "Infrações de repercussão interestadual ou internacional"
+ },
+ "leis-2002-l10480": {
+  "dispositivos": 15,
+  "nome": "Dispõe sobre a estrutura da Procuradoria-Geral Federal"
+ },
+ "leis-2002-l10520": {
+  "dispositivos": 6,
+  "nome": "Lei do Pregão"
+ },
+ "leis-2002-l10522": {
+  "dispositivos": 53,
+  "nome": "Cadastro Informativo de Créditos não Quitados (CADIN)"
+ },
+ "leis-2003-l10-639": {
+  "dispositivos": 1,
+  "nome": "Ensino de história e cultura afro-brasileira"
+ },
+ "leis-2003-l10-671": {
+  "dispositivos": 24,
+  "nome": "Estatuto do Torcedor"
+ },
+ "leis-2003-l10-684": {
+  "dispositivos": 37,
+  "nome": "Parcelamento de débitos tributários e suspensão da pretensão punitiva nos crimes tributários"
+ },
+ "leis-2003-l10-741": {
+  "dispositivos": 25,
+  "nome": "Estatuto do Idoso"
+ },
+ "leis-2003-l10-779": {
+  "dispositivos": 11,
+  "nome": "Seguro-defeso do pescador profissional artesanal"
+ },
+ "leis-2003-l10-820": {
+  "dispositivos": 37,
+  "nome": "Crédito consignado em folha de pagamento"
  },
  "leis-2003-l10-826": {
   "dispositivos": 34,
   "nome": "Estatuto do Desarmamento"
  },
+ "leis-l10028": {
+  "dispositivos": 4,
+  "nome": "Altera o Código Penal para tipificar crimes contra as finanças públicas (Lei de Responsabilidade Fiscal)"
+ },
+ "leis-l10035": {
+  "dispositivos": 1,
+  "nome": "Contribuições previdenciárias na Justiça do Trabalho"
+ },
+ "leis-l10048": {
+  "dispositivos": 3,
+  "nome": "Prioridade de atendimento às pessoas com deficiência, idosos, gestantes e lactantes"
+ },
+ "leis-l10098": {
+  "dispositivos": 1,
+  "nome": "Acessibilidade — normas gerais"
+ },
+ "leis-l10169": {
+  "dispositivos": 3,
+  "nome": "Normas gerais para a fixação de emolumentos dos serviços notariais e de registro"
+ },
+ "leis-l1060": {
+  "dispositivos": 4,
+  "nome": "Assistência judiciária gratuita"
+ },
+ "leis-l1079": {
+  "dispositivos": 10,
+  "nome": "Crimes de responsabilidade"
+ },
+ "leis-l1521": {
+  "dispositivos": 6,
+  "nome": "Crimes contra a economia popular"
+ },
+ "leis-l1579": {
+  "dispositivos": 3,
+  "nome": "Comissões Parlamentares de Inquérito"
+ },
+ "leis-l2889": {
+  "dispositivos": 3,
+  "nome": "Crime de Genocídio"
+ },
+ "leis-l4132": {
+  "dispositivos": 1,
+  "nome": "Define os casos de desapropriação por interesse social"
+ },
+ "leis-l4320": {
+  "dispositivos": 13,
+  "nome": "Lei de Finanças Públicas"
+ },
+ "leis-l4380": {
+  "dispositivos": 8,
+  "nome": "Correção monetária nos contratos imobiliários / SFH"
+ },
+ "leis-l4504": {
+  "dispositivos": 8,
+  "nome": "Estatuto da Terra"
+ },
+ "leis-l4591": {
+  "dispositivos": 63,
+  "nome": "Condomínio em edificações e incorporações imobiliárias"
+ },
+ "leis-l4595": {
+  "dispositivos": 17,
+  "nome": "Lei da Reforma Bancária (Sistema Financeiro Nacional)"
+ },
+ "leis-l4717": {
+  "dispositivos": 11,
+  "nome": "Ação Popular"
+ },
+ "leis-l4737compilado": {
+  "dispositivos": 66,
+  "nome": "Código Eleitoral"
+ },
+ "leis-l4878": {
+  "dispositivos": 8,
+  "nome": "Regime jurídico dos policiais civis da União e do DF"
+ },
+ "leis-l4886": {
+  "dispositivos": 3,
+  "nome": "Representação Comercial"
+ },
+ "leis-l4898": {
+  "dispositivos": 2,
+  "nome": "Abuso de Autoridade (revogada pela Lei 13.869/2019)"
+ },
+ "leis-l5172compilado": {
+  "dispositivos": 51,
+  "nome": "Código Tributário Nacional"
+ },
+ "leis-l5197": {
+  "dispositivos": 5,
+  "nome": "Lei de Proteção à Fauna"
+ },
+ "leis-l5474": {
+  "dispositivos": 3,
+  "nome": "Lei das Duplicatas"
+ },
+ "leis-l5478": {
+  "dispositivos": 8,
+  "nome": "Lei de Alimentos (ação de alimentos)"
+ },
+ "leis-l5553": {
+  "dispositivos": 0,
+  "nome": "Apresentação e uso de documentos de identificação pessoal"
+ },
+ "leis-l6001": {
+  "dispositivos": 2,
+  "nome": "Estatuto do Índio"
+ },
  "leis-l6015compilada": {
   "dispositivos": 133,
   "nome": "Lei de Registros Públicos"
+ },
+ "leis-l6024": {
+  "dispositivos": 2,
+  "nome": "Intervenção e liquidação extrajudicial de instituições financeiras"
+ },
+ "leis-l6091": {
+  "dispositivos": 7,
+  "nome": "Propaganda eleitoral"
+ },
+ "leis-l6404compilada": {
+  "dispositivos": 76,
+  "nome": "Lei das Sociedades por Ações"
+ },
+ "leis-l6515": {
+  "dispositivos": 3,
+  "nome": "Lei do Divórcio"
+ },
+ "leis-l6766": {
+  "dispositivos": 32,
+  "nome": "Lei Federal de Parcelamento do Solo Urbano"
+ },
+ "leis-l6830": {
+  "dispositivos": 11,
+  "nome": "Lei de Execução Fiscal"
+ },
+ "leis-l6858": {
+  "dispositivos": 0,
+  "nome": "Pagamento, aos dependentes ou sucessores, de valores não recebidos em vida pelo titular"
+ },
+ "leis-l6938compilada": {
+  "dispositivos": 11,
+  "nome": "Política Nacional do Meio Ambiente"
+ },
+ "leis-l6969": {
+  "dispositivos": 5,
+  "nome": "Usucapião especial de imóveis rurais"
+ },
+ "leis-l7210": {
+  "dispositivos": 29,
+  "nome": "Lei de Execução Penal"
+ },
+ "leis-l7347orig": {
+  "dispositivos": 11,
+  "nome": "Ação Civil Pública"
+ },
+ "leis-l7357": {
+  "dispositivos": 0,
+  "nome": "Lei do Cheque"
+ },
+ "leis-l7492": {
+  "dispositivos": 6,
+  "nome": "Crimes contra o Sistema Financeiro Nacional"
+ },
+ "leis-l7661": {
+  "dispositivos": 2,
+  "nome": "Institui o Plano Nacional de Gerenciamento Costeiro"
+ },
+ "leis-l7713": {
+  "dispositivos": 23,
+  "nome": "Imposto de Renda — ganho de capital na alienação de imóveis"
+ },
+ "leis-l7716": {
+  "dispositivos": 3,
+  "nome": "Crimes de preconceito de raça ou de cor"
+ },
+ "leis-l7802": {
+  "dispositivos": 3,
+  "nome": "Lei dos Agrotóxicos (antiga, revogada pela Lei nº 14.785/2023)"
+ },
+ "leis-l7853": {
+  "dispositivos": 3,
+  "nome": "Apoio às pessoas com deficiência (CORDE, tutela jurisdicional)"
+ },
+ "leis-l7913": {
+  "dispositivos": 2,
+  "nome": "Ação civil pública — danos a investidores no mercado de valores mobiliários"
+ },
+ "leis-l7960": {
+  "dispositivos": 3,
+  "nome": "Prisão temporária"
+ },
+ "leis-l7990": {
+  "dispositivos": 4,
+  "nome": "Compensação financeira pela exploração de recursos minerais (CFEM)"
+ },
+ "leis-l8009": {
+  "dispositivos": 5,
+  "nome": "Bem de família"
+ },
+ "leis-l8038": {
+  "dispositivos": 5,
+  "nome": "Processos perante o STJ e o STF (recursos)"
  },
  "leis-l8069": {
   "dispositivos": 160,
   "nome": "Estatuto da Criança e do Adolescente"
  },
+ "leis-l8072": {
+  "dispositivos": 10,
+  "nome": "Lei dos Crimes Hediondos"
+ },
  "leis-l8078compilado": {
   "dispositivos": 74,
   "nome": "Código de Defesa do Consumidor"
+ },
+ "leis-l8080": {
+  "dispositivos": 16,
+  "nome": "Lei Orgânica da Saúde (SUS)"
+ },
+ "leis-l8112cons": {
+  "dispositivos": 115,
+  "nome": "Estatuto dos Servidores Públicos Federais"
+ },
+ "leis-l8134": {
+  "dispositivos": 27,
+  "nome": "Imposto de Renda — regime tributário das pessoas físicas (inclui notários e registradores)"
+ },
+ "leis-l8137": {
+  "dispositivos": 15,
+  "nome": "Crimes contra a ordem tributária, econômica e relações de consumo"
+ },
+ "leis-l8142": {
+  "dispositivos": 6,
+  "nome": "Participação da comunidade na gestão do SUS"
+ },
+ "leis-l8160": {
+  "dispositivos": 0,
+  "nome": "Símbolo de identificação de pessoas com deficiência auditiva"
+ },
+ "leis-l8176": {
+  "dispositivos": 4,
+  "nome": "Crimes contra a ordem econômica"
+ },
+ "leis-l8212cons": {
+  "dispositivos": 92,
+  "nome": "Plano de Custeio da Seguridade Social"
+ },
+ "leis-l8213cons": {
+  "dispositivos": 131,
+  "nome": "Lei de Benefícios da Previdência Social"
+ },
+ "leis-l8242": {
+  "dispositivos": 3,
+  "nome": "Cria o Conselho Nacional dos Direitos da Criança e do Adolescente (CONANDA)"
+ },
+ "leis-l8245": {
+  "dispositivos": 37,
+  "nome": "Lei do Inquilinato (locação de imóveis urbanos)"
+ },
+ "leis-l8397": {
+  "dispositivos": 7,
+  "nome": "Medida Cautelar Fiscal"
+ },
+ "leis-l8429": {
+  "dispositivos": 33,
+  "nome": "Lei de Improbidade Administrativa"
+ },
+ "leis-l8437": {
+  "dispositivos": 0,
+  "nome": "Medidas cautelares contra o Poder Público"
+ },
+ "leis-l8457": {
+  "dispositivos": 18,
+  "nome": "Organização da Justiça Militar da União"
+ },
+ "leis-l8560": {
+  "dispositivos": 3,
+  "nome": "Investigação de paternidade"
+ },
+ "leis-l8625": {
+  "dispositivos": 19,
+  "nome": "Lei Orgânica Nacional do Ministério Público"
+ },
+ "leis-l8629": {
+  "dispositivos": 22,
+  "nome": "Regulamenta dispositivos constitucionais da reforma agrária"
+ },
+ "leis-l8658": {
+  "dispositivos": 2,
+  "nome": "Ação penal originária nos Tribunais de Justiça e TRFs"
+ },
+ "leis-l8666cons": {
+  "dispositivos": 87,
+  "nome": "Lei de Licitações e Contratos (antiga)"
+ },
+ "leis-l8713": {
+  "dispositivos": 8,
+  "nome": "Normas para as eleições de 1994 — crimes eleitorais"
+ },
+ "leis-l8742": {
+  "dispositivos": 49,
+  "nome": "Lei Orgânica da Assistência Social (LOAS)"
+ },
+ "leis-l8745cons": {
+  "dispositivos": 12,
+  "nome": "Contratação de pessoal por tempo determinado para necessidade temporária de excepcional interesse público"
+ },
+ "leis-l8842": {
+  "dispositivos": 1,
+  "nome": "Política Nacional do Idoso"
+ },
+ "leis-l8884": {
+  "dispositivos": 2,
+  "nome": "Lei antitruste (Conselho Administrativo de Defesa Econômica — CADE, redação anterior à Lei 12.529/2011)"
+ },
+ "leis-l8899": {
+  "dispositivos": 0,
+  "nome": "Reserva de assentos em transporte coletivo para idosos e pessoas com deficiência"
+ },
+ "leis-l8901": {
+  "dispositivos": 3,
+  "nome": "Participação do proprietário do solo na lavra de recursos minerais"
+ },
+ "leis-l8906": {
+  "dispositivos": 39,
+  "nome": "Estatuto da Advocacia e da OAB"
+ },
+ "leis-l8934": {
+  "dispositivos": 13,
+  "nome": "Registro Público das Empresas Mercantis"
+ },
+ "leis-l8935": {
+  "dispositivos": 37,
+  "nome": "Lei dos Registros Públicos / Serviços Notariais e de Registro"
+ },
+ "leis-l8958": {
+  "dispositivos": 19,
+  "nome": "Relações entre as instituições federais de ensino superior/pesquisa e as fundações de apoio"
+ },
+ "leis-l8971": {
+  "dispositivos": 1,
+  "nome": "Regula o direito dos companheiros a alimentos e à sucessão (união estável)"
+ },
+ "leis-l8987cons": {
+  "dispositivos": 18,
+  "nome": "Concessões e Permissões de Serviços Públicos"
+ },
+ "leis-l9008": {
+  "dispositivos": 7,
+  "nome": "Fundo de Defesa de Direitos Difusos"
+ },
+ "leis-l9020": {
+  "dispositivos": 4,
+  "nome": "Crimes de discriminação na relação jurídica de trabalho"
+ },
+ "leis-l9028": {
+  "dispositivos": 22,
+  "nome": "Atribuições da Advocacia-Geral da União"
+ },
+ "leis-l9029": {
+  "dispositivos": 2,
+  "nome": "Discriminação na relação jurídica de trabalho"
+ },
+ "leis-l9096": {
+  "dispositivos": 28,
+  "nome": "Lei dos Partidos Políticos"
+ },
+ "leis-l9099": {
+  "dispositivos": 56,
+  "nome": "Lei dos Juizados Especiais"
+ },
+ "leis-l9100": {
+  "dispositivos": 18,
+  "nome": "Normas para a realização das eleições municipais de 1996 — crimes eleitorais"
+ },
+ "leis-l9249": {
+  "dispositivos": 39,
+  "nome": "Altera o IR das pessoas jurídicas; art. 34 trata da extinção da punibilidade nos crimes tributários pelo pagamento do débito"
+ },
+ "leis-l9263": {
+  "dispositivos": 6,
+  "nome": "Planejamento familiar"
+ },
+ "leis-l9265": {
+  "dispositivos": 1,
+  "nome": "Gratuidade dos atos necessários ao exercício da cidadania (registro civil de nascimento e óbito)"
+ },
+ "leis-l9266": {
+  "dispositivos": 4,
+  "nome": "Carreira policial federal (classes e estrutura)"
+ },
+ "leis-l9278": {
+  "dispositivos": 2,
+  "nome": "Reconhecimento e efeitos da união estável"
+ },
+ "leis-l9279": {
+  "dispositivos": 73,
+  "nome": "Propriedade Industrial"
+ },
+ "leis-l9296": {
+  "dispositivos": 6,
+  "nome": "Interceptação telefônica"
+ },
+ "leis-l9307": {
+  "dispositivos": 25,
+  "nome": "Lei de Arbitragem"
+ },
+ "leis-l9394": {
+  "dispositivos": 35,
+  "nome": "Lei de Diretrizes e Bases da Educação Nacional (LDB)"
+ },
+ "leis-l9430": {
+  "dispositivos": 87,
+  "nome": "Legislação tributária federal, contribuições e crimes contra a ordem tributária"
+ },
+ "leis-l9433": {
+  "dispositivos": 5,
+  "nome": "Política Nacional de Recursos Hídricos"
+ },
+ "leis-l9434": {
+  "dispositivos": 14,
+  "nome": "Remoção de órgãos, tecidos e partes do corpo humano para transplante"
+ },
+ "leis-l9455": {
+  "dispositivos": 1,
+  "nome": "Tortura"
+ },
+ "leis-l9459": {
+  "dispositivos": 3,
+  "nome": "Altera a Lei de Crimes de Preconceito de Raça ou Cor"
+ },
+ "leis-l9469": {
+  "dispositivos": 7,
+  "nome": "Intervenção da União e acordos — Fazenda Pública"
+ },
+ "leis-l9474": {
+  "dispositivos": 4,
+  "nome": "Estatuto dos Refugiados (lei interna)"
+ },
+ "leis-l9478": {
+  "dispositivos": 67,
+  "nome": "Política Energética Nacional (Lei do Petróleo)"
+ },
+ "leis-l9492": {
+  "dispositivos": 23,
+  "nome": "Protesto de títulos"
+ },
+ "leis-l9494": {
+  "dispositivos": 9,
+  "nome": "Tutela antecipada contra a Fazenda Pública"
+ },
+ "leis-l9496": {
+  "dispositivos": 11,
+  "nome": "Programa de Apoio à Reestruturação e ao Ajuste Fiscal dos Estados"
+ },
+ "leis-l9503compilado": {
+  "dispositivos": 116,
+  "nome": "Código de Trânsito Brasileiro"
+ },
+ "leis-l9504": {
+  "dispositivos": 85,
+  "nome": "Lei das Eleições"
+ },
+ "leis-l9507": {
+  "dispositivos": 3,
+  "nome": "Habeas Data"
+ },
+ "leis-l9514": {
+  "dispositivos": 31,
+  "nome": "Alienação fiduciária de bens imóveis (Sistema de Financiamento Imobiliário)"
+ },
+ "leis-l9605": {
+  "dispositivos": 16,
+  "nome": "Crimes contra o meio ambiente"
+ },
+ "leis-l9609": {
+  "dispositivos": 2,
+  "nome": "Proteção da propriedade intelectual de programa de computador"
+ },
+ "leis-l9610": {
+  "dispositivos": 27,
+  "nome": "Lei de Direito Autoral"
+ },
+ "leis-l9613": {
+  "dispositivos": 21,
+  "nome": "Lavagem ou ocultação de bens, direitos e valores"
+ },
+ "leis-l9636": {
+  "dispositivos": 68,
+  "nome": "Bens imóveis da União"
+ },
+ "leis-l9637": {
+  "dispositivos": 9,
+  "nome": "Organizações Sociais (OS)"
+ },
+ "leis-l9656": {
+  "dispositivos": 58,
+  "nome": "Planos e seguros privados de assistência à saúde"
+ },
+ "leis-l9703": {
+  "dispositivos": 4,
+  "nome": "Depósitos judiciais e extrajudiciais de tributos federais"
+ },
+ "leis-l9717": {
+  "dispositivos": 11,
+  "nome": "Normas Gerais para os Regimes Próprios de Previdência Social (RPPS)"
+ },
+ "leis-l9784": {
+  "dispositivos": 10,
+  "nome": "Lei do Processo Administrativo Federal"
+ },
+ "leis-l9790": {
+  "dispositivos": 8,
+  "nome": "Organizações da Sociedade Civil de Interesse Público (OSCIP)"
+ },
+ "leis-l9795": {
+  "dispositivos": 1,
+  "nome": "Política Nacional de Educação Ambiental"
+ },
+ "leis-l9796": {
+  "dispositivos": 2,
+  "nome": "Compensação Financeira entre Regimes Previdenciários"
+ },
+ "leis-l9807": {
+  "dispositivos": 8,
+  "nome": "Proteção a vítimas e testemunhas ameaçadas"
+ },
+ "leis-l9840": {
+  "dispositivos": 4,
+  "nome": "Altera o Código Eleitoral quanto à captação ilícita de sufrágio (crimes eleitorais)"
+ },
+ "leis-l9868": {
+  "dispositivos": 7,
+  "nome": "Dispõe sobre o processo e julgamento da ADI e da ADC perante o STF"
+ },
+ "leis-l9870": {
+  "dispositivos": 7,
+  "nome": "Fixação de valores das anuidades escolares"
+ },
+ "leis-l9873": {
+  "dispositivos": 5,
+  "nome": "Prescrição da ação punitiva da Administração Federal"
+ },
+ "leis-l9882": {
+  "dispositivos": 1,
+  "nome": "Processo e julgamento da arguição de descumprimento de preceito fundamental (ADPF)"
+ },
+ "leis-l9962": {
+  "dispositivos": 5,
+  "nome": "Regime de emprego público do pessoal da Administração federal direta, autárquica e fundacional"
+ },
+ "leis-l9966": {
+  "dispositivos": 13,
+  "nome": "Prevenção da poluição causada por óleo"
+ },
+ "leis-l9975": {
+  "dispositivos": 1,
+  "nome": "Altera o Estatuto da Criança e do Adolescente para tipificar crimes de exploração sexual e submissão a vexame"
+ },
+ "leis-l9985": {
+  "dispositivos": 7,
+  "nome": "Sistema Nacional de Unidades de Conservação (SNUC)"
+ },
+ "leis-l9986": {
+  "dispositivos": 13,
+  "nome": "Gestão de recursos humanos das agências reguladoras"
+ },
+ "leis-lcp-lcp101": {
+  "dispositivos": 109,
+  "nome": "Lei de Responsabilidade Fiscal"
+ },
+ "leis-lcp-lcp105": {
+  "dispositivos": 5,
+  "nome": "Sigilo das operações de instituições financeiras"
+ },
+ "leis-lcp-lcp108": {
+  "dispositivos": 7,
+  "nome": "Regime de Previdência Complementar (entes públicos)"
+ },
+ "leis-lcp-lcp109": {
+  "dispositivos": 21,
+  "nome": "Regime de Previdência Complementar (entidades privadas)"
+ },
+ "leis-lcp-lcp116": {
+  "dispositivos": 5,
+  "nome": "Imposto Sobre Serviços (ISS)"
+ },
+ "leis-lcp-lcp118": {
+  "dispositivos": 4,
+  "nome": "Altera o CTN (prescrição, execução fiscal)"
+ },
+ "leis-lcp-lcp123": {
+  "dispositivos": 149,
+  "nome": "Estatuto Nacional da Microempresa e Empresa de Pequeno Porte (Simples Nacional)"
+ },
+ "leis-lcp-lcp135": {
+  "dispositivos": 6,
+  "nome": "Lei da Ficha Limpa"
+ },
+ "leis-lcp-lcp140": {
+  "dispositivos": 12,
+  "nome": "Normas de cooperação entre entes federativos em matéria ambiental"
+ },
+ "leis-lcp-lcp141": {
+  "dispositivos": 37,
+  "nome": "Percentuais mínimos de aplicação em ações e serviços públicos de saúde (regulamenta a EC nº 29/2000)"
+ },
+ "leis-lcp-lcp142": {
+  "dispositivos": 5,
+  "nome": "Aposentadoria da pessoa com deficiência segurada do RGPS"
+ },
+ "leis-lcp-lcp156": {
+  "dispositivos": 44,
+  "nome": "Refinanciamento das dívidas dos Estados e do Distrito Federal com a União"
+ },
+ "leis-lcp-lcp159": {
+  "dispositivos": 51,
+  "nome": "Regime de Recuperação Fiscal dos Estados"
+ },
+ "leis-lcp-lcp166": {
+  "dispositivos": 11,
+  "nome": "Altera a Lei do Cadastro Positivo"
+ },
+ "leis-lcp-lcp178": {
+  "dispositivos": 64,
+  "nome": "Programa de Acompanhamento e Transparência Fiscal (novo Regime de Recuperação Fiscal)"
+ },
+ "leis-lcp-lcp182": {
+  "dispositivos": 21,
+  "nome": "Marco Legal das Startups"
+ },
+ "leis-lcp-lcp199": {
+  "dispositivos": 9,
+  "nome": "Estatuto Nacional da Simplificação de Obrigações Tributárias Acessórias (Simplifica Já)"
+ },
+ "leis-lcp-lcp200": {
+  "dispositivos": 37,
+  "nome": "Institui o Regime Fiscal Sustentável (novo arcabouço fiscal)"
+ },
+ "leis-lcp-lcp208": {
+  "dispositivos": 5,
+  "nome": "Disciplina o protesto extrajudicial de Certidão de Dívida Ativa como causa de interrupção da prescrição e regula a securitização de créditos públicos inscritos em dívida ativa"
+ },
+ "leis-lcp-lcp214": {
+  "dispositivos": 648,
+  "nome": "Regulamenta a Reforma Tributária sobre o consumo (IBS, CBS e Imposto Seletivo)"
+ },
+ "leis-lcp-lcp220": {
+  "dispositivos": 18,
+  "nome": "Institui o Sistema Nacional de Educação (SNE)"
+ },
+ "leis-lcp-lcp35": {
+  "dispositivos": 26,
+  "nome": "Lei Orgânica da Magistratura Nacional (LOMAN)"
+ },
+ "leis-lcp-lcp64": {
+  "dispositivos": 12,
+  "nome": "Lei de Inelegibilidade"
+ },
+ "leis-lcp-lcp73": {
+  "dispositivos": 13,
+  "nome": "Lei Orgânica da Advocacia-Geral da União"
+ },
+ "leis-lcp-lcp75": {
+  "dispositivos": 33,
+  "nome": "Lei Orgânica do Ministério Público da União"
+ },
+ "leis-lcp-lcp76": {
+  "dispositivos": 3,
+  "nome": "Procedimento de desapropriação para fins de reforma agrária"
+ },
+ "leis-lcp-lcp80": {
+  "dispositivos": 17,
+  "nome": "Lei Orgânica Nacional da Defensoria Pública"
+ },
+ "leis-lcp-lcp86": {
+  "dispositivos": 1,
+  "nome": "Acrescenta dispositivo ao Código Eleitoral (ação rescisória)"
+ },
+ "leis-lcp-lcp87": {
+  "dispositivos": 26,
+  "nome": "Lei Complementar nº 87/1966"
+ },
+ "leis-lcp-lcp88": {
+  "dispositivos": 2,
+  "nome": "Altera dispositivos da LC nº 76/1993 sobre desapropriação de imóvel rural por interesse social para fins de reforma agrária"
+ },
+ "leis-leis-2001-l10172": {
+  "dispositivos": 2,
+  "nome": "Aprova o Plano Nacional de Educação (2001)"
+ },
+ "leis-leis-2001-l10216": {
+  "dispositivos": 3,
+  "nome": "Proteção e direitos das pessoas com transtornos mentais"
+ },
+ "leis-leis-2001-l10257": {
+  "dispositivos": 27,
+  "nome": "Estatuto da Cidade"
+ },
+ "leis-leis-2001-l10259": {
+  "dispositivos": 14,
+  "nome": "Juizados Especiais Federais"
+ },
+ "leis-leis-2001-l10267": {
+  "dispositivos": 12,
+  "nome": "Lei de Georreferenciamento de imóveis rurais (altera Leis 4.947/66, 6.015/73 e 6.739/79)"
+ },
+ "leis-lim-lim601": {
+  "dispositivos": 3,
+  "nome": "Lei de Terras"
  }
 }

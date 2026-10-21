@@ -390,6 +390,46 @@
     }
   }
 
+  // Remissões do vade mecum (vade/gerar_vade.py → leis/vade/<id>.json): embaixo de cada artigo/§/parágrafo único, uma linha ▶ por
+  // grupo (súmulas, enunciados, resoluções e provimentos do CNJ, temas, ADIs, acórdãos, outros artigos). Só rótulos e números.
+  var vadeCache = {};
+  function carregarVade(id) {
+    if (!vadeCache[id]) vadeCache[id] = fetch(CDN_BASE + "leis/vade/" + encodeURIComponent(id) + ".json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    return vadeCache[id];
+  }
+  function aplicarVade(area, v) {
+    var ps = Array.prototype.slice.call(area.querySelectorAll("p"));
+    var chaves = ps.map(function () { return null; }), art = null, anc = null;
+    ps.forEach(function (p, i) {
+      var t = (p.textContent || "").trim(), m = t.match(/^Art\.?\s*(\d[\d.]*)\s*[º°ª]?(?:\s*-\s*|(?<=\d))?([A-Z])?(?![A-Za-zÀ-ú])/);
+      if (m && /^Art/.test(t)) { art = m[1].replace(/\./g, "") + (m[2] ? "-" + m[2] : ""); anc = "c"; }
+      else if ((m = t.match(/^§\s*(\d+)/))) { if (art) anc = "§" + m[1]; }
+      else if (/^Par[áa]grafo único/i.test(t)) { if (art) anc = "u"; }
+      else if (divisaoDaLei(t)) { art = null; anc = null; }
+      chaves[i] = art ? art + "|" + anc : null;
+    });
+    function caixa(linhas) {
+      var d = document.createElement("div");
+      d.className = "lei-vade";
+      d.style.cssText = "margin:2px 0 8px 14px;font-size:calc(12px * var(--fs-scale,1));line-height:1.4;text-align:left;color:var(--ink-faint,#64748b);user-select:none;";
+      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + escapeHtml(l) + "</div>"; }).join("");
+      return d;
+    }
+    for (var i = ps.length - 1; i >= 0; i--) {
+      var k = chaves[i];
+      if (!k || (i + 1 < ps.length && chaves[i + 1] === k)) continue;
+      var par = k.split("|"), ls = v.art && v.art[par[0]] && v.art[par[0]][par[1]];
+      if (ls && ls.length) ps[i].insertAdjacentElement("afterend", caixa(ls));
+    }
+    var g = caixa((v.geral && v.geral.length ? ["Remissões gerais à lei:"].concat(v.geral) : []).concat([]));
+    var aviso = document.createElement("div");
+    aviso.style.cssText = "margin:0 0 8px;padding:6px 10px;border-radius:8px;background:var(--accent-soft,#f1f5f9);font-size:calc(11.5px * var(--fs-scale,1));line-height:1.4;color:var(--ink-faint,#64748b);";
+    aviso.textContent = "▶ Remissões do vade mecum (súmulas, enunciados, atos do CNJ, temas e julgados que citam o dispositivo): geradas automaticamente, confira sempre na fonte.";
+    area.insertBefore(aviso, area.firstChild);
+    if (v.geral && v.geral.length) area.insertBefore(g, aviso.nextSibling);
+  }
+
   function carregarTexto(id) {
     if (textosCache[id]) return Promise.resolve(textosCache[id]);
     return fetch(TEXTO_BASE + encodeURIComponent(id) + ".json")

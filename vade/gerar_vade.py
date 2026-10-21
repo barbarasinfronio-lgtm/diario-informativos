@@ -15,7 +15,7 @@ lei = json.load(open(f'{R}/leis/texto/{tid}.json'))
 CUR = f'{R}/vade/curadoria/{tid}.json'
 cur = json.load(open(CUR)) if os.path.exists(CUR) else {"aliases": [], "vinculos": {}}
 NUMLEI = cur['numero_regex']  # ex.: r'6\.015'
-ALIAS = '|'.join([r'Lei(?:\s+Federal|\s+Ordin[áa]ria)?\s*(?:n[º°o.]*|nº)?\s*' + NUMLEI + r'(?:\s*/\s*(?:19|20)?\d\d)?'] + cur.get('aliases', []))
+ALIAS = '|'.join(([] if cur.get('sem_base') else [r'Lei(?:\s+Federal|\s+Ordin[áa]ria)?\s*(?:n[º°o.]*|nº)?\s*' + NUMLEI + r'(?:\s*/\s*(?:19|20)?\d\d)?']) + cur.get('aliases', []))
 MENC = re.compile(ALIAS, re.I)
 
 # ---------- 1. estrutura da lei ----------
@@ -197,6 +197,7 @@ for a, ancs in cur.get('vinculos', {}).items():
 
 # ---------- 3. saída ----------
 os.makedirs(f'{R}/vade/saida', exist_ok=True)
+SO_SITE = os.environ.get('VADE_SO_SITE') == '1'
 NOTA = re.compile(r'\((?=[^)]*(?:\bdad[ao]s?\b|\bpela\b|\bpelo\b|Inclu[íi]d|Renumer|Revogad|Vetad|Vide\b|Express[ãa]o|Vig[êe]ncia|Prorrog|Acrescid|Alterad|Suprimid|Declarad|Regulament|Texto|Prazo))[^)]*\)', re.I)
 def fmtart(n):
     b, _, suf = n.partition('-')
@@ -341,12 +342,10 @@ for tp, t, a, an in itens:
     if a and an and an not in site["art"].get(a, {}):
         ls = linhas_todas(a, an)
         if ls: site["art"].setdefault(a, {})[an] = ls
-os.makedirs(f'{R}/leis/vade', exist_ok=True)
-json.dump(site, open(f'{R}/leis/vade/{tid}.json', 'w'), ensure_ascii=False, separators=(',', ':'))
-_ix = f'{R}/leis/vade/indice.json'
-ix = json.load(open(_ix)) if os.path.exists(_ix) else {}
-ix[tid] = {"nome": lei["nome"], "dispositivos": sum(len(v) for v in site["art"].values())}
-json.dump(ix, open(_ix, 'w'), ensure_ascii=False, indent=1, sort_keys=True)
+if site["art"] or site["geral"]:
+    os.makedirs(f'{R}/leis/vade', exist_ok=True)
+    json.dump(site, open(f'{R}/leis/vade/{tid}.json', 'w'), ensure_ascii=False, separators=(',', ':'))
+elif os.path.exists(f'{R}/leis/vade/{tid}.json'): os.remove(f'{R}/leis/vade/{tid}.json')
 tot = sum(len(v) for d in vinc.values() for v in d.values())
 nart = sum(1 for x in itens if x[0]=='art')
 css = '''
@@ -363,8 +362,8 @@ p{margin:.12em 0;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 @media print{body{max-width:none;padding:0;column-count:2;column-gap:7mm;column-rule:.3pt solid #bbb}}
 @media (min-width:900px) and (hover:hover){body{column-count:2;column-gap:24px;max-width:1000px}}
 '''
-open(f'{R}/vade/saida/{tid}.html', 'w').write(
+open(os.devnull if SO_SITE else f'{R}/vade/saida/{tid}.html', 'w').write(
  f'<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="only light"><title>Vade Mecum Estuda Mana — {html.escape(lei["nome"])}</title><style>{css}</style>'
  f'<h1>{html.escape(lei["nome"])}</h1>' + '\n'.join(corpo))
-json.dump({a: {an: l for an, l in d.items()} for a, d in vinc.items()}, open(f'{R}/vade/saida/{tid}-vinculos.json', 'w'), ensure_ascii=False, indent=1)
+json.dump({a: {an: l for an, l in d.items()} for a, d in vinc.items()}, open(os.devnull if SO_SITE else f'{R}/vade/saida/{tid}-vinculos.json', 'w'), ensure_ascii=False, indent=1)
 print(f'{nart} artigos, {len(vinc)} com remissões, {tot} remissões')
