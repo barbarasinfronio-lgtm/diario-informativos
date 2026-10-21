@@ -1,0 +1,130 @@
+[
+ {
+  "nome": "Declaração Universal dos Direitos Humanos (1948)",
+  "numero": "Declaração/norma internacional — Declaração Universal dos Direitos Humanos",
+  "link": "https://www.ohchr.org/sites/default/files/UDHR/Documents/UDHR_Translations/por.pdf",
+  "fontes": [
+   "https://www.ohchr.org/sites/default/files/UDHR/Documents/UDHR_Translations/por.pdf",
+   "https://minustah.unmissions.org/sites/default/files/udhr_pocket_version_pt.pdf"
+  ],
+  "deve": "Todos os seres humanos nascem livres",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração sobre o Direito ao Desenvolvimento (1986)",
+  "numero": "Declaração/norma internacional — Declaração sobre o Direito ao Desenvolvimento",
+  "link": "https://acnudh.org/wp-content/uploads/2012/08/Declaração-sobre-o-Direito-ao-Desenvolvimento.pdf",
+  "fontes": [
+   "https://acnudh.org/wp-content/uploads/2012/08/Declara%C3%A7%C3%A3o-sobre-o-Direito-ao-Desenvolvimento.pdf",
+   "https://dcjri.ministeriopublico.pt/sites/default/files/decl-dtodesenvolvimento.pdf"
+  ],
+  "deve": "desenvolvimento",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração e Programa de Ação de Viena (1993)",
+  "numero": "Declaração/norma internacional — Declaração e Programa de Ação de Viena",
+  "link": "https://ministeriopublico.pt/sites/default/files/declaracao_e_programa_acao_viena.pdf",
+  "fontes": [
+   "https://observatoriodeeducacao.institutounibanco.org.br/api/assets/observatorio/18377814-c1ce-4703-b377-68f47a24217b",
+   "https://ministeriopublico.pt/sites/default/files/declaracao_e_programa_acao_viena.pdf"
+  ],
+  "deve": "Viena",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração e Plataforma de Ação de Pequim — IV Conferência Mundial sobre a Mulher (1995)",
+  "numero": "Declaração/norma internacional — Declaração e Plataforma de Ação de Pequim — IV Conferência Mundial sobre a Mulher",
+  "link": "https://onumulheres.org.br/wp-content/uploads/2014/02/declaracao_pequim.pdf",
+  "fontes": [
+   "https://onumulheres.org.br/wp-content/uploads/2014/02/declaracao_pequim.pdf"
+  ],
+  "deve": "Pequim",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração Americana dos Direitos e Deveres do Homem (1948)",
+  "numero": "Declaração/norma internacional — Declaração Americana dos Direitos e Deveres do Homem",
+  "link": "https://www.cidh.oas.org/basicos/portugues/b.Declaracao_Americana.pdf",
+  "fontes": [
+   "https://www.cidh.oas.org/basicos/portugues/b.Declaracao_Americana.pdf",
+   "https://www.oas.org/pt/cidh/mandato/Basicos/declaracao.pdf"
+  ],
+  "deve": "Todos os homens nascem livres|direitos e deveres",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração Americana sobre os Direitos dos Povos Indígenas (2016)",
+  "numero": "Declaração/norma internacional — Declaração Americana sobre os Direitos dos Povos Indígenas",
+  "link": "https://www.oas.org/en/sare/documents/decamind_por.pdf",
+  "fontes": [
+   "https://www.oas.org/en/sare/documents/decamind_por.pdf"
+  ],
+  "deve": "ind[íi]genas",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Princípios de Yogyakarta (2006)",
+  "numero": "Declaração/norma internacional — Princípios de Yogyakarta",
+  "link": "https://sxpolitics.org/wp-content/uploads/2009/03/principios_yogyakarta.pdf",
+  "fontes": [
+   "https://sxpolitics.org/wp-content/uploads/2009/03/principios_yogyakarta.pdf"
+  ],
+  "deve": "Yogyakarta",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Agenda 2030 — Transformando Nosso Mundo (2015)",
+  "numero": "Declaração/norma internacional — Agenda 2030 — Transformando Nosso Mundo",
+  "link": "https://www.br.undp.org/content/dam/brazil/docs/agenda2030/undp-br-Agenda2030-completo-pt-br-2016.pdf",
+  "fontes": [
+   "https://www.br.undp.org/content/dam/brazil/docs/agenda2030/undp-br-Agenda2030-completo-pt-br-2016.pdf",
+   "https://guineabissau.un.org/pt/download/106943/183104",
+   "https://gtagenda2030.org.br/wp-content/uploads/2015/08/odstraduzidos.pdf"
+  ],
+  "deve": "Agenda 2030",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração do Rio sobre Meio Ambiente e Desenvolvimento (1992)",
+  "numero": "Declaração/norma internacional — Declaração do Rio sobre Meio Ambiente e Desenvolvimento",
+  "link": "https://www.mma.gov.br/estruturas/agenda21/_arquivos/rio92.pdf",
+  "fontes": [
+   "https://www.mma.gov.br/estruturas/agenda21/_arquivos/rio92.pdf",
+   "https://www.mma.gov.br/estruturas/ascom_boletins/_arquivos/83_19092008030725.pdf"
+  ],
+  "deve": "Princ[íi]pio 27|Declara[çc][ãa]o do Rio",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Declaração de Estocolmo sobre o Meio Ambiente Humano (1972)",
+  "numero": "Declaração/norma internacional — Declaração de Estocolmo sobre o Meio Ambiente Humano",
+  "link": "https://www.mma.gov.br/estruturas/agenda21/_arquivos/estocolmo.pdf",
+  "fontes": [
+   "https://www.mma.gov.br/estruturas/agenda21/_arquivos/estocolmo.pdf"
+  ],
+  "deve": "Estocolmo",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Estatuto da Corte Interamericana de Direitos Humanos (1979)",
+  "numero": "Declaração/norma internacional — Estatuto da Corte Interamericana de Direitos Humanos",
+  "link": "https://www.corteidh.or.cr/sitios/libros/todos/docs/estatuto-port.pdf",
+  "fontes": [
+   "https://www.corteidh.or.cr/sitios/libros/todos/docs/estatuto-port.pdf",
+   "https://www.cidh.oas.org/basicos/portugues/v.estatuto.corte.htm"
+  ],
+  "deve": "Corte",
+  "grupo": "declaracoes"
+ },
+ {
+  "nome": "Regimento Interno do Supremo Tribunal Federal (1980)",
+  "numero": "Declaração/norma internacional — Regimento Interno do Supremo Tribunal Federal",
+  "link": "https://www.stf.jus.br/arquivo/cms/legislacaoRegimentoInterno/anexo/RISTF.pdf",
+  "fontes": [
+   "https://www.stf.jus.br/arquivo/cms/legislacaoRegimentoInterno/anexo/RISTF.pdf"
+  ],
+  "deve": "Regimento Interno",
+  "grupo": "declaracoes"
+ }
+]

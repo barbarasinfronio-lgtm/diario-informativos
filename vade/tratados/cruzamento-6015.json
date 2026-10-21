@@ -1,0 +1,445 @@
+{
+ "https://concordia.itamaraty.gov.br/acordos/8755": {
+  "nome": "Pacto Internacional sobre Direitos Civis e Políticos.",
+  "url": "https://concordia.itamaraty.gov.br/acordos/8755",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 24,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "ARTIGO 24 1. Toda criança terá direito, sem discriminação alguma por motivo de cor, sexo, língua, religião, origem nacional ou social, situação econômica ou nas"
+   },
+   {
+    "tema": "nascimento",
+    "artigo": 24,
+    "alvo": [
+     "50",
+     "52",
+     "54"
+    ],
+    "trecho": "ARTIGO 24 1. Toda criança terá direito, sem discriminação alguma por motivo de cor, sexo, língua, religião, origem nacional ou social, situação econômica ou nas"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/1930-1949/d19841.htm": {
+  "nome": "Promulga a Carta das Nações Unidas",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/1930-1949/d19841.htm",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 111,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 111. A presente Carta, cujos textos em chinês, francês, russo, inglês, e espanhol fazem igualmente fé, ficará depositada nos arquivos do Governo dos Esta"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/decreto/d12009.htm": {
+  "nome": "Decreto nº 12.009/2024",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/decreto/d12009.htm",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 7,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 7 Todo Membro deverá adotar medidas para assegurar que os trabalhadores domésticos sejam informados sobre suas condições de emprego de maneira apropriada"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d99710.htm": {
+  "nome": "Convenção sobre os Direitos da Criança",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d99710.htm",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 7,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 7 1. A criança será registrada imediatamente após seu nascimento e terá direito, desde o momento em que nasce, a um nome, a uma nacionalidade e, na medid"
+   },
+   {
+    "tema": "nascimento",
+    "artigo": 7,
+    "alvo": [
+     "50",
+     "52",
+     "54"
+    ],
+    "trecho": "Artigo 7 1. A criança será registrada imediatamente após seu nascimento e terá direito, desde o momento em que nasce, a um nome, a uma nacionalidade e, na medid"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 7,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 7 1. A criança será registrada imediatamente após seu nascimento e terá direito, desde o momento em que nasce, a um nome, a uma nacionalidade e, na medid"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5015.htm": {
+  "nome": "Convenção da ONU contra o Crime Organizado Transnacional (Palermo)",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/decreto/d5015.htm",
+  "achados": [
+   {
+    "tema": "apatridia",
+    "artigo": 15,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 15 Jurisdição 1. Cada Estado Parte adotará as medidas necessárias para estabelecer a sua competência jurisdicional em relação às infrações enunciadas nos"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/d0678.htm": {
+  "nome": "Convenção Americana sobre Direitos Humanos (Pacto de São José)",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/d0678.htm",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 18,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "ARTIGO 18 Direito ao Nome Toda pessoa tem direito a um prenome e aos nomes de seus pais ou ao de um destes. A lei deve regular a forma de assegurar a todos esse"
+   },
+   {
+    "tema": "nome",
+    "artigo": 27,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "ARTIGO 27 Suspensão de Garantias 1. Em caso de guerra, de perigo público, ou de outra emergência que ameace a independência ou segurança do Estado-Parte, este p"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8767.htm": {
+  "nome": "Decreto nº 8.767/2016",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8767.htm",
+  "achados": [
+   {
+    "tema": "apatridia",
+    "artigo": 10,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 10 1. O Estado Parte em cujo território se encontrar uma pessoa suspeita de ter cometido um crime de desaparecimento forçado, se considerar, após o exame"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8501.htm": {
+  "nome": "Decreto nº 8.501/2015",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/decreto/d8501.htm",
+  "achados": [
+   {
+    "tema": "apatridia",
+    "artigo": 1,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 1 1. Todo Estado Contratante concederá sua nacionalidade a uma pessoa nascida em seu território e que de outro modo seria apátrida. A nacionalidade será "
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 4,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 4 1. Todo Estado Contratante concederá sua nacionalidade a qualquer pessoa que não tenha nascido no território de um Estado Contratante e que do contrári"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 7,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 7 1. (a) Se a legislação de um Estado Contratante permitir a renúncia à nacionalidade, tal renúncia só será válida se o interessado tiver ou adquirir out"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 8,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 8 1. Os Estados Contratantes não privarão uma pessoa de sua nacionalidade se essa privação vier a convertê-la em apátrida. 2. Não obstante o disposto no "
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 10,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 10 1. Todo tratado entre os Estados Contratantes que dispuser sobre a transferência de território deverá incluir disposições para assegurar que os habita"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 13,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 13 Nenhuma disposição da presente Convenção será interpretada de modo a restringir a aplicação de disposições mais favoráveis relativas à redução da apat"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d6949.htm": {
+  "nome": "Convenção sobre os Direitos das Pessoas com Deficiência",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/decreto/d6949.htm",
+  "achados": [
+   {
+    "tema": "interdicao",
+    "artigo": 12,
+    "alvo": [
+     "92",
+     "93"
+    ],
+    "trecho": "Artigo 12 Reconhecimento igual perante a lei 1.Os Estados Partes reafirmam que as pessoas com deficiência têm o direito de ser reconhecidas em qualquer lugar co"
+   },
+   {
+    "tema": "nome",
+    "artigo": 18,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 18 Liberdade de movimentação e nacionalidade 1.Os Estados Partes reconhecerão os direitos das pessoas com deficiência à liberdade de movimentação, à libe"
+   },
+   {
+    "tema": "nascimento",
+    "artigo": 18,
+    "alvo": [
+     "50",
+     "52",
+     "54"
+    ],
+    "trecho": "Artigo 18 Liberdade de movimentação e nacionalidade 1.Os Estados Partes reconhecerão os direitos das pessoas com deficiência à liberdade de movimentação, à libe"
+   },
+   {
+    "tema": "interdicao",
+    "artigo": 23,
+    "alvo": [
+     "92",
+     "93"
+    ],
+    "trecho": "Artigo 23 Respeito pelo lar e pela família 1.Os Estados Partes tomarão medidas efetivas e apropriadas para eliminar a discriminação contra pessoas com deficiênc"
+   }
+  ]
+ },
+ "https://concordia.itamaraty.gov.br/acordos/8883": {
+  "nome": "Convenção Americana sobre Direitos Humanos (Pacto de São José) e Declaração de Reconhecimento da Competência Obrigatória da Corte Interamericana de Direitos Humanos",
+  "url": "https://concordia.itamaraty.gov.br/acordos/8883",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 18,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 18. Direito ao nome Toda pessoa tem direito a um prenome e aos nomes de seus pais ou ao de um destes. A lei deve regular a forma de assegurar a todos ess"
+   },
+   {
+    "tema": "nome",
+    "artigo": 27,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "Artigo 27. Suspensão de garantias 1. Em caso de guerra, de perigo público, ou de outra emergência que ameace a independência ou segurança do Estado Parte, este "
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D10088.htm": {
+  "nome": "Convenção nº 169 da OIT sobre Povos Indígenas e Tribais",
+  "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D10088.htm",
+  "achados": [
+   {
+    "tema": "interdicao",
+    "artigo": 40,
+    "alvo": [
+     "92",
+     "93"
+    ],
+    "trecho": "Artigo 40 1. A Organização Internacional do Trabalho gozará, nos territórios de seus Membros dos privilégios e das imunidades necessárias à consecução dos seus "
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 40,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 40 1. A Organização Internacional do Trabalho gozará, nos territórios de seus Membros dos privilégios e das imunidades necessárias à consecução dos seus "
+   },
+   {
+    "tema": "interdicao",
+    "artigo": 51,
+    "alvo": [
+     "92",
+     "93"
+    ],
+    "trecho": "Artigo 51 As versões inglesa e francesa do texto da presente Convenção são igualmente autênticas. ANEXO XLII CONVENÇÃO Nº 162 DA OIT SOBRE A UTILIZAÇÃO DO ASBES"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 51,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 51 As versões inglesa e francesa do texto da presente Convenção são igualmente autênticas. ANEXO XLII CONVENÇÃO Nº 162 DA OIT SOBRE A UTILIZAÇÃO DO ASBES"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/D3087.htm": {
+  "nome": "Promulga a Convenção da Haia sobre adoção internacional",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/D3087.htm",
+  "achados": [
+   {
+    "tema": "adocao",
+    "artigo": 4,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 4 As adoções abrangidas por esta Convenção só poderão ocorrer quando as autoridades competentes do Estado de origem: a) tiverem determinado que a criança"
+   },
+   {
+    "tema": "adocao",
+    "artigo": 9,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 9 As Autoridades Centrais tomarão todas as medidas apropriadas, seja diretamente ou com a cooperação de autoridades públicas ou outros organismos devidam"
+   },
+   {
+    "tema": "adocao",
+    "artigo": 11,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 11 Um organismo credenciado deverá: a) perseguir unicamente fins não lucrativos, nas condições e dentro dos limites fixados pelas autoridades competentes"
+   },
+   {
+    "tema": "adocao",
+    "artigo": 13,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 13 A designação das Autoridades Centrais e, quando for o caso, o âmbito de suas funções, assim como os nomes e endereços dos organismos credenciados deve"
+   },
+   {
+    "tema": "adocao",
+    "artigo": 15,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 15 1. Se a Autoridade Central do Estado de acolhida considerar que os solicitantes estão habilitados e aptos para adotar, a mesma preparará um relatório "
+   },
+   {
+    "tema": "adocao",
+    "artigo": 22,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 22 1. As funções conferidas à Autoridade Central pelo presente capítulo poderão ser exercidas por autoridades públicas ou por organismos credenciados de "
+   },
+   {
+    "tema": "adocao",
+    "artigo": 32,
+    "alvo": [
+     "47"
+    ],
+    "trecho": "Artigo 32 1. Ninguém poderá obter vantagens materiais indevidas em razão de intervenção em uma adoção internacional. 2. Só poderão ser cobrados e pagos os custo"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d0592.htm": {
+  "nome": "Promulga o Pacto Internacional sobre Direitos Civis e Políticos",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/d0592.htm",
+  "achados": [
+   {
+    "tema": "nome",
+    "artigo": 24,
+    "alvo": [
+     "55",
+     "56",
+     "57",
+     "58"
+    ],
+    "trecho": "ARTIGO 24 1. Toda criança terá direito, sem discriminação alguma por motivo de cor, sexo, língua, religião, origem nacional ou social, situação econômica ou nas"
+   },
+   {
+    "tema": "nascimento",
+    "artigo": 24,
+    "alvo": [
+     "50",
+     "52",
+     "54"
+    ],
+    "trecho": "ARTIGO 24 1. Toda criança terá direito, sem discriminação alguma por motivo de cor, sexo, língua, religião, origem nacional ou social, situação econômica ou nas"
+   }
+  ]
+ },
+ "https://www.planalto.gov.br/ccivil_03/decreto/2002/d4394.htm": {
+  "nome": "Decreto nº 4.394/2002",
+  "url": "https://www.planalto.gov.br/ccivil_03/decreto/2002/d4394.htm",
+  "achados": [
+   {
+    "tema": "apatridia",
+    "artigo": 6,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 6 1. Cada Estado Parte adotará as medidas necessárias para estabelecer sua jurisdição sobre os delitos enunciados no artigo 2 quando: a) O delito for com"
+   },
+   {
+    "tema": "apatridia",
+    "artigo": 7,
+    "alvo": [
+     "50",
+     "54"
+    ],
+    "trecho": "Artigo 7 1. O Estado Parte, que receba informação que indique encontrar-se em seu território pessoa que tenha cometido ou for suspeita de ter cometido um delito"
+   }
+  ]
+ }
+}
