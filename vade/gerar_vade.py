@@ -120,16 +120,17 @@ for org, v in fontes['normas'].items():
         meta[rot] = (n['tipo'], 'do ' + sig, n['numero'])
         for a, an in citacoes(txt): add(a, an, 'Atos normativos', rot)
 
-# atos baixados (inteiro teor): cache-cnj-atos/texto/*.txt — varre linha a linha, anotando o art. do ato
+# atos do CNJ com inteiro teor no site (leis/texto/cnj-*.json, scripts/cnj_atos_textos.py) — varre parágrafo a parágrafo, anotando o art. do ato
 import glob
-for f in ([] if UF else sorted(glob.glob(f'{R}/../cache-cnj-atos/texto/*.txt'))):
-    cab = open(f).readline()
-    m = re.match(r'(\S+) (\S+) \((\d\d)/(\d\d)/(\d{4})\)', cab)
+for f in ([] if UF else sorted(glob.glob(f'{R}/leis/texto/cnj-*.json'))):
+    if os.path.basename(f)[:-5] == tid: continue
+    ato = json.load(open(f))
+    m = re.match(r'(.+?) CNJ nº ([\d.]+)/(\d{4})$', ato.get('nome', ''))
     if not m: continue
-    rot = f'{m.group(1)} nº {m.group(2)}/{m.group(5)} (CNJ)'
+    rot = f'{m.group(1)} nº {m.group(2)}/{m.group(3)} (CNJ)'
     atual = None
-    meta[rot] = (m.group(1), 'do CNJ', f'{m.group(2)}/{m.group(5)}')
-    for ln in open(f).read().split('\n')[3:]:
+    meta[rot] = (m.group(1), 'do CNJ', f'{m.group(2)}/{m.group(3)}')
+    for ln in ato['p']:
         ma = re.match(r'\s*Art\.?\s*(\d+(?:\.\d{3})*)', ln)
         if ma: atual = ma.group(1).replace('.', '')
         if MENC.search(ln):

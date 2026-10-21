@@ -1095,7 +1095,9 @@
     // leis/dos-editais.json: normas federais que os editais citam e que não estavam no Diário (scripts/leis_dos_editais.py)
     return Promise.all([
       ler("leis/pedidas.json", "pedidas", "Leis pedidas por leitores"),
-      ler("leis/dos-editais.json", "dos_editais", "Citadas nos editais")
+      ler("leis/dos-editais.json", "dos_editais", "Citadas nos editais"),
+      // leis/cnj-atos.json: Resoluções, Provimentos, Recomendações… do CNJ com o texto inteiro (scripts/cnj_atos_textos.py)
+      ler("leis/cnj-atos.json", "cnj_atos", "Atos do CNJ (Resoluções, Provimentos, Recomendações…)")
     ]);
   }
 

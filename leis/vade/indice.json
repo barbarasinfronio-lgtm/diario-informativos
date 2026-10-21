@@ -496,7 +496,7 @@
   "nome": "Regulamenta a Lei da Libras (Língua Brasileira de Sinais)"
  },
  "ato2004-2006-2005-lei-l11101": {
-  "dispositivos": 210,
+  "dispositivos": 225,
   "nome": "Falências e recuperação judicial (crimes falimentares)"
  },
  "ato2004-2006-2005-lei-l11105": {
@@ -540,11 +540,11 @@
   "nome": "Lei nº 11.300/2006"
  },
  "ato2004-2006-2006-lei-l11340": {
-  "dispositivos": 28,
+  "dispositivos": 36,
   "nome": "Lei Maria da Penha"
  },
  "ato2004-2006-2006-lei-l11343": {
-  "dispositivos": 68,
+  "dispositivos": 71,
   "nome": "Lei de Drogas"
  },
  "ato2004-2006-2006-lei-l11346": {
@@ -564,7 +564,7 @@
   "nome": "Regulamenta a repercussão geral no recurso extraordinário (CPC/1973)"
  },
  "ato2004-2006-2006-lei-l11419": {
-  "dispositivos": 21,
+  "dispositivos": 22,
   "nome": "Informatização do processo judicial"
  },
  "ato2004-2006-2006-lei-l11428": {
@@ -636,7 +636,7 @@
   "nome": "Lei nº 11.638/2007"
  },
  "ato2007-2010-2008-decreto-d6481": {
-  "dispositivos": 1,
+  "dispositivos": 2,
   "nome": "Decreto nº 6.481/2008"
  },
  "ato2007-2010-2008-decreto-d6490": {
@@ -652,7 +652,7 @@
   "nome": "Regulamenta a Lei da Mata Atlântica (Lei nº 11.428/2006)"
  },
  "ato2007-2010-2008-decreto-d6690": {
-  "dispositivos": 4,
+  "dispositivos": 5,
   "nome": "Decreto nº 6.690/2008"
  },
  "ato2007-2010-2008-lei-l11645": {
@@ -684,7 +684,7 @@
   "nome": "Lei nº 11.738/2008"
  },
  "ato2007-2010-2008-lei-l11770": {
-  "dispositivos": 1,
+  "dispositivos": 2,
   "nome": "Lei nº 11.770/2008"
  },
  "ato2007-2010-2008-lei-l11790": {
@@ -760,7 +760,7 @@
   "nome": "Identificação criminal do civilmente identificado"
  },
  "ato2007-2010-2009-lei-l12106": {
-  "dispositivos": 1,
+  "dispositivos": 2,
   "nome": "Lei nº 12.106/2009"
  },
  "ato2007-2010-2009-lei-l12112": {
@@ -768,7 +768,7 @@
   "nome": "Lei nº 12.112/2009"
  },
  "ato2007-2010-2009-lei-l12153": {
-  "dispositivos": 20,
+  "dispositivos": 21,
   "nome": "Juizados Especiais da Fazenda Pública"
  },
  "ato2007-2010-2009-lei-l12187": {
@@ -812,7 +812,7 @@
   "nome": "Lei nº 12.258/2010"
  },
  "ato2007-2010-2010-lei-l12288": {
-  "dispositivos": 19,
+  "dispositivos": 20,
   "nome": "Estatuto da Igualdade Racial"
  },
  "ato2007-2010-2010-lei-l12305": {
@@ -896,7 +896,7 @@
   "nome": "Lei nº 12.466/2011"
  },
  "ato2011-2014-2011-lei-l12527": {
-  "dispositivos": 33,
+  "dispositivos": 38,
   "nome": "Lei de Acesso à Informação"
  },
  "ato2011-2014-2011-lei-l12529": {
@@ -916,7 +916,7 @@
   "nome": "Regulamenta a Lei de Acesso à Informação"
  },
  "ato2011-2014-2012-decreto-d7746": {
-  "dispositivos": 4,
+  "dispositivos": 5,
   "nome": "Contratações públicas sustentáveis"
  },
  "ato2011-2014-2012-decreto-d7794": {
@@ -936,15 +936,15 @@
   "nome": "Sistema Nacional de Atendimento Socioeducativo (SINASE)"
  },
  "ato2011-2014-2012-lei-l12608": {
-  "dispositivos": 19,
+  "dispositivos": 20,
   "nome": "Política Nacional de Proteção e Defesa Civil"
  },
  "ato2011-2014-2012-lei-l12618": {
-  "dispositivos": 44,
+  "dispositivos": 45,
   "nome": "Institui o regime de previdência complementar dos servidores públicos federais (Funpresp)"
  },
  "ato2011-2014-2012-lei-l12651": {
-  "dispositivos": 75,
+  "dispositivos": 76,
   "nome": "Código Florestal"
  },
  "ato2011-2014-2012-lei-l12683": {
@@ -952,7 +952,7 @@
   "nome": "Altera a Lei de Lavagem de Dinheiro"
  },
  "ato2011-2014-2012-lei-l12694": {
-  "dispositivos": 8,
+  "dispositivos": 10,
   "nome": "Organizações criminosas armadas ou milícias (integra o CP)"
  },
  "ato2011-2014-2012-lei-l12711": {
@@ -968,7 +968,7 @@
   "nome": "Tipificação criminal de delitos informáticos"
  },
  "ato2011-2014-2012-lei-l12764": {
-  "dispositivos": 5,
+  "dispositivos": 7,
   "nome": "Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista (Lei Berenice Piana)"
  },
  "ato2011-2014-2013-decreto-d7892": {
@@ -1040,11 +1040,11 @@
   "nome": "Marco Civil da Internet"
  },
  "ato2011-2014-2014-lei-l12990": {
-  "dispositivos": 1,
+  "dispositivos": 4,
   "nome": "Reserva de vagas para negros em concursos públicos federais"
  },
  "ato2011-2014-2014-lei-l13005": {
-  "dispositivos": 7,
+  "dispositivos": 8,
   "nome": "Plano Nacional de Educação (PNE 2014-2024)"
  },
  "ato2011-2014-2014-lei-l13010": {
@@ -1084,7 +1084,7 @@
   "nome": "Concentração de atos na matrícula do imóvel (eficácia dos registros públicos perante terceiros)"
  },
  "ato2015-2018-2015-lei-l13105": {
-  "dispositivos": 763,
+  "dispositivos": 808,
   "nome": "Código de Processo Civil"
  },
  "ato2015-2018-2015-lei-l13123": {
@@ -1096,11 +1096,11 @@
   "nome": "Altera a Lei de Arbitragem"
  },
  "ato2015-2018-2015-lei-l13140": {
-  "dispositivos": 21,
+  "dispositivos": 24,
   "nome": "Lei de Mediação"
  },
  "ato2015-2018-2015-lei-l13146": {
-  "dispositivos": 54,
+  "dispositivos": 56,
   "nome": "Estatuto da Pessoa com Deficiência (LBI)"
  },
  "ato2015-2018-2015-lei-l13172": {
@@ -1148,7 +1148,7 @@
   "nome": "Altera a Lei nº 13.105/2015 quanto ao juízo de admissibilidade dos recursos especial e extraordinário"
  },
  "ato2015-2018-2016-lei-l13257": {
-  "dispositivos": 36,
+  "dispositivos": 37,
   "nome": "Marco Legal da Primeira Infância"
  },
  "ato2015-2018-2016-lei-l13260": {
@@ -1180,7 +1180,7 @@
   "nome": "Lei nº 13.334/2016"
  },
  "ato2015-2018-2016-lei-l13344": {
-  "dispositivos": 8,
+  "dispositivos": 9,
   "nome": "Prevenção e repressão ao tráfico de pessoas"
  },
  "ato2015-2018-2017-decreto-d9130": {
@@ -1200,7 +1200,7 @@
   "nome": "Prevenção e combate a incêndio e desastres em estabelecimentos"
  },
  "ato2015-2018-2017-lei-l13431": {
-  "dispositivos": 18,
+  "dispositivos": 24,
   "nome": "Escuta especializada e depoimento especial"
  },
  "ato2015-2018-2017-lei-l13444": {
@@ -1208,7 +1208,7 @@
   "nome": "Lei nº 13.444/2017"
  },
  "ato2015-2018-2017-lei-l13445": {
-  "dispositivos": 32,
+  "dispositivos": 35,
   "nome": "Lei de Migração"
  },
  "ato2015-2018-2017-lei-l13448": {
@@ -1276,11 +1276,11 @@
   "nome": "Diretrizes Nacionais sobre Empresas e Direitos Humanos"
  },
  "ato2015-2018-2018-decreto-d9579": {
-  "dispositivos": 16,
+  "dispositivos": 19,
   "nome": "Decreto nº 9.579/2018"
  },
  "ato2015-2018-2018-decreto-d9603": {
-  "dispositivos": 8,
+  "dispositivos": 9,
   "nome": "Regulamenta o sistema de garantia de direitos da criança e do adolescente vítima ou testemunha de violência"
  },
  "ato2015-2018-2018-lei-l13655": {
@@ -1292,11 +1292,11 @@
   "nome": "Institui o Sistema Único de Segurança Pública (SUSP)"
  },
  "ato2015-2018-2018-lei-l13709": {
-  "dispositivos": 46,
+  "dispositivos": 47,
   "nome": "LGPD"
  },
  "ato2015-2018-2018-lei-l13756": {
-  "dispositivos": 13,
+  "dispositivos": 14,
   "nome": "Lei nº 13.756/2018"
  },
  "ato2015-2018-2018-lei-l13774": {
@@ -1364,7 +1364,7 @@
   "nome": "Regulamenta o Cadastro Positivo"
  },
  "ato2019-2022-2019-lei-l13812": {
-  "dispositivos": 6,
+  "dispositivos": 8,
   "nome": "Política Nacional de Busca de Pessoas Desaparecidas"
  },
  "ato2019-2022-2019-lei-l13819": {
@@ -1376,7 +1376,7 @@
   "nome": "Altera a Lei de Drogas para tratar da internação voluntária e involuntária de pessoas com transtornos decorrentes do uso de drogas"
  },
  "ato2019-2022-2019-lei-l13848": {
-  "dispositivos": 49,
+  "dispositivos": 51,
   "nome": "Lei das Agências Reguladoras"
  },
  "ato2019-2022-2019-lei-l13853": {
@@ -1384,7 +1384,7 @@
   "nome": "Altera a LGPD (Autoridade Nacional de Proteção de Dados)"
  },
  "ato2019-2022-2019-lei-l13869": {
-  "dispositivos": 9,
+  "dispositivos": 10,
   "nome": "Abuso de Autoridade"
  },
  "ato2019-2022-2019-lei-l13874": {
@@ -1428,7 +1428,7 @@
   "nome": "Política Nacional de Educação Especial (Educação Inclusiva)"
  },
  "ato2019-2022-2020-decreto-d10592": {
-  "dispositivos": 57,
+  "dispositivos": 58,
   "nome": "Regulamenta a regularização fundiária de imóveis rurais"
  },
  "ato2019-2022-2020-lei-l13974": {
@@ -1440,7 +1440,7 @@
   "nome": "Lei Romeo Mion — cadastro nacional de crianças e adolescentes desaparecidos"
  },
  "ato2019-2022-2020-lei-l13979": {
-  "dispositivos": 16,
+  "dispositivos": 17,
   "nome": "Medidas de enfrentamento da emergência de saúde pública (COVID-19)"
  },
  "ato2019-2022-2020-lei-l13988": {
@@ -1472,7 +1472,7 @@
   "nome": "Assinaturas eletrônicas em interações com entes públicos"
  },
  "ato2019-2022-2020-lei-l14112": {
-  "dispositivos": 69,
+  "dispositivos": 70,
   "nome": "Atualiza a legislação de recuperação judicial, extrajudicial e falência (altera a Lei nº 11.101/2005)"
  },
  "ato2019-2022-2020-lei-l14113": {
@@ -1512,7 +1512,7 @@
   "nome": "Lei nº 14.118/2021"
  },
  "ato2019-2022-2021-lei-l14119": {
-  "dispositivos": 18,
+  "dispositivos": 19,
   "nome": "Pagamento por Serviços Ambientais"
  },
  "ato2019-2022-2021-lei-l14129": {
@@ -1520,7 +1520,7 @@
   "nome": "Lei do Governo Digital"
  },
  "ato2019-2022-2021-lei-l14133": {
-  "dispositivos": 113,
+  "dispositivos": 151,
   "nome": "Nova Lei de Licitações"
  },
  "ato2019-2022-2021-lei-l14164": {
@@ -1612,7 +1612,7 @@
   "nome": "Altera a Lei de Improbidade Administrativa (Lei nº 14.230/2021) e institui normas sobre superendividamento"
  },
  "ato2019-2022-2022-lei-l14344": {
-  "dispositivos": 14,
+  "dispositivos": 15,
   "nome": "Lei Henry Borel — violência doméstica contra criança/adolescente"
  },
  "ato2019-2022-2022-lei-l14382": {
@@ -1620,7 +1620,7 @@
   "nome": "Sistema Eletrônico de Registros Públicos (SERP)"
  },
  "ato2019-2022-2022-lei-l14430": {
-  "dispositivos": 23,
+  "dispositivos": 24,
   "nome": "Marco Legal das Garantias / Certificado de Recebíveis"
  },
  "ato2019-2022-2022-lei-l14431": {
@@ -1836,7 +1836,7 @@
   "nome": "Lei nº 15.103/2025"
  },
  "ato2023-2026-2025-lei-l15142": {
-  "dispositivos": 6,
+  "dispositivos": 7,
   "nome": "Lei nº 15.142/2025"
  },
  "ato2023-2026-2025-lei-l15190": {
@@ -1844,7 +1844,7 @@
   "nome": "Lei Geral do Licenciamento Ambiental"
  },
  "ato2023-2026-2025-lei-l15211": {
-  "dispositivos": 20,
+  "dispositivos": 23,
   "nome": "Estatuto Digital da Criança e do Adolescente"
  },
  "ato2023-2026-2025-lei-l15224": {
@@ -1927,6 +1927,3382 @@
   "dispositivos": 8,
   "nome": "Dispõe sobre a organização, estruturação e funcionamento do Sistema de Serviços Jurídicos da Administração Direta e Indireta"
  },
+ "cnj-100": {
+  "dispositivos": 33,
+  "nome": "Resolução CNJ nº 75/2009"
+ },
+ "cnj-1002": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 224/2026"
+ },
+ "cnj-101": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 59/2008"
+ },
+ "cnj-102": {
+  "dispositivos": 10,
+  "nome": "Resolução CNJ nº 83/2009"
+ },
+ "cnj-104": {
+  "dispositivos": 20,
+  "nome": "Resolução CNJ nº 81/2009"
+ },
+ "cnj-105": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 80/2009"
+ },
+ "cnj-1054": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 692/2026"
+ },
+ "cnj-107": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 79/2009"
+ },
+ "cnj-108": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 78/2009"
+ },
+ "cnj-110": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 76/2009"
+ },
+ "cnj-1111": {
+  "dispositivos": 8,
+  "nome": "Provimento CNJ nº 242/2026"
+ },
+ "cnj-112": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 38/2007"
+ },
+ "cnj-113": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 30/2007"
+ },
+ "cnj-116": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 131/2011"
+ },
+ "cnj-117": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 73/2009"
+ },
+ "cnj-118": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 70/2009"
+ },
+ "cnj-119": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 65/2008"
+ },
+ "cnj-122": {
+  "dispositivos": 13,
+  "nome": "Resolução CNJ nº 64/2008"
+ },
+ "cnj-123": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 63/2008"
+ },
+ "cnj-126": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 61/2008"
+ },
+ "cnj-127": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 60/2008"
+ },
+ "cnj-128": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 110/2010"
+ },
+ "cnj-1291": {
+  "dispositivos": 8,
+  "nome": "Provimento CNJ nº 22/2012"
+ },
+ "cnj-1292": {
+  "dispositivos": 13,
+  "nome": "Provimento CNJ nº 7/2010"
+ },
+ "cnj-1293": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 21/2012"
+ },
+ "cnj-1295": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 19/2012"
+ },
+ "cnj-1296": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 18/2012"
+ },
+ "cnj-1298": {
+  "dispositivos": 12,
+  "nome": "Provimento CNJ nº 13/2010"
+ },
+ "cnj-1299": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 16/2012"
+ },
+ "cnj-130": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 111/2010"
+ },
+ "cnj-1300": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 15/2011"
+ },
+ "cnj-1303": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 11/2010"
+ },
+ "cnj-1306": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 4/2010"
+ },
+ "cnj-1307": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 8/2010"
+ },
+ "cnj-1309": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 5/2010"
+ },
+ "cnj-134": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 137/2011"
+ },
+ "cnj-1340": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 223/2026"
+ },
+ "cnj-1349": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 681/2026"
+ },
+ "cnj-135": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 56/2008"
+ },
+ "cnj-1357": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 9/2012"
+ },
+ "cnj-1359": {
+  "dispositivos": 12,
+  "nome": "Instrução Normativa CNJ nº 10/2012"
+ },
+ "cnj-136": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 113/2010"
+ },
+ "cnj-1363": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 6/2011"
+ },
+ "cnj-1365": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 7/2011"
+ },
+ "cnj-1368": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 4/2010"
+ },
+ "cnj-1373": {
+  "dispositivos": 8,
+  "nome": "Instrução Normativa CNJ nº 2/2010"
+ },
+ "cnj-1384": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 227/2026"
+ },
+ "cnj-139": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 134/2011"
+ },
+ "cnj-141": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 29/2007"
+ },
+ "cnj-1415": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 683/2026"
+ },
+ "cnj-142": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 133/2011"
+ },
+ "cnj-1423": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 229/2026"
+ },
+ "cnj-1434": {
+  "dispositivos": 18,
+  "nome": "Resolução Conjunta CNJ nº 16/2026"
+ },
+ "cnj-144": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 132/2011"
+ },
+ "cnj-145": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 33/2007"
+ },
+ "cnj-146": {
+  "dispositivos": 13,
+  "nome": "Resolução CNJ nº 114/2010"
+ },
+ "cnj-147": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 53/2008"
+ },
+ "cnj-148": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 118/2010"
+ },
+ "cnj-150": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 52/2008"
+ },
+ "cnj-151": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 128/2011"
+ },
+ "cnj-152": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 48/2007"
+ },
+ "cnj-154": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 127/2011"
+ },
+ "cnj-155": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 126/2011"
+ },
+ "cnj-156": {
+  "dispositivos": 25,
+  "nome": "Resolução CNJ nº 125/2010"
+ },
+ "cnj-157": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 44/2007"
+ },
+ "cnj-158": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 100/2009"
+ },
+ "cnj-161": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 101/2009"
+ },
+ "cnj-162": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 47/2007"
+ },
+ "cnj-1628": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 13/2012"
+ },
+ "cnj-163": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 104/2010"
+ },
+ "cnj-1630": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 11/2012"
+ },
+ "cnj-1632": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 163/2012"
+ },
+ "cnj-1640": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 165/2012"
+ },
+ "cnj-1649": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 690/2026"
+ },
+ "cnj-1658": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 27/2012"
+ },
+ "cnj-166": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 105/2010"
+ },
+ "cnj-1660": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 14/2013"
+ },
+ "cnj-1667": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 16/2013"
+ },
+ "cnj-1669": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 15/2013"
+ },
+ "cnj-167": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 46/2007"
+ },
+ "cnj-168": {
+  "dispositivos": 15,
+  "nome": "Resolução CNJ nº 106/2010"
+ },
+ "cnj-1680": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 171/2013"
+ },
+ "cnj-1684": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 172/2013"
+ },
+ "cnj-1685": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 170/2013"
+ },
+ "cnj-1686": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 17/2013"
+ },
+ "cnj-1688": {
+  "dispositivos": 18,
+  "nome": "Resolução CNJ nº 169/2013"
+ },
+ "cnj-169": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 45/2007"
+ },
+ "cnj-1690": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 48/2013"
+ },
+ "cnj-172": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 43/2007"
+ },
+ "cnj-1721": {
+  "dispositivos": 1,
+  "nome": "Resolução Conjunta CNJ nº 3/2013"
+ },
+ "cnj-1723": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 174/2013"
+ },
+ "cnj-1726": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 18/2013"
+ },
+ "cnj-1727": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 30/2013"
+ },
+ "cnj-173": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 107/2010"
+ },
+ "cnj-1730": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 28/2013"
+ },
+ "cnj-1731": {
+  "dispositivos": 10,
+  "nome": "Resolução Conjunta CNJ nº 3/2012"
+ },
+ "cnj-177": {
+  "dispositivos": 10,
+  "nome": "Resolução CNJ nº 13/2006"
+ },
+ "cnj-1772": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 176/2013"
+ },
+ "cnj-178": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 14/2006"
+ },
+ "cnj-1789": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 32/2013"
+ },
+ "cnj-179": {
+  "dispositivos": 18,
+  "nome": "Resolução CNJ nº 35/2007"
+ },
+ "cnj-1798": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 29/2013"
+ },
+ "cnj-1799": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 33/2013"
+ },
+ "cnj-180": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 1/2005"
+ },
+ "cnj-1800": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 51/2013"
+ },
+ "cnj-1805": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 34/2013"
+ },
+ "cnj-181": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 41/2007"
+ },
+ "cnj-1814": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 20/2013"
+ },
+ "cnj-182": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 40/2007"
+ },
+ "cnj-1823": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 43/2013"
+ },
+ "cnj-1837": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 21/2013"
+ },
+ "cnj-1840": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 22/2013"
+ },
+ "cnj-185": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 3/2005"
+ },
+ "cnj-1856": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 180/2013"
+ },
+ "cnj-187": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 7/2005"
+ },
+ "cnj-1874": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 182/2013"
+ },
+ "cnj-1881": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 183/2013"
+ },
+ "cnj-1894": {
+  "dispositivos": 2,
+  "nome": "Orientação CNJ nº 5/2013"
+ },
+ "cnj-1907": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 44/2013"
+ },
+ "cnj-191": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 5/2005"
+ },
+ "cnj-1917": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 184/2013"
+ },
+ "cnj-192": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 23/2006"
+ },
+ "cnj-1920": {
+  "dispositivos": 11,
+  "nome": "Instrução Normativa CNJ nº 24/2013"
+ },
+ "cnj-1931": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 55/2013"
+ },
+ "cnj-1933": {
+  "dispositivos": 32,
+  "nome": "Resolução CNJ nº 185/2013"
+ },
+ "cnj-194": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 25/2006"
+ },
+ "cnj-195": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 39/2007"
+ },
+ "cnj-1952": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 187/2014"
+ },
+ "cnj-1953": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 47/2014"
+ },
+ "cnj-1964": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 56/2014"
+ },
+ "cnj-1972": {
+  "dispositivos": 5,
+  "nome": "Resolução Conjunta CNJ nº 4/2014"
+ },
+ "cnj-198": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 34/2007"
+ },
+ "cnj-199": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 24/2006"
+ },
+ "cnj-1990": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 45/2013"
+ },
+ "cnj-200": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 32/2007"
+ },
+ "cnj-2000": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 191/2014"
+ },
+ "cnj-2001": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 240/2026"
+ },
+ "cnj-2004": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 36/2014"
+ },
+ "cnj-2008": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 57/2014"
+ },
+ "cnj-201": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 31/2007"
+ },
+ "cnj-2011": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 50/2014"
+ },
+ "cnj-2012": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 192/2014"
+ },
+ "cnj-2020": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 194/2014"
+ },
+ "cnj-2022": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 195/2014"
+ },
+ "cnj-2029": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 198/2014"
+ },
+ "cnj-204": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 10/2005"
+ },
+ "cnj-2043": {
+  "dispositivos": 23,
+  "nome": "Provimento CNJ nº 37/2014"
+ },
+ "cnj-2048": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 38/2014"
+ },
+ "cnj-2049": {
+  "dispositivos": 10,
+  "nome": "Provimento CNJ nº 39/2014"
+ },
+ "cnj-205": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 18/2006"
+ },
+ "cnj-2054": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 40/2014"
+ },
+ "cnj-2076": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 199/2014"
+ },
+ "cnj-2077": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 41/2014"
+ },
+ "cnj-208": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 16/2006"
+ },
+ "cnj-209": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 17/2006"
+ },
+ "cnj-2098": {
+  "dispositivos": 13,
+  "nome": "Instrução Normativa CNJ nº 29/2014"
+ },
+ "cnj-2116": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 4/2010"
+ },
+ "cnj-2125": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 200/2015"
+ },
+ "cnj-2126": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 201/2015"
+ },
+ "cnj-2128": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 18/2015"
+ },
+ "cnj-2129": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 64/2015"
+ },
+ "cnj-2130": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 63/2015"
+ },
+ "cnj-2139": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 32/2015"
+ },
+ "cnj-2154": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 66/2015"
+ },
+ "cnj-2166": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 35/2015"
+ },
+ "cnj-2169": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 67/2015"
+ },
+ "cnj-2175": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 49/2015"
+ },
+ "cnj-2179": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 205/2015"
+ },
+ "cnj-2189": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 207/2015"
+ },
+ "cnj-2192": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 202/2015"
+ },
+ "cnj-2199": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 208/2015"
+ },
+ "cnj-2200": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 209/2015"
+ },
+ "cnj-2203": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 203/2015"
+ },
+ "cnj-2226": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 210/2015"
+ },
+ "cnj-2227": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 211/2015"
+ },
+ "cnj-2234": {
+  "dispositivos": 22,
+  "nome": "Resolução CNJ nº 213/2015"
+ },
+ "cnj-2235": {
+  "dispositivos": 1,
+  "nome": "Recomendação Conjunta CNJ nº 1/2015"
+ },
+ "cnj-2236": {
+  "dispositivos": 41,
+  "nome": "Resolução CNJ nº 215/2015"
+ },
+ "cnj-2237": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 214/2015"
+ },
+ "cnj-2245": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 216/2016"
+ },
+ "cnj-2248": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 217/2016"
+ },
+ "cnj-2256": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 38/2016"
+ },
+ "cnj-2259": {
+  "dispositivos": 9,
+  "nome": "Instrução Normativa CNJ nº 39/2016"
+ },
+ "cnj-2274": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 219/2016"
+ },
+ "cnj-2279": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 221/2016"
+ },
+ "cnj-2283": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 222/2016"
+ },
+ "cnj-2285": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 223/2016"
+ },
+ "cnj-2288": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 224/2016"
+ },
+ "cnj-2289": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 225/2016"
+ },
+ "cnj-2294": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 226/2016"
+ },
+ "cnj-2295": {
+  "dispositivos": 19,
+  "nome": "Resolução CNJ nº 227/2016"
+ },
+ "cnj-2299": {
+  "dispositivos": 18,
+  "nome": "Resolução CNJ nº 228/2016"
+ },
+ "cnj-2301": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 230/2016"
+ },
+ "cnj-2306": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 231/2016"
+ },
+ "cnj-2309": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 232/2016"
+ },
+ "cnj-2310": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 233/2016"
+ },
+ "cnj-2311": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 234/2016"
+ },
+ "cnj-2312": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 235/2016"
+ },
+ "cnj-2313": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 236/2016"
+ },
+ "cnj-2339": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 238/2016"
+ },
+ "cnj-2341": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 53/2016"
+ },
+ "cnj-2342": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 240/2016"
+ },
+ "cnj-2343": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 241/2016"
+ },
+ "cnj-2349": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 244/2016"
+ },
+ "cnj-2351": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 243/2016"
+ },
+ "cnj-2474": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 40/2017"
+ },
+ "cnj-2488": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 2/2017"
+ },
+ "cnj-2494": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 41/2018"
+ },
+ "cnj-2505": {
+  "dispositivos": 12,
+  "nome": "Instrução Normativa CNJ nº 42/2018"
+ },
+ "cnj-2506": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 43/2015"
+ },
+ "cnj-2507": {
+  "dispositivos": 29,
+  "nome": "Provimento CNJ nº 44/2015"
+ },
+ "cnj-2508": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 45/2015"
+ },
+ "cnj-2509": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 46/2015"
+ },
+ "cnj-2510": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 47/2015"
+ },
+ "cnj-2511": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 48/2016"
+ },
+ "cnj-2512": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 50/2015"
+ },
+ "cnj-2514": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 52/2016"
+ },
+ "cnj-2517": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 55/2016"
+ },
+ "cnj-2520": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 58/2016"
+ },
+ "cnj-2521": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 59/2017"
+ },
+ "cnj-2522": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 60/2017"
+ },
+ "cnj-2523": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 61/2017"
+ },
+ "cnj-2524": {
+  "dispositivos": 19,
+  "nome": "Provimento CNJ nº 62/2017"
+ },
+ "cnj-2525": {
+  "dispositivos": 9,
+  "nome": "Provimento CNJ nº 63/2017"
+ },
+ "cnj-2526": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 64/2017"
+ },
+ "cnj-2527": {
+  "dispositivos": 9,
+  "nome": "Provimento CNJ nº 65/2017"
+ },
+ "cnj-2532": {
+  "dispositivos": 9,
+  "nome": "Provimento CNJ nº 67/2018"
+ },
+ "cnj-2552": {
+  "dispositivos": 14,
+  "nome": "Instrução Normativa CNJ nº 43/2018"
+ },
+ "cnj-2580": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 246/2018"
+ },
+ "cnj-2590": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 248/2018"
+ },
+ "cnj-2607": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 70/2018"
+ },
+ "cnj-2608": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 71/2018"
+ },
+ "cnj-2621": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 72/2018"
+ },
+ "cnj-2623": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 73/2018"
+ },
+ "cnj-2666": {
+  "dispositivos": 14,
+  "nome": "Resolução CNJ nº 251/2018"
+ },
+ "cnj-2667": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 252/2018"
+ },
+ "cnj-2668": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 253/2018"
+ },
+ "cnj-2669": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 254/2018"
+ },
+ "cnj-2670": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 255/2018"
+ },
+ "cnj-2679": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 54/2018"
+ },
+ "cnj-2682": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 75/2018"
+ },
+ "cnj-2686": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 257/2018"
+ },
+ "cnj-2689": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 261/2018"
+ },
+ "cnj-2694": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 260/2018"
+ },
+ "cnj-2705": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 72/2018"
+ },
+ "cnj-2715": {
+  "dispositivos": 10,
+  "nome": "Resolução CNJ nº 265/2018"
+ },
+ "cnj-2735": {
+  "dispositivos": 1,
+  "nome": "Orientação CNJ nº 7/2018"
+ },
+ "cnj-2736": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 77/2018"
+ },
+ "cnj-2753": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 45/2018"
+ },
+ "cnj-2767": {
+  "dispositivos": 7,
+  "nome": "Instrução Normativa CNJ nº 45/2018"
+ },
+ "cnj-2779": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 270/2018"
+ },
+ "cnj-2780": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 271/2018"
+ },
+ "cnj-2782": {
+  "dispositivos": 7,
+  "nome": "Instrução Normativa CNJ nº 47/2018"
+ },
+ "cnj-2783": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 48/2018"
+ },
+ "cnj-2790": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 272/2018"
+ },
+ "cnj-2792": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 274/2018"
+ },
+ "cnj-2793": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 275/2018"
+ },
+ "cnj-2825": {
+  "dispositivos": 11,
+  "nome": "Instrução Normativa CNJ nº 74/2019"
+ },
+ "cnj-2826": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 75/2019"
+ },
+ "cnj-2838": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 31/2019"
+ },
+ "cnj-2879": {
+  "dispositivos": 14,
+  "nome": "Resolução CNJ nº 280/2019"
+ },
+ "cnj-2880": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 281/2019"
+ },
+ "cnj-2923": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 36/2019"
+ },
+ "cnj-2925": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 284/2019"
+ },
+ "cnj-2952": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 41/2019"
+ },
+ "cnj-2957": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 288/2019"
+ },
+ "cnj-2958": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 286/2019"
+ },
+ "cnj-2959": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 287/2019"
+ },
+ "cnj-2975": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 83/2019"
+ },
+ "cnj-2976": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 289/2019"
+ },
+ "cnj-2991": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 86/2019"
+ },
+ "cnj-2992": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 291/2019"
+ },
+ "cnj-2993": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 292/2019"
+ },
+ "cnj-2994": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 293/2019"
+ },
+ "cnj-3004": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 283/2019"
+ },
+ "cnj-3008": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 87/2019"
+ },
+ "cnj-3015": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 295/2019"
+ },
+ "cnj-3019": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 53/2019"
+ },
+ "cnj-3025": {
+  "dispositivos": 30,
+  "nome": "Provimento CNJ nº 88/2019"
+ },
+ "cnj-3026": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 40/2019"
+ },
+ "cnj-3028": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 42/2019"
+ },
+ "cnj-3029": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 21/2015"
+ },
+ "cnj-3030": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 26/2016"
+ },
+ "cnj-3035": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa Conjunta CNJ nº 1/2019"
+ },
+ "cnj-3038": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 296/2019"
+ },
+ "cnj-3065": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 25/2016"
+ },
+ "cnj-3069": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 57/2019"
+ },
+ "cnj-3070": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 58/2019"
+ },
+ "cnj-3091": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 52/2019"
+ },
+ "cnj-3100": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 54/2019"
+ },
+ "cnj-3109": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 298/2019"
+ },
+ "cnj-3110": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 299/2019"
+ },
+ "cnj-3123": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 304/2019"
+ },
+ "cnj-3124": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 305/2019"
+ },
+ "cnj-3129": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 294/2019"
+ },
+ "cnj-313": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 119/2026"
+ },
+ "cnj-3130": {
+  "dispositivos": 87,
+  "nome": "Resolução CNJ nº 303/2019"
+ },
+ "cnj-3131": {
+  "dispositivos": 8,
+  "nome": "Provimento CNJ nº 89/2019"
+ },
+ "cnj-3141": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 60/2019"
+ },
+ "cnj-3146": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 306/2019"
+ },
+ "cnj-3147": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 307/2019"
+ },
+ "cnj-315": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 234/2026"
+ },
+ "cnj-3157": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 57/2019"
+ },
+ "cnj-3179": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 285/2019"
+ },
+ "cnj-3181": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 58/2020"
+ },
+ "cnj-3205": {
+  "dispositivos": 6,
+  "nome": "Recomendação CNJ nº 61/2020"
+ },
+ "cnj-321": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 684/2026"
+ },
+ "cnj-3218": {
+  "dispositivos": 2,
+  "nome": "Resolução Conjunta CNJ nº 5/2020"
+ },
+ "cnj-322": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 685/2026"
+ },
+ "cnj-3236": {
+  "dispositivos": 1,
+  "nome": "Orientação CNJ nº 9/2020"
+ },
+ "cnj-3242": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 45/2020"
+ },
+ "cnj-3246": {
+  "dispositivos": 11,
+  "nome": "Recomendação CNJ nº 62/2020"
+ },
+ "cnj-3249": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 313/2020"
+ },
+ "cnj-3259": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 94/2020"
+ },
+ "cnj-3261": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 63/2020"
+ },
+ "cnj-3262": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 61/2020"
+ },
+ "cnj-3263": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 93/2020"
+ },
+ "cnj-3265": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 95/2020"
+ },
+ "cnj-3268": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 91/2020"
+ },
+ "cnj-3269": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 92/2020"
+ },
+ "cnj-327": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 687/2026"
+ },
+ "cnj-3272": {
+  "dispositivos": 9,
+  "nome": "Instrução Normativa CNJ nº 79/2020"
+ },
+ "cnj-3273": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 241/2026"
+ },
+ "cnj-3274": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 246/2026"
+ },
+ "cnj-3283": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 314/2020"
+ },
+ "cnj-3284": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 97/2020"
+ },
+ "cnj-3285": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 98/2020"
+ },
+ "cnj-3287": {
+  "dispositivos": 2,
+  "nome": "Recomendação Conjunta CNJ nº 1/2020"
+ },
+ "cnj-3288": {
+  "dispositivos": 15,
+  "nome": "Resolução CNJ nº 308/2020"
+ },
+ "cnj-3289": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 309/2020"
+ },
+ "cnj-3290": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 315/2020"
+ },
+ "cnj-3291": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 316/2020"
+ },
+ "cnj-3297": {
+  "dispositivos": 22,
+  "nome": "Instrução Normativa CNJ nº 62/2020"
+ },
+ "cnj-3302": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 317/2020"
+ },
+ "cnj-3303": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 1/2020"
+ },
+ "cnj-3308": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 318/2020"
+ },
+ "cnj-3313": {
+  "dispositivos": 8,
+  "nome": "Instrução Normativa CNJ nº 64/2020"
+ },
+ "cnj-3318": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 66/2020"
+ },
+ "cnj-332": {
+  "dispositivos": 5,
+  "nome": "Recomendação CNJ nº 170/2026"
+ },
+ "cnj-3320": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 64/2020"
+ },
+ "cnj-3324": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 321/2020"
+ },
+ "cnj-3328": {
+  "dispositivos": 9,
+  "nome": "Resolução Conjunta CNJ nº 6/2020"
+ },
+ "cnj-333": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 171/2026"
+ },
+ "cnj-3333": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 322/2020"
+ },
+ "cnj-3334": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 100/2020"
+ },
+ "cnj-3335": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 103/2020"
+ },
+ "cnj-3336": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 102/2020"
+ },
+ "cnj-3356": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 106/2020"
+ },
+ "cnj-3364": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 68/2020"
+ },
+ "cnj-3365": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 325/2020"
+ },
+ "cnj-3366": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 326/2020"
+ },
+ "cnj-3370": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 108/2020"
+ },
+ "cnj-3375": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 327/2020"
+ },
+ "cnj-3376": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 324/2020"
+ },
+ "cnj-3378": {
+  "dispositivos": 10,
+  "nome": "Instrução Normativa CNJ nº 66/2020"
+ },
+ "cnj-3380": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 328/2020"
+ },
+ "cnj-3399": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 67/2020"
+ },
+ "cnj-3400": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 329/2020"
+ },
+ "cnj-3411": {
+  "dispositivos": 11,
+  "nome": "Instrução Normativa CNJ nº 67/2020"
+ },
+ "cnj-3413": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 81/2020"
+ },
+ "cnj-3426": {
+  "dispositivos": 6,
+  "nome": "Recomendação CNJ nº 72/2020"
+ },
+ "cnj-3427": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 83/2020"
+ },
+ "cnj-3428": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 331/2020"
+ },
+ "cnj-3429": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 332/2020"
+ },
+ "cnj-3431": {
+  "dispositivos": 8,
+  "nome": "Instrução Normativa CNJ nº 2/2020"
+ },
+ "cnj-3432": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 73/2020"
+ },
+ "cnj-3434": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 71/2020"
+ },
+ "cnj-3435": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 330/2020"
+ },
+ "cnj-344": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 44/2012"
+ },
+ "cnj-345": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 43/2012"
+ },
+ "cnj-3454": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 339/2020"
+ },
+ "cnj-3455": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 340/2020"
+ },
+ "cnj-3458": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 342/2020"
+ },
+ "cnj-3459": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 343/2020"
+ },
+ "cnj-3460": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 344/2020"
+ },
+ "cnj-3462": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 76/2020"
+ },
+ "cnj-3478": {
+  "dispositivos": 8,
+  "nome": "Recomendação CNJ nº 77/2020"
+ },
+ "cnj-3480": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 78/2020"
+ },
+ "cnj-3487": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 74/2020"
+ },
+ "cnj-3488": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 333/2020"
+ },
+ "cnj-3489": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 334/2020"
+ },
+ "cnj-3496": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 335/2020"
+ },
+ "cnj-3497": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 336/2020"
+ },
+ "cnj-3508": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 341/2020"
+ },
+ "cnj-3512": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 345/2020"
+ },
+ "cnj-3513": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 346/2020"
+ },
+ "cnj-3514": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 79/2020"
+ },
+ "cnj-3518": {
+  "dispositivos": 14,
+  "nome": "Resolução CNJ nº 347/2020"
+ },
+ "cnj-3519": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 348/2020"
+ },
+ "cnj-3522": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 109/2020"
+ },
+ "cnj-3524": {
+  "dispositivos": 3,
+  "nome": "Recomendação Conjunta CNJ nº 1/2020"
+ },
+ "cnj-3547": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 349/2020"
+ },
+ "cnj-3554": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 84/2020"
+ },
+ "cnj-3555": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 85/2020"
+ },
+ "cnj-3556": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 350/2020"
+ },
+ "cnj-3557": {
+  "dispositivos": 19,
+  "nome": "Resolução CNJ nº 351/2020"
+ },
+ "cnj-3563": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 81/2020"
+ },
+ "cnj-357": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 41/2011"
+ },
+ "cnj-3578": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 353/2020"
+ },
+ "cnj-3579": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 354/2020"
+ },
+ "cnj-3596": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 23/2012"
+ },
+ "cnj-3597": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 24/2012"
+ },
+ "cnj-3601": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 356/2020"
+ },
+ "cnj-3604": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 358/2020"
+ },
+ "cnj-3628": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 359/2020"
+ },
+ "cnj-3659": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 364/2021"
+ },
+ "cnj-3668": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 363/2021"
+ },
+ "cnj-3670": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 85/2021"
+ },
+ "cnj-3671": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 86/2021"
+ },
+ "cnj-3674": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 69/2020"
+ },
+ "cnj-3678": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 366/2021"
+ },
+ "cnj-3679": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 367/2021"
+ },
+ "cnj-3681": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 369/2021"
+ },
+ "cnj-3682": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 87/2021"
+ },
+ "cnj-3706": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 370/2021"
+ },
+ "cnj-3713": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 111/2021"
+ },
+ "cnj-3720": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 112/2021"
+ },
+ "cnj-3742": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 372/2021"
+ },
+ "cnj-3743": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 373/2021"
+ },
+ "cnj-3761": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 375/2021"
+ },
+ "cnj-3772": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 377/2021"
+ },
+ "cnj-378": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 233/2026"
+ },
+ "cnj-3780": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 73/2021"
+ },
+ "cnj-3785": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 91/2021"
+ },
+ "cnj-379": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 231/2026"
+ },
+ "cnj-3794": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 379/2021"
+ },
+ "cnj-3797": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 382/2021"
+ },
+ "cnj-3823": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 115/2021"
+ },
+ "cnj-3829": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 383/2021"
+ },
+ "cnj-3842": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 93/2021"
+ },
+ "cnj-3843": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 385/2021"
+ },
+ "cnj-3845": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 92/2021"
+ },
+ "cnj-3861": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 95/2021"
+ },
+ "cnj-3863": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 97/2021"
+ },
+ "cnj-3868": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 388/2021"
+ },
+ "cnj-3885": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 86/2021"
+ },
+ "cnj-3887": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 116/2021"
+ },
+ "cnj-3899": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 75/2021"
+ },
+ "cnj-3902": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 389/2021"
+ },
+ "cnj-3914": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 390/2021"
+ },
+ "cnj-3949": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 98/2021"
+ },
+ "cnj-3954": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 393/2021"
+ },
+ "cnj-3956": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 394/2021"
+ },
+ "cnj-3973": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 395/2021"
+ },
+ "cnj-3975": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 396/2021"
+ },
+ "cnj-3978": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 398/2021"
+ },
+ "cnj-3986": {
+  "dispositivos": 13,
+  "nome": "Resolução CNJ nº 400/2021"
+ },
+ "cnj-3987": {
+  "dispositivos": 13,
+  "nome": "Resolução CNJ nº 401/2021"
+ },
+ "cnj-3988": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 100/2021"
+ },
+ "cnj-4015": {
+  "dispositivos": 1,
+  "nome": "Resolução Conjunta CNJ nº 8/2021"
+ },
+ "cnj-4018": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 402/2021"
+ },
+ "cnj-4019": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 403/2021"
+ },
+ "cnj-4022": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 87/2021"
+ },
+ "cnj-4030": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 405/2021"
+ },
+ "cnj-4031": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 119/2021"
+ },
+ "cnj-4039": {
+  "dispositivos": 7,
+  "nome": "Instrução Normativa CNJ nº 78/2021"
+ },
+ "cnj-4061": {
+  "dispositivos": 21,
+  "nome": "Resolução CNJ nº 404/2021"
+ },
+ "cnj-4062": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 406/2021"
+ },
+ "cnj-4065": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 408/2021"
+ },
+ "cnj-4066": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 122/2021"
+ },
+ "cnj-4071": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 412/2021"
+ },
+ "cnj-4073": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 410/2021"
+ },
+ "cnj-4074": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 411/2021"
+ },
+ "cnj-4076": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 103/2021"
+ },
+ "cnj-4078": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 105/2021"
+ },
+ "cnj-408": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 172/2026"
+ },
+ "cnj-4105": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 414/2021"
+ },
+ "cnj-4107": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 79/2021"
+ },
+ "cnj-4109": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 416/2021"
+ },
+ "cnj-4115": {
+  "dispositivos": 14,
+  "nome": "Resolução CNJ nº 417/2021"
+ },
+ "cnj-4118": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 108/2021"
+ },
+ "cnj-4124": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 419/2021"
+ },
+ "cnj-4132": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 422/2021"
+ },
+ "cnj-4133": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 420/2021"
+ },
+ "cnj-4145": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 109/2021"
+ },
+ "cnj-4146": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 110/2021"
+ },
+ "cnj-4150": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 421/2021"
+ },
+ "cnj-4167": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 80/2021"
+ },
+ "cnj-4169": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 425/2021"
+ },
+ "cnj-4170": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 426/2021"
+ },
+ "cnj-4191": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 428/2021"
+ },
+ "cnj-4192": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 429/2021"
+ },
+ "cnj-4196": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 112/2021"
+ },
+ "cnj-4197": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 113/2020"
+ },
+ "cnj-4198": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 114/2021"
+ },
+ "cnj-4210": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 438/2021"
+ },
+ "cnj-4212": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 437/2021"
+ },
+ "cnj-4213": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 432/2021"
+ },
+ "cnj-4214": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 433/2021"
+ },
+ "cnj-4215": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 434/2021"
+ },
+ "cnj-4216": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 435/2021"
+ },
+ "cnj-4219": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 115/2021"
+ },
+ "cnj-4224": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 120/2021"
+ },
+ "cnj-4280": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 124/2021"
+ },
+ "cnj-4297": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 441/2021"
+ },
+ "cnj-4299": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 125/2021"
+ },
+ "cnj-4303": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 439/2022"
+ },
+ "cnj-4304": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 440/2022"
+ },
+ "cnj-4305": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 123/2022"
+ },
+ "cnj-4306": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 124/2022"
+ },
+ "cnj-4358": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 127/2022"
+ },
+ "cnj-4401": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 49/2022"
+ },
+ "cnj-4415": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 444/2022"
+ },
+ "cnj-4417": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 446/2022"
+ },
+ "cnj-4451": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 448/2022"
+ },
+ "cnj-4457": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 447/2022"
+ },
+ "cnj-4458": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 449/2022"
+ },
+ "cnj-446": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 35/2010"
+ },
+ "cnj-447": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 32/2009"
+ },
+ "cnj-4504": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 453/2022"
+ },
+ "cnj-4509": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 455/2022"
+ },
+ "cnj-4511": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 457/2022"
+ },
+ "cnj-4514": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 454/2022"
+ },
+ "cnj-453": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 28/2009"
+ },
+ "cnj-454": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 33/2009"
+ },
+ "cnj-457": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 25/2009"
+ },
+ "cnj-459": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 22/2009"
+ },
+ "cnj-461": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 20/2009"
+ },
+ "cnj-4611": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 465/2022"
+ },
+ "cnj-4613": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 129/2022"
+ },
+ "cnj-4614": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 130/2022"
+ },
+ "cnj-462": {
+  "dispositivos": 10,
+  "nome": "Instrução Normativa CNJ nº 19/2009"
+ },
+ "cnj-463": {
+  "dispositivos": 14,
+  "nome": "Instrução Normativa CNJ nº 18/2009"
+ },
+ "cnj-4638": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 130/2022"
+ },
+ "cnj-464": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 17/2009"
+ },
+ "cnj-4650": {
+  "dispositivos": 25,
+  "nome": "Resolução CNJ nº 467/2022"
+ },
+ "cnj-4653": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 86/2022"
+ },
+ "cnj-4663": {
+  "dispositivos": 24,
+  "nome": "Resolução CNJ nº 468/2022"
+ },
+ "cnj-4664": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 85/2022"
+ },
+ "cnj-467": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 16/2009"
+ },
+ "cnj-4671": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 50/2022"
+ },
+ "cnj-468": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 15/2009"
+ },
+ "cnj-469": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 13/2008"
+ },
+ "cnj-4698": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 133/2022"
+ },
+ "cnj-470": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 12/2008"
+ },
+ "cnj-4707": {
+  "dispositivos": 17,
+  "nome": "Provimento CNJ nº 134/2022"
+ },
+ "cnj-4712": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 470/2022"
+ },
+ "cnj-4716": {
+  "dispositivos": 10,
+  "nome": "Provimento CNJ nº 135/2022"
+ },
+ "cnj-4719": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 469/2022"
+ },
+ "cnj-472": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 11/2008"
+ },
+ "cnj-4720": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 471/2022"
+ },
+ "cnj-4721": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 131/2022"
+ },
+ "cnj-4723": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 472/2022"
+ },
+ "cnj-4730": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 88/2022"
+ },
+ "cnj-4740": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 134/2022"
+ },
+ "cnj-4742": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 135/2022"
+ },
+ "cnj-4750": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 137/2022"
+ },
+ "cnj-4761": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 136/2022"
+ },
+ "cnj-4787": {
+  "dispositivos": 1,
+  "nome": "Resolução Conjunta CNJ nº 9/2022"
+ },
+ "cnj-480": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 10/2008"
+ },
+ "cnj-4802": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 478/2022"
+ },
+ "cnj-4815": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 90/2022"
+ },
+ "cnj-4818": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 479/2022"
+ },
+ "cnj-4829": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 480/2022"
+ },
+ "cnj-4838": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 44/2020"
+ },
+ "cnj-4858": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 137/2022"
+ },
+ "cnj-4875": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 139/2022"
+ },
+ "cnj-4876": {
+  "dispositivos": 25,
+  "nome": "Resolução CNJ nº 482/2022"
+ },
+ "cnj-4882": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 483/2022"
+ },
+ "cnj-4883": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 484/2022"
+ },
+ "cnj-4909": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 485/2023"
+ },
+ "cnj-491": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 9/2008"
+ },
+ "cnj-4921": {
+  "dispositivos": 15,
+  "nome": "Provimento CNJ nº 139/2023"
+ },
+ "cnj-494": {
+  "dispositivos": 13,
+  "nome": "Instrução Normativa CNJ nº 8/2008"
+ },
+ "cnj-4955": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 140/2023"
+ },
+ "cnj-4960": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 487/2023"
+ },
+ "cnj-4963": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 93/2023"
+ },
+ "cnj-4967": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 488/2023"
+ },
+ "cnj-4971": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 490/2023"
+ },
+ "cnj-498": {
+  "dispositivos": 5,
+  "nome": "Instrução Normativa CNJ nº 7/2008"
+ },
+ "cnj-4986": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 492/2023"
+ },
+ "cnj-4996": {
+  "dispositivos": 14,
+  "nome": "Provimento CNJ nº 141/2023"
+ },
+ "cnj-5006": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 142/2023"
+ },
+ "cnj-501": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 6/2008"
+ },
+ "cnj-5023": {
+  "dispositivos": 25,
+  "nome": "Instrução Normativa CNJ nº 94/2023"
+ },
+ "cnj-5048": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 497/2023"
+ },
+ "cnj-5057": {
+  "dispositivos": 12,
+  "nome": "Provimento CNJ nº 143/2023"
+ },
+ "cnj-5058": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 144/2023"
+ },
+ "cnj-5059": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 94/2023"
+ },
+ "cnj-5070": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 498/2023"
+ },
+ "cnj-5125": {
+  "dispositivos": 2,
+  "nome": "Orientação CNJ nº 12/2023"
+ },
+ "cnj-513": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 5/2008"
+ },
+ "cnj-5133": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 502/2023"
+ },
+ "cnj-5138": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 505/2023"
+ },
+ "cnj-514": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 4/2008"
+ },
+ "cnj-5150": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 507/2023"
+ },
+ "cnj-5166": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 508/2023"
+ },
+ "cnj-5170": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 146/2023"
+ },
+ "cnj-5172": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 510/2023"
+ },
+ "cnj-5174": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 512/2023"
+ },
+ "cnj-5177": {
+  "dispositivos": 4,
+  "nome": "Recomendação CNJ nº 140/2023"
+ },
+ "cnj-5180": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 145/2023"
+ },
+ "cnj-5187": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 141/2023"
+ },
+ "cnj-5188": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 513/2023"
+ },
+ "cnj-5198": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 147/2023"
+ },
+ "cnj-5199": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 148/2023"
+ },
+ "cnj-52": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 158/2012"
+ },
+ "cnj-520": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 1/2008"
+ },
+ "cnj-5208": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 514/2023"
+ },
+ "cnj-5220": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 97/2023"
+ },
+ "cnj-5226": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 516/2023"
+ },
+ "cnj-523": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 115/2026"
+ },
+ "cnj-5242": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 518/2023"
+ },
+ "cnj-5243": {
+  "dispositivos": 304,
+  "nome": "Provimento CNJ nº 149/2023"
+ },
+ "cnj-5253": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 520/2023"
+ },
+ "cnj-5258": {
+  "dispositivos": 9,
+  "nome": "Provimento CNJ nº 150/2023"
+ },
+ "cnj-5261": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 521/2023"
+ },
+ "cnj-5266": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 522/2023"
+ },
+ "cnj-5275": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 524/2023"
+ },
+ "cnj-5278": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 145/2023"
+ },
+ "cnj-5282": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 151/2023"
+ },
+ "cnj-5283": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 152/2023"
+ },
+ "cnj-5284": {
+  "dispositivos": 11,
+  "nome": "Provimento CNJ nº 153/2023"
+ },
+ "cnj-5289": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 526/2023"
+ },
+ "cnj-5297": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 527/2023"
+ },
+ "cnj-5323": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 529/2023"
+ },
+ "cnj-5327": {
+  "dispositivos": 10,
+  "nome": "Provimento CNJ nº 156/2023"
+ },
+ "cnj-5332": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 531/2023"
+ },
+ "cnj-5333": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 157/2023"
+ },
+ "cnj-5354": {
+  "dispositivos": 5,
+  "nome": "Recomendação CNJ nº 147/2023"
+ },
+ "cnj-5360": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 146/2023"
+ },
+ "cnj-5380": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 158/2023"
+ },
+ "cnj-5381": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 536/2023"
+ },
+ "cnj-5385": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 537/2023"
+ },
+ "cnj-5389": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 159/2023"
+ },
+ "cnj-5392": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 541/2023"
+ },
+ "cnj-5393": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 542/2023"
+ },
+ "cnj-54": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 99/2009"
+ },
+ "cnj-5402": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 543/2024"
+ },
+ "cnj-5403": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 544/2024"
+ },
+ "cnj-5406": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 100/2024"
+ },
+ "cnj-5422": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 101/2024"
+ },
+ "cnj-5435": {
+  "dispositivos": 2,
+  "nome": "Recomendação Conjunta CNJ nº 2/2024"
+ },
+ "cnj-5447": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 545/2024"
+ },
+ "cnj-5455": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 547/2024"
+ },
+ "cnj-5480": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 161/2024"
+ },
+ "cnj-5486": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 548/2024"
+ },
+ "cnj-5489": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 162/2024"
+ },
+ "cnj-5498": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 549/2024"
+ },
+ "cnj-55": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 77/2009"
+ },
+ "cnj-5508": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 164/2024"
+ },
+ "cnj-5509": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 550/2024"
+ },
+ "cnj-5510": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 551/2024"
+ },
+ "cnj-5512": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 553/2024"
+ },
+ "cnj-5527": {
+  "dispositivos": 49,
+  "nome": "Provimento CNJ nº 165/2024"
+ },
+ "cnj-5540": {
+  "dispositivos": 11,
+  "nome": "Instrução Normativa CNJ nº 98/2024"
+ },
+ "cnj-5548": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 556/2024"
+ },
+ "cnj-5549": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 557/2024"
+ },
+ "cnj-5550": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 149/2024"
+ },
+ "cnj-5552": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 150/2024"
+ },
+ "cnj-5555": {
+  "dispositivos": 25,
+  "nome": "Resolução CNJ nº 558/2024"
+ },
+ "cnj-5569": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 559/2024"
+ },
+ "cnj-5572": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 102/2024"
+ },
+ "cnj-5573": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 1/2024"
+ },
+ "cnj-5577": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 101/2024"
+ },
+ "cnj-5582": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 561/2024"
+ },
+ "cnj-5585": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 99/2024"
+ },
+ "cnj-56": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 156/2012"
+ },
+ "cnj-5600": {
+  "dispositivos": 10,
+  "nome": "Resolução Conjunta CNJ nº 10/2024"
+ },
+ "cnj-5601": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 562/2024"
+ },
+ "cnj-5606": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 168/2024"
+ },
+ "cnj-5607": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 171/2024"
+ },
+ "cnj-5614": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 172/2024"
+ },
+ "cnj-5631": {
+  "dispositivos": 9,
+  "nome": "Instrução Normativa CNJ nº 105/2024"
+ },
+ "cnj-5655": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 566/2024"
+ },
+ "cnj-5663": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 174/2024"
+ },
+ "cnj-5676": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 176/2024"
+ },
+ "cnj-5688": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 153/2024"
+ },
+ "cnj-5690": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 568/2024"
+ },
+ "cnj-5691": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 569/2024"
+ },
+ "cnj-5692": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 570/2024"
+ },
+ "cnj-5695": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 179/2024"
+ },
+ "cnj-5696": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 180/2024"
+ },
+ "cnj-5697": {
+  "dispositivos": 6,
+  "nome": "Recomendação Conjunta CNJ nº 3/2024"
+ },
+ "cnj-57": {
+  "dispositivos": 17,
+  "nome": "Resolução CNJ nº 155/2012"
+ },
+ "cnj-5700": {
+  "dispositivos": 8,
+  "nome": "Provimento CNJ nº 177/2024"
+ },
+ "cnj-5702": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 103/2024"
+ },
+ "cnj-5705": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 571/2024"
+ },
+ "cnj-5706": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 572/2024"
+ },
+ "cnj-5707": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 573/2024"
+ },
+ "cnj-5708": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 574/2024"
+ },
+ "cnj-5709": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 575/2024"
+ },
+ "cnj-5710": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 576/2024"
+ },
+ "cnj-5730": {
+  "dispositivos": 9,
+  "nome": "Resolução CNJ nº 577/2024"
+ },
+ "cnj-5743": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 155/2024"
+ },
+ "cnj-5746": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 579/2024"
+ },
+ "cnj-5751": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 182/2024"
+ },
+ "cnj-5753": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 582/2024"
+ },
+ "cnj-5755": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 581/2024"
+ },
+ "cnj-5763": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 583/2024"
+ },
+ "cnj-5764": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 584/2024"
+ },
+ "cnj-5772": {
+  "dispositivos": 15,
+  "nome": "Instrução Normativa CNJ nº 107/2024"
+ },
+ "cnj-5774": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 586/2024"
+ },
+ "cnj-5777": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 157/2024"
+ },
+ "cnj-5779": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 587/2024"
+ },
+ "cnj-58": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 154/2012"
+ },
+ "cnj-5820": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 591/2024"
+ },
+ "cnj-5821": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 590/2024"
+ },
+ "cnj-5830": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 158/2024"
+ },
+ "cnj-5831": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 589/2024"
+ },
+ "cnj-5849": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 593/2024"
+ },
+ "cnj-5851": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 183/2024"
+ },
+ "cnj-5861": {
+  "dispositivos": 10,
+  "nome": "Resolução CNJ nº 595/2024"
+ },
+ "cnj-5862": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 596/2024"
+ },
+ "cnj-5866": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 184/2024"
+ },
+ "cnj-5892": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 187/2024"
+ },
+ "cnj-5897": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 188/2024"
+ },
+ "cnj-5904": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 599/2024"
+ },
+ "cnj-5905": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 600/2024"
+ },
+ "cnj-5906": {
+  "dispositivos": 6,
+  "nome": "Resolução CNJ nº 601/2024"
+ },
+ "cnj-5907": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 603/2024"
+ },
+ "cnj-5908": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 604/2024"
+ },
+ "cnj-5909": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 605/2024"
+ },
+ "cnj-5910": {
+  "dispositivos": 5,
+  "nome": "Resolução Conjunta CNJ nº 12/2024"
+ },
+ "cnj-5924": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 602/2024"
+ },
+ "cnj-5936": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 612/2024"
+ },
+ "cnj-5937": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 108/2024"
+ },
+ "cnj-5938": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 613/2025"
+ },
+ "cnj-5951": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 614/2025"
+ },
+ "cnj-5961": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 105/2025"
+ },
+ "cnj-5992": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 616/2025"
+ },
+ "cnj-5994": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 109/2025"
+ },
+ "cnj-60": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 153/2012"
+ },
+ "cnj-6001": {
+  "dispositivos": 18,
+  "nome": "Resolução CNJ nº 615/2025"
+ },
+ "cnj-6018": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 617/2025"
+ },
+ "cnj-6039": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 619/2025"
+ },
+ "cnj-6069": {
+  "dispositivos": 14,
+  "nome": "Instrução Normativa CNJ nº 110/2025"
+ },
+ "cnj-6102": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 620/2025"
+ },
+ "cnj-6126": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 193/2025"
+ },
+ "cnj-6134": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 194/2025"
+ },
+ "cnj-6148": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 622/2025"
+ },
+ "cnj-6151": {
+  "dispositivos": 21,
+  "nome": "Provimento CNJ nº 195/2025"
+ },
+ "cnj-6161": {
+  "dispositivos": 10,
+  "nome": "Provimento CNJ nº 196/2025"
+ },
+ "cnj-6173": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 161/2025"
+ },
+ "cnj-6177": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 162/2025"
+ },
+ "cnj-6186": {
+  "dispositivos": 4,
+  "nome": "Provimento CNJ nº 197/2025"
+ },
+ "cnj-6196": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 626/2025"
+ },
+ "cnj-6198": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 627/2025"
+ },
+ "cnj-6208": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 629/2025"
+ },
+ "cnj-6209": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 199/2025"
+ },
+ "cnj-6224": {
+  "dispositivos": 4,
+  "nome": "Instrução Normativa CNJ nº 107/2025"
+ },
+ "cnj-6236": {
+  "dispositivos": 7,
+  "nome": "Provimento CNJ nº 201/2025"
+ },
+ "cnj-6240": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 631/2025"
+ },
+ "cnj-6254": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 202/2025"
+ },
+ "cnj-6263": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 54/2025"
+ },
+ "cnj-6264": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 113/2025"
+ },
+ "cnj-6265": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 632/2025"
+ },
+ "cnj-6266": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 633/2025"
+ },
+ "cnj-6279": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 634/2025"
+ },
+ "cnj-6280": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 108/2025"
+ },
+ "cnj-6283": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 635/2025"
+ },
+ "cnj-63": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 71/2009"
+ },
+ "cnj-6310": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 637/2025"
+ },
+ "cnj-6320": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 641/2025"
+ },
+ "cnj-6322": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 644/2025"
+ },
+ "cnj-6332": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 116/2025"
+ },
+ "cnj-6340": {
+  "dispositivos": 16,
+  "nome": "Resolução CNJ nº 647/2025"
+ },
+ "cnj-6343": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 650/2025"
+ },
+ "cnj-6344": {
+  "dispositivos": 12,
+  "nome": "Resolução CNJ nº 651/2025"
+ },
+ "cnj-6345": {
+  "dispositivos": 39,
+  "nome": "Resolução CNJ nº 652/2025"
+ },
+ "cnj-635": {
+  "dispositivos": 3,
+  "nome": "Recomendação CNJ nº 169/2026"
+ },
+ "cnj-6355": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 109/2025"
+ },
+ "cnj-637": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 225/2026"
+ },
+ "cnj-6371": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 206/2025"
+ },
+ "cnj-6380": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 118/2025"
+ },
+ "cnj-6381": {
+  "dispositivos": 6,
+  "nome": "Resolução Conjunta CNJ nº 13/2025"
+ },
+ "cnj-64": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 95/2009"
+ },
+ "cnj-640": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 116/2026"
+ },
+ "cnj-6404": {
+  "dispositivos": 12,
+  "nome": "Provimento CNJ nº 207/2025"
+ },
+ "cnj-6409": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 36/2026"
+ },
+ "cnj-6410": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 655/2025"
+ },
+ "cnj-6473": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 657/2025"
+ },
+ "cnj-65": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 96/2009"
+ },
+ "cnj-6555": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 659/2025"
+ },
+ "cnj-6556": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 660/2025"
+ },
+ "cnj-6564": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 662/2025"
+ },
+ "cnj-6584": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 665/2025"
+ },
+ "cnj-6596": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 669/2025"
+ },
+ "cnj-6682": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 668/2026"
+ },
+ "cnj-6684": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 167/2026"
+ },
+ "cnj-67": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 94/2009"
+ },
+ "cnj-6734": {
+  "dispositivos": 19,
+  "nome": "Provimento CNJ nº 213/2026"
+ },
+ "cnj-6743": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 214/2026"
+ },
+ "cnj-6775": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 217/2026"
+ },
+ "cnj-6778": {
+  "dispositivos": 23,
+  "nome": "Provimento CNJ nº 216/2026"
+ },
+ "cnj-6806": {
+  "dispositivos": 11,
+  "nome": "Provimento CNJ nº 219/2026"
+ },
+ "cnj-6818": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 673/2026"
+ },
+ "cnj-6823": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 111/2026"
+ },
+ "cnj-6824": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 112/2026"
+ },
+ "cnj-6863": {
+  "dispositivos": 4,
+  "nome": "Resolução Conjunta CNJ nº 14/2026"
+ },
+ "cnj-6873": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 220/2026"
+ },
+ "cnj-6875": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 221/2026"
+ },
+ "cnj-6882": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 222/2026"
+ },
+ "cnj-6883": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 677/2026"
+ },
+ "cnj-6890": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 679/2026"
+ },
+ "cnj-69": {
+  "dispositivos": 11,
+  "nome": "Resolução CNJ nº 102/2009"
+ },
+ "cnj-6929": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 228/2026"
+ },
+ "cnj-6936": {
+  "dispositivos": 6,
+  "nome": "Provimento CNJ nº 243/2026"
+ },
+ "cnj-6952": {
+  "dispositivos": 3,
+  "nome": "Instrução Normativa CNJ nº 119/2026"
+ },
+ "cnj-6954": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 693/2026"
+ },
+ "cnj-6956": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 247/2026"
+ },
+ "cnj-6963": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 248/2026"
+ },
+ "cnj-6976": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 250/2026"
+ },
+ "cnj-6978": {
+  "dispositivos": 5,
+  "nome": "Provimento CNJ nº 252/2026"
+ },
+ "cnj-6979": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 253/2026"
+ },
+ "cnj-6980": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 254/2026"
+ },
+ "cnj-6981": {
+  "dispositivos": 12,
+  "nome": "Provimento CNJ nº 255/2026"
+ },
+ "cnj-6983": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 694/2026"
+ },
+ "cnj-7011": {
+  "dispositivos": 65,
+  "nome": "Resolução CNJ nº 696/2026"
+ },
+ "cnj-7051": {
+  "dispositivos": 6,
+  "nome": "Instrução Normativa CNJ nº 3/2026"
+ },
+ "cnj-7134": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 257/2026"
+ },
+ "cnj-72": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 54/2008"
+ },
+ "cnj-73": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 139/2011"
+ },
+ "cnj-74": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 92/2009"
+ },
+ "cnj-77": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 72/2009"
+ },
+ "cnj-79": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 148/2012"
+ },
+ "cnj-80": {
+  "dispositivos": 4,
+  "nome": "Resolução CNJ nº 147/2012"
+ },
+ "cnj-81": {
+  "dispositivos": 5,
+  "nome": "Resolução CNJ nº 90/2009"
+ },
+ "cnj-82": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 136/2011"
+ },
+ "cnj-83": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 146/2012"
+ },
+ "cnj-832": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 1/2008"
+ },
+ "cnj-833": {
+  "dispositivos": 2,
+  "nome": "Instrução Normativa CNJ nº 2/2009"
+ },
+ "cnj-835": {
+  "dispositivos": 1,
+  "nome": "Instrução Normativa CNJ nº 3/2009"
+ },
+ "cnj-840": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 42/2012"
+ },
+ "cnj-841": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 40/2012"
+ },
+ "cnj-858": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 20/2008"
+ },
+ "cnj-86": {
+  "dispositivos": 30,
+  "nome": "Resolução CNJ nº 115/2010"
+ },
+ "cnj-87": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 88/2009"
+ },
+ "cnj-90": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 87/2009"
+ },
+ "cnj-91": {
+  "dispositivos": 2,
+  "nome": "Resolução CNJ nº 143/2011"
+ },
+ "cnj-92": {
+  "dispositivos": 7,
+  "nome": "Resolução CNJ nº 121/2010"
+ },
+ "cnj-922": {
+  "dispositivos": 10,
+  "nome": "Provimento CNJ nº 244/2026"
+ },
+ "cnj-93": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 66/2009"
+ },
+ "cnj-935": {
+  "dispositivos": 3,
+  "nome": "Resolução Conjunta CNJ nº 2/2011"
+ },
+ "cnj-936": {
+  "dispositivos": 1,
+  "nome": "Resolução Conjunta CNJ nº 1/2009"
+ },
+ "cnj-938": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 7/2012"
+ },
+ "cnj-945": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 3/2012"
+ },
+ "cnj-948": {
+  "dispositivos": 2,
+  "nome": "Provimento CNJ nº 239/2026"
+ },
+ "cnj-95": {
+  "dispositivos": 17,
+  "nome": "Resolução CNJ nº 135/2011"
+ },
+ "cnj-96": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 86/2009"
+ },
+ "cnj-972": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 159/2012"
+ },
+ "cnj-98": {
+  "dispositivos": 3,
+  "nome": "Resolução CNJ nº 85/2009"
+ },
+ "cnj-99": {
+  "dispositivos": 1,
+  "nome": "Resolução CNJ nº 84/2009"
+ },
+ "cnj-994": {
+  "dispositivos": 3,
+  "nome": "Provimento CNJ nº 245/2026"
+ },
  "cnmp-mp-br-portal-images-calj-calj-lo-mps-mpac-lce-291-2014-lei-orgnica-do-mpac--79fb78ae": {
   "dispositivos": 37,
   "nome": "Lei Orgânica do Ministério Público do Estado do Acre"
@@ -1936,7 +5312,7 @@
   "nome": "Lei Orgânica do Ministério Público do Estado do Amapá"
  },
  "constituicao-constituicao": {
-  "dispositivos": 539,
+  "dispositivos": 563,
   "nome": "Constituição Federal"
  },
  "decreto-1930-1949-d20910": {
@@ -1984,7 +5360,7 @@
   "nome": "Política Nacional de Promoção da Igualdade Racial"
  },
  "decreto-2003-d4887": {
-  "dispositivos": 6,
+  "dispositivos": 8,
   "nome": "Titulação das terras de quilombos"
  },
  "decreto-antigos-d3708": {
@@ -2044,7 +5420,7 @@
   "nome": "Política Nacional para a Integração da Pessoa com Deficiência"
  },
  "decreto-d3413": {
-  "dispositivos": 0,
+  "dispositivos": 1,
   "nome": "Convenção sobre os Aspectos Civis do Sequestro Internacional de Crianças"
  },
  "decreto-d3551": {
@@ -2120,7 +5496,7 @@
   "nome": "Cédula de crédito rural"
  },
  "decreto-lei-del0200": {
-  "dispositivos": 37,
+  "dispositivos": 38,
   "nome": "Reforma Administrativa Federal"
  },
  "decreto-lei-del0201": {
@@ -2152,7 +5528,7 @@
   "nome": "Código de Processo Penal Militar"
  },
  "decreto-lei-del2848compilado": {
-  "dispositivos": 213,
+  "dispositivos": 215,
   "nome": "Código Penal"
  },
  "decreto-lei-del3365": {
@@ -2172,11 +5548,11 @@
   "nome": "Lei de Introdução ao Código Penal"
  },
  "decreto-lei-del4657compilado": {
-  "dispositivos": 8,
+  "dispositivos": 9,
   "nome": "LINDB"
  },
  "decreto-lei-del5452": {
-  "dispositivos": 219,
+  "dispositivos": 220,
   "nome": "CLT"
  },
  "editor-amapa-gov-br-arquivos-portais-publicacoes-sead-3f2844e9643e5d4230db886f9053e1e7-pdf": {
@@ -2748,7 +6124,7 @@
   "nome": "Lei nº 8.099/1990"
  },
  "leis-2002-l10406compilada": {
-  "dispositivos": 503,
+  "dispositivos": 509,
   "nome": "Código Civil"
  },
  "leis-2002-l10426": {
@@ -2772,11 +6148,11 @@
   "nome": "Dispõe sobre a estrutura da Procuradoria-Geral Federal"
  },
  "leis-2002-l10520": {
-  "dispositivos": 6,
+  "dispositivos": 7,
   "nome": "Lei do Pregão"
  },
  "leis-2002-l10522": {
-  "dispositivos": 53,
+  "dispositivos": 54,
   "nome": "Cadastro Informativo de Créditos não Quitados (CADIN)"
  },
  "leis-2003-l10-639": {
@@ -2796,7 +6172,7 @@
   "nome": "Lei nº 10.701/2003"
  },
  "leis-2003-l10-741": {
-  "dispositivos": 25,
+  "dispositivos": 26,
   "nome": "Estatuto do Idoso"
  },
  "leis-2003-l10-778": {
@@ -2812,7 +6188,7 @@
   "nome": "Crédito consignado em folha de pagamento"
  },
  "leis-2003-l10-826": {
-  "dispositivos": 38,
+  "dispositivos": 44,
   "nome": "Estatuto do Desarmamento"
  },
  "leis-alesc-sc-gov-br-ato-normativo-13151": {
@@ -3040,7 +6416,7 @@
   "nome": "Lei nº 10.150/2000"
  },
  "leis-l10169": {
-  "dispositivos": 3,
+  "dispositivos": 5,
   "nome": "Normas gerais para a fixação de emolumentos dos serviços notariais e de registro"
  },
  "leis-l1060": {
@@ -3072,7 +6448,7 @@
   "nome": "Define os casos de desapropriação por interesse social"
  },
  "leis-l4320": {
-  "dispositivos": 13,
+  "dispositivos": 16,
   "nome": "Lei de Finanças Públicas"
  },
  "leis-l4380": {
@@ -3144,11 +6520,11 @@
   "nome": "Lei nº 5.869/1973"
  },
  "leis-l6001": {
-  "dispositivos": 2,
+  "dispositivos": 9,
   "nome": "Estatuto do Índio"
  },
  "leis-l6015compilada": {
-  "dispositivos": 133,
+  "dispositivos": 148,
   "nome": "Lei de Registros Públicos"
  },
  "leis-l6024": {
@@ -3220,11 +6596,11 @@
   "nome": "Lei nº 7.170/1983"
  },
  "leis-l7210": {
-  "dispositivos": 29,
+  "dispositivos": 33,
   "nome": "Lei de Execução Penal"
  },
  "leis-l7347orig": {
-  "dispositivos": 11,
+  "dispositivos": 14,
   "nome": "Ação Civil Pública"
  },
  "leis-l7357": {
@@ -3276,7 +6652,7 @@
   "nome": "Processos perante o STJ e o STF (recursos)"
  },
  "leis-l8069": {
-  "dispositivos": 174,
+  "dispositivos": 210,
   "nome": "Estatuto da Criança e do Adolescente"
  },
  "leis-l8072": {
@@ -3284,15 +6660,15 @@
   "nome": "Lei dos Crimes Hediondos"
  },
  "leis-l8078compilado": {
-  "dispositivos": 89,
+  "dispositivos": 90,
   "nome": "Código de Defesa do Consumidor"
  },
  "leis-l8080": {
-  "dispositivos": 16,
+  "dispositivos": 17,
   "nome": "Lei Orgânica da Saúde (SUS)"
  },
  "leis-l8112cons": {
-  "dispositivos": 115,
+  "dispositivos": 141,
   "nome": "Estatuto dos Servidores Públicos Federais"
  },
  "leis-l8134": {
@@ -3324,7 +6700,7 @@
   "nome": "Plano de Custeio da Seguridade Social"
  },
  "leis-l8213cons": {
-  "dispositivos": 131,
+  "dispositivos": 133,
   "nome": "Lei de Benefícios da Previdência Social"
  },
  "leis-l8242": {
@@ -3332,7 +6708,7 @@
   "nome": "Cria o Conselho Nacional dos Direitos da Criança e do Adolescente (CONANDA)"
  },
  "leis-l8245": {
-  "dispositivos": 37,
+  "dispositivos": 39,
   "nome": "Lei do Inquilinato (locação de imóveis urbanos)"
  },
  "leis-l8397": {
@@ -3372,7 +6748,7 @@
   "nome": "Ação penal originária nos Tribunais de Justiça e TRFs"
  },
  "leis-l8666cons": {
-  "dispositivos": 87,
+  "dispositivos": 90,
   "nome": "Lei de Licitações e Contratos (antiga)"
  },
  "leis-l8713": {
@@ -3408,11 +6784,11 @@
   "nome": "Participação do proprietário do solo na lavra de recursos minerais"
  },
  "leis-l8906": {
-  "dispositivos": 39,
+  "dispositivos": 41,
   "nome": "Estatuto da Advocacia e da OAB"
  },
  "leis-l8929": {
-  "dispositivos": 1,
+  "dispositivos": 2,
   "nome": "Lei nº 8.929/1994"
  },
  "leis-l8934": {
@@ -3420,7 +6796,7 @@
   "nome": "Registro Público das Empresas Mercantis"
  },
  "leis-l8935": {
-  "dispositivos": 37,
+  "dispositivos": 47,
   "nome": "Lei dos Registros Públicos / Serviços Notariais e de Registro"
  },
  "leis-l8955": {
@@ -3468,7 +6844,7 @@
   "nome": "Lei dos Partidos Políticos"
  },
  "leis-l9099": {
-  "dispositivos": 56,
+  "dispositivos": 60,
   "nome": "Lei dos Juizados Especiais"
  },
  "leis-l9100": {
@@ -3476,7 +6852,7 @@
   "nome": "Normas para a realização das eleições municipais de 1996 — crimes eleitorais"
  },
  "leis-l9140": {
-  "dispositivos": 11,
+  "dispositivos": 12,
   "nome": "Lei nº 9.140/1995"
  },
  "leis-l9245": {
@@ -3512,7 +6888,7 @@
   "nome": "Lei nº 9.294/1997"
  },
  "leis-l9296": {
-  "dispositivos": 6,
+  "dispositivos": 7,
   "nome": "Interceptação telefônica"
  },
  "leis-l9303": {
@@ -3520,11 +6896,11 @@
   "nome": "Lei nº 9.303/1996"
  },
  "leis-l9307": {
-  "dispositivos": 25,
+  "dispositivos": 26,
   "nome": "Lei de Arbitragem"
  },
  "leis-l9394": {
-  "dispositivos": 35,
+  "dispositivos": 36,
   "nome": "Lei de Diretrizes e Bases da Educação Nacional (LDB)"
  },
  "leis-l9424": {
@@ -3564,7 +6940,7 @@
   "nome": "Lei nº 9.472/1997"
  },
  "leis-l9474": {
-  "dispositivos": 4,
+  "dispositivos": 8,
   "nome": "Estatuto dos Refugiados (lei interna)"
  },
  "leis-l9478": {
@@ -3572,7 +6948,7 @@
   "nome": "Política Energética Nacional (Lei do Petróleo)"
  },
  "leis-l9492": {
-  "dispositivos": 23,
+  "dispositivos": 25,
   "nome": "Protesto de títulos"
  },
  "leis-l9494": {
@@ -3584,7 +6960,7 @@
   "nome": "Programa de Apoio à Reestruturação e ao Ajuste Fiscal dos Estados"
  },
  "leis-l9503compilado": {
-  "dispositivos": 116,
+  "dispositivos": 120,
   "nome": "Código de Trânsito Brasileiro"
  },
  "leis-l9504": {
@@ -3604,7 +6980,7 @@
   "nome": "Lei nº 9.532/1997"
  },
  "leis-l9605": {
-  "dispositivos": 16,
+  "dispositivos": 17,
   "nome": "Crimes contra o meio ambiente"
  },
  "leis-l9609": {
@@ -3612,7 +6988,7 @@
   "nome": "Proteção da propriedade intelectual de programa de computador"
  },
  "leis-l9610": {
-  "dispositivos": 27,
+  "dispositivos": 28,
   "nome": "Lei de Direito Autoral"
  },
  "leis-l9613": {
@@ -3648,7 +7024,7 @@
   "nome": "Normas Gerais para os Regimes Próprios de Previdência Social (RPPS)"
  },
  "leis-l9784": {
-  "dispositivos": 10,
+  "dispositivos": 13,
   "nome": "Lei do Processo Administrativo Federal"
  },
  "leis-l9785": {
@@ -3824,7 +7200,7 @@
   "nome": "Institui o Sistema Nacional de Educação (SNE)"
  },
  "leis-lcp-lcp35": {
-  "dispositivos": 26,
+  "dispositivos": 33,
   "nome": "Lei Orgânica da Magistratura Nacional (LOMAN)"
  },
  "leis-lcp-lcp50": {
@@ -3844,7 +7220,7 @@
   "nome": "Lei Orgânica da Advocacia-Geral da União"
  },
  "leis-lcp-lcp75": {
-  "dispositivos": 33,
+  "dispositivos": 35,
   "nome": "Lei Orgânica do Ministério Público da União"
  },
  "leis-lcp-lcp76": {
@@ -3872,7 +7248,7 @@
   "nome": "Lei Complementar nº 94/2002"
  },
  "leis-lcp-lcp95": {
-  "dispositivos": 6,
+  "dispositivos": 7,
   "nome": "Lei Complementar nº 95/1998"
  },
  "leis-lcp-lcp97": {
@@ -3888,7 +7264,7 @@
   "nome": "Lei nº 10.180/2001"
  },
  "leis-leis-2001-l10216": {
-  "dispositivos": 3,
+  "dispositivos": 4,
   "nome": "Proteção e direitos das pessoas com transtornos mentais"
  },
  "leis-leis-2001-l10257": {
@@ -3896,7 +7272,7 @@
   "nome": "Estatuto da Cidade"
  },
  "leis-leis-2001-l10259": {
-  "dispositivos": 14,
+  "dispositivos": 15,
   "nome": "Juizados Especiais Federais"
  },
  "leis-leis-2001-l10267": {

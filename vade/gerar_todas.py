@@ -79,6 +79,25 @@ def main():
         c = curadoria(tipo, num, ano, nome); c.update({"vinculos": {}, "excluir": [], "auto": True})
         json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
         feitos[i] = nome
+    # atos do CNJ lidos no site (leis/cnj-atos.json): citados como "Resolução 225/2016" (o ano é obrigatório: o número recomeça todo ano)
+    try:
+        for x in json.load(open(f'{R}/leis/cnj-atos.json')).get('leis', []):
+            m = re.match(r'^(.+?) CNJ nº ([\d.]+)/(\d{4})$', x['numero'])
+            if not m: continue
+            tipo, num, ano = m.groups(); i = x['textoId']
+            if not os.path.exists(f'{R}/leis/texto/{i}.json'): continue
+            f = f'{R}/vade/curadoria/{i}.json'
+            if os.path.exists(f) and not json.load(open(f)).get('auto'): continue
+            n = regex_num(num); a2 = ano[-2:]
+            tp = r'\s+'.join(re.escape(w) for w in tipo.split())
+            feminino = tipo.split()[0] != 'Provimento' and tipo.split()[0] != 'Enunciado'
+            c = {"numero_regex": n, "sem_base": True, "cnj": True,
+                 "aliases": [tp + r'(?:\s+(?:do\s+)?CNJ)?\s*(?:n[º°o.]*)?\s*' + n + r'(?:\s*/\s*(?:' + ano + '|' + a2 + r')|\s*,\s*de\s+(?:\d{1,2}\S*\s+de\s+\w+\s+de\s+)?' + ano + ')'],
+                 "deste": ("desta " if feminino else "deste ") + tipo.split()[0] if tipo.split()[0] != 'Enunciado' else "deste Enunciado"}
+            c.update({"vinculos": {}, "excluir": [], "auto": True})
+            json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
+            feitos[i] = x['nome']
+    except OSError: pass
     print(len(feitos), 'leis com curadoria automática')
     if '--so-curadoria' in sys.argv: return
     ids = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/vade/curadoria/*.json'))

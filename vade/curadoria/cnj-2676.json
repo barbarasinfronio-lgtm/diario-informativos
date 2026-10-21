@@ -1,0 +1,12 @@
+{
+ "numero_regex": "17",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Enunciado\\s+Administrativo(?:\\s+(?:do\\s+)?CNJ)?\\s*(?:n[º°o.]*)?\\s*17(?:\\s*/\\s*(?:2018|18)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2018)"
+ ],
+ "deste": "deste Enunciado",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

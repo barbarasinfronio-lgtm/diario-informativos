@@ -1,0 +1,12 @@
+{
+ "numero_regex": "106",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Recomendação(?:\\s+(?:do\\s+)?CNJ)?\\s*(?:n[º°o.]*)?\\s*106(?:\\s*/\\s*(?:2021|21)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2021)"
+ ],
+ "deste": "desta Recomendação",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

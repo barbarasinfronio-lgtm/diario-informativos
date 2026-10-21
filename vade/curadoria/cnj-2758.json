@@ -1,0 +1,12 @@
+{
+ "numero_regex": "269",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução(?:\\s+(?:do\\s+)?CNJ)?\\s*(?:n[º°o.]*)?\\s*269(?:\\s*/\\s*(?:2018|18)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2018)"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}
