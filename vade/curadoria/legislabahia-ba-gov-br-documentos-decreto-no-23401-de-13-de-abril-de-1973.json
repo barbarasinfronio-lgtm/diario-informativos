@@ -1,0 +1,12 @@
+{
+ "numero_regex": "23\\.401",
+ "sem_base": true,
+ "uf": "BA",
+ "aliases": [
+  "Decreto(?:\\s+Estadual|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*23\\.401(?:\\s*/\\s*(?:1973|73)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1973)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

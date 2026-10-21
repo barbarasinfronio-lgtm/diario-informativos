@@ -1,0 +1,12 @@
+{
+ "numero_regex": "13\\.553",
+ "sem_base": true,
+ "uf": "SC",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*13\\.553(?:\\s*/\\s*(?:2005|05)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2005)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

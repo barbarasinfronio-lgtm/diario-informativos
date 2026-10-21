@@ -1,0 +1,12 @@
+{
+ "numero_regex": "825",
+ "sem_base": true,
+ "uf": "ES",
+ "aliases": [
+  "(?:Lei\\s+Complementar(?:\\s+Estadual|\\s+Distrital)?|LC)\\s*(?:n[º°o.]*)?\\s*825(?:\\s*/\\s*(?:2016|16)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2016)"
+ ],
+ "deste": "desta Lei Complementar",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

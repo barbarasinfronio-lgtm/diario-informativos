@@ -14,6 +14,12 @@ DECS = sys.argv[3] if len(sys.argv) > 3 else f'{CACHE}/decisoes.json'
 lei = json.load(open(f'{R}/leis/texto/{tid}.json'))
 CUR = f'{R}/vade/curadoria/{tid}.json'
 cur = json.load(open(CUR)) if os.path.exists(CUR) else {"aliases": [], "vinculos": {}}
+UF = cur.get('uf')
+if UF:   # lei estadual: só as fontes do tribunal do mesmo Estado (a citação "Lei Estadual nº X" não diz de que Estado é)
+    u = UF.lower()
+    ok = lambda k: bool(re.match(r'^(tj%s|tce_%s|tjm%s)' % (u, u, u), k)) or (u == 'df' and k.startswith('tjdft')) or (u == 'mg' and k == 'tjmmg')
+    fontes['sumulas'] = {k: v for k, v in fontes['sumulas'].items() if ok(k)}
+    fontes['normas'] = {}
 NUMLEI = cur['numero_regex']  # ex.: r'6\.015'
 ALIAS = '|'.join(([] if cur.get('sem_base') else [r'Lei(?:\s+Federal|\s+Ordin[áa]ria)?\s*(?:n[º°o.]*|nº)?\s*' + NUMLEI + r'(?:\s*/\s*(?:19|20)?\d\d)?']) + cur.get('aliases', []))
 MENC = re.compile(ALIAS, re.I)
@@ -116,7 +122,7 @@ for org, v in fontes['normas'].items():
 
 # atos baixados (inteiro teor): cache-cnj-atos/texto/*.txt — varre linha a linha, anotando o art. do ato
 import glob
-for f in sorted(glob.glob(f'{R}/../cache-cnj-atos/texto/*.txt')):
+for f in ([] if UF else sorted(glob.glob(f'{R}/../cache-cnj-atos/texto/*.txt'))):
     cab = open(f).readline()
     m = re.match(r'(\S+) (\S+) \((\d\d)/(\d\d)/(\d{4})\)', cab)
     if not m: continue
@@ -130,7 +136,7 @@ for f in sorted(glob.glob(f'{R}/../cache-cnj-atos/texto/*.txt')):
             for a, an in citacoes(ln): add(a, an, 'Atos normativos', rot, atual)
 
 # decisões (STF/STJ: repercussão geral, repetitivos, teses) — opcional: argv[3] = decisoes.json
-if True:
+if not UF:
     for d in json.load(open(DECS)):
         if MENC.search(d['texto']):
             rot = d['rot'][:90]

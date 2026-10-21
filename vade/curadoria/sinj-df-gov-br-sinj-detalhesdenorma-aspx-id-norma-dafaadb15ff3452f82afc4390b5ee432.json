@@ -1,0 +1,12 @@
+{
+ "numero_regex": "37\\.843",
+ "sem_base": true,
+ "uf": "DF",
+ "aliases": [
+  "Decreto(?:\\s+Estadual|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*37\\.843(?:\\s*/\\s*(?:2016|16)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2016)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

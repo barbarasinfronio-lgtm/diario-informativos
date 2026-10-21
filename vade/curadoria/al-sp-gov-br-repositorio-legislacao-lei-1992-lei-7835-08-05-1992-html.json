@@ -1,0 +1,12 @@
+{
+ "numero_regex": "7\\.835",
+ "sem_base": true,
+ "uf": "SP",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*7\\.835(?:\\s*/\\s*(?:1992|92)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1992)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

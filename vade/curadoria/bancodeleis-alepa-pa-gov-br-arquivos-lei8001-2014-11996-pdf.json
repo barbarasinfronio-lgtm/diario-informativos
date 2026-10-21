@@ -1,0 +1,12 @@
+{
+ "numero_regex": "8\\.001",
+ "sem_base": true,
+ "uf": "PA",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*8\\.001(?:\\s*/\\s*(?:2014|14)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2014)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

@@ -1,0 +1,11 @@
+{
+ "numero_regex": "93\\.872",
+ "sem_base": true,
+ "aliases": [
+  "Decreto\\s*(?:n[º°o.]*)?\\s*93\\.872(?:\\s*/\\s*(?:1986|86)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1986)"
+ ],
+ "deste": "deste Decreto",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

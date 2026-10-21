@@ -37,10 +37,37 @@ def curadoria(tipo, num, ano, nome):
     return {"numero_regex": n, "sem_base": True,
             "aliases": [r'Decreto\s*(?:n[º°o.]*)?\s*' + n + r'(?:\s*/\s*(?:' + ano + '|' + a2 + r')|\s*,\s*de\s+(?:\d{1,2}\S*\s+de\s+\w+\s+de\s+)?' + ano + ')'], "deste": "deste Decreto"}
 
+RX_UF = re.compile(r'^(Lei Complementar|Lei Estadual|Lei Ordin[áa]ria|Lei|Decreto Estadual|Decreto Distrital|Decreto)\s*(?:Estadual|Distrital)?\s*\(([A-Z]{2})\)\s*n[º°o]?\s*([\d.]+)(?:\s*/\s*(\d{4}))?', re.I)
+
+def curadoria_uf(tipo, uf, num, ano):
+    n = regex_num(num); a2 = ano[-2:]
+    anoRx = r'(?:\s*/\s*(?:' + ano + '|' + a2 + r')|\s*,\s*de\s+(?:\d{1,2}\S*\s+de\s+\w+\s+de\s+)?' + ano + ')'
+    t = tipo.lower()
+    if t == 'lei complementar': pref, deste = r'(?:Lei\s+Complementar(?:\s+Estadual|\s+Distrital)?|LC)', 'desta Lei Complementar'
+    elif t.startswith('decreto'): pref, deste = r'Decreto(?:\s+Estadual|\s+Distrital)?', 'deste Decreto'
+    else: pref, deste = r'Lei(?:\s+Estadual|\s+Ordin[áa]ria|\s+Distrital)?', 'desta Lei'
+    return {"numero_regex": n, "sem_base": True, "uf": uf, "aliases": [pref + r'\s*(?:n[º°o.]*)?\s*' + n + anoRx], "deste": deste}
+
 def main():
     L = json.loads(subprocess.check_output(['node', '-e', JS], text=True, cwd=R))
+    for f in ('dos-editais', 'pedidas'):
+        try:
+            for x in json.load(open(f'{R}/leis/{f}.json')).get('leis', []): L.append([x.get('nome', ''), x.get('numero', ''), x.get('link', ''), x.get('textoId', '')])
+        except OSError: pass
     feitos = {}
     for nome, numero, link, tid in L:
+        me = RX_UF.match(numero or '')
+        if me and 'planalto.gov.br' not in (link or ''):       # lei/decreto estadual: só cruza com as fontes do tribunal do mesmo Estado
+            i = tid or (robo.id_texto(link) if link else '')
+            if not i or not os.path.exists(f'{R}/leis/texto/{i}.json'): continue
+            tipo, uf, num, ano = me.group(1), me.group(2), me.group(3), me.group(4) or ''
+            if not ano: continue
+            f = f'{R}/vade/curadoria/{i}.json'
+            if os.path.exists(f) and not json.load(open(f)).get('auto'): continue
+            c = curadoria_uf(tipo, uf, num, ano); c.update({"vinculos": {}, "excluir": [], "auto": True})
+            json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
+            feitos[i] = nome
+            continue
         m = RX.match(numero or '')
         if not m or 'estadual' in (numero or '').lower() or 'planalto.gov.br' not in (link or ''): continue   # só federais (Planalto)
         i = tid or (robo.id_texto(link) if link else '')

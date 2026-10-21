@@ -1,0 +1,12 @@
+{
+ "numero_regex": "4\\.944",
+ "sem_base": true,
+ "uf": "SE",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*4\\.944(?:\\s*/\\s*(?:2003|03)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2003)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

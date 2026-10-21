@@ -1,0 +1,12 @@
+{
+ "numero_regex": "17\\.354",
+ "sem_base": true,
+ "uf": "SC",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*17\\.354(?:\\s*/\\s*(?:2017|17)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?2017)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

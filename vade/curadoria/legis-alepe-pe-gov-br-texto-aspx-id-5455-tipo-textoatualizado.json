@@ -1,0 +1,12 @@
+{
+ "numero_regex": "7\\.741",
+ "sem_base": true,
+ "uf": "PE",
+ "aliases": [
+  "Lei(?:\\s+Estadual|\\s+Ordin[áa]ria|\\s+Distrital)?\\s*(?:n[º°o.]*)?\\s*7\\.741(?:\\s*/\\s*(?:1978|78)|\\s*,\\s*de\\s+(?:\\d{1,2}\\S*\\s+de\\s+\\w+\\s+de\\s+)?1978)"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

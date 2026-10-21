@@ -1,11 +1,455 @@
 {
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-1b758e65922af3e90425-364286d8": {
+  "dispositivos": 3,
+  "nome": "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-03a92156": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (MS) nº 2.787/2003"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-19ea8006": {
+  "dispositivos": 10,
+  "nome": "Lei Estadual (MS) nº 4.416/2013"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-410b9e63": {
+  "dispositivos": 37,
+  "nome": "Norma administrativa do Estado de Mato Grosso do Sul (citada no edital do concurso)"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-5cd8abbd": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (MS) nº 4.621/2014"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-758c64dc": {
+  "dispositivos": 8,
+  "nome": "Lei Estadual (MS) nº 3.877/2010"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-7bc55bf5": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (MS) nº 2.557/2002"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-87184994": {
+  "dispositivos": 1,
+  "nome": "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-d2101ed1": {
+  "dispositivos": 4,
+  "nome": "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-db19cdc4": {
+  "dispositivos": 1,
+  "nome": "Norma ambiental do Estado de Mato Grosso do Sul (citada no edital do concurso)"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-448b683bce4ca8470425-f8f7b61c": {
+  "dispositivos": 55,
+  "nome": "Lei Estadual (MS) nº 3.150/2005"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-66ecc3cfb53d53ff0425-632f4e86": {
+  "dispositivos": 31,
+  "nome": "Lei Complementar Estadual (MS) nº 160/2012"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-66ecc3cfb53d53ff0425-afc18815": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar Estadual (MS) nº 265/2019"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-66ecc3cfb53d53ff0425-c2b2629b": {
+  "dispositivos": 34,
+  "nome": "Lei Complementar Estadual (MS) nº 111/2005"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-66ecc3cfb53d53ff0425-d055c1cf": {
+  "dispositivos": 6,
+  "nome": "Lei Complementar Estadual (MS) nº 241/2017"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-66ecc3cfb53d53ff0425-e3e9dea4": {
+  "dispositivos": 24,
+  "nome": "Lei Complementar Estadual (MS) nº 95/2001"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-fd8600de8a55c7fc0425-0334cac3": {
+  "dispositivos": 4,
+  "nome": "Decreto Estadual (MS) nº 9.203/1998"
+ },
+ "aacpdappls-net-ms-gov-br-appls-legislacao-secoge-govato-nsf-fd8600de8a55c7fc0425-4786366f": {
+  "dispositivos": 17,
+  "nome": "Decreto Estadual (MS) nº 15.454/2020"
+ },
+ "al-ap-leg-br-pagina-php-pg-buscar-legislacao-lei-169-2025": {
+  "dispositivos": 17,
+  "nome": "Código de Governança Socioambiental do Amapá"
+ },
+ "al-ap-leg-br-pagina-php-pg-buscar-legislacao-lei-50-1992": {
+  "dispositivos": 2,
+  "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente e Fundo Estadual (AP)"
+ },
+ "al-ap-leg-br-pagina-php-pg-buscar-legislacao-lei-66-1993": {
+  "dispositivos": 31,
+  "nome": "Regime Jurídico dos Servidores Públicos Civis do Estado do Amapá"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-complementar-201-68682150": {
+  "dispositivos": 19,
+  "nome": "Estatuto dos Militares do Estado de Mato Grosso (Polícia Militar e Corpo de Bombeiros Militar)"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-complementar-201-d1b19ebd": {
+  "dispositivos": 9,
+  "nome": "Lei Complementar Estadual (MT) nº 407/2010"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-complementar-201-fa9957b4": {
+  "dispositivos": 1,
+  "nome": "Lei Complementar Estadual (MT) nº 401/2010"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-ordinaria-1977-0-e29e1288": {
+  "dispositivos": 5,
+  "nome": "Código de Terras do Estado de Mato Grosso"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-ordinaria-1998-1-9f3a3f5c": {
+  "dispositivos": 1,
+  "nome": "Consolida as normas relativas ao ICMS no Estado de Mato Grosso"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-ordinaria-2004-1-7a40cace": {
+  "dispositivos": 1,
+  "nome": "Regime de concessão e permissão de serviços e obras públicas do setor rodoviário do Estado de Mato Grosso"
+ },
+ "al-mt-gov-br-norma-juridica-urn-lex-br-mato-grosso-estadual-lei-ordinaria-2008-0-9af44ee1": {
+  "dispositivos": 1,
+  "nome": "Regulamenta o Processo Administrativo Tributário (PAT) de Mato Grosso"
+ },
+ "al-rn-leg-br-storage-legislacao-2019-07-12-a9e7ab20853ccb9a5e65d138dc62bf00-pdf": {
+  "dispositivos": 41,
+  "nome": "Lei Complementar Estadual (RN) nº 270/2004"
+ },
+ "al-rn-leg-br-storage-legislacao-2019-07-15-6d722a51db64ce908d563f8141ca505a-pdf": {
+  "dispositivos": 5,
+  "nome": "Lei Complementar Estadual (RN) nº 251/2003"
+ },
+ "al-rn-leg-br-storage-legislacao-2019-07-16-10bd10a7723b86ed2bb8b9a8e6201bf0-pdf": {
+  "dispositivos": 8,
+  "nome": "Lei Orgânica da Procuradoria-Geral do Estado do Rio Grande do Norte e Estatuto dos Procuradores do Estado"
+ },
+ "al-rn-leg-br-storage-legislacao-2019-07-17-5182a4ba1ce3df68ebfb23c3def7f5cb-pdf": {
+  "dispositivos": 40,
+  "nome": "Lei Complementar Estadual (RN) nº 141/1996"
+ },
+ "al-rn-leg-br-storage-legislacao-2019-07-17-da631d970bd52174d7fa82be9d3e23e9-pdf": {
+  "dispositivos": 3,
+  "nome": "Lei Complementar Estadual (RN) nº 122/1994"
+ },
+ "al-rn-leg-br-storage-legislacao-2022-z24jcveqjbo4xq9txxyt3q1r4ehf9y-pdf": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre a contribuição para o custeio do RPPS dos Servidores Públicos do Rio Grande do Norte"
+ },
+ "al-rn-leg-br-storage-legislacao-2023-x5bv6pt2c1g28ciaqr2b9oq0jt7u5w-pdf": {
+  "dispositivos": 2,
+  "nome": "Estatuto Estadual de Promoção e Igualdade Étnico-Racial do Rio Grande do Norte"
+ },
+ "al-rn-leg-br-storage-legislacao-6-968-pdf": {
+  "dispositivos": 31,
+  "nome": "Dispõe sobre o ICMS no Rio Grande do Norte"
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-054-pdf": {
+  "dispositivos": 8,
+  "nome": "Dispoe sobre o Regime Proprio de Previdencia Estadual de Roraima e da outras providencias"
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-055-pdf": {
+  "dispositivos": 1,
+  "nome": "Dispoe sobre a Lei Organica da Policia Civil do Estado de Roraima e da outras providencias."
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-071-pdf": {
+  "dispositivos": 10,
+  "nome": "Lei Complementar Estadual (RR) nº 71/2003"
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-131-pdf": {
+  "dispositivos": 6,
+  "nome": "Lei Complementar Estadual (RR) nº 131/2008"
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-164-pdf": {
+  "dispositivos": 16,
+  "nome": "Lei Complementar Estadual (RR) nº 164/2010"
+ },
+ "al-rr-leg-br-wp-content-uploads-2019-02-lei-complementar-no-268-pdf": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre requisitos e critérios diferenciados para concessão de aposentadoria especial da Carreira da Polícia Civil do Estado de Roraima, aposentadoria por "
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-10-098-pdf": {
+  "dispositivos": 9,
+  "nome": "Lei Complementar Estadual (RS) nº 10.098/1994"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-10-194-pdf": {
+  "dispositivos": 9,
+  "nome": "Lei Complementar Estadual (RS) nº 10.194/1996"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-11-795-pdf": {
+  "dispositivos": 8,
+  "nome": "Lei Complementar Estadual (RS) nº 11.795/2002"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-13-484-pdf": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar Estadual (RS) nº 13.484/2010"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-14-130-pdf": {
+  "dispositivos": 6,
+  "nome": "Lei Complementar Estadual (RS) nº 14.130/2012"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-14-836-pdf": {
+  "dispositivos": 10,
+  "nome": "Lei Complementar Estadual (RS) nº 14.836/2016"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-15-450-pdf": {
+  "dispositivos": 9,
+  "nome": "Lei Complementar Estadual (RS) nº 15.450/2020"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-dec-2048-118-pdf": {
+  "dispositivos": 1,
+  "nome": "Decreto Estadual (RS) nº 48.118/2011"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-dec-2049-122-pdf": {
+  "dispositivos": 1,
+  "nome": "Decreto Estadual (RS) nº 49.122/2012"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-lei-2014-975-pdf": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (RS) nº 14.975/2017"
+ },
+ "al-rs-gov-br-filerepository-replegis-arquivos-lei-2015-612-pdf": {
+  "dispositivos": 5,
+  "nome": "Lei Estadual (RS) nº 15.612/2021"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lec-20n-c2-ba-209-230-pdf": {
+  "dispositivos": 4,
+  "nome": "Lei Complementar Estadual (RS) nº 9.230/1991"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2010-298-pdf": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (RS) nº 10.298/1994"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2010-931-pdf": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (RS) nº 10.931/1997"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2011-424-pdf": {
+  "dispositivos": 3,
+  "nome": "Lei Estadual (RS) nº 11.424/2000"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2014-794-pdf": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (RS) nº 14.794/2015"
+ },
+ "al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-207-366-pdf": {
+  "dispositivos": 19,
+  "nome": "Lei Estadual (RS) nº 7.366/1980"
+ },
  "al-rs-gov-br-legis-m010-m0100099-asp-hid-tipo-texto-hid-todasnormas-5549-hid-faz-8b183720": {
   "dispositivos": 4,
   "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul"
  },
+ "al-to-leg-br-arquivos-lei-127-2020-52506-pdf": {
+  "dispositivos": 9,
+  "nome": "Altera a Lei Complementar nº 51, de 02 de janeiro de 2008, que institui a Lei Orgânica do Ministério Público do Estado do Tocantins e dá outras providências"
+ },
+ "al-to-leg-br-arquivos-lei-1287-2001-43522-pdf": {
+  "dispositivos": 141,
+  "nome": "Código Tributário do Estado do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-1307-2002-43542-pdf": {
+  "dispositivos": 5,
+  "nome": "Política Estadual de Recursos Hídricos do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-1560-2005-43795-pdf": {
+  "dispositivos": 2,
+  "nome": "Sistema Estadual de Unidades de Conservação do Tocantins (SEUC)"
+ },
+ "al-to-leg-br-arquivos-lei-1654-2006-52716-pdf": {
+  "dispositivos": 10,
+  "nome": "Dispõe sobre o Estatuto dos Policiais Civis do Estado  do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-1818-2007-67187-pdf": {
+  "dispositivos": 34,
+  "nome": "Estatuto dos Servidores Públicos Civis do Estado do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-1917-2008-44152-pdf": {
+  "dispositivos": 1,
+  "nome": "Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-2578-2012-66938-pdf": {
+  "dispositivos": 63,
+  "nome": "Estatuto dos Policiais Militares e Bombeiros Militares do Estado do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-3804-2021-55768-pdf": {
+  "dispositivos": 8,
+  "nome": "Licenciamento Ambiental do Estado do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-4129-2023-66939-pdf": {
+  "dispositivos": 6,
+  "nome": "Modelo de gestão do Sistema de Proteção Social dos Militares do Estado do Tocantins"
+ },
+ "al-to-leg-br-arquivos-lei-55-2009-69911-pdf": {
+  "dispositivos": 90,
+  "nome": "instituição permanente, essencial à função jurisdicional do Estado, incumbida, como expressão e instrumento do regime democrático, fundamentalmente, de dar orie"
+ },
+ "al-to-leg-br-arquivos-lei-771-1995-43006-pdf": {
+  "dispositivos": 23,
+  "nome": "Política Florestal do Estado do Tocantins (Código Florestal Estadual)"
+ },
+ "alerjln1-alerj-rj-gov-br-decest-nsf-83b1e11a446ce7f7032569ba0082511c-7b70abd0353-179e1713": {
+  "dispositivos": 5,
+  "nome": "Regime Jurídico dos Funcionários Civis do Serviço Policial do RJ (Decreto-Lei 218/1975)"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c1132005-html": {
+  "dispositivos": 54,
+  "nome": "Lei Complementar Estadual (SE) nº 113/2005"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c1832010-html": {
+  "dispositivos": 21,
+  "nome": "Lei Complementar Estadual (SE) nº 183/2010"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c21990-html": {
+  "dispositivos": 44,
+  "nome": "Lei Complementar Estadual (SE) nº 2/1990"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c271996-html": {
+  "dispositivos": 12,
+  "nome": "Lei Complementar Estadual (SE) nº 27/1996"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c2932017-html": {
+  "dispositivos": 10,
+  "nome": "Lei Complementar Estadual (SE) nº 293/2017"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c31990-html": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar Estadual (SE) nº 3/1990"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c331996-html": {
+  "dispositivos": 3,
+  "nome": "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c3382019-html": {
+  "dispositivos": 17,
+  "nome": "Lei Complementar Estadual (SE) nº 338/2019"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-c3602022-html": {
+  "dispositivos": 7,
+  "nome": "Lei Complementar Estadual (SE) nº 360/2022"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l12181963-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 1.218/1963"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l21481977-html": {
+  "dispositivos": 54,
+  "nome": "Lei Estadual (SE) nº 2.148/1977"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l35921995-html": {
+  "dispositivos": 3,
+  "nome": "Lei Estadual (SE) nº 3.592/1995"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l41221999-html": {
+  "dispositivos": 8,
+  "nome": "Lei Estadual (SE) nº 4.122/1999"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l42852000-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 4.285/2000"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l43512001-html": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (SE) nº 4.351/2001"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l43612001-html": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (SE) nº 4.361/2001"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l43792001-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 4.379/2001"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l44282001-html": {
+  "dispositivos": 5,
+  "nome": "Lei Estadual (SE) nº 4.428/2001"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l44952001-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 4.495/2001"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l49442003-html": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (SE) nº 4.944/2003"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l52142003-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 5.214/2003"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l78702014-html": {
+  "dispositivos": 8,
+  "nome": "Lei Estadual (SE) nº 7.870/2014"
+ },
+ "aleselegis-al-se-leg-br-arquivo-documents-legislacao-html-l82722017-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (SE) nº 8.272/2017"
+ },
+ "almg-gov-br-legislacao-mineira-texto-dec-46549-2014": {
+  "dispositivos": 25,
+  "nome": "Decreto Estadual (MG) nº 46.549/2014"
+ },
+ "almg-gov-br-legislacao-mineira-texto-lcp-129-2013": {
+  "dispositivos": 43,
+  "nome": "Lei Complementar Estadual (MG) nº 129/2013"
+ },
+ "almg-gov-br-legislacao-mineira-texto-lcp-65-2003": {
+  "dispositivos": 45,
+  "nome": "Lei Complementar Estadual (MG) nº 65/2003"
+ },
+ "almg-gov-br-legislacao-mineira-texto-lei-5406-1969": {
+  "dispositivos": 17,
+  "nome": "Lei Estadual (MG) nº 5.406/1969"
+ },
+ "amprev-ap-gov-br-comunicacao-legislacao-leis-lei-20915-pdf": {
+  "dispositivos": 49,
+  "nome": "Regime Próprio de Previdência Social do Estado do Amapá"
+ },
+ "amprev-ap-gov-br-comunicacao-legislacao-leis-lei-20n-201-813-20de-2007-20de-20ab-49f3efb7": {
+  "dispositivos": 28,
+  "nome": "Regime Próprio de Previdência dos Servidores do Amapá"
+ },
+ "antigo-sefa-pa-gov-br-legislacao-interna-lei-lp2021-09260-pdf": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre a transação resolutiva de litígio relativo à cobrança de créditos da Fazenda Pública estadual"
+ },
+ "api-legislacao-se-gov-br-uploads-atos-31521-dn-21400-2002-atualizado-dn-876-2024-pdf": {
+  "dispositivos": 2255,
+  "nome": "Regulamento do ICMS de Sergipe (texto atualizado até o Decreto 876/2024)"
+ },
+ "api-transparencia-rr-gov-br-storage-legislacoes-e9ce69fc-1f18-49a8-af05-71dab07c-7d3b7d5c": {
+  "dispositivos": 2,
+  "nome": "Critérios de distribuição do ICMS aos municípios de Roraima (LC 311/2022)"
+ },
+ "app-al-ac-leg-br-legisla-e-legislacao-visualizar-5412-pdf": {
+  "dispositivos": 3,
+  "nome": "Política Estadual de Assistência Técnica e Extensão Agroflorestal Rural para a Produção Familiar (PEATER)"
+ },
+ "app-al-ac-leg-br-legisla-e-legislacao-visualizar-5414": {
+  "dispositivos": 6,
+  "nome": "Cria o Sistema Estadual de Incentivos a Serviços Ambientais - SISA, o Programa de Incentivos por Serviços Ambientais - ISA Carbono e demais "
+ },
+ "app-al-ac-leg-br-legisla-e-legislacao-visualizar-6736": {
+  "dispositivos": 7,
+  "nome": "Estrutura administrativa do Poder Executivo do Acre (revogada)"
+ },
+ "app-al-ac-leg-br-legisla-e-legislacao-visualizar-9718": {
+  "dispositivos": 38,
+  "nome": "Quadro de Pessoal e Plano de Cargos, Carreiras e Remunerações do TCE-AC"
+ },
+ "app1-sefaz-mt-gov-br-sistema-legislacao-legislacaotribut-nsf-07fa81bed2760c6b842-05b55332": {
+  "dispositivos": 13,
+  "nome": "Regulamenta a Lei Complementar nº 802/2024 (Lei de Transação Tributária Estadual de MT)"
+ },
+ "artran-pa-gov-br-sites-default-files-leis-lei-20estadual-20n-c2-ba-208-972-20de--be4c2610": {
+  "dispositivos": 25,
+  "nome": "Regula o processo administrativo no âmbito da Administração Pública do Estado do Pará"
+ },
  "ato2004-2006-2004-decreto-d5015": {
   "dispositivos": 1,
   "nome": "Convenção da ONU contra o Crime Organizado Transnacional (Palermo)"
+ },
+ "ato2004-2006-2004-decreto-d5123": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 5.123/2004"
  },
  "ato2004-2006-2004-decreto-d5296": {
   "dispositivos": 33,
@@ -23,6 +467,10 @@
   "dispositivos": 69,
   "nome": "Patrimônio de afetação / cédulas de crédito imobiliário"
  },
+ "ato2004-2006-2004-lei-l10-932": {
+  "dispositivos": 3,
+  "nome": "Lei nº 10.932/2004"
+ },
  "ato2004-2006-2004-lei-l10-973": {
   "dispositivos": 28,
   "nome": "Lei de Inovação Tecnológica"
@@ -34,6 +482,14 @@
  "ato2004-2006-2004-lei-l11079": {
   "dispositivos": 28,
   "nome": "Parcerias Público-Privadas (PPP)"
+ },
+ "ato2004-2006-2005-decreto-d5440": {
+  "dispositivos": 7,
+  "nome": "Decreto nº 5.440/2005"
+ },
+ "ato2004-2006-2005-decreto-d5480": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 5.480/2005"
  },
  "ato2004-2006-2005-decreto-d5626": {
   "dispositivos": 6,
@@ -51,6 +507,10 @@
   "dispositivos": 7,
   "nome": "Lei dos Consórcios Públicos"
  },
+ "ato2004-2006-2005-lei-l11108": {
+  "dispositivos": 1,
+  "nome": "Lei nº 11.108/2005"
+ },
  "ato2004-2006-2005-lei-l11124": {
   "dispositivos": 11,
   "nome": "Sistema Nacional de Habitação de Interesse Social"
@@ -58,6 +518,10 @@
  "ato2004-2006-2005-lei-l11126": {
   "dispositivos": 1,
   "nome": "Cão-guia em locais públicos e transporte coletivo para pessoas com deficiência visual"
+ },
+ "ato2004-2006-2006-decreto-d5683": {
+  "dispositivos": 9,
+  "nome": "Decreto nº 5.683/2006"
  },
  "ato2004-2006-2006-decreto-d5687": {
   "dispositivos": 1,
@@ -71,6 +535,10 @@
   "dispositivos": 55,
   "nome": "Gestão de Florestas Públicas"
  },
+ "ato2004-2006-2006-lei-l11300": {
+  "dispositivos": 2,
+  "nome": "Lei nº 11.300/2006"
+ },
  "ato2004-2006-2006-lei-l11340": {
   "dispositivos": 28,
   "nome": "Lei Maria da Penha"
@@ -82,6 +550,10 @@
  "ato2004-2006-2006-lei-l11346": {
   "dispositivos": 2,
   "nome": "Sistema Nacional de Segurança Alimentar e Nutricional (SISAN)"
+ },
+ "ato2004-2006-2006-lei-l11358": {
+  "dispositivos": 13,
+  "nome": "Lei nº 11.358/2006"
  },
  "ato2004-2006-2006-lei-l11417": {
   "dispositivos": 2,
@@ -119,21 +591,57 @@
   "dispositivos": 42,
   "nome": "Promulga a Convenção sobre os Direitos das Pessoas com Deficiência (texto anterior à internalização com status constitucional)"
  },
+ "ato2007-2010-2007-decreto-d6135": {
+  "dispositivos": 4,
+  "nome": "Decreto nº 6.135/2007"
+ },
  "ato2007-2010-2007-decreto-d6170": {
   "dispositivos": 18,
   "nome": "Convênios e contratos de repasse"
+ },
+ "ato2007-2010-2007-decreto-d6231": {
+  "dispositivos": 7,
+  "nome": "Decreto nº 6.231/2007"
  },
  "ato2007-2010-2007-decreto-d6307": {
   "dispositivos": 3,
   "nome": "Dispõe sobre os benefícios eventuais de que trata a Lei Orgânica da Assistência Social"
  },
+ "ato2007-2010-2007-lei-l11441": {
+  "dispositivos": 4,
+  "nome": "Lei nº 11.441/2007"
+ },
  "ato2007-2010-2007-lei-l11445": {
   "dispositivos": 36,
   "nome": "Lei do Saneamento Básico"
  },
+ "ato2007-2010-2007-lei-l11448": {
+  "dispositivos": 2,
+  "nome": "Lei nº 11.448/2007"
+ },
  "ato2007-2010-2007-lei-l11516": {
   "dispositivos": 17,
   "nome": "Cria o Instituto Chico Mendes de Conservação da Biodiversidade (ICMBio)"
+ },
+ "ato2007-2010-2007-lei-l11525": {
+  "dispositivos": 2,
+  "nome": "Lei nº 11.525/2007"
+ },
+ "ato2007-2010-2007-lei-l11530": {
+  "dispositivos": 6,
+  "nome": "Lei nº 11.530/2007"
+ },
+ "ato2007-2010-2007-lei-l11638": {
+  "dispositivos": 9,
+  "nome": "Lei nº 11.638/2007"
+ },
+ "ato2007-2010-2008-decreto-d6481": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 6.481/2008"
+ },
+ "ato2007-2010-2008-decreto-d6490": {
+  "dispositivos": 16,
+  "nome": "Decreto nº 6.490/2008"
  },
  "ato2007-2010-2008-decreto-d6514": {
   "dispositivos": 62,
@@ -142,6 +650,10 @@
  "ato2007-2010-2008-decreto-d6660": {
   "dispositivos": 61,
   "nome": "Regulamenta a Lei da Mata Atlântica (Lei nº 11.428/2006)"
+ },
+ "ato2007-2010-2008-decreto-d6690": {
+  "dispositivos": 4,
+  "nome": "Decreto nº 6.690/2008"
  },
  "ato2007-2010-2008-lei-l11645": {
   "dispositivos": 1,
@@ -159,21 +671,53 @@
   "dispositivos": 20,
   "nome": "Lei de Organização Judiciária do Distrito Federal e dos Territórios (LOJDFT)"
  },
+ "ato2007-2010-2008-lei-l11705": {
+  "dispositivos": 9,
+  "nome": "Lei nº 11.705/2008"
+ },
  "ato2007-2010-2008-lei-l11719": {
   "dispositivos": 3,
   "nome": "Altera o CPP — resposta à acusação, absolvição sumária e sentença"
+ },
+ "ato2007-2010-2008-lei-l11738": {
+  "dispositivos": 3,
+  "nome": "Lei nº 11.738/2008"
+ },
+ "ato2007-2010-2008-lei-l11770": {
+  "dispositivos": 1,
+  "nome": "Lei nº 11.770/2008"
+ },
+ "ato2007-2010-2008-lei-l11790": {
+  "dispositivos": 1,
+  "nome": "Lei nº 11.790/2008"
  },
  "ato2007-2010-2008-lei-l11804": {
   "dispositivos": 0,
   "nome": "Alimentos gravídicos"
  },
+ "ato2007-2010-2008-lei-l11888": {
+  "dispositivos": 3,
+  "nome": "Lei nº 11.888/2008"
+ },
+ "ato2007-2010-2009-decreto-d6861": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 6.861/2009"
+ },
  "ato2007-2010-2009-decreto-d6949": {
   "dispositivos": 1,
   "nome": "Convenção sobre os Direitos das Pessoas com Deficiência"
  },
+ "ato2007-2010-2009-decreto-d6976": {
+  "dispositivos": 4,
+  "nome": "Decreto nº 6.976/2009"
+ },
  "ato2007-2010-2009-decreto-d7037": {
   "dispositivos": 1,
   "nome": "Programa Nacional de Direitos Humanos (PNDH-3)"
+ },
+ "ato2007-2010-2009-decreto-d7052": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 7.052/2009"
  },
  "ato2007-2010-2009-decreto-d7053": {
   "dispositivos": 1,
@@ -199,13 +743,29 @@
   "dispositivos": 14,
   "nome": "Lei Nacional da Adoção"
  },
+ "ato2007-2010-2009-lei-l12015": {
+  "dispositivos": 3,
+  "nome": "Lei nº 12.015/2009"
+ },
  "ato2007-2010-2009-lei-l12016": {
   "dispositivos": 13,
   "nome": "Lei do Mandado de Segurança"
  },
+ "ato2007-2010-2009-lei-l12034": {
+  "dispositivos": 1,
+  "nome": "Lei nº 12.034/2009"
+ },
  "ato2007-2010-2009-lei-l12037": {
   "dispositivos": 5,
   "nome": "Identificação criminal do civilmente identificado"
+ },
+ "ato2007-2010-2009-lei-l12106": {
+  "dispositivos": 1,
+  "nome": "Lei nº 12.106/2009"
+ },
+ "ato2007-2010-2009-lei-l12112": {
+  "dispositivos": 2,
+  "nome": "Lei nº 12.112/2009"
  },
  "ato2007-2010-2009-lei-l12153": {
   "dispositivos": 20,
@@ -219,6 +779,10 @@
   "dispositivos": 4,
   "nome": "Programa Mais Educação"
  },
+ "ato2007-2010-2010-decreto-d7128": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 7.128/2010"
+ },
  "ato2007-2010-2010-decreto-d7174": {
   "dispositivos": 10,
   "nome": "Contratação de bens e serviços de informática e automação pela Administração Pública federal"
@@ -227,6 +791,10 @@
   "dispositivos": 26,
   "nome": "Regulamenta a Lei do Saneamento Básico (Lei nº 11.445/2007)"
  },
+ "ato2007-2010-2010-decreto-d7272": {
+  "dispositivos": 10,
+  "nome": "Decreto nº 7.272/2010"
+ },
  "ato2007-2010-2010-decreto-d7404": {
   "dispositivos": 50,
   "nome": "Regulamenta a Política Nacional de Resíduos Sólidos"
@@ -234,6 +802,14 @@
  "ato2007-2010-2010-lei-l12232": {
   "dispositivos": 17,
   "nome": "Normas gerais para licitação e contratação de serviços de publicidade por agências de propaganda"
+ },
+ "ato2007-2010-2010-lei-l12249": {
+  "dispositivos": 120,
+  "nome": "Lei nº 12.249/2010"
+ },
+ "ato2007-2010-2010-lei-l12258": {
+  "dispositivos": 1,
+  "nome": "Lei nº 12.258/2010"
  },
  "ato2007-2010-2010-lei-l12288": {
   "dispositivos": 19,
@@ -247,6 +823,10 @@
   "dispositivos": 2,
   "nome": "Assistência jurídica ao preso — altera a Lei de Execução Penal"
  },
+ "ato2007-2010-2010-lei-l12314": {
+  "dispositivos": 10,
+  "nome": "Lei nº 12.314/2010"
+ },
  "ato2007-2010-2010-lei-l12318": {
   "dispositivos": 2,
   "nome": "Lei da Alienação Parental"
@@ -255,9 +835,17 @@
   "dispositivos": 11,
   "nome": "Política Nacional de Segurança de Barragens"
  },
+ "ato2007-2010-2010-lei-l12340": {
+  "dispositivos": 11,
+  "nome": "Lei nº 12.340/2010"
+ },
  "ato2007-2010-2010-lei-l12376": {
   "dispositivos": 2,
   "nome": "Altera a ementa da LINDB (Lei de Introdução às Normas do Direito Brasileiro)"
+ },
+ "ato2011-2014-2011-decreto-d7469": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 7.469/2011"
  },
  "ato2011-2014-2011-decreto-d7499": {
   "dispositivos": 21,
@@ -270,6 +858,22 @@
  "ato2011-2014-2011-decreto-d7581": {
   "dispositivos": 73,
   "nome": "Regulamenta o RDC"
+ },
+ "ato2011-2014-2011-decreto-d7626": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 7.626/2011"
+ },
+ "ato2011-2014-2011-decreto-d7646": {
+  "dispositivos": 6,
+  "nome": "Decreto nº 7.646/2011"
+ },
+ "ato2011-2014-2011-lei-l12401": {
+  "dispositivos": 2,
+  "nome": "Lei nº 12.401/2011"
+ },
+ "ato2011-2014-2011-lei-l12403": {
+  "dispositivos": 4,
+  "nome": "Lei nº 12.403/2011"
  },
  "ato2011-2014-2011-lei-l12414": {
   "dispositivos": 17,
@@ -287,6 +891,10 @@
   "dispositivos": 16,
   "nome": "Regime Diferenciado de Contratações (RDC)"
  },
+ "ato2011-2014-2011-lei-l12466": {
+  "dispositivos": 1,
+  "nome": "Lei nº 12.466/2011"
+ },
  "ato2011-2014-2011-lei-l12527": {
   "dispositivos": 33,
   "nome": "Lei de Acesso à Informação"
@@ -294,6 +902,10 @@
  "ato2011-2014-2011-lei-l12529": {
   "dispositivos": 58,
   "nome": "Lei de Defesa da Concorrência"
+ },
+ "ato2011-2014-2011-lei-l12550": {
+  "dispositivos": 11,
+  "nome": "Lei nº 12.550/2011"
  },
  "ato2011-2014-2011-lei-l12562": {
   "dispositivos": 4,
@@ -306,6 +918,10 @@
  "ato2011-2014-2012-decreto-d7746": {
   "dispositivos": 4,
   "nome": "Contratações públicas sustentáveis"
+ },
+ "ato2011-2014-2012-decreto-d7794": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 7.794/2012"
  },
  "ato2011-2014-2012-decreto-d7830": {
   "dispositivos": 17,
@@ -359,6 +975,10 @@
   "dispositivos": 18,
   "nome": "Sistema de Registro de Preços"
  },
+ "ato2011-2014-2013-decreto-d7950": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 7.950/2013"
+ },
  "ato2011-2014-2013-decreto-d7962": {
   "dispositivos": 5,
   "nome": "Contratação no comércio eletrônico"
@@ -370,6 +990,10 @@
  "ato2011-2014-2013-decreto-d8136": {
   "dispositivos": 6,
   "nome": "Regulamento do Sistema Nacional de Promoção da Igualdade Racial (Sinapir)"
+ },
+ "ato2011-2014-2013-decreto-d8154": {
+  "dispositivos": 14,
+  "nome": "Decreto nº 8.154/2013"
  },
  "ato2011-2014-2013-lei-l12783": {
   "dispositivos": 53,
@@ -407,6 +1031,10 @@
   "dispositivos": 1,
   "nome": "Institui o dia nacional de combate à discriminação racial nas escolas (citada no edital)"
  },
+ "ato2011-2014-2014-decreto-d8380": {
+  "dispositivos": 10,
+  "nome": "Decreto nº 8.380/2014"
+ },
  "ato2011-2014-2014-lei-l12965": {
   "dispositivos": 15,
   "nome": "Marco Civil da Internet"
@@ -422,6 +1050,10 @@
  "ato2011-2014-2014-lei-l13010": {
   "dispositivos": 4,
   "nome": "Lei Menino Bernardo (Lei da Palmada) — direito da criança e do adolescente a serem educados sem castigos físicos"
+ },
+ "ato2011-2014-2014-lei-l13015": {
+  "dispositivos": 8,
+  "nome": "Lei nº 13.015/2014"
  },
  "ato2011-2014-2014-lei-l13019": {
   "dispositivos": 35,
@@ -471,6 +1103,10 @@
   "dispositivos": 54,
   "nome": "Estatuto da Pessoa com Deficiência (LBI)"
  },
+ "ato2015-2018-2015-lei-l13172": {
+  "dispositivos": 6,
+  "nome": "Lei nº 13.172/2015"
+ },
  "ato2015-2018-2015-lei-l13178": {
   "dispositivos": 4,
   "nome": "Ratificação de registros de imóveis rurais na faixa de fronteira"
@@ -479,6 +1115,10 @@
   "dispositivos": 1,
   "nome": "Programa de combate à intimidação sistemática (bullying)"
  },
+ "ato2015-2018-2015-lei-l13188": {
+  "dispositivos": 3,
+  "nome": "Lei nº 13.188/2015"
+ },
  "ato2015-2018-2016-decreto-d8660": {
   "dispositivos": 1,
   "nome": "Convenção da Apostila de Haia — supressão da legalização de documentos públicos estrangeiros"
@@ -486,6 +1126,18 @@
  "ato2015-2018-2016-decreto-d8750": {
   "dispositivos": 4,
   "nome": "Institui o Conselho Nacional dos Povos e Comunidades Tradicionais"
+ },
+ "ato2015-2018-2016-decreto-d8833": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 8.833/2016"
+ },
+ "ato2015-2018-2016-decreto-d8842": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 8.842/2016"
+ },
+ "ato2015-2018-2016-decreto-d8945": {
+  "dispositivos": 48,
+  "nome": "Decreto nº 8.945/2016"
  },
  "ato2015-2018-2016-lei-l13243": {
   "dispositivos": 32,
@@ -519,9 +1171,25 @@
   "dispositivos": 60,
   "nome": "Lei das Estatais"
  },
+ "ato2015-2018-2016-lei-l13327": {
+  "dispositivos": 14,
+  "nome": "Lei nº 13.327/2016"
+ },
+ "ato2015-2018-2016-lei-l13334": {
+  "dispositivos": 6,
+  "nome": "Lei nº 13.334/2016"
+ },
  "ato2015-2018-2016-lei-l13344": {
   "dispositivos": 8,
   "nome": "Prevenção e repressão ao tráfico de pessoas"
+ },
+ "ato2015-2018-2017-decreto-d9130": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 9.130/2017"
+ },
+ "ato2015-2018-2017-decreto-d9175": {
+  "dispositivos": 15,
+  "nome": "Decreto nº 9.175/2017"
  },
  "ato2015-2018-2017-decreto-d9176": {
   "dispositivos": 1,
@@ -534,6 +1202,10 @@
  "ato2015-2018-2017-lei-l13431": {
   "dispositivos": 18,
   "nome": "Escuta especializada e depoimento especial"
+ },
+ "ato2015-2018-2017-lei-l13444": {
+  "dispositivos": 2,
+  "nome": "Lei nº 13.444/2017"
  },
  "ato2015-2018-2017-lei-l13445": {
   "dispositivos": 32,
@@ -559,6 +1231,22 @@
   "dispositivos": 39,
   "nome": "Lei do Aeronauta — regulamenta a profissão"
  },
+ "ato2015-2018-2017-lei-l13484": {
+  "dispositivos": 1,
+  "nome": "Lei nº 13.484/2017"
+ },
+ "ato2015-2018-2017-lei-l13491": {
+  "dispositivos": 2,
+  "nome": "Lei nº 13.491/2017"
+ },
+ "ato2015-2018-2017-lei-l13509": {
+  "dispositivos": 13,
+  "nome": "Lei nº 13.509/2017"
+ },
+ "ato2015-2018-2018-decreto-d9283": {
+  "dispositivos": 66,
+  "nome": "Decreto nº 9.283/2018"
+ },
  "ato2015-2018-2018-decreto-d9296": {
   "dispositivos": 7,
   "nome": "Institui o Fórum de Governança da Internet no Brasil e altera composição de conselho de acessibilidade"
@@ -575,6 +1263,10 @@
   "dispositivos": 3,
   "nome": "Altera o Decreto do Conselho Nacional dos Direitos da Pessoa com Deficiência"
  },
+ "ato2015-2018-2018-decreto-d9492": {
+  "dispositivos": 15,
+  "nome": "Decreto nº 9.492/2018"
+ },
  "ato2015-2018-2018-decreto-d9507": {
   "dispositivos": 6,
   "nome": "Regras para execução indireta de serviços continuados na Administração Pública federal"
@@ -582,6 +1274,10 @@
  "ato2015-2018-2018-decreto-d9571": {
   "dispositivos": 3,
   "nome": "Diretrizes Nacionais sobre Empresas e Direitos Humanos"
+ },
+ "ato2015-2018-2018-decreto-d9579": {
+  "dispositivos": 16,
+  "nome": "Decreto nº 9.579/2018"
  },
  "ato2015-2018-2018-decreto-d9603": {
   "dispositivos": 8,
@@ -599,6 +1295,18 @@
   "dispositivos": 46,
   "nome": "LGPD"
  },
+ "ato2015-2018-2018-lei-l13756": {
+  "dispositivos": 13,
+  "nome": "Lei nº 13.756/2018"
+ },
+ "ato2015-2018-2018-lei-l13774": {
+  "dispositivos": 9,
+  "nome": "Lei nº 13.774/2018"
+ },
+ "ato2015-2018-2018-lei-l13777": {
+  "dispositivos": 8,
+  "nome": "Lei nº 13.777/2018"
+ },
  "ato2015-2018-2018-lei-l13786": {
   "dispositivos": 8,
   "nome": "Resolução de contrato de imóvel em incorporação (distrato)"
@@ -611,6 +1319,10 @@
   "dispositivos": 31,
   "nome": "Pregão eletrônico"
  },
+ "ato2019-2022-2019-decreto-d10030": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 10.030/2019"
+ },
  "ato2019-2022-2019-decreto-d10088": {
   "dispositivos": 7,
   "nome": "Convenção nº 169 da OIT sobre Povos Indígenas e Tribais"
@@ -619,6 +1331,14 @@
   "dispositivos": 5,
   "nome": "Programa Viver — Envelhecimento Ativo e Saudável"
  },
+ "ato2019-2022-2019-decreto-d10178": {
+  "dispositivos": 17,
+  "nome": "Decreto nº 10.178/2019"
+ },
+ "ato2019-2022-2019-decreto-d9817": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 9.817/2019"
+ },
  "ato2019-2022-2019-decreto-d9830": {
   "dispositivos": 18,
   "nome": "Regulamenta os arts. 20 a 30 da LINDB"
@@ -626,6 +1346,14 @@
  "ato2019-2022-2019-decreto-d9847": {
   "dispositivos": 18,
   "nome": "Regulamenta o Estatuto do Desarmamento (armas e munições)"
+ },
+ "ato2019-2022-2019-decreto-d9893": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 9.893/2019"
+ },
+ "ato2019-2022-2019-decreto-d9894": {
+  "dispositivos": 4,
+  "nome": "Decreto nº 9.894/2019"
  },
  "ato2019-2022-2019-decreto-d9921": {
   "dispositivos": 14,
@@ -667,6 +1395,14 @@
   "dispositivos": 7,
   "nome": "Competência federal delegada e benefícios previdenciários"
  },
+ "ato2019-2022-2019-lei-l13931": {
+  "dispositivos": 1,
+  "nome": "Lei nº 13.931/2019"
+ },
+ "ato2019-2022-2019-lei-l13940": {
+  "dispositivos": 2,
+  "nome": "Lei nº 13.940/2019"
+ },
  "ato2019-2022-2019-lei-l13954": {
   "dispositivos": 32,
   "nome": "Reorganiza os processos de trabalho e o Sistema de Proteção Social dos Militares das Forças Armadas"
@@ -675,9 +1411,17 @@
   "dispositivos": 35,
   "nome": "Pacote Anticrime"
  },
+ "ato2019-2022-2019-lei-l13966": {
+  "dispositivos": 2,
+  "nome": "Lei nº 13.966/2019"
+ },
  "ato2019-2022-2020-decreto-d10201": {
   "dispositivos": 5,
   "nome": "Limites para transação e acordos (Lei 9.469/1997)"
+ },
+ "ato2019-2022-2020-decreto-d10203": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 10.203/2020"
  },
  "ato2019-2022-2020-decreto-d10502": {
   "dispositivos": 5,
@@ -686,6 +1430,10 @@
  "ato2019-2022-2020-decreto-d10592": {
   "dispositivos": 57,
   "nome": "Regulamenta a regularização fundiária de imóveis rurais"
+ },
+ "ato2019-2022-2020-lei-l13974": {
+  "dispositivos": 9,
+  "nome": "Lei nº 13.974/2020"
  },
  "ato2019-2022-2020-lei-l13977": {
   "dispositivos": 4,
@@ -703,9 +1451,21 @@
   "dispositivos": 14,
   "nome": "Regime Jurídico Emergencial e Transitório das relações de Direito Privado (RJET)"
  },
+ "ato2019-2022-2020-lei-l14022": {
+  "dispositivos": 10,
+  "nome": "Lei nº 14.022/2020"
+ },
  "ato2019-2022-2020-lei-l14026": {
   "dispositivos": 58,
   "nome": "Novo Marco Legal do Saneamento Básico"
+ },
+ "ato2019-2022-2020-lei-l14040": {
+  "dispositivos": 10,
+  "nome": "Lei nº 14.040/2020"
+ },
+ "ato2019-2022-2020-lei-l14046": {
+  "dispositivos": 3,
+  "nome": "Lei nº 14.046/2020"
  },
  "ato2019-2022-2020-lei-l14063": {
   "dispositivos": 16,
@@ -723,9 +1483,33 @@
   "dispositivos": 3,
   "nome": "Altera o Decreto nº 9.921/2019 (temática da pessoa idosa)"
  },
+ "ato2019-2022-2021-decreto-d10627": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 10.627/2021"
+ },
+ "ato2019-2022-2021-decreto-d10690": {
+  "dispositivos": 7,
+  "nome": "Decreto nº 10.690/2021"
+ },
  "ato2019-2022-2021-decreto-d10692": {
   "dispositivos": 6,
   "nome": "Institui a Política Nacional de Proteção e Defesa Civil (PNPDEC) em nível regulamentar"
+ },
+ "ato2019-2022-2021-decreto-d10711": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 10.711/2021"
+ },
+ "ato2019-2022-2021-decreto-d10777": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 10.777/2021"
+ },
+ "ato2019-2022-2021-decreto-d10887": {
+  "dispositivos": 13,
+  "nome": "Decreto nº 10.887/2021"
+ },
+ "ato2019-2022-2021-lei-l14118": {
+  "dispositivos": 14,
+  "nome": "Lei nº 14.118/2021"
  },
  "ato2019-2022-2021-lei-l14119": {
   "dispositivos": 18,
@@ -763,9 +1547,21 @@
   "dispositivos": 60,
   "nome": "Ambiente de negócios (citação, prescrição intercorrente, sociedades)"
  },
+ "ato2019-2022-2021-lei-l14197": {
+  "dispositivos": 4,
+  "nome": "Lei nº 14.197/2021"
+ },
+ "ato2019-2022-2021-lei-l14208": {
+  "dispositivos": 2,
+  "nome": "Lei nº 14.208/2021"
+ },
  "ato2019-2022-2021-lei-l14230": {
   "dispositivos": 15,
   "nome": "Altera a Lei de Improbidade Administrativa"
+ },
+ "ato2019-2022-2021-lei-l14232": {
+  "dispositivos": 1,
+  "nome": "Lei nº 14.232/2021"
  },
  "ato2019-2022-2021-lei-l14238": {
   "dispositivos": 1,
@@ -787,6 +1583,10 @@
   "dispositivos": 9,
   "nome": "Regulamenta o Serviço de Atendimento ao Consumidor (SAC)"
  },
+ "ato2019-2022-2022-decreto-d11102": {
+  "dispositivos": 16,
+  "nome": "Decreto nº 11.102/2022"
+ },
  "ato2019-2022-2022-decreto-d11129": {
   "dispositivos": 49,
   "nome": "Regulamenta a Lei Anticorrupção"
@@ -794,6 +1594,10 @@
  "ato2019-2022-2022-decreto-d11150": {
   "dispositivos": 4,
   "nome": "Preservação e não comprometimento do mínimo existencial"
+ },
+ "ato2019-2022-2022-decreto-d11161": {
+  "dispositivos": 5,
+  "nome": "Decreto nº 11.161/2022"
  },
  "ato2019-2022-2022-lei-l14289": {
   "dispositivos": 4,
@@ -819,17 +1623,37 @@
   "dispositivos": 23,
   "nome": "Marco Legal das Garantias / Certificado de Recebíveis"
  },
+ "ato2019-2022-2022-lei-l14431": {
+  "dispositivos": 11,
+  "nome": "Lei nº 14.431/2022"
+ },
+ "ato2019-2022-2022-lei-l14437": {
+  "dispositivos": 58,
+  "nome": "Lei nº 14.437/2022"
+ },
  "ato2019-2022-2022-lei-l14443": {
   "dispositivos": 3,
   "nome": "Altera o Código Civil quanto à gestação por substituição e reprodução assistida"
+ },
+ "ato2019-2022-2022-lei-l14489": {
+  "dispositivos": 1,
+  "nome": "Lei nº 14.489/2022"
  },
  "ato2019-2022-2022-lei-l14510": {
   "dispositivos": 6,
   "nome": "Regulamenta a telessaúde no Brasil"
  },
+ "ato2023-2026-2023-decreto-d11430": {
+  "dispositivos": 7,
+  "nome": "Decreto nº 11.430/2023"
+ },
  "ato2023-2026-2023-decreto-d11462": {
   "dispositivos": 36,
   "nome": "Regulamenta o Sistema de Registro de Preços no âmbito da Administração Pública Federal (arts. 82 a 86 da Lei nº 14.133/2021)"
+ },
+ "ato2023-2026-2023-decreto-d11472": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 11.472/2023"
  },
  "ato2023-2026-2023-decreto-d11483": {
   "dispositivos": 8,
@@ -839,6 +1663,10 @@
   "dispositivos": 1,
   "nome": "Convenção sobre o Crime Cibernético (Budapeste)"
  },
+ "ato2023-2026-2023-decreto-d11531": {
+  "dispositivos": 14,
+  "nome": "Decreto nº 11.531/2023"
+ },
  "ato2023-2026-2023-decreto-d11599": {
   "dispositivos": 29,
   "nome": "Diretrizes para a Política Nacional de Resíduos Sólidos quanto a logística reversa"
@@ -847,21 +1675,53 @@
   "dispositivos": 1,
   "nome": "Promulga o Segundo Protocolo Facultativo ao Pacto Internacional sobre Direitos Civis e Políticos (abolição da pena de morte)"
  },
+ "ato2023-2026-2023-decreto-d11793": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 11.793/2023"
+ },
+ "ato2023-2026-2023-decreto-d11819": {
+  "dispositivos": 3,
+  "nome": "Decreto nº 11.819/2023"
+ },
+ "ato2023-2026-2023-lei-l14531": {
+  "dispositivos": 6,
+  "nome": "Lei nº 14.531/2023"
+ },
  "ato2023-2026-2023-lei-l14532": {
   "dispositivos": 3,
   "nome": "Tipifica racismo por injúria racial"
+ },
+ "ato2023-2026-2023-lei-l14533": {
+  "dispositivos": 5,
+  "nome": "Lei nº 14.533/2023"
  },
  "ato2023-2026-2023-lei-l14538": {
   "dispositivos": 2,
   "nome": "Planos de saúde — reconstrução mamária (altera a Lei 9.656/1998)"
  },
+ "ato2023-2026-2023-lei-l14546": {
+  "dispositivos": 2,
+  "nome": "Lei nº 14.546/2023"
+ },
  "ato2023-2026-2023-lei-l14548": {
   "dispositivos": 3,
   "nome": "Regras de viagem nacional/internacional e vedações à entrega de produtos e serviços a crianças e adolescentes"
  },
+ "ato2023-2026-2023-lei-l14579": {
+  "dispositivos": 1,
+  "nome": "Lei nº 14.579/2023"
+ },
  "ato2023-2026-2023-lei-l14597": {
   "dispositivos": 50,
   "nome": "Lei Geral do Esporte"
+ },
+ "ato2023-2026-2023-lei-l14620": {
+  "dispositivos": 64,
+  "nome": "Lei nº 14.620/2023"
+ },
+ "ato2023-2026-2023-lei-l14690": {
+  "dispositivos": 46,
+  "nome": "Lei nº 14.690/2023"
  },
  "ato2023-2026-2023-lei-l14701": {
   "dispositivos": 17,
@@ -875,6 +1735,10 @@
   "dispositivos": 10,
   "nome": "Lei Orgânica Nacional das Polícias Civis"
  },
+ "ato2023-2026-2023-lei-l14754": {
+  "dispositivos": 61,
+  "nome": "Lei nº 14.754/2023"
+ },
  "ato2023-2026-2023-lei-l14755": {
   "dispositivos": 7,
   "nome": "Política Nacional de Direitos das Populações Atingidas por Barragens"
@@ -886,6 +1750,10 @@
  "ato2023-2026-2023-lei-l14790": {
   "dispositivos": 10,
   "nome": "Apostas de quota fixa (bets)"
+ },
+ "ato2023-2026-2024-decreto-d12337": {
+  "dispositivos": 8,
+  "nome": "Decreto nº 12.337/2024"
  },
  "ato2023-2026-2024-decreto-d12341": {
   "dispositivos": 7,
@@ -903,6 +1771,14 @@
   "dispositivos": 1,
   "nome": "Altera a Lei Maria da Penha para tratar da violência doméstica e familiar contra a criança e o adolescente"
  },
+ "ato2023-2026-2024-lei-l14836": {
+  "dispositivos": 3,
+  "nome": "Lei nº 14.836/2024"
+ },
+ "ato2023-2026-2024-lei-l14852": {
+  "dispositivos": 14,
+  "nome": "Lei nº 14.852/2024"
+ },
  "ato2023-2026-2024-lei-l14904": {
   "dispositivos": 8,
   "nome": "Plano de adaptação à mudança do clima"
@@ -911,9 +1787,25 @@
   "dispositivos": 5,
   "nome": "Atualização monetária e juros — altera o Código Civil"
  },
+ "ato2023-2026-2024-lei-l14926": {
+  "dispositivos": 2,
+  "nome": "Lei nº 14.926/2024"
+ },
+ "ato2023-2026-2024-lei-l14944": {
+  "dispositivos": 14,
+  "nome": "Lei nº 14.944/2024"
+ },
+ "ato2023-2026-2024-lei-l14948": {
+  "dispositivos": 13,
+  "nome": "Lei nº 14.948/2024"
+ },
  "ato2023-2026-2024-lei-l14967": {
   "dispositivos": 45,
   "nome": "Estatuto da Segurança Privada e da Segurança das Instituições Financeiras"
+ },
+ "ato2023-2026-2024-lei-l14994": {
+  "dispositivos": 4,
+  "nome": "Lei nº 14.994/2024"
  },
  "ato2023-2026-2024-lei-l15042": {
   "dispositivos": 45,
@@ -923,6 +1815,14 @@
   "dispositivos": 5,
   "nome": "Regime Disciplinar da Polícia Federal e da Polícia Civil do Distrito Federal"
  },
+ "ato2023-2026-2024-lei-l15081": {
+  "dispositivos": 5,
+  "nome": "Lei nº 15.081/2024"
+ },
+ "ato2023-2026-2025-decreto-d12536": {
+  "dispositivos": 14,
+  "nome": "Decreto nº 12.536/2025"
+ },
  "ato2023-2026-2025-decreto-d12688": {
   "dispositivos": 22,
   "nome": "Institui o sistema de logística reversa de embalagens plásticas"
@@ -930,6 +1830,14 @@
  "ato2023-2026-2025-lei-l15100": {
   "dispositivos": 1,
   "nome": "Restrições ao uso de celulares em escolas e conteúdo curricular sobre prevenção à violência contra a mulher"
+ },
+ "ato2023-2026-2025-lei-l15103": {
+  "dispositivos": 13,
+  "nome": "Lei nº 15.103/2025"
+ },
+ "ato2023-2026-2025-lei-l15142": {
+  "dispositivos": 6,
+  "nome": "Lei nº 15.142/2025"
  },
  "ato2023-2026-2025-lei-l15190": {
   "dispositivos": 65,
@@ -963,6 +1871,70 @@
   "dispositivos": 4,
   "nome": "Feminicídio vicário — altera o Código Penal"
  },
+ "ba-gov-br-agerba-publicacoes-lei-n-12-575-de-26-de-abril-de-2012": {
+  "dispositivos": 1,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "ba-gov-br-justica-sites-site-sjdh-files-2024-08-leiordinaria129252013bahiabapoli-53cff0e0": {
+  "dispositivos": 3,
+  "nome": "Política Estadual da Pessoa Idosa da Bahia"
+ },
+ "ba-gov-br-policiacivil-sites-site-pcba-files-2025-01-lei-20n-c2-ba-2011-370-20de-dc488243": {
+  "dispositivos": 6,
+  "nome": "Lei Orgânica da Polícia Civil do Estado da Bahia"
+ },
+ "bancodeleis-alepa-pa-gov-br-arquivos-lei2069-2006-95593-pdf": {
+  "dispositivos": 4,
+  "nome": "Decreto Estadual (PA) nº 2.069/2006"
+ },
+ "bancodeleis-alepa-pa-gov-br-arquivos-lei5980-1996-36692-pdf": {
+  "dispositivos": 11,
+  "nome": "Dispõe sobre as entidades qualificadas como Organizações Sociais no Estado do Pará"
+ },
+ "bancodeleis-alepa-pa-gov-br-arquivos-lei6474-2002-95183-pdf": {
+  "dispositivos": 2,
+  "nome": "Institui, no Estado do Pará, a modalidade de licitação denominada pregão"
+ },
+ "bancodeleis-alepa-pa-gov-br-arquivos-lei7031-2007-76444-pdf": {
+  "dispositivos": 1,
+  "nome": "Cessão de créditos de royalties e compensações financeiras (Pará)"
+ },
+ "bancodeleis-alepa-pa-gov-br-arquivos-lei7731-2013-86621-pdf": {
+  "dispositivos": 4,
+  "nome": "Política Estadual de Saneamento Básico do Pará"
+ },
+ "biomasdabahia-mpba-mp-br-sdm-downloads-lei-estadual-n-10-431-2006": {
+  "dispositivos": 6,
+  "nome": "Política de Meio Ambiente e de Proteção à Biodiversidade do Estado da Bahia"
+ },
+ "central-to-gov-br-download-20827": {
+  "dispositivos": 45,
+  "nome": "Lei Orgânica do Tribunal de Contas do Estado do Tocantins"
+ },
+ "cf-mpap-novo-portal-mpap-mp-br-images-prodemac-legislacao-lei-n-c2-ba-0702-de-28-ad11d6ad": {
+  "dispositivos": 3,
+  "nome": "Política Estadual de Florestas e demais Formas de Vegetação do Amapá"
+ },
+ "cge-pa-gov-br-sites-default-files-2023-02-lei-estadual-n-7649-de-24-07-2012-pdf": {
+  "dispositivos": 17,
+  "nome": "Regulamenta as parcerias público-privadas (PPP) no âmbito do Estado do Pará"
+ },
+ "cge-sc-gov-br-download-decreto-no-127-de-30-de-marco-de-2011": {
+  "dispositivos": 32,
+  "nome": "instituição financeira prevista no art"
+ },
+ "cge-sc-gov-br-download-http-server03-pge-sc-gov-br-legislacaoestadual-2007-00072-a6ae03c4": {
+  "dispositivos": 8,
+  "nome": "Dispõe sobre a organização, estruturação e funcionamento do Sistema de Serviços Jurídicos da Administração Direta e Indireta"
+ },
+ "cnmp-mp-br-portal-images-calj-calj-lo-mps-mpac-lce-291-2014-lei-orgnica-do-mpac--79fb78ae": {
+  "dispositivos": 37,
+  "nome": "Lei Orgânica do Ministério Público do Estado do Acre"
+ },
+ "cnmp-mp-br-portal-images-normas-leisestaduais-amapa-pdf": {
+  "dispositivos": 9,
+  "nome": "Lei Orgânica do Ministério Público do Estado do Amapá"
+ },
  "constituicao-constituicao": {
   "dispositivos": 539,
   "nome": "Constituição Federal"
@@ -971,9 +1943,17 @@
   "dispositivos": 4,
   "nome": "Prescrição contra a Fazenda Pública"
  },
+ "decreto-1950-1969-d61867": {
+  "dispositivos": 5,
+  "nome": "Decreto nº 61.867/1967"
+ },
  "decreto-1950-1969-d65810": {
   "dispositivos": 0,
   "nome": "Convenção sobre a Eliminação de Todas as Formas de Discriminação Racial"
+ },
+ "decreto-1970-1979-d76322": {
+  "dispositivos": 2,
+  "nome": "Decreto nº 76.322/1975"
  },
  "decreto-1990-1994-d99710": {
   "dispositivos": 0,
@@ -982,6 +1962,18 @@
  "decreto-2001-d3956": {
   "dispositivos": 0,
   "nome": "Convenção Interamericana contra a Discriminação das Pessoas com Deficiência"
+ },
+ "decreto-2002-d4340": {
+  "dispositivos": 13,
+  "nome": "Decreto nº 4.340/2002"
+ },
+ "decreto-2002-d4346": {
+  "dispositivos": 21,
+  "nome": "Decreto nº 4.346/2002"
+ },
+ "decreto-2002-d4377": {
+  "dispositivos": 1,
+  "nome": "Decreto nº 4.377/2002"
  },
  "decreto-2002-d4388": {
   "dispositivos": 0,
@@ -1015,6 +2007,10 @@
   "dispositivos": 1,
   "nome": "Código de Ética do Servidor Público Federal"
  },
+ "decreto-d1800": {
+  "dispositivos": 14,
+  "nome": "Decreto nº 1.800/1996"
+ },
  "decreto-d2181": {
   "dispositivos": 45,
   "nome": "Sistema Nacional de Defesa do Consumidor (SNDC)"
@@ -1027,6 +2023,10 @@
   "dispositivos": 0,
   "nome": "Regulamenta a Lei nº 9.394/1996 quanto à educação infantil/rede de ensino"
  },
+ "decreto-d2799": {
+  "dispositivos": 14,
+  "nome": "Decreto nº 2.799/1998"
+ },
  "decreto-d3048": {
   "dispositivos": 440,
   "nome": "Regulamento da Previdência Social"
@@ -1034,6 +2034,10 @@
  "decreto-d3087": {
   "dispositivos": 0,
   "nome": "Promulga a Convenção da Haia sobre adoção internacional"
+ },
+ "decreto-d3100": {
+  "dispositivos": 19,
+  "nome": "Decreto nº 3.100/1999"
  },
  "decreto-d3298": {
   "dispositivos": 5,
@@ -1058,6 +2062,10 @@
  "decreto-d70235cons": {
   "dispositivos": 18,
   "nome": "Processo Administrativo Fiscal Federal"
+ },
+ "decreto-d93872": {
+  "dispositivos": 22,
+  "nome": "Decreto nº 93.872/1986"
  },
  "decreto-historicos-dim-dim1318": {
   "dispositivos": 33,
@@ -1087,6 +2095,10 @@
   "dispositivos": 15,
   "nome": "Altera dispositivos da Lei de Contravenções Penais"
  },
+ "decreto-lei-1965-1988-del0413": {
+  "dispositivos": 2,
+  "nome": "Decreto-Lei nº 413/1969"
+ },
  "decreto-lei-1965-1988-del0911": {
   "dispositivos": 23,
   "nome": "Alienação fiduciária de bens móveis"
@@ -1094,6 +2106,10 @@
  "decreto-lei-del0025": {
   "dispositivos": 10,
   "nome": "Organiza a proteção do patrimônio histórico e artístico nacional (Lei do Tombamento)"
+ },
+ "decreto-lei-del0073": {
+  "dispositivos": 3,
+  "nome": "Decreto-Lei nº 73/1966"
  },
  "decreto-lei-del0147": {
   "dispositivos": 1,
@@ -1114,6 +2130,14 @@
  "decreto-lei-del0227": {
   "dispositivos": 21,
   "nome": "Código de Mineração"
+ },
+ "decreto-lei-del0271": {
+  "dispositivos": 2,
+  "nome": "Decreto-Lei nº 271/1967"
+ },
+ "decreto-lei-del0512": {
+  "dispositivos": 6,
+  "nome": "Decreto-Lei nº 512/1969"
  },
  "decreto-lei-del0667": {
   "dispositivos": 5,
@@ -1155,6 +2179,550 @@
   "dispositivos": 219,
   "nome": "CLT"
  },
+ "editor-amapa-gov-br-arquivos-portais-publicacoes-sead-3f2844e9643e5d4230db886f9053e1e7-pdf": {
+  "dispositivos": 19,
+  "nome": "Procuradoria-Geral do Estado do Amapá: organização e regime jurídico dos Procuradores"
+ },
+ "editor-amapa-gov-br-arquivos-portais-publicacoes-sead-871dde8559f8c8cb8329bdd93d017bed-pdf": {
+  "dispositivos": 11,
+  "nome": "Organização da Defensoria Pública do Estado do Amapá e carreira dos membros"
+ },
+ "editor-amapa-gov-br-arquivos-portais-publicacoes-sead-f0c043df7ba25ea03eab88043f323c28-pdf": {
+  "dispositivos": 7,
+  "nome": "Estatuto dos Militares do Estado do Amapá"
+ },
+ "elegis-al-ap-leg-br-portal-legislacao-2080": {
+  "dispositivos": 7,
+  "nome": "Código de Proteção ao Meio Ambiente do Amapá"
+ },
+ "elegis-al-ap-leg-br-portal-legislacao-508": {
+  "dispositivos": 7,
+  "nome": "Política Agrária, Fundiária, Agrícola e Extrativista Vegetal (AP)"
+ },
+ "fapesc-sc-gov-br-wp-content-uploads-2024-11-convenios-decreto-n-733-2024-pdf": {
+  "dispositivos": 27,
+  "nome": "Estabelece normas relativas à celebração de convênios para repasse de recursos financeiros do Poder Executivo Estadual e estabelece outras providências"
+ },
+ "icmsverde-semas-pa-gov-br-legisla-c3-a7-c3-a3o-lei-estadual-n-5645-1991-pdf": {
+  "dispositivos": 11,
+  "nome": "Dispõe sobre critérios e prazos de créditos e repasse da cota-parte do ICMS e outros tributos estaduais aos Municípios do Pará"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-1012-tipo-textoatualizado": {
+  "dispositivos": 14,
+  "nome": "Lei Estadual (PE) nº 14.547/2011"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-1032-tipo-textoatualizado": {
+  "dispositivos": 32,
+  "nome": "Lei Estadual (PE) nº 6.783/1974"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-1044-tipo-textoatualizado": {
+  "dispositivos": 64,
+  "nome": "Lei Complementar Estadual (PE) nº 28/2000"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-15904-tipo-textoatualizado": {
+  "dispositivos": 22,
+  "nome": "Decreto Estadual (PE) nº 42.191/2015"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-17869-tipo-textooriginal": {
+  "dispositivos": 6,
+  "nome": "Decreto Estadual (PE) nº 42.530/2015"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-19413-tipo-textoatualizado": {
+  "dispositivos": 50,
+  "nome": "Lei Estadual (PE) nº 15.730/2016"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-2020-tipo-textoatualizado": {
+  "dispositivos": 12,
+  "nome": "Decreto Estadual (PE) nº 39.376/2013"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-2249-tipo-textoatualizado": {
+  "dispositivos": 9,
+  "nome": "Lei Estadual (PE) nº 11.304/1995"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-28037-tipo-textoatualizado": {
+  "dispositivos": 54,
+  "nome": "Decreto Estadual (PE) nº 44.474/2017"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-3443-tipo-textoatualizado": {
+  "dispositivos": 19,
+  "nome": "Lei Estadual (PE) nº 11.514/1997"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-3932-tipo-textoatualizado": {
+  "dispositivos": 61,
+  "nome": "Lei Estadual (PE) nº 12.600/2004"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-3950-tipo-textoatualizado": {
+  "dispositivos": 9,
+  "nome": "Lei Estadual (PE) nº 13.974/2009"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-4321-tipo-textoatualizado": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (PE) nº 13.787/2009"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-4390-tipo-textoatualizado": {
+  "dispositivos": 27,
+  "nome": "Lei Complementar Estadual (PE) nº 12/1994"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-4770-tipo-textoatualizado": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (PE) nº 11.781/2000"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-5127-tipo-textoatualizado": {
+  "dispositivos": 17,
+  "nome": "Lei Complementar Estadual (PE) nº 2/1990"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-53619-tipo-textoatualizado": {
+  "dispositivos": 19,
+  "nome": "Lei Estadual (PE) nº 17.116/2020"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-5444-tipo-textoatualizado": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (PE) nº 13.371/2007"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-5455-tipo-textoatualizado": {
+  "dispositivos": 36,
+  "nome": "Lei Estadual (PE) nº 7.741/1978"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-5682-tipo-textoatualizado": {
+  "dispositivos": 30,
+  "nome": "Lei Estadual (PE) nº 14.249/2010"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-5948-tipo-textoatualizado": {
+  "dispositivos": 10,
+  "nome": "Lei Complementar Estadual (PE) nº 20/1998"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-6962-tipo-textoatualizado": {
+  "dispositivos": 12,
+  "nome": "Lei Estadual (PE) nº 10.849/1992"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-7020-tipo-textoatualizado": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (PE) nº 14.236/2010"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-72858-tipo-textoatualizado": {
+  "dispositivos": 20,
+  "nome": "Decreto Estadual (PE) nº 54.700/2023"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-822-tipo-textoatualizado": {
+  "dispositivos": 12,
+  "nome": "Lei Complementar Estadual (PE) nº 137/2008"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-id-97-tipo-textoatualizado": {
+  "dispositivos": 67,
+  "nome": "Lei Estadual (PE) nº 10.654/1991"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-tiponorma-1-numero-6123-complemento-0-ano-1968-tipo-url": {
+  "dispositivos": 24,
+  "nome": "Estatuto dos Funcionários Públicos Civis do Estado de Pernambuco"
+ },
+ "legis-alepe-pe-gov-br-texto-aspx-tiponorma-2-numero-105-complemento-0-ano-2007-tipo-url": {
+  "dispositivos": 6,
+  "nome": "Lei Complementar Estadual (PE) nº 105/2007"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100164-lei-20229": {
+  "dispositivos": 3,
+  "nome": "Regularização fundiária de imóveis urbanos do Estado de Goiás ocupados por organizações religiosas"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100700-lei-20489": {
+  "dispositivos": 3,
+  "nome": "Institui o Programa de Integridade (Compliance) exigível de empresas que contratam com a Administração Pública do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100701": {
+  "dispositivos": 55,
+  "nome": "Lei Estadual (GO) nº 20.491/2019"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100893-lei-20694": {
+  "dispositivos": 38,
+  "nome": "Normas gerais para o licenciamento ambiental no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100955-lei-20732": {
+  "dispositivos": 6,
+  "nome": "Compensação de débito tributário ou não tributário inscrito em dívida ativa com débito do Estado de Goiás decorrente de precatório judicial vencido"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100979-lei-20756": {
+  "dispositivos": 281,
+  "nome": "Regime jurídico dos servidores públicos civis do Estado de Goiás, autarquias e fundações públicas estaduais (novo Estatuto do Servidor)"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-100981-lei-20758": {
+  "dispositivos": 5,
+  "nome": "Institui a Política Estadual de Segurança e Eficiência de Barragens do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-101053": {
+  "dispositivos": 169,
+  "nome": "Lei Complementar Estadual (GO) nº 66/2009"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-101117": {
+  "dispositivos": 142,
+  "nome": "Lei Complementar Estadual (GO) nº 130/2017"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-103634-lei-20918": {
+  "dispositivos": 20,
+  "nome": "Contratação por tempo determinado para necessidade temporária de excepcional interesse público no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-103671": {
+  "dispositivos": 101,
+  "nome": "Lei Complementar Estadual (GO) nº 161/2020"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-103673-lei-20946": {
+  "dispositivos": 42,
+  "nome": "Sistema de Proteção Social dos Militares (SPSM) do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-103681-lei-20954": {
+  "dispositivos": 10,
+  "nome": "Regularização fundiária de imóveis urbanos de domínio do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-103904": {
+  "dispositivos": 19,
+  "nome": "Decreto Estadual (GO) nº 9.837/2021"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-104675": {
+  "dispositivos": 4,
+  "nome": "Lei Complementar Estadual (GO) nº 167/2021"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-104746-lei-21231": {
+  "dispositivos": 28,
+  "nome": "Regularização de passivos ambientais, compensação florestal e compensação por danos no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-105266-lei-21268": {
+  "dispositivos": 40,
+  "nome": "Código de Organização Judiciária do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-106312-lei-21615": {
+  "dispositivos": 24,
+  "nome": "Estímulos ao desenvolvimento científico, tecnológico e à inovação no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-106518-lei-21740": {
+  "dispositivos": 47,
+  "nome": "Disciplina o regime jurídico das Organizações Sociais da Saúde (OSSs) no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-108654-decreto-10433": {
+  "dispositivos": 14,
+  "nome": "Institui a Política Estadual de Governança das Empresas Estatais do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-79798-lei-15731": {
+  "dispositivos": 6,
+  "nome": "Qualificação de OSCIP estadual e institui o Termo de Parceria no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-80063-lei-15950": {
+  "dispositivos": 4,
+  "nome": "Arrolamento de bens e direitos do sujeito passivo como garantia dos créditos tributários no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-80592-lei-15503": {
+  "dispositivos": 82,
+  "nome": "Qualificação de entidades como organizações sociais estaduais e contrato de gestão no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-80845-lei-14910": {
+  "dispositivos": 16,
+  "nome": "Institui o Programa de Parcerias Público-Privadas do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-81441-lei-13800": {
+  "dispositivos": 39,
+  "nome": "Regula o processo administrativo no âmbito da Administração Pública do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-81803-lei-14241": {
+  "dispositivos": 10,
+  "nome": "Proteção da fauna silvestre no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-81809-lei-14247": {
+  "dispositivos": 48,
+  "nome": "Institui o Sistema Estadual de Unidades de Conservação no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-81810-lei-14248": {
+  "dispositivos": 17,
+  "nome": "Institui a Política Estadual de Resíduos Sólidos do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-82116-lei-13025": {
+  "dispositivos": 55,
+  "nome": "Pesca, aquicultura e proteção da fauna aquática no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-82217-lei-13123": {
+  "dispositivos": 18,
+  "nome": "Normas de orientação à Política Estadual de Recursos Hídricos do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-83678": {
+  "dispositivos": 362,
+  "nome": "Lei Estadual (GO) nº 10.460/1988"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-84183-lei-11416": {
+  "dispositivos": 35,
+  "nome": "Estatuto dos Bombeiros Militares do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-87206-lei-16497": {
+  "dispositivos": 1,
+  "nome": "Institui a Política Estadual sobre Mudanças Climáticas do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-87836-lei-11651": {
+  "dispositivos": 370,
+  "nome": "Código Tributário do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-88165-lei-8033": {
+  "dispositivos": 95,
+  "nome": "Estatuto dos Policiais Militares do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-88625": {
+  "dispositivos": 74,
+  "nome": "Lei Estadual (GO) nº 16.901/2010"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-88867-lei-17034": {
+  "dispositivos": 22,
+  "nome": "Regulamenta o pagamento de precatórios mediante acordo direto com credores e fixa o limite de RPV no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-89895-lei-17928": {
+  "dispositivos": 84,
+  "nome": "Normas suplementares de licitações e contratos relativos a obras, compras, serviços e demais ajustes no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-90142-lei-18025": {
+  "dispositivos": 77,
+  "nome": "Lei de Acesso à Informação do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-90203-lei-18104": {
+  "dispositivos": 37,
+  "nome": "Proteção da vegetação nativa e nova Política Florestal do Estado de Goiás (Código Florestal Estadual)"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-90204-lei-18102": {
+  "dispositivos": 143,
+  "nome": "Infrações administrativas ao meio ambiente e processo administrativo ambiental estadual de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-90668": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (GO) nº 18.456/2014"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-90933-lei-18672": {
+  "dispositivos": 31,
+  "nome": "Lei Anticorrupção Estadual de Goiás — responsabilização administrativa e civil de pessoas jurídicas"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-92082-lei-18826": {
+  "dispositivos": 9,
+  "nome": "Promoção da discriminação de terras devolutas estaduais mediante procedimento administrativo ou judicial"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-98359-lei-19179": {
+  "dispositivos": 81,
+  "nome": "Institui o regime de previdência complementar do Estado de Goiás (PREVCOM-GO)"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-98683-lei-16469": {
+  "dispositivos": 202,
+  "nome": "Regula o processo administrativo tributário no Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-98889-lei-19573": {
+  "dispositivos": 9,
+  "nome": "Disciplina o pagamento dos adicionais de insalubridade e periculosidade aos servidores públicos do Estado de Goiás"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-99066-lei-19754": {
+  "dispositivos": 1,
+  "nome": "Institui o Cadastro Informativo dos Créditos não Quitados de Órgãos e Entidades Estaduais (CADIN Estadual)"
+ },
+ "legisla-casacivil-go-gov-br-pesquisa-legislacao-99843-lei-19969": {
+  "dispositivos": 28,
+  "nome": "Institui o Código de Ética e Disciplina dos Militares do Estado de Goiás (CEDIME)"
+ },
+ "legisla-imprensaoficial-am-gov-br-diario-am-10-1991-1-2929": {
+  "dispositivos": 7,
+  "nome": "Normas gerais de orçamentos e balanços municipais; competência do Tribunal de Contas dos Municípios do Amazonas (LC 6/1991)"
+ },
+ "legisla-imprensaoficial-am-gov-br-diario-am-10-2021-12-6673": {
+  "dispositivos": 1,
+  "nome": "Sistema de Controle Interno do Estado do Amazonas (LC 224/2021)"
+ },
+ "legisla-imprensaoficial-am-gov-br-diario-am-12-1974-4-8869": {
+  "dispositivos": 5,
+  "nome": "Lei Estadual (AM) nº 1.114/1974"
+ },
+ "legislabahia-ba-gov-br-documentos-decreto-no-23401-de-13-de-abril-de-1973": {
+  "dispositivos": 10,
+  "nome": "Decreto Estadual (BA) nº 23.401/1973"
+ },
+ "legislabahia-ba-gov-br-documentos-decreto-no-7629-de-09-de-julho-de-1999": {
+  "dispositivos": 15,
+  "nome": "Regulamento do ICMS da Bahia (Decreto 7.629, de 09/07/1999)"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-11357-de-06-de-janeiro-de-2009": {
+  "dispositivos": 118,
+  "nome": "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-12209-de-20-de-abril-de-2011": {
+  "dispositivos": 7,
+  "nome": "Lei Estadual (BA) nº 12.209/2011"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-13559-de-11-de-maio-de-2016": {
+  "dispositivos": 2,
+  "nome": "Plano Estadual de Educação da Bahia"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-3038-de-10-de-outubro-de-1972": {
+  "dispositivos": 13,
+  "nome": "Lei Estadual (BA) nº 3.038/1972"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-3442-de-12-de-dezembro-de-1975": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (BA) nº 3.442/1975"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-3855-de-24-de-outubro-de-1980": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (BA) nº 3.855/1980"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-3956-de-11-de-dezembro-de-1981": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (BA) nº 3.956/1981"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-4826-de-27-de-janeiro-de-1989": {
+  "dispositivos": 10,
+  "nome": "Lei Estadual (BA) nº 4.826/1989"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-6348-de-17-de-dezembro-de-1991": {
+  "dispositivos": 29,
+  "nome": "Lei Estadual (BA) nº 6.348/1991"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-7014-de-04-de-dezembro-de-1996": {
+  "dispositivos": 22,
+  "nome": "Lei do ICMS da Bahia (Lei 7.014, de 04/12/1996)"
+ },
+ "legislabahia-ba-gov-br-documentos-lei-no-9433-de-01-de-marco-de-2005": {
+  "dispositivos": 80,
+  "nome": "Lei Estadual (BA) nº 9.433/2005"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-14555-2ae17845": {
+  "dispositivos": 17,
+  "nome": "Código da Polícia Militar do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-21365-b58007b0": {
+  "dispositivos": 1,
+  "nome": "Lei Orgânica do Tribunal de Contas do Estado do Paraná (TCE-PR)"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-34391-2b9b20ac": {
+  "dispositivos": 14,
+  "nome": "Institui o Regime de Previdência Complementar (RPC) no âmbito do Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-70893df0": {
+  "dispositivos": 3,
+  "nome": "Lei Estadual (PR) nº 22.252/2024"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-87fecc90": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (PR) nº 15.229/2006"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-8bd6408b": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (PR) nº 17.329/2012"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-b8fef60d": {
+  "dispositivos": 30,
+  "nome": "Reestruturação do Plano de Custeio e Financiamento do Regime Próprio de Previdência Social do Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-bf3731b1": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (PR) nº 18.700/2018"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-dc38f250": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (PR) nº 13.331/2001"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-dfce9783": {
+  "dispositivos": 34,
+  "nome": "Lei Estadual (PR) nº 22.130/2024"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-f171fdc5": {
+  "dispositivos": 2,
+  "nome": "Lei Estadual (PR) nº 14.274/2003"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-f505ae83": {
+  "dispositivos": 49,
+  "nome": "Lei Estadual (PR) nº 15.608/2007"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-3-nr-a6cf91ca": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar Estadual (PR) nº 249/2022"
+ },
+ "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-3-nr-b66ba1f4": {
+  "dispositivos": 17,
+  "nome": "Lei Complementar Estadual (PR) nº 85/1999"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-10297-indic-4373d965": {
+  "dispositivos": 39,
+  "nome": "Regime jurídico dos funcionários civis do Poder Executivo do Estado do Paraná (Estatuto do Servidor)"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-127393": {
+  "dispositivos": 6,
+  "nome": "Cobrança judicial e extrajudicial da dívida ativa do Estado do Paraná (limites para execuções fiscais e protesto extrajudicial)"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-135670": {
+  "dispositivos": 28,
+  "nome": "Estatuto da Pessoa com Deficiência do Estado do Paraná — reserva de percentual de vagas para pessoas com deficiência em concursos públicos estaduais"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-141462-codt-fc56ffa8": {
+  "dispositivos": 2,
+  "nome": "Institui prêmio de produtividade e o Fundo Especial da Procuradoria-Geral do Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-143506": {
+  "dispositivos": 34,
+  "nome": "ITCMD — Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-170934": {
+  "dispositivos": 14,
+  "nome": "Processo administrativo tributário do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-250868": {
+  "dispositivos": 17,
+  "nome": "Normas gerais e procedimentos especiais sobre atos e processos administrativos no Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-318765": {
+  "dispositivos": 20,
+  "nome": "Transação de créditos tributários e não tributários no âmbito do Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-66318": {
+  "dispositivos": 9,
+  "nome": "Normas para licitação e contratação de Parcerias Público-Privadas no Estado do Paraná (Programa Paraná Parcerias)"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-7546": {
+  "dispositivos": 6,
+  "nome": "Cria o Sistema de Seguridade Funcional do Estado do Paraná (Paranaprevidência)"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-9128": {
+  "dispositivos": 39,
+  "nome": "Código de Organização e Divisão Judiciárias do Estado do Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-9403": {
+  "dispositivos": 9,
+  "nome": "IPVA — Paraná"
+ },
+ "legislacao-pr-gov-br-legislacao-pesquisarato-do-action-exibir-codato-9464": {
+  "dispositivos": 53,
+  "nome": "ICMS do Estado do Paraná"
+ },
+ "legislacao-sef-sc-gov-br-html-leis-1996-lei-96-10297-htm": {
+  "dispositivos": 26,
+  "nome": "ICMS — Santa Catarina"
+ },
+ "legisweb-com-br-legislacao-id-152475": {
+  "dispositivos": 14,
+  "nome": "Dispõe sobre o IPVA no Estado do Rio Grande do Norte"
+ },
+ "legisweb-com-br-legislacao-id-277304": {
+  "dispositivos": 14,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "legisweb-com-br-legislacao-id-305520": {
+  "dispositivos": 1,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "legisweb-com-br-legislacao-id-327607": {
+  "dispositivos": 6,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "legisweb-com-br-legislacao-id-331128": {
+  "dispositivos": 9,
+  "nome": "Estatuto Paraense da Microempresa e Empresa de Pequeno Porte — tratamento diferenciado em licitações"
+ },
+ "legisweb-com-br-legislacao-id-350048": {
+  "dispositivos": 3,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "legisweb-com-br-legislacao-id-424738": {
+  "dispositivos": 6,
+  "nome": "Altera a Lei nº 5.530/1989 (ICMS), dispondo sobre parcelamento de créditos tributários estaduais"
+ },
+ "leis-1950-1969-l4319": {
+  "dispositivos": 2,
+  "nome": "Lei nº 4.319/1964"
+ },
  "leis-1950-1969-l5249": {
   "dispositivos": 1,
   "nome": "Ação pública — representação"
@@ -1167,9 +2735,25 @@
   "dispositivos": 1,
   "nome": "Inscrição eleitoral"
  },
+ "leis-1980-1988-l7444": {
+  "dispositivos": 3,
+  "nome": "Lei nº 7.444/1985"
+ },
+ "leis-1980-1988-l7675": {
+  "dispositivos": 6,
+  "nome": "Lei nº 7.675/1989"
+ },
+ "leis-1989-1994-l8099": {
+  "dispositivos": 1,
+  "nome": "Lei nº 8.099/1990"
+ },
  "leis-2002-l10406compilada": {
   "dispositivos": 503,
   "nome": "Código Civil"
+ },
+ "leis-2002-l10426": {
+  "dispositivos": 8,
+  "nome": "Lei nº 10.426/2002"
  },
  "leis-2002-l10436": {
   "dispositivos": 0,
@@ -1178,6 +2762,10 @@
  "leis-2002-l10446": {
   "dispositivos": 1,
   "nome": "Infrações de repercussão interestadual ou internacional"
+ },
+ "leis-2002-l10467": {
+  "dispositivos": 3,
+  "nome": "Lei nº 10.467/2002"
  },
  "leis-2002-l10480": {
   "dispositivos": 15,
@@ -1203,9 +2791,17 @@
   "dispositivos": 37,
   "nome": "Parcelamento de débitos tributários e suspensão da pretensão punitiva nos crimes tributários"
  },
+ "leis-2003-l10-701": {
+  "dispositivos": 5,
+  "nome": "Lei nº 10.701/2003"
+ },
  "leis-2003-l10-741": {
   "dispositivos": 25,
   "nome": "Estatuto do Idoso"
+ },
+ "leis-2003-l10-778": {
+  "dispositivos": 1,
+  "nome": "Lei nº 10.778/2003"
  },
  "leis-2003-l10-779": {
   "dispositivos": 11,
@@ -1219,6 +2815,206 @@
   "dispositivos": 38,
   "nome": "Estatuto do Desarmamento"
  },
+ "leis-alesc-sc-gov-br-ato-normativo-13151": {
+  "dispositivos": 2,
+  "nome": "Conselho Municipal dos Direitos da Criança e do Adolescente e Conselho Tutelar em Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-15233": {
+  "dispositivos": 2,
+  "nome": "Política Estadual de Saneamento Básico de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-16396": {
+  "dispositivos": 40,
+  "nome": "Código Estadual do Meio Ambiente de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-16675": {
+  "dispositivos": 3,
+  "nome": "Fiscalização e coibição da comercialização irregular de combustíveis em Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-18905": {
+  "dispositivos": 36,
+  "nome": "Altera o Código Estadual do Meio Ambiente de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-20508": {
+  "dispositivos": 3,
+  "nome": "Fundo Estadual de Assistência Social de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-5049-compilado": {
+  "dispositivos": 29,
+  "nome": "Código Tributário do Estado de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-7963-compilado": {
+  "dispositivos": 34,
+  "nome": "Estatuto dos Funcionários Públicos Civis de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-43370": {
+  "dispositivos": 23,
+  "nome": "Decreto Estadual (SC) nº 3.114/2010"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-44726": {
+  "dispositivos": 8,
+  "nome": "Decreto Estadual (SC) nº 4.272/2006"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-46237": {
+  "dispositivos": 12,
+  "nome": "Decreto Estadual (SC) nº 2.382/2014"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-47116": {
+  "dispositivos": 12,
+  "nome": "Decreto Estadual (SC) nº 901/2012"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-48469": {
+  "dispositivos": 19,
+  "nome": "Decreto Estadual (SC) nº 1.485/2018"
+ },
+ "leis-alesc-sc-gov-br-ato-normativo-executivo-50157": {
+  "dispositivos": 39,
+  "nome": "Decreto Estadual (SC) nº 1.196/2017"
+ },
+ "leis-alesc-sc-gov-br-html-1979-5624-1979-lei-html": {
+  "dispositivos": 100,
+  "nome": "Lei Estadual (SC) nº 5.624/1979"
+ },
+ "leis-alesc-sc-gov-br-html-1986-6843-1986-lei-html": {
+  "dispositivos": 22,
+  "nome": "Lei Estadual (SC) nº 6.843/1986"
+ },
+ "leis-alesc-sc-gov-br-html-1994-9748-1994-lei-html": {
+  "dispositivos": 2,
+  "nome": "Política Estadual de Recursos Hídricos de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-1998-11069-1998-lei-html": {
+  "dispositivos": 1,
+  "nome": "Produção, comércio, uso, consumo, transporte e armazenamento de agrotóxicos em Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2000-11436-2000-lei-html": {
+  "dispositivos": 1,
+  "nome": "Política Estadual do Idoso de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2001-11697-2001-lei-html": {
+  "dispositivos": 1,
+  "nome": "Autorização de viagem nacional para crianças e adolescentes no Estado de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2001-12069-2001-lei-html": {
+  "dispositivos": 2,
+  "nome": "Processo de ação direta de inconstitucionalidade perante o Tribunal de Justiça de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2003-12854-2003-lei-html": {
+  "dispositivos": 13,
+  "nome": "Código Estadual de Proteção aos Animais de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2004-12929-2004-lei-html": {
+  "dispositivos": 4,
+  "nome": "Organizações Sociais do Estado de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2004-13136-2004-lei-html": {
+  "dispositivos": 9,
+  "nome": "Tribunal Administrativo Tributário de Santa Catarina (norma anterior)"
+ },
+ "leis-alesc-sc-gov-br-html-2004-255-2004-lei-complementar-html": {
+  "dispositivos": 22,
+  "nome": "Lei Complementar Estadual (SC) nº 255/2004"
+ },
+ "leis-alesc-sc-gov-br-html-2005-13553-2005-lei-html": {
+  "dispositivos": 6,
+  "nome": "Plano Estadual de Gerenciamento Costeiro de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2005-13558-2005-lei-html": {
+  "dispositivos": 2,
+  "nome": "Política Estadual de Educação Ambiental de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2006-339-2006-lei-complementar-html": {
+  "dispositivos": 13,
+  "nome": "Organização Judiciária de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2006-367-2006-lei-complementar-html": {
+  "dispositivos": 8,
+  "nome": "Estatuto da Magistratura de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2008-413-2008-lei-complementar-html": {
+  "dispositivos": 3,
+  "nome": "Altera as LC (SC) nº 339/2006 e 367/2006"
+ },
+ "leis-alesc-sc-gov-br-html-2009-14661-2009-lei-html": {
+  "dispositivos": 5,
+  "nome": "Parque Estadual da Serra do Tabuleiro (Santa Catarina)"
+ },
+ "leis-alesc-sc-gov-br-html-2009-453-2009-lei-complementar-html": {
+  "dispositivos": 8,
+  "nome": "Lei Complementar Estadual (SC) nº 453/2009"
+ },
+ "leis-alesc-sc-gov-br-html-2009-465-2009-lei-complementar-html": {
+  "dispositivos": 10,
+  "nome": "Tribunal Administrativo Tributário de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2010-15182-2010-lei-html": {
+  "dispositivos": 4,
+  "nome": "Norma sobre a política do idoso em Santa Catarina (citada no edital)"
+ },
+ "leis-alesc-sc-gov-br-html-2010-485-2010-lei-complementar-html": {
+  "dispositivos": 29,
+  "nome": "Lei Complementar Estadual (SC) nº 485/2010"
+ },
+ "leis-alesc-sc-gov-br-html-2010-491-2010-lei-complementar-html": {
+  "dispositivos": 10,
+  "nome": "Processo Administrativo Disciplinar de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2013-589-2013-lei-complementar-html": {
+  "dispositivos": 5,
+  "nome": "Lei Complementar Estadual (SC) nº 589/2013"
+ },
+ "leis-alesc-sc-gov-br-html-2015-16601-2015-lei-html": {
+  "dispositivos": 2,
+  "nome": "Diretrizes para prevenção e resposta a desastres, inundações e processos geológicos em Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2015-16774-2015-lei-html": {
+  "dispositivos": 29,
+  "nome": "Lei Estadual (SC) nº 16.774/2015"
+ },
+ "leis-alesc-sc-gov-br-html-2016-16869-2016-lei-html": {
+  "dispositivos": 2,
+  "nome": "Regulamenta a atuação de doulas em Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2016-16945-2016-lei-html": {
+  "dispositivos": 4,
+  "nome": "Lei Estadual (SC) nº 16.945/2016"
+ },
+ "leis-alesc-sc-gov-br-html-2017-17156-2017-lei-html": {
+  "dispositivos": 7,
+  "nome": "Lei Estadual (SC) nº 17.156/2017"
+ },
+ "leis-alesc-sc-gov-br-html-2017-17292-2017-lei-html": {
+  "dispositivos": 6,
+  "nome": "Reserva de vagas a pessoas com deficiência em concursos públicos de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2017-17354-2017-lei-html": {
+  "dispositivos": 8,
+  "nome": "Cria o Instituto do Meio Ambiente de Santa Catarina (IMA)"
+ },
+ "leis-alesc-sc-gov-br-html-2018-17492-2018-lei-html": {
+  "dispositivos": 2,
+  "nome": "Parcelamento do solo urbano — Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2019-741-2019-lei-complementar-html": {
+  "dispositivos": 50,
+  "nome": "Lei Complementar Estadual (SC) nº 741/2019"
+ },
+ "leis-alesc-sc-gov-br-html-2020-18018-2020-lei-html": {
+  "dispositivos": 1,
+  "nome": "Direitos de migrantes, refugiados e apátridas no Estado de Santa Catarina"
+ },
+ "leis-alesc-sc-gov-br-html-2021-18302-2021-lei-html": {
+  "dispositivos": 11,
+  "nome": "Lei Estadual (SC) nº 18.302/2021"
+ },
+ "leis-alesc-sc-gov-br-html-2021-780-2021-lei-complementar-html": {
+  "dispositivos": 15,
+  "nome": "Lei Complementar Estadual (SC) nº 780/2021"
+ },
+ "leis-alesc-sc-gov-br-html-2022-18322-2022-lei-html": {
+  "dispositivos": 26,
+  "nome": "Dispõe sobre a violência obstétrica no Estado de Santa Catarina"
+ },
  "leis-l10028": {
   "dispositivos": 4,
   "nome": "Altera o Código Penal para tipificar crimes contra as finanças públicas (Lei de Responsabilidade Fiscal)"
@@ -1231,9 +3027,17 @@
   "dispositivos": 3,
   "nome": "Prioridade de atendimento às pessoas com deficiência, idosos, gestantes e lactantes"
  },
+ "leis-l10054": {
+  "dispositivos": 1,
+  "nome": "Lei nº 10.054/2000"
+ },
  "leis-l10098": {
   "dispositivos": 1,
   "nome": "Acessibilidade — normas gerais"
+ },
+ "leis-l10150": {
+  "dispositivos": 7,
+  "nome": "Lei nº 10.150/2000"
  },
  "leis-l10169": {
   "dispositivos": 3,
@@ -1258,6 +3062,10 @@
  "leis-l2889": {
   "dispositivos": 3,
   "nome": "Crime de Genocídio"
+ },
+ "leis-l4117": {
+  "dispositivos": 2,
+  "nome": "Lei nº 4.117/1962"
  },
  "leis-l4132": {
   "dispositivos": 1,
@@ -1311,6 +3119,10 @@
   "dispositivos": 5,
   "nome": "Lei de Proteção à Fauna"
  },
+ "leis-l5250": {
+  "dispositivos": 0,
+  "nome": "Lei nº 5.250/1967"
+ },
  "leis-l5474": {
   "dispositivos": 3,
   "nome": "Lei das Duplicatas"
@@ -1322,6 +3134,14 @@
  "leis-l5553": {
   "dispositivos": 0,
   "nome": "Apresentação e uso de documentos de identificação pessoal"
+ },
+ "leis-l5741": {
+  "dispositivos": 5,
+  "nome": "Lei nº 5.741/1974"
+ },
+ "leis-l5869": {
+  "dispositivos": 5,
+  "nome": "Lei nº 5.869/1973"
  },
  "leis-l6001": {
   "dispositivos": 2,
@@ -1339,6 +3159,18 @@
   "dispositivos": 7,
   "nome": "Propaganda eleitoral"
  },
+ "leis-l6194": {
+  "dispositivos": 0,
+  "nome": "Lei nº 6.194/1974"
+ },
+ "leis-l6383": {
+  "dispositivos": 2,
+  "nome": "Lei nº 6.383/1976"
+ },
+ "leis-l6385": {
+  "dispositivos": 4,
+  "nome": "Lei nº 6.385/1976"
+ },
  "leis-l6404compilada": {
   "dispositivos": 76,
   "nome": "Lei das Sociedades por Ações"
@@ -1347,9 +3179,17 @@
   "dispositivos": 3,
   "nome": "Lei do Divórcio"
  },
+ "leis-l6739": {
+  "dispositivos": 10,
+  "nome": "Lei nº 6.739/1979"
+ },
  "leis-l6766": {
   "dispositivos": 32,
   "nome": "Lei Federal de Parcelamento do Solo Urbano"
+ },
+ "leis-l6815": {
+  "dispositivos": 0,
+  "nome": "Lei nº 6.815/1980"
  },
  "leis-l6830": {
   "dispositivos": 11,
@@ -1359,6 +3199,10 @@
   "dispositivos": 0,
   "nome": "Pagamento, aos dependentes ou sucessores, de valores não recebidos em vida pelo titular"
  },
+ "leis-l6880": {
+  "dispositivos": 19,
+  "nome": "Lei nº 6.880/1980"
+ },
  "leis-l6938compilada": {
   "dispositivos": 11,
   "nome": "Política Nacional do Meio Ambiente"
@@ -1366,6 +3210,14 @@
  "leis-l6969": {
   "dispositivos": 5,
   "nome": "Usucapião especial de imóveis rurais"
+ },
+ "leis-l7102": {
+  "dispositivos": 9,
+  "nome": "Lei nº 7.102/1983"
+ },
+ "leis-l7170": {
+  "dispositivos": 2,
+  "nome": "Lei nº 7.170/1983"
  },
  "leis-l7210": {
   "dispositivos": 29,
@@ -1459,6 +3311,10 @@
   "dispositivos": 0,
   "nome": "Símbolo de identificação de pessoas com deficiência auditiva"
  },
+ "leis-l8171": {
+  "dispositivos": 13,
+  "nome": "Lei nº 8.171/1991"
+ },
  "leis-l8176": {
   "dispositivos": 4,
   "nome": "Crimes contra a ordem econômica"
@@ -1490,6 +3346,10 @@
  "leis-l8437": {
   "dispositivos": 0,
   "nome": "Medidas cautelares contra o Poder Público"
+ },
+ "leis-l8443": {
+  "dispositivos": 47,
+  "nome": "Lei nº 8.443/1992"
  },
  "leis-l8457": {
   "dispositivos": 18,
@@ -1531,6 +3391,10 @@
   "dispositivos": 1,
   "nome": "Política Nacional do Idoso"
  },
+ "leis-l8866": {
+  "dispositivos": 1,
+  "nome": "Lei nº 8.866/1994"
+ },
  "leis-l8884": {
   "dispositivos": 2,
   "nome": "Lei antitruste (Conselho Administrativo de Defesa Econômica — CADE, redação anterior à Lei 12.529/2011)"
@@ -1547,6 +3411,10 @@
   "dispositivos": 39,
   "nome": "Estatuto da Advocacia e da OAB"
  },
+ "leis-l8929": {
+  "dispositivos": 1,
+  "nome": "Lei nº 8.929/1994"
+ },
  "leis-l8934": {
   "dispositivos": 13,
   "nome": "Registro Público das Empresas Mercantis"
@@ -1554,6 +3422,10 @@
  "leis-l8935": {
   "dispositivos": 37,
   "nome": "Lei dos Registros Públicos / Serviços Notariais e de Registro"
+ },
+ "leis-l8955": {
+  "dispositivos": 1,
+  "nome": "Lei nº 8.955/1994"
  },
  "leis-l8958": {
   "dispositivos": 19,
@@ -1583,6 +3455,14 @@
   "dispositivos": 2,
   "nome": "Discriminação na relação jurídica de trabalho"
  },
+ "leis-l9034": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.034/1995"
+ },
+ "leis-l9074compilada": {
+  "dispositivos": 47,
+  "nome": "Lei nº 9.074/1995"
+ },
  "leis-l9096": {
   "dispositivos": 28,
   "nome": "Lei dos Partidos Políticos"
@@ -1594,6 +3474,14 @@
  "leis-l9100": {
   "dispositivos": 18,
   "nome": "Normas para a realização das eleições municipais de 1996 — crimes eleitorais"
+ },
+ "leis-l9140": {
+  "dispositivos": 11,
+  "nome": "Lei nº 9.140/1995"
+ },
+ "leis-l9245": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.245/1995"
  },
  "leis-l9249": {
   "dispositivos": 39,
@@ -1619,9 +3507,17 @@
   "dispositivos": 73,
   "nome": "Propriedade Industrial"
  },
+ "leis-l9294": {
+  "dispositivos": 7,
+  "nome": "Lei nº 9.294/1997"
+ },
  "leis-l9296": {
   "dispositivos": 6,
   "nome": "Interceptação telefônica"
+ },
+ "leis-l9303": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.303/1996"
  },
  "leis-l9307": {
   "dispositivos": 25,
@@ -1630,6 +3526,10 @@
  "leis-l9394": {
   "dispositivos": 35,
   "nome": "Lei de Diretrizes e Bases da Educação Nacional (LDB)"
+ },
+ "leis-l9424": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.424/1996"
  },
  "leis-l9430": {
   "dispositivos": 87,
@@ -1643,6 +3543,10 @@
   "dispositivos": 14,
   "nome": "Remoção de órgãos, tecidos e partes do corpo humano para transplante"
  },
+ "leis-l9437": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.437/1997"
+ },
  "leis-l9455": {
   "dispositivos": 1,
   "nome": "Tortura"
@@ -1654,6 +3558,10 @@
  "leis-l9469": {
   "dispositivos": 7,
   "nome": "Intervenção da União e acordos — Fazenda Pública"
+ },
+ "leis-l9472": {
+  "dispositivos": 14,
+  "nome": "Lei nº 9.472/1997"
  },
  "leis-l9474": {
   "dispositivos": 4,
@@ -1691,6 +3599,10 @@
   "dispositivos": 31,
   "nome": "Alienação fiduciária de bens imóveis (Sistema de Financiamento Imobiliário)"
  },
+ "leis-l9532": {
+  "dispositivos": 68,
+  "nome": "Lei nº 9.532/1997"
+ },
  "leis-l9605": {
   "dispositivos": 16,
   "nome": "Crimes contra o meio ambiente"
@@ -1719,9 +3631,17 @@
   "dispositivos": 58,
   "nome": "Planos e seguros privados de assistência à saúde"
  },
+ "leis-l9695": {
+  "dispositivos": 3,
+  "nome": "Lei nº 9.695/1998"
+ },
  "leis-l9703": {
   "dispositivos": 4,
   "nome": "Depósitos judiciais e extrajudiciais de tributos federais"
+ },
+ "leis-l9714": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.714/1998"
  },
  "leis-l9717": {
   "dispositivos": 11,
@@ -1730,6 +3650,10 @@
  "leis-l9784": {
   "dispositivos": 10,
   "nome": "Lei do Processo Administrativo Federal"
+ },
+ "leis-l9785": {
+  "dispositivos": 4,
+  "nome": "Lei nº 9.785/1999"
  },
  "leis-l9790": {
   "dispositivos": 8,
@@ -1742,6 +3666,10 @@
  "leis-l9796": {
   "dispositivos": 2,
   "nome": "Compensação Financeira entre Regimes Previdenciários"
+ },
+ "leis-l9801": {
+  "dispositivos": 2,
+  "nome": "Lei nº 9.801/1999"
  },
  "leis-l9807": {
   "dispositivos": 8,
@@ -1779,6 +3707,10 @@
   "dispositivos": 1,
   "nome": "Altera o Estatuto da Criança e do Adolescente para tipificar crimes de exploração sexual e submissão a vexame"
  },
+ "leis-l9982": {
+  "dispositivos": 1,
+  "nome": "Lei nº 9.982/2000"
+ },
  "leis-l9985": {
   "dispositivos": 7,
   "nome": "Sistema Nacional de Unidades de Conservação (SNUC)"
@@ -1815,6 +3747,14 @@
   "dispositivos": 149,
   "nome": "Estatuto Nacional da Microempresa e Empresa de Pequeno Porte (Simples Nacional)"
  },
+ "leis-lcp-lcp131": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar nº 131/2009"
+ },
+ "leis-lcp-lcp132": {
+  "dispositivos": 21,
+  "nome": "Lei Complementar nº 132/2013"
+ },
  "leis-lcp-lcp135": {
   "dispositivos": 6,
   "nome": "Lei da Ficha Limpa"
@@ -1831,6 +3771,10 @@
   "dispositivos": 5,
   "nome": "Aposentadoria da pessoa com deficiência segurada do RGPS"
  },
+ "leis-lcp-lcp152": {
+  "dispositivos": 3,
+  "nome": "Lei Complementar nº 152/2015"
+ },
  "leis-lcp-lcp156": {
   "dispositivos": 44,
   "nome": "Refinanciamento das dívidas dos Estados e do Distrito Federal com a União"
@@ -1839,9 +3783,17 @@
   "dispositivos": 51,
   "nome": "Regime de Recuperação Fiscal dos Estados"
  },
+ "leis-lcp-lcp160": {
+  "dispositivos": 14,
+  "nome": "Lei Complementar nº 160/2012"
+ },
  "leis-lcp-lcp166": {
   "dispositivos": 11,
   "nome": "Altera a Lei do Cadastro Positivo"
+ },
+ "leis-lcp-lcp173": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar nº 173/2020"
  },
  "leis-lcp-lcp178": {
   "dispositivos": 64,
@@ -1875,6 +3827,14 @@
   "dispositivos": 26,
   "nome": "Lei Orgânica da Magistratura Nacional (LOMAN)"
  },
+ "leis-lcp-lcp50": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar nº 50/2019"
+ },
+ "leis-lcp-lcp63": {
+  "dispositivos": 10,
+  "nome": "Lei Complementar nº 63/2008"
+ },
  "leis-lcp-lcp64": {
   "dispositivos": 12,
   "nome": "Lei de Inelegibilidade"
@@ -1907,9 +3867,25 @@
   "dispositivos": 2,
   "nome": "Altera dispositivos da LC nº 76/1993 sobre desapropriação de imóvel rural por interesse social para fins de reforma agrária"
  },
+ "leis-lcp-lcp94": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar nº 94/2002"
+ },
+ "leis-lcp-lcp95": {
+  "dispositivos": 6,
+  "nome": "Lei Complementar nº 95/1998"
+ },
+ "leis-lcp-lcp97": {
+  "dispositivos": 5,
+  "nome": "Lei Complementar nº 97/1999"
+ },
  "leis-leis-2001-l10172": {
   "dispositivos": 2,
   "nome": "Aprova o Plano Nacional de Educação (2001)"
+ },
+ "leis-leis-2001-l10180": {
+  "dispositivos": 7,
+  "nome": "Lei nº 10.180/2001"
  },
  "leis-leis-2001-l10216": {
   "dispositivos": 3,
@@ -1927,8 +3903,728 @@
   "dispositivos": 12,
   "nome": "Lei de Georreferenciamento de imóveis rurais (altera Leis 4.947/66, 6.015/73 e 6.739/79)"
  },
+ "leis-leis-2001-l10357": {
+  "dispositivos": 10,
+  "nome": "Lei nº 10.357/2001"
+ },
  "leis-lim-lim601": {
   "dispositivos": 3,
   "nome": "Lei de Terras"
+ },
+ "leisestaduais-com-br-rn-lei-ordinaria-n-5887-1989-rio-grande-do-norte-institui-o-9f25b2e9": {
+  "dispositivos": 1,
+  "nome": "Institui o Imposto sobre Transmissão Causa Mortis e Doação (ITCD) no Estado do Rio Grande do Norte"
+ },
+ "leisestaduais-com-br-rn-lei-ordinaria-n-8485-2004-rio-grande-do-norte-dispoe-sob-de3e43c9": {
+  "dispositivos": 2,
+  "nome": "Institui a Política Estadual de Saneamento Básico do Rio Grande do Norte"
+ },
+ "lex-pge-pa-gov-br-ato-2104": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre a Política Estadual do Meio Ambiente do Pará"
+ },
+ "lex-pge-pa-gov-br-ato-2725": {
+  "dispositivos": 27,
+  "nome": "Dispõe sobre a reorganização da defensoria pública do estado do pará e da carreira de seus membros e dá outras providências."
+ },
+ "lex-pge-pa-gov-br-ato-6171": {
+  "dispositivos": 31,
+  "nome": "Institui a lei orgânica do ministério público do estado do pará e dá outras providências."
+ },
+ "lex-pge-pa-gov-br-ato-7505": {
+  "dispositivos": 6,
+  "nome": "Compensação financeira estadual sobre exploração minerária (CFEM)"
+ },
+ "lex-pge-pa-gov-br-ato-9629": {
+  "dispositivos": 13,
+  "nome": "Estabelece normas de organização, competências, garantias, direitos e deveres da polícia civil do estado do pará."
+ },
+ "lex-pge-pa-gov-br-ato-979": {
+  "dispositivos": 48,
+  "nome": "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará"
+ },
+ "mpms-mp-br-downloads-lei-organica-mpms-5e-v2-pdf": {
+  "dispositivos": 48,
+  "nome": "Lei Orgânica do Ministério Público do Estado de Mato Grosso do Sul"
+ },
+ "normasbrasil-com-br-norma-lei-400-1997-ap-118020-html": {
+  "dispositivos": 47,
+  "nome": "Código Tributário do Estado do Amapá"
+ },
+ "pc-ms-gov-br-wp-content-uploads-2020-02-lei-n-c2-ba-1102-90-servidores-executivo-pdf": {
+  "dispositivos": 57,
+  "nome": "Estatuto dos Servidores Públicos Civis do Estado de Mato Grosso do Sul"
+ },
+ "pge-pa-gov-br-sites-default-files-institucional-regimento-pdf": {
+  "dispositivos": 26,
+  "nome": "Aprova o Regimento Interno da Procuradoria-Geral do Estado do Pará (PGE-PA)"
+ },
+ "pm-pa-gov-br-images-pm1-atualizada-lei-n-c2-ba-6-833-13-de-fevereiro-de-2006-c-c-1c613d96": {
+  "dispositivos": 23,
+  "nome": "Institui o Código de Ética e Disciplina da Polícia Militar do Pará (CEDPM)"
+ },
+ "pm-pa-gov-br-images-pm1-lei-n-c2-ba-5-251-de-31-de-julho-de-1985-estatuto-dos-mi-a31cfd47": {
+  "dispositivos": 11,
+  "nome": "Estatuto dos Policiais-Militares da Polícia Militar do Estado do Pará"
+ },
+ "pm-rr-gov-br-uploads-1739174374-lei-20complementar-20n-c2-ba-20305-2022-20-20sis-b2944454": {
+  "dispositivos": 16,
+  "nome": "Dispõe sobre o Sistema de Proteção Social dos Policiais Militares e Bombeiros Militares do Estado de Roraima, altera a Lei Complementar nº 194, de 28 de janeiro"
+ },
+ "portal-iterpa-pa-gov-br-wp-content-uploads-2021-02-lei-no8-878-2019-pdf": {
+  "dispositivos": 5,
+  "nome": "Regularização fundiária no Estado do Pará"
+ },
+ "portal-iterpa-pa-gov-br-wp-content-uploads-2021-03-lei-n-c2-b0-82-de-15-de-setem-d2014073": {
+  "dispositivos": 7,
+  "nome": "Norma fundiária histórica do Estado do Pará"
+ },
+ "portal-iterpa-pa-gov-br-wp-content-uploads-2021-03-lei-no-4-835-de-03-de-maio-de-1979-pdf": {
+  "dispositivos": 2,
+  "nome": "Legitimação de terras públicas do Estado do Pará"
+ },
+ "portal-iterpa-pa-gov-br-wp-content-uploads-2021-03-lei-no-4-884-de-11-de-dezembr-c4f9accb": {
+  "dispositivos": 1,
+  "nome": "Norma fundiária do Estado do Pará"
+ },
+ "progestao-ana-gov-br-acoes-estados-ba-lei-no11-612-09-ba-pdf": {
+  "dispositivos": 20,
+  "nome": "Política Estadual de Recursos Hídricos da Bahia"
+ },
+ "progestao-ana-gov-br-acoes-estados-pr-lei-12-726-99-pr-pdf": {
+  "dispositivos": 5,
+  "nome": "Institui a Política Estadual de Recursos Hídricos e cria o Sistema Estadual de Gerenciamento de Recursos Hídricos do Paraná"
+ },
+ "reciclarecrescer-mpba-mp-br-wp-content-uploads-2024-02-lei-no-12-932-de-07-de-ja-bead5dcb": {
+  "dispositivos": 16,
+  "nome": "Política Estadual de Resíduos Sólidos da Bahia"
+ },
+ "rubi-casaruibarbosa-gov-br-bitstream-handle-20-500-11997-16810-ba-sec-bahia-pdf--4cb3fda9": {
+  "dispositivos": 3,
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)"
+ },
+ "sap-sc-gov-br-download-01-decreto-no-903-de-21-de-outubro-de-2020-dispoe-sobre-o-bc78655f": {
+  "dispositivos": 11,
+  "nome": "Grupo Gestor de Governo (GGG) — Decreto 903, de 21/10/2020"
+ },
+ "sapl-al-ac-leg-br-norma-1764": {
+  "dispositivos": 35,
+  "nome": "“dispõe sobre a lei orgânica do tribunal de contas do estado do acre e seu ministério público especial, revoga a lei complementar estadual n"
+ },
+ "sapl-al-ac-leg-br-norma-1765": {
+  "dispositivos": 50,
+  "nome": "\"dispõe sobre o estatuto dos servidores públicos civis do estado do acre, das  autarquias e das fundações públicas, instituídas e mantidas p"
+ },
+ "sapl-al-ac-leg-br-norma-1931": {
+  "dispositivos": 6,
+  "nome": "“dispõe sobre a lei orgânica da defensoria pública do estado do acre.”"
+ },
+ "sapl-al-ac-leg-br-norma-228": {
+  "dispositivos": 2,
+  "nome": "“dispõe sobre a preservação e conservação das  florestas  do estado, institui o sistema estadual de áreas naturais   protegidas, cria o cons"
+ },
+ "sapl-al-ac-leg-br-norma-299": {
+  "dispositivos": 8,
+  "nome": "”dispõe sobre os instrumentos de controle do acesso aos recursos genéticos do estado do acre e dá outras providências.”"
+ },
+ "sapl-al-ac-leg-br-norma-3304": {
+  "dispositivos": 3,
+  "nome": "\"institue o zoneamento ecológico - econômico do estado do acre - zee.\""
+ },
+ "sapl-al-ac-leg-br-norma-3539": {
+  "dispositivos": 2,
+  "nome": "\"cria o programa estadual de certificação de unidades produtivas familiares do estado do acre.\""
+ },
+ "sapl-al-ac-leg-br-norma-457": {
+  "dispositivos": 1,
+  "nome": "\"dispõe sobre a política   ambiental do  estado do acre e dá outras providências.\""
+ },
+ "sapl-al-ac-leg-br-norma-458": {
+  "dispositivos": 2,
+  "nome": "\"institui o sistema estadual de meio ambiente, ciência e tecnologia e o conselho estadual de meio ambiente, ciência e tecnologia e dá outras"
+ },
+ "sapl-al-ac-leg-br-norma-94": {
+  "dispositivos": 6,
+  "nome": "“institui a política estadual de recursos hídricos, cria o sistema estadual de gerenciamento de recursos hídricos do estado do acre, dispõe "
+ },
+ "sapl-al-al-leg-br-norma-31": {
+  "dispositivos": 5,
+  "nome": "Dispõe sobre a organização, as atribuições e o estatuto do ministério público do estado de alagoas"
+ },
+ "sapl-al-al-leg-br-norma-3891": {
+  "dispositivos": 24,
+  "nome": "Dispõe sobre o estatuto do pessoal da polícia civil do estado de alagoas, e dá providências correlatas."
+ },
+ "sapl-al-am-leg-br-norma-10081": {
+  "dispositivos": 5,
+  "nome": "Disciplina a execução do artigo 220 da constituição estadual, que institui o conselho estadual de meio ambiente do estado do amazonas &#8211"
+ },
+ "sapl-al-am-leg-br-norma-11042": {
+  "dispositivos": 4,
+  "nome": "Dispõe sobre o código de defesa do contribuinte no estado do amazonas."
+ },
+ "sapl-al-am-leg-br-norma-11515": {
+  "dispositivos": 1,
+  "nome": "Institui o regime de previdência complementar no âmbito do estado do amazonas; fixa o limite máximo para a concessão de aposentadorias e pen"
+ },
+ "sapl-al-am-leg-br-norma-6213": {
+  "dispositivos": 30,
+  "nome": "Dispõe sobre o estatuto dos funcionários públicos civis do estado do amazonas. \r\n(errata d.of. nº 26.126, de 25.11.86"
+ },
+ "sapl-al-am-leg-br-norma-6725": {
+  "dispositivos": 9,
+  "nome": "Dispõe sobre o regime jurídico peculiar dos funcionários da polícia civil do estado do amazonas - estatuto do policial civil  e dá outras pr"
+ },
+ "sapl-al-am-leg-br-norma-7062": {
+  "dispositivos": 5,
+  "nome": "Dispõe sobre a contratação de pessoal por tempo determinado para atender a necessidade temporária de excepcional interesse público, sob regi"
+ },
+ "sapl-al-am-leg-br-norma-7249": {
+  "dispositivos": 3,
+  "nome": "Regula o processo administrativo no âmbito da administração pública estadual.\r\n(regula julgamento de procedimento administrativo de 10 para "
+ },
+ "sapl-al-am-leg-br-norma-7281": {
+  "dispositivos": 36,
+  "nome": "Regulamenta a política estadual de incentivos fiscais e extrafiscais nos termos da constituição do estado e dá outras providências.\r\n(reprod"
+ },
+ "sapl-al-am-leg-br-norma-7590": {
+  "dispositivos": 2,
+  "nome": "Institui a política estadual sobre mudanças climáticas, conservação ambiental e desenvolvimento sustentável do amazonas, e estabelece outras"
+ },
+ "sapl-al-am-leg-br-norma-7622": {
+  "dispositivos": 3,
+  "nome": "Reformula as normas disciplinadoras da política estadual de recursos hídricos e do sistema estadual de gerenciamento de recursos hídricos, e"
+ },
+ "sapl-al-am-leg-br-norma-796": {
+  "dispositivos": 13,
+  "nome": "Dispõe sobre a organização da defensoria pública do estado do amazonas, estabelece o regime dos seus membros, cria o quadro funcional e dá o"
+ },
+ "sapl-al-am-leg-br-norma-7965": {
+  "dispositivos": 11,
+  "nome": "Institui o plano de cargos, carreiras e remuneração dos servidores da administração direta, fundações e autarquias do governo do estado do a"
+ },
+ "sapl-al-am-leg-br-norma-7982": {
+  "dispositivos": 2,
+  "nome": "Dispõe sobre as concessões florestais nas unidades de conservação de uso sustentável denominadas florestas estaduais-florestas, objetivando "
+ },
+ "sapl-al-am-leg-br-norma-802": {
+  "dispositivos": 78,
+  "nome": "Dispõe sobre a lei orgânica do ministério público do estado do amazonas e dá outras providências.\r\nrepublicada nº diário 27.867 de 14.01.94"
+ },
+ "sapl-al-am-leg-br-norma-810": {
+  "dispositivos": 9,
+  "nome": "Institui o código tributário do estado do amazonas e dá outras providências."
+ },
+ "sapl-al-am-leg-br-norma-821": {
+  "dispositivos": 48,
+  "nome": "Dispõe sobre o regime próprio de previdência do estado do amazonas, estabelece seus planos de benefícios e custeio, cria órgão gestor e dá o"
+ },
+ "sapl-al-am-leg-br-norma-8469": {
+  "dispositivos": 5,
+  "nome": "Dispõe sobre a consolidação do plano de cargos, carreiras e remuneração dos servidores da procuradoria-geral do estado do amazonas, e dá out"
+ },
+ "sapl-al-am-leg-br-norma-8672": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre o repasse ao poder executivo do estado do amazonas de parcela dos depósitos judiciais e administrativos em dinheiro, bem como a"
+ },
+ "sapl-al-ma-leg-br-norma-2358": {
+  "dispositivos": 18,
+  "nome": "Estatuto dos Servidores Públicos Civis do Maranhão"
+ },
+ "sapl-al-pb-leg-br-norma-10035": {
+  "dispositivos": 6,
+  "nome": "Dispõe sobre o regime jurídico dos servidores públicos civis do estado da paraíba e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-12852": {
+  "dispositivos": 12,
+  "nome": "Dispõe sobre o imposto sobre a propriedade de veículos automotores - ipva e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-3365": {
+  "dispositivos": 7,
+  "nome": "Dispõe sobre a organização da defensoria pública do estado da paraíba e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-4712": {
+  "dispositivos": 1,
+  "nome": "Institui o imposto sobre a transmissão causa mortis e doação de quaisquer bens ou direitos, e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-5697": {
+  "dispositivos": 1,
+  "nome": "Institui o código florestal do estado da paraíba e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-6112": {
+  "dispositivos": 22,
+  "nome": "Trata do imposto sobre operações relativas à circulação de mercadorias e sobre prestações de serviços de transporte interestadual e intermun"
+ },
+ "sapl-al-pb-leg-br-norma-9387": {
+  "dispositivos": 8,
+  "nome": "Dispõe sobre a lei orgânica da procuradoria geral do estado e institui o estatuto dos procuradores do estado e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-9541": {
+  "dispositivos": 4,
+  "nome": "Dispõe sobre a lei orgânica e o estatuto da polícia civil do estado da paraíba, sua organização institucional, suas carreiras, os direitos e"
+ },
+ "sapl-al-pb-leg-br-norma-9841": {
+  "dispositivos": 28,
+  "nome": "Dispõe sobre a lei de organização e divisão judiciária do estado da paraíba e dá outras providências."
+ },
+ "sapl-al-pb-leg-br-norma-9842": {
+  "dispositivos": 22,
+  "nome": "Dispõe sobre a organização do ministério público do estado da paraíba."
+ },
+ "sapl-al-pi-leg-br-media-sapl-public-normajuridica-2015-3614-3614-texto-integral-pdf": {
+  "dispositivos": 5,
+  "nome": "Reforma, regularização fundiária e colonização de terras devolutas do Estado do Piauí"
+ },
+ "sapl-al-pi-leg-br-norma-4581": {
+  "dispositivos": 10,
+  "nome": "Regularização fundiária no Estado do Piauí (política de regularização fundiária sob gestão do INTERPI)"
+ },
+ "sapl-al-pi-leg-br-norma-5434": {
+  "dispositivos": 15,
+  "nome": "Lei de Organização Administrativa do Estado do Piauí"
+ },
+ "sapl-al-pi-leg-br-norma-5822": {
+  "dispositivos": 9,
+  "nome": "Política Estadual de Regularização Fundiária Urbana (ProUrbe) do Piauí"
+ },
+ "sapl-al-pi-leg-br-norma-669": {
+  "dispositivos": 14,
+  "nome": "Estabelece as normas de organização e funcionamento do ministério público do estado do piauí e dá outras providências."
+ },
+ "sapl-al-pi-leg-br-norma-6694": {
+  "dispositivos": 18,
+  "nome": "Transforma os cargos de escrivão de polícia e agente de polícia no cargo de oficial investigador de polícia, no âmbito da polícia civil do e"
+ },
+ "sapl-al-pi-leg-br-norma-73": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre o estatuto da polícia civil do estado do piauí."
+ },
+ "sapl-al-pi-leg-br-norma-95": {
+  "dispositivos": 7,
+  "nome": "Institui a organização da defensoria pública do estado do piauí, disciplina a carreira de defensor público, estabelece o regime jurídico de "
+ },
+ "sapl-al-ro-leg-br-norma-1482": {
+  "dispositivos": 1,
+  "nome": "Institui o imposto sobre a transmissão causa mortis e doação de quaisquer bens ou direitos - itcd."
+ },
+ "sapl-al-ro-leg-br-norma-226": {
+  "dispositivos": 9,
+  "nome": "Dispõe sobre a lei orgânica do ministério público do estado de rondônia. (adin 1962)"
+ },
+ "sapl-al-ro-leg-br-norma-250": {
+  "dispositivos": 1,
+  "nome": "Cria a defensoria pública do estado de rondônia, e dá outras providências."
+ },
+ "sapl-al-ro-leg-br-norma-3785": {
+  "dispositivos": 2,
+  "nome": "Dispõe sobre o regime jurídico dos servidores públicos civis do estado de rondônia, das autarquias e das fundações públicas estaduais, e dá "
+ },
+ "sapl-al-ro-leg-br-norma-3852": {
+  "dispositivos": 1,
+  "nome": "Altera dispositivo da lei complementar n° 93, de 3 de novembro de 1993, e dá outras providências"
+ },
+ "sapl-al-ro-leg-br-norma-4569": {
+  "dispositivos": 10,
+  "nome": "Institui imposto sobre operações relativas a circulação de mercadorias e sobre prestações de serviços de transportes interestadual e intermu"
+ },
+ "sapl-al-ro-leg-br-norma-6684": {
+  "dispositivos": 2,
+  "nome": "Dispoe sobre a carreira de apoio as atividades da procuradoria geral do estado de rondonia."
+ },
+ "sapl-al-ro-leg-br-norma-9527": {
+  "dispositivos": 13,
+  "nome": "Institui a política de regularização fundiária de terras públicas rurais e urbanas pertencentes ao estado de rondônia e dá outras providênci"
+ },
+ "sapl-al-ro-leg-br-norma-9979": {
+  "dispositivos": 38,
+  "nome": "Dispõe sobre a consolidação da legislação previdenciária referente ao regime próprio de previdência social dos servidores públicos civis do "
+ },
+ "sapl-al-rr-leg-br-norma-1002": {
+  "dispositivos": 37,
+  "nome": "Dispõe sobre o regime jurídico dos servidores públicos civis do estado de roraima, e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-1169": {
+  "dispositivos": 7,
+  "nome": "Dispõe sobre a política fundiária rural e de regularização fundiária rural do estado de roraima e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-360": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre as diretrizes e bases da administração estadual e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-4009": {
+  "dispositivos": 1,
+  "nome": "Regulamenta o § 4º do art. 40, da constituição federal, no tocante à aposentadoria da pessoa com deficiência segurada do regime próprio de p"
+ },
+ "sapl-al-rr-leg-br-norma-517": {
+  "dispositivos": 5,
+  "nome": "Cria o fundo de modernização, manutenção e desenvolvimento da polícia civil do estado de roraima — fundespol - rr e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-557": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre o sistema tributário estadual e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-589": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre a organização, estrutura e competência do contencioso administrativo fiscal sobre os respectivos processos e dá outras providên"
+ },
+ "sapl-al-rr-leg-br-norma-6": {
+  "dispositivos": 3,
+  "nome": "Dispõe sobre a reorganização administrativa do estado de roraima e dá outras providências."
+ },
+ "sapl-al-rr-leg-br-norma-996": {
+  "dispositivos": 1,
+  "nome": "Regula o processo administrativo no âmbito da administração pública estadual."
+ },
+ "sapl-al-to-leg-br-norma-4771": {
+  "dispositivos": 1,
+  "nome": "Código Estadual de Proteção à Fauna do Tocantins"
+ },
+ "sapl-al-to-leg-br-norma-4855": {
+  "dispositivos": 18,
+  "nome": "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)"
+ },
+ "scti-sc-gov-br-download-decreto-no-842-de-17-09-2020": {
+  "dispositivos": 6,
+  "nome": "Dispõe sobre o processo de contratação de soluções inovadoras que contribuam com questões de relevância pública para a Administração Pública Estadual Direta e I"
+ },
+ "seadantigo-portal-ap-gov-br-legislacao-grupo-20penitenci-c3-81rio-lei-20n-c2-ba--ccfc19c4": {
+  "dispositivos": 2,
+  "nome": "Escola de Administração Penitenciária e Complexo Penitenciário do Amapá"
+ },
+ "sefanet-pr-gov-br-dados-sefadocumentos-7201217082-pdf": {
+  "dispositivos": 56,
+  "nome": "Pagamento de débitos do Estado do Paraná por acordo direto de precatórios (Câmaras de Conciliação de Precatórios)"
+ },
+ "sigdoc-ap-gov-br-public-arquivo-8240aafb-fb6b-4c0d-9dce-16e232f08921": {
+  "dispositivos": 3,
+  "nome": "Terras públicas e devolutas do Estado do Amapá"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-077424e49bed461dbc28189624fc1950": {
+  "dispositivos": 20,
+  "nome": "Institui o regime de previdência complementar do distrito federal, reestrutura o regime próprio de previdência social do distrito federal, p"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-086e6cf411324809973472ec9f54060a": {
+  "dispositivos": 8,
+  "nome": "Dispõe sobre a avaliação de programas de integridade de pessoas jurídicas que celebrem contratos, consórcios, convênios, concessões ou parce"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-12852458ca5542eb924668cc0dc23cf2": {
+  "dispositivos": 8,
+  "nome": "Dispõe sobre a contratação de serviços públicos sob o regime de execução indireta pela administração direta e indireta do distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-17899": {
+  "dispositivos": 39,
+  "nome": "Dispõe sobre a política ambiental do distrito federal e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-19880": {
+  "dispositivos": 47,
+  "nome": "Aprova o regulamento da lei n° 41, de 13 de setembro de 1989 que dispõe sobre a política ambiental do distrito federal e dá outras providênc"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-1a157e06de684867ac8ac5238fe61354": {
+  "dispositivos": 15,
+  "nome": "Regulamenta os procedimentos para a cobrança da outorga onerosa da alteração de uso no distrito federal, prévia à expedição da licença de fu"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-31b81251fb17411b918f1c7efc4a9e8e": {
+  "dispositivos": 24,
+  "nome": "Aprova o regimento interno da procuradoria-geral do distrito federal e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-34321": {
+  "dispositivos": 6,
+  "nome": "Regulamenta a lei n° 1.170 de 24 de julho de 1996, que \"institui o instrumento jurídico da outorga onerosa do direito de construir no distri"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-3bf29283d9ea42ce9b8feff3d4fa253e": {
+  "dispositivos": 42,
+  "nome": "Dispõe sobre a obrigatoriedade da implantação do programa de integridade nas empresas que contratarem com a administração pública do distrit"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-3e31558072eb4b7791ab7c55335ffd13": {
+  "dispositivos": 46,
+  "nome": "Dispõe sobre a regularização fundiária urbana – reurb no distrito federal, altera a lei complementar nº 803, de 25 de abril de 2009, que apr"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-40403": {
+  "dispositivos": 2,
+  "nome": "Regulamenta o sistema de informações sobre recursos hídricos do distrito federal, e á outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-43139": {
+  "dispositivos": 24,
+  "nome": "Regulamenta a lei complementar n.º 294, de 27 de junho de 2000, que institui a outorga onerosa da alteração de uso no distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-46110": {
+  "dispositivos": 288,
+  "nome": "Regulamenta o imposto sobre serviços de qualquer natureza - iss."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-48949": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre parcelamento de solo para fins urbanos no distrito federal e da outras providencias."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-49124": {
+  "dispositivos": 32,
+  "nome": "Institui o instrumento jurídico da outorga onerosa do direito de construir no distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-50682": {
+  "dispositivos": 7,
+  "nome": "Institui a política de recursos hídricos e cria o sistema de gerenciamento de recursos hídricos do distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-51831": {
+  "dispositivos": 53,
+  "nome": "Dispõe sobre a lei organica do tribunal de contas do distrito federal e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-51834": {
+  "dispositivos": 61,
+  "nome": "Código tributário do distrito federal"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-52123": {
+  "dispositivos": 32,
+  "nome": "Institui a outorga onerosa da alteração de uso no distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-52222": {
+  "dispositivos": 51,
+  "nome": "Dispõe sobre a organização da procuradoria-geral do distrito federal"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-54200": {
+  "dispositivos": 57,
+  "nome": "Regulamenta o imposto sobre a transmissão inter vivos de bens imóveis por natureza ou acessão física e de direitos reais sobre imóveis - itb"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-551e54f29493499ca4201ef5e6f7ab35": {
+  "dispositivos": 8,
+  "nome": "Dispõe sobre a aplicação da lei federal nº 13.709, de 14 de agosto de 2018- lei geral de proteção de dados pessoais - lgpd, no âmbito da adm"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-55dee087bc064dde8c964062c1d8ffde": {
+  "dispositivos": 3,
+  "nome": "Institui a lei de defesa do contribuinte do distrito federal – ldc/df e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-56344": {
+  "dispositivos": 41,
+  "nome": "Consolida a legislação que institui e regulamenta o imposto sobre a propriedade predial e territorial urbana - iptu."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-56994": {
+  "dispositivos": 21,
+  "nome": "Define critérios para ocupação de área pública no distrito federal mediante concessão de direito real de uso e concessão de uso, para as uti"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-57300": {
+  "dispositivos": 43,
+  "nome": "Regulamenta a lei nº 992, de 28 de dezembro de 1995 e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-58020": {
+  "dispositivos": 172,
+  "nome": "Regime Próprio de Previdência Social do Distrito Federal"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-5996816c254c4686a443be3b71534c82": {
+  "dispositivos": 1,
+  "nome": "Dispõe sobre a aplicação, no âmbito da administração pública direta e indireta do distrito federal, da instrução normativa nº 5, de 25 de ma"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-60298": {
+  "dispositivos": 183,
+  "nome": "Aprova a revisão do plano diretor de ordenamento territorial do distrito federal - pdot e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-66829": {
+  "dispositivos": 121,
+  "nome": "Aprova as normas de planejamento, orçamento, finanças, patrimônio e contabilidade do distrito federal, e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-67258": {
+  "dispositivos": 4,
+  "nome": "Dispõe sobre a vedação do nepotismo no âmbito da administração pública direta e indireta do poder executivo do distrito federal."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-68572": {
+  "dispositivos": 69,
+  "nome": "Dispõe sobre o processo administrativo fiscal, contencioso e voluntário, no âmbito do distrito federal e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-68584": {
+  "dispositivos": 40,
+  "nome": "Regula a prestação de assistência jurídica pelo distrito federal e dispõe sobre a organização de centro de assistência judiciária – ceajur."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-70196": {
+  "dispositivos": 152,
+  "nome": "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-70686": {
+  "dispositivos": 111,
+  "nome": "Regulamenta a lei nº 4.567, de 9 de maio de 2011, que dispõe sobre o processo administrativo fiscal, contencioso e voluntário, no âmbito do "
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-72965": {
+  "dispositivos": 46,
+  "nome": "Consolida e regulamenta a legislação que institui o imposto sobre a propriedade de veículos automotores - ipva."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-72983": {
+  "dispositivos": 11,
+  "nome": "Regula o acesso a informações no distrito federal previsto no art. 5º, xxxiii, no art. 37, § 3º, ii, e no art. 216, § 2º, da constituição fe"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-75714": {
+  "dispositivos": 32,
+  "nome": "Regulamenta o imposto sobre a transmissão causa mortis e doação de quaisquer bens ou direitos – itcd, e dá outras providências."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-77248": {
+  "dispositivos": 1,
+  "nome": "Altera a lei complementar nº 828, de 26 de julho de 2010, que regula a prestação de assistência jurídica pelo distrito federal e dispõe sobr"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-7dbd0d94425548bb8ef57913a86a8937": {
+  "dispositivos": 1,
+  "nome": "Recepciona o decreto federal nº 10.024, de 20 de setembro de 2019."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-878b445155514f05a3fb411e1c2da0c0": {
+  "dispositivos": 118,
+  "nome": "Regulamenta a lei federal nº 14.133, de 1º de abril de 2021, lei de licitações e contratos administrativos, no âmbito da administração públi"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-94156cc83d524f1ba6d0c0555ec9cd9d": {
+  "dispositivos": 15,
+  "nome": "Institui o código de obras e edificações do distrito federal - coe."
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-9540b9b3b6a54ae6877c1326b04d4fd9": {
+  "dispositivos": 20,
+  "nome": "Regulamenta, no âmbito do distrito federal, o sistema de registro de preços e dá outras providências"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-dafaadb15ff3452f82afc4390b5ee432": {
+  "dispositivos": 24,
+  "nome": "Regulamenta a aplicação da lei nacional nº 13.019, de 31 de julho de 2014, para dispor sobre o regime jurídico das parcerias celebradas entr"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-dc0cb59a605a444aace71e6fb9ca9133": {
+  "dispositivos": 12,
+  "nome": "Altera a lei complementar nº 828, de 26 de julho de 2010, que regula a prestação de assistência jurídica pelo distrito federal e dispõe sobr"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-eb307b019ca8498687f3cc14108d1aae": {
+  "dispositivos": 9,
+  "nome": "Dispõe sobre a racionalização no ajuizamento de execuções fiscais, regula a inscrição e a cobrança da dívida ativa do distrito federal e dá "
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-f680eff74f924704aaa20f1be76aef35": {
+  "dispositivos": 137,
+  "nome": "Regulamenta a lei nº 6.138, de 26 de abril de 2018, que dispõe sobre o código de edificações do distrito federal - coe/df, e dá outras provi"
+ },
+ "sinj-df-gov-br-sinj-detalhesdenorma-aspx-id-norma-fdab09844f754a998dea87e64a4b4d54": {
+  "dispositivos": 176,
+  "nome": "Aprova a lei de uso e ocupação do solo do distrito federal - luos nos termos dos arts. 316 e 318 da lei orgânica do distrito federal e dá ou"
+ },
+ "sistemas-pa-gov-br-sisleis-legislacao-5256": {
+  "dispositivos": 22,
+  "nome": "Decreto Estadual (PA) nº 534/2020"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-lei-9048-pdf": {
+  "dispositivos": 2,
+  "nome": "Política Estadual sobre Mudanças Climáticas do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-101839-pdf": {
+  "dispositivos": 13,
+  "nome": "Estatuto da Igualdade Racial do Estado do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-137348-pdf": {
+  "dispositivos": 5,
+  "nome": "Código Estadual de Proteção aos Animais do Pará (citada no edital do concurso)"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-366-pdf": {
+  "dispositivos": 1,
+  "nome": "Preservação e proteção do patrimônio histórico, artístico, natural e cultural do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-483-pdf": {
+  "dispositivos": 4,
+  "nome": "Macrozoneamento Ecológico-Econômico do Estado do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-506-pdf": {
+  "dispositivos": 4,
+  "nome": "Dispõe sobre a Política Estadual de Florestas e demais Formas de Vegetação do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-516687-pdf": {
+  "dispositivos": 12,
+  "nome": "Dispõe sobre o processo administrativo ambiental para apuração de infrações e conciliação ambiental no Estado do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-517-pdf": {
+  "dispositivos": 7,
+  "nome": "Política Estadual de Recursos Hídricos e Sistema de Gerenciamento do Meio Ambiente e Recursos Hídricos do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-6708-pdf": {
+  "dispositivos": 2,
+  "nome": "Norma ambiental/minerária do Estado do Pará"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-files-pdf-79265-pdf": {
+  "dispositivos": 83,
+  "nome": "Regula o processo administrativo-tributário do Estado do Pará e cria o Tribunal Administrativo de Recursos Fiscais (TARF)"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-normas-view-502": {
+  "dispositivos": 4,
+  "nome": "Norma ambiental do Estado do Pará (citada no edital do concurso)"
+ },
+ "sistemas-semas-pa-gov-br-legislacao-normas-view-714030": {
+  "dispositivos": 47,
+  "nome": "Cria o Instituto de Desenvolvimento Florestal do Estado do Pará (IDEFLOR) e o Fundo Estadual de Desenvolvimento Florestal (FUNDEFLOR)"
+ },
+ "tjac-jus-br-wp-content-uploads-2010-12-lei-complementar-221-2010-pdf": {
+  "dispositivos": 17,
+  "nome": "Código de Organização e Divisão Judiciárias do Estado do Acre"
+ },
+ "tjba-jus-br-juizadosespeciais-wp-content-uploads-joomla-uploads-pdf-legislacao-l-17492b46": {
+  "dispositivos": 24,
+  "nome": "Organização e Divisão Judiciária do Estado da Bahia (Código de Organização Judiciária)"
+ },
+ "tjpa-jus-br-cmsportal-visualizararquivo-idarquivo-8546": {
+  "dispositivos": 26,
+  "nome": "Código de Organização Judiciária do Estado do Pará"
+ },
+ "transparencia-ap-gov-br-relatorios-atos-leis-sema-lei-1028-de-12-de-julho-de-2006-pdf": {
+  "dispositivos": 2,
+  "nome": "Floresta Estadual do Amapá (criação e gestão)"
+ },
+ "uesc-br-cadj-lei6677-pdf": {
+  "dispositivos": 83,
+  "nome": "Estatuto dos Servidores Públicos Civis do Estado da Bahia"
+ },
+ "uesc-br-proape-arquivos-estatuto-da-igualdade-racial-bahia-pdf": {
+  "dispositivos": 19,
+  "nome": "Estatuto da Igualdade Racial e de Combate à Intolerância Religiosa do Estado da Bahia"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegis-arquivos-16-263-pdf": {
+  "dispositivos": 2,
+  "nome": "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegis-arquivos-lei-14-254-pdf": {
+  "dispositivos": 2,
+  "nome": "Conselhos Estaduais e Municipais dos Direitos da Pessoa Idosa do Rio Grande do Sul"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2010-350-pdf": {
+  "dispositivos": 3,
+  "nome": "Política Estadual de Recursos Hídricos do Rio Grande do Sul"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2014-705-pdf": {
+  "dispositivos": 2,
+  "nome": "Plano Estadual de Educação do Rio Grande do Sul"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-2015-434-pdf": {
+  "dispositivos": 21,
+  "nome": "Código Estadual do Meio Ambiente do Rio Grande do Sul"
+ },
+ "ww3-al-rs-gov-br-filerepository-replegiscomp-lei-20n-c2-ba-209-831-pdf": {
+  "dispositivos": 2,
+  "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec1051997-html": {
+  "dispositivos": 1,
+  "nome": "Lei Complementar Estadual (ES) nº 105/1997"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec2342002-html": {
+  "dispositivos": 31,
+  "nome": "Lei Complementar Estadual (ES) nº 234/2002"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec2822004-html": {
+  "dispositivos": 33,
+  "nome": "Lei Complementar Estadual (ES) nº 282/2004"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec461994-html": {
+  "dispositivos": 38,
+  "nome": "Lei Complementar Estadual (ES) nº 46/1994"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec551994-html": {
+  "dispositivos": 14,
+  "nome": "Lei Complementar Estadual (ES) nº 55/1994"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec6222012-html": {
+  "dispositivos": 2,
+  "nome": "Lei Complementar Estadual (ES) nº 622/2012"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec7112013-html": {
+  "dispositivos": 7,
+  "nome": "Lei Complementar Estadual (ES) nº 711/2013"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lec8582017-html": {
+  "dispositivos": 1,
+  "nome": "Lei Complementar Estadual (ES) nº 858/2017"
+ },
+ "www3-al-es-gov-br-arquivo-documents-legislacao-html-lei57511998-html": {
+  "dispositivos": 1,
+  "nome": "Lei Estadual (ES) nº 5.751/1998"
  }
 }
