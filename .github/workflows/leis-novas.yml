@@ -1,0 +1,38 @@
+name: Leis novas
+
+# Todo dia, confere na API aberta do Senado se saiu lei ordinária ou complementar nova e grava as de caráter geral
+# em leis/novas.json (scripts/leis_novas.py). O site mostra em Meus Estudos > Novidades legislativas, com o botão
+# "Pedir para incluir". Não usa o Planalto (que bloqueia os servidores do GitHub).
+on:
+  schedule:
+    - cron: "30 11 * * *"   # 08:30 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: leis-novas
+  cancel-in-progress: false
+
+jobs:
+  novas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Procurar leis novas
+        run: python3 scripts/leis_novas.py
+
+      - name: Salvar
+        run: |
+          git add leis/novas.json
+          if git diff --cached --quiet; then echo "Nada mudou."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Leis novas de caráter geral (automático)"
+          for t in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
