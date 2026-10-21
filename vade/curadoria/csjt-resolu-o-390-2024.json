@@ -1,0 +1,13 @@
+{
+ "numero_regex": "390",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSJT\\s*(?:n[º°o.]*)?\\s*390(?:\\s*/\\s*(?:2024|24))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*390\\s*/\\s*(?:2024|24)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSJT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

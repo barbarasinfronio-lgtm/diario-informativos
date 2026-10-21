@@ -386,10 +386,14 @@
   // #ato:<id> (ato do CNJ no leitor), #lei:<id>[:<art>] (outra lei no leitor, no artigo) ou #art:<n> (artigo desta lei).
   var cnjMeta = null;
   function carregarAtosCnj() {
-    if (!cnjMeta) cnjMeta = fetch(CDN_BASE + "leis/cnj-atos.json", { cache: "force-cache" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) { var m = {}; ((j && j.leis) || []).forEach(function (a) { m[a.textoId] = a; }); return m; })
-      .catch(function () { return {}; });
+    if (!cnjMeta) cnjMeta = Promise.all(["cnj-atos", "atos-csjt", "atos-cnmp", "atos-csmpt"].map(function (n) {
+      return fetch(CDN_BASE + "leis/" + n + ".json", { cache: "force-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    })).then(function (js) {
+      var m = {};
+      js.forEach(function (j) { ((j && j.leis) || []).forEach(function (a) { m[a.textoId] = a; }); });
+      return m;
+    });
     return cnjMeta;
   }
   function linhaVadeHtml(l, links) {
@@ -441,7 +445,7 @@
     } else if ((m = h.match(/^#ato:(.+)$/))) {
       carregarAtosCnj().then(function (mapa) {
         var ato = mapa[m[1]];
-        if (ato) abrirTexto(null, false, { tid: m[1], chave: "cnj:" + m[1], titulo: ato.numero + " — " + ato.nome, origem: "Ato do CNJ · " + (ato.situacao || "") + " · " + (ato.data || ""), link: ato.link });
+        if (ato) abrirTexto(null, false, { tid: m[1], chave: "cnj:" + m[1], titulo: ato.numero + " — " + ato.nome, origem: "Ato · " + [ato.situacao, ato.data].filter(Boolean).join(" · "), link: ato.link });
       });
     } else if ((m = h.match(/^#lei:([^:]+)(?::(.+))?$/))) {
       var lei = achaLei(m[1]);
@@ -1201,6 +1205,9 @@
       ler("leis/dos-editais.json", "dos_editais", "Citadas nos editais"),
       // leis/cnj-atos.json: Resoluções, Provimentos, Recomendações… do CNJ com o texto inteiro (scripts/cnj_atos_textos.py)
       ler("leis/cnj-atos.json", "cnj_atos", "Atos do CNJ (Resoluções, Provimentos, Recomendações…)"),
+      ler("leis/atos-csjt.json", "atos_csjt", "Atos do CSJT (Justiça do Trabalho)"),
+      ler("leis/atos-cnmp.json", "atos_cnmp", "Atos do CNMP (Ministério Público)"),
+      ler("leis/atos-csmpt.json", "atos_csmpt", "Atos do CSMPT (Ministério Público do Trabalho)"),
       lerTratados()
     ]);
   }

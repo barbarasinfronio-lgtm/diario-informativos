@@ -124,14 +124,14 @@ for org, v in fontes['normas'].items():
 
 # atos do CNJ com inteiro teor no site (leis/texto/cnj-*.json, scripts/cnj_atos_textos.py) — varre parágrafo a parágrafo, anotando o art. do ato
 import glob
-for f in ([] if UF else sorted(glob.glob(f'{R}/leis/texto/cnj-*.json'))):
+for f in ([] if UF else sorted(sum((glob.glob(f'{R}/leis/texto/{o}-*.json') for o in ('cnj', 'csjt', 'cnmp', 'csmpt')), []))):
     if os.path.basename(f)[:-5] == tid: continue
     ato = json.load(open(f))
-    m = re.match(r'(.+?) CNJ nº ([\d.]+)/(\d{4})$', ato.get('nome', ''))
+    m = re.match(r'(.+?) (CNJ|CSJT|CNMP|CSMPT) nº ([\d.]+)/(\d{4})$', ato.get('nome', ''))
     if not m: continue
-    rot = f'{m.group(1)} nº {m.group(2)}/{m.group(3)} (CNJ)'
+    rot = f'{m.group(1)} nº {m.group(3)}/{m.group(4)} ({m.group(2)})'
     atual = None
-    meta[rot] = (m.group(1), 'do CNJ', f'{m.group(2)}/{m.group(3)}')
+    meta[rot] = (m.group(1), 'do ' + m.group(2), f'{m.group(3)}/{m.group(4)}')
     for ln in ato['p']:
         ma = re.match(r'\s*Art\.?\s*(\d+(?:\.\d{3})*)', ln)
         if ma: atual = ma.group(1).replace('.', '')
@@ -213,11 +213,12 @@ LEI_ID = {}
 try: LEI_ID = json.load(open(f'{CACHE}/lei_ids.json'))
 except OSError: pass
 CNJ_ID = {}
-try:
-    for x in json.load(open(f'{R}/leis/cnj-atos.json'))['leis']:
-        m = re.match(r'^(.+?) CNJ nº ([\d.]+)/(\d{4})$', x['numero'])
-        if m: CNJ_ID[f"{m.group(1)}|{m.group(2).replace('.', '').lstrip('0')}|{m.group(3)}"] = x['textoId']
-except OSError: pass
+for arq_ in ('cnj-atos', 'atos-csjt', 'atos-cnmp', 'atos-csmpt'):
+    try:
+        for x in json.load(open(f'{R}/leis/{arq_}.json'))['leis']:
+            m = re.match(r'^(.+?) (CNJ|CSJT|CNMP|CSMPT) nº ([\d.]+)/(\d{4})$', x['numero'])
+            if m: CNJ_ID[f"{m.group(2)}|{m.group(1)}|{m.group(3).replace('.', '').lstrip('0')}|{m.group(4)}"] = x['textoId']
+    except OSError: pass
 TEMA_ID = {}
 for d_ in json.load(open(DECS)):
     m = re.match(r'^Tema (\d+) \((STF|STJ|TST)\)', d_['rot'])
@@ -265,13 +266,13 @@ def linkar(l):
     if m:
         k = ENUN_KEY.get(f'{m.group(2)} {m.group(3)}')
         return [[n, f'/p/diario-das-sumulas.html#cad={k}|{n}'] for n in _nums(m.group(1))] if k else []
-    m = re.match(r'^(.+?) nºs? (.+) do CNJ\.$', l)
+    m = re.match(r'^(.+?) nºs? (.+) do (CNJ|CSJT|CNMP|CSMPT)\.$', l)
     if m:
         tipo = ' '.join(re.sub(r'ões$', 'ão', w) if w.endswith('ões') else (w[:-1] if w.endswith('s') and w not in ('Orientações',) else w) for w in m.group(1).split())
         lista_ = re.sub(r' \(art[^)]*\)', '', m.group(2))
         for tok in re.findall(r'\d+/\d{4}', lista_):
             n_, a_ = tok.split('/')
-            tid_ = CNJ_ID.get(f'{tipo}|{n_.lstrip("0")}|{a_}')
+            tid_ = CNJ_ID.get(f'{m.group(3)}|{tipo}|{n_.lstrip("0")}|{a_}')
             out.append([tok, ('#ato:' + tid_) if tid_ else None])
         return out if any(h for _, h in out) else []
     m = re.match(r'^Temas? nºs? (.+) do (STF|STJ|TST)\.$', l)

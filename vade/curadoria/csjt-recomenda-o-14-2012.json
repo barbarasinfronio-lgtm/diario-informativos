@@ -1,0 +1,13 @@
+{
+ "numero_regex": "14",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Recomendação\\s+(?:do\\s+|da\\s+)?CSJT\\s*(?:n[º°o.]*)?\\s*14(?:\\s*/\\s*(?:2012|12))?",
+  "Recomendação\\s*(?:n[º°o.]*)?\\s*14\\s*/\\s*(?:2012|12)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSJT"
+ ],
+ "deste": "desta Recomendação",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

@@ -1,0 +1,13 @@
+{
+ "numero_regex": "197",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSJT\\s*(?:n[º°o.]*)?\\s*197(?:\\s*/\\s*(?:2017|17))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*197\\s*/\\s*(?:2017|17)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSJT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

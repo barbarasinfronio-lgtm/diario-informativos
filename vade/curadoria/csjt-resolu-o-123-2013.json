@@ -1,0 +1,13 @@
+{
+ "numero_regex": "123",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSJT\\s*(?:n[º°o.]*)?\\s*123(?:\\s*/\\s*(?:2013|13))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*123\\s*/\\s*(?:2013|13)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSJT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

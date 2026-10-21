@@ -1,0 +1,13 @@
+{
+ "numero_regex": "56",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSMPT\\s*(?:n[º°o.]*)?\\s*56(?:\\s*/\\s*(?:2004|04))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*56\\s*/\\s*(?:2004|04)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSMPT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

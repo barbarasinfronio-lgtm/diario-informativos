@@ -1,0 +1,13 @@
+{
+ "numero_regex": "86",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSJT\\s*(?:n[º°o.]*)?\\s*86(?:\\s*/\\s*(?:2011|11))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*86\\s*/\\s*(?:2011|11)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSJT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}

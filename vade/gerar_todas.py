@@ -98,6 +98,27 @@ def main():
             json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
             feitos[i] = x['nome']
     except OSError: pass
+    # atos do CSJT, CNMP e CSMPT lidos no site: a citação tem de trazer o órgão ("Resolução CSJT 185/2017" ou "Resolução 185/2017 do CSJT")
+    for org in ('csjt', 'cnmp', 'csmpt'):
+        try:
+            for x in json.load(open(f'{R}/leis/atos-{org}.json')).get('leis', []):
+                m = re.match(r'^(.+?) (CSJT|CNMP|CSMPT) nº ([\d.]+)/(\d{4})$', x['numero'])
+                if not m: continue
+                tipo, sg, num, ano = m.groups(); i = x['textoId']
+                if not os.path.exists(f'{R}/leis/texto/{i}.json'): continue
+                f = f'{R}/vade/curadoria/{i}.json'
+                if os.path.exists(f) and not json.load(open(f)).get('auto'): continue
+                n = regex_num(num); a2 = ano[-2:]; tp = r'\s+'.join(re.escape(w) for w in tipo.split())
+                anoRx = r'(?:' + ano + '|' + a2 + ')'
+                fem = tipo.split()[0] not in ('Provimento', 'Enunciado', 'Ato')
+                c = {"numero_regex": n, "sem_base": True, "cnj": True,
+                     "aliases": [tp + r'\s+(?:do\s+|da\s+)?' + sg + r'\s*(?:n[º°o.]*)?\s*' + n + r'(?:\s*/\s*' + anoRx + ')?',
+                                 tp + r'\s*(?:n[º°o.]*)?\s*' + n + r'\s*/\s*' + anoRx + r'\s*,?\s*(?:\(|d[oa]\s+)' + sg],
+                     "deste": ("desta " if fem else "deste ") + tipo.split()[0]}
+                c.update({"vinculos": {}, "excluir": [], "auto": True})
+                json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
+                feitos[i] = x['nome']
+        except OSError: pass
     # tabela número da lei → id do texto no site (para as remissões virarem link)
     ids = {"lei|0|constituicao": "constituicao-constituicao"}
     cont = {}

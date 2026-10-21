@@ -4,12 +4,13 @@
 # (a primeira vez baixa tudo; depois só o que for novo) e refaz as remissões do vade mecum (▶ nas leis e nos atos).
 cd "$(dirname "$0")" || exit 1
 fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; exit "$1"; }
-ARQUIVOS=(leis/cnj-atos.json leis/texto leis/vade)
+ARQUIVOS=(leis/cnj-atos.json leis/atos-csjt.json leis/atos-cnmp.json leis/atos-csmpt.json leis/texto leis/vade)
 echo "=== Atos do CNJ — $(date '+%d/%m/%Y %H:%M') ==="
 git checkout -q main 2>/dev/null
 git fetch -q origin main && git pull -q --rebase --autostash origin main \
   || { git rebase --abort 2>/dev/null; echo "ERRO: não consegui juntar com o main. Cole esta janela para a Claude."; fim 1; }
 python3 scripts/cnj_atos_textos.py || { echo "ERRO ao baixar os atos do CNJ. Cole esta janela para a Claude."; fim 1; }
+python3 scripts/atos_orgaos_textos.py || echo "Aviso: atos do CSJT/CNMP/CSMPT não baixaram por completo (CNMP pode precisar de ajuste). Cole esta janela para a Claude."
 node vade/preparar_fontes.js vade/cache > /dev/null && node vade/preparar_decisoes.js vade/cache > /dev/null
 python3 vade/gerar_todas.py | tail -2
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done

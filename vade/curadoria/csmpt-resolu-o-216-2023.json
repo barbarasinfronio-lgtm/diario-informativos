@@ -1,0 +1,13 @@
+{
+ "numero_regex": "216",
+ "sem_base": true,
+ "cnj": true,
+ "aliases": [
+  "Resolução\\s+(?:do\\s+|da\\s+)?CSMPT\\s*(?:n[º°o.]*)?\\s*216(?:\\s*/\\s*(?:2023|23))?",
+  "Resolução\\s*(?:n[º°o.]*)?\\s*216\\s*/\\s*(?:2023|23)\\s*,?\\s*(?:\\(|d[oa]\\s+)CSMPT"
+ ],
+ "deste": "desta Resolução",
+ "vinculos": {},
+ "excluir": [],
+ "auto": true
+}
