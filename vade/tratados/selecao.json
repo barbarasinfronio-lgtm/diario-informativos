@@ -1,0 +1,1218 @@
+{
+ "selecionados": {
+  "8062": {
+   "origem": [
+    "vade-internacional",
+    "vade-internacional"
+   ],
+   "titulo": "Carta das Nações Unidas, da qual se faz Parte Integrante o Anexo Estatuto da Corte Internacional de Justiça.",
+   "decreto": "19841/1945",
+   "vigencia": "vigor-interno"
+  },
+  "8143": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Carta da Organização dos Estados Americanos.",
+   "decreto": "30.544/1952",
+   "vigencia": "vigor-interno"
+  },
+  "10308": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Reforma da Carta da Organização dos Estados Americanos \"Protocolo de Manágua\"",
+   "decreto": "2.677/1998",
+   "vigencia": "vigor-interno"
+  },
+  "9368": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Cooperação Amazônica",
+   "decreto": "85050/1980",
+   "vigencia": "vigor-interno"
+  },
+  "7824": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Genebra sobre a Proibição de Emprego na Guerra de Gases Asfixiantes, Tóxicos ou Similares e de Meios Bacteriológicos.",
+   "decreto": "67.200/1970",
+   "vigencia": "vigor-interno"
+  },
+  "7857": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Renúncia à Guerra (Pacto de Paris ou Briand-Kellogg)",
+   "decreto": "24.557/1934",
+   "vigencia": "vigor-interno"
+  },
+  "8117": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado Interamericano de Assistência Recíproca (TIAR). Ata Final. (Pacto do Rio).",
+   "decreto": "25.660/1948",
+   "vigencia": "vigor-interno"
+  },
+  "8656": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado para a Proscrição das Experiências com Armas Nucleares na Atmosfera, no Espaço Cósmico e sob a Água.",
+   "decreto": "58256/1966",
+   "vigencia": "vigor-interno"
+  },
+  "8763": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado para a Proscrição das Armas Nucleares na América Latina e Caribe (Tratado de Tlatelolco).",
+   "decreto": "1246/1994",
+   "vigencia": "vigor-interno"
+  },
+  "8825": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Não-Proliferação de Armas Nucleares.",
+   "decreto": "2864/1998",
+   "vigencia": "vigor-interno"
+  },
+  "12204": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção para Prevenir e Punir os Atos de Terrorismo Configurados em Delitos contra as Pessoas e a Extorsão Conexa, Quando Tiverem eles Transcendência Internacional",
+   "decreto": "3.018/1999",
+   "vigencia": "vigor-interno"
+  },
+  "10627": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Proibição Completa dos Testes Nucleares",
+   "decreto": "None/",
+   "vigencia": "especial"
+  },
+  "10718": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Internacional para a Supressão de Atentados Terroristas com Bombas",
+   "decreto": "4.394/2002",
+   "vigencia": "vigor-interno"
+  },
+  "10895": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção das Nações Unidas contra o Crime Organizado Transnacional (Convenção de Palermo)",
+   "decreto": "5.015/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10897": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Adicional à Convenção das Nações Unidas contra o Crime Organizado Transnacional, relativo ao Combate ao Tráfico de Migrantes por Via Terrestre, Marítima e Aérea",
+   "decreto": "5.016/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10896": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Adicional à Convenção das Nações Unidas contra o Crime Organizado Transnacional Relativo à Prevenção, Repressão e Punição do Tráfico de Pessoas, em Especial Mulheres e Crianças",
+   "decreto": "5.017/2004",
+   "vigencia": "vigor-interno"
+  },
+  "12378": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre o Crime Cibernético (\"Convenção de Budapeste\")",
+   "decreto": "11491/2023",
+   "vigencia": "vigor-interno"
+  },
+  "10995": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana contra o Terrorismo",
+   "decreto": "5.639/2005",
+   "vigencia": "vigor-interno"
+  },
+  "11549": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado sobre o Comércio de Armas",
+   "decreto": "11.173/2022",
+   "vigencia": "vigor-interno"
+  },
+  "8583": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção de Viena sobre Relações Diplomáticas.",
+   "decreto": "56.435/1965",
+   "vigencia": "vigor-interno"
+  },
+  "8641": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção de Viena sobre Relações Consulares",
+   "decreto": "61.078/1967",
+   "vigencia": "vigor-interno"
+  },
+  "8308": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Asilo Territorial",
+   "decreto": "55929/1965",
+   "vigencia": "vigor-interno"
+  },
+  "8307": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Asilo Diplomático.",
+   "decreto": "42.628/1957",
+   "vigencia": "vigor-interno"
+  },
+  "11771": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Tratados",
+   "decreto": "18.956/1929",
+   "vigencia": "vigor-interno"
+  },
+  "8855": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção de Viena sobre o Direito dos Tratados",
+   "decreto": "7030/2009",
+   "vigencia": "vigor-interno"
+  },
+  "9375": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção de Viena sobre Sucessão de Estados em Matéria de Tratados",
+   "decreto": "10.214/2020",
+   "vigencia": "vigor-interno"
+  },
+  "11891": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção das Nações Unidas sobre Direito do Mar (Montego Bay)",
+   "decreto": "99.165/1990",
+   "vigencia": "vigor-interno"
+  },
+  "10462": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo Relativo à Implementação da Parte XI da Convenção das Nações Unidas sobre o Direito do Mar de 10/12/82",
+   "decreto": "6.440/2008",
+   "vigencia": "vigor-interno"
+  },
+  "8657": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Relativa às Infrações e a Certos Outros Atos Cometidos a Bordo de Aeronaves",
+   "decreto": "66.520/1970",
+   "vigencia": "vigor-interno"
+  },
+  "8759": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado sobre Princípios Reguladores das Atividades dos Estados na Exploração e Uso do Espaço Cósmico, Inclusive a Lua e Demais Corpos Celestes.",
+   "decreto": "64362/1969",
+   "vigencia": "vigor-interno"
+  },
+  "9021": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Responsabilidade Internacional por Danos Causados por Objetos Espaciais",
+   "decreto": "71.981/1973",
+   "vigencia": "vigor-interno"
+  },
+  "10813": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção para a Unificação de Certas Regras Relativas ao Transporte Aéreo Internacional",
+   "decreto": "5.910/2006",
+   "vigencia": "vigor-interno"
+  },
+  "8544": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado sobre a Antártida",
+   "decreto": "75.963/1975",
+   "vigencia": "vigor-interno"
+  },
+  "10188": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo ao Tratado da Antártida sobre Proteção ao Meio Ambiente",
+   "decreto": "2.742/1998",
+   "vigencia": "vigor-interno"
+  },
+  "9505": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre a Conservação de Recursos Vivos Marinhos Antárticos.",
+   "decreto": "93.935/1987",
+   "vigencia": "vigor-interno"
+  },
+  "8050": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre o Fundo Monetário Internacional e Convenção sobre o Banco Internacional para a Reconstrução e Desenvolvimento entre o Brasil e Vários Países.",
+   "decreto": "21.177/1946",
+   "vigencia": "vigor-interno"
+  },
+  "8085": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Constituição da Organização Mundial de Saúde - OMS",
+   "decreto": "26.042/1948",
+   "vigencia": "vigor-interno"
+  },
+  "11165": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Regulamento Sanitário Internacional Revisado (RSI - 2005) - 58ª Assembléia Geral da Organização Mundial de Saúde",
+   "decreto": "10.212/2020",
+   "vigencia": "vigor-interno"
+  },
+  "8169": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção para a Prevenção e a Punição do Crime de Genocídio",
+   "decreto": "30.822/1952",
+   "vigencia": "vigor-interno"
+  },
+  "8248": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Relativa ao Estatuto dos Refugiados",
+   "decreto": "50.215/1961",
+   "vigencia": "vigor-interno"
+  },
+  "8760": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo sobre o Estatuto dos Refugiados.",
+   "decreto": "70946/1972",
+   "vigencia": "vigor-interno"
+  },
+  "8729": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Internacional sobre a Eliminação de Todas as Formas de Discriminação Racial",
+   "decreto": "4.738/2003",
+   "vigencia": "vigor-interno"
+  },
+  "8755": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Pacto Internacional sobre Direitos Civis e Políticos.",
+   "decreto": "592/1992",
+   "vigencia": "vigor-interno"
+  },
+  "8754": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo ao Pacto Internacional sobre Direitos Civis e Políticos",
+   "decreto": "11.777/2023",
+   "vigencia": "vigor-interno"
+  },
+  "10056": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Segundo Protocolo Facultativo ao Pacto Internacional sobre Direitos Civis e Políticos com Vistas à Abolição da Pena de Morte",
+   "decreto": "11777/2023",
+   "vigencia": "vigor-interno"
+  },
+  "8753": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Pacto Internacional sobre Direitos Econômicos, Sociais e Culturais.",
+   "decreto": "591/1992",
+   "vigencia": "vigor-interno"
+  },
+  "9494": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre a Eliminação de Todas as Formas de Discriminação Contra as Mulheres.",
+   "decreto": "4.377/2002",
+   "vigencia": "vigor-interno"
+  },
+  "10845": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo à Convenção para a Eliminação de Todas as Formas de Discriminação contra a Mulher",
+   "decreto": "4.316/2002",
+   "vigencia": "vigor-interno"
+  },
+  "9748": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Contra a Tortura e Outros Tratamentos ou Penas Cruéis, Desumanos ou Degradantes",
+   "decreto": "40/1991",
+   "vigencia": "vigor-interno"
+  },
+  "11045": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo à Convenção contra a Tortura e outros Tratamentos ou Penas Cruéis, Desumanos ou Degradantes (OPCAT)",
+   "decreto": "6.085/2007",
+   "vigencia": "vigor-interno"
+  },
+  "10031": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre os Direitos da Criança.",
+   "decreto": "99710/1990",
+   "vigencia": "vigor-interno"
+  },
+  "10876": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo à Convenção sobre os Direitos da Criança, relativo à venda de crianças, à prostituição infantil e à pornografia infantil",
+   "decreto": "5007/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10877": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo à Convenção sobre os Direitos da Criança relativo ao envolvimento de crianças em conflitos armados",
+   "decreto": "5.006/2004",
+   "vigencia": "vigor-interno"
+  },
+  "11074": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção das Nações Unidas contra a Corrupção (Convenção de Mérida)",
+   "decreto": "5.687/2006",
+   "vigencia": "vigor-interno"
+  },
+  "11278": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Internacional para a Proteção de Todas as Pessoas Contra Desaparecimentos Forçados",
+   "decreto": "8.767/2016",
+   "vigencia": "vigor-interno"
+  },
+  "11272": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre os Direitos das Pessoas com Deficiência e seu Protocolo Facultativo",
+   "decreto": "6.949/2009",
+   "vigencia": "vigor-interno"
+  },
+  "11553": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Marraqueche para Facilitar o Acesso a Obras Publicadas às Pessoas Cegas, com Deficiência Visual ou com Outras Dificuldades para Ter Acesso ao Texto Impresso, concluído no âmbito da Organização Mundial da Propriedade Intelectual (OMPI)",
+   "decreto": "9.522/2018",
+   "vigencia": "vigor-interno"
+  },
+  "8883": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Americana sobre Direitos Humanos (Pacto de São José) e Declaração de Reconhecimento da Competência Obrigatória da Corte Interamericana de Direitos Humanos",
+   "decreto": "678/1992",
+   "vigencia": "vigor-interno"
+  },
+  "9953": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Adicional à Convenção Americana sobre Direitos Humanos em Matéria de Direitos Econômicos, Sociais e Culturais (Protocolo de San Salvador)",
+   "decreto": "3.321/1999",
+   "vigencia": "vigor-interno"
+  },
+  "10079": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo à Convenção Americana sobre Direitos Humanos Referente à Abolição da Pena de Morte",
+   "decreto": "2.754/1998",
+   "vigencia": "vigor-interno"
+  },
+  "9774": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana para Prevenir e Punir a Tortura.",
+   "decreto": "98386/1989",
+   "vigencia": "vigor-interno"
+  },
+  "10447": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana para Prevenir, Punir e Erradicar a Violência contra a Mulher \"Convenção de Belém do Pará\"",
+   "decreto": "1.973/1996",
+   "vigencia": "vigor-interno"
+  },
+  "10412": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Tráfico Internacional de Menores",
+   "decreto": "2.740/1998",
+   "vigencia": "vigor-interno"
+  },
+  "10608": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana Contra a Corrupção (Convenção de Caracas)",
+   "decreto": "4.410/2002",
+   "vigencia": "vigor-interno"
+  },
+  "10814": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana para a Eliminação de Todas as Formas de Discriminação Contra as Pessoas Portadoras de Deficiência",
+   "decreto": "3.956/2001",
+   "vigencia": "vigor-interno"
+  },
+  "11550": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana Contra o Racismo, a Discriminação Racial e Formas Correlatas de Intolerância",
+   "decreto": "10.932/2022",
+   "vigencia": "vigor-interno"
+  },
+  "10415": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo Constitutivo da Organização Mundial do Comércio",
+   "decreto": "1.355/1994",
+   "vigencia": "vigor-interno"
+  },
+  "9504": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção das Nações Unidas sobre Contratos para Compra e Venda Internacional de Mercadorias (UNCITRAL)",
+   "decreto": "8.327/2014",
+   "vigencia": "vigor-interno"
+  },
+  "10246": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Diversidade Biológica",
+   "decreto": "2.519/1998",
+   "vigencia": "vigor-interno"
+  },
+  "10236": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção-Quadro das Nações Unidas sobre Mudança do Clima",
+   "decreto": "2.652/1998",
+   "vigencia": "vigor-interno"
+  },
+  "10715": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Quioto à Convenção-Quadro das Nações Unidas sobre Mudança do Clima",
+   "decreto": "5.445/2005",
+   "vigencia": "vigor-interno"
+  },
+  "10865": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Cartagena sobre Biossegurança da Convenção sobre Diversidade Biológica",
+   "decreto": "5.705/2006",
+   "vigencia": "vigor-interno"
+  },
+  "11454": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Nagoia sobre Acesso a Recursos Genéticos e Repartição Justa e Equitativa dos Benefícios Derivados de sua Utilização à Convenção sobre Diversidade Biológica (CDB)",
+   "decreto": "11.865/2023",
+   "vigencia": "vigor-interno"
+  },
+  "10758": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Estatuto de Roma do Tribunal Penal Internacional (TPI)",
+   "decreto": "4.388/2002",
+   "vigencia": "vigor-interno"
+  },
+  "10240": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Assistência Mútua em Matéria Penal",
+   "decreto": "6.340/2008",
+   "vigencia": "vigor-interno"
+  },
+  "10334": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Facultativo relativo à Convenção Interamericana sobre Assistência Mútua em Matéria Penal",
+   "decreto": "6.340/2008",
+   "vigencia": "vigor-interno"
+  },
+  "10332": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre o Cumprimento de Sentenças Penais no Exterior",
+   "decreto": "5.919/2006",
+   "vigencia": "vigor-interno"
+  },
+  "8591": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre Redução de Casos de Apatridia",
+   "decreto": "8.501/2015",
+   "vigencia": "vigor-interno"
+  },
+  "10624": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Declaração Constitutiva e Estatutos da Comunidade dos Países de Língua Portuguesa (CPLP)",
+   "decreto": "5.002/2004",
+   "vigencia": "vigor-interno"
+  },
+  "4628": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa",
+   "decreto": "3927/2001",
+   "vigencia": "vigor-interno"
+  },
+  "10156": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado para a Constituição de um Mercado Comum entre a República Federativa do Brasil, a República Argentina, a República do Paraguai e a República Oriental do Uruguai (Tratado de Assunção)",
+   "decreto": "350/1991",
+   "vigencia": "vigor-interno"
+  },
+  "10258": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Cooperação e Assistência Jurisdicional em Matéria Civil, Comercial, Trabalhista e Administrativa [Protocolo de Las Leñas] (Dec. nº 05/92)",
+   "decreto": "2.067/1996",
+   "vigencia": "vigor-interno"
+  },
+  "10505": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Adicional ao Tratado de Assunção sobre a Estrutura Institucional do Mercosul (Protocolo de Ouro Preto)",
+   "decreto": "1.901/1996",
+   "vigencia": "vigor-interno"
+  },
+  "11172": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Assunção sobre Compromisso com a Promoção e Proteção dos Direitos Humanos do MERCOSUL - Decisão CMC nº 17/05",
+   "decreto": "7.225/2010",
+   "vigencia": "vigor-interno"
+  },
+  "10465": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Buenos Aires sobre Jurisdição Internacional em Matéria Contratual - Dec. nº 01/94",
+   "decreto": "2.095/1996",
+   "vigencia": "vigor-interno"
+  },
+  "10652": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Defesa da Concorrência do MERCOSUL - Dec. nº 18/96",
+   "decreto": "3.602/2000",
+   "vigencia": "vigor-interno"
+  },
+  "10719": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Montevidéu sobre o Comércio de Serviços do Mercosul - Dec. nº 13/97",
+   "decreto": "6.480/2008",
+   "vigencia": "vigor-interno"
+  },
+  "10797": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo de Extradição entre os Estados Partes do Mercosul - Dec. nº 14/98",
+   "decreto": "4.975/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10761": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo sobre Arbitragem Comercial Internacional do Mercosul - Dec. nº 03/98",
+   "decreto": "4.719/2003",
+   "vigencia": "vigor-interno"
+  },
+  "10817": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo de Admissão de Títulos e Graus Universitários para o Exercício de Atividades Acadêmicas nos Estados Parte do Mercosul - Decisão nº 04/99",
+   "decreto": "5.518/2005",
+   "vigencia": "vigor-interno"
+  },
+  "10944": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo-Quadro sobre Meio Ambiente do MERCOSUL - Decisão nº 02/01",
+   "decreto": "5.208/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10991": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Olivos para a Solução de Controvérsias",
+   "decreto": "4.982/2004",
+   "vigencia": "vigor-interno"
+  },
+  "11004": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Acordo de Cooperação e Assistência Jurisdicional em Matéria Civil, Comercial, Trabalhista e Administrativa entre os Estados Partes do MERCOSUL e a República da Bolívia e a República do Chile - Decisão nº 08/02",
+   "decreto": "6.891/2009",
+   "vigencia": "vigor-interno"
+  },
+  "11213": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Constitutivo do Parlamento do Mercosul - Decisão CMC n° 23/05",
+   "decreto": "6.105/2007",
+   "vigencia": "vigor-interno"
+  },
+  "11689": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo de Adesão do Estado Plurinacional da Bolívia ao MERCOSUL - XLVIII Reunião Ordinária do Conselho do Mercado Comum e Cúpula de Presidentes do MERCOSUL e Estados Associados",
+   "decreto": "11817/2023",
+   "vigencia": "vigor-interno"
+  },
+  "11347": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Tratado Constitutivo da União de Nações Sul-Americanas (UNASUL)",
+   "decreto": "11.475/2023",
+   "vigencia": "vigor-interno"
+  },
+  "7773": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Constituição da Organização Internacional do Trabalho",
+   "decreto": "13990/1920",
+   "vigencia": "vigor-interno"
+  },
+  "7888": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 29 da OIT sobre Trabalho Forçado ou Obrigatório",
+   "decreto": "41721/1957",
+   "vigencia": "vigor-interno"
+  },
+  "8190": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 98 da OIT sobre Aplicação dos Princípios do Direito de Organização e de Negociação Coletiva",
+   "decreto": "33196/1953",
+   "vigencia": "vigor-interno"
+  },
+  "8270": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 103 da OIT sobre Proteção da Maternidade.",
+   "decreto": "58820/1966",
+   "vigencia": "vigor-interno"
+  },
+  "8383": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 105 da OIT sobre a Abolição do Trabalho Forçado.",
+   "decreto": "58822/1966",
+   "vigencia": "vigor-interno"
+  },
+  "8505": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 111 da OIT sobre Discriminação em Matéria de Emprego e Profissão.",
+   "decreto": "62150/1968",
+   "vigencia": "vigor-interno"
+  },
+  "8916": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 132 da OIT sobre Férias Anuais Remuneradas.",
+   "decreto": "3197/1999",
+   "vigencia": "vigor-interno"
+  },
+  "8970": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 135 da OIT sobre a Proteção e Facilidades a Serem Concedidas aos Representantes dos Trabalhadores na Empresa.",
+   "decreto": "131/1991",
+   "vigencia": "vigor-interno"
+  },
+  "9083": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 138 e Recomendação nº 146 da OIT sobre Idade Mínima de Admissão ao Emprego.",
+   "decreto": "4134/2002",
+   "vigencia": "vigor-interno"
+  },
+  "9366": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 151 e Recomendação nº 159 da OIT sobre Relações de Trabalho na Administração Pública.",
+   "decreto": "7944/2013",
+   "vigencia": "vigor-interno"
+  },
+  "9573": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 155 da OIT sobre a Segurança e Saúde dos Trabalhadores e o Meio Ambiente do Trabalho.",
+   "decreto": "1254/1994",
+   "vigencia": "vigor-interno"
+  },
+  "9926": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 168 da OIT Relativa ao Fomento do Emprego e à Proteção Contra o Desemprego",
+   "decreto": "2.682/1998",
+   "vigencia": "vigor-interno"
+  },
+  "9995": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 169 da OIT Relativa aos Povos Indígenas e Tribais em Países Independentes",
+   "decreto": "5.051/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10087": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 171 da OIT relativa ao Trabalho Noturno",
+   "decreto": "5.005/2004",
+   "vigencia": "vigor-interno"
+  },
+  "10824": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 182 e Recomendação nº 190 da OIT sobre a Proibição das Piores Formas de Trabalho Infantil e a Ação Imediata para a sua Eliminação",
+   "decreto": "3.597/2000",
+   "vigencia": "vigor-interno"
+  },
+  "11488": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção nº 189 e Recomendação nº 201 da OIT sobre Trabalho Decente para as Trabalhadoras e os Trabalhadores Domésticos.",
+   "decreto": "12.009/2024",
+   "vigencia": "vigor-interno"
+  },
+  "8014": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Estatuto Orgânico do Instituto Internacional para a Unificação do Direito Privado (UNIDROIT).",
+   "decreto": "884/1993",
+   "vigencia": "vigor-interno"
+  },
+  "8253": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Estatuto da Conferência da Haia sobre Direito Internacional Privado",
+   "decreto": "3.832/2001",
+   "vigencia": "vigor-interno"
+  },
+  "8364": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre a Prestação de Alimentos no Estrangeiro",
+   "decreto": "56826/1965",
+   "vigencia": "vigor-interno"
+  },
+  "8501": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Relativa ao Reconhecimento e Execução de Sentenças Arbitrais Estrangeiras (Convenção de Nova York - UNCITRAL)",
+   "decreto": "4311/2002",
+   "vigencia": "vigor-interno"
+  },
+  "8716": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Relativa à Citação, Intimação e Notificação no Estrangeiro de Documentos Judiciais e Extrajudiciais em Matéria Civil e Comercial",
+   "decreto": "9.734/2019",
+   "vigencia": "vigor-interno"
+  },
+  "8901": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre a Obtenção de Provas no Estrangeiro em Matéria Civil ou Comercial",
+   "decreto": "9.039/2017",
+   "vigencia": "vigor-interno"
+  },
+  "9524": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção sobre os Aspectos Civis do Sequestro Internacional de Crianças",
+   "decreto": "3413/2000",
+   "vigencia": "vigor-interno"
+  },
+  "7850": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção de Direito Internacional Privado (Código Bustamante).",
+   "decreto": "18871/1929",
+   "vigencia": "vigor-interno"
+  },
+  "9170": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Cartas Rogatórias.",
+   "decreto": "1899/1996",
+   "vigencia": "vigor-interno"
+  },
+  "9426": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Protocolo Adicional à Convenção Interamericana sobre Cartas Rogatórias.",
+   "decreto": "2022/1996",
+   "vigencia": "vigor-interno"
+  },
+  "9169": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Arbitragem Comercial Internacional.",
+   "decreto": "1902/1996",
+   "vigencia": "vigor-interno"
+  },
+  "9424": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Normas Gerais de Direito Internacional Privado.",
+   "decreto": "1979/1996",
+   "vigencia": "vigor-interno"
+  },
+  "9425": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Prova e Informação Acerca do Direito Estrangeiro.",
+   "decreto": "1925/1996",
+   "vigencia": "vigor-interno"
+  },
+  "10003": {
+   "origem": [
+    "vade-internacional"
+   ],
+   "titulo": "Convenção Interamericana sobre Obrigação Alimentar",
+   "decreto": "2.428/1997",
+   "vigencia": "vigor-interno"
+  },
+  "11614": {
+   "origem": [
+    "lista-cnj"
+   ],
+   "titulo": "Protocolo Facultativo à Convenção sobre os Direitos da Criança Relativo a um Procedimento de Comunicações",
+   "decreto": "12.313/2024",
+   "vigencia": "vigor-interno"
+  },
+  "1513": {
+   "origem": [
+    "citado-em-decisao (decreto 59308/1966)"
+   ],
+   "titulo": "Acordo Básico de Assistência Técnica entre o Governo dos Estados Unidos do Brasil e a Organização das Nações Unidas, a Organização Internacional do Trabalho, a Organização das Nações Unidas para Alimentação e a Agricultura, a Organização das Nações Unidas para a Educação, a Ciência e Cultura, a Organização de Aviação Civil Internacional, a Organização Mundial de Saúde, a União Internacional de Telecomunicações, a Organização Metereológica Mundial, a Agência Internacional de Energia Atômia, e a União Postal Universal",
+   "decreto": "59308/1966",
+   "vigencia": "vigor-interno"
+  },
+  "8580": {
+   "origem": [
+    "citado-em-decisao (decreto 54216/1964)"
+   ],
+   "titulo": "Convenção Única sobre Entorpecentes.",
+   "decreto": "54.216/1964",
+   "vigencia": "vigor-interno"
+  },
+  "8069": {
+   "origem": [
+    "citado-em-decisao (decreto 27784/1950)"
+   ],
+   "titulo": "Convenção sobre Privilégios e Imunidades das Nações Unidas",
+   "decreto": "27.784/1950",
+   "vigencia": "vigor-interno"
+  }
+ },
+ "nao_tratados": [
+  [
+   "Organizações internacionais",
+   "Princípios de Yogyakarta",
+   2006,
+   "D"
+  ],
+  [
+   "Organizações internacionais",
+   "Agenda 2030",
+   2015,
+   "D"
+  ],
+  [
+   "Espaços marítimos",
+   "Lei 8.617 mar territorial, zona contígua, zona econômica exclusiva e plataforma continental",
+   1993,
+   "L"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração Universal dos Direitos Humanos",
+   1948,
+   "D"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração sobre o Direito ao Desenvolvimento",
+   1986,
+   "D"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração e Programa de Ação de Viena",
+   1993,
+   "D"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração de Pequim Quarta Conferência Mundial sobre as Mulheres Ação para Igualdade, Desenvolvimento e Paz",
+   1995,
+   "D"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração Americana dos Direitos e Deveres do Homem",
+   1948,
+   "D"
+  ],
+  [
+   "Declarações de direitos humanos aprovadas pelo Brasil",
+   "Declaração Americana sobre os Direitos dos Povos Indígenas",
+   2016,
+   "D"
+  ],
+  [
+   "Tratados de direitos humanos – sistema global",
+   "Lei 9.474 mecanismos para a implementação do Estatuto dos Refugiados",
+   1997,
+   "L"
+  ],
+  [
+   "Tratados de direitos humanos – sistema interamericano",
+   "Estatuto da Corte Interamericana de Direitos Humanos",
+   1979,
+   "R"
+  ],
+  [
+   "Meio ambiente",
+   "Declaração de Estocolmo sobre o Meio Ambiente Humano",
+   1972,
+   "D"
+  ],
+  [
+   "Meio ambiente",
+   "Declaração do Rio de Janeiro sobre Meio Ambiente e Desenvolvimento",
+   1992,
+   "D"
+  ],
+  [
+   "Nacionalidade e cidadania",
+   "Declaração Constitutiva da Comunidade dos Países de Língua Portuguesa",
+   1996,
+   "D"
+  ],
+  [
+   "Nacionalidade e cidadania",
+   "Lei 11.961 residência provisória para o estrangeiro em situação irregular",
+   2009,
+   "L"
+  ],
+  [
+   "Nacionalidade e cidadania",
+   "Decreto 6.893 regulamenta a Lei 11.961",
+   2009,
+   "L"
+  ],
+  [
+   "Nacionalidade e cidadania",
+   "Lei 13.445 Lei de Migração",
+   2017,
+   "L"
+  ],
+  [
+   "Nacionalidade e cidadania",
+   "Decreto 9.199 regulamenta a Lei 13.445",
+   2017,
+   "L"
+  ],
+  [
+   "Direito internacional do trabalho",
+   "Recomendação 190 da OIT",
+   1999,
+   "D"
+  ],
+  [
+   "Direito internacional do trabalho",
+   "Recomendação 201 da OIT",
+   2011,
+   "D"
+  ],
+  [
+   "Direito internacional privado – global",
+   "Decreto-Lei 4.657 Lei de Introdução às Normas do Direito Brasileiro",
+   1942,
+   "L"
+  ],
+  [
+   "Direito internacional privado – global",
+   "Lei 12.376 altera a ementa do Decreto-Lei 4.657",
+   2010,
+   "L"
+  ],
+  [
+   "Direito internacional privado – global",
+   "Lei 12.874 altera o art. 18 do Decreto-Lei 4.657",
+   2013,
+   "L"
+  ],
+  [
+   "Direito internacional privado – global",
+   "Decreto 5.491 regulamenta a atuação de organismos estrangeiros e nacionais de adoção internacional",
+   2005,
+   "L"
+  ],
+  [
+   "Direito internacional privado – interamericano",
+   "Lei 13.105 Código de Processo Civil",
+   2015,
+   "L"
+  ],
+  [
+   "Direito internacional privado – interamericano",
+   "Lei 9.307 arbitragem",
+   1996,
+   "L"
+  ],
+  [
+   "Direito internacional privado – interamericano",
+   "Regimento Interno do Supremo Tribunal Federal",
+   1980,
+   "R"
+  ]
+ ],
+ "sem_decreto": [],
+ "descartados": [
+  "Pacto da Sociedade das Nações",
+  "Protocolo ao Tratado de Proibição Completa dos Testes Nucleares",
+  "Convenção de Viena sobre o Direito dos Tratados entre Estados e Organizações Internacionais ou entre Organizações Internacionais",
+  "Convenção Internacional sobre a Proteção dos Direitos de Todos os Trabalhadores Migrantes e dos Membros das suas Famílias",
+  "Convenção Interamericana sobre a Proteção dos Direitos Humanos dos Idosos",
+  "Convenção 156 da OIT"
+ ]
+}

@@ -1,0 +1,41 @@
+[
+ {
+  "nome": "Declaração Americana dos Direitos e Deveres do Homem (1948)",
+  "numero": "Declaração/norma internacional — Declaração Americana dos Direitos e Deveres do Homem",
+  "link": "https://www.cidh.oas.org/basicos/portugues/b.Declaracao_Americana.htm",
+  "fontes": [
+   "https://www.oas.org/pt/cidh/mandato/Basicos/declaracion.pdf",
+   "https://www.cidh.oas.org/basicos/portugues/b.declaracao_americana.htm"
+  ],
+  "deve": "Todos os homens nascem livres"
+ },
+ {
+  "nome": "Declaração do Rio sobre Meio Ambiente e Desenvolvimento (1992)",
+  "numero": "Declaração/norma internacional — Declaração do Rio sobre Meio Ambiente e Desenvolvimento",
+  "link": "https://www.direitoshumanos.usp.br/index.php/meio-ambiente/declaracao-do-rio-sobre-meio-ambiente-e-desenvolvimento.html",
+  "fontes": [
+   "http://www.direitoshumanos.usp.br/index.php/meio-ambiente/declaracao-do-rio-sobre-meio-ambiente-e-desenvolvimento.html",
+   "http://www.direitoshumanos.usp.br/index.php/Meio-Ambiente/declaracao-do-rio-sobre-meio-ambiente-e-desenvolvimento.html"
+  ],
+  "deve": "Princ[íi]pio 27|PRINC[ÍI]PIO 27|Declara[çc][ãa]o do Rio"
+ },
+ {
+  "nome": "Declaração de Estocolmo sobre o Meio Ambiente Humano (1972)",
+  "numero": "Declaração/norma internacional — Declaração de Estocolmo sobre o Meio Ambiente Humano",
+  "link": "https://www.direitoshumanos.usp.br/index.php/meio-ambiente/declaracao-de-estocolmo-sobre-o-ambiente-humano.html",
+  "fontes": [
+   "http://www.direitoshumanos.usp.br/index.php/meio-ambiente/declaracao-de-estocolmo-sobre-o-ambiente-humano.html"
+  ],
+  "deve": "Estocolmo|ambiente humano"
+ },
+ {
+  "nome": "Estatuto da Corte Interamericana de Direitos Humanos (1979)",
+  "numero": "Declaração/norma internacional — Estatuto da Corte Interamericana de Direitos Humanos",
+  "link": "https://www.corteidh.or.cr/estatuto.cfm?lang=pt",
+  "fontes": [
+   "https://www.oas.org/pt/cidh/mandato/Basicos/estatutoCorte.pdf",
+   "https://www.corteidh.or.cr/estatuto.cfm?lang=pt"
+  ],
+  "deve": "Corte Interamericana"
+ }
+]

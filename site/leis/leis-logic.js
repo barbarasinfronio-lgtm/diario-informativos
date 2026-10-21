@@ -1151,12 +1151,24 @@
           }
         }).catch(function () {});
     }
+    // leis/tratados-no-diario.json: tratados e convenções já internalizados no Brasil, agrupados por assunto
+    // (vade/tratados_para_site.py a partir do Concórdia/Itamaraty); cada grupo entra como uma matéria
+    function lerTratados() {
+      return fetch(CDN_BASE + "leis/tratados-no-diario.json", { cache: "no-cache" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j || !j.grupos) return;
+          window.LEIS_DATA = window.LEIS_DATA || {};
+          Object.keys(j.grupos).forEach(function (k) { if (j.grupos[k].leis && j.grupos[k].leis.length) window.LEIS_DATA[k] = j.grupos[k]; });
+        }).catch(function () {});
+    }
     // leis/dos-editais.json: normas federais que os editais citam e que não estavam no Diário (scripts/leis_dos_editais.py)
     return Promise.all([
       ler("leis/pedidas.json", "pedidas", "Leis pedidas por leitores"),
       ler("leis/dos-editais.json", "dos_editais", "Citadas nos editais"),
       // leis/cnj-atos.json: Resoluções, Provimentos, Recomendações… do CNJ com o texto inteiro (scripts/cnj_atos_textos.py)
-      ler("leis/cnj-atos.json", "cnj_atos", "Atos do CNJ (Resoluções, Provimentos, Recomendações…)")
+      ler("leis/cnj-atos.json", "cnj_atos", "Atos do CNJ (Resoluções, Provimentos, Recomendações…)"),
+      lerTratados()
     ]);
   }
 
