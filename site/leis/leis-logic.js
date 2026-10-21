@@ -490,7 +490,7 @@
       if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; }
     }
     if (ini > 0) ps = ps.slice(ini);
-    var NOVO = /^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
+    var NOVO = /^(Art\.|ARTIGO\s+\d|Artigo\s+\d|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
     var out = [];
     ps.forEach(function (t) {
       if (!out.length || NOVO.test(t)) out.push(t);
