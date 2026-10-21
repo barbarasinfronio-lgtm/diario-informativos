@@ -1242,6 +1242,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 906, ano: 2026, data: "2026-10-20", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0906" },
     { edicao: 905, ano: 2026, data: "2026-10-13", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0905" },
     { edicao: 904, ano: 2026, data: "2026-10-06", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0904" },
     { edicao: 903, ano: 2026, data: "2026-09-29", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0903" },
@@ -2151,6 +2152,7 @@
 
   // Edições extraordinárias do Informativo do STJ (numeração própria, "33E").
   var STJBP_DATA = [
+    { edicao: 147, ano: 2026, data: "2026-10-20", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/147_boletim_precedentes_stj_20261020.pdf" },
     { edicao: 146, ano: 2026, data: "2026-10-02", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/146_boletim_precedentes_stj_20261002.pdf" },
     { edicao: 145, ano: 2026, data: "2026-09-18", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/145_boletim_precedentes_stj_20260918.pdf" },
     { edicao: 144, ano: 2026, data: "2026-09-08", sumula: null, link: "https://www.stj.jus.br/docs_internet/processo/precedentes/2026/144_boletim_precedentes_stj_20260908.pdf" },
