@@ -93,6 +93,7 @@ def add(art, anc, cat, rot, sub=None):
     if rot not in [r for _, r in vinc[art][anc]]: vinc[art][anc].append((cat, rot))
     if sub and sub not in extra[(art, anc, rot)]: extra[(art, anc, rot)].append(sub)
 
+ENUN_KEY = {}
 def reg_sumula(k, v, s, cat):
     rot = rot_sumula(k, v, s['numero'], s)
     j = s.get('jornada'); base = v.get('label', '').split(' — ')[0]
@@ -103,6 +104,7 @@ def reg_sumula(k, v, s, cat):
         g = {'cjf_civil': 'das Jornadas de Direito Civil', 'cjf_processual_civil': 'das Jornadas de Direito Processual Civil', 'fppc': 'do FPPC'}.get(k)
         if not g: g = ('da ' + j if j and not j.startswith('Jornada') else 'da ' + (j or base)) + (' (CJF)' if 'CJF' not in (j or '') else '')
         meta[rot] = ('Enunciado', g, s['numero'])
+    if meta[rot][0] == 'Enunciado': ENUN_KEY.setdefault(meta[rot][1], k)
     return rot
 for k, v in fontes['sumulas'].items():
     for s in v.get('sumulas', []) or []:
@@ -201,6 +203,113 @@ for a, ancs in cur.get('vinculos', {}).items():
     for an, cats in ancs.items():
         for cat, lst in cats.items():
             for r in lst: add(a, an, cat, r)
+
+# ---------- 2b. links das remissões ----------
+# Cada linha ▶ é texto; "links" diz, para cada pedaço dela, para onde ir: /p/... (outra página do site), #ato:<id> (ato do CNJ no leitor),
+# #lei:<id>:<art> (outra lei no leitor) ou #art:<n> (artigo desta mesma lei).
+import urllib.parse
+def _q(x): return urllib.parse.quote(str(x), safe='')
+LEI_ID = {}
+try: LEI_ID = json.load(open(f'{CACHE}/lei_ids.json'))
+except OSError: pass
+CNJ_ID = {}
+try:
+    for x in json.load(open(f'{R}/leis/cnj-atos.json'))['leis']:
+        m = re.match(r'^(.+?) CNJ nº ([\d.]+)/(\d{4})$', x['numero'])
+        if m: CNJ_ID[f"{m.group(1)}|{m.group(2).replace('.', '').lstrip('0')}|{m.group(3)}"] = x['textoId']
+except OSError: pass
+TEMA_ID = {}
+for d_ in json.load(open(DECS)):
+    m = re.match(r'^Tema (\d+) \((STF|STJ|TST)\)', d_['rot'])
+    if m and d_['id'].startswith('dec:'): TEMA_ID.setdefault((m.group(1), m.group(2)), d_['id'][4:])
+ITEM_HREF = {}
+for d_ in json.load(open(DECS)):
+    if d_['id'].startswith('dec:'): ITEM_HREF.setdefault(d_['rot'][:90].rstrip('.'), f"/p/diario-das-decisoes.html#abrir={_q(d_['id'][4:])}&busca={_q(d_['rot'][:60])}")
+if os.path.exists(JUL):
+    for a_, lst_ in J['art'].items():
+        for idx_, _ in lst_:
+            r_ = rot_julgado(J['decisoes'][idx_][0])
+            if r_: ITEM_HREF.setdefault(r_.split(' (Informativo')[0], J['decisoes'][idx_][1])
+CODIGOS = {'CF': 'lei|0|constituicao', 'CC': 'lei|10406|2002', 'CPC': 'lei|13105|2015', 'CP': 'dl|2848|1940', 'CPP': 'dl|3689|1941', 'CDC': 'lei|8078|1990',
+           'CTN': 'lei|5172|1966', 'CLT': 'dl|5452|1943', 'Código Civil': 'lei|10406|2002', 'Código de Processo Civil': 'lei|13105|2015',
+           'Código de Defesa do Consumidor': 'lei|8078|1990', 'Código Florestal': 'lei|12651|2012'}
+def lei_id(nome):
+    nome = nome.strip()
+    if nome in CODIGOS: return LEI_ID.get(CODIGOS[nome], '')
+    m = re.match(r'^(Lei|LC|Decreto-Lei|Decreto) nº ([\d.]+)(?:/(\d{4}))?$', nome)
+    if not m: return ''
+    t = {'Lei': 'lei', 'LC': 'lc', 'Decreto-Lei': 'dl', 'Decreto': 'decreto'}[m.group(1)]
+    n = m.group(2).replace('.', '').lstrip('0')
+    return LEI_ID.get(f'{t}|{n}|{m.group(3) or ""}') or LEI_ID.get(f'{t}|{n}|')
+def _nums(lst):
+    """números de uma lista 'a, b e c' (só a parte antes de ' (art' conta)"""
+    return re.findall(r'(?<![§\d./])\d[\d./-]*', lst)
+SIGLA_CHAVE = {'STF': 'stf', 'STJ': 'stj', 'TST': 'tst', 'TCU': 'tcu', 'TSE': 'tse', 'STM': 'stm', 'TNU': 'tnu'}
+def linkar(l):
+    """[[pedaço, href|None], ...] na ordem em que os pedaços aparecem na linha (None = só avança o cursor)"""
+    out = []
+    m = re.match(r'^(Súms?\.(?: Vincs?\.)?) nºs? (.+) d[oa] (\S+)\.$', l)
+    if m:
+        sig = m.group(3).rstrip('.')
+        k = 'stf_vinculante' if 'Vinc' in m.group(1) else SIGLA_CHAVE.get(sig, sig.lower())
+        if k in fontes['sumulas']:
+            return [[n, f'/p/diario-das-sumulas.html#cad={k}|{n}'] for n in _nums(m.group(2))]
+        k2 = sig.lower().replace('-', '_')
+        cands = [kk for kk in fontes['sumulas'] if kk == k2 or kk.startswith(k2 + '_')]
+        res = []
+        for n in _nums(m.group(2)):
+            kk = next((c_ for c_ in cands if any(str(x_['numero']) == n for x_ in fontes['sumulas'][c_].get('sumulas') or [])), None)
+            res.append([n, f'/p/diario-das-sumulas.html#cad={kk}|{n}' if kk else None])
+        return res if any(h for _, h in res) else []
+    m = re.match(r'^Enunciados? nºs? (.+?) (d[oa]s?|das) (.+)\.$', l)
+    if m:
+        k = ENUN_KEY.get(f'{m.group(2)} {m.group(3)}')
+        return [[n, f'/p/diario-das-sumulas.html#cad={k}|{n}'] for n in _nums(m.group(1))] if k else []
+    m = re.match(r'^(.+?) nºs? (.+) do CNJ\.$', l)
+    if m:
+        tipo = ' '.join(re.sub(r'ões$', 'ão', w) if w.endswith('ões') else (w[:-1] if w.endswith('s') and w not in ('Orientações',) else w) for w in m.group(1).split())
+        lista_ = re.sub(r' \(art[^)]*\)', '', m.group(2))
+        for tok in re.findall(r'\d+/\d{4}', lista_):
+            n_, a_ = tok.split('/')
+            tid_ = CNJ_ID.get(f'{tipo}|{n_.lstrip("0")}|{a_}')
+            out.append([tok, ('#ato:' + tid_) if tid_ else None])
+        return out if any(h for _, h in out) else []
+    m = re.match(r'^Temas? nºs? (.+) do (STF|STJ|TST)\.$', l)
+    if m:
+        for n in _nums(m.group(1)):
+            i_ = TEMA_ID.get((n, m.group(2)))
+            out.append([n, f'/p/diario-das-decisoes.html#abrir={_q(i_)}&busca={_q("Tema " + n)}' if i_ else None])
+        return out
+    m = re.match(r'^Jurisprudência em Teses do STJ, edi(?:ção|ções) nºs? (.+)\.$', l)
+    if m:
+        return [[n, f'/p/diario-das-decisoes.html#abrir=stj-jt-{n}-1&busca={_q("edição " + n)}'] for n in _nums(m.group(1))]
+    m = re.match(r'^(Arts?\.) (.+) ' + re.escape(cur.get('deste', 'desta Lei')) + r'\.$', l)
+    if m:
+        for tok in re.finditer(r'(?<![§\d.])(?<!§ )\b(\d{1,4}(?:\.\d{3})?)º?(-[A-Z])?(?![\d])', m.group(2)):
+            k_ = tok.group(1).replace('.', '') + (tok.group(2) or '')
+            out.append([tok.group(0), '#art:' + k_])
+        return out
+    m = re.match(r'^(Arts?\.) (.+?) d[oa] (.+?)(?: \((Decreto nº [\d./]+)\))?\.$', l)
+    if m and not l.endswith(cur.get('deste', 'desta Lei') + '.'):
+        alvo = lei_id(m.group(3)) if not m.group(4) else lei_id(m.group(4))
+        if m.group(4):
+            return [[f'({m.group(4)})', '#lei:' + alvo] ] if alvo else []
+        if alvo:
+            for tok in re.finditer(r'(?<![§\d.])(?<!§ )\b(\d{1,4}(?:\.\d{3})?)º?(-[A-Z])?(?![\d])', m.group(2)):
+                out.append([tok.group(0), '#lei:' + alvo + ':' + tok.group(1).replace('.', '') + (tok.group(2) or '')])
+            return out
+        return []
+    # lista de leis citadas sem artigo ("Lei nº 7.713/1988, Lei nº 8.069/1990, Código Civil e …") e itens de julgados
+    itens = re.split(r'; ', l.rstrip('.'))
+    achou = False
+    for it in itens:
+        h = ITEM_HREF.get(it.split(' (Informativo')[0])
+        if h: out.append([it.split(' (Informativo')[0], h]); achou = True; continue
+        for tok in re.split(r', | e ', it):
+            i_ = lei_id(tok)
+            if i_: out.append([tok, '#lei:' + i_]); achou = True
+            else: out.append([tok, None])
+    return out if achou else []
 
 # ---------- 3. saída ----------
 os.makedirs(f'{R}/vade/saida', exist_ok=True)
@@ -357,11 +466,15 @@ for i, (tp, t, a, an) in enumerate(itens):
     if i == 1 and vinc.get(GERAL[0]):
         corpo.append(''.join(f'<p class="rem"><span class="seta">▶</span> {html.escape(l)}</p>' for l in ['Remissões gerais à lei:'] + linhas(*GERAL)))
 # dados para o site: leis/vade/<id>.json  {"geral":[linhas], "art":{"85":{"c":[linhas],"§2":[linhas]}}}
-site = {"nome": lei["nome"], "geral": linhas(*GERAL) if vinc.get(GERAL[0]) else [], "art": {}}
+site = {"nome": lei["nome"], "geral": linhas(*GERAL) if vinc.get(GERAL[0]) else [], "art": {}, "links": {}}
 for tp, t, a, an in itens:
     if a and an and an not in site["art"].get(a, {}):
         ls = linhas_todas(a, an)
         if ls: site["art"].setdefault(a, {})[an] = ls
+for l_ in site["geral"] + [x for d_ in site["art"].values() for v_ in d_.values() for x in v_]:
+    if l_ not in site["links"]:
+        pr_ = linkar(l_)
+        if any(h for _, h in pr_): site["links"][l_] = pr_
 if site["art"] or site["geral"]:
     os.makedirs(f'{R}/leis/vade', exist_ok=True)
     json.dump(site, open(f'{R}/leis/vade/{tid}.json', 'w'), ensure_ascii=False, separators=(',', ':'))

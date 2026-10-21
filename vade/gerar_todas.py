@@ -98,6 +98,23 @@ def main():
             json.dump(c, open(f, 'w'), ensure_ascii=False, indent=1)
             feitos[i] = x['nome']
     except OSError: pass
+    # tabela número da lei → id do texto no site (para as remissões virarem link)
+    ids = {"lei|0|constituicao": "constituicao-constituicao"}
+    cont = {}
+    for nome, numero, link, tid in L:
+        m = RX.match(numero or '')
+        if not m or 'planalto.gov.br' not in (link or ''): continue
+        i = tid or robo.id_texto(link)
+        if not os.path.exists(f'{R}/leis/texto/{i}.json'): continue
+        t = {'lei': 'lei', 'lei complementar': 'lc', 'decreto-lei': 'dl', 'decreto': 'decreto'}[m.group(1).lower()]
+        n = m.group(2).replace('.', '').lstrip('0'); ano = m.group(3) or ''
+        ids.setdefault(f'{t}|{n}|{ano}', i)
+        cont.setdefault(f'{t}|{n}|', set()).add(i)
+    for k, v in cont.items():
+        if len(v) == 1: ids[k] = next(iter(v))
+    os.makedirs(f'{R}/vade/cache', exist_ok=True)
+    json.dump(ids, open(f'{R}/vade/cache/lei_ids.json', 'w'), ensure_ascii=False)
+    print(len(ids), 'leis na tabela de links')
     print(len(feitos), 'leis com curadoria automática')
     if '--so-curadoria' in sys.argv: return
     ids = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/vade/curadoria/*.json'))

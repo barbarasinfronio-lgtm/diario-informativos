@@ -382,41 +382,71 @@
       .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
     return vadeCache[id];
   }
-  // "Provimentos nºs 149/2023 (art. 400) e 139/2023 do CNJ." → cada ato vira link que abre o texto dele (leis/cnj-atos.json)
-  var cnjAtos = null;
+  // Cada linha ▶ vem com "links" (vade/gerar_vade.py): para onde cada número vai — /p/… (outra página do site),
+  // #ato:<id> (ato do CNJ no leitor), #lei:<id>[:<art>] (outra lei no leitor, no artigo) ou #art:<n> (artigo desta lei).
+  var cnjMeta = null;
   function carregarAtosCnj() {
-    if (!cnjAtos) cnjAtos = fetch(CDN_BASE + "leis/cnj-atos.json", { cache: "force-cache" })
+    if (!cnjMeta) cnjMeta = fetch(CDN_BASE + "leis/cnj-atos.json", { cache: "force-cache" })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) {
-        var mapa = {};
-        ((j && j.leis) || []).forEach(function (a) {
-          var m = String(a.numero).match(/^(.+?) CNJ nº ([\d.]+)\/(\d{4})$/);
-          if (m) mapa[m[1] + "|" + m[2].replace(/\./g, "").replace(/^0+/, "") + "|" + m[3]] = a;
-        });
-        return mapa;
-      }).catch(function () { return {}; });
-    return cnjAtos;
+      .then(function (j) { var m = {}; ((j && j.leis) || []).forEach(function (a) { m[a.textoId] = a; }); return m; })
+      .catch(function () { return {}; });
+    return cnjMeta;
   }
-  var CNJ_MAPA = null;
-  function singular(w) { return /ões$/.test(w) ? w.slice(0, -3) + "ão" : /s$/.test(w) ? w.slice(0, -1) : w; }
-  function linhaVadeHtml(l) {
-    var m = String(l).match(/^((?:[A-ZÀ-Ú][A-Za-zà-ú]+)(?: [A-ZÀ-Ú][A-Za-zà-ú]+)*) nºs? (.+) do CNJ\.$/);
-    if (!m || !CNJ_MAPA) return escapeHtml(l);
-    var tipo = m[1].split(" ").map(singular).join(" ");
-    var lista = escapeHtml(m[2]).replace(/(\d+)\/(\d{4})/g, function (t, n, a) {
-      var ato = CNJ_MAPA[tipo + "|" + n.replace(/^0+/, "") + "|" + a];
-      return ato ? '<a href="#" class="lei-vade-ato" data-tid="' + escapeHtml(ato.textoId) + '" style="color:var(--accent,#0d6efd);text-decoration:none;font-weight:600;">' + t + "</a>" : t;
+  function linhaVadeHtml(l, links) {
+    var pares = links && links[l];
+    if (!pares) return escapeHtml(l);
+    var out = "", pos = 0;
+    pares.forEach(function (p) {
+      var i = l.indexOf(p[0], pos);
+      if (i < 0) return;
+      out += escapeHtml(l.slice(pos, i));
+      out += p[1]
+        ? '<a href="' + escapeHtml(p[1]) + '" class="lei-vade-link"' + (p[1].charAt(0) === "/" ? ' target="_blank" rel="noopener"' : "") +
+          ' style="color:var(--accent,#0d6efd);text-decoration:none;font-weight:600;">' + escapeHtml(p[0]) + "</a>"
+        : escapeHtml(p[0]);
+      pos = i + p[0].length;
     });
-    return escapeHtml(m[1]) + " nº" + (/s$/.test(m[1].split(" ")[0]) ? "s" : "") + " " + lista + " do CNJ.";
+    return out + escapeHtml(l.slice(pos));
+  }
+  function irParaArtigo(area, k) {
+    var ps = area.querySelectorAll("p");
+    for (var i = 0; i < ps.length; i++) {
+      var m = (ps[i].textContent || "").trim().match(/^Art\.?\s*(\d[\d.]*)\s*[º°ª]?(?:\s*-\s*([A-Z]))?(?![A-Za-zÀ-ú])/);
+      if (m && /^Art/.test(ps[i].textContent.trim()) && m[1].replace(/\./g, "") + (m[2] ? "-" + m[2] : "") === k) {
+        ps[i].scrollIntoView({ block: "start", behavior: "smooth" });
+        ps[i].style.transition = "background .4s"; ps[i].style.background = "var(--accent-soft,#fef3c7)";
+        setTimeout(function (p) { p.style.background = ""; }, 2200, ps[i]);
+        return true;
+      }
+    }
+    return false;
+  }
+  function achaLei(tid) {
+    var achada = null, dados = window.LEIS_DATA || {};
+    Object.keys(dados).some(function (g) {
+      return (dados[g].leis || []).some(function (l) { if ((l.textoId || idTexto(l.link)) === tid) { achada = l; return true; } });
+    });
+    return achada;
   }
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest(".lei-vade-ato");
+    var a = e.target.closest && e.target.closest("a.lei-vade-link");
     if (!a) return;
+    var h = a.getAttribute("href") || "";
+    if (h.charAt(0) !== "#") return;
     e.preventDefault();
-    var tid = a.getAttribute("data-tid"), ato = null;
-    Object.keys(CNJ_MAPA || {}).some(function (k) { if (CNJ_MAPA[k].textoId === tid) { ato = CNJ_MAPA[k]; return true; } });
-    if (!ato) return;
-    abrirTexto(null, false, { tid: tid, chave: "cnj:" + tid, titulo: ato.numero + " — " + ato.nome, origem: "Ato do CNJ · " + (ato.situacao || "") + " · " + (ato.data || ""), link: ato.link });
+    var m;
+    if ((m = h.match(/^#art:(.+)$/))) {
+      var area = document.querySelector(".lei-leitor-texto");
+      if (area) irParaArtigo(area, m[1]);
+    } else if ((m = h.match(/^#ato:(.+)$/))) {
+      carregarAtosCnj().then(function (mapa) {
+        var ato = mapa[m[1]];
+        if (ato) abrirTexto(null, false, { tid: m[1], chave: "cnj:" + m[1], titulo: ato.numero + " — " + ato.nome, origem: "Ato do CNJ · " + (ato.situacao || "") + " · " + (ato.data || ""), link: ato.link });
+      });
+    } else if ((m = h.match(/^#lei:([^:]+)(?::(.+))?$/))) {
+      var lei = achaLei(m[1]);
+      abrirTexto(null, false, { tid: m[1], chave: "lei:" + m[1], titulo: lei ? (lei.numero + " — " + lei.nome) : m[1], origem: "", link: lei ? lei.link : "", art: m[2] || "" });
+    }
   });
   function aplicarVade(area, v) {
     var ps = Array.prototype.slice.call(area.querySelectorAll("p"));
@@ -429,20 +459,20 @@
       else if (divisaoDaLei(t)) { art = null; anc = null; }
       chaves[i] = art ? art + "|" + anc : null;
     });
-    function caixa(linhas) {
+    function caixa(linhas, links) {
       var d = document.createElement("div");
       d.className = "lei-vade";
       d.style.cssText = "margin:2px 0 8px 14px;font-size:calc(12px * var(--fs-scale,1));line-height:1.4;text-align:left;color:var(--ink-faint,#64748b);user-select:none;";
-      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + linhaVadeHtml(l) + "</div>"; }).join("");
+      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + linhaVadeHtml(l, links) + "</div>"; }).join("");
       return d;
     }
     for (var i = ps.length - 1; i >= 0; i--) {
       var k = chaves[i];
       if (!k || (i + 1 < ps.length && chaves[i + 1] === k)) continue;
       var par = k.split("|"), ls = v.art && v.art[par[0]] && v.art[par[0]][par[1]];
-      if (ls && ls.length) ps[i].insertAdjacentElement("afterend", caixa(ls));
+      if (ls && ls.length) ps[i].insertAdjacentElement("afterend", caixa(ls, v.links));
     }
-    var g = caixa((v.geral && v.geral.length ? ["Remissões gerais à lei:"].concat(v.geral) : []).concat([]));
+    var g = caixa((v.geral && v.geral.length ? ["Remissões gerais à lei:"].concat(v.geral) : []), v.links);
     var aviso = document.createElement("div");
     aviso.style.cssText = "margin:0 0 8px;padding:6px 10px;border-radius:8px;background:var(--accent-soft,#f1f5f9);font-size:calc(11.5px * var(--fs-scale,1));line-height:1.4;color:var(--ink-faint,#64748b);";
     aviso.textContent = "▶ Remissões do vade mecum (súmulas, enunciados, atos do CNJ, temas e julgados que citam o dispositivo): geradas automaticamente, confira sempre na fonte.";
@@ -665,7 +695,10 @@
       area.innerHTML = corpo +
         '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
-      Promise.all([carregarVade(tid), carregarAtosCnj()]).then(function (r) { CNJ_MAPA = r[1]; if (r[0] && leitorFechar === fechar) aplicarVade(area, r[0]); });
+      carregarVade(tid).then(function (v) {
+        if (v && leitorFechar === fechar) aplicarVade(area, v);
+        if (extra && extra.art && leitorFechar === fechar) irParaArtigo(area, extra.art);
+      });
       if (window.EstudaManaCadernos) {
         EstudaManaCadernos.ligar(caixa, {
           fonte: "leis", item: chave, titulo: titulo, origem: origem,
