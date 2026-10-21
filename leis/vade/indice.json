@@ -1,0 +1,46 @@
+{
+ "ato2004-2006-2006-lei-l11340": {
+  "dispositivos": 25,
+  "nome": "Lei Maria da Penha"
+ },
+ "ato2004-2006-2006-lei-l11343": {
+  "dispositivos": 66,
+  "nome": "Lei de Drogas"
+ },
+ "ato2015-2018-2015-lei-l13105": {
+  "dispositivos": 763,
+  "nome": "Código de Processo Civil"
+ },
+ "ato2019-2022-2021-lei-l14133": {
+  "dispositivos": 108,
+  "nome": "Nova Lei de Licitações"
+ },
+ "constituicao-constituicao": {
+  "dispositivos": 472,
+  "nome": "Constituição Federal"
+ },
+ "decreto-lei-del2848compilado": {
+  "dispositivos": 150,
+  "nome": "Código Penal"
+ },
+ "leis-2002-l10406compilada": {
+  "dispositivos": 449,
+  "nome": "Código Civil"
+ },
+ "leis-2003-l10-826": {
+  "dispositivos": 34,
+  "nome": "Estatuto do Desarmamento"
+ },
+ "leis-l6015compilada": {
+  "dispositivos": 133,
+  "nome": "Lei de Registros Públicos"
+ },
+ "leis-l8069": {
+  "dispositivos": 160,
+  "nome": "Estatuto da Criança e do Adolescente"
+ },
+ "leis-l8078compilado": {
+  "dispositivos": 74,
+  "nome": "Código de Defesa do Consumidor"
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "numero_regex": "10\\.406",
+ "aliases": [
+  "C[óo]digo\\s+Civil(?!\\s+de\\s+1916)",
+  "\\bCC(?:\\s*/\\s*(?:20)?02)?\\b"
+ ],
+ "deste": "deste Código",
+ "vinculos": {},
+ "excluir": []
+}

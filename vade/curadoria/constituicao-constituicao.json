@@ -1,0 +1,12 @@
+{
+ "numero_regex": "0\\.000",
+ "aliases": [
+  "Constitui[çc][ãa]o\\s+Federal",
+  "\\bCF(?:\\s*/\\s*(?:19)?88)?\\b",
+  "\\bCRFB(?:\\s*/\\s*(?:19)?88)?\\b",
+  "Constitui[çc][ãa]o\\s+da\\s+Rep[úu]blica"
+ ],
+ "deste": "desta Constituição",
+ "vinculos": {},
+ "excluir": []
+}

@@ -1,0 +1,10 @@
+{
+ "numero_regex": "14\\.133",
+ "aliases": [
+  "Nova\\s+Lei\\s+de\\s+Licita[çc][õo]es(?:\\s+e\\s+Contratos)?",
+  "Lei\\s+de\\s+Licita[çc][õo]es\\s+e\\s+Contratos\\s+Administrativos"
+ ],
+ "deste": "desta Lei",
+ "vinculos": {},
+ "excluir": []
+}

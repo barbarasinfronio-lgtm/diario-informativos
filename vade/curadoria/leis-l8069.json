@@ -1,0 +1,10 @@
+{
+ "numero_regex": "8\\.069",
+ "aliases": [
+  "Estatuto\\s+da\\s+Crian[çc]a\\s+e\\s+do\\s+Adolescente",
+  "\\bECA\\b"
+ ],
+ "deste": "deste Estatuto",
+ "vinculos": {},
+ "excluir": []
+}

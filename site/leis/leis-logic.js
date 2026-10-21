@@ -352,6 +352,44 @@
     }).join("");
   }
 
+  // Remissões do vade mecum (vade/gerar_vade.py → leis/vade/<id>.json): embaixo de cada artigo/§/parágrafo único, uma linha ▶ por
+  // grupo (súmulas, enunciados, resoluções e provimentos do CNJ, temas, ADIs, acórdãos, outros artigos). Só rótulos e números.
+  var vadeCache = {};
+  function carregarVade(id) {
+    if (!vadeCache[id]) vadeCache[id] = fetch(CDN_BASE + "leis/vade/" + encodeURIComponent(id) + ".json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    return vadeCache[id];
+  }
+  function aplicarVade(area, v) {
+    var ps = Array.prototype.slice.call(area.querySelectorAll("p"));
+    var chaves = ps.map(function () { return null; }), art = null, anc = null;
+    ps.forEach(function (p, i) {
+      var t = (p.textContent || "").trim(), m = t.match(/^Art\.?\s*(\d[\d.]*)\s*[º°ª]?(?:\s*-\s*|(?<=\d))?([A-Z])?(?![A-Za-zÀ-ú])/);
+      if (m && /^Art/.test(t)) { art = m[1].replace(/\./g, "") + (m[2] ? "-" + m[2] : ""); anc = "c"; }
+      else if ((m = t.match(/^§\s*(\d+)/))) { if (art) anc = "§" + m[1]; }
+      else if (/^Par[áa]grafo único/i.test(t)) { if (art) anc = "u"; }
+      else if (divisaoDaLei(t)) { art = null; anc = null; }
+      chaves[i] = art ? art + "|" + anc : null;
+    });
+    function caixa(linhas) {
+      var d = document.createElement("div");
+      d.className = "lei-vade";
+      d.style.cssText = "margin:2px 0 8px 14px;font-size:calc(12px * var(--fs-scale,1));line-height:1.4;text-align:left;color:var(--ink-faint,#64748b);user-select:none;";
+      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + escapeHtml(l) + "</div>"; }).join("");
+      return d;
+    }
+    for (var i = ps.length - 1; i >= 0; i--) {
+      var k = chaves[i];
+      if (!k || (i + 1 < ps.length && chaves[i + 1] === k)) continue;
+      var par = k.split("|"), ls = v.art && v.art[par[0]] && v.art[par[0]][par[1]];
+      if (ls && ls.length) ps[i].insertAdjacentElement("afterend", caixa(ls));
+    }
+    if (v.geral && v.geral.length) {
+      var g = caixa(["Remissões gerais à lei:"].concat(v.geral));
+      area.insertBefore(g, area.firstChild);
+    }
+  }
+
   function carregarTexto(id) {
     if (textosCache[id]) return Promise.resolve(textosCache[id]);
     return fetch(TEXTO_BASE + encodeURIComponent(id) + ".json")
@@ -566,6 +604,7 @@
       area.innerHTML = corpo +
         '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
+      carregarVade(tid).then(function (v) { if (v && leitorFechar === fechar) aplicarVade(area, v); });
       if (window.EstudaManaCadernos) {
         EstudaManaCadernos.ligar(caixa, {
           fonte: "leis", item: chave, titulo: titulo, origem: origem,

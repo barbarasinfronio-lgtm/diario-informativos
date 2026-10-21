@@ -1,0 +1,11 @@
+{
+ "numero_regex": "2\\.848",
+ "aliases": [
+  "C[óo]digo\\s+Penal(?!\\s+Militar)",
+  "\\bCP\\b",
+  "Decreto-Lei\\s*(?:n[º°o.]*)?\\s*2\\.848(?:\\s*/\\s*(?:19)?40)?"
+ ],
+ "deste": "deste Código",
+ "vinculos": {},
+ "excluir": []
+}
