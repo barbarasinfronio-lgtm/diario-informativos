@@ -150,6 +150,14 @@ Cada rodada tem tempo máximo de 20 minutos; o que sobrar fica para a próxima,
 começando pelas leis conferidas há mais tempo. O `Atualizar Informativos.command`
 não confere mais as leis (só o `Atualizar Leis.command`).
 
+**Leis novas de caráter geral**: o `.github/workflows/leis-novas.yml` roda todo dia e o `scripts/leis_novas.py`
+lê a API aberta do Senado (o Planalto bloqueia robôs na listagem), separa as leis ordinárias e complementares de
+caráter geral das de efeito concreto (denominações, "Capital Nacional", datas comemorativas, créditos, cargos…) e grava
+em `leis/novas.json`. Em Meus Estudos > Novidades legislativas aparece o bloco "Leis novas de caráter geral", com o
+botão **Pedir para incluir** (cria o pedido em `pedidos-leis`, atendido pelo `Atender Pedidos de Leis.command`).
+A API do Senado atrasa alguns dias; o `Atualizar Leis.command` roda com `--sondar` e confere no Planalto os números
+seguintes.
+
 **Leia-me (texto das leis)**: na mesma conferência, o robô guarda o texto de
 cada lei do Planalto em `leis/texto/<id>.json` (o `<id>` é o caminho do link do
 Planalto, sem `/ccivil_03/` e `.htm`, em minúsculas e com `-`), e a lista do que

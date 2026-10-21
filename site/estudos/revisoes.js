@@ -176,6 +176,69 @@
   function lerVistasAlt() {
     try { return JSON.parse(localStorage.getItem(VISTAS_ALT_KEY) || "{}") || {}; } catch (e) { return {}; }
   }
+  // ---- leis novas de caráter geral (leis/novas.json, do robô scripts/leis_novas.py) ----------------
+  // Lei ordinária ou complementar recém-publicada que não é denominação, data comemorativa, crédito etc.
+  // A pessoa pode "Pedir para incluir": o pedido vai para o Firestore (pedidos-leis) e o robô do Mac traz a lei.
+  var NOVAS_VISTAS_KEY = "revisoes-leis-novas-vistas", NOVAS_PEDIDAS_KEY = "revisoes-leis-novas-pedidas";
+  var novasLeis = null;
+  function carregarNovasLeis() {
+    if (novasLeis) return Promise.resolve();
+    return fetch(CDN + "leis/novas.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (j) { novasLeis = (j && j.leis) || []; })
+      .catch(function () { novasLeis = []; });
+  }
+  function lerChaves(k) {
+    try { return JSON.parse(localStorage.getItem(k) || "{}") || {}; } catch (e) { return {}; }
+  }
+  function gravarChave(k, chave, v) {
+    var m = lerChaves(k); m[chave] = v;
+    try { localStorage.setItem(k, JSON.stringify(m)); } catch (e) {}
+  }
+  function leisNovas() {
+    var vistas = lerChaves(NOVAS_VISTAS_KEY);
+    return (novasLeis || []).filter(function (l) { return !l.noAcervo && !vistas[l.chave]; });
+  }
+  function chavePedidoLei(t) {
+    return String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+  }
+  function linhaNova(l) {
+    var pedida = lerChaves(NOVAS_PEDIDAS_KEY)[l.chave];
+    return '<li class="rv-item rv-agora">' +
+      '<span class="rv-tipo">' + (l.tipo === "LC" ? "Lei complementar nova" : "Lei nova") + "</span>" +
+      '<div class="rv-texto"><b>' + esc(l.numero) + "</b>" +
+        '<span class="rv-meta">' + esc("publicada em " + fmt(l.data) + " · " + l.ementa) + "</span>" +
+        (ui.msgNova && ui.msgNova.chave === l.chave ? '<span class="rv-meta"><b>' + esc(ui.msgNova.texto) + "</b></span>" : "") + "</div>" +
+      '<div class="rv-acoes"><a class="rv-abrir" href="' + esc(l.link) + '" target="_blank" rel="noopener">Ver no Planalto ↗</a>' +
+        (pedida ? '<span class="rv-meta">✅ pedida; entra na próxima atualização</span>'
+                : '<button type="button" class="rv-feito" data-nova-pedir="' + esc(l.chave) + '">➕ Pedir para incluir</button>') +
+        '<button type="button" class="rv-mais" data-nova-visto="' + esc(l.chave) + '">✔ Já vi</button></div></li>';
+  }
+  function blocoNovas() {
+    var ls = leisNovas();
+    return '<details class="rv-bloco" open><summary><span>🆕 Leis novas de caráter geral</span><span class="rv-n">' + ls.length + "</span></summary>" +
+      (ls.length ? '<ul class="rv-lista">' + ls.slice(0, 30).map(linhaNova).join("") + "</ul>" +
+        '<p class="rv-nota">Leis ordinárias e complementares publicadas nos últimos meses que ainda não estão no Diário de Leis. Denominações, datas comemorativas, créditos orçamentários e atos de efeito concreto não entram. “Pedir para incluir” exige login; a lei entra no acervo na próxima atualização.</p>'
+        : '<p class="rv-vazio">Nenhuma lei nova de caráter geral fora do acervo.</p>') +
+      "</details>";
+  }
+  function pedirLeiNova(chave, el, o) {
+    var l = (novasLeis || []).filter(function (x) { return x.chave === chave; })[0];
+    if (!l) return;
+    var u = window.firebase && firebase.auth && firebase.auth().currentUser;
+    if (!u || u.isAnonymous || !firebase.firestore) {
+      ui.msgNova = { chave: chave, texto: "Para pedir uma lei, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página)." };
+      render(el, o); return;
+    }
+    firebase.firestore().doc("pedidos-leis/" + chavePedidoLei(l.pedido)).set({ consulta: l.pedido.slice(0, 120), em: new Date().toISOString() })
+      .then(function () { gravarChave(NOVAS_PEDIDAS_KEY, chave, 1); ui.msgNova = null; render(el, o); })
+      .catch(function (err) {
+        if (err && err.code === "permission-denied") { gravarChave(NOVAS_PEDIDAS_KEY, chave, 1); ui.msgNova = null; }   // já tinha sido pedida
+        else ui.msgNova = { chave: chave, texto: "Não consegui enviar o pedido agora. Tente de novo." };
+        render(el, o);
+      });
+  }
+
   // endereço da lei no Diário de Leis do blog (#lei=<matéria>:<número em slug>)
   function hrefLeiNoBlog(chave) {
     var leis = g("LEIS_DATA") || {}, achada = "";
@@ -294,6 +357,7 @@
         carregarJs("LEIS_DATA", "leis-data.js"),
         carregarJs("SUMULAS_DATA", "sumulas-data.js"),
         carregarAlteracoes(),
+        carregarNovasLeis(),
         carregarCobrancas(),
         carregarDestaques()
       ]).then(function () {
@@ -660,7 +724,7 @@
   }
 
   // ---- tela ---------------------------------------------------------------------
-  var ui = { filtro: "todos", limiteHist: 80, verTodos: {}, confirmar: null };
+  var ui = { filtro: "todos", limiteHist: 80, verTodos: {}, confirmar: null, msgNova: null };
 
   function linhaRev(it) {
     var quando = it.estado === "semdata" ? "leitura sem data"
@@ -748,8 +812,8 @@
 
   function telaNovidades(o) {
     var alts = leisAlteradas(o.maps, o);
-    return '<p class="rv-nota" style="margin:0 0 0.6rem">O robô confere as leis do acervo no Planalto e avisa aqui o que mudou. Elas aparecem mesmo que você nunca tenha marcado a lei como lida; “Já vi” tira o aviso da lista.</p>' +
-      blocoAlteradas(alts, o);
+    return '<p class="rv-nota" style="margin:0 0 0.6rem">O robô avisa aqui as leis novas de caráter geral e confere no Planalto o que mudou nas leis do acervo. Elas aparecem mesmo que você nunca tenha marcado a lei como lida; “Já vi” tira o aviso da lista.</p>' +
+      blocoNovas() + blocoAlteradas(alts, o);
   }
 
   function telaRevisoes(o) {
@@ -1018,8 +1082,10 @@
     });
     if (rolagem && Math.abs(window.pageYOffset - rolagem) > 40) window.scrollTo(0, rolagem);
     el.onclick = function (ev) {
-      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-inf-dec],[data-bloco-ler],[data-plano-ini]");
+      var b = ev.target.closest("[data-rev],[data-todos],[data-hfiltro],[data-hmais],[data-alt-visto],[data-nova-pedir],[data-nova-visto],[data-lote],[data-lote-sim],[data-lote-nao],[data-card],[data-inf-dec],[data-bloco-ler],[data-plano-ini]");
       if (!b) return;
+      if (b.dataset.novaPedir) { pedirLeiNova(b.dataset.novaPedir, el, o); return; }
+      if (b.dataset.novaVisto) { gravarChave(NOVAS_VISTAS_KEY, b.dataset.novaVisto, 1); render(el, o); return; }
       if (b.dataset.blocoLer) { abrirBloco(b.dataset.blocoLer, el, o); return; }
       if (b.dataset.planoIni) { var sel = el.querySelector("#rv-plano-lei"); if (sel && sel.value) iniciarPlano(sel.value, el, o); return; }
       if (b.dataset.card) { abrirCard(b.dataset.card, el, o); return; }
@@ -1070,8 +1136,10 @@
     var rev = (c.agora || c.breve) ? '<a class="rv-cartao" href="/p/meu-cronograma.html">🔁 <b>' + plural(pl.meta.length, "revisão", "revisões") + "</b> na meta de hoje (" + fmtMin(pl.minutosMeta) + ")" +
       (pl.fila.length ? " · " + pl.fila.length + " na fila" : "") +
       (c.breve ? " · " + c.breve + " nos próximos 30 dias" : "") + " <span>Ver no Meu Cronograma →</span></a>" : "";
+    var nn = leisNovas().length;
+    var novas = nn ? '<button type="button" class="rv-cartao" data-tab="novidades">🆕 <b>' + plural(nn, "lei nova de caráter geral", "leis novas de caráter geral") + "</b> fora do acervo <span>Ver e pedir →</span></button>" : "";
     var nov = na ? '<button type="button" class="rv-cartao" data-tab="novidades">📢 <b>' + plural(na, "lei alterada", "leis alteradas") + "</b> " + textoBaseAlt(o) + " <span>Ver novidades →</span></button>" : "";
-    return rev + nov;
+    return rev + novas + nov;
   }
 
   // Para o Meu Cronograma (as revisões vivem lá): o que já venceu hoje, dos Diários lidos.

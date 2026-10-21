@@ -10,7 +10,9 @@
 # dispara sozinho a publicação no GitHub Pages, então o site mostra a
 # novidade em minutos (aba Novidades legislativas, em Meus Estudos: "Leis alteradas").
 #
-# Só mexe em leis/alteracoes.json e leis/texto — não toca nos Informativos nem nas Teses
+# Também atualiza leis/novas.json (leis novas de caráter geral, com o botão "Pedir para incluir").
+#
+# Só mexe em leis/alteracoes.json, leis/novas.json e leis/texto — não toca nos Informativos nem nas Teses
 # (para isso, use o "Atualizar Informativos.command").
 #
 # Cada rodada tem tempo máximo (20 minutos); a primeira vez, com os textos
@@ -24,7 +26,7 @@ fim() { echo; read -n 1 -s -r -p "Pressione qualquer tecla para fechar."; echo; 
 
 echo "=== Atualizar Leis — $(date '+%d/%m/%Y %H:%M') ==="
 echo
-ARQUIVOS=(leis/alteracoes.json leis/texto leis/texto-debug)
+ARQUIVOS=(leis/alteracoes.json leis/novas.json leis/texto leis/texto-debug)
 # Mudanças que o robô deixou neste Mac sem enviar: guarda num commit, para irem junto.
 git checkout -q main 2>/dev/null
 if [ -n "$(git status --porcelain -- "${ARQUIVOS[@]}")" ]; then
@@ -39,6 +41,8 @@ git fetch -q origin main && git pull -q --rebase --autostash origin main \
 
 python3 scripts/atualizar_informativos.py LEIS
 resultado=$?
+# leis novas de caráter geral (aba Novidades legislativas); --sondar confere no Planalto o que a lista do Senado ainda não trouxe
+python3 scripts/leis_novas.py --sondar || echo "(não consegui conferir as leis novas agora; fica para a próxima)"
 
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
 if ! git diff --cached --quiet -- "${ARQUIVOS[@]}"; then
