@@ -95,7 +95,7 @@
       if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; }
     }
     if (ini > 0) ps = ps.slice(ini);
-    var NOVO = /^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
+    var NOVO = /^(Art\.|ARTIGO\s+\d|Artigo\s+\d|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
     var out = [];
     ps.forEach(function (t) {
       if (!out.length || NOVO.test(t)) out.push(t);
@@ -122,8 +122,30 @@
   var RX_LETRAS = /^(?:[A-ZÀ-Ý] ){2,}[A-ZÀ-Ý]$/;                 // "P A R T E"
   var RX_PEDACO = /\s+(?=(?:T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\s+(?:[IVXLCDM]+|[ÚU]NIC[OA])\b)/i;
   var RX_TITULO_LEI = /^((?:LEI|DECRETO)(?:-LEI|\s+COMPLEMENTAR)?\s+N[ºo°]\s*[\d.]+[^,]*,\s+DE\s+\d+\s+DE\s+[A-ZÇ]+\s+DE\s+\d{4})\b/i;
+  // Tratados internacionais (decretos que promulgam convenções, pactos e protocolos): "ARTIGO 1", "ARTIGO 1 Título",
+  // "ARTIGO 2 Título Texto do artigo…" ou "ARTIGO 3º Texto do artigo…". O número fica centralizado, o título embaixo,
+  // e o texto em parágrafo próprio. O título, quando vem colado no texto, termina onde começa uma frase (Se, Toda, Os, O…).
+  var RX_ARTIGO_TRATADO = /^(ARTIGO|Artigo)\s+(\d{1,3}(?:[º°ª]|o(?=\s|$))?(?:-[A-Z]+)?)(?:\s+|$)(?![-–—.°º(])(.*)$/;      // com hífen, ponto ou parêntese logo depois ("Artigo 1º - Fica instituído…", leis estaduais) é artigo comum
+  var INICIOS_CORPO = { Se: 1, Toda: 1, Todo: 1, Todos: 1, Todas: 1, Nenhum: 1, Nenhuma: 1, "Ninguém": 1, Os: 1, As: 1, O: 1, A: 1, Um: 1, Uma: 1,
+    Quando: 1, Cada: 1, Qualquer: 1, Para: 1, Nos: 1, Na: 1, No: 1, Nas: 1, Em: 1, Salvo: 1, Ressalvado: 1, "Não": 1, Caso: 1, Durante: 1,
+    Antes: 1, "Após": 1, Quem: 1, Por: 1, Com: 1, Sem: 1, Este: 1, Esta: 1, Esse: 1, Essa: 1, Aos: 1, Ao: 1, Entre: 1, Sempre: 1,
+    Havendo: 1, Desde: 1, Somente: 1, Apenas: 1, "Também": 1, Sob: 1 };
+  function separarTituloCorpo(resto) {
+    resto = String(resto || "").trim();
+    if (!resto) return { titulo: "", corpo: "" };
+    var tok = resto.split(/\s+/);
+    for (var k = 0; k < tok.length; k++) {
+      var w = tok[k].replace(/^[("“]+/, "");
+      if (!INICIOS_CORPO[w]) continue;
+      if (k === 0) return { titulo: "", corpo: resto };
+      var ant = tok[k - 1];
+      if (/^[A-ZÀ-Ý]/.test(ant) && !/[.:;,]$/.test(ant)) return { titulo: tok.slice(0, k).join(" "), corpo: tok.slice(k).join(" ") };
+    }
+    if (resto.length <= 110 && !/[.:;]$/.test(resto)) return { titulo: resto, corpo: "" };
+    return { titulo: "", corpo: resto };
+  }
   function ehNome(t) {   // linha curta que dá nome à divisão anterior ("DAS PESSOAS")
-    return t.length <= 120 && !/\.$/.test(t) && !numArt(t) && !/^(§|Par[áa]grafo|[IVXLCDM]+\s*[-–—]|[a-z]\))/.test(t) && !divisaoDaLei(t) && !RX_LETRAS.test(t);
+    return t.length <= 120 && !/\.$/.test(t) && !numArt(t) && !RX_ARTIGO_TRATADO.test(t) && !/^(§|Par[áa]grafo|[IVXLCDM]+\s*[-–—]|[a-z]\))/.test(t) && !divisaoDaLei(t) && !RX_LETRAS.test(t);
   }
   function htmlTudo(ps) {
     // "LEI Nº" + "10.406, DE ..." viram um só parágrafo
@@ -160,6 +182,14 @@
         if (ultimo && !ultimo.nome && i < ps.length && ehNome(ps[i])) { out.push('<p style="' + ST_NOME + '">' + escapeHtml(ps[i]) + "</p>"); i++; }
         continue;
       }
+      var at = RX_ARTIGO_TRATADO.exec(t);
+      if (at) {
+        var sp = separarTituloCorpo(at[3]);
+        out.push('<p style="' + ST_DIV + '">' + escapeHtml(at[1].toUpperCase() + " " + at[2]) + "</p>");
+        if (sp.titulo) out.push('<p style="' + ST_NOME + '">' + escapeHtml(sp.titulo) + "</p>");
+        if (sp.corpo) out.push('<p style="' + ST_TEXTO + '">' + escapeHtml(sp.corpo) + "</p>");
+        i++; continue;
+      }
       var art = t.match(/^Art\.?\s*\d+[º°ª]?(?:-[A-Z]+)?\.?/);
       out.push('<p style="' + ST_TEXTO + '">' + (art ? "<strong>" + escapeHtml(art[0]) + "</strong>" + escapeHtml(t.slice(art[0].length)) : escapeHtml(t)) + "</p>");
       i++;
@@ -169,7 +199,7 @@
 
   // Número do artigo que abre o parágrafo ("1º", "5-A") ou ""
   function numArt(t) {
-    var m = String(t).match(/^Art\.?\s*(\d[\d.]*[º°ª]?(?:-[A-Z]+)?)/);
+    var m = String(t).match(/^(?:Art\.?|ARTIGO|Artigo)\s*(\d[\d.]*[º°ª]?(?:-[A-Z]+)?)/);
     return m ? m[1].replace(/\.$/, "") : "";
   }
 
