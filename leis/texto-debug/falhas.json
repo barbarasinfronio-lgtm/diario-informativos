@@ -7,21 +7,14 @@
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=135670": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (PR) nº 18.419/2015",
   "nome": "Estatuto da Pessoa com Deficiência do Estado do Paraná — reserva de percentual de vagas para pessoas com deficiência em concursos públicos estaduais",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Resolução SEED 535 \")"
  },
- "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=143506": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Estadual (PR) nº 18.573/2015",
-  "nome": "ITCMD — Paraná",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=170934": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (PR) nº 18.877/2016",
   "nome": "Processo administrativo tributário do Paraná",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Resolução SEED 1004\")"
@@ -158,14 +151,14 @@
  },
  "https://sapl.al.to.leg.br/norma/4771": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 3.530/2019",
   "nome": "Código Estadual de Proteção à Fauna do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/4855": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 3.614/2019",
   "nome": "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -214,35 +207,35 @@
  },
  "https://www2.aneel.gov.br/cedoc/ren20211000.pdf": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Resolução Normativa ANEEL nº 1.000/2021",
   "nome": "Regras de prestação do serviço público de energia elétrica",
   "motivo": "erro ao abrir: HTTP 403 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1287-2001_43522.PDF": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 1.287/2001",
   "nome": "Código Tributário do Estado do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_771-1995_43006.PDF": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 771/1995",
   "nome": "Política Florestal do Estado do Tocantins (Código Florestal Estadual)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1560-2005_43795.PDF": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 1.560/2005",
   "nome": "Sistema Estadual de Unidades de Conservação do Tocantins (SEUC)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1917-2008_44152.PDF": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (TO) nº 1.917/2008",
   "nome": "Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -315,13 +308,6 @@
   "em": "2026-10-06",
   "numero": "Lei (RS) nº 9.831/1993",
   "nome": "Conselho Estadual dos Direitos da Criança e do Adolescente do Rio Grande do Sul",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
- "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=5549&hId_FazSumula=&RF=1": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei nº 6.537/1973",
-  "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul",
   "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=41893&hId_FazSumula=&RF=1": {
@@ -564,7 +550,7 @@
  },
  "https://www.al.rn.leg.br/storage/legislacao//6.968.pdf": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (RN) nº 6.968/1996",
   "nome": "Dispõe sobre o ICMS no Rio Grande do Norte",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
@@ -583,26 +569,12 @@
   "nome": "Código Estadual de Proteção aos Animais do Pará (citada no edital do concurso)",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
  },
- "https://bancodeleis.alepa.pa.gov.br/arquivos/lei7031_2007_76444.pdf": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Estadual (PA) nº 7.031/2007",
-  "nome": "Norma sobre mineração do Estado do Pará",
-  "motivo": "abre outra norma (\"Lei sujeitam-se às disposições da Lei Federal nº 8.666, de 21 de junho de 1993.\")"
- },
  "https://www.semas.pa.gov.br/legislacao/files/pdf/240778.pdf": {
   "v": 3,
   "em": "2026-10-06",
   "numero": "Lei Estadual (PA) nº 5.849/1994",
   "nome": "Lei Agrícola, Agrária e Fundiária do Estado do Pará",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
- },
- "https://bancodeleis.alepa.pa.gov.br/arquivos/lei7731_2013_86621.pdf": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Estadual (PA) nº 7.731/2013",
-  "nome": "Norma ambiental do Estado do Pará (citada no edital do concurso)",
-  "motivo": "abre outra norma (\"Lei:\")"
  },
  "https://www.semas.pa.gov.br/legislacao/files/lei_9048.pdf": {
   "v": 3,
@@ -669,7 +641,7 @@
  },
  "https://legislacao.sef.sc.gov.br/html/leis/1996/lei_96_10297.htm": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-21",
   "numero": "Lei Estadual (SC) nº 10.297/1996",
   "nome": "ICMS — Santa Catarina",
   "motivo": "abre outra norma (\"O GOVERNADOR DO ESTADO DE SANTA CATARINA, Faço saber a todos os habitantes deste\")"
@@ -750,5 +722,12 @@
   "numero": "Lei Estadual (SP) nº 10.177/1998",
   "nome": "Processo Administrativo do Estado de São Paulo",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
+ },
+ "https://progestao.ana.gov.br/acoes-estados/pr/lei-12-726-99_pr.pdf": {
+  "v": 3,
+  "em": "2026-10-21",
+  "numero": "Lei Estadual (PR) nº 12.726/1999",
+  "nome": "Institui a Política Estadual de Recursos Hídricos e cria o Sistema Estadual de Gerenciamento de Recursos Hídricos do Paraná",
+  "motivo": "erro ao abrir: https://progestao.ana.gov.br/acoes-estados/pr/lei-12-726-99_pr.pdf → sem resposta ([Errno 51] Network is unreachable)"
  }
 }
