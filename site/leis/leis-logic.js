@@ -360,6 +360,42 @@
       .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
     return vadeCache[id];
   }
+  // "Provimentos nºs 149/2023 (art. 400) e 139/2023 do CNJ." → cada ato vira link que abre o texto dele (leis/cnj-atos.json)
+  var cnjAtos = null;
+  function carregarAtosCnj() {
+    if (!cnjAtos) cnjAtos = fetch(CDN_BASE + "leis/cnj-atos.json", { cache: "force-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        var mapa = {};
+        ((j && j.leis) || []).forEach(function (a) {
+          var m = String(a.numero).match(/^(.+?) CNJ nº ([\d.]+)\/(\d{4})$/);
+          if (m) mapa[m[1] + "|" + m[2].replace(/\./g, "").replace(/^0+/, "") + "|" + m[3]] = a;
+        });
+        return mapa;
+      }).catch(function () { return {}; });
+    return cnjAtos;
+  }
+  var CNJ_MAPA = null;
+  function singular(w) { return /ões$/.test(w) ? w.slice(0, -3) + "ão" : /s$/.test(w) ? w.slice(0, -1) : w; }
+  function linhaVadeHtml(l) {
+    var m = String(l).match(/^((?:[A-ZÀ-Ú][A-Za-zà-ú]+)(?: [A-ZÀ-Ú][A-Za-zà-ú]+)*) nºs? (.+) do CNJ\.$/);
+    if (!m || !CNJ_MAPA) return escapeHtml(l);
+    var tipo = m[1].split(" ").map(singular).join(" ");
+    var lista = escapeHtml(m[2]).replace(/(\d+)\/(\d{4})/g, function (t, n, a) {
+      var ato = CNJ_MAPA[tipo + "|" + n.replace(/^0+/, "") + "|" + a];
+      return ato ? '<a href="#" class="lei-vade-ato" data-tid="' + escapeHtml(ato.textoId) + '" style="color:var(--accent,#0d6efd);text-decoration:none;font-weight:600;">' + t + "</a>" : t;
+    });
+    return escapeHtml(m[1]) + " nº" + (/s$/.test(m[1].split(" ")[0]) ? "s" : "") + " " + lista + " do CNJ.";
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest(".lei-vade-ato");
+    if (!a) return;
+    e.preventDefault();
+    var tid = a.getAttribute("data-tid"), ato = null;
+    Object.keys(CNJ_MAPA || {}).some(function (k) { if (CNJ_MAPA[k].textoId === tid) { ato = CNJ_MAPA[k]; return true; } });
+    if (!ato) return;
+    abrirTexto(null, false, { tid: tid, chave: "cnj:" + tid, titulo: ato.numero + " — " + ato.nome, origem: "Ato do CNJ · " + (ato.situacao || "") + " · " + (ato.data || ""), link: ato.link });
+  });
   function aplicarVade(area, v) {
     var ps = Array.prototype.slice.call(area.querySelectorAll("p"));
     var chaves = ps.map(function () { return null; }), art = null, anc = null;
@@ -375,7 +411,7 @@
       var d = document.createElement("div");
       d.className = "lei-vade";
       d.style.cssText = "margin:2px 0 8px 14px;font-size:calc(12px * var(--fs-scale,1));line-height:1.4;text-align:left;color:var(--ink-faint,#64748b);user-select:none;";
-      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + escapeHtml(l) + "</div>"; }).join("");
+      d.innerHTML = linhas.map(function (l) { return '<div style="margin:1px 0;"><span style="color:var(--accent,#0d6efd);font-size:.8em;margin-right:5px;">▶</span>' + linhaVadeHtml(l) + "</div>"; }).join("");
       return d;
     }
     for (var i = ps.length - 1; i >= 0; i--) {
@@ -490,7 +526,7 @@
       if (/^(PRE[ÂA]MBULO|Art\.?\s*\d|LEI (COMPLEMENTAR )?N[ºo°]|DECRETO(-LEI)? N[ºo°])/i.test(ps[q]) && !/^Vide/i.test(ps[q])) { ini = q; break; }
     }
     if (ini > 0) ps = ps.slice(ini);
-    var NOVO = /^(Art\.|ARTIGO\s+\d|Artigo\s+\d|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
+    var NOVO = /^(Art\.|§|Parágrafo único|[IVXLCDM]+\s*[-–—]|[a-z]\)|\d+\s*[.)-]\s|(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O|DISPOSI[ÇC])\b|[A-ZÀ-Ý0-9 ,.\-ªº]{6,}$)/;
     var out = [];
     ps.forEach(function (t) {
       if (!out.length || NOVO.test(t)) out.push(t);
@@ -528,13 +564,13 @@
   (function () { var sc = document.createElement("script"); sc.src = CDN_BASE + "lei-texto.js"; sc.async = true; document.head.appendChild(sc); })();
   // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
   // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
-  function abrirTexto(botao, comJulgados) {
-    var cardEl = botao.closest(".lei-card");
-    if (!cardEl) return;
+  function abrirTexto(botao, comJulgados, extra) {
+    var cardEl = botao && botao.closest(".lei-card");
+    if (!cardEl && !extra) return;
     if (leitorFechar) leitorFechar();
-    var chave = cardEl.getAttribute("data-chave"), tid = botao.getAttribute("data-texto-id");
-    var titulo = cardEl.getAttribute("data-cad-titulo") || "", origem = cardEl.getAttribute("data-cad-origem") || "";
-    var linkInteira = cardEl.querySelector('a[href^="http"]');
+    var chave = cardEl ? cardEl.getAttribute("data-chave") : extra.chave, tid = cardEl ? botao.getAttribute("data-texto-id") : extra.tid;
+    var titulo = cardEl ? (cardEl.getAttribute("data-cad-titulo") || "") : extra.titulo, origem = cardEl ? (cardEl.getAttribute("data-cad-origem") || "") : extra.origem;
+    var linkInteira = cardEl ? cardEl.querySelector('a[href^="http"]') : { getAttribute: function () { return extra.link; } };
     var lida = function () { var c = document.querySelector('.lei-check[data-chave="' + chave.replace(/"/g, '\\"') + '"]'); return !!(c && c.checked); };
     var fundo = document.createElement("div");
     fundo.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:0;";
@@ -553,6 +589,7 @@
       '<div class="lei-leitor-texto" style="max-width:var(--em-card-texto-max,62rem);margin:0 auto;font-size:calc(15px * var(--fs-scale,1));line-height:1.65;text-align:left;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
     fundo.appendChild(caixa);
     var btnLida = caixa.querySelector(".lei-leitor-lida");
+    if (!cardEl) btnLida.style.display = "none";      // ato aberto por link (sem card): não há "Já li" para marcar
     var pintarLida = function () { btnLida.textContent = lida() ? "✔ Lida — desmarcar" : "Marcar como lida"; };
     pintarLida();
     var fechar = function () {
@@ -606,11 +643,11 @@
       area.innerHTML = corpo +
         '<p style="margin:14px 0 0;font-size:calc(11px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Texto copiado do Planalto em ' + escapeHtml(j.em || "") +
         ". Pode estar desatualizado: confira na fonte oficial (“Abrir lei na íntegra”).</p>";
-      carregarVade(tid).then(function (v) { if (v && leitorFechar === fechar) aplicarVade(area, v); });
+      Promise.all([carregarVade(tid), carregarAtosCnj()]).then(function (r) { CNJ_MAPA = r[1]; if (r[0] && leitorFechar === fechar) aplicarVade(area, r[0]); });
       if (window.EstudaManaCadernos) {
         EstudaManaCadernos.ligar(caixa, {
           fonte: "leis", item: chave, titulo: titulo, origem: origem,
-          abrir: cardEl.getAttribute("data-cad-abrir") || "",
+          abrir: cardEl ? (cardEl.getAttribute("data-cad-abrir") || "") : "",
           areas: [caixa.querySelector(".lei-leitor-titulo"), area]
         });
       }
