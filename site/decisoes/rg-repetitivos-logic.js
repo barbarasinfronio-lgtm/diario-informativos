@@ -851,7 +851,7 @@
   function carregarTeorRG(d){
     fetch(BASE_CDN + 'stf/rg/' + encodeURIComponent(String(d.tema)) + '.json', { cache: 'no-cache' })
       .then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; })
-      .then(function(e){ inserirTeor(d, e); });
+      .then(function(e){ if (e && e.texto) inserirTeor(d, e); else if (podePedirTeor(d)) prepararTeorPedido(d); });   // sem o acórdão no site: botão de pedir
   }
 
   // ---- "Buscar inteiro teor": julgados do STF sem o acórdão ----------------
@@ -883,7 +883,7 @@
   var RX_PROCESSO_STF = /\b(?:ADI|ADC|ADPF|ADO|Rcl|RE|ARE|AI|HC|RHC|MS|RMS|AP|Inq|ACO|Pet|MI|AO|SL|STA|AImp|ADIn)\b\.?\s*\d/;
   function podePedirTeor(d){
     if (d.orgao === 'STJ') return !!(d.id && d.tipo !== 'acordao' && processoSTJ(d.processo));     // acórdão (ementa e decisão) dos dados abertos do STJ
-    return d.orgao === 'STF' && d.tipo !== 'rg' && d.id && RX_PROCESSO_STF.test(d.processo || '');
+    return d.orgao === 'STF' && d.id && RX_PROCESSO_STF.test(d.processo || '');
   }
   function usuarioLogado(){
     try { var u = window.firebase && firebase.auth && firebase.apps && firebase.apps.length && firebase.auth().currentUser; return !!(u && !u.isAnonymous); }
