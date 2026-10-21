@@ -193,7 +193,29 @@
     "Lei nº 8.906/1994": "EOAB",
     "Lei nº 8.625/1993": "LONMP",
     "Lei nº 8.742/1993": "LOAS",
-    "Lei nº 8.080/1990": "SUS"
+    "Lei nº 8.080/1990": "SUS",
+    "Decreto nº 678/1992": "CADH Pacto de São José da Costa Rica Pacto de San José Convenção Americana de Direitos Humanos",
+    "Decreto nº 592/1992": "PIDCP Pacto Internacional de Direitos Civis e Políticos",
+    "Decreto nº 591/1992": "PIDESC Pacto Internacional de Direitos Econômicos Sociais e Culturais",
+    "Decreto nº 6.949/2009": "CDPD Convenção sobre os Direitos das Pessoas com Deficiência Convenção de Nova York",
+    "Decreto nº 7.030/2009": "Convenção de Viena sobre o Direito dos Tratados",
+    "Decreto nº 4.388/2002": "Estatuto de Roma TPI Tribunal Penal Internacional",
+    "Lei nº 9.455/1997": "lei de tortura",
+    "Lei nº 13.869/2019": "LAA abuso de autoridade",
+    "Lei nº 13.709/2018": "LGPD",
+    "Lei nº 12.846/2013": "LAC lei anticorrupção lei da empresa limpa",
+    "Lei nº 8.137/1990": "crimes contra a ordem tributária",
+    "Lei nº 9.613/1998": "LLD lavagem de dinheiro",
+    "Lei nº 12.850/2013": "LOC organizações criminosas",
+    "Lei nº 12.529/2011": "SBDC CADE lei da concorrência",
+    "Lei nº 6.830/1980": "LEF execução fiscal",
+    "Lei nº 8.245/1991": "LI lei do inquilinato locações",
+    "Lei nº 10.741/2003": "EI estatuto do idoso",
+    "Lei nº 9.394/1996": "LDB",
+    "Lei nº 6.938/1981": "PNMA política nacional do meio ambiente",
+    "Lei nº 12.651/2012": "código florestal",
+    "Lei nº 10.257/2001": "estatuto da cidade",
+    "Lei nº 13.465/2017": "REURB"
   };
 
   // ---- editais e carreiras -------------------------------------------------

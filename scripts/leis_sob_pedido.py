@@ -63,8 +63,22 @@ def anos_provaveis(n):
     return [e, e - 1, e + 1, e - 2, e + 2]
 
 
+# siglas e apelidos que a pessoa digita no lugar do número (o site também as acha, ver SIGLAS_LEIS em leis-logic.js)
+SIGLAS = {"cadh": "Decreto 678/1992", "pacto de sao jose": "Decreto 678/1992", "pacto de san jose": "Decreto 678/1992",
+          "pidcp": "Decreto 592/1992", "pidesc": "Decreto 591/1992", "cdpd": "Decreto 6.949/2009", "lgpd": "Lei 13.709/2018",
+          "lac": "Lei 12.846/2013", "lei anticorrupcao": "Lei 12.846/2013", "lef": "Lei 6.830/1980", "ldb": "Lei 9.394/1996",
+          "lld": "Lei 9.613/1998", "laa": "Lei 13.869/2019", "eca": "Lei 8.069/1990", "cpc": "Lei 13.105/2015",
+          "cdc": "Lei 8.078/1990", "lia": "Lei 8.429/1992", "lai": "Lei 12.527/2011", "mci": "Lei 12.965/2014"}
+
+
+def sem_acento(t):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", t or "") if unicodedata.category(c) != "Mn").lower().strip(" .")
+
+
 def entender(consulta):
     """(tipo, número, [anos]) ou None."""
+    consulta = SIGLAS.get(sem_acento(consulta), consulta)
     m = RE_PEDIDO.search(consulta or "")
     if not m:
         return None
