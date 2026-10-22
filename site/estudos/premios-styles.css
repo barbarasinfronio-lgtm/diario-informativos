@@ -478,3 +478,10 @@ a.rv-cartao { text-decoration: none; }
 .rv-barra i { display: block; height: 100%; background: var(--gold, #b7791f); }
 .rv-select { max-width: 100%; padding: 0.4rem 0.5rem; border-radius: 8px; border: 1px solid var(--surface-line, #ccc); background: var(--surface, #fff); color: inherit; font: inherit; }
 .rv-art { margin-top: 0.8rem; }
+
+/* leis novas (Novidades legislativas): rótulo-link estreito, texto largo, ações só com ícone */
+.rv-nova { flex-wrap: nowrap; align-items: flex-start; gap: 0.5rem; }
+.rv-nova .rv-tipo { flex-shrink: 0; min-width: 0; white-space: nowrap; text-decoration: none; cursor: pointer; }
+.rv-nova .rv-tipo-link:hover { text-decoration: underline; }
+.rv-nova .rv-acoes { width: auto; flex-shrink: 0; gap: 0.3rem; }
+.rv-icone { min-width: 2rem; height: 2rem; padding: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; line-height: 1; border-radius: 0.5rem; }
