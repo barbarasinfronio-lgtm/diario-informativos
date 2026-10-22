@@ -927,6 +927,18 @@
     if (d.orgao === 'STJ') return !!(d.id && d.tipo !== 'acordao' && processoSTJ(d.processo));     // acórdão (ementa e decisão) dos dados abertos do STJ
     return d.orgao === 'STF' && d.id && RX_PROCESSO_STF.test(d.processo || '');
   }
+  // Julgado de processo em segredo de justiça não tem número nem acórdão público: no lugar do botão de buscar, o card avisa.
+  function emSegredo(d){
+    return (d.orgao === 'STJ' || d.orgao === 'STF') && d.tipo !== 'acordao' && /segredo\s+de\s+justi[çc]a/i.test(d.processo || '');
+  }
+  function mostrarSegredo(d){
+    if (modalAtual !== d || modal.querySelector('.teor-rg, .teor-pedido')) return;
+    var campos = modal.querySelector('.fields');
+    if (!campos) return;
+    campos.insertAdjacentHTML('afterend',
+      '<div class="teor-pedido"><div class="section-label">' + (d.orgao === 'STJ' ? 'Acórdão (ementa e decisão)' : 'Inteiro teor do acórdão') + '</div>' +
+      '<button type="button" class="chip teor-segredo" disabled>🔒 Processo em segredo de justiça</button></div>');
+  }
   function usuarioLogado(){
     try { var u = window.firebase && firebase.auth && firebase.apps && firebase.apps.length && firebase.auth().currentUser; return !!(u && !u.isAnonymous); }
     catch (e) { return false; }
@@ -1098,6 +1110,7 @@
     if (d.orgao === 'STJ' && d.tipo === 'repetitivo' && d.tema) carregarDetalheRep(d);
     if (d.orgao === 'STF' && d.tipo === 'rg' && d.tema) carregarTeorRG(d);
     else if (podePedirTeor(d)) prepararTeorPedido(d);
+    else if (emSegredo(d)) mostrarSegredo(d);
   }
   function closeModal(){
     if (window.EstudaManaCadernos) EstudaManaCadernos.desligar();

@@ -237,3 +237,6 @@
   .card.card-informativo .destaque,
   .modal.modal-informativo .tese-text,
   .modal.modal-informativo .destaque-text{text-align:justify; hyphens:auto; -webkit-hyphens:auto;}
+
+  /* julgado de processo em segredo de justiça: no lugar do botão de buscar o acórdão */
+  .teor-segredo, .teor-segredo:disabled { cursor: default; opacity: 0.85; }
