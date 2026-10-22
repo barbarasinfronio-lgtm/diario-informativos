@@ -2,5 +2,9 @@
  "lista-rcl-370": {
   "processo": "RCL 370",
   "motivo": "não achei nem o acórdão nem a decisão de julgamento no portal"
+ },
+ "2502": {
+  "processo": "STJ RESP 1963433",
+  "motivo": "não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)"
  }
 }
