@@ -326,24 +326,10 @@
  },
  "https://sapl.al.ma.leg.br/norma/2358": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (MA) nº 6.107/1994",
   "nome": "Estatuto dos Servidores Públicos Civis do Estado do Maranhão",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
- "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=58020": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Complementar (DF) nº 769/2008",
-  "nome": "Regime Próprio de Previdência Social do Distrito Federal",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
- "https://www.sinj.df.gov.br/sinj/DetalhesDeNorma.aspx?id_norma=70196": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Complementar (DF) nº 840/2011",
-  "nome": "Regime Jurídico dos Servidores Públicos Civis do Distrito Federal",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
+  "motivo": "erro ao abrir: não consegui ler o certificado de sapl.al.ma.leg.br: [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)"
  },
  "https://www.al.rs.gov.br/legis/M010/M0100099.ASP?Hid_Tipo=TEXTO&Hid_TodasNormas=67598&hId_FazSumula=&RF=1": {
   "v": 3,
@@ -590,13 +576,6 @@
   "nome": "Dispõe sobre o processo administrativo ambiental para apuração de infrações e conciliação ambiental no Estado do Pará",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
  },
- "https://aleselegis.al.se.leg.br/Arquivo/Documents/legislacao/html/c331996.html": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Complementar (SE) nº 33/1996",
-  "nome": "Código de Organização e de Procedimento da Administração Pública do Estado de Sergipe",
-  "motivo": "abre outra norma (\"O GOVERNADOR DO ESTADO DE SERGIPE, Faço saber que a Assembléia Legislativa do Es\")"
- },
  "https://www.semas.pa.gov.br/legislacao/files/pdf/101839.pdf": {
   "v": 3,
   "em": "2026-10-06",
@@ -648,7 +627,7 @@
  },
  "https://www.legislabahia.ba.gov.br/documentos/lei-no-11357-de-06-de-janeiro-de-2009": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (BA) nº 11.357/2009",
   "nome": "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia",
   "motivo": "abre outra norma (\"Voltar ao Sumário ORIENTAÇÕES PARA O ANO ELEITORAL - 2026 1 Expediente Orientaçõ\")"
@@ -764,5 +743,19 @@
   "numero": "Lei nº 6.537/1973",
   "nome": "Procedimento Tributário Administrativo do Rio Grande do Sul",
   "motivo": "erro ao abrir: sem resposta (EOF occurred in violation of protocol (_ssl.c:1129))"
+ },
+ "https://lex.pge.pa.gov.br/?ato=7505#/texto-integral/7505": {
+  "v": 3,
+  "em": "2026-10-22",
+  "numero": "Lei Estadual (PA) nº 6.710/2005",
+  "nome": "Compensação financeira estadual sobre exploração minerária (CFEM)",
+  "motivo": "erro ao abrir: https://lex.pge.pa.gov.br/api/atos/7505 → sem resposta ([Errno 60] Operation timed out)"
+ },
+ "https://lex.pge.pa.gov.br/?ato=979#/texto-integral/979": {
+  "v": 3,
+  "em": "2026-10-22",
+  "numero": "Lei Estadual (PA) nº 5.810/1994",
+  "nome": "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará",
+  "motivo": "erro ao abrir: https://lex.pge.pa.gov.br/api/atos/979 → sem resposta ([Errno 60] Operation timed out)"
  }
 }
