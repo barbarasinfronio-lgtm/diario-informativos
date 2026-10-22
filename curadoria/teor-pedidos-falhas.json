@@ -6,5 +6,21 @@
  "2502": {
   "processo": "STJ RESP 1963433",
   "motivo": "não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)"
+ },
+ "inf-2fb6de4f82": {
+  "processo": "STJ RESP 2150894",
+  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+ },
+ "inf-5856759cbb": {
+  "processo": "STJ RESP 2227232",
+  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+ },
+ "inf-b328fb6ede": {
+  "processo": "STJ RESP 2004109",
+  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+ },
+ "inf-e2f161ebfb": {
+  "processo": "STJ RESP 2152197",
+  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
  }
 }
