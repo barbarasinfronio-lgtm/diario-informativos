@@ -627,7 +627,10 @@
     return { lidas: lidas };
   }
 
+  // Os rankings (medalhas e "ver ranking completo") ficam só em Meus Grupos e Meus Estudos; nas páginas de estudo o bloco sai.
   function renderMyPrizes() {
+    if (myPrizesEl) { myPrizesEl.innerHTML = ""; myPrizesEl.hidden = true; myPrizesEl.style.display = "none"; }
+    return;
     if (!myPrizesEl || !GS) return;
     var codes = GS.readGroups().map(function (g) { return g.code; });
     var tally = GS.tallyMyPrizes(codes, groupSnapshots, "lidasSumulas", viewerId);
