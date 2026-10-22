@@ -42955,6 +42955,26 @@ var RG_REPETITIVOS_DATA = [
   "status": "vigente",
   "risco": "Média",
   "motivo": "tema repetitivo do STJ que o CPC/2015 cita (art. 1.029); precedente vinculante (art. 927, III, do CPC); a tese foi revisada pelo STJ (confira a situação do tema)"
+ },
+ {
+  "id": 2704,
+  "tema": "1486",
+  "area": "Direito Administrativo",
+  "orgao": "STF",
+  "tipo": "rg",
+  "titulo": "Competência dos municípios para fixar jornada de trabalho superior à definida em legislação federal para fisioterapeutas e terapeutas ocupacionais submetidos ao regime estatutário",
+  "tese": "Competência dos municípios para fixar jornada de trabalho superior à definida em legislação federal para fisioterapeutas e terapeutas ocupacionais submetidos ao regime estatutário",
+  "destaque": "Competência dos municípios para fixar jornada de trabalho superior à definida em legislação federal para fisioterapeutas e terapeutas ocupacionais submetidos ao regime estatutário",
+  "processo": "RE 1555476",
+  "relator": "Presidência do STF",
+  "data": "14/10/2026",
+  "info": "",
+  "status": "vigente",
+  "risco": "Alta",
+  "motivo": "julgado em 2026 (tese muito recente); reafirmação de jurisprudência; tema novo importado do portal do STF",
+  "link": "https://portal.stf.jus.br/processos/detalhe.asp?incidente=7282247",
+  "historico": "Assunto: 10287-DIREITO ADMINISTRATIVO E OUTRAS MATÉRIAS DE DIREITO PÚBLICO | Servidor Público Civil | Jornada de Trabalho | 10382-DIREITO ADMINISTRATIVO E OUTRAS MATÉRIAS DE DIREITO PÚBLICO | Concurso Público / Edital | Anulação",
+  "questao": "Recurso extraordinário em que se discute, à luz do artigo 22, XVI, da Constituição Federal, se os municípios detêm competência para fixar, no âmbito de seu regime estatutário, jornada de trabalho superior a 30 horas semanais para profissionais fisioterapeutas e terapeutas ocupacionais, em desacordo com o limite estabelecido pela Lei Federal nº 8.856/1994."
  }
 ];
 
