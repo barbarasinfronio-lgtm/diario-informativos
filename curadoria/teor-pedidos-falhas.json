@@ -22,5 +22,9 @@
  "inf-e2f161ebfb": {
   "processo": "STJ RESP 2152197",
   "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+ },
+ "inf-04b838427d": {
+  "processo": "STJ QO NO RESP 2059576",
+  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
  }
 }
