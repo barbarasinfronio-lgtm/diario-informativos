@@ -204,15 +204,15 @@
   }
   function linhaNova(l) {
     var pedida = lerChaves(NOVAS_PEDIDAS_KEY)[l.chave];
-    return '<li class="rv-item rv-agora">' +
-      '<span class="rv-tipo">' + (l.tipo === "LC" ? "Lei complementar nova" : "Lei nova") + "</span>" +
+    return '<li class="rv-item rv-agora rv-nova">' +
+      '<a class="rv-tipo rv-tipo-link" href="' + esc(l.link) + '" target="_blank" rel="noopener" title="Abrir no Planalto">' + (l.tipo === "LC" ? "Lei Compl." : "Lei") + " ↗</a>" +
       '<div class="rv-texto"><b>' + esc(l.numero) + "</b>" +
         '<span class="rv-meta">' + esc("publicada em " + fmt(l.data) + " · " + l.ementa) + "</span>" +
         (ui.msgNova && ui.msgNova.chave === l.chave ? '<span class="rv-meta"><b>' + esc(ui.msgNova.texto) + "</b></span>" : "") + "</div>" +
-      '<div class="rv-acoes"><a class="rv-abrir" href="' + esc(l.link) + '" target="_blank" rel="noopener">Ver no Planalto ↗</a>' +
-        (pedida ? '<span class="rv-meta">✅ pedida; entra na próxima atualização</span>'
-                : '<button type="button" class="rv-feito" data-nova-pedir="' + esc(l.chave) + '">➕ Pedir para incluir</button>') +
-        '<button type="button" class="rv-mais" data-nova-visto="' + esc(l.chave) + '">✔ Já vi</button></div></li>';
+      '<div class="rv-acoes">' +
+        (pedida ? '<span class="rv-icone rv-ok" title="Pedida; entra na próxima atualização" aria-label="Pedida">✅</span>'
+                : '<button type="button" class="rv-feito rv-icone" data-nova-pedir="' + esc(l.chave) + '" title="Pedir para incluir no Diário de Leis" aria-label="Pedir para incluir">+</button>') +
+        '<button type="button" class="rv-mais rv-icone" data-nova-visto="' + esc(l.chave) + '" title="Já vi" aria-label="Já vi">✓</button></div></li>';
   }
   function blocoNovas() {
     var ls = leisNovas();
