@@ -3,7 +3,12 @@
   "edcl-no-agint-no-resp-1880254-mt": "ok",
   "cc-155853": "ja-no-site"
  },
- "falhas": {},
+ "falhas": {
+  "hc-205658": {
+   "consulta": "hc 205658",
+   "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (rode a coleta de acórdãos e tente de novo)"
+  }
+ },
  "incluidos": {
   "STJ": [
    "786271"
