@@ -1,30 +1,72 @@
 {
  "lista-rcl-370": {
   "processo": "RCL 370",
-  "motivo": "não achei nem o acórdão nem a decisão de julgamento no portal"
+  "motivo": "não achei nem o acórdão nem a decisão de julgamento no portal",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "2502": {
   "processo": "STJ RESP 1963433",
-  "motivo": "não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)"
+  "motivo": "STJ RESP 1963433: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
+  "primeira": "2026-10-21",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "inf-2fb6de4f82": {
   "processo": "STJ RESP 2150894",
-  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+  "motivo": "STJ RESP 2150894: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "inf-5856759cbb": {
   "processo": "STJ RESP 2227232",
-  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+  "motivo": "STJ RESP 2227232: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "inf-b328fb6ede": {
   "processo": "STJ RESP 2004109",
-  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+  "motivo": "STJ RESP 2004109: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "inf-e2f161ebfb": {
   "processo": "STJ RESP 2152197",
-  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+  "motivo": "STJ RESP 2152197: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
  },
  "inf-04b838427d": {
   "processo": "STJ QO NO RESP 2059576",
-  "motivo": "os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")"
+  "motivo": "STJ QO NO RESP 2059576: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1
+ },
+ "inf-19f16a85c1": {
+  "motivo": "STJ RESP 1887666: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1,
+  "processo": "STJ RESP 1887666"
+ },
+ "inf-5b6e7a1b8e": {
+  "motivo": "STJ RESP 2235787: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1,
+  "processo": "STJ RESP 2235787"
+ },
+ "inf-a92cadf055": {
+  "motivo": "STJ RESP 2250086: os dados abertos baixados ainda não chegam a essa data (rode o \"Atualizar Acordaos STJ.command\")",
+  "primeira": "2026-10-22",
+  "ultima": "2026-10-22",
+  "tentativas": 1,
+  "processo": "STJ RESP 2250086"
  }
 }
