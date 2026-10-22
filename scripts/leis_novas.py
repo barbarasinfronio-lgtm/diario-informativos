@@ -87,10 +87,14 @@ def sondar(achados, tipo, ano, ate=25):
         return []
     novos, falhas = [], 0
     ctx = ssl.create_default_context()
+    limite = time.time() + 90                      # a sondagem não pode prender o "Atualizar Leis" / "Rodar Tudo"
     for n in range(max(nums) + 1, max(nums) + 1 + ate):
+        if time.time() > limite:
+            print("  sondagem: tempo esgotado (90 s); fica para a próxima")
+            break
         url = planalto(tipo, n, ano)
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=40, context=ctx) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=15, context=ctx) as r:
                 bruto = r.read()
             try:
                 html = bruto.decode("utf-8")
