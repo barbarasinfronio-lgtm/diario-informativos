@@ -150,6 +150,12 @@ Cada rodada tem tempo máximo de 20 minutos; o que sobrar fica para a próxima,
 começando pelas leis conferidas há mais tempo. O `Atualizar Informativos.command`
 não confere mais as leis (só o `Atualizar Leis.command`).
 
+**Temas novos (Diário das Decisões)**: `Atualizar Temas.command` roda `scripts/temas_novos.py`, que lê no portal do STF
+(`tema.asp?num=N`) os Temas de repercussão geral com mérito julgado e no STJ (consulta por faixa de Temas) os
+repetitivos novos, e os acrescenta a `site/decisoes/rg-repetitivos-data.js`. Antes não havia robô para isso: os temas
+entravam à mão. A tese fixada do STF não vem da página do Tema (o card mostra a questão; o "Completar Teses STF" traz
+o acórdão). Mudança de situação de Tema antigo do STJ só é apontada no relatório.
+
 **Leis novas de caráter geral**: o `.github/workflows/leis-novas.yml` roda todo dia e o `scripts/leis_novas.py`
 lê a API aberta do Senado (o Planalto bloqueia robôs na listagem), separa as leis ordinárias e complementares de
 caráter geral das de efeito concreto (denominações, "Capital Nacional", datas comemorativas, créditos, cargos…) e grava
