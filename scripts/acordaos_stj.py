@@ -210,7 +210,8 @@ def acrescentar(novos):
     if not novos:
         print("nada novo para gravar.")
         return
-    prox = max(r[9] for r in ind) + 1
+    # nunca reaproveita o número de um c/NNN.json que já existe (pode haver partes que o índice ainda não usa)
+    prox = max(max(r[9] for r in ind), max((int(p.stem) for p in (base / "c").glob("[0-9]*.json")), default=-1)) + 1
     linhas, N = [], 250
     for k in range(0, len(novos), N):
         ch, det = prox + k // N, {}
