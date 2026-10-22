@@ -135,8 +135,36 @@
   }
   var ABREV_PAR = /^(arts?|n|nº|nos|inc|incs|al|p|pp|fl|fls|min|rel|ed|cf|dec|etc|s|ss|v|cap|par|dr|dra|sr|sra|rec|resp|resps|ag|hc|rhc|re|are|adi|adpf|adc)$/i;
   var COMECO_PAR = /^(Ademais|Por fim|Assim|Ainda|No caso|Nesse contexto|Nesse sentido|Dessa forma|Em suma|Com efeito|Portanto|Logo|Contudo|Todavia|No entanto|Isso posto|Diante disso|Ressalte-se|Cumpre)\b/;
+  // Teses em itens ("A. … B. … C. …", "D1. … D2. …" ou "1. … 2. …"): cada item vira um parágrafo (a sequência tem que ser A, B, C… ou 1, 2, 3…).
+  function enumeracao(t){
+    var CFG = [
+      { rx: /(^|[.;:!?)”"]\s+)([A-Z])(\d?)\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ“"(])/g, letra: true, minimo: 3 },
+      { rx: /(^|[.;:!?)”"]\s+)(\d{1,2})()\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ“"(])/g, letra: false, minimo: 2 }
+    ];
+    for (var c = 0; c < CFG.length; c++) {
+      var cfg = CFG[c], pos = [], seq = [], m;
+      cfg.rx.lastIndex = 0;
+      while ((m = cfg.rx.exec(t))) { pos.push(m.index + m[1].length); seq.push(m[2]); }
+      if (seq.length < cfg.minimo || pos[0] !== 0) continue;
+      var ok = true, distintos = 1;
+      for (var i = 1; i < seq.length; i++) {
+        var a = cfg.letra ? seq[i - 1].charCodeAt(0) : parseInt(seq[i - 1], 10), b = cfg.letra ? seq[i].charCodeAt(0) : parseInt(seq[i], 10);
+        if (b === a && cfg.letra) continue;            // D1 e D2: mesma letra
+        if (b !== a + 1) { ok = false; break; }
+        distintos++;
+      }
+      if (!ok || distintos < cfg.minimo) continue;
+      var partes = [];
+      for (var k = 0; k < pos.length; k++) partes.push(t.slice(pos[k], k + 1 < pos.length ? pos[k + 1] : t.length).trim());
+      return partes.join('\n\n');
+    }
+    return null;
+  }
   function paragrafar(t){
-    if (!t || typeof t !== 'string' || t.indexOf('\n') >= 0 || t.length < 900) return t;
+    if (!t || typeof t !== 'string' || t.indexOf('\n') >= 0) return t;
+    var itens = enumeracao(t);
+    if (itens) return itens;
+    if (t.length < 900) return t;
     var frases = [], ini = 0, rx = /([.!?”"])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ“"])/g, m;
     while ((m = rx.exec(t))) {
       var antes = t.slice(ini, m.index + 1), ult = /([\wºª/]+)\.?$/.exec(t.slice(0, m.index + (m[1] === '.' ? 0 : 1)));
