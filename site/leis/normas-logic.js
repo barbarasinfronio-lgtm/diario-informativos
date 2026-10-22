@@ -168,6 +168,47 @@
     });
   }
 
+  // ---- Organizar por (em-ordem.js lembra a escolha neste navegador) ----
+  var OPCOES_ORDEM = [
+    { id: "padrao", rotulo: "Padrão do site" },
+    { id: "recentes", rotulo: "Mais recentes primeiro (ano da norma)" },
+    { id: "antigas", rotulo: "Mais antigas primeiro (ano da norma)" },
+    { id: "alfa", rotulo: "Ordem alfabética (pela ementa)" },
+    { id: "numero", rotulo: "Por tipo e número" },
+    { id: "nao-lidas", rotulo: "Não lidas primeiro" },
+    { id: "lidas", rotulo: "Lidas primeiro" }
+  ];
+  var ordemAtual = "padrao", ctrlOrdem = null;
+  function anoDaNorma(r) {
+    var m = String(r.numero || "").match(/(?:^|[^\d])((?:18|19|20)\d{2})(?!\d)/g);
+    return m ? parseInt(m[m.length - 1].replace(/\D/g, ""), 10) : NaN;
+  }
+  function ordenarNormas(lista) {
+    var C = window.EstudaManaOrdem && window.EstudaManaOrdem.cmp;
+    if (!C || ordemAtual === "padrao") return lista;
+    var l = lista.slice(), pos = new Map();
+    lista.forEach(function (x, i) { pos.set(x, i); });
+    var padrao = function (a, b) { return pos.get(a) - pos.get(b); };
+    switch (ordemAtual) {
+      case "recentes": return l.sort(function (a, b) { return C.numero(anoDaNorma(b), anoDaNorma(a)) || padrao(a, b); });
+      case "antigas": return l.sort(function (a, b) { var x = anoDaNorma(a), y = anoDaNorma(b); return (isNaN(x) ? 1 : isNaN(y) ? -1 : x - y) || padrao(a, b); });
+      case "alfa": return l.sort(function (a, b) { return C.texto(a.ementa, b.ementa); });
+      case "numero": return l.sort(function (a, b) { return C.texto(a.tipo, b.tipo) || C.numero(parseFloat(String(a.numero).replace(/\./g, "")), parseFloat(String(b.numero).replace(/\./g, ""))) || padrao(a, b); });
+      case "nao-lidas": return l.sort(function (a, b) { return (a.lida ? 1 : 0) - (b.lida ? 1 : 0) || padrao(a, b); });
+      case "lidas": return l.sort(function (a, b) { return (b.lida ? 1 : 0) - (a.lida ? 1 : 0) || padrao(a, b); });
+      default: return lista;
+    }
+  }
+  function ligarOrdem() {
+    if (ctrlOrdem || !orgaoSelect || !window.EstudaManaOrdem) return;
+    ctrlOrdem = window.EstudaManaOrdem.ligar({
+      depois: orgaoSelect, chave: "normas-" + PAGE_PATH.replace(/^.*\//, "").replace(/\.html$/, ""), opcoes: OPCOES_ORDEM, padrao: "padrao",
+      aoMudar: function (id) { ordemAtual = id; render(); }
+    });
+    ordemAtual = ctrlOrdem.valor();
+    render();
+  }
+
   function render() {
     renderOrgaoSelect();
 
@@ -195,6 +236,7 @@
     var visiveis = list.filter(function (row) {
       return combinaBusca(rotulo(row) + " " + row.numero + " " + row.ementa);
     });
+    visiveis = ordenarNormas(visiveis);
     mostrarResultadoBusca(visiveis.length, ["norma", "normas"]);
 
     visiveis.forEach(function (row) {
@@ -417,6 +459,13 @@
 
   // ---- Controle do seletor de órgão ---------------------------------------
   if (orgaoSelect) {
+    if (window.EstudaManaOrdem) ligarOrdem();
+    else {
+      var sOrdem = document.createElement("script");
+      sOrdem.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/em-ordem.js";
+      sOrdem.onload = ligarOrdem;
+      document.head.appendChild(sOrdem);
+    }
     orgaoSelect.addEventListener("change", function () {
       currentOrg = orgaoSelect.value;
       render();

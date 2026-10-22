@@ -368,6 +368,38 @@
   }
   function novasDe(key) { return (!novosDaVisita[key] && key !== currentOrg) ? novasEdicoes(key).length : 0; }
 
+  // ---- Organizar por (em-ordem.js lembra a escolha neste navegador) ----
+  var OPCOES_ORDEM = [
+    { id: "recentes", rotulo: "Mais recentes primeiro" },
+    { id: "antigas", rotulo: "Mais antigas primeiro" },
+    { id: "nao-lidos", rotulo: "Não lidos primeiro" },
+    { id: "lidos", rotulo: "Lidos primeiro" },
+    { id: "sumula", rotulo: "Com súmula primeiro" }
+  ];
+  var ordemAtual = "recentes", ctrlOrdem = null;
+  function chaveData(r) { return String(r.data || r.ano) + "|" + String(1e6 + (parseInt(r.edicao, 10) || 0)); }
+  function ordenarLista(lista) {
+    var recente = function (a, b) { return a.ano !== b.ano ? b.ano - a.ano : (chaveData(a) < chaveData(b) ? 1 : chaveData(a) > chaveData(b) ? -1 : 0); };
+    var l = lista.slice();
+    switch (ordemAtual) {
+      case "antigas": return l.sort(function (a, b) { return -recente(a, b); });
+      case "nao-lidos": return l.sort(function (a, b) { return (a.lida ? 1 : 0) - (b.lida ? 1 : 0) || recente(a, b); });
+      case "lidos": return l.sort(function (a, b) { return (b.lida ? 1 : 0) - (a.lida ? 1 : 0) || recente(a, b); });
+      case "sumula": return l.sort(function (a, b) { return (b.sumula === true ? 1 : 0) - (a.sumula === true ? 1 : 0) || recente(a, b); });
+      default: return l.sort(recente);
+    }
+  }
+  function agrupaPorAno() { return ordemAtual === "recentes" || ordemAtual === "antigas"; }
+  function ligarOrdem() {
+    if (ctrlOrdem || !tabsRoot || !window.EstudaManaOrdem) return;
+    ctrlOrdem = window.EstudaManaOrdem.ligar({
+      depois: tabsRoot, chave: "informativos", opcoes: OPCOES_ORDEM, padrao: "recentes",
+      aoMudar: function (id) { ordemAtual = id; render(); }
+    });
+    ordemAtual = ctrlOrdem.valor();
+    render();
+  }
+
   function renderTabs() {
     tabsRoot.innerHTML = "";
     subTabsRoot.innerHTML = "";
@@ -412,8 +444,11 @@
     mostrarResultadoBusca(state.length, ["informativo", "informativos"]);
     var linkFn = ORGS[currentOrg].linkFn;
 
+    state = ordenarLista(state);
+    var plana = !agrupaPorAno();
     var years = [];
-    state.forEach(function (row) {
+    if (plana) years = [null];
+    else state.forEach(function (row) {
       if (years.indexOf(row.ano) === -1) years.push(row.ano);
     });
 
@@ -428,15 +463,17 @@
       var section = document.createElement("section");
       section.className = "year-group";
 
-      var label = document.createElement("div");
-      label.className = "year-label";
-      label.textContent = year;
-      section.appendChild(label);
+      if (year !== null) {
+        var label = document.createElement("div");
+        label.className = "year-label";
+        label.textContent = year;
+        section.appendChild(label);
+      }
 
       var ul = document.createElement("ul");
       ul.className = "list";
 
-      state.filter(function (r) { return r.ano === year; }).forEach(function (row) {
+      state.filter(function (r) { return year === null || r.ano === year; }).forEach(function (row) {
         var li = document.createElement("li");
         li.className = "row" + (row.lida ? " is-read" : "");
         li.setAttribute("data-cad-lista", "informativos");
@@ -726,6 +763,13 @@
   // 1) instant paint from whatever this browser has locally
   applyMap(readLocal());
   criarBusca("Buscar pelo número ou data do informativo (ex.: 1228, 09/2026)", function () { render(); });
+  if (window.EstudaManaOrdem) ligarOrdem();
+  else {
+    var sOrdem = document.createElement("script");
+    sOrdem.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/em-ordem.js";
+    sOrdem.onload = ligarOrdem;
+    document.head.appendChild(sOrdem);
+  }
   render();
   // Link vindo de Meus Cadernos: #cad=<órgão>|<edição> — abre o órgão e busca a edição
   function abrirDoCaderno() {
