@@ -15,10 +15,12 @@ bloqueia os servidores do GitHub), pelo "Atender Pedidos de Inteiro Teor.command
     python3 scripts/teor_sob_pedido.py --teste "Rcl 38782" --data 03/11/2020   # busca e mostra, não grava
 
 Processos anotados à mão (número e tipo, sem texto) em curadoria/teor-lista.json entram na mesma fila.
-Pedidos que falharam ficam em curadoria/teor-pedidos-falhas.json e são tentados de novo na próxima rodada.
+Pedidos que falharam ficam em curadoria/teor-pedidos-falhas.json. Julgado recente pode ainda não estar publicado:
+o robô tenta de novo UMA VEZ POR SEMANA, até completar 2 meses do pedido (scripts/pedidos_retentativa.py); depois
+desiste ("desistiu" no arquivo de falhas).
 """
 import argparse, json, re, signal, sys, time, urllib.parse
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -27,6 +29,7 @@ import completar_textos_stf as c        # noqa: E402
 import completar_extras_stf as ex       # noqa: E402
 import completar_rg_stf as rg           # noqa: E402
 import decisoes_dos_informativos as di  # noqa: E402  (principal(): classe e número de um card de informativo)
+import pedidos_retentativa as pr  # noqa: E402  (nova tentativa semanal por 2 meses)
 import teor_stj as ts  # noqa: E402  (julgados do STJ: acórdão — ementa e decisão — dos dados abertos)
 robo = c.robo
 
@@ -50,6 +53,7 @@ def pedidos():
         for d in j.get("documents", []):
             f = {k: (v.get("stringValue") or v.get("timestampValue") or "") for k, v in d.get("fields", {}).items()}
             f["id"] = f.get("id") or d["name"].rsplit("/", 1)[-1]
+            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (para a regra das 2 meses)
             out.append(f)
         token = j.get("nextPageToken", "")
         if not token:
@@ -173,15 +177,31 @@ def main():
             print(f"  {chave_de(p.get('processo', '')) or '?'}  ({p.get('data', '')})  {p.get('titulo', '')[:60]}")
         return
     falhas = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
+    hoje, fila, esperando, desistidos = date.today(), [], 0, 0
+    for p in pend:          # regra: o que não achou é procurado de novo 1 vez por semana, até 2 meses do pedido
+        reg = falhas.get(p["id"])
+        quer = pr.decidir(reg, p.get("criado") or p.get("em"), hoje)
+        if quer == "desistir":
+            desistidos += 1
+            if not (reg or {}).get("desistiu"):
+                falhas[p["id"]] = pr.registrar_desistencia(reg or {"processo": p.get("processo", "")[:100], "primeira": p.get("criado", "")}, hoje)
+                print(f"  desisti de {chave_de(p.get('processo', '')) or '?'}: não achei em 2 meses de tentativas semanais")
+        elif quer == "esperar":
+            esperando += 1
+        else:
+            fila.append(p)
+    if esperando or desistidos:
+        print(f"  {esperando} aguardando a próxima tentativa semanal; {desistidos} desistido(s) (passaram 2 meses).")
     incid, ok = {}, 0
-    for p in pend[:a.max]:
+    for p in fila[:a.max]:
         if ts.eh_stj(p.get("processo", "")):          # STJ: espelho do acórdão nos dados abertos (sem internet, sem bloqueio)
             chave = ts.chave_stj(p["processo"])
             print(f"  … {chave} ({p.get('data', '')})", flush=True)
             try:
                 texto, completo = ts.buscar(p["processo"], p.get("data", ""))
             except LookupError as e:
-                falhas[p["id"]] = {"processo": chave, "motivo": str(e)[:200]}
+                falhas[p["id"]] = pr.registrar_falha(falhas.get(p["id"]), p.get("criado"), hoje, f"{chave}: {e}", conta_tentativa=not pr.eh_passageira(e))
+                falhas[p["id"]]["processo"] = chave
                 print(f"    sem sucesso: {e}")
                 continue
             gravar(chave, p.get("data", ""), texto, completo, "Acórdão (ementa e decisão)")
@@ -191,7 +211,8 @@ def main():
             continue
         cl, num = di.principal(p.get("processo", ""))
         if not cl:
-            falhas[p["id"]] = {"processo": p.get("processo", "")[:100], "motivo": "não entendi o número do processo"}
+            falhas[p["id"]] = pr.registrar_desistencia(pr.registrar_falha(falhas.get(p["id"]), p.get("criado"), hoje, "não entendi o número do processo"), hoje)
+            falhas[p["id"]]["processo"] = p.get("processo", "")[:100]
             print(f"  ? {p['id']}: não entendi o processo {p.get('processo', '')[:60]!r}")
             continue
         cl = cl.upper()
@@ -210,7 +231,8 @@ def main():
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
             if "passou de" in str(e): robo._firefox_fechar()
-            falhas[p["id"]] = {"processo": f"{cl} {num}", "motivo": str(e)[:200]}
+            falhas[p["id"]] = pr.registrar_falha(falhas.get(p["id"]), p.get("criado"), hoje, str(e), conta_tentativa=not pr.eh_passageira(e))
+            falhas[p["id"]]["processo"] = f"{cl} {num}"
             print(f"    sem sucesso: {e}")
             continue
         except KeyboardInterrupt:
@@ -222,7 +244,7 @@ def main():
         print(f"    {len(texto)} caracteres ({'acórdão inteiro' if completo else 'só a decisão de julgamento'})")
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
     reconstruir_indice()
-    print(f"{ok} pedido(s) atendido(s); {len(falhas)} sem sucesso no total.")
+    print(f"{ok} pedido(s) atendido(s); {sum(1 for f in falhas.values() if not f.get('desistiu'))} ainda sem sucesso (tentados de novo toda semana, até 2 meses do pedido); {sum(1 for f in falhas.values() if f.get('desistiu'))} desistido(s).")
 
 
 if __name__ == "__main__":

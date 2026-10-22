@@ -246,6 +246,10 @@ há fonte para buscar um acórdão qualquer (o acervo do TST só tem os preceden
 site); o pedido fica como `sem-fonte:<tribunal>` e volta a ser tentado quando o tribunal entrar na lista `FONTES` do script.
 O resultado de cada pedido fica em `feitos` e `falhas` do mesmo arquivo. O `Rodar Tudo.command` roda este passo logo depois
 de `Atualizar Acórdãos`.
+**Julgado recente que o robô não achou** (ou inteiro teor ainda não publicado, em `teor_sob_pedido.py`) não é descartado: é
+procurado de novo **uma vez por semana, até completar 2 meses do pedido** (regra em `scripts/pedidos_retentativa.py`); depois
+disso o robô desiste e marca `desistiu` no arquivo de falhas. Falha passageira (site fora do ar, tempo esgotado, cache
+ausente) não conta como tentativa.
 Teste sem gravar: `python3 scripts/julgados_sob_pedido.py --teste "EDcl no AgInt no REsp 1880254/MT"`; só listar os
 pedidos: `--plano`.
 
