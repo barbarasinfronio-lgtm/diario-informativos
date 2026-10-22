@@ -208,7 +208,7 @@
       '<a class="rv-tipo rv-tipo-link" href="' + esc(l.link) + '" target="_blank" rel="noopener" title="Abrir no Planalto">' + (l.tipo === "LC" ? "Lei Compl." : "Lei") + " ↗</a>" +
       '<div class="rv-texto"><b>' + esc(l.numero) + "</b>" +
         '<span class="rv-meta">' + esc("publicada em " + fmt(l.data) + " · " + l.ementa) + "</span>" +
-        (ui.msgNova && ui.msgNova.chave === l.chave ? '<span class="rv-meta"><b>' + esc(ui.msgNova.texto) + "</b></span>" : "") + "</div>" +
+        (ui.msgNova && ui.msgNova.chave === l.chave ? '<span class="rv-meta"><b>' + esc(ui.msgNova.texto) + "</b>" + (ui.msgNova.login ? ' <a href="/p/diario-de-leis.html" target="_blank" rel="noopener">Abrir o Diário de Leis ↗</a>' : "") + "</span>" : "") + "</div>" +
       '<div class="rv-acoes">' +
         (pedida ? '<span class="rv-icone rv-ok" title="Pedida; entra na próxima atualização" aria-label="Pedida">✅</span>'
                 : '<button type="button" class="rv-feito rv-icone" data-nova-pedir="' + esc(l.chave) + '" title="Pedir para incluir no Diário de Leis" aria-label="Pedir para incluir">+</button>') +
@@ -227,7 +227,7 @@
     if (!l) return;
     var u = window.firebase && firebase.auth && firebase.auth().currentUser;
     if (!u || u.isAnonymous || !firebase.firestore) {
-      ui.msgNova = { chave: chave, texto: "Para pedir uma lei, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página)." };
+      ui.msgNova = { chave: chave, login: true, texto: "Para pedir uma lei, entre na sua conta (Google ou e-mail e senha). O botão “Entrar para salvar seu progresso” fica no topo do Diário de Leis; entre lá e volte aqui." };
       render(el, o); return;
     }
     firebase.firestore().doc("pedidos-leis/" + chavePedidoLei(l.pedido)).set({ consulta: l.pedido.slice(0, 120), em: new Date().toISOString() })
