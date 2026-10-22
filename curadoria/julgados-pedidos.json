@@ -7,6 +7,10 @@
   "hc-205658": {
    "consulta": "hc 205658",
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (rode a coleta de acórdãos e tente de novo)"
+  },
+  "rhc-205658": {
+   "consulta": "Rhc 205658",
+   "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (rode a coleta de acórdãos e tente de novo)"
   }
  },
  "incluidos": {
