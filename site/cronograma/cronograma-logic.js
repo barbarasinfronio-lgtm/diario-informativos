@@ -702,6 +702,21 @@
         '<div class="cr-card-texto"><p class="cr-carregando">Carregando o texto…</p></div>';
       fundo.appendChild(caixa);
       var sub = caixa.querySelector(".cr-card-sub"), corpo = caixa.querySelector(".cr-card-texto"), btn = caixa.querySelector(".cr-card-lido");
+      // Compartilhar e Imprimir (com os destaques e anotações de Meus Cadernos): em-compartilhar.js
+      var montarComp = function () {
+        var acoes = caixa.querySelector(".cr-card-acoes");
+        if (!acoes || acoes.querySelector(".em-comp") || !window.EstudaManaCompartilhar) return;
+        acoes.appendChild(window.EstudaManaCompartilhar.barra({
+          titulo: it.titulo, texto: it.trecho || it.sub || "", url: it.href, conteudo: function () { return caixa; }
+        }));
+      };
+      if (window.EstudaManaCompartilhar) montarComp();
+      else {
+        var scComp = document.createElement("script");
+        scComp.src = BASE + "em-compartilhar.js";
+        scComp.onload = montarComp;
+        document.head.appendChild(scComp);
+      }
       var pintar = function () { btn.textContent = estaFeito(it) ? "✔ Lido — desmarcar" : "Marcar como lido"; btn.classList.toggle("feito", estaFeito(it)); };
       pintar();
       var fechar = function () {

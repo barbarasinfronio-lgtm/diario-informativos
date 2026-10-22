@@ -928,6 +928,27 @@
     return d.orgao === 'STF' && d.id && RX_PROCESSO_STF.test(d.processo || '');
   }
   // Julgado de processo em segredo de justiça não tem número nem acórdão público: no lugar do botão de buscar, o card avisa.
+  // Compartilhar (WhatsApp, e-mail, copiar link…) e Imprimir (com os destaques e anotações de Meus Cadernos): em-compartilhar.js
+  function anexarCompartilhar(d){
+    var slot = modal.querySelector('.em-comp-slot');
+    if (!slot) return;
+    var montar = function(){
+      if (modalAtual !== d || !window.EstudaManaCompartilhar || slot.firstChild) return;
+      slot.appendChild(EstudaManaCompartilhar.barra({
+        titulo: tituloDe(d) + ' (' + d.orgao + ')',
+        texto: d.tese || d.destaque || d.questao || '',
+        url: linkDecisao(d),
+        conteudo: function(){ return modal; }
+      }));
+    };
+    if (window.EstudaManaCompartilhar) montar();
+    else {
+      var sc = document.createElement('script');
+      sc.src = BASE_CDN + 'em-compartilhar.js';
+      sc.onload = montar;
+      document.head.appendChild(sc);
+    }
+  }
   function emSegredo(d){
     return (d.orgao === 'STJ' || d.orgao === 'STF') && d.tipo !== 'acordao' && /segredo\s+de\s+justi[çc]a/i.test(d.processo || '');
   }
@@ -1075,6 +1096,7 @@
         (d.status==='cancelado_superado' ? '<span class="tag-cancel">Cancelado/Superado</span>' : '') +
         (d.status==='afetado' ? '<span class="tag-afetado">Em julgamento</span>' : '') +
         (d.suspensao ? '<span class="tag-afetado">Suspensão nacional</span>' : '') +
+        '<span class="em-comp-slot"></span>' +
       '</div>' +
       '<div class="area-line" style="margin-top:8px">' + escapeHtml(d.area) + precedenteAreaLine(d) + '</div>' +
       '<h2>' + escapeHtml(tituloDe(d)) + '</h2>' +
@@ -1096,6 +1118,8 @@
       '<div class="normas-box" hidden></div>' +
       '<div class="risk-box risk-' + escapeHtml(d.risco) + '"><b>Por que risco ' + escapeHtml(rotuloRisco(d.risco)) + '?</b>' + escapeHtml(d.motivo||'') + '</div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
+    modalAtual = d;
+    anexarCompartilhar(d);
     modal.querySelector('.lido-modal').addEventListener('click', function(){
       marcarLido(d, !isRead(lidos[d.id]));
       this.textContent = textoBotaoLido(d);
