@@ -39,28 +39,28 @@
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=141462&codTipoAto=1&tipoVisualizacao=compilado": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (PR) nº 14.234/2003",
   "nome": "Institui prêmio de produtividade e o Fundo Especial da Procuradoria-Geral do Estado do Paraná",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Lei 18471 - 14 de M\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=127393": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (PR) nº 18.292/2014",
   "nome": "Cobrança judicial e extrajudicial da dívida ativa do Estado do Paraná (limites para execuções fiscais e protesto extrajudicial)",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Resolução SEED 3410\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=318765": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (PR) nº 21.860/2023",
   "nome": "Transação de créditos tributários e não tributários no âmbito do Estado do Paraná",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Resolução SEED 5839\")"
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=7546": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (PR) nº 12.398/1998",
   "nome": "Cria o Sistema de Seguridade Funcional do Estado do Paraná (Paranaprevidência)",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Lei 8345 - 21 de Ju\")"
@@ -338,13 +338,6 @@
   "nome": "Sistema Estadual de Proteção e Defesa Civil do Rio Grande do Sul",
   "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
- "https://sapl.al.pi.leg.br/norma/4581": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Estadual (PI) nº 7.294/2019",
-  "nome": "Regularização fundiária no Estado do Piauí (política de regularização fundiária sob gestão do INTERPI)",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
  "https://sapl.al.pi.leg.br/norma/3947": {
   "v": 3,
   "em": "2026-10-06",
@@ -357,13 +350,6 @@
   "em": "2026-10-06",
   "numero": "Lei Estadual (MT) nº 3.922/1977",
   "nome": "Código de Terras do Estado de Mato Grosso",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
- "https://www.al.mt.gov.br/norma-juridica/urn:lex:br;mato.grosso:estadual:lei.complementar:2014-12-29;555/ficha-tecnica": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Complementar (MT) nº 555/2014",
-  "nome": "Estatuto dos Militares do Estado de Mato Grosso (Polícia Militar e Corpo de Bombeiros Militar)",
   "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
  "https://leisestaduais.com.br/rn/lei-ordinaria-n-6968-1996-rio-grande-do-norte-dispoe-sobre-o-imposto-sobre-operacoes-relativas-a-circulacao-de-mercadorias-e-sobre-prestacoes-de-servicos-de-transporte-interestadual-e-intermunicipal-e-de-comunicacao-icms-e-da-outras-providencias": {
@@ -585,10 +571,10 @@
  },
  "https://biomasdabahia.mpba.mp.br/sdm_downloads/lei-estadual-n-10-431-2006/": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (BA) nº 10.431/2006",
   "nome": "Política de Meio Ambiente e de Proteção à Biodiversidade do Estado da Bahia",
-  "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
+  "motivo": "erro ao abrir: HTTP 403 (o site recusou ou a página mudou)"
  },
  "https://patrimonio.ipac.ba.gov.br/wp-content/uploads/2012/10/lei-8895.pdf": {
   "v": 3,
@@ -757,5 +743,12 @@
   "numero": "Lei Estadual (PA) nº 5.810/1994",
   "nome": "Regime Jurídico Único dos Servidores Públicos Civis do Estado do Pará",
   "motivo": "erro ao abrir: https://lex.pge.pa.gov.br/api/atos/979 → sem resposta ([Errno 60] Operation timed out)"
+ },
+ "https://rubi.casaruibarbosa.gov.br/bitstream/handle/20.500.11997/16810/BA-SEC-Bahia.pdf?sequence=1&isAllowed=y": {
+  "v": 3,
+  "em": "2026-10-22",
+  "numero": "Lei Estadual (BA) nº 12.365/2011",
+  "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)",
+  "motivo": "erro ao abrir: https://rubi.casaruibarbosa.gov.br/bitstream/handle/20.500.11997/16810/BA-SEC-Bahia.pdf?sequence=1&isAllowed=y → sem resposta ([Errno 60] Op"
  }
 }
