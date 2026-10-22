@@ -34,6 +34,15 @@ def baixar(url, binario=False, tent=3):
     raise OSError(f"falha {url}")
 
 
+def site_responde(url):
+    """Teste rápido (20 s): o site responde a este computador agora? Evita horas de tentativas num site fora do ar."""
+    try:
+        r = subprocess.run(["curl", "-sL", "-m", "20", "-A", UA, "-o", "/dev/null", "-w", "%{http_code}", url], capture_output=True, timeout=40)
+        return r.stdout.decode().strip() == "200"
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def juntar_linhas(linhas):
     """linhas de PDF → parágrafos: junta as quebras no meio da frase; mantém Art., §, incisos, alíneas, títulos"""
     novo = re.compile(r"^(Art\.|Artigo|§|Parágrafo|CAP[ÍI]TULO|SE[ÇC][ÃA]O|T[ÍI]TULO|LIVRO|CONSIDERANDO|RESOLVE|[IVXLC]+\s*[-–.)]|[a-z]\)|\d+[.)-]\s|[A-ZÀ-Ú][A-ZÀ-Ú\s,.-]{12,}$)")
@@ -112,6 +121,11 @@ def main():
         normas = dados[org]["normas"]
         if a.max:
             normas = normas[:a.max]
+        if normas and not any(os.path.exists(os.path.join(pasta, f"{org}-" + re.sub(r"[^a-z0-9]+", "-", f"{n['tipo']}-{n['numero']}".lower()).strip("-") + ".json")) for n in normas[:5]) \
+                and not (site_responde(normas[0]["link"]) or site_responde(normas[0]["link"])):
+            print(f"{org}: o site não responde agora ({normas[0]['link']}); pulei. Rode de novo mais tarde.", flush=True)
+            continue
+        seguidas = {"n": 0, "parou": False}
 
         def tid_de(n):
             return f"{org}-" + re.sub(r"[^a-z0-9]+", "-", f"{n['tipo']}-{n['numero']}".lower()).strip("-")
@@ -121,16 +135,23 @@ def main():
             arq = os.path.join(pasta, tid + ".json")
             if os.path.exists(arq) and not a.refazer:
                 return n, "ja"
+            if seguidas["parou"]:
+                return n, "pulado"
             try:
                 ps = obter(org, n)
             except Exception as e:
+                seguidas["n"] += 1
+                if seguidas["n"] >= 6 and not seguidas["parou"]:  # 6 falhas seguidas: o site caiu no meio; desiste deste órgão
+                    seguidas["parou"] = True
+                    print(f"  {org}: 6 falhas seguidas; parei de tentar por agora (o que já baixou fica salvo).", flush=True)
                 return n, "erro " + str(e)[:50]
+            seguidas["n"] = 0
             if len(ps) < 2 or sum(map(len, ps)) < 300:
                 return n, "curto"
             json.dump({"nome": f"{n['tipo']} {NOMES[org]} nº {n['numero']}", "url": n["link"], "em": hoje, "p": ps},
                       open(arq, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
             return n, "ok"
-        res, tem = {"ok": 0, "ja": 0, "curto": 0, "erro": 0}, set()
+        res, tem = {"ok": 0, "ja": 0, "curto": 0, "erro": 0, "pulado": 0}, set()
         with ThreadPoolExecutor(3) as ex:
             for k, (n, st) in enumerate(ex.map(baixa, normas), 1):
                 res[st.split()[0]] += 1
