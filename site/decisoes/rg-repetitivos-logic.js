@@ -457,6 +457,47 @@
 
   function riskOrder(r){ return r==='Alta'?0:r==='Média'?1:2; }
 
+  // ---- Organizar por (em-ordem.js lembra a escolha neste navegador) ----
+  var OPCOES_ORDEM = [
+    { id: 'padrao', rotulo: 'Padrão (mais recentes; por risco dentro de cada tipo)' },
+    { id: 'recentes', rotulo: 'Mais recentes primeiro' },
+    { id: 'antigas', rotulo: 'Mais antigas primeiro' },
+    { id: 'risco', rotulo: 'Maior risco de cobrança primeiro' },
+    { id: 'cobradas', rotulo: 'Mais cobradas em prova' },
+    { id: 'alfa', rotulo: 'Ordem alfabética (pelo título)' },
+    { id: 'tema', rotulo: 'Por número do tema / edição' },
+    { id: 'nao-lidas', rotulo: 'Não lidas primeiro' }
+  ];
+  var ordemAtual = 'padrao', ctrlOrdem = null;
+  function ordenarDecisoes(list){
+    var C = window.EstudaManaOrdem && window.EstudaManaOrdem.cmp;
+    if (!C || ordemAtual === 'padrao') return list;
+    var recente = function(a, b){ var x = chaveData(a.data), y = chaveData(b.data); return x < y ? 1 : x > y ? -1 : 0; };
+    var l = list.slice(), nCob = null;
+    switch (ordemAtual) {
+      case 'recentes': return l.sort(recente);
+      case 'antigas': return l.sort(function(a, b){ return -recente(a, b); });
+      case 'risco': return l.sort(function(a, b){ return riskOrder(a.risco) - riskOrder(b.risco) || recente(a, b); });
+      case 'cobradas':
+        nCob = {};
+        l.forEach(function(d){ nCob[d.id] = cobrancasDe(d).length; });
+        return l.sort(function(a, b){ return nCob[b.id] - nCob[a.id] || riskOrder(a.risco) - riskOrder(b.risco) || recente(a, b); });
+      case 'alfa': return l.sort(function(a, b){ return C.texto(tituloDe(a), tituloDe(b)); });
+      case 'tema': return l.sort(function(a, b){ return C.numero(b.tema, a.tema) || recente(a, b); });
+      case 'nao-lidas': return l.sort(function(a, b){ return (isRead(lidos[a.id]) ? 1 : 0) - (isRead(lidos[b.id]) ? 1 : 0) || riskOrder(a.risco) - riskOrder(b.risco) || recente(a, b); });
+      default: return list;
+    }
+  }
+  function ligarOrdem(){
+    if (ctrlOrdem || !window.EstudaManaOrdem || !areaChips) return;
+    ctrlOrdem = window.EstudaManaOrdem.ligar({
+      depois: areaChips, chave: 'decisoes', opcoes: OPCOES_ORDEM, padrao: 'padrao',
+      aoMudar: function(id){ ordemAtual = id; limite = LOTE_INICIAL; render(); }
+    });
+    ordemAtual = ctrlOrdem.valor();
+    render();
+  }
+
   var controleAtivo = null;   // qual lista grande está na tela (ou null)
   var controleMostrada = null;
   function dataBr(d){ return d.slice(6,8) + '/' + d.slice(4,6) + '/' + d.slice(0,4); }
@@ -626,6 +667,7 @@
         return (b.data||'').split('/').reverse().join('') > (a.data||'').split('/').reverse().join('') ? 1 : -1;
       });
     }
+    list = ordenarDecisoes(list);
 
     var grid = document.getElementById('grid');
     grid.innerHTML = '';
@@ -650,7 +692,7 @@
       var mostrar = Math.min(todos.length, ts.length ? Math.max(limite, 50) : limite);
       document.getElementById('countLine').textContent = ts.length
         ? todos.length + (todos.length === 1 ? ' decisão encontrada' : ' decisões encontradas') + (extras.length ? ' (' + extras.length + ' em Controle/Reclamações)' : '')
-        : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
+        : 'Mostrando ' + mostrar + ' de ' + list.length + ' decisões' + (state.org === 'all' && (ordemAtual === 'padrao' || ordemAtual === 'recentes') ? ' (as mais recentes)' : '') + ' — pesquise para ver todas';
       document.getElementById('empty').hidden = todos.length > 0;
       if (ts.length && state.org !== 'AFETADOS') {
         var afet = DATA.filter(function(d){
@@ -1370,6 +1412,13 @@
   montarChips();
   renderStats();
   render();
+  if (window.EstudaManaOrdem) ligarOrdem();
+  else {
+    var sOrdem = document.createElement('script');
+    sOrdem.src = 'https://barbarasinfronio-lgtm.github.io/diario-informativos/em-ordem.js';
+    sOrdem.onload = ligarOrdem;
+    document.head.appendChild(sOrdem);
+  }
   abrirDoLink();
   garantirBotoesListasGrandes();
   garantirBotoesGrupos();

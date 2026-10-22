@@ -155,6 +155,45 @@
   var loteSize = 10;
   var loteAtual = 0; // índice (0-based) do lote sendo exibido
 
+  // ---- Organizar por: a pessoa escolhe a ordem da lista (em-ordem.js lembra a escolha neste navegador) ----
+  var OPCOES_ORDEM = [
+    { id: "num-desc", rotulo: "Mais recentes primeiro (número maior)" },
+    { id: "num-asc", rotulo: "Mais antigas primeiro (número menor)" },
+    { id: "cobradas", rotulo: "Mais cobradas em prova" },
+    { id: "alfa", rotulo: "Ordem alfabética (pelo texto)" },
+    { id: "materia", rotulo: "Por matéria" },
+    { id: "nao-lidas", rotulo: "Não lidas primeiro" },
+    { id: "lidas", rotulo: "Lidas primeiro" }
+  ];
+  var ordemAtual = "num-desc";
+  var ctrlOrdem = null;
+  function numeroDe(r) { var m = /\d+/.exec(String(r.numero)); return m ? parseInt(m[0], 10) : NaN; }
+  function ordenar(lista) {
+    var C = window.EstudaManaOrdem && window.EstudaManaOrdem.cmp;
+    if (!C) return lista;
+    var porNum = function (a, b) { return C.numero(numeroDe(b), numeroDe(a)) || C.texto(b.numero, a.numero); };   // maior primeiro
+    var base = lista.slice();
+    // dentro de cada tribunal, o número manda; os tribunais ficam na ordem de sempre quando a lista é agrupada
+    var ordemOrg = function (a, b) { return ORG_ORDER.indexOf(a.org) - ORG_ORDER.indexOf(b.org); };
+    var fn;
+    switch (ordemAtual) {
+      case "num-asc": fn = function (a, b) { return ordemOrg(a, b) || -porNum(a, b); }; break;
+      case "cobradas":
+        var nCob = {};     // conta uma vez por linha (cobrancasDe percorre as provas)
+        base.forEach(function (r) { nCob[r.org + ":" + r.numero] = cobrancasDe(r).length; });
+        fn = function (a, b) { return nCob[b.org + ":" + b.numero] - nCob[a.org + ":" + a.numero] || ordemOrg(a, b) || porNum(a, b); };
+        break;
+      case "alfa": fn = function (a, b) { return C.texto(a.texto, b.texto) || ordemOrg(a, b); }; break;
+      case "materia": fn = function (a, b) { return C.texto(a.materia || "￿", b.materia || "￿") || ordemOrg(a, b) || porNum(a, b); }; break;
+      case "nao-lidas": fn = function (a, b) { return (a.lida ? 1 : 0) - (b.lida ? 1 : 0) || ordemOrg(a, b) || porNum(a, b); }; break;
+      case "lidas": fn = function (a, b) { return (b.lida ? 1 : 0) - (a.lida ? 1 : 0) || ordemOrg(a, b) || porNum(a, b); }; break;
+      default: fn = function (a, b) { return ordemOrg(a, b) || porNum(a, b); };
+    }
+    return base.sort(fn);
+  }
+  // com os tribunais misturados ("Todos"), só as ordens por número mantêm a lista agrupada por tribunal
+  function listaAgrupada() { return currentOrg === TODOS && (ordemAtual === "num-desc" || ordemAtual === "num-asc"); }
+
   function todayIso() {
     var now = new Date();
     var m = String(now.getMonth() + 1).padStart(2, "0");
@@ -319,10 +358,10 @@
   }
 
   function filteredState() {
-    return filteredBase().filter(function (r) {
+    return ordenar(filteredBase().filter(function (r) {
       if (focoNumero && String(r.numero) !== focoNumero) return false;
       return combinaBusca("súmula nº " + r.numero + " enunciado nº " + r.numero + " " + r.texto + " " + (r.materia || "") + " " + (r.jornada || "") + " " + (r.ref || ""));
-    });
+    }));
   }
 
   // ---- Lotes de leitura (10 em 10 / 20 em 20) ----------------------------
@@ -385,7 +424,7 @@
 
     var ultimoOrg = null;
     pageItems.forEach(function (row) {
-      if (currentOrg === TODOS && row.org !== ultimoOrg) {
+      if (listaAgrupada() && row.org !== ultimoOrg) {
         ultimoOrg = row.org;
         var h = document.createElement("li");
         h.className = "sumula-grupo-titulo";
@@ -415,7 +454,7 @@
       edition.className = "edition sumula-edition cad-lugar";
       var num = document.createElement("span");
       num.className = "num";
-      num.textContent = rotuloNumero(row.org) + row.numero + (row.jornada ? " · " + row.jornada : "");
+      num.textContent = rotuloNumero(row.org) + row.numero + (row.jornada ? " · " + row.jornada : "") + (currentOrg === TODOS && !listaAgrupada() ? " · " + rotuloOrg : "");
       var texto = document.createElement("p");
       texto.className = "sumula-texto cad-area";
       texto.textContent = row.texto;
@@ -672,6 +711,24 @@
     ? window.ContaEmail.attach({ setNote: setNote, recoverHint: "Já ativei — entrar neste aparelho" })
     : { renderAccountUI: function () {} };
   var renderAccountUI = contaEmail.renderAccountUI;
+
+  // ---- Organizar por ----
+  function ligarOrdem() {
+    if (ctrlOrdem || !materiaSelect || !window.EstudaManaOrdem) return;
+    ctrlOrdem = window.EstudaManaOrdem.ligar({
+      depois: materiaSelect, chave: "sumulas", opcoes: OPCOES_ORDEM, padrao: "num-desc",
+      aoMudar: function (id) { ordemAtual = id; loteAtual = 0; render(); }
+    });
+    ordemAtual = ctrlOrdem.valor();
+    render();
+  }
+  if (window.EstudaManaOrdem) ligarOrdem();
+  else if (materiaSelect) {
+    var sOrdem = document.createElement("script");
+    sOrdem.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/em-ordem.js";
+    sOrdem.onload = ligarOrdem;
+    document.head.appendChild(sOrdem);
+  }
 
   // ---- Controles de tribunal / matéria / tamanho do lote -----------------
   if (tribunalSelect) {

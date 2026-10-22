@@ -750,7 +750,38 @@
   }
 
   // Agrupa por matéria em blocos que abrem e fecham (a lista federal é longa).
+  // ---- Organizar por (em-ordem.js lembra a escolha neste navegador): vale dentro de cada matéria ----
+  var OPCOES_ORDEM = [
+    { id: "padrao", rotulo: "Padrão do site" },
+    { id: "alfa", rotulo: "Ordem alfabética (nome da lei)" },
+    { id: "recentes", rotulo: "Mais recentes primeiro (ano da lei)" },
+    { id: "antigas", rotulo: "Mais antigas primeiro (ano da lei)" },
+    { id: "nao-lidas", rotulo: "Não lidas primeiro" },
+    { id: "lidas", rotulo: "Lidas primeiro" }
+  ];
+  var ordemAtual = "padrao", ctrlOrdem = null;
+  function anoDaLei(l) {     // o último grupo de 4 dígitos do número ("Lei nº 10.406/2002" → 2002; "CF/1988" → 1988)
+    var m = String(l.numero || "").match(/(?:^|[^\d])((?:18|19|20)\d{2})(?!\d)/g);
+    return m ? parseInt(m[m.length - 1].replace(/\D/g, ""), 10) : NaN;
+  }
+  function ordenarLeis(lista) {
+    var C = window.EstudaManaOrdem && window.EstudaManaOrdem.cmp;
+    if (!C || ordemAtual === "padrao") return lista;
+    var l = lista.slice(), idx = {};
+    lista.forEach(function (x, i) { idx[x.chave] = i; });
+    var padrao = function (a, b) { return idx[a.chave] - idx[b.chave]; };
+    switch (ordemAtual) {
+      case "alfa": return l.sort(function (a, b) { return C.texto(a.nome, b.nome); });
+      case "recentes": return l.sort(function (a, b) { return C.numero(anoDaLei(b), anoDaLei(a)) || padrao(a, b); });
+      case "antigas": return l.sort(function (a, b) { var x = anoDaLei(a), y = anoDaLei(b); return (isNaN(x) ? 1 : isNaN(y) ? -1 : x - y) || padrao(a, b); });
+      case "nao-lidas": return l.sort(function (a, b) { return (isLida(a.chave) ? 1 : 0) - (isLida(b.chave) ? 1 : 0) || padrao(a, b); });
+      case "lidas": return l.sort(function (a, b) { return (isLida(b.chave) ? 1 : 0) - (isLida(a.chave) ? 1 : 0) || padrao(a, b); });
+      default: return lista;
+    }
+  }
+
   function porMateria(leis, abrir) {
+    leis = ordenarLeis(leis);
     var ordem = [], grupos = {};
     leis.forEach(function (l) {
       if (!grupos[l.materia]) { grupos[l.materia] = []; ordem.push(l.materia); }
@@ -1065,6 +1096,22 @@
     }
 
     window.__leisRender = render;
+    var ligarOrdem = function () {
+      if (ctrlOrdem || !inputBusca || !window.EstudaManaOrdem) return;
+      ctrlOrdem = window.EstudaManaOrdem.ligar({
+        depois: inputBusca, chave: "leis", opcoes: OPCOES_ORDEM, padrao: "padrao",
+        aoMudar: function (id) { ordemAtual = id; render(); }
+      });
+      ordemAtual = ctrlOrdem.valor();
+      render();
+    };
+    if (window.EstudaManaOrdem) ligarOrdem();
+    else {
+      var sOrdem = document.createElement("script");
+      sOrdem.src = "https://barbarasinfronio-lgtm.github.io/diario-informativos/em-ordem.js";
+      sOrdem.onload = ligarOrdem;
+      document.head.appendChild(sOrdem);
+    }
     // leitura marcada em outra aba (Cronograma, Revisões): atualiza os cards aqui
     window.addEventListener("storage", function (e) {
       if (e.key !== LOCAL_KEY) return;
