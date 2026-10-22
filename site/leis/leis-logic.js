@@ -644,6 +644,23 @@
       '<span style="font-size:calc(12px * var(--fs-scale,1));color:var(--ink-faint,#94a3b8);">Selecione um trecho para destacar ou anotar.</span></div>' +
       '<div class="lei-leitor-texto" style="max-width:var(--em-card-texto-max,62rem);margin:0 auto;font-size:calc(15px * var(--fs-scale,1));line-height:1.65;text-align:left;"><p style="margin:0;color:#64748b;">Carregando o texto…</p></div>';
     fundo.appendChild(caixa);
+    // Compartilhar e Imprimir (com os destaques e anotações de Meus Cadernos): em-compartilhar.js
+    var montarComp = function () {
+      var barraEl = btnLidaInicial && btnLidaInicial.parentNode;
+      if (!barraEl || barraEl.querySelector(".em-comp") || !window.EstudaManaCompartilhar) return;
+      barraEl.appendChild(window.EstudaManaCompartilhar.barra({
+        titulo: titulo, texto: origem, url: "/p/diario-de-leis.html#lei=" + encodeURIComponent(chave),
+        conteudo: function () { return caixa; }
+      }));
+    };
+    var btnLidaInicial = caixa.querySelector(".lei-leitor-lida");
+    if (window.EstudaManaCompartilhar) montarComp();
+    else {
+      var scComp = document.createElement("script");
+      scComp.src = CDN_BASE + "em-compartilhar.js";
+      scComp.onload = montarComp;
+      document.head.appendChild(scComp);
+    }
     var btnLida = caixa.querySelector(".lei-leitor-lida");
     if (!cardEl) btnLida.style.display = "none";      // ato aberto por link (sem card): não há "Já li" para marcar
     var pintarLida = function () { btnLida.textContent = lida() ? "✔ Lida — desmarcar" : "Marcar como lida"; };
