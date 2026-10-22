@@ -359,13 +359,6 @@
   "nome": "Dispõe sobre o ICMS no Rio Grande do Norte",
   "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
  },
- "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/87836/lei-11651": {
-  "v": 3,
-  "em": "2026-10-06",
-  "numero": "Lei Estadual (GO) nº 11.651/1991",
-  "nome": "Institui o Código Tributário do Estado de Goiás",
-  "motivo": "a página não traz o texto da lei (texto em outro arquivo, login ou montado por JavaScript)"
- },
  "https://leisestaduais.com.br/pa/lei-ordinaria-n-4835-1979-para": {
   "v": 2,
   "em": "2026-10-05",
@@ -578,10 +571,10 @@
  },
  "https://patrimonio.ipac.ba.gov.br/wp-content/uploads/2012/10/lei-8895.pdf": {
   "v": 3,
-  "em": "2026-10-06",
+  "em": "2026-10-22",
   "numero": "Lei Estadual (BA) nº 8.895/2003",
   "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)",
-  "motivo": "erro ao abrir: https://patrimonio.ipac.ba.gov.br/wp-content/uploads/2012/10/lei-8895.pdf → sem resposta (timed out)"
+  "motivo": "erro ao abrir: https://patrimonio.ipac.ba.gov.br/wp-content/uploads/2012/10/lei-8895.pdf → sem resposta ([Errno 60] Operation timed out)"
  },
  "https://legisla.casacivil.go.gov.br/pesquisa_legislacao/85633/lei-8033": {
   "v": 3,
