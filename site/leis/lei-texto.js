@@ -144,6 +144,7 @@
     if (resto.length <= 110 && !/[.:;]$/.test(resto)) return { titulo: resto, corpo: "" };
     return { titulo: "", corpo: resto };
   }
+  var RX_NOME_PENDENTE = /(?:^|\s)(?:D[AEO]S?|E|A[OS]?|À|NO|NA|NOS|NAS|EM|PARA|POR|COM|SOBRE)$/i;
   function ehNome(t) {   // linha curta que dá nome à divisão anterior ("DAS PESSOAS")
     return t.length <= 120 && !/\.$/.test(t) && !numArt(t) && !RX_ARTIGO_TRATADO.test(t) && !/^(§|Par[áa]grafo|[IVXLCDM]+\s*[-–—]|[a-z]\))/.test(t) && !divisaoDaLei(t) && !RX_LETRAS.test(t);
   }
@@ -168,16 +169,20 @@
         continue;
       }
       var pedacos = /^(PARTE|LIVRO|T[ÍI]TULO|CAP[ÍI]TULO|SE[ÇC][ÃA]O|SUBSE[ÇC][ÃA]O)\b/i.test(t) && t.length < 400 ? t.split(RX_PEDACO) : [t];
-      var achou = false;
-      pedacos.forEach(function (x) {
+      var achou = false, juntou = false;
+      pedacos.forEach(function (x, idx) {
         var d = divisaoDaLei(x);
         if (!d) return;
         achou = true;
         out.push('<p style="' + ST_DIV + '">' + escapeHtml(d.numero) + "</p>");
-        if (d.nome) out.push('<p style="' + ST_NOME + '">' + escapeHtml(d.nome) + "</p>");
+        var nome = d.nome;
+        // "CAPÍTULO I DO" + "ÂMBITO DE APLICAÇÃO DESTA LEI": o nome terminou numa preposição, a continuação vem no parágrafo seguinte
+        if (nome && idx === pedacos.length - 1 && RX_NOME_PENDENTE.test(nome) && i + 1 < ps.length && ehNome(ps[i + 1])) { nome += " " + ps[i + 1]; juntou = true; }
+        if (nome) out.push('<p style="' + ST_NOME + '">' + escapeHtml(nome) + "</p>");
       });
       if (achou) {
         var ultimo = divisaoDaLei(pedacos[pedacos.length - 1]);
+        if (juntou) i++;
         i++;
         if (ultimo && !ultimo.nome && i < ps.length && ehNome(ps[i])) { out.push('<p style="' + ST_NOME + '">' + escapeHtml(ps[i]) + "</p>"); i++; }
         continue;

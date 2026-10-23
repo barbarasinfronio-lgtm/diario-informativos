@@ -617,7 +617,11 @@
 
   var leitorFechar = null;
   // lei-texto.js: divisões (Livro, Título, Capítulo…) centralizadas e artigos justificados no leitor
-  (function () { var sc = document.createElement("script"); sc.src = CDN_BASE + "lei-texto.js"; sc.async = true; document.head.appendChild(sc); })();
+  var libLeiTexto = new Promise(function (ok) {
+    var sc = document.createElement("script"); sc.src = CDN_BASE + "lei-texto.js"; sc.async = true;
+    sc.onload = ok; sc.onerror = ok;            // se não carregar, o leitor segue com o desenho simples
+    document.head.appendChild(sc);
+  });
   // "Leia-me": abre a lei num card sobre a página (como nas Revisões), com texto justificado,
   // destaque/anotação (Meus Cadernos) e o "Já li esta lei".
   function abrirTexto(botao, comJulgados, extra) {
@@ -690,7 +694,7 @@
     document.addEventListener("keydown", tecla);
     document.body.appendChild(fundo);
     document.body.style.overflow = "hidden";
-    carregarTexto(tid).then(function (j) {
+    Promise.all([carregarTexto(tid), libLeiTexto]).then(function (r) { return r[0]; }).then(function (j) {     // espera lei-texto.js: sem ela o texto saía sem o centralizado/justificado
       if (leitorFechar !== fechar) return;
       var psLei = paragrafosDaLei(j.p || []);
       var corpo = window.EstudaManaLeiTexto ? window.EstudaManaLeiTexto.htmlTudo(psLei) : psLei.map(paragrafoHtml).join("");
