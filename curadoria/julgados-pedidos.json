@@ -1,7 +1,8 @@
 {
  "feitos": {
   "edcl-no-agint-no-resp-1880254-mt": "ok",
-  "cc-155853": "ja-no-site"
+  "cc-155853": "ja-no-site",
+  "agint-nos-edcl-no-resp-1880922": "nao-entendi"
  },
  "falhas": {
   "hc-205658": {
@@ -17,6 +18,10 @@
    "primeira": "2026-10-22",
    "ultima": "2026-10-22",
    "tentativas": 1
+  },
+  "agint-nos-edcl-no-resp-1880922": {
+   "consulta": "AgInt nos EDcl no REsp: 1880922'",
+   "motivo": "não entendi a classe e o número"
   }
  },
  "incluidos": {
