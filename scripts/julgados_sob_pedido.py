@@ -91,7 +91,8 @@ def entender(consulta):
     "RE 1037396 AgR-ED" → base "RE", depois "AgR-ED" (o jeito do STF de escrever a cadeia). "STF HC 123456" → tribunal "STF".
     "Ag-AIRR-1000-12.2015.5.02.0001" (número único do CNJ, TST) → num "1000-12.2015.5.02.0001". O tribunal escrito na
     busca (STF, STJ, TST, TSE, STM) vale como escolha de onde procurar."""
-    toks = re.sub(r"[,;()]", " ", str(consulta or "")).split()
+    # vírgula, ponto e vírgula, parênteses, aspas e dois-pontos ("REsp: 1880922'") não fazem parte da classe nem do número
+    toks = re.sub(r"[,;:()\"'“”‘’´`]", " ", str(consulta or "")).split()
     tribunal = ""
     resto = []
     for t in toks:
