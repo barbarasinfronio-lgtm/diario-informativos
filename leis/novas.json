@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-10-21",
+ "atualizado": "2026-10-25",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 25,
  "leis": [
@@ -683,94 +683,6 @@
    "ementa": "Altera a Lei nº 12.629, de 11 de maio de 2012, para dispor sobre a criação de estrutura de prevenção de tromboembolismo venoso nos hospitais públicos e privados.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15448.htm",
    "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15445-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.445/2026",
-   "pedido": "Lei 15.445/2026",
-   "data": "2026-06-26",
-   "ementa": "Cria a Rota Turística da Fé, no Estado do Ceará.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15445.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15444-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.444/2026",
-   "pedido": "Lei 15.444/2026",
-   "data": "2026-06-26",
-   "ementa": "Cria a Rota Turística das Cidades Coloniais Alagoanas, no Estado de Alagoas.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15444.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15443-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.443/2026",
-   "pedido": "Lei 15.443/2026",
-   "data": "2026-06-26",
-   "ementa": "Inclui no Calendário Turístico Oficial do Brasil as datas das romarias do Município de Juazeiro do Norte, na região do Cariri, no Estado do Ceará.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15443.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15442-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.442/2026",
-   "pedido": "Lei 15.442/2026",
-   "data": "2026-06-26",
-   "ementa": "Altera a Lei nº 14.308, de 8 de março de 2022, para instituir campanhas de conscientização sobre os sintomas dos principais tipos de câncer infantil para permitir seu diagnóstico precoce.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15442.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15441-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.441/2026",
-   "pedido": "Lei 15.441/2026",
-   "data": "2026-06-26",
-   "ementa": "Fixa o limite máximo permitido de chumbo em tintas e em materiais similares de revestimento de superfícies; e revoga a Lei nº 11.762, de 1º de agosto de 2008.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15441.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15440-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.440/2026",
-   "pedido": "Lei 15.440/2026",
-   "data": "2026-06-26",
-   "ementa": "Altera a Lei nº 6.360, de 23 de setembro de 1976 (Lei de Vigilância Sanitária sobre Produtos Farmacêuticos), para exigir a comprovação da certificação em Boas Práticas de Fabricação (BPF) no registro de medicamentos e insumos farmacêuticos de fabricação nacional ou estrangeira.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15440.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15439-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.439/2026",
-   "pedido": "Lei 15.439/2026",
-   "data": "2026-06-26",
-   "ementa": "Dispõe sobre os direitos de pessoas com diabetes mellitus tipo 1 e sobre ações voltadas à promoção de sua participação plena e efetiva na sociedade em igualdade de condições com as demais pessoas.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15439.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lc-232-2026",
-   "tipo": "LC",
-   "numero": "Lei Complementar nº 232/2026",
-   "pedido": "Lei Complementar 232/2026",
-   "data": "2026-06-26",
-   "ementa": "Estabelece condições à concessão de isenção do Imposto sobre Serviços de Qualquer Natureza (ISS) para fatos geradores relacionados à organização ou à realização da Copa do Mundo Feminina da FIFA 2027.",
-   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp232.htm",
-   "noAcervo": true,
    "visto": "2026-10-21"
   }
  ]
