@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-10-25",
+ "atualizado": "2026-10-29",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 25,
+ "ignoradas": 23,
  "leis": [
   {
    "chave": "lc-238-2026",
@@ -628,61 +628,6 @@
    "ementa": "Altera a Lei Complementar nº 79, de 7 de janeiro de 1994, para destinar recursos do Fundo Penitenciário Nacional (Funpen) à formação, ao aperfeiçoamento, à especialização e à capacitação continuada dos servidores do sistema penitenciário nacional e dos policiais penais.",
    "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp233.htm",
    "noAcervo": true,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15452-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.452/2026",
-   "pedido": "Lei 15.452/2026",
-   "data": "2026-06-30",
-   "ementa": "Acrescenta art. 326-C à Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro), para reconhecer o Dia Mundial em Memória das Vítimas do Trânsito.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15452.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15451-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.451/2026",
-   "pedido": "Lei 15.451/2026",
-   "data": "2026-06-30",
-   "ementa": "Altera a Lei nº 11.346, de 15 de setembro de 2006, que cria o Sistema Nacional de Segurança Alimentar e Nutricional (Sisan), para priorizar o abastecimento de alimentos à rede de acolhimento a mulheres em situação de violência doméstica e familiar e a seus dependentes.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15451.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15450-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.450/2026",
-   "pedido": "Lei 15.450/2026",
-   "data": "2026-06-30",
-   "ementa": "Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para instituir medida destinada à prevenção do uso inadequado de psicofármacos em crianças e adolescentes.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15450.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15449-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.449/2026",
-   "pedido": "Lei 15.449/2026",
-   "data": "2026-06-30",
-   "ementa": "Cria o Roteiro Turístico Caminho da Fé, nos Estados de Minas Gerais e de São Paulo.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15449.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15448-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.448/2026",
-   "pedido": "Lei 15.448/2026",
-   "data": "2026-06-30",
-   "ementa": "Altera a Lei nº 12.629, de 11 de maio de 2012, para dispor sobre a criação de estrutura de prevenção de tromboembolismo venoso nos hospitais públicos e privados.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15448.htm",
-   "noAcervo": false,
    "visto": "2026-10-21"
   }
  ]
