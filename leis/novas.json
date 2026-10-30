@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-10-29",
+ "atualizado": "2026-10-30",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 23,
+ "ignoradas": 22,
  "leis": [
   {
    "chave": "lc-238-2026",
@@ -595,39 +595,6 @@
    "ementa": "Regulamenta a profissão de protesista/ortesista ortopédico.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15456.htm",
    "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15455-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.455/2026",
-   "pedido": "Lei 15.455/2026",
-   "data": "2026-07-01",
-   "ementa": "Estabelece medidas de proteção e acolhimento de trabalhadoras e trabalhadores resgatados de condição análoga à de escravo; vincula o poder público e os empregadores à obrigação de efetivar a proteção de trabalhadores no ambiente doméstico; e altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), as Leis nºs 7.998, de 11 de janeiro de 1990, 10.593, de 6 de dezembro de 2002, e 11.340, de 7 de agosto de 2006 (Lei Maria da Penha), e a Lei Complementar nº 150, de 1º de junho de 2015, para incluir disposições referentes ao combate ao trabalho em condição análoga à de escravo.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15455.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15454-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.454/2026",
-   "pedido": "Lei 15.454/2026",
-   "data": "2026-07-01",
-   "ementa": "Dispõe sobre a transferência simbólica da sede do governo federal para o Município de Salvador, no Estado da Bahia, na data de 2 de julho de cada ano.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15454.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lc-233-2026",
-   "tipo": "LC",
-   "numero": "Lei Complementar nº 233/2026",
-   "pedido": "Lei Complementar 233/2026",
-   "data": "2026-07-01",
-   "ementa": "Altera a Lei Complementar nº 79, de 7 de janeiro de 1994, para destinar recursos do Fundo Penitenciário Nacional (Funpen) à formação, ao aperfeiçoamento, à especialização e à capacitação continuada dos servidores do sistema penitenciário nacional e dos policiais penais.",
-   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp233.htm",
-   "noAcervo": true,
    "visto": "2026-10-21"
   }
  ]
