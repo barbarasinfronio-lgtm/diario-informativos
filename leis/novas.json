@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-10-30",
+ "atualizado": "2026-11-01",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 22,
+ "ignoradas": 20,
  "leis": [
   {
    "chave": "lc-238-2026",
@@ -583,17 +583,6 @@
    "data": "2026-07-07",
    "ementa": "Altera a Lei nº 7.405, de 12 de novembro de 1985, para estabelecer a utilização do Símbolo Internacional de Acessibilidade.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15459.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15456-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.456/2026",
-   "pedido": "Lei 15.456/2026",
-   "data": "2026-07-03",
-   "ementa": "Regulamenta a profissão de protesista/ortesista ortopédico.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15456.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
