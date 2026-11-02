@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1234, ano: 2026, data: "2026-10-26", sumula: null },
     { edicao: 1233, ano: 2026, data: "2026-10-19", sumula: null },
     { edicao: 1232, ano: 2026, data: "2026-10-13", sumula: null },
     { edicao: 1231, ano: 2026, data: "2026-10-05", sumula: null },
@@ -1242,6 +1243,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 907, ano: 2026, data: "2026-10-27", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0907" },
     { edicao: 906, ano: 2026, data: "2026-10-20", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0906" },
     { edicao: 905, ano: 2026, data: "2026-10-13", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0905" },
     { edicao: 904, ano: 2026, data: "2026-10-06", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0904" },
@@ -2339,6 +2341,7 @@
 
   // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
   var STFPV_DATA = [
+    { edicao: 34, ano: 2026, data: "2026-10-30", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE34_2026_Partes1e2.pdf" },
     { edicao: 33, ano: 2026, data: "2026-10-23", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE33_2026_Partes1e2.pdf" },
     { edicao: 32, ano: 2026, data: "2026-10-16", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE32_2026_Partes1e2.pdf" },
     { edicao: 31, ano: 2026, data: "2026-10-09", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE31_2026_Partes1e2.pdf" },
@@ -3284,6 +3287,7 @@
   ];
 
   var CNJ_DATA = [
+    { edicao: 15, ano: 2026, data: "2026-10-29", sumula: null, link: "https://atos.cnj.jus.br/files/original224649202610296ae3ccd9e4356.pdf" },
     { edicao: 14, ano: 2026, data: "2026-10-13", sumula: null, link: "https://atos.cnj.jus.br/files/original193459202610136ace87e350d8d.pdf" },
     { edicao: 13, ano: 2026, data: "2026-09-14", sumula: null, link: "https://atos.cnj.jus.br/files/original214336202609146aa86a88879c5.pdf" },
     { edicao: 12, ano: 2026, data: "2026-09-04", sumula: false, link: "https://atos.cnj.jus.br/files/original211412202609046a9b34a42f24f.pdf" },
