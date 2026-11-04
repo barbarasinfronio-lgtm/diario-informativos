@@ -743,5 +743,12 @@
   "numero": "Lei Estadual (BA) nº 12.365/2011",
   "nome": "Norma sobre direitos das pessoas com deficiência do Estado da Bahia (citada no edital)",
   "motivo": "erro ao abrir: https://rubi.casaruibarbosa.gov.br/bitstream/handle/20.500.11997/16810/BA-SEC-Bahia.pdf?sequence=1&isAllowed=y → sem resposta ([Errno 60] Op"
+ },
+ "https://www.al.rn.leg.br/storage/legislacao/2023/x5bv6pt2c1g28ciaqr2b9oq0jt7u5w.pdf": {
+  "v": 3,
+  "em": "2026-11-04",
+  "numero": "Lei Estadual (RN) nº 11.284/2022",
+  "nome": "Estatuto Estadual de Promoção e Igualdade Étnico-Racial do Rio Grande do Norte",
+  "motivo": "erro ao abrir: https://www.al.rn.leg.br/storage/legislacao/2023/x5bv6pt2c1g28ciaqr2b9oq0jt7u5w.pdf → sem resposta (_ssl.c:1112: The handshake operation tim"
  }
 }
