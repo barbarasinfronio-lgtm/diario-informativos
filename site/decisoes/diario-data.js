@@ -1243,6 +1243,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 908, ano: 2026, data: "2026-11-03", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0908" },
     { edicao: 907, ano: 2026, data: "2026-10-27", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0907" },
     { edicao: 906, ano: 2026, data: "2026-10-20", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0906" },
     { edicao: 905, ano: 2026, data: "2026-10-13", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0905" },
