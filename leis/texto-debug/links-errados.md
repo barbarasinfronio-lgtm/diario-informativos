@@ -97,7 +97,6 @@
 - Lei Estadual (SC) nº 12.929/2004 — Organizações Sociais do Estado de Santa Catarina: https://leis.alesc.sc.gov.br/ato-normativo/14645 → abre outra norma ("LEI Nº 12.963, de 18 de maio de 2004")
 - Lei Estadual (SC) nº 3.938/1966 — Código Tributário do Estado de Santa Catarina: https://legislacao.sef.sc.gov.br/html/leis/1966/lei_66_03938.htm → erro ao abrir: HTTP 404 (o site recusou ou a página mudou)
 - Lei Estadual (SC) nº 6.745/1985 — Estatuto dos Funcionários Públicos Civis de Santa Catarina: https://leis.alesc.sc.gov.br/ato-normativo/8457 → abre outra norma ("LEI N 7.216, de 03 de maio de 1988")
-- Lei Estadual (SP) nº 10.177/1998 — Processo Administrativo do Estado de São Paulo: https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html → erro ao abrir: HTTP 404 (o site recusou ou a página mudou)
 - Lei Estadual (TO) nº 1.287/2001 — Código Tributário do Estado do Tocantins: https://www.al.to.leg.br/arquivos/lei_1287-2001_43522.PDF → erro ao abrir: HTTP 404 (o site recusou ou a página mudou)
 - Lei Estadual (TO) nº 1.560/2005 — Sistema Estadual de Unidades de Conservação do Tocantins (SEUC): https://www.al.to.leg.br/arquivos/lei_1560-2005_43795.PDF → erro ao abrir: HTTP 404 (o site recusou ou a página mudou)
 - Lei Estadual (TO) nº 1.917/2008 — Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins: https://www.al.to.leg.br/arquivos/lei_1917-2008_44152.PDF → erro ao abrir: HTTP 404 (o site recusou ou a página mudou)

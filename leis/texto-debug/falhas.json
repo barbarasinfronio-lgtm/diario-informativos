@@ -674,13 +674,6 @@
   "nome": "Dispõe sobre a Política Estadual do Meio Ambiente do Pará",
   "motivo": "erro ao abrir: https://lex.pge.pa.gov.br/api/atos/2104 → sem resposta ([Errno 60] Operation timed out)"
  },
- "https://www.al.sp.gov.br/repositorio/legislacao/lei/1998/lei-10177-30.12.1998.html": {
-  "v": 3,
-  "em": "2026-10-17",
-  "numero": "Lei Estadual (SP) nº 10.177/1998",
-  "nome": "Processo Administrativo do Estado de São Paulo",
-  "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
- },
  "https://progestao.ana.gov.br/acoes-estados/pr/lei-12-726-99_pr.pdf": {
   "v": 3,
   "em": "2026-10-21",
