@@ -55,6 +55,7 @@
     buscaInfo.hidden = !termosBusca.length;
     buscaInfo.textContent = n === 1 ? "1 resultado" : n + " resultados";
   }
+  var textoBuscado = "";
   function criarBusca(placeholder, aoMudar) {
     if (!listRoot || !listRoot.parentNode) return;
     var box = document.createElement("div");
@@ -70,6 +71,7 @@
     buscaInfo.className = "busca-resultado";
     buscaInfo.hidden = true;
     function mudou() {
+      textoBuscado = input.value.trim();
       limpar.hidden = !input.value;
       // busca só vale com pelo menos 2 caracteres (ex.: IR, ITCMD, IPTU); com 1, mostra a lista normal
       var digitado = semAcentoBusca(input.value).trim();
@@ -107,6 +109,60 @@
   });
 
   var currentOrg = ORG_ORDER.filter(function (k) { return NORMAS_DATA[k].status === "disponivel"; })[0] || ORG_ORDER[0];
+
+  // ---- Pedir norma que não está no Diário (só o Diário das Resoluções) ----
+  // Quem busca uma resolução, recomendação ou provimento que não está na lista pode pedir: o pedido vai para o Firestore
+  // (pedidos-normas/<órgão-busca>, só para quem entrou) e o robô do Mac (scripts/normas_sob_pedido.py) procura no acervo
+  // dos atos do órgão e acrescenta em normas/pedidas.json, que entra na lista aqui.
+  var PEDIDOS = CFG.pedidos !== false && !CFG.data;
+  function slugPedido(t) {
+    return String(t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 50);
+  }
+  function caixaPedir(consulta, orgLabel) {
+    return '<div class="norma-pedido" data-consulta="' + esc(consulta) + '" style="margin:12px 0 6px;padding:12px 14px;border:1px dashed var(--surface-line,#94a3b8);border-radius:8px;">' +
+      '<p class="norma-pedido-msg" style="margin:0 0 8px;font-size:calc(13px * var(--fs-scale,1));">Não achou <b>“' + esc(consulta) + '”</b> em ' + esc(orgLabel) + '? Peça para adicionarmos: um robô procura no acervo de atos do órgão e a norma entra aqui na próxima atualização do site.</p>' +
+      '<button type="button" class="norma-pedir chip" style="cursor:pointer;">📨 Pedir esta norma</button></div>';
+  }
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  if (PEDIDOS && listRoot) {
+    listRoot.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest(".norma-pedir");
+      if (!b) return;
+      var caixa = b.closest(".norma-pedido"), msg = caixa.querySelector(".norma-pedido-msg");
+      var consulta = caixa.getAttribute("data-consulta") || "";
+      if (!(viewerId && window.firebase && firebase.firestore)) {
+        msg.textContent = "Para pedir uma norma, entre com o Google ou com e-mail e senha (botão “Entrar para salvar seu progresso”, no topo da página).";
+        return;
+      }
+      b.disabled = true;
+      firebase.firestore().doc("pedidos-normas/" + currentOrg + "-" + slugPedido(consulta)).set({ consulta: consulta.slice(0, 120), orgao: currentOrg, em: new Date().toISOString() })
+        .then(function () { b.textContent = "✅ Pedido enviado"; msg.textContent = "Pedido enviado! Se a norma existir no acervo do órgão, ela entra aqui na próxima atualização do site."; })
+        .catch(function (err) {
+          if (err && err.code === "permission-denied") { b.textContent = "✅ Já foi pedida"; msg.textContent = "Esta norma já tinha sido pedida. Ela entra aqui quando o robô a buscar."; }
+          else { b.disabled = false; msg.textContent = "Não consegui enviar o pedido agora. Tente de novo."; }
+        });
+    });
+  }
+  // Normas que leitores pediram e o robô já trouxe (normas/pedidas.json): entram na lista do órgão.
+  function carregarPedidas() {
+    if (!PEDIDOS) return;
+    fetch("https://barbarasinfronio-lgtm.github.io/diario-informativos/normas/pedidas.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j) return;
+        var novas = 0;
+        Object.keys(j).forEach(function (org) {
+          if (!stateByOrg[org]) return;
+          (j[org] || []).forEach(function (n) {
+            var ja = stateByOrg[org].some(function (r) { return r.tipo === n.tipo && String(r.numero) === String(n.numero); });
+            if (ja) return;
+            stateByOrg[org].push({ tipo: n.tipo, numero: n.numero, ementa: n.ementa, link: n.link, lida: false, lidaEm: null, pedida: true });
+            novas++;
+          });
+        });
+        if (novas) { applyMap(readLocal()); render(); }
+      }).catch(function () {});
+  }
 
   function todayIso() {
     var now = new Date();
@@ -238,6 +294,9 @@
     });
     visiveis = ordenarNormas(visiveis);
     mostrarResultadoBusca(visiveis.length, ["norma", "normas"]);
+    if (PEDIDOS && termosBusca.length && !visiveis.length && textoBuscado) {
+      listRoot.insertAdjacentHTML("beforeend", caixaPedir(textoBuscado, info.label.split(" — ")[0]));
+    }
 
     visiveis.forEach(function (row) {
       var li = document.createElement("li");
@@ -459,6 +518,8 @@
     ? window.ContaEmail.attach({ setNote: setNote, recoverHint: "Já ativei — entrar neste aparelho" })
     : { renderAccountUI: function () {} };
   var renderAccountUI = contaEmail.renderAccountUI;
+
+  carregarPedidas();
 
   // ---- Controle do seletor de órgão ---------------------------------------
   if (orgaoSelect) {
