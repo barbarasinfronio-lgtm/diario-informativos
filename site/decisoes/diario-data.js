@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1235, ano: 2026, data: "2026-11-04", sumula: null },
     { edicao: 1234, ano: 2026, data: "2026-10-26", sumula: null },
     { edicao: 1233, ano: 2026, data: "2026-10-19", sumula: null },
     { edicao: 1232, ano: 2026, data: "2026-10-13", sumula: null },
