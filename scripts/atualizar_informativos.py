@@ -2192,7 +2192,19 @@ def _pdf_do_tse(n, ano, link):
         return None
     status, tipo, corpo = buscar(link)
     print(f"  TSE nº {n}/{ano}: PDF → HTTP {status}")
-    return corpo if status == 200 and eh_pdf(tipo, corpo) else None
+    if status == 200 and eh_pdf(tipo, corpo):
+        return corpo
+    if status == 403 and _achar_firefox() and not _ff["indisponivel"]:
+        # o TSE barra o robô (403) mas entrega o PDF a um navegador: baixa de dentro da página do Infojur, como no STF
+        try:
+            corpo = baixar_via_firefox(link, "https://www.tse.jus.br/jurisprudencia/informativo-tse",
+                                       valida=lambda x: "informativo" in x.lower())
+            print(f"  TSE nº {n}/{ano}: PDF pelo Firefox → " + (f"{len(corpo)} bytes" if corpo else "não veio"))
+            if corpo and eh_pdf("", corpo):
+                return corpo
+        except Falha as e:
+            print(f"  TSE nº {n}/{ano}: Firefox: {e}")
+    return None
 
 
 def _pdf_do_informativo(org, n, link):
