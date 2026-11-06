@@ -357,6 +357,8 @@ atexit.register(_fechar_janela_chrome)
 def pagina_chrome_real(url, valida=None, sem_firefox=False):
     if not sem_firefox and _achar_firefox() and not _ff["indisponivel"]:
         return pagina_firefox(url, valida)   # sem janela; o Chrome só se o Firefox falhar
+    if SO_FIREFOX:
+        _sem_chrome(url, "o Firefox não abriu a página" if _achar_firefox() else "não achei o Firefox neste Mac")
     if sys.platform != "darwin":
         raise Falha(f"{url} → o site só abre no Chrome do Mac")
     texto = _osascript("abrir", url)
@@ -372,6 +374,15 @@ def pagina_chrome_real(url, valida=None, sem_firefox=False):
 
 
 _via_chrome_real = set()
+
+# O robô usa SÓ o Firefox (invisível, sem tirar o foco da sua tela). O Chrome (invisível ou de verdade) só entra se você
+# pedir: ROBO_CHROME=1 python3 scripts/atualizar_informativos.py …  Sem Firefox, ou se ele for barrado pelo site, a página
+# vira falha (aparece no Resumo) em vez de abrir o Chrome.
+SO_FIREFOX = os.environ.get("ROBO_CHROME") != "1"
+
+
+def _sem_chrome(url, motivo):
+    raise Falha(f"{url} → {motivo}; o robô não usa o Chrome (use o Firefox, ou rode com ROBO_CHROME=1 para permitir o Chrome)")
 
 
 # Firefox invisível (preferido): o robô comanda um Firefox sem janela pelo
@@ -583,11 +594,22 @@ def pagina(url, valida=None):
         try:
             return pagina_firefox(url, valida, estrito=True)
         except Falha as e:
+            if SO_FIREFOX:
+                _sem_chrome(url, f"o Firefox não conseguiu abrir ({_ff['indisponivel'] or e})")
             if not _ff["indisponivel"] and "anti-robô" not in str(e):
                 raise
             print(f"  (Firefox: {_ff['indisponivel'] or e}; tentando o Chrome)")
             _via_chrome_real.add(host)
             return pagina_chrome_real(url, valida, sem_firefox=True)
+    if SO_FIREFOX and not _achar_firefox():
+        # sem Firefox: ainda lê o que o site entrega sem navegador; se barrar (403), não abre o Chrome
+        status, tipo, corpo = buscar(url)
+        print(f"  {url} → HTTP {status}")
+        if status == 200:
+            return texto_de(corpo, tipo)
+        if status == 403:
+            _sem_chrome(url, "o site barrou o robô e o Firefox não está instalado neste Mac")
+        raise Falha(f"{url} → HTTP {status} (o site recusou ou a página mudou)")
     if host in _via_chrome_real:
         return pagina_chrome_real(url, valida)
     if host not in _via_navegador:
