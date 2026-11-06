@@ -845,16 +845,17 @@ def tse(dados):
     achadas, erros = {}, []
     for url in urls:
         try:
-            t = pagina(url, valida=lambda x: "informativo-tse-no" in x)
+            t = pagina(url, valida=lambda x: "informativo-tse-no" in x or "tse-no-" in x)
         except Falha as e:
             erros.append(str(e))
             continue
-        for href in re.findall(r'href="([^"]*informativo-tse-no-\d+[^"]*)"', t):
+        # o nome do arquivo mudou na edição 15 ("tse-no-15-ano-28-…" em vez de "tse-informativo-tse-no-14-ano-28-…")
+        for href in re.findall(r'href="([^"]*(?:informativo-tse-no-\d+|tse-no-\d+-ano-\d+)[^"]*)"', t):
             href = html.unescape(href).split("?")[0].split("#")[0]
             href = re.sub(r"/(view|@@\w+|at_download/file)$", "", href)
             link = urllib.parse.urljoin(url + "/", href)
             slug = link.rstrip("/").rsplit("/", 1)[-1]
-            m = re.match(r"(?:tse-)?informativo-tse-no-(\d+)-ano-\d+-(.*)$", slug)
+            m = re.match(r"(?:tse-)?(?:informativo-tse-)?no-(\d+)-ano-\d+-(.*)$", slug)
             d = re.search(r"-(\d{1,2})o?-de-([a-z\u00e7]+)-de-(\d{4})$", slug)
             if not (m and d and mes_num(d.group(2))):
                 continue
