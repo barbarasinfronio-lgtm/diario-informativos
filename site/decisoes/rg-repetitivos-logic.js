@@ -33,7 +33,7 @@
     OMISSOES: { rotulo: 'Omissões', titulo: 'Omissões inconstitucionais reconhecidas pelo STF' },
     RESUMOS:  { rotulo: 'Resumos',  titulo: 'Resumos de decisões do STF (fatos, fundamentos, tese e placar)' },
     COVID:    { rotulo: 'COVID-19', titulo: 'Decisões do STF sobre a pandemia de COVID-19' },
-    INFORMATIVOS: { rotulo: 'Informativos', titulo: 'Julgados dos informativos do STJ e do STF — tese e resumo' },
+    INFORMATIVOS: { rotulo: 'Informativos', titulo: 'Julgados dos informativos do STJ, do STF e do TSE — tese e resumo' },
     ACORDAOS: { rotulo: 'Acórdãos STJ', titulo: 'Acórdãos de mérito do STJ (turmas, seções e Corte Especial) — ementa e decisão' },
     ACORDAOS_TST: { rotulo: 'Acórdãos TST', titulo: 'Acórdãos do TST (Pleno, SDC, SDI-1 e SDI-2) com conteúdo de estudo — ementa e dispositivo' },
     ACORDAOS_STF: { rotulo: 'Acórdãos STF', titulo: 'Acórdãos do STF (Plenário e Turmas) com conteúdo de estudo — ementa, tese e resultado' }
@@ -593,6 +593,7 @@
           area: x[3], titulo: x[4], tese: paragrafar(x[5]), processo: x[6], relator: nomesDoProcesso(x[6]).relator, redator: nomesDoProcesso(x[6]).redator, data: x[7], info: x[2], risco: 'Alta',
           motivo: 'julgado divulgado em informativo — é a fonte que as bancas mais usam para cobrar jurisprudência recente',
           link: org === 'STJ' ? 'https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=' + ('0000' + x[2]).slice(-4) + '.cod.'
+            : org === 'TSE' ? 'https://www.tse.jus.br/jurisprudencia/informativo-tse/arquivos/' + String(x[2]).split('/')[1]   // TSE: a edição é "15/2026" (a numeração recomeça todo ano)
             : 'https://portal.stf.jus.br/textos/verTexto.asp?servico=informativoSTF&pagina=Informativo' + x[2],
           _chave: x[0], _parte: x[8] };
       },

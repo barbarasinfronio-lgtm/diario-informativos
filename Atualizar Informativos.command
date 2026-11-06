@@ -52,7 +52,7 @@ if [ ! -s provas/pasta-das-provas.txt ]; then
   fi
   echo
 fi
-python3 scripts/atualizar_informativos.py STF STF-PV STJ STJ-EXTRA STJ-BOLETIM CARDS COBRANCAS TSE CNJ TST CNMP TESES
+python3 scripts/atualizar_informativos.py STF STF-PV STJ STJ-EXTRA STJ-BOLETIM TSE CARDS COBRANCAS CNJ TST CNMP TESES
 resultado=$?
 
 for f in "${ARQUIVOS[@]}"; do [ -e "$f" ] && git add "$f"; done
