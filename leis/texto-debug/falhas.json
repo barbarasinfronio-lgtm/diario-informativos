@@ -641,10 +641,10 @@
  },
  "http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf": {
   "v": 3,
-  "em": "2026-10-16",
+  "em": "2026-11-06",
   "numero": "Lei Estadual (PA) nº 8.878/2019",
   "nome": "Regularização fundiária no Estado do Pará",
-  "motivo": "erro ao abrir: http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf → sem resposta (ConnectionResetError)"
+  "motivo": "erro ao abrir: http://portal.iterpa.pa.gov.br/wp-content/uploads/2021/02/lei_no8.878-2019.pdf → sem resposta ([Errno 60] Operation timed out)"
  },
  "https://portal.iterpa.pa.gov.br/wp-content/uploads/2021/03/LEI-No-4.835-DE-03-DE-MAIO-DE-1979.pdf": {
   "v": 3,
