@@ -522,18 +522,32 @@ fetch(url, {credentials: 'include'}).then(r => r.arrayBuffer().then(b => {
 
 def baixar_via_firefox(url, pagina_da_origem, valida=None):
     """Bytes de um arquivo (PDF) que o site só entrega a um navegador de verdade:
-    abre uma página do mesmo site (passa a verificação anti-robô) e baixa de dentro dela."""
+    abre uma página do mesmo site (passa a verificação anti-robô) e baixa de dentro dela.
+    PDFs grandes (os Infojur do TSE têm 18 a 19 MB) levam mais de 60 s: o tempo do script sobe para 5 minutos
+    só durante o download."""
     import base64
     pagina_firefox(pagina_da_origem, valida)
-    for _ in range(6):
-        r = _mn_enviar("WebDriver:ExecuteAsyncScript", {"script": _JS_BAIXAR, "args": [url]})
-        v = r.get("value") if isinstance(r, dict) else None
-        if v and v.get("status") == 200 and v.get("b64"):
-            return base64.b64decode(v["b64"])
-        if v and v.get("status") not in (0, 403, 503):
-            return None
-        time.sleep(3)
-    return None
+    _mn_enviar("WebDriver:SetTimeouts", {"script": 300000})
+    _ff["sock"].settimeout(330)
+    try:
+        for _ in range(4):
+            r = _mn_enviar("WebDriver:ExecuteAsyncScript", {"script": _JS_BAIXAR, "args": [url]})
+            v = r.get("value") if isinstance(r, dict) else None
+            if v and v.get("status") == 200 and v.get("b64"):
+                return base64.b64decode(v["b64"])
+            if v and v.get("status") not in (0, 403, 503):
+                print(f"    (download pelo Firefox: HTTP {v.get('status')})")
+                return None
+            if v and v.get("erro"):
+                print(f"    (download pelo Firefox: {v['erro'][:120]})")
+            time.sleep(3)
+        return None
+    finally:
+        try:
+            _mn_enviar("WebDriver:SetTimeouts", {"script": 60000})
+            _ff["sock"].settimeout(ESPERA_CHROME + 30)
+        except Exception:
+            pass
 
 
 def pagina_firefox(url, valida=None, estrito=False):
