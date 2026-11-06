@@ -2181,6 +2181,20 @@ EDICOES_POR_VEZ = 12
 JANELA_EDICOES = 40
 
 
+def _pdf_do_tse(n, ano, link):
+    """O link da edição no Diário já serve o PDF (Infojur). Um PDF colocado à mão em informativos/pdf/infojur<n>_<ano>.pdf vale primeiro."""
+    manual = PASTA_INF / "pdf"
+    for nome in (f"infojur{n}_{ano}.pdf", f"infojur{n:02d}_{ano}.pdf"):
+        if (manual / nome).exists():
+            print(f"  TSE nº {n}/{ano}: usando o PDF de informativos/pdf/{nome}")
+            return (manual / nome).read_bytes()
+    if not link:
+        return None
+    status, tipo, corpo = buscar(link)
+    print(f"  TSE nº {n}/{ano}: PDF → HTTP {status}")
+    return corpo if status == 200 and eh_pdf(tipo, corpo) else None
+
+
 def _pdf_do_informativo(org, n, link):
     manual = PASTA_INF / "pdf"
     nomes = ([f"Informativo_stf_{n}.pdf"] if org == "STF"
@@ -2216,46 +2230,68 @@ def cards_informativos(dados):
     lidas = json.loads(lidas_f.read_text(encoding="utf-8")) if lidas_f.exists() else {}
     gravadas = ie.edicoes_gravadas()
     feitas, falhas = [], []
-    for org, var in (("STF", "STF_DATA"), ("STJ", "STJ_DATA")):
+    import informativos_tse as it
+    tse_gravadas = {str(x[2]) for x in json.loads((PASTA_INF / "indice.json").read_text(encoding="utf-8"))["itens"] if x[1] == "TSE"}
+    for org, var in (("STF", "STF_DATA"), ("STJ", "STJ_DATA"), ("TSE", "TSE_DATA")):
         registradas = dados.registradas(var)[:JANELA_EDICOES]
-        links = {e: l for e, _, l in registradas}
-        faltam = [e for e, _, _ in registradas
-                  if e not in gravadas.get(org, set()) and str(e) not in lidas.get(org, {})
-                  and (org != "STF" or e >= 1000)]
+        if org == "TSE":        # a numeração do TSE recomeça todo ano: a edição é "15/2026"
+            links = {(e, a): l for e, a, l in registradas}
+            faltam = [(e, a) for e, a, _ in registradas
+                      if f"{e}/{a}" not in tse_gravadas and f"TSE:{e}/{a}" not in lidas.get("TSE", {}) and a >= 2025]
+        else:
+            links = {e: l for e, _, l in registradas}
+            faltam = [e for e, _, _ in registradas
+                      if e not in gravadas.get(org, set()) and str(e) not in lidas.get(org, {})
+                      and (org != "STF" or e >= 1000)]
         if not faltam:
             print(f"  {org}: todas as edições recentes já têm cards")
             continue
-        print(f"  {org}: edições sem cards: {', '.join(map(str, faltam[:EDICOES_POR_VEZ]))}")
+        print(f"  {org}: edições sem cards: {', '.join(('%s/%s' % x) if org == 'TSE' else str(x) for x in faltam[:EDICOES_POR_VEZ])}")
         for n in faltam[:EDICOES_POR_VEZ]:
-            chave = f"{org}:{n}"
+            ano_tse = n[1] if org == "TSE" else None
+            if org == "TSE":
+                n = n[0]
+            chave = f"{org}:{n}/{ano_tse}" if org == "TSE" else f"{org}:{n}"
             try:
-                corpo = _pdf_do_informativo(org, n, links.get(n))
-                if corpo:
-                    blocos = ie.blocos_de_pdf(corpo, texto_de_pdf)
-                elif org == "STJ":   # sem o PDF: a página da edição
-                    t = pagina("https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
-                               f"?acao=pesquisarumaedicao&livre={n:04d}.cod.")
-                    blocos = ie.blocos_de_html(t)
+                if org == "TSE":
+                    corpo = _pdf_do_tse(n, ano_tse, links.get((n, ano_tse)))
+                    if not corpo:
+                        raise Falha("o PDF não abriu (ponha o PDF em informativos/pdf/infojur%d_%d.pdf e rode de novo)" % (n, ano_tse))
+                    itens = it.extrair_tse(corpo, n, ano_tse)
+                    if not itens:
+                        dbg = PASTA_INF / "debug"
+                        dbg.mkdir(exist_ok=True)
+                        (dbg / f"TSE-{n}-{ano_tse}.txt").write_text("\n".join(it.linhas_do_pdf(corpo))[:60000], encoding="utf-8")
                 else:
-                    raise Falha("o PDF não abriu (ponha o PDF em informativos/pdf/ e rode de novo)")
-                itens = ie.extrair(org, n, blocos)
-                if not itens:
-                    dbg = PASTA_INF / "debug"
-                    dbg.mkdir(exist_ok=True)
-                    (dbg / f"{org}-{n}.txt").write_text("\n\n".join(blocos)[:60000], encoding="utf-8")
+                    corpo = _pdf_do_informativo(org, n, links.get(n))
+                    if corpo:
+                        blocos = ie.blocos_de_pdf(corpo, texto_de_pdf)
+                    elif org == "STJ":   # sem o PDF: a página da edição
+                        t = pagina("https://processo.stj.jus.br/jurisprudencia/externo/informativo/"
+                                   f"?acao=pesquisarumaedicao&livre={n:04d}.cod.")
+                        blocos = ie.blocos_de_html(t)
+                    else:
+                        raise Falha("o PDF não abriu (ponha o PDF em informativos/pdf/ e rode de novo)")
+                    itens = ie.extrair(org, n, blocos)
+                    if not itens:
+                        dbg = PASTA_INF / "debug"
+                        dbg.mkdir(exist_ok=True)
+                        (dbg / f"{org}-{n}.txt").write_text("\n\n".join(blocos)[:60000], encoding="utf-8")
             except (Falha, RuntimeError) as e:
                 print(f"  {org} nº {n}: {e}")
                 falhas.append(chave)
                 continue
+            rotulo_ed = f"{n}/{ano_tse}" if org == "TSE" else str(n)
+            marca = f"{org}:{rotulo_ed}" if org == "TSE" else str(n)
             if not itens:
                 lidas.setdefault("tentativas", {})[chave] = lidas.get("tentativas", {}).get(chave, 0) + 1
-                print(f"  {org} nº {n}: nenhum julgado reconhecido (tentativa {lidas['tentativas'][chave]}/3)")
+                print(f"  {org} nº {rotulo_ed}: nenhum julgado reconhecido (tentativa {lidas['tentativas'][chave]}/3)")
                 if lidas["tentativas"][chave] >= 3:
-                    lidas.setdefault(org, {})[str(n)] = 0
+                    lidas.setdefault(org, {})[marca] = 0
                 continue
             ids = ie.acrescentar(itens)
-            lidas.setdefault(org, {})[str(n)] = len(ids)
-            print(f"  {org} nº {n}: {len(itens)} julgado(s) lido(s), {len(ids)} novo(s) no Diário das Decisões")
+            lidas.setdefault(org, {})[marca] = len(ids)
+            print(f"  {org} nº {rotulo_ed}: {len(itens)} julgado(s) lido(s), {len(ids)} novo(s) no Diário das Decisões")
             feitas.append({"edicao": n, "data": "", "ano": f"{org} · {len(ids)} julgado(s)"})
     lidas_f.write_text(json.dumps(lidas, ensure_ascii=False, indent=1), encoding="utf-8")
     if falhas:
@@ -2279,7 +2315,7 @@ def cobrancas_informativos(dados):
     return []
 
 
-TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("TSE", tse), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp), ("TJDFT", tjdft), ("TJMG", tjmg), ("TJAM", tjam), ("TJCE", tjce), ("TJES", tjes), ("TJPE", tjpe), ("TJPR", tjpr), ("TJRJ", tjrj), ("TJSC", tjsc),
+TRIBUNAIS = [("STF", stf), ("STF-PV", stf_pv), ("STJ", stj), ("STJ-EXTRA", stj_extra), ("STJ-BOLETIM", stj_boletim), ("TSE", tse), ("CARDS", cards_informativos), ("COBRANCAS", cobrancas_informativos), ("CNJ", cnj), ("TST", tst), ("CNMP", cnmp), ("TJDFT", tjdft), ("TJMG", tjmg), ("TJAM", tjam), ("TJCE", tjce), ("TJES", tjes), ("TJPE", tjpe), ("TJPR", tjpr), ("TJRJ", tjrj), ("TJSC", tjsc),
              ("TESES", teses), ("LEIS", leis)]
 
 
