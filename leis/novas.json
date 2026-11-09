@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-07",
+ "atualizado": "2026-11-09",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 16,
  "leis": [
+  {
+   "chave": "lei-15527-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.527/2026",
+   "pedido": "Lei 15.527/2026",
+   "data": "2026-11-06",
+   "ementa": "Institui o Exame Nacional de Avaliação da Formação Médica; e altera as Leis nºs 12.871, de 22 de outubro de 2013, 3.268, de 30 de setembro de 1957, 6.932, de 7 de julho de 1981, 13.959, de 18 de dezembro de 2019, e 10.861, de 14 de abril de 2004.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15527.htm",
+   "noAcervo": false,
+   "visto": "2026-11-09"
+  },
   {
    "chave": "lc-238-2026",
    "tipo": "LC",
