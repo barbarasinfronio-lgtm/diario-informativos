@@ -39,7 +39,7 @@
  },
  "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=141462&codTipoAto=1&tipoVisualizacao=compilado": {
   "v": 3,
-  "em": "2026-10-22",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (PR) nº 14.234/2003",
   "nome": "Institui prêmio de produtividade e o Fundo Especial da Procuradoria-Geral do Estado do Paraná",
   "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Lei 18471 - 14 de M\")"
@@ -151,14 +151,14 @@
  },
  "https://sapl.al.to.leg.br/norma/4771": {
   "v": 3,
-  "em": "2026-10-21",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (TO) nº 3.530/2019",
   "nome": "Código Estadual de Proteção à Fauna do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://sapl.al.to.leg.br/norma/4855": {
   "v": 3,
-  "em": "2026-10-21",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (TO) nº 3.614/2019",
   "nome": "Política Estadual de Resíduos Sólidos do Tocantins (PERS/TO)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -221,21 +221,21 @@
  },
  "https://www.al.to.leg.br/arquivos/lei_771-1995_43006.PDF": {
   "v": 3,
-  "em": "2026-10-21",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (TO) nº 771/1995",
   "nome": "Política Florestal do Estado do Tocantins (Código Florestal Estadual)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1560-2005_43795.PDF": {
   "v": 3,
-  "em": "2026-10-21",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (TO) nº 1.560/2005",
   "nome": "Sistema Estadual de Unidades de Conservação do Tocantins (SEUC)",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
  },
  "https://www.al.to.leg.br/arquivos/lei_1917-2008_44152.PDF": {
   "v": 3,
-  "em": "2026-10-21",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (TO) nº 1.917/2008",
   "nome": "Política Estadual sobre Mudanças Climáticas, Conservação Ambiental e Desenvolvimento Sustentável do Tocantins",
   "motivo": "erro ao abrir: HTTP 404 (o site recusou ou a página mudou)"
@@ -326,7 +326,7 @@
  },
  "https://sapl.al.ma.leg.br/norma/2358": {
   "v": 3,
-  "em": "2026-10-22",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (MA) nº 6.107/1994",
   "nome": "Estatuto dos Servidores Públicos Civis do Estado do Maranhão",
   "motivo": "erro ao abrir: não consegui ler o certificado de sapl.al.ma.leg.br: [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1129)"
@@ -606,21 +606,21 @@
  },
  "https://www.legislabahia.ba.gov.br/documentos/lei-no-11357-de-06-de-janeiro-de-2009": {
   "v": 3,
-  "em": "2026-10-22",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (BA) nº 11.357/2009",
   "nome": "Regime Próprio de Previdência dos Servidores Públicos do Estado da Bahia",
   "motivo": "abre outra norma (\"Voltar ao Sumário ORIENTAÇÕES PARA O ANO ELEITORAL - 2026 1 Expediente Orientaçõ\")"
  },
  "https://sapl.al.pi.leg.br/media/sapl/public/normajuridica/2015/3614/3614_texto_integral.pdf": {
   "v": 3,
-  "em": "2026-10-14",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (PI) nº 6.709/2015",
   "nome": "Reforma, regularização fundiária e colonização de terras devolutas rurais e urbanas do Estado do Piauí",
   "motivo": "erro ao abrir: não consegui ler o texto do PDF (PDF só com imagem, ou sem leitor de PDF neste computador)"
  },
  "https://www.al.mt.gov.br/norma-juridica/urn:lex:br;mato.grosso:estadual:lei.ordinaria:1977-09-20;3922/gerar-pdf-redacao?tipoTexto=compilado": {
   "v": 3,
-  "em": "2026-10-14",
+  "em": "2026-11-10",
   "numero": "Lei Estadual (MT) nº 3.922/1977",
   "nome": "Código de Terras do Estado de Mato Grosso",
   "motivo": "abre outra norma (\"O GOVERNADOR DO ESTADO DE MATO GROSSO Faço saber que a Assembleia Legislativa do\")"
