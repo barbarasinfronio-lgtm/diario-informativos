@@ -1084,7 +1084,7 @@
   "nome": "Concentração de atos na matrícula do imóvel (eficácia dos registros públicos perante terceiros)"
  },
  "ato2015-2018-2015-lei-l13105": {
-  "dispositivos": 829,
+  "dispositivos": 828,
   "nome": "Código de Processo Civil"
  },
  "ato2015-2018-2015-lei-l13123": {
@@ -2784,7 +2784,7 @@
   "nome": "Provimento CNJ nº 44/2015"
  },
  "cnj-2508": {
-  "dispositivos": 6,
+  "dispositivos": 7,
   "nome": "Provimento CNJ nº 45/2015"
  },
  "cnj-2509": {
@@ -4368,7 +4368,7 @@
   "nome": "Resolução CNJ nº 518/2023"
  },
  "cnj-5243": {
-  "dispositivos": 304,
+  "dispositivos": 305,
   "nome": "Provimento CNJ nº 149/2023"
  },
  "cnj-5253": {
@@ -5202,6 +5202,10 @@
  "cnj-7141": {
   "dispositivos": 1,
   "nome": "Resolução CNJ nº 702/2026"
+ },
+ "cnj-7151": {
+  "dispositivos": 1,
+  "nome": "Provimento CNJ nº 259/2026"
  },
  "cnj-7168": {
   "dispositivos": 1,
@@ -7264,7 +7268,7 @@
   "nome": "Resolução CSMPT nº 128/2016"
  },
  "csmpt-resolu-o-130-2016": {
-  "dispositivos": 3,
+  "dispositivos": 5,
   "nome": "Resolução CSMPT nº 130/2016"
  },
  "csmpt-resolu-o-132-2016": {
@@ -7503,17 +7507,37 @@
   "dispositivos": 1,
   "nome": "Resolução CSMPT nº 238/2025"
  },
+ "csmpt-resolu-o-238-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSMPT nº 238/2026"
+ },
  "csmpt-resolu-o-239-2025": {
   "dispositivos": 2,
   "nome": "Resolução CSMPT nº 239/2025"
+ },
+ "csmpt-resolu-o-239-2026": {
+  "dispositivos": 2,
+  "nome": "Resolução CSMPT nº 239/2026"
  },
  "csmpt-resolu-o-240-2025": {
   "dispositivos": 1,
   "nome": "Resolução CSMPT nº 240/2025"
  },
+ "csmpt-resolu-o-240-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSMPT nº 240/2026"
+ },
  "csmpt-resolu-o-243-2025": {
   "dispositivos": 3,
   "nome": "Resolução CSMPT nº 243/2025"
+ },
+ "csmpt-resolu-o-243-2026": {
+  "dispositivos": 3,
+  "nome": "Resolução CSMPT nº 243/2026"
+ },
+ "csmpt-resolu-o-246-2026": {
+  "dispositivos": 2,
+  "nome": "Resolução CSMPT nº 246/2026"
  },
  "csmpt-resolu-o-44-1999": {
   "dispositivos": 2,
@@ -8200,7 +8224,7 @@
   "nome": "Lei Estadual (BA) nº 9.433/2005"
  },
  "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-14555-2ae17845": {
-  "dispositivos": 17,
+  "dispositivos": 15,
   "nome": "Código da Polícia Militar do Paraná"
  },
  "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-21365-b58007b0": {
@@ -8208,7 +8232,7 @@
   "nome": "Lei Orgânica do Tribunal de Contas do Estado do Paraná (TCE-PR)"
  },
  "legislacao-pr-gov-br-legislacao-exibirato-do-action-iniciarprocesso-codato-34391-2b9b20ac": {
-  "dispositivos": 14,
+  "dispositivos": 3,
   "nome": "Institui o Regime de Previdência Complementar (RPC) no âmbito do Estado do Paraná"
  },
  "legislacao-pr-gov-br-legislacao-exibirato-do-action-localizarato-codtipoato-1-nr-70893df0": {
@@ -8464,7 +8488,7 @@
   "nome": "Código Tributário do Estado de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-7963-compilado": {
-  "dispositivos": 30,
+  "dispositivos": 34,
   "nome": "Estatuto dos Funcionários Públicos Civis de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-executivo-43370": {
@@ -8576,7 +8600,7 @@
   "nome": "Lei Complementar Estadual (SC) nº 485/2010"
  },
  "leis-alesc-sc-gov-br-html-2010-491-2010-lei-complementar-html": {
-  "dispositivos": 10,
+  "dispositivos": 18,
   "nome": "Processo Administrativo Disciplinar de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2013-589-2013-lei-complementar-html": {
@@ -8604,7 +8628,7 @@
   "nome": "Lei Estadual (SC) nº 17.156/2017"
  },
  "leis-alesc-sc-gov-br-html-2017-17292-2017-lei-html": {
-  "dispositivos": 6,
+  "dispositivos": 42,
   "nome": "Reserva de vagas a pessoas com deficiência em concursos públicos de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2017-17354-2017-lei-html": {
@@ -8764,7 +8788,7 @@
   "nome": "Lei nº 5.869/1973"
  },
  "leis-l6001": {
-  "dispositivos": 9,
+  "dispositivos": 10,
   "nome": "Estatuto do Índio"
  },
  "leis-l6015compilada": {
