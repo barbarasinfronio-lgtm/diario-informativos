@@ -375,14 +375,14 @@ def pagina_chrome_real(url, valida=None, sem_firefox=False):
 
 _via_chrome_real = set()
 
-# O robô usa SÓ o Firefox (invisível, sem tirar o foco da sua tela). O Chrome (invisível ou de verdade) só entra se você
-# pedir: ROBO_CHROME=1 python3 scripts/atualizar_informativos.py …  Sem Firefox, ou se ele for barrado pelo site, a página
-# vira falha (aparece no Resumo) em vez de abrir o Chrome.
-SO_FIREFOX = os.environ.get("ROBO_CHROME") != "1"
+# O Firefox (invisível, sem tirar o foco da sua tela) é sempre a primeira escolha. O Chrome só entra quando o Firefox é barrado
+# pelo site (ex.: a verificação anti-robô do STJ) ou não está instalado. Para NUNCA usar o Chrome:
+# ROBO_SO_FIREFOX=1 python3 scripts/atualizar_informativos.py …  (aí a página barrada vira falha no Resumo)
+SO_FIREFOX = os.environ.get("ROBO_SO_FIREFOX") == "1"
 
 
 def _sem_chrome(url, motivo):
-    raise Falha(f"{url} → {motivo}; o robô não usa o Chrome (use o Firefox, ou rode com ROBO_CHROME=1 para permitir o Chrome)")
+    raise Falha(f"{url} → {motivo}; o robô está no modo só-Firefox (ROBO_SO_FIREFOX=1)")
 
 
 # Firefox invisível (preferido): o robô comanda um Firefox sem janela pelo
