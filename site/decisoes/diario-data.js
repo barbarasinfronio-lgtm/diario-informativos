@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1236, ano: 2026, data: "2026-11-10", sumula: null },
     { edicao: 1235, ano: 2026, data: "2026-11-04", sumula: null },
     { edicao: 1234, ano: 2026, data: "2026-10-26", sumula: null },
     { edicao: 1233, ano: 2026, data: "2026-10-19", sumula: null },
@@ -1244,6 +1245,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 909, ano: 2026, data: "2026-11-10", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0909" },
     { edicao: 908, ano: 2026, data: "2026-11-03", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0908" },
     { edicao: 907, ano: 2026, data: "2026-10-27", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0907" },
     { edicao: 906, ano: 2026, data: "2026-10-20", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0906" },
