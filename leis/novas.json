@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-11-09",
+ "atualizado": "2026-11-11",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 16,
+ "ignoradas": 15,
  "leis": [
   {
    "chave": "lei-15527-2026",
@@ -539,17 +539,6 @@
    "data": "2026-07-20",
    "ementa": "Institui a Estratégia Nacional de Saúde do Complexo Econômico-Industrial da Saúde (Ensceis); e altera a Lei nº 6.360, de 23 de setembro de 1976, a Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos), e a Lei nº 8.080, de 19 de setembro de 1990 (Lei Orgânica da Saúde).",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15471.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15468-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.468/2026",
-   "pedido": "Lei 15.468/2026",
-   "data": "2026-07-13",
-   "ementa": "Altera o art. 26 da Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação Nacional), para incluir educação política e direitos da cidadania como componente curricular obrigatório da educação básica.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15468.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
