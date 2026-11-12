@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-11",
+ "atualizado": "2026-11-12",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 15,
  "leis": [
+  {
+   "chave": "lei-15528-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.528/2026",
+   "pedido": "Lei 15.528/2026",
+   "data": "2026-11-11",
+   "ementa": "Autoriza a concessão de apoio financeiro aos produtores independentes de cana-de-açúcar da Região Nordeste no exercício de 2026 e a destinação de recursos a linhas de financiamento reembolsável para a renovação de frota; e altera as Leis nºs 9.818, de 23 de agosto de 1999, 11.540, de 12 de novembro de 2007, e 14.947, de 2 de agosto de 2024.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15528.htm",
+   "noAcervo": false,
+   "visto": "2026-11-12"
+  },
   {
    "chave": "lei-15527-2026",
    "tipo": "LEI",
