@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-11-12",
+ "atualizado": "2026-11-18",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 15,
+ "ignoradas": 14,
  "leis": [
   {
    "chave": "lei-15528-2026",
@@ -539,17 +539,6 @@
    "data": "2026-07-21",
    "ementa": "Altera a Lei nº 8.906, de 4 de julho de 1994 (Estatuto da Advocacia e da Ordem dos Advogados do Brasil), a fim de explicitar a natureza alimentar dos honorários advocatícios.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15472.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15471-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.471/2026",
-   "pedido": "Lei 15.471/2026",
-   "data": "2026-07-20",
-   "ementa": "Institui a Estratégia Nacional de Saúde do Complexo Econômico-Industrial da Saúde (Ensceis); e altera a Lei nº 6.360, de 23 de setembro de 1976, a Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos), e a Lei nº 8.080, de 19 de setembro de 1990 (Lei Orgânica da Saúde).",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15471.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
