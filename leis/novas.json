@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-19",
+ "atualizado": "2026-11-20",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 26,
  "leis": [
@@ -561,17 +561,6 @@
    "data": "2026-07-23",
    "ementa": "Dispõe sobre a comercialização, a aquisição e a posse de aerossol de extratos vegetais para fins de defesa pessoal da mulher; estabelece penalidades pelo uso indevido do aerossol de extratos vegetais; e altera a Lei nº 10.826, de 22 de dezembro de 2003 (Estatuto do Desarmamento).",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15474.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15473-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.473/2026",
-   "pedido": "Lei 15.473/2026",
-   "data": "2026-07-22",
-   "ementa": "Altera as Leis nºs 9.818, de 23 de agosto de 1999, e 12.712, de 30 de agosto de 2012, para fortalecer e modernizar o sistema brasileiro de apoio oficial ao crédito à exportação.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15473.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
