@@ -1,7 +1,7 @@
 {
- "atualizado": "2026-11-20",
+ "atualizado": "2026-11-21",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 26,
+ "ignoradas": 25,
  "leis": [
   {
    "chave": "lei-15541-2026",
@@ -528,39 +528,6 @@
    "data": "2026-07-29",
    "ementa": "Acrescenta dispositivo à Lei nº 10.714, de 13 de agosto de 2003, para dispor sobre a divulgação do serviço telefônico de denúncias relacionadas a violência contra a mulher.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15478.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15476-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.476/2026",
-   "pedido": "Lei 15.476/2026",
-   "data": "2026-07-23",
-   "ementa": "Fica criado o título Cidade Amiga do Idoso, a ser conferido às cidades que se destacarem na adoção de políticas e iniciativas que visem a assegurar tratamento mais digno às pessoas idosas.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15476.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15475-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.475/2026",
-   "pedido": "Lei 15.475/2026",
-   "data": "2026-07-23",
-   "ementa": "Proíbe a produção e a comercialização de qualquer produto alimentício obtido por meio de método de alimentação forçada de animais.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15475.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15474-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.474/2026",
-   "pedido": "Lei 15.474/2026",
-   "data": "2026-07-23",
-   "ementa": "Dispõe sobre a comercialização, a aquisição e a posse de aerossol de extratos vegetais para fins de defesa pessoal da mulher; estabelece penalidades pelo uso indevido do aerossol de extratos vegetais; e altera a Lei nº 10.826, de 22 de dezembro de 2003 (Estatuto do Desarmamento).",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15474.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
