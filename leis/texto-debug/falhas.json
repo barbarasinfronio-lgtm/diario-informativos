@@ -722,5 +722,12 @@
   "numero": "Lei Estadual (PA) nº 6.833/2006",
   "nome": "Institui o Código de Ética e Disciplina da Polícia Militar do Pará (CEDPM)",
   "motivo": "erro ao abrir: https://www.pm.pa.gov.br/images/PM1/ATUALIZADA_-_LEI_N%C2%BA_6.833_13_de_fevereiro_de_2006_C%C3%B3digo_de_%C3%89tica_e_Disciplina_da_PMPA_1."
+ },
+ "https://www.legislacao.pr.gov.br/legislacao/pesquisarAto.do?action=exibir&codAto=135670": {
+  "v": 3,
+  "em": "2026-11-22",
+  "numero": "Lei Estadual (PR) nº 18.419/2015",
+  "nome": "Estatuto da Pessoa com Deficiência do Estado do Paraná — reserva de percentual de vagas para pessoas com deficiência em concursos públicos estaduais",
+  "motivo": "abre outra norma (\"Exibir Ato Página para impressão Alterado Compilado Original Resolução SEED 535 \")"
  }
 }
