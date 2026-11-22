@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1237, ano: 2026, data: "2026-11-16", sumula: null },
     { edicao: 1236, ano: 2026, data: "2026-11-10", sumula: null },
     { edicao: 1235, ano: 2026, data: "2026-11-04", sumula: null },
     { edicao: 1234, ano: 2026, data: "2026-10-26", sumula: null },
@@ -1245,6 +1246,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 910, ano: 2026, data: "2026-11-17", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0910" },
     { edicao: 909, ano: 2026, data: "2026-11-10", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0909" },
     { edicao: 908, ano: 2026, data: "2026-11-03", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0908" },
     { edicao: 907, ano: 2026, data: "2026-10-27", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0907" },
@@ -2345,6 +2347,7 @@
 
   // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
   var STFPV_DATA = [
+    { edicao: 37, ano: 2026, data: "2026-11-20", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE37_2026_Partes1e2.pdf" },
     { edicao: 36, ano: 2026, data: "2026-11-13", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE36_2026_Partes1e2.pdf" },
     { edicao: 35, ano: 2026, data: "2026-11-06", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE35_2026_Partes1e2.pdf" },
     { edicao: 34, ano: 2026, data: "2026-10-30", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE34_2026_Partes1e2.pdf" },
@@ -3415,6 +3418,7 @@
   ];
 
   var TST_DATA = [
+    { edicao: 316, ano: 2026, data: "2026-08-31", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/273236" },
     { edicao: 315, ano: 2026, data: "2026-06-30", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/271535" },
     { edicao: 314, ano: 2026, data: "2026-06-12", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/269695" },
     { edicao: 313, ano: 2026, data: "2026-05-22", sumula: null, link: "https://juslaboris.tst.jus.br/handle/20.500.12178/270097" },
