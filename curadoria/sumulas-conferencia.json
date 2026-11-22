@@ -1,0 +1,447 @@
+{
+ "stf_vinculante": {
+  "estado": "ok",
+  "no_acervo": 63,
+  "na_fonte": 63,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": [
+   64
+  ]
+ },
+ "stf": {
+  "estado": "ok",
+  "no_acervo": 736,
+  "na_fonte": 736,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tcu": {
+  "estado": "ok",
+  "no_acervo": 293,
+  "na_fonte": 293,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "stj": {
+  "estado": "precisa do Chrome",
+  "motivo": "STJ bloqueia robôs; conferir pelo Chrome"
+ },
+ "tse": {
+  "estado": "precisa do Chrome",
+  "motivo": "TSE bloqueia robôs; conferir pelo Chrome"
+ },
+ "tjsp": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjrj": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjmg": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjrs": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjpr": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjsc": {
+  "estado": "ok",
+  "no_acervo": 68,
+  "na_fonte": 68,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tnu": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "stm": {
+  "estado": "falhou",
+  "motivo": "HTTP 404"
+ },
+ "trf1": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trf2": {
+  "estado": "ok",
+  "no_acervo": 61,
+  "na_fonte": 62,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trf3": {
+  "estado": "falhou",
+  "motivo": "HTTP 000"
+ },
+ "trf4": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trf5": {
+  "estado": "falhou",
+  "motivo": "HTTP 404"
+ },
+ "trf6_tru": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt1": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt2": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt3": {
+  "estado": "ok",
+  "no_acervo": 72,
+  "na_fonte": 73,
+  "novas": [
+   73
+  ],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt4": {
+  "estado": "ok",
+  "no_acervo": 142,
+  "na_fonte": 142,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt5": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt6": {
+  "estado": "ok",
+  "no_acervo": 44,
+  "na_fonte": 41,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": [
+   33,
+   34,
+   35
+  ]
+ },
+ "trt1_teses": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt7": {
+  "estado": "ok",
+  "no_acervo": 12,
+  "na_fonte": 12,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt8": {
+  "estado": "ok",
+  "no_acervo": 67,
+  "na_fonte": 67,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt10": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt11": {
+  "estado": "ok",
+  "no_acervo": 28,
+  "na_fonte": 28,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt12": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt13": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt14": {
+  "estado": "ok",
+  "no_acervo": 8,
+  "na_fonte": 8,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt15": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt16": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "trt17": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "trt18": {
+  "estado": "ok",
+  "no_acervo": 69,
+  "na_fonte": 69,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt20": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt21": {
+  "estado": "ok",
+  "no_acervo": 9,
+  "na_fonte": 9,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt22": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt23": {
+  "estado": "ok",
+  "no_acervo": 48,
+  "na_fonte": 47,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": [
+   40
+  ]
+ },
+ "trt24": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "trt19": {
+  "estado": "ok",
+  "no_acervo": 8,
+  "na_fonte": 8,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "trt9": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjrs_tr": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjrs_fp": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjgo_tuj": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tjmmg": {
+  "estado": "ok",
+  "no_acervo": 9,
+  "na_fonte": 9,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tre_ba": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_pa": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_mg": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_rj": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_mt": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_pe": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_ma": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tre_rr": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tce_sp": {
+  "estado": "ok",
+  "no_acervo": 52,
+  "na_fonte": 52,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tce_sc": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tce_mt": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tce_pr": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tce_mg": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjac": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjal": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjam": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjap": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjba": {
+  "estado": "ok",
+  "no_acervo": 29,
+  "na_fonte": 29,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjce": {
+  "estado": "precisa do Chrome",
+  "motivo": "a fonte é PDF ou arquivo; sem conferência automática"
+ },
+ "tjdft": {
+  "estado": "ok",
+  "no_acervo": 29,
+  "na_fonte": 29,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjdft_uj": {
+  "estado": "ok",
+  "no_acervo": 43,
+  "na_fonte": 43,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjes": {
+  "estado": "precisa do Chrome",
+  "motivo": "a fonte é PDF ou arquivo; sem conferência automática"
+ },
+ "tjgo": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tjma": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjms": {
+  "estado": "ok",
+  "no_acervo": 4,
+  "na_fonte": 4,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjmt": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjpa": {
+  "estado": "ok",
+  "no_acervo": 32,
+  "na_fonte": 30,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": [
+   20,
+   27
+  ]
+ },
+ "tjpb": {
+  "estado": "precisa do Chrome",
+  "motivo": "a fonte é PDF ou arquivo; sem conferência automática"
+ },
+ "tjpe": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página mostra só parte da lista"
+ },
+ "tjpi": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ },
+ "tjrn": {
+  "estado": "precisa do Chrome",
+  "motivo": "HTTP 403 (bloqueia robôs)"
+ },
+ "tjro": {
+  "estado": "ok",
+  "no_acervo": 9,
+  "na_fonte": 9,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjrr": {
+  "estado": "ok",
+  "no_acervo": 3,
+  "na_fonte": 3,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
+ },
+ "tjse": {
+  "estado": "falhou",
+  "motivo": "certificado do site não reconhecido neste computador"
+ },
+ "tjto": {
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+ }
+}

@@ -5,7 +5,8 @@ leis_sob_pedido.py — atende os pedidos de "Pedir para adicionar" do Diário de
 Quem busca uma lei que não está no acervo (ex.: "Lei 9.140") pode clicar em "Pedir para adicionar": o site grava o
 pedido no Firestore (coleção pedidos-leis, um por busca). Este robô lê os pedidos, entende o tipo, o número e o ano
 ("Lei nº 9.140/1995", "LC 101/2000", "Decreto-Lei 2.848/1940"; só o número de uma lei federal também serve: o ano é
-deduzido e conferido pelo cabeçalho), busca no Planalto, grava o texto em leis/texto/ e acrescenta a lei a
+deduzido e conferido pelo cabeçalho; o NOME popular também serve — "Lei Mariana Ferrer", "Lei Maria da Penha" —,
+achado pelos apelidos das listas de legislação do Senado; se o nome vale para mais de uma lei, pede o número), busca no Planalto, grava o texto em leis/texto/ e acrescenta a lei a
 leis/pedidas.json, que o Diário de Leis mostra como "Leis pedidas por leitores".
 
 Roda no Mac (o Planalto bloqueia os servidores do GitHub), pelo "Atender Pedidos de Leis.command":
@@ -76,12 +77,101 @@ def sem_acento(t):
     return "".join(c for c in unicodedata.normalize("NFD", t or "") if unicodedata.category(c) != "Mn").lower().strip(" .")
 
 
+# ---- busca pelo NOME (apelido) da lei: "Lei Mariana Ferrer", "Lei Maria da Penha", "Lei Carolina Dieckmann" -------------
+# Fonte: dados abertos do Senado (legis.senado.leg.br), lista de legislação por tipo e ano, que traz o apelido e a ementa
+# (a ementa termina com o apelido entre parênteses). As listas ficam em ~/EstudaMana/cache-senado-leis (fora do repositório);
+# anos antigos são lidos uma vez só, o ano corrente e o anterior são relidos a cada 7 dias.
+SENADO = "https://legis.senado.leg.br/dadosabertos/legislacao/lista?tipo={tipo}&ano={ano}"
+CACHE_SENADO = RAIZ.parent / "cache-senado-leis"
+TIPOS_SENADO = {"LEI": ("lei", 1946), "LCP": ("lc", 1970), "DEL": ("dl", 1937), "DEC": ("decreto", 1946)}
+PALAVRAS_VAZIAS = {"lei", "leis", "da", "de", "do", "das", "dos", "e", "o", "a", "n", "no", "numero", "federal", "complementar", "decreto"}
+
+
+def _lista_senado(tipo, ano, hoje_ano):
+
+    arq = CACHE_SENADO / f"{tipo}-{ano}.json"
+    recente = ano >= hoje_ano - 1
+    if arq.exists() and not (recente and time.time() - arq.stat().st_mtime > 7 * 86400):
+        return json.loads(arq.read_text(encoding="utf-8"))
+    import subprocess
+    j = None
+    for _ in range(3):   # a conexão às vezes cai no meio da lista: tenta de novo
+        r = subprocess.run(["curl", "-sL", "-m", "90", "-A", "EstudaMana/1.0", "-H", "Accept: application/json", SENADO.format(tipo=tipo, ano=ano)],
+                           capture_output=True)
+        try:
+            j = json.loads(r.stdout.decode("utf-8"))
+            break
+        except ValueError:
+            time.sleep(2)
+    if j is None:
+        raise OSError("o Senado não respondeu")
+    docs = (j.get("ListaDocumento") or {}).get("documentos") or {}
+    docs = docs.get("documento") or []
+    lista = [{"numero": d.get("numero"), "normaNome": d.get("normaNome"), "apelido": d.get("apelido") or "", "ementa": d.get("ementa") or ""}
+             for d in (docs if isinstance(docs, list) else [docs])]
+    try:
+        CACHE_SENADO.mkdir(parents=True, exist_ok=True)
+        arq.write_text(json.dumps(lista, ensure_ascii=False), encoding="utf-8")
+    except OSError:
+        pass   # sem cache: só fica mais lento na próxima vez
+    return lista
+
+
+def _apelidos(d):
+    """nomes populares da norma: o campo 'apelido' do Senado e o que vem entre parênteses no fim da ementa"""
+    nomes = []
+    for parte in d["apelido"].split(" , ")[1:]:
+        nomes.append(re.sub(r"\s*\(\d{4}\)\s*$", "", parte).strip())
+    m = re.search(r"\(([^()]*)\)\s*\.?\s*$", d["ementa"].strip())
+    if m:
+        nomes.append(m.group(1))
+    return [n for n in nomes if n]
+
+
+def por_nome(consulta):
+    """(tipo, número, [ano]) de uma lei pelo apelido, ou None. Só aceita se todas as palavras do nome batem num apelido."""
+    palavras = [w for w in re.findall(r"[a-z0-9]+", sem_acento(consulta)) if w not in PALAVRAS_VAZIAS]
+    if not palavras:
+        return None
+    quer_decreto = "decreto" in sem_acento(consulta)
+    quer_lc = "complementar" in sem_acento(consulta)
+    hoje_ano = int(robo.hoje()[:4]) if isinstance(robo.hoje(), str) else robo.hoje().year
+    tipos = [t for t in TIPOS_SENADO if t != "DEC" or quer_decreto]
+    if quer_lc:
+        tipos = ["LCP"]
+    achados = []
+    if not any(CACHE_SENADO.glob("*.json")) if CACHE_SENADO.exists() else True:
+        print("    (1ª busca por nome: lendo as listas do Senado, ano a ano; demora alguns minutos e fica guardado)", flush=True)
+    try:
+        for ano in range(hoje_ano, 1936, -1):
+            for t in tipos:
+                if ano < TIPOS_SENADO[t][1]:
+                    continue
+                for d in _lista_senado(t, ano, hoje_ano):
+                    for ap in _apelidos(d):
+                        ws = set(re.findall(r"[a-z0-9]+", sem_acento(ap)))
+                        if all(w in ws for w in palavras):
+                            n = re.sub(r"\D", "", d["numero"] or "")
+                            if n and (TIPOS_SENADO[t][0], n, str(ano)) not in [a[:3] for a in achados]:
+                                achados.append((TIPOS_SENADO[t][0], n, str(ano), ap))
+    except Exception as ex:   # noqa: BLE001 — sem conexão com o Senado: fica para a próxima rodada
+        print(f"    (não consegui consultar o Senado pelo nome: {type(ex).__name__})")
+        return None
+    if len(achados) != 1:
+        if achados:
+            print("    nome ambíguo: " + "; ".join(f"{lc.NOMES[a[0]]} nº {lc.com_ponto(a[1])}/{a[2]} ({a[3]})" for a in achados[:4]) + " — informe o número")
+        return None
+    t, n, ano, ap = achados[0]
+    print(f"    entendi pelo nome: {lc.NOMES[t]} nº {lc.com_ponto(n)}/{ano} ({ap})")
+    return t, n, [ano]
+
+
 def entender(consulta):
     """(tipo, número, [anos]) ou None."""
     consulta = SIGLAS.get(sem_acento(consulta), consulta)
     m = RE_PEDIDO.search(consulta or "")
     if not m:
-        return None
+        return por_nome(consulta)
     tipo = lc.tipo_de(m.group(1)) if m.group(1) else "lei"
     n = m.group(2).replace(".", "")
     g = m.group(3) or m.group(4)
@@ -119,7 +209,7 @@ def main():
     hoje = robo.hoje()
     dados = json.loads(PEDIDAS.read_text(encoding="utf-8")) if PEDIDAS.exists() else {"leis": [], "pedidos": {}}
     feitos = dados.setdefault("pedidos", {})
-    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in pedidos() if p["id"] not in feitos]
+    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in pedidos() if feitos.get(p["id"]) in (None, "nao-entendi")]   # "não entendi" volta à fila: o robô passou a achar leis pelo nome
     print(f"{len(pend)} pedido(s) pendente(s).")
     if a.plano:
         for p in pend:

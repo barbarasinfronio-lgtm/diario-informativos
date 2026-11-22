@@ -130,6 +130,12 @@ Por isso estes robôs rodam no Mac, toda segunda às 9h
 - **`scripts/atos_orgaos.py`**: atos próprios dos órgãos que os editais mandam estudar (Pareceres
   Referenciais da PGE-PA, Atos Normativos e Deliberações da Defensoria de SP etc.), um bloco por órgão em
   `normas-data.js`; para incluir um órgão, escreva o coletor e registre em `ORGAOS`.
+- **`scripts/atualizar_sumulas.py`** (`Atualizar Sumulas.command`, também chamado pelo `Rodar Tudo.command`):
+  confere o Diário das Súmulas (`sumulas-data.js`) com as páginas oficiais — STF (comuns e vinculantes), TCU,
+  TJs, TRFs, TRTs, TREs e Tribunais de Contas — e relata súmula nova ou cancelada na fonte
+  (`curadoria/sumulas-conferencia.json`). Com `--aplicar` grava sozinho só TCU e STF (texto completo na fonte);
+  nos demais só relata. Fonte que bloqueia robôs (STJ, TSE, vários TREs) ou carrega por JavaScript aparece como
+  "conferir pelo Chrome". Para um número que a fonte lista mas não é súmula publicada, use `IGNORAR`.
 
 ### Informativos (STF, STF PV, STJ, STJ Extra, TSE, CNJ, TST, CNMP, TJDFT, TJMG, TJAM, TJCE, TJES, TJPE, TJPR, TJRJ, TJSC) — no Mac, só quando você manda
 
@@ -161,6 +167,9 @@ lê a API aberta do Senado (o Planalto bloqueia robôs na listagem), separa as l
 caráter geral das de efeito concreto (denominações, "Capital Nacional", datas comemorativas, créditos, cargos…) e grava
 em `leis/novas.json`. Em Meus Estudos > Novidades legislativas aparece o bloco "Leis novas de caráter geral", com o
 botão **Pedir para incluir** (cria o pedido em `pedidos-leis`, atendido pelo `Atender Pedidos de Leis.command`).
+O pedido pode ser pelo número ("Lei 14.245/2021"), por sigla ("CADH") ou pelo **nome popular** ("Lei Mariana Ferrer"):
+o robô procura o apelido nas listas de legislação do Senado (guardadas em `~/EstudaMana/cache-senado-leis`; a 1ª busca
+por nome demora ~1 min) e, se o nome servir para mais de uma lei (ex.: "Lei Seca"), pede o número.
 A API do Senado atrasa alguns dias; o `Atualizar Leis.command` roda com `--sondar` e confere no Planalto os números
 seguintes.
 
