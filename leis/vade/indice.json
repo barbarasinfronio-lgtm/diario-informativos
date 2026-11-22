@@ -3164,7 +3164,7 @@
   "nome": "Recomendação CNJ nº 61/2020"
  },
  "cnj-321": {
-  "dispositivos": 7,
+  "dispositivos": 8,
   "nome": "Resolução CNJ nº 684/2026"
  },
  "cnj-3218": {
@@ -4747,6 +4747,10 @@
   "dispositivos": 1,
   "nome": "Resolução CNJ nº 590/2024"
  },
+ "cnj-5822": {
+  "dispositivos": 1,
+  "nome": "Recomendação CNJ nº 159/2024"
+ },
  "cnj-5830": {
   "dispositivos": 1,
   "nome": "Recomendação CNJ nº 158/2024"
@@ -5210,6 +5214,22 @@
  "cnj-7168": {
   "dispositivos": 1,
   "nome": "Instrução Normativa CNJ nº 37/2026"
+ },
+ "cnj-7179": {
+  "dispositivos": 2,
+  "nome": "Recomendação CNJ nº 173/2026"
+ },
+ "cnj-7180": {
+  "dispositivos": 8,
+  "nome": "Resolução CNJ nº 704/2026"
+ },
+ "cnj-7182": {
+  "dispositivos": 4,
+  "nome": "Resolução Conjunta CNJ nº 17/2026"
+ },
+ "cnj-7184": {
+  "dispositivos": 42,
+  "nome": "Resolução CNJ nº 705/2026"
  },
  "cnj-72": {
   "dispositivos": 4,
@@ -6288,7 +6308,7 @@
   "nome": "Resolução Conjunta CNMP nº 9/2022"
  },
  "constituicao-constituicao": {
-  "dispositivos": 576,
+  "dispositivos": 578,
   "nome": "Constituição Federal"
  },
  "csjt-recomenda-o-1-2020": {
@@ -8484,7 +8504,7 @@
   "nome": "Fundo Estadual de Assistência Social de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-5049-compilado": {
-  "dispositivos": 29,
+  "dispositivos": 28,
   "nome": "Código Tributário do Estado de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-7963-compilado": {
@@ -8544,7 +8564,7 @@
   "nome": "Processo de ação direta de inconstitucionalidade perante o Tribunal de Justiça de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2003-12854-2003-lei-html": {
-  "dispositivos": 9,
+  "dispositivos": 27,
   "nome": "Código Estadual de Proteção aos Animais de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2004-12929-2004-lei-html": {
@@ -8568,7 +8588,7 @@
   "nome": "Política Estadual de Educação Ambiental de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2006-339-2006-lei-complementar-html": {
-  "dispositivos": 13,
+  "dispositivos": 19,
   "nome": "Organização Judiciária de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2006-367-2006-lei-complementar-html": {
@@ -8628,11 +8648,11 @@
   "nome": "Lei Estadual (SC) nº 17.156/2017"
  },
  "leis-alesc-sc-gov-br-html-2017-17292-2017-lei-html": {
-  "dispositivos": 6,
+  "dispositivos": 42,
   "nome": "Reserva de vagas a pessoas com deficiência em concursos públicos de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2017-17354-2017-lei-html": {
-  "dispositivos": 8,
+  "dispositivos": 9,
   "nome": "Cria o Instituto do Meio Ambiente de Santa Catarina (IMA)"
  },
  "leis-alesc-sc-gov-br-html-2018-17492-2018-lei-html": {
@@ -8656,7 +8676,7 @@
   "nome": "Lei Complementar Estadual (SC) nº 780/2021"
  },
  "leis-alesc-sc-gov-br-html-2022-18322-2022-lei-html": {
-  "dispositivos": 26,
+  "dispositivos": 9,
   "nome": "Dispõe sobre a violência obstétrica no Estado de Santa Catarina"
  },
  "leis-l10028": {
@@ -9064,7 +9084,7 @@
   "nome": "Registro Público das Empresas Mercantis"
  },
  "leis-l8935": {
-  "dispositivos": 47,
+  "dispositivos": 48,
   "nome": "Lei dos Registros Públicos / Serviços Notariais e de Registro"
  },
  "leis-l8955": {
