@@ -38,16 +38,16 @@
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjrj": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjmg": {
   "estado": "precisa do Chrome",
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjrs": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjpr": {
   "estado": "precisa do Chrome",
@@ -192,12 +192,12 @@
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "trt16": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "trt17": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "trt18": {
   "estado": "ok",
@@ -250,12 +250,20 @@
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjrs_tr": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "ok",
+  "no_acervo": 51,
+  "na_fonte": 51,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tjrs_fp": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "ok",
+  "no_acervo": 107,
+  "na_fonte": 107,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tjgo_tuj": {
   "estado": "precisa do Chrome",
@@ -310,8 +318,8 @@
   "sumiram_da_fonte": []
  },
  "tce_sc": {
-  "estado": "precisa do Chrome",
-  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+  "estado": "falhou",
+  "motivo": "HTTP 503"
  },
  "tce_mt": {
   "estado": "precisa do Chrome",
@@ -322,8 +330,14 @@
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tce_mg": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "ok",
+  "no_acervo": 127,
+  "na_fonte": 128,
+  "novas": [
+   97
+  ],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tjac": {
   "estado": "precisa do Chrome",
@@ -378,8 +392,8 @@
   "motivo": "HTTP 403 (bloqueia robôs)"
  },
  "tjma": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tjms": {
   "estado": "ok",
@@ -437,8 +451,12 @@
   "sumiram_da_fonte": []
  },
  "tjse": {
-  "estado": "falhou",
-  "motivo": "certificado do site não reconhecido neste computador"
+  "estado": "ok",
+  "no_acervo": 14,
+  "na_fonte": 14,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tjto": {
   "estado": "precisa do Chrome",
