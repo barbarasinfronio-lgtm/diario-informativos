@@ -2,26 +2,40 @@
  "feitos": {
   "edcl-no-agint-no-resp-1880254-mt": "ok",
   "cc-155853": "ja-no-site",
-  "agint-nos-edcl-no-resp-1880922": "nao-entendi"
+  "agint-nos-edcl-no-resp-1880922": "nao-entendi",
+  "agrg-nos-edcl-no-rhc-n-205261-pr": "nao-entendi",
+  "adi-5158": "ja-no-site",
+  "re-910552": "ja-no-site"
  },
  "falhas": {
   "hc-205658": {
    "consulta": "hc 205658",
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo toda semana, até 2 meses do pedido)",
    "primeira": "2026-10-22",
-   "ultima": "2026-11-10",
-   "tentativas": 3
+   "ultima": "2026-11-22",
+   "tentativas": 4
   },
   "rhc-205658": {
    "consulta": "Rhc 205658",
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo toda semana, até 2 meses do pedido)",
    "primeira": "2026-10-22",
-   "ultima": "2026-11-10",
-   "tentativas": 3
+   "ultima": "2026-11-22",
+   "tentativas": 4
   },
   "agint-nos-edcl-no-resp-1880922": {
    "consulta": "AgInt nos EDcl no REsp: 1880922'",
    "motivo": "não entendi a classe e o número"
+  },
+  "agrg-nos-edcl-no-rhc-n-205261-pr": {
+   "consulta": "AgRg nos EDcl no RHC n. 205.261/PR",
+   "motivo": "não entendi a classe e o número"
+  },
+  "adi-7770": {
+   "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo toda semana, até 2 meses do pedido)",
+   "primeira": "2026-11-22",
+   "ultima": "2026-11-22",
+   "tentativas": 1,
+   "consulta": "ADI 7.770"
   }
  },
  "incluidos": {
