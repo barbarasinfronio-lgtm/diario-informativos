@@ -318,8 +318,8 @@
   "sumiram_da_fonte": []
  },
  "tce_sc": {
-  "estado": "falhou",
-  "motivo": "HTTP 503"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "tce_mt": {
   "estado": "precisa do Chrome",
@@ -392,8 +392,12 @@
   "motivo": "HTTP 403 (bloqueia robôs)"
  },
  "tjma": {
-  "estado": "precisa do Chrome",
-  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+  "estado": "ok",
+  "no_acervo": 10,
+  "na_fonte": 8,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tjms": {
   "estado": "ok",
