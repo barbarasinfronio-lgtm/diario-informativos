@@ -4,48 +4,48 @@
   "motivo": "não achei nem o acórdão nem a decisão de julgamento no portal",
   "primeira": "2026-10-22",
   "ultima": "2026-11-23",
-  "tentativas": 5
+  "tentativas": 6
  },
  "inf-5856759cbb": {
   "processo": "STJ RESP 2227232",
   "motivo": "STJ RESP 2227232: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-10-22",
   "ultima": "2026-11-23",
-  "tentativas": 5
+  "tentativas": 6
  },
  "inf-b328fb6ede": {
   "processo": "STJ RESP 2004109",
   "motivo": "STJ RESP 2004109: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-10-22",
   "ultima": "2026-11-23",
-  "tentativas": 5
+  "tentativas": 6
  },
  "inf-04b838427d": {
   "processo": "STJ QO NO RESP 2059576",
   "motivo": "STJ QO NO RESP 2059576: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-10-22",
   "ultima": "2026-11-23",
-  "tentativas": 5
+  "tentativas": 6
  },
  "inf-00f0de20a7": {
   "motivo": "STJ ERESP 1575846: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-10-23",
   "ultima": "2026-11-23",
-  "tentativas": 4,
+  "tentativas": 5,
   "processo": "STJ ERESP 1575846"
  },
  "inf-6bb3d6a064": {
   "motivo": "STJ RESP 1954643: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-11-23",
   "ultima": "2026-11-23",
-  "tentativas": 1,
+  "tentativas": 2,
   "processo": "STJ RESP 1954643"
  },
  "inf-b058724ba9": {
   "motivo": "STJ RMS 65943: não achei esse acórdão nos dados abertos do STJ (o conjunto pode não incluí-lo, ou ainda não foi publicado)",
   "primeira": "2026-11-23",
   "ultima": "2026-11-23",
-  "tentativas": 1,
+  "tentativas": 2,
   "processo": "STJ RMS 65943"
  }
 }
