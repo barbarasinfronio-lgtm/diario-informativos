@@ -66,8 +66,8 @@
   "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "stm": {
-  "estado": "falhou",
-  "motivo": "HTTP 404"
+  "estado": "precisa do Chrome",
+  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
  },
  "trf1": {
   "estado": "precisa do Chrome",
@@ -310,12 +310,8 @@
   "motivo": "HTTP 403 (bloqueia robôs)"
  },
  "tce_sp": {
-  "estado": "ok",
-  "no_acervo": 52,
-  "na_fonte": 52,
-  "novas": [],
-  "canceladas_nao_marcadas": [],
-  "sumiram_da_fonte": []
+  "estado": "falhou",
+  "motivo": "HTTP 000"
  },
  "tce_sc": {
   "estado": "precisa do Chrome",
