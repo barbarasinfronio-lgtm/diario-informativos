@@ -1,8 +1,41 @@
 {
- "atualizado": "2026-11-21",
+ "atualizado": "2026-11-23",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 25,
+ "ignoradas": 30,
  "leis": [
+  {
+   "chave": "lei-15550-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.550/2026",
+   "pedido": "Lei 15.550/2026",
+   "data": "2026-11-19",
+   "ementa": "Abre aos Orçamentos Fiscal e da Seguridade Social da União, em favor de diversos órgãos do Poder Executivo federal e de Transferências a Estados, Distrito Federal e Municípios, crédito suplementar no valor de R$ 39.002.919,00, para reforço de dotações constantes da Lei Orçamentária vigente.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15550.htm",
+   "noAcervo": false,
+   "visto": "2026-11-23"
+  },
+  {
+   "chave": "lei-15549-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.549/2026",
+   "pedido": "Lei 15.549/2026",
+   "data": "2026-11-19",
+   "ementa": "Abre aos Orçamentos Fiscal e da Seguridade Social da União, em favor dos Ministérios da Educação, da Justiça e Segurança Pública e da Saúde, crédito especial no valor de R$ 115.000.000,00, para os fins que especifica.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15549.htm",
+   "noAcervo": false,
+   "visto": "2026-11-23"
+  },
+  {
+   "chave": "lei-15548-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.548/2026",
+   "pedido": "Lei 15.548/2026",
+   "data": "2026-11-19",
+   "ementa": "Abre aos Orçamentos Fiscal e da Seguridade Social da União, em favor das Justiças Federal e do Trabalho, da Presidência da República e dos Ministérios da Saúde e do Meio Ambiente e Mudança do Clima, crédito especial no valor de R$ 4.856.104,00, para os fins que especifica.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15548.htm",
+   "noAcervo": false,
+   "visto": "2026-11-23"
+  },
   {
    "chave": "lei-15541-2026",
    "tipo": "LEI",
