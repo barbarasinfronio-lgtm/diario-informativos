@@ -16,11 +16,13 @@ Roda no Mac (o Planalto bloqueia os servidores do GitHub), pelo "Atender Pedidos
     python3 scripts/leis_sob_pedido.py --teste "Lei 9.140"   # busca e mostra, não grava
 """
 import argparse, json, re, sys, time, urllib.parse
+from datetime import date
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
 import leis_citadas as lc  # noqa: E402
+import pedidos_retentativa as pr  # noqa: E402
 robo = lc.robo
 
 PEDIDAS = RAIZ / "leis" / "pedidas.json"
@@ -45,6 +47,7 @@ def pedidos():
         for d in j.get("documents", []):
             f = {k: (v.get("stringValue") or "") for k, v in d.get("fields", {}).items()}
             f["id"] = d["name"].rsplit("/", 1)[-1]
+            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (regra dos 6 meses)
             out.append(f)
         token = j.get("nextPageToken", "")
         if not token:
@@ -209,7 +212,7 @@ def main():
     hoje = robo.hoje()
     dados = json.loads(PEDIDAS.read_text(encoding="utf-8")) if PEDIDAS.exists() else {"leis": [], "pedidos": {}}
     feitos = dados.setdefault("pedidos", {})
-    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in pedidos() if feitos.get(p["id"]) in (None, "nao-entendi")]   # "não entendi" volta à fila: o robô passou a achar leis pelo nome
+    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in pedidos() if feitos.get(p["id"]) in (None,) or (feitos.get(p["id"]) in ("nao-entendi", "nao-achei") and pr.dentro_do_prazo(p.get("criado"), date.today()))]   # regra: o que não achou é procurado de novo a cada rodada, até 6 meses do pedido
     print(f"{len(pend)} pedido(s) pendente(s).")
     if a.plano:
         for p in pend:

@@ -16,8 +16,8 @@ bloqueia os servidores do GitHub), pelo "Atender Pedidos de Inteiro Teor.command
 
 Processos anotados à mão (número e tipo, sem texto) em curadoria/teor-lista.json entram na mesma fila.
 Pedidos que falharam ficam em curadoria/teor-pedidos-falhas.json. Julgado recente pode ainda não estar publicado:
-o robô tenta de novo UMA VEZ POR SEMANA, até completar 2 meses do pedido (scripts/pedidos_retentativa.py); depois
-desiste ("desistiu" no arquivo de falhas).
+o robô tenta de novo A CADA VEZ QUE RODA (inclusive no "Rodar Tudo"), até completar 6 meses do pedido
+(scripts/pedidos_retentativa.py); depois desiste ("desistiu" no arquivo de falhas).
 """
 import argparse, json, re, signal, sys, time, urllib.parse
 from datetime import date, datetime, timezone
@@ -29,7 +29,8 @@ import completar_textos_stf as c        # noqa: E402
 import completar_extras_stf as ex       # noqa: E402
 import completar_rg_stf as rg           # noqa: E402
 import decisoes_dos_informativos as di  # noqa: E402  (principal(): classe e número de um card de informativo)
-import pedidos_retentativa as pr  # noqa: E402  (nova tentativa semanal por 2 meses)
+import pedidos_retentativa as pr  # noqa: E402  (nova tentativa a cada rodada, por 6 meses)
+PRAZO_TEOR_DIAS, INTERVALO_TEOR_DIAS = pr.PRAZO_DIAS, pr.INTERVALO_DIAS   # 6 meses, a cada rodada
 import teor_stj as ts  # noqa: E402  (julgados do STJ: acórdão — ementa e decisão — dos dados abertos)
 robo = c.robo
 
@@ -53,7 +54,7 @@ def pedidos():
         for d in j.get("documents", []):
             f = {k: (v.get("stringValue") or v.get("timestampValue") or "") for k, v in d.get("fields", {}).items()}
             f["id"] = f.get("id") or d["name"].rsplit("/", 1)[-1]
-            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (para a regra das 2 meses)
+            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (para a regra dos 6 meses)
             out.append(f)
         token = j.get("nextPageToken", "")
         if not token:
@@ -178,20 +179,20 @@ def main():
         return
     falhas = json.loads(FALHAS.read_text(encoding="utf-8")) if FALHAS.exists() else {}
     hoje, fila, esperando, desistidos = date.today(), [], 0, 0
-    for p in pend:          # regra: o que não achou é procurado de novo 1 vez por semana, até 2 meses do pedido
+    for p in pend:          # regra: o que não achou é procurado de novo a cada rodada, até 6 meses do pedido
         reg = falhas.get(p["id"])
-        quer = pr.decidir(reg, p.get("criado") or p.get("em"), hoje)
+        quer = pr.decidir(reg, p.get("criado") or p.get("em"), hoje, PRAZO_TEOR_DIAS, INTERVALO_TEOR_DIAS)
         if quer == "desistir":
             desistidos += 1
             if not (reg or {}).get("desistiu"):
-                falhas[p["id"]] = pr.registrar_desistencia(reg or {"processo": p.get("processo", "")[:100], "primeira": p.get("criado", "")}, hoje)
-                print(f"  desisti de {chave_de(p.get('processo', '')) or '?'}: não achei em 2 meses de tentativas semanais")
+                falhas[p["id"]] = pr.registrar_desistencia(reg or {"processo": p.get("processo", "")[:100], "primeira": p.get("criado", "")}, hoje, "não achei em 6 meses de tentativas")
+                print(f"  desisti de {chave_de(p.get('processo', '')) or '?'}: não achei em 6 meses de tentativas")
         elif quer == "esperar":
             esperando += 1
         else:
             fila.append(p)
     if esperando or desistidos:
-        print(f"  {esperando} aguardando a próxima tentativa semanal; {desistidos} desistido(s) (passaram 2 meses).")
+        print(f"  {esperando} aguardando; {desistidos} desistido(s) (passaram 6 meses).")
     incid, ok = {}, 0
     for p in fila[:a.max]:
         if ts.eh_stj(p.get("processo", "")):          # STJ: espelho do acórdão nos dados abertos (sem internet, sem bloqueio)
@@ -244,7 +245,7 @@ def main():
         print(f"    {len(texto)} caracteres ({'acórdão inteiro' if completo else 'só a decisão de julgamento'})")
     FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
     reconstruir_indice()
-    print(f"{ok} pedido(s) atendido(s); {sum(1 for f in falhas.values() if not f.get('desistiu'))} ainda sem sucesso (tentados de novo toda semana, até 2 meses do pedido); {sum(1 for f in falhas.values() if f.get('desistiu'))} desistido(s).")
+    print(f"{ok} pedido(s) atendido(s); {sum(1 for f in falhas.values() if not f.get('desistiu'))} ainda sem sucesso (tentados de novo a cada rodada, até 6 meses do pedido); {sum(1 for f in falhas.values() if f.get('desistiu'))} desistido(s).")
 
 
 if __name__ == "__main__":

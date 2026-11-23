@@ -16,8 +16,8 @@ Fontes por tribunal (as mesmas que os robôs de acórdãos já baixam, no Mac):
   TST, TSE, STM: o tribunal é reconhecido, mas ainda não há fonte para buscar um acórdão qualquer (o acervo do TST só tem
   os precedentes vinculantes, e TSE e STM não têm acervo no site). O pedido fica registrado como "sem-fonte:<tribunal>" em
   curadoria/julgados-pedidos.json e volta a ser tentado quando o tribunal entrar na lista FONTES.
-Se o acórdão não está no cache (é mais novo que a última coleta), o pedido fica pendente: o robô o procura de novo UMA VEZ
-POR SEMANA, até completar 2 meses do pedido (scripts/pedidos_retentativa.py), porque julgado recente pode ainda não estar
+Se o acórdão não está no cache (é mais novo que a última coleta), o pedido fica pendente: o robô o procura de novo A CADA
+RODADA (inclusive no Rodar Tudo), até completar 6 meses do pedido (scripts/pedidos_retentativa.py), porque julgado recente pode ainda não estar
 nos dados do tribunal; depois desiste (feitos[id] = "desistiu"). Rode o "Atualizar Acórdãos.command" (ou o "Atualizar
 Acordaos STJ.command") para o cache andar junto.
 
@@ -40,7 +40,7 @@ import acordaos_stf as ac_stf  # noqa: E402
 import acordaos_stj as ac_stj  # noqa: E402
 import indice_fatiado  # noqa: E402
 import leis_citadas as lc  # noqa: E402
-import pedidos_retentativa as pr  # noqa: E402  (nova tentativa semanal por 2 meses)
+import pedidos_retentativa as pr  # noqa: E402  (nova tentativa a cada rodada, por 6 meses)
 robo = lc.robo
 
 PEDIDOS = RAIZ / "curadoria" / "julgados-pedidos.json"   # {"feitos": {id: status}, "falhas": {id: {...}}, "incluidos": {"STJ": [ids], "STF": [ids]}}
@@ -78,7 +78,7 @@ def pedidos():
         for d in j.get("documents", []):
             f = {k: (v.get("stringValue") or "") for k, v in d.get("fields", {}).items()}
             f["id"] = d["name"].rsplit("/", 1)[-1]
-            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (para a regra dos 2 meses)
+            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (para a regra dos 6 meses)
             out.append(f)
         token = j.get("nextPageToken", "")
         if not token:
@@ -302,23 +302,29 @@ def main():
     for pid, st in list(feitos.items()):
         if st.startswith("sem-fonte:") and any(t in FONTES for t in st.split(":", 1)[1].split(",")):
             del feitos[pid]
-    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in pedidos() if p["id"] not in feitos]
     hoje, esperando = date.today(), 0
+    todos = [] if a.teste else pedidos()
+    for p in todos:   # regra nova (6 meses, a cada rodada): quem tinha "desistido" pela regra antiga volta se ainda está no prazo
+        if feitos.get(p["id"]) == "desistiu" and pr.dentro_do_prazo(p.get("criado"), hoje):
+            del feitos[p["id"]]
+            if isinstance(falhas.get(p["id"]), dict):
+                falhas[p["id"]].pop("desistiu", None)
+    pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in todos if p["id"] not in feitos]
     if not a.teste and not a.plano:
         fila = []
-        for p in pend:        # regra: o que não achou é procurado de novo 1 vez por semana, até 2 meses do pedido
+        for p in pend:        # regra: o que não achou é procurado de novo a cada rodada, até 6 meses do pedido
             quer = pr.decidir(falhas.get(p["id"]), p.get("criado"), hoje)
             if quer == "desistir":
                 feitos[p["id"]] = "desistiu"
                 if not falhas.get(p["id"], {}).get("desistiu"):
                     falhas[p["id"]] = pr.registrar_desistencia(falhas.get(p["id"]) or {"consulta": p.get("consulta", ""), "primeira": p.get("criado", "")}, hoje)
-                print(f"  desisti de “{p.get('consulta', '')}”: não achei em 2 meses de tentativas semanais")
+                print(f"  desisti de “{p.get('consulta', '')}”: não achei em 6 meses de tentativas")
             elif quer == "esperar":
                 esperando += 1
             else:
                 fila.append(p)
         pend = fila
-    print(f"{len(pend)} pedido(s) para tentar agora" + (f"; {esperando} aguardando a próxima tentativa semanal." if esperando else "."))
+    print(f"{len(pend)} pedido(s) para tentar agora" + (f"; {esperando} aguardando." if esperando else "."))
     if a.plano:
         for p in pend:
             e = entender(p.get("consulta", ""))
@@ -400,7 +406,7 @@ def main():
             for n in notas:
                 print(f"    {n}")
             # fica pendente: só conta como tentativa se a base do tribunal foi consultada de verdade (sem cache não vale)
-            falhas[p["id"]] = pr.registrar_falha(falhas.get(p["id"]), p.get("criado"), hoje, "; ".join(notas) + " (tentado de novo toda semana, até 2 meses do pedido)", conta_tentativa=buscou)
+            falhas[p["id"]] = pr.registrar_falha(falhas.get(p["id"]), p.get("criado"), hoje, "; ".join(notas) + " (tentado de novo a cada rodada, até 6 meses do pedido)", conta_tentativa=buscou)
             falhas[p["id"]]["consulta"] = p.get("consulta", "")
     if a.teste:
         return
@@ -414,8 +420,8 @@ def main():
     pendentes = [i for i in falhas if i not in feitos]
     desistidos = [i for i in feitos if feitos[i] == "desistiu"]
     sem = [i for i in feitos if feitos[i] in ("nao-entendi",) or feitos[i].startswith("sem-fonte:")]
-    print(f"{ok} pedido(s) atendido(s); {len(pendentes)} pendente(s) (tentados de novo uma vez por semana, até 2 meses do pedido); "
-          f"{len(sem)} sem como atender agora; {len(desistidos)} desistido(s) (2 meses sem achar) — ver curadoria/julgados-pedidos.json.")
+    print(f"{ok} pedido(s) atendido(s); {len(pendentes)} pendente(s) (tentados de novo a cada rodada, até 6 meses do pedido); "
+          f"{len(sem)} sem como atender agora; {len(desistidos)} desistido(s) (6 meses sem achar) — ver curadoria/julgados-pedidos.json.")
 
 
 if __name__ == "__main__":

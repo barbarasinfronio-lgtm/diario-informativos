@@ -5,7 +5,8 @@ normas_sob_pedido.py — atende os pedidos de "Pedir esta norma" do Diário das 
 Quem busca uma resolução, recomendação ou provimento que não está na lista curada pode pedir: o site grava o pedido no
 Firestore (coleção pedidos-normas, um por órgão+busca). Este robô lê os pedidos, procura no acervo completo de atos do
 órgão (leis/cnj-atos.json, atos-csjt.json, atos-cnmp.json, atos-csmpt.json) e acrescenta a norma a normas/pedidas.json,
-que o Diário das Resoluções passa a mostrar. Pedidos que não acha vão para curadoria/normas-pedidas-falhas.json.
+que o Diário das Resoluções passa a mostrar. Pedidos que não acha vão para curadoria/normas-pedidas-falhas.json e são procurados de novo a cada rodada, até 6 meses do pedido
+(scripts/pedidos_retentativa.py); depois o robô desiste ("desistiu" no arquivo de falhas).
 
 Roda no Mac (precisa ler o Firestore), pelo "Atender Pedidos de Normas.command":
 
@@ -14,9 +15,12 @@ Roda no Mac (precisa ler o Firestore), pelo "Atender Pedidos de Normas.command":
     python3 scripts/normas_sob_pedido.py --teste cnj "Resolução 325"   # procura e mostra, não grava
 """
 import argparse, json, re, sys, unicodedata, urllib.parse, urllib.request
+from datetime import date
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "scripts"))
+import pedidos_retentativa as pr  # noqa: E402  (nova tentativa a cada rodada, por 6 meses)
 PEDIDAS = RAIZ / "normas" / "pedidas.json"
 FALHAS = RAIZ / "curadoria" / "normas-pedidas-falhas.json"
 FIRESTORE = "https://firestore.googleapis.com/v1/projects/diariodeinformativos/databases/(default)/documents/pedidos-normas"
@@ -40,6 +44,7 @@ def ler_pedidos():
         for d in j.get("documents", []):
             f = {k: (v.get("stringValue") or "") for k, v in d.get("fields", {}).items()}
             f["id"] = d["name"].rsplit("/", 1)[-1]
+            f["criado"] = str(d.get("createTime") or "")[:10]      # data do pedido (regra dos 6 meses)
             out.append(f)
         token = j.get("nextPageToken", "")
         if not token:
@@ -118,10 +123,19 @@ def main():
             continue
         achados = procurar(org, consulta)
         if not achados:
+            # regra: o que não achou é procurado de novo a cada rodada (o acervo de atos cresce), até 6 meses do pedido
             sem += 1
-            if not any(f.get("id") == p["id"] for f in falhas):
-                falhas.append({"id": p["id"], "orgao": org, "consulta": consulta, "motivo": "não está no acervo de atos do órgão" if org in ACERVOS else "órgão sem acervo de atos"})
+            reg = next((f for f in falhas if f.get("id") == p["id"]), None)
+            if reg is None:
+                reg = {"id": p["id"], "orgao": org, "consulta": consulta, "primeira": p.get("criado") or date.today().isoformat(),
+                       "motivo": "não está no acervo de atos do órgão" if org in ACERVOS else "órgão sem acervo de atos"}
+                falhas.append(reg)
+            if not reg.get("desistiu") and p.get("criado") and not pr.dentro_do_prazo(p["criado"], date.today()):
+                reg["desistiu"] = date.today().isoformat()
+                reg["motivo"] += " — desisti: não achei em 6 meses de tentativas"
+                print(f"  desisti de {org}: {consulta}")
             continue
+        falhas[:] = [f for f in falhas if f.get("id") != p["id"]]
         for x in achados:
             e = entrada(x)
             if (org, e["tipo"], e["numero"]) in feito:
