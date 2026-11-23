@@ -96,19 +96,24 @@ def main():
     ap.add_argument("--teste")
     ap.add_argument("--max", type=int, default=100)
     ap.add_argument("--espera", type=float, default=1.5)
+    ap.add_argument("--refazer", action="store_true", help="tenta de novo também as que já falharam de vez")
     a = ap.parse_args()
     feito = json.loads(SAIDA.read_text(encoding="utf-8")) if SAIDA.exists() else {}
-    alvos = [x for x in extras() if x["processo"] not in feito]
+    # falhas PERMANENTES (o STF não tem o texto / não achei o processo) ficam guardadas e são puladas; senão o "Rodar Tudo"
+    # tentava as mesmas 100 em toda rodada e nunca avançava. Erros passageiros (tempo esgotado, conexão) não entram aqui.
+    antigas = {} if a.refazer or not FALHAS.exists() else json.loads(FALHAS.read_text(encoding="utf-8"))
+    alvos = [x for x in extras() if x["processo"] not in feito and x["processo"] not in antigas]
     if a.teste:
         k = c.processo_principal(a.teste)
         alvos = [x for x in extras() if c.processo_principal(x["processo"]) == k]
     else:
         alvos = alvos[:a.max]
     print(f"{len(alvos)} extra(s) para buscar; {len(feito)} já feitas.")
-    falhas, inc, ok = {}, {}, 0
+    falhas, inc, ok = dict(antigas), {}, 0
     for x in alvos:
         classe, num = c.processo_principal(x["processo"])
         if not classe:
+            falhas[x["processo"]] = "sem classe/número de processo reconhecível"
             continue
         print(f"  … {x['processo']} ({x['data']})", flush=True)
         try:
@@ -124,7 +129,8 @@ def main():
         except robo.Falha as e:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
             if "passou de" in str(e): robo._firefox_fechar()
-            falhas[x["processo"]] = str(e)[:200]
+            if not re.search(r"passou de|conex|timeout|HTTP (5|429)|Firefox", str(e), re.I):
+                falhas[x["processo"]] = str(e)[:200]
             print(f"    sem sucesso: {e}")
             continue
         except KeyboardInterrupt:
@@ -139,7 +145,7 @@ def main():
         SAIDA.write_text(json.dumps(feito, ensure_ascii=False, indent=0), encoding="utf-8")
     if not a.teste:
         FALHAS.write_text(json.dumps(falhas, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"{ok} completada(s), {len(falhas)} sem sucesso. Total gravado: {len(feito)}.")
+    print(f"{ok} completada(s), {len(falhas)} sem texto no STF (guardadas, não tento de novo; --refazer força). Total gravado: {len(feito)}.")
 
 
 if __name__ == "__main__":
