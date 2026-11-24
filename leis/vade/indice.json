@@ -1524,7 +1524,7 @@
   "nome": "Lei do Governo Digital"
  },
  "ato2019-2022-2021-lei-l14133": {
-  "dispositivos": 168,
+  "dispositivos": 180,
   "nome": "Nova Lei de Licitações"
  },
  "ato2019-2022-2021-lei-l14164": {
@@ -4992,7 +4992,7 @@
   "nome": "Resolução CNJ nº 650/2025"
  },
  "cnj-6344": {
-  "dispositivos": 12,
+  "dispositivos": 14,
   "nome": "Resolução CNJ nº 651/2025"
  },
  "cnj-6345": {
@@ -6876,7 +6876,7 @@
   "nome": "Resolução CSJT nº 358/2023"
  },
  "csjt-resolu-o-360-2023": {
-  "dispositivos": 2,
+  "dispositivos": 4,
   "nome": "Resolução CSJT nº 360/2023"
  },
  "csjt-resolu-o-361-2023": {
@@ -6892,7 +6892,7 @@
   "nome": "Resolução CSJT nº 363/2023"
  },
  "csjt-resolu-o-364-2023": {
-  "dispositivos": 15,
+  "dispositivos": 23,
   "nome": "Resolução CSJT nº 364/2023"
  },
  "csjt-resolu-o-365-2023": {
@@ -6996,7 +6996,7 @@
   "nome": "Resolução CSJT nº 4/2005"
  },
  "csjt-resolu-o-4-2019": {
-  "dispositivos": 8,
+  "dispositivos": 9,
   "nome": "Resolução CSJT nº 4/2019"
  },
  "csjt-resolu-o-400-2024": {
@@ -7175,9 +7175,41 @@
   "dispositivos": 2,
   "nome": "Resolução CSJT nº 452/2026"
  },
+ "csjt-resolu-o-454-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSJT nº 454/2026"
+ },
+ "csjt-resolu-o-455-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSJT nº 455/2026"
+ },
+ "csjt-resolu-o-456-2026": {
+  "dispositivos": 10,
+  "nome": "Resolução CSJT nº 456/2026"
+ },
+ "csjt-resolu-o-457-2026": {
+  "dispositivos": 3,
+  "nome": "Resolução CSJT nº 457/2026"
+ },
+ "csjt-resolu-o-458-2026": {
+  "dispositivos": 2,
+  "nome": "Resolução CSJT nº 458/2026"
+ },
+ "csjt-resolu-o-459-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSJT nº 459/2026"
+ },
  "csjt-resolu-o-46-2008": {
   "dispositivos": 2,
   "nome": "Resolução CSJT nº 46/2008"
+ },
+ "csjt-resolu-o-460-2026": {
+  "dispositivos": 1,
+  "nome": "Resolução CSJT nº 460/2026"
+ },
+ "csjt-resolu-o-462-2026": {
+  "dispositivos": 8,
+  "nome": "Resolução CSJT nº 462/2026"
  },
  "csjt-resolu-o-47-2008": {
   "dispositivos": 4,
@@ -8520,7 +8552,7 @@
   "nome": "Fundo Estadual de Assistência Social de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-5049-compilado": {
-  "dispositivos": 29,
+  "dispositivos": 28,
   "nome": "Código Tributário do Estado de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-ato-normativo-7963-compilado": {
@@ -8580,7 +8612,7 @@
   "nome": "Processo de ação direta de inconstitucionalidade perante o Tribunal de Justiça de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2003-12854-2003-lei-html": {
-  "dispositivos": 27,
+  "dispositivos": 9,
   "nome": "Código Estadual de Proteção aos Animais de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2004-12929-2004-lei-html": {
@@ -8604,7 +8636,7 @@
   "nome": "Política Estadual de Educação Ambiental de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2006-339-2006-lei-complementar-html": {
-  "dispositivos": 13,
+  "dispositivos": 19,
   "nome": "Organização Judiciária de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2006-367-2006-lei-complementar-html": {
@@ -8664,11 +8696,11 @@
   "nome": "Lei Estadual (SC) nº 17.156/2017"
  },
  "leis-alesc-sc-gov-br-html-2017-17292-2017-lei-html": {
-  "dispositivos": 42,
+  "dispositivos": 6,
   "nome": "Reserva de vagas a pessoas com deficiência em concursos públicos de Santa Catarina"
  },
  "leis-alesc-sc-gov-br-html-2017-17354-2017-lei-html": {
-  "dispositivos": 9,
+  "dispositivos": 8,
   "nome": "Cria o Instituto do Meio Ambiente de Santa Catarina (IMA)"
  },
  "leis-alesc-sc-gov-br-html-2018-17492-2018-lei-html": {
@@ -8692,7 +8724,7 @@
   "nome": "Lei Complementar Estadual (SC) nº 780/2021"
  },
  "leis-alesc-sc-gov-br-html-2022-18322-2022-lei-html": {
-  "dispositivos": 26,
+  "dispositivos": 9,
   "nome": "Dispõe sobre a violência obstétrica no Estado de Santa Catarina"
  },
  "leis-l10028": {
