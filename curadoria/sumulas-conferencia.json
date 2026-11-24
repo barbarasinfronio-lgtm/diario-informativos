@@ -310,8 +310,12 @@
   "motivo": "HTTP 403 (bloqueia robôs)"
  },
  "tce_sp": {
-  "estado": "falhou",
-  "motivo": "HTTP 000"
+  "estado": "ok",
+  "no_acervo": 52,
+  "na_fonte": 52,
+  "novas": [],
+  "canceladas_nao_marcadas": [],
+  "sumiram_da_fonte": []
  },
  "tce_sc": {
   "estado": "precisa do Chrome",
