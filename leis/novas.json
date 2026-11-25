@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-23",
+ "atualizado": "2026-11-25",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 30,
  "leis": [
+  {
+   "chave": "lc-239-2026",
+   "tipo": "LC",
+   "numero": "Lei Complementar nº 239/2026",
+   "pedido": "Lei Complementar 239/2026",
+   "data": "2026-11-24",
+   "ementa": "Altera a Lei Complementar nº 200, de 30 de agosto de 2023, a Lei Complementar nº 176, de 29 de dezembro de 2020, a Lei Complementar nº 235, de 27 de agosto de 2026, a Lei Complementar nº 224, de 26 de dezembro de 2025, a Lei nº 11.540, de 12 de novembro de 2007, e a Lei nº 9.796, de 5 de maio de 1999, para conferir ao Poder Executivo federal novos instrumentos de gestão, com vistas a garantir a estabilidade macroeconômica do País e criar as condições adequadas ao desenvolvimento socioeconômico; e dá outras providências.",
+   "link": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp239.htm",
+   "noAcervo": false,
+   "visto": "2026-11-25"
+  },
   {
    "chave": "lei-15550-2026",
    "tipo": "LEI",
