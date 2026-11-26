@@ -319,7 +319,7 @@
  },
  "tce_sc": {
   "estado": "precisa do Chrome",
-  "motivo": "a página não traz a lista (carrega por JavaScript); conferir pelo Chrome"
+  "motivo": "HTTP 403 (bloqueia robôs)"
  },
  "tce_mt": {
   "estado": "precisa do Chrome",
