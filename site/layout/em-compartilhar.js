@@ -88,7 +88,7 @@
     ".em-print-corpo .cad-trecho{font-style:italic}" +
     ".em-print-corpo .cad-nota{margin:.2em 0 0 1em;border-left:2px solid #999;padding-left:.6em}" +
     ".em-print-corpo mark.cad-mark{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#000!important}" +
-    ".em-print-corpo mark.cad-amarelo{background:#fde68a!important}.em-print-corpo mark.cad-verde{background:#bbf7d0!important}.em-print-corpo mark.cad-rosa{background:#fbcfe8!important}" +
+    ".em-print-corpo mark.cad-amarelo{background:#fde68a!important}.em-print-corpo mark.cad-verde{background:#bbf7d0!important}.em-print-corpo mark.cad-rosa{background:#fbcfe8!important}.em-print-corpo mark.cad-azul{background:#bfdbfe!important}.em-print-corpo mark.cad-laranja{background:#fed7aa!important}.em-print-corpo mark.cad-roxo{background:#e9d5ff!important}.em-print-corpo mark.cad-vermelho{background:#fecaca!important}.em-print-corpo mark.cad-cinza{background:#e5e7eb!important}" +
     ".em-print-corpo mark.cad-com-nota{border-bottom:2px solid #333}" +
     ".em-print-corpo .cad-item{list-style:none;border-left:4px solid #999;padding-left:.6em;margin:.4em 0;-webkit-print-color-adjust:exact;print-color-adjust:exact}" +
     ".em-print-corpo .cad-borda-amarelo{border-left-color:#f59e0b}.em-print-corpo .cad-borda-verde{border-left-color:#16a34a}.em-print-corpo .cad-borda-rosa{border-left-color:#db2777}" +

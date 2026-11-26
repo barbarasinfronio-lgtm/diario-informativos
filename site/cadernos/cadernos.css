@@ -8,18 +8,38 @@
   --cad-amarelo-forte: #d9a800;
   --cad-verde-forte: #2f9e5a;
   --cad-rosa-forte: #d1497f;
+  --cad-azul: rgba(59,130,246, 0.32);
+  --cad-azul-forte: #2f6fd6;
+  --cad-laranja: rgba(249,115,22, 0.32);
+  --cad-laranja-forte: #e07020;
+  --cad-roxo: rgba(147,51,234, 0.32);
+  --cad-roxo-forte: #8b3fd9;
+  --cad-vermelho: rgba(239,68,68, 0.32);
+  --cad-vermelho-forte: #d63a3a;
+  --cad-cinza: rgba(120,128,144, 0.32);
+  --cad-cinza-forte: #6b7280;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --cad-amarelo: rgba(255, 214, 10, 0.30);
     --cad-verde: rgba(72, 199, 116, 0.30);
     --cad-rosa: rgba(255, 99, 160, 0.30);
+    --cad-azul: rgba(59,130,246, 0.34);
+    --cad-laranja: rgba(249,115,22, 0.34);
+    --cad-roxo: rgba(147,51,234, 0.34);
+    --cad-vermelho: rgba(239,68,68, 0.34);
+    --cad-cinza: rgba(120,128,144, 0.34);
   }
 }
 :root[data-theme="dark"] {
   --cad-amarelo: rgba(255, 214, 10, 0.30);
   --cad-verde: rgba(72, 199, 116, 0.30);
   --cad-rosa: rgba(255, 99, 160, 0.30);
+  --cad-azul: rgba(59,130,246, 0.34);
+  --cad-laranja: rgba(249,115,22, 0.34);
+  --cad-roxo: rgba(147,51,234, 0.34);
+  --cad-vermelho: rgba(239,68,68, 0.34);
+  --cad-cinza: rgba(120,128,144, 0.34);
 }
 
 /* ---- destaques no texto ---- */
@@ -135,7 +155,7 @@ mark.cad-com-nota { border-bottom: 2px dotted var(--ink-soft, #4a5064); }
 }
 .cad-filtro-cor { display: flex; gap: 4px; align-items: center; }
 .cad-filtro-cor .cad-cor { width: 22px; height: 22px; }
-.cad-filtro-cor .cad-cor.cad-todas { background: conic-gradient(var(--cad-amarelo-forte) 0 33%, var(--cad-verde-forte) 0 66%, var(--cad-rosa-forte) 0); }
+.cad-filtro-cor .cad-cor.cad-todas { background: conic-gradient(var(--cad-amarelo-forte) 0 12.5%, var(--cad-verde-forte) 0 25%, var(--cad-rosa-forte) 0 37.5%, var(--cad-azul-forte) 0 50%, var(--cad-laranja-forte) 0 62.5%, var(--cad-roxo-forte) 0 75%, var(--cad-vermelho-forte) 0 87.5%, var(--cad-cinza-forte) 0); }
 .cad-acoes-caderno { display: flex; gap: 6px; flex-wrap: wrap; margin: -4px 0 14px; }
 .cad-vazio { color: var(--ink-faint, #767d8f); padding: 20px; text-align: center; border: 1px dashed var(--surface-line, #e2dcca); border-radius: var(--radius, 14px); }
 .cad-grupo {
@@ -163,3 +183,25 @@ mark.cad-com-nota { border-bottom: 2px dotted var(--ink-soft, #4a5064); }
   .cad-grupo { box-shadow: none; break-inside: avoid; border-color: #ccc; }
   .cad-pg { max-width: none; padding: 0; }
 }
+
+/* ---- cores a mais (azul, laranja, roxo, vermelho, cinza) ---- */
+mark.cad-azul { background: var(--cad-azul); }
+.cad-cor.cad-azul { background: var(--cad-azul-forte); }
+.cad-borda-azul, .cad-notas .cad-item-btn.cad-borda-azul, .cad-marca.cad-borda-azul { border-left-color: var(--cad-azul-forte); }
+mark.cad-laranja { background: var(--cad-laranja); }
+.cad-cor.cad-laranja { background: var(--cad-laranja-forte); }
+.cad-borda-laranja, .cad-notas .cad-item-btn.cad-borda-laranja, .cad-marca.cad-borda-laranja { border-left-color: var(--cad-laranja-forte); }
+mark.cad-roxo { background: var(--cad-roxo); }
+.cad-cor.cad-roxo { background: var(--cad-roxo-forte); }
+.cad-borda-roxo, .cad-notas .cad-item-btn.cad-borda-roxo, .cad-marca.cad-borda-roxo { border-left-color: var(--cad-roxo-forte); }
+mark.cad-vermelho { background: var(--cad-vermelho); }
+.cad-cor.cad-vermelho { background: var(--cad-vermelho-forte); }
+.cad-borda-vermelho, .cad-notas .cad-item-btn.cad-borda-vermelho, .cad-marca.cad-borda-vermelho { border-left-color: var(--cad-vermelho-forte); }
+mark.cad-cinza { background: var(--cad-cinza); }
+.cad-cor.cad-cinza { background: var(--cad-cinza-forte); }
+.cad-borda-cinza, .cad-notas .cad-item-btn.cad-borda-cinza, .cad-marca.cad-borda-cinza { border-left-color: var(--cad-cinza-forte); }
+.cad-nome-cor { display: flex; align-items: center; gap: 6px; font-size: calc(12px * var(--fs-scale, 1)); color: var(--ink-soft, #4a5064); }
+.cad-nome-cor input { flex: 1 1 auto; min-width: 0; font: inherit; padding: 4px 8px; border: 1px solid var(--surface-line, #e2dcca); border-radius: 6px; background: var(--surface, #fff); color: var(--ink, #1c2130); }
+.cad-legenda { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; margin: 0 0 16px; padding: 12px; border: 1px dashed var(--surface-line, #e2dcca); border-radius: var(--radius, 14px); }
+.cad-legenda .cad-cor { width: 20px; height: 20px; flex: 0 0 auto; cursor: default; }
+.cad-tag-cor { font: 600 calc(11px * var(--fs-scale, 1)) var(--font-mono, monospace); color: var(--ink-faint, #767d8f); }
