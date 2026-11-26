@@ -160,8 +160,28 @@
     }
     return null;
   }
+  // Número ou romano + ponto + espaço + maiúscula ("1. A incidência…", "II. QUESTÃO EM DISCUSSÃO…") abre parágrafo.
+  // Fica de fora o que é citação de dispositivo ("inciso I. O…", "Súmula 7. A…") e "V. Exa.".
+  var ANTES_NAO_ITEM = /(?:^|\s)(?:arts?|n|nº|n°|inc|incisos?|al[ií]neas?|itens?|§|lei|leis|s[úu]mulas?|temas?|resolu[çc][ãa]o|decreto|cap[ií]tulos?|t[ií]tulos?|se[çc][ãa]o|livro|parte|grupo|turma|vara|regi[ãa]o|anexo|p|fls?)\.?\s*$/i;
+  function marcadores(t){
+    var rx = /(^|[\s"“(])((?:\d{1,3}|[IVXL]{1,6}))\.\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/g, m, cortes = [];
+    while ((m = rx.exec(t))) {
+      var ini = m.index + (/^\s?$/.test(m[1]) ? m[1].length : 0);       // aspas ou parêntese de abertura ficam com o item
+      if (ini === 0) continue;
+      if (m[2] === 'V' && /^(?:Exa|Ex\.|Sa\b|S\.|Ac)/.test(t.slice(rx.lastIndex))) continue;
+      if (ANTES_NAO_ITEM.test(t.slice(Math.max(0, ini - 25), ini))) continue;
+      cortes.push(ini);
+    }
+    if (!cortes.length) return null;
+    var partes = [], de = 0;
+    cortes.forEach(function(c){ partes.push(t.slice(de, c).trim()); de = c; });
+    partes.push(t.slice(de).trim());
+    return partes.filter(Boolean).join('\n\n');
+  }
   function paragrafar(t){
     if (!t || typeof t !== 'string' || t.indexOf('\n') >= 0) return t;
+    var marc = marcadores(t);
+    if (marc) return marc;
     var itens = enumeracao(t);
     if (itens) return itens;
     if (t.length < 900) return t;
@@ -830,7 +850,7 @@
       var e = j[String(d.tema)];
       if (!e || modalAtual !== d) return;
       var h = '';
-      if (e.ementa) h += '<div class="section-label">Ementa do acórdão' + (e.acordao ? ' — ' + escapeHtml(e.acordao) : '') + '</div><div class="destaque-text cad-tardio">' + escapeHtml(e.ementa) + '</div>';
+      if (e.ementa) h += '<div class="section-label">Ementa do acórdão' + (e.acordao ? ' — ' + escapeHtml(e.acordao) : '') + '</div><div class="destaque-text cad-tardio">' + escapeHtml(paragrafar(e.ementa)) + '</div>';
       if (e.infoTeor) h += '<div class="section-label">Informativo STJ nº ' + escapeHtml(e.info) + ' — inteiro teor</div><div class="destaque-text cad-tardio">' + escapeHtml(e.infoTeor) + '</div>';
       var campos = modal.querySelector('.fields');
       if (campos && h) { campos.insertAdjacentHTML('afterend', h); areasTardias(d); }
@@ -1131,8 +1151,8 @@
       '<h2>' + escapeHtml(tituloDe(d)) + '</h2>' +
       (d.questao && !d.tese
         ? '<div class="section-label">Questão em julgamento (ainda sem tese)</div><div class="tese-text">' + escapeHtml(d.questao) + '</div>'
-        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(d.tese||'—') + '</div>') +
-      (d.destaque && !destaqueRepetido(d) ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : d.tipo==='informativo' ? 'Resumo do julgado' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(d.destaque) + '</div>' : '') +
+        : '<div class="section-label">' + (d.tipo==='oj' || d.tipo==='pn' ? 'Texto' : d.tipo==='teses' ? 'Tese' : d.tipo==='omissao' || d.tipo==='acordao' ? 'Ementa' : d.tipo==='covid' ? 'Decisão' : d.tipo==='resumo' ? 'Tese' : d.tipo==='informativo' ? 'Tese do julgado' : 'Tese fixada') + '</div><div class="tese-text">' + escapeHtml(paragrafar(d.tese)||'—') + '</div>') +
+      (d.destaque && !destaqueRepetido(d) ? '<div class="section-label">' + (d.tipo==='resumo' ? 'Resultado' : d.tipo==='covid' ? 'Relatório' : d.tipo==='acordao' ? 'Decisão' : d.tipo==='informativo' ? 'Resumo do julgado' : 'Destaque') + '</div><div class="destaque-text">' + escapeHtml(paragrafar(d.destaque)) + '</div>' : '') +
       '<div class="fields">' +
         '<div><b>' + (d.tipo==='teses' ? 'Julgado mais recente' : 'Processo') + '</b>' + escapeHtml(d.processo||'—') + '</div>' +
         '<div><b>Relator(a)</b>' + escapeHtml(d.relator||'—') + '</div>' +
