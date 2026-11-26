@@ -1,9 +1,11 @@
 /* =====================================================================
    cadernos.js — destaques e anotações ("Meus Cadernos")
    Ao abrir um card do Diário das Decisões (e de Controle/Reclamações), a
-   pessoa seleciona um trecho e aparece uma barrinha: destacar em amarelo,
-   verde ou rosa, ou escrever uma anotação. Tudo fica na conta dela:
-     cadernos/<uid>                 { cadernos: [{ id, nome }], atual }
+   pessoa seleciona um trecho e aparece uma barrinha: destacar numa das cores
+   (amarelo, verde, rosa, azul, laranja, roxo, vermelho, cinza) ou escrever uma
+   anotação. Cada cor pode ganhar um nome ("verde = Direito ambiental"), que
+   vale em todo o site e em qualquer aparelho. Tudo fica na conta dela:
+     cadernos/<uid>                 { cadernos: [{ id, nome }], atual, cores: { <cor>: nome } }
      cadernos/<uid>/marcas/<id>     { fonte, item, titulo, origem, abrir,
                                       secao, inicio, fim, trecho, cor, nota,
                                       caderno, criadoEm, atualizadoEm }
@@ -27,8 +29,14 @@
   var CORES = [
     { id: "amarelo", nome: "Amarelo" },
     { id: "verde", nome: "Verde" },
-    { id: "rosa", nome: "Rosa" }
+    { id: "rosa", nome: "Rosa" },
+    { id: "azul", nome: "Azul" },
+    { id: "laranja", nome: "Laranja" },
+    { id: "roxo", nome: "Roxo" },
+    { id: "vermelho", nome: "Vermelho" },
+    { id: "cinza", nome: "Cinza" }
   ];
+  var LIMITE_NOME_COR = 40;
   var LIMITE_TRECHO = 4000, LIMITE_NOTA = 4000;
 
   // CSS próprio (vale no Diário das Decisões e na página Meus Cadernos)
@@ -51,7 +59,7 @@
   // ---- conta + dados ------------------------------------------------------
   var uid = null, db = null, docRaiz = null;
   var marcas = {};            // id -> marca
-  var meta = { cadernos: [], atual: null };
+  var meta = { cadernos: [], atual: null, cores: {} };
   var ouvintes = [];
   var carregado = false, contaConhecida = false;
   var offMarcas = null, offMeta = null;
@@ -75,7 +83,7 @@
   function entrou(user) {
     if (offMarcas) { offMarcas(); offMarcas = null; }
     if (offMeta) { offMeta(); offMeta = null; }
-    marcas = {}; meta = { cadernos: [], atual: null };
+    marcas = {}; meta = { cadernos: [], atual: null, cores: {} };
     uid = user && !user.isAnonymous ? user.uid : null;
     contaConhecida = true;
     carregado = !uid;
@@ -84,7 +92,7 @@
     docRaiz = db.doc("cadernos/" + uid);
     offMeta = docRaiz.onSnapshot(function (s) {
       var d = s.exists ? s.data() : {};
-      meta = { cadernos: Array.isArray(d.cadernos) ? d.cadernos : [], atual: d.atual || null };
+      meta = { cadernos: Array.isArray(d.cadernos) ? d.cadernos : [], atual: d.atual || null, cores: d.cores && typeof d.cores === "object" ? d.cores : {} };
       avisar();
     }, function () {});
     offMarcas = docRaiz.collection("marcas").onSnapshot(function (snap) {
@@ -106,7 +114,22 @@
 
   function salvarMeta() {
     if (!docRaiz) return Promise.reject(new Error("sem conta"));
-    return docRaiz.set({ cadernos: meta.cadernos, atual: meta.atual || null, atualizadoEm: agora() });
+    return docRaiz.set({ cadernos: meta.cadernos, atual: meta.atual || null, cores: meta.cores || {}, atualizadoEm: agora() });
+  }
+  // Nome que a pessoa deu à cor ("Direito ambiental"); sem nome, o da cor ("Verde").
+  function nomeCor(id) {
+    var c = CORES.filter(function (x) { return x.id === id; })[0];
+    return (meta.cores && meta.cores[id]) || (c ? c.nome : id);
+  }
+  function nomeProprioCor(id) { return (meta.cores && meta.cores[id]) || ""; }
+  function nomearCor(id, nome) {
+    nome = String(nome || "").replace(/\s+/g, " ").trim().slice(0, LIMITE_NOME_COR);
+    if (!CORES.some(function (c) { return c.id === id; })) return Promise.reject(new Error("cor"));
+    if (nome === nomeProprioCor(id)) return Promise.resolve();
+    var novo = Object.assign({}, meta.cores);
+    if (nome) novo[id] = nome; else delete novo[id];
+    meta.cores = novo;
+    return salvarMeta();
   }
   function cadernoPadrao() {
     if (meta.atual && meta.cadernos.some(function (c) { return c.id === meta.atual; })) return Promise.resolve(meta.atual);
@@ -384,7 +407,7 @@
     }
     barra.innerHTML =
       '<div class="cad-barra-linha">' +
-        CORES.map(function (c) { return '<button type="button" class="cad-cor cad-' + c.id + '" data-cor="' + c.id + '" title="Destacar em ' + c.nome.toLowerCase() + '" aria-label="Destacar em ' + c.nome.toLowerCase() + '"></button>'; }).join("") +
+        CORES.map(function (c) { var n = esc(nomeCor(c.id)); return '<button type="button" class="cad-cor cad-' + c.id + '" data-cor="' + c.id + '" title="' + n + '" aria-label="Destacar: ' + n + '"></button>'; }).join("") +
         '<button type="button" class="cad-acao" data-acao="anotar">📝 Anotar</button>' +
       "</div>" +
       (meta.cadernos.length > 1 ? '<label class="cad-barra-cad">Caderno <select>' + opcoesCaderno(meta.atual) + "</select></label>" : "");
@@ -397,26 +420,30 @@
     // m: marca existente, ou { novo: true, ...seleção }
     barra.innerHTML =
       '<div class="cad-barra-linha">' +
-        CORES.map(function (c) { return '<button type="button" class="cad-cor cad-' + c.id + (m.cor === c.id ? " is-on" : "") + '" data-cor-ed="' + c.id + '" aria-label="' + c.nome + '"></button>'; }).join("") +
+        CORES.map(function (c) { var n = esc(nomeCor(c.id)); return '<button type="button" class="cad-cor cad-' + c.id + (m.cor === c.id ? " is-on" : "") + '" data-cor-ed="' + c.id + '" title="' + n + '" aria-label="' + n + '"></button>'; }).join("") +
         (m.novo ? "" : '<button type="button" class="cad-acao cad-perigo" data-acao="apagar">Apagar</button>') +
       "</div>" +
+      '<label class="cad-nome-cor">Nome da cor <input type="text" maxlength="' + LIMITE_NOME_COR + '" placeholder="ex.: Direito ambiental" value="' + esc(nomeProprioCor(m.cor || "amarelo")) + '"></label>' +
       '<textarea class="cad-texto" rows="3" maxlength="' + LIMITE_NOTA + '" placeholder="Sua anotação (opcional)">' + esc(m.nota || "") + "</textarea>" +
       '<label class="cad-barra-cad">Caderno <select>' + opcoesCaderno(m.caderno || meta.atual) + "</select></label>" +
       '<div class="cad-barra-linha cad-fim"><button type="button" class="cad-acao" data-acao="cancelar">Cancelar</button>' +
       '<button type="button" class="cad-acao cad-salvar" data-acao="salvar">Salvar</button></div>';
     var estado = { cor: m.cor || "amarelo", caderno: m.caderno || meta.atual };
+    var campoNome = barra.querySelector(".cad-nome-cor input");
     trocarCaderno(barra.querySelector("select"), function (id) { estado.caderno = id; });
     barra.querySelectorAll("[data-cor-ed]").forEach(function (b) {
       b.addEventListener("click", function () {
         estado.cor = b.getAttribute("data-cor-ed");
         barra.querySelectorAll("[data-cor-ed]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+        campoNome.value = nomeProprioCor(estado.cor);
       });
     });
     barra.querySelector('[data-acao="salvar"]').addEventListener("click", function () {
       var nota = barra.querySelector("textarea").value.trim();
-      var feito = m.novo
+      var nomeNovo = campoNome.value;
+      var feito = (nomeNovo.trim() !== nomeProprioCor(estado.cor) ? nomearCor(estado.cor, nomeNovo) : Promise.resolve()).then(function () { return m.novo
         ? (estado.caderno ? escolherAtual(estado.caderno) : Promise.resolve()).then(function () { return criarMarca(dadosNova(m, estado.cor, nota)); })
-        : mudarMarca(m.id, { cor: estado.cor, nota: nota, caderno: estado.caderno || m.caderno });
+        : mudarMarca(m.id, { cor: estado.cor, nota: nota, caderno: estado.caderno || m.caderno }); });
       feito.then(esconderBarra, function () { window.alert("Não foi possível salvar agora. Tente de novo."); });
     });
     barra.querySelector('[data-acao="cancelar"]').addEventListener("click", esconderBarra);
@@ -555,6 +582,9 @@
     mudarMarca: mudarMarca,
     apagarMarca: apagarMarca,
     nomeCaderno: nomeCaderno,
+    nomeCor: nomeCor,
+    nomeProprioCor: nomeProprioCor,
+    nomearCor: nomearCor,
     CORES: CORES
   };
 })();

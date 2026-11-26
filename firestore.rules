@@ -131,9 +131,10 @@ service cloud.firestore {
     match /cadernos/{uid} {
       allow read: if dono(uid);
       allow write: if dono(uid) && contaDeVerdade()
-                   && request.resource.data.keys().hasOnly(['cadernos', 'atual', 'atualizadoEm'])
+                   && request.resource.data.keys().hasOnly(['cadernos', 'atual', 'cores', 'atualizadoEm'])
                    && request.resource.data.cadernos is list
-                   && request.resource.data.cadernos.size() <= 200;
+                   && request.resource.data.cadernos.size() <= 200
+                   && (!('cores' in request.resource.data) || (request.resource.data.cores is map && request.resource.data.cores.size() <= 20));
 
       match /marcas/{marcaId} {
         allow read: if dono(uid);
@@ -143,7 +144,7 @@ service cloud.firestore {
                         'secao', 'inicio', 'fim', 'trecho', 'cor', 'nota', 'caderno', 'criadoEm', 'atualizadoEm'])
                    && request.resource.data.trecho is string && request.resource.data.trecho.size() <= 4000
                    && request.resource.data.nota is string && request.resource.data.nota.size() <= 4000
-                   && request.resource.data.cor in ['amarelo', 'verde', 'rosa'];
+                   && request.resource.data.cor in ['amarelo', 'verde', 'rosa', 'azul', 'laranja', 'roxo', 'vermelho', 'cinza'];
       }
     }
 

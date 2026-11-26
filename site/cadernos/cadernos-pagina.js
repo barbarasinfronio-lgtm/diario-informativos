@@ -42,7 +42,7 @@
     raiz.innerHTML = '<p class="cad-aviso">Não foi possível carregar agora. Recarregue a página.</p>';
   });
 
-  var loginMostrado = false;
+  var loginMostrado = false, legendaAberta = false;
   function desenhar() {
     if (!C) return;
     var st = C.estado();
@@ -57,6 +57,7 @@
     if (!st.carregado) { raiz.innerHTML = '<p class="cad-dica">Carregando seus cadernos…</p>'; return; }
     // não redesenha por cima de uma anotação sendo digitada
     if (editando && raiz.querySelector('textarea[data-editando="' + editando + '"]') && document.activeElement && document.activeElement.tagName === "TEXTAREA") return;
+    if (document.activeElement && document.activeElement.hasAttribute && document.activeElement.hasAttribute("data-nome-cor")) return;   // dando nome a uma cor
     var foco = document.activeElement && document.activeElement.id === "cad-busca";
 
     var porCaderno = {};
@@ -77,10 +78,18 @@
       '<input type="search" id="cad-busca" placeholder="Buscar nas marcações e anotações" value="' + esc(filtro.q) + '">' +
       '<span class="cad-filtro-cor" title="Filtrar por cor">' +
         '<button type="button" class="cad-cor cad-todas' + (filtro.cor === "todas" ? " is-on" : "") + '" data-fcor="todas" aria-label="Todas as cores"></button>' +
-        C.CORES.map(function (c) { return '<button type="button" class="cad-cor cad-' + c.id + (filtro.cor === c.id ? " is-on" : "") + '" data-fcor="' + c.id + '" aria-label="Só ' + c.nome.toLowerCase() + '"></button>'; }).join("") +
+        C.CORES.map(function (c) { var n = esc(C.nomeCor(c.id)); return '<button type="button" class="cad-cor cad-' + c.id + (filtro.cor === c.id ? " is-on" : "") + '" data-fcor="' + c.id + '" title="' + n + '" aria-label="Só ' + n + '"></button>'; }).join("") +
       "</span>" +
+      '<button type="button" class="cad-acao" data-legenda="1" aria-expanded="' + (legendaAberta ? "true" : "false") + '">🏷️ Nomes das cores</button>' +
       '<button type="button" class="cad-acao" data-imprimir="1">🖨 Imprimir / PDF</button></div>';
 
+    if (legendaAberta) {
+      html += '<div class="cad-legenda"><p class="cad-dica" style="grid-column:1/-1;margin:0">Dê um nome a cada cor (ex.: verde = Direito ambiental). O nome fica na sua conta e vale em todo o site, em qualquer aparelho.</p>' +
+        C.CORES.map(function (c) {
+          return '<label class="cad-nome-cor"><span class="cad-cor cad-' + c.id + '" aria-hidden="true"></span>' +
+            '<input type="text" maxlength="40" data-nome-cor="' + c.id + '" placeholder="' + esc(c.nome) + '" value="' + esc(C.nomeProprioCor(c.id)) + '" aria-label="Nome da cor ' + esc(c.nome.toLowerCase()) + '"></label>';
+        }).join("") + "</div>";
+    }
     var ts = semAcento(filtro.q).split(/\s+/).filter(function (t) { return t.length >= 2; });
     var lista = st.marcas.filter(function (m) {
       if (filtro.caderno !== "todos" && m.caderno !== filtro.caderno) return false;
@@ -134,7 +143,8 @@
         '<div class="cad-marca-rodape">' +
           (ed ? '<button type="button" class="cad-acao cad-salvar" data-salvar="1">Salvar</button><button type="button" class="cad-acao" data-cancelar="1">Cancelar</button>'
               : '<button type="button" class="cad-acao" data-editar="1">' + (m.nota ? "Editar anotação" : "📝 Anotar") + "</button>") +
-          C.CORES.map(function (c) { return '<button type="button" class="cad-cor cad-' + c.id + (m.cor === c.id ? " is-on" : "") + '" data-cor="' + c.id + '" style="width:18px;height:18px" aria-label="' + c.nome + '"></button>'; }).join("") +
+          C.CORES.map(function (c) { var n = esc(C.nomeCor(c.id)); return '<button type="button" class="cad-cor cad-' + c.id + (m.cor === c.id ? " is-on" : "") + '" data-cor="' + c.id + '" style="width:18px;height:18px" title="' + n + '" aria-label="' + n + '"></button>'; }).join("") +
+          (C.nomeProprioCor(m.cor || "amarelo") ? '<span class="cad-tag-cor">' + esc(C.nomeProprioCor(m.cor || "amarelo")) + "</span>" : "") +
           '<select data-mover="1" aria-label="Caderno">' + opc + "</select>" +
           "<span>" + esc(dataBr(m.criadoEm)) + "</span>" +
           '<button type="button" class="cad-acao cad-perigo" data-apagar="1">Apagar</button>' +
@@ -168,6 +178,7 @@
       if (window.confirm(msg)) { var id = filtro.caderno; filtro.caderno = "todos"; C.apagarCaderno(id).catch(erro); }
       return;
     }
+    if (t.hasAttribute("data-legenda")) { legendaAberta = !legendaAberta; desenhar(); return; }
     if (t.hasAttribute("data-fcor")) { filtro.cor = t.getAttribute("data-fcor"); desenhar(); return; }
     if (t.hasAttribute("data-imprimir")) { window.print(); return; }
 
@@ -188,6 +199,8 @@
     }
   });
   raiz.addEventListener("change", function (e) {
+    var nc = e.target.closest("input[data-nome-cor]");
+    if (nc) { C.nomearCor(nc.getAttribute("data-nome-cor"), nc.value).then(function () { nc.blur(); desenhar(); }, erro); return; }
     var s = e.target.closest("select[data-mover]");
     if (!s) return;
     C.mudarMarca(s.closest("[data-marca]").getAttribute("data-marca"), { caderno: s.value }).catch(erro);
