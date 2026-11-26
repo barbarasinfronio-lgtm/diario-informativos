@@ -8,7 +8,8 @@ o TRIBUNAL pela classe do processo ("REsp" só existe no STJ, "RE" e "ADI" só n
 no TSE; "HC", "RHC", "MS", "RMS", "Rcl", "Pet" existem em mais de um, e aí o robô procura em todos), procura o acórdão na
 base daquele tribunal e, achando, o acrescenta ao acervo dele no site, SEM passar pelo filtro de conteúdo: quem pediu
 quer aquele julgado, mesmo que uma rodada normal o descartasse (embargos rejeitados, recurso só processual). Quem
-digita o tribunal na busca ("STF HC 123456") escolhe onde procurar.
+digita o tribunal na busca ("STF HC 123456") escolhe onde procurar. Pedido SÓ COM O NÚMERO ("2.173.132"): o robô
+acrescenta todos os julgados com esse número, de qualquer classe (REsp, HC, RE, AgInt no AREsp...), no STF e no STJ.
 
 Fontes por tribunal (as mesmas que os robôs de acórdãos já baixam, no Mac):
   STJ  dados abertos (espelhos de acórdãos)   ~/EstudaMana/cache-stj-acordaos/   → stj/acordaos/   (acordaos_stj.py)
@@ -130,7 +131,12 @@ def entender(consulta):
         depois = toks[j]
     k = i - 1
     if k < 0 or not re.fullmatch(r"[A-Za-z]{1,10}", toks[k]):
-        return None
+        # SÓ O NÚMERO (ex.: "2.173.132"): vale qualquer classe — o robô acrescenta todos os julgados com esse número
+        # (REsp, HC, RE, AgInt no AREsp...) nos tribunais que sabe buscar
+        if any(re.fullmatch(r"[A-Za-z]{1,10}", t) for t in toks):
+            return None
+        return {"classe": "", "base": "", "num": m.group(1).replace(".", ""), "uf": uf, "depois": "",
+                "tribunal": tribunal, "cnj": False, "qualquer": True}
     cadeia = [toks[k]]
     k -= 1
     while k >= 1 and toks[k].lower() in LIGACAO and re.fullmatch(r"[A-Za-z]{1,10}", toks[k - 1]):
@@ -145,6 +151,8 @@ def candidatos(e):
     classe é desconhecida, STF e STJ (os que o robô sabe buscar)."""
     if e["tribunal"]:
         return [e["tribunal"]]
+    if e.get("qualquer"):
+        return [t for t in ORDEM if t in FONTES]
     base = e["base"].lower()
     cands = [t for t in ORDEM if base in CLASSES[t]]
     if e["cnj"]:
@@ -196,7 +204,13 @@ def procurar_stj(numeros):
 
 
 def escolher_stj(registros, e):
-    """Os acórdãos desse processo com exatamente essa classe (acórdão antes de decisão monocrática)."""
+    """Os acórdãos desse processo com exatamente essa classe (acórdão antes de decisão monocrática).
+    Pedido só com o número: todas as classes com esse número (em cada classe, acórdão antes de monocrática)."""
+    if e.get("qualquer"):
+        out = []
+        for cl in sorted({norm(d.get("siglaClasse")) for d in registros}):
+            out += escolher_stj([d for d in registros if norm(d.get("siglaClasse")) == cl], dict(e, qualquer=False, classe=cl))
+        return out
     iguais = [d for d in registros if norm(d.get("siglaClasse")) == norm(e["classe"])]
     por_id = {}
     for d in iguais:
@@ -254,10 +268,10 @@ def sigla_stf(e):
 
 
 def escolher_stf(registros, e):
-    alvo = norm(sigla_stf(e))
+    alvo = None if e.get("qualquer") else norm(sigla_stf(e))     # só o número: todas as classes
     por_id = {}
     for d in registros:
-        if norm(d.get("processo_classe_processual_unificada_sigla")) == alvo and d.get("ementa_texto") and d.get("julgamento_data"):
+        if (alvo is None or norm(d.get("processo_classe_processual_unificada_sigla")) == alvo) and d.get("ementa_texto") and d.get("julgamento_data"):
             por_id.setdefault(str(d["id"]).replace("sjur", ""), d)
     return list(por_id.values())
 
@@ -309,6 +323,9 @@ def main():
             del feitos[p["id"]]
             if isinstance(falhas.get(p["id"]), dict):
                 falhas[p["id"]].pop("desistiu", None)
+        if feitos.get(p["id"]) == "nao-entendi" and entender(p.get("consulta", "")):   # ex.: pedido só com o número, agora atendido
+            del feitos[p["id"]]
+            falhas.pop(p["id"], None)
     pend = [{"id": "teste", "consulta": a.teste}] if a.teste else [p for p in todos if p["id"] not in feitos]
     if not a.teste and not a.plano:
         fila = []
@@ -328,7 +345,7 @@ def main():
     if a.plano:
         for p in pend:
             e = entender(p.get("consulta", ""))
-            print(f"  {p['id']}: {p.get('consulta', '')}  →  " + (f"{e['classe']} {e['num']} {e['uf']}  em {', '.join(candidatos(e))}" if e else "não entendi"))
+            print(f"  {p['id']}: {p.get('consulta', '')}  →  " + (f"{e['classe'] or 'qualquer classe'} {e['num']} {e['uf']}  em {', '.join(candidatos(e))}" if e else "não entendi"))
         return
     pend = pend[:a.max]
     por_id = {}
@@ -341,7 +358,7 @@ def main():
             falhas[p["id"]] = {"consulta": p.get("consulta", ""), "motivo": "não entendi a classe e o número"}
             continue
         por_id[p["id"]] = (e, candidatos(e))
-        print(f"    {e['classe']} {e['num']}{('/' + e['uf']) if e['uf'] else ''} → procurar em {', '.join(por_id[p['id']][1])}")
+        print(f"    {e['classe'] or 'qualquer classe'} {e['num']}{('/' + e['uf']) if e['uf'] else ''} → procurar em {', '.join(por_id[p['id']][1])}")
     # uma passada pelo cache de cada tribunal, para todos os pedidos
     achados = {}
     sem_cache = set()

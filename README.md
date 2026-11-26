@@ -260,6 +260,7 @@ procurado de novo **a cada vez que o robô roda** (inclusive no `Rodar Tudo`), *
 julgados, inteiro teor, leis e normas (regra em `scripts/pedidos_retentativa.py`); depois disso o robô desiste e marca `desistiu`
 no arquivo de falhas. Falha passageira (site fora do ar, tempo esgotado, cache
 ausente) não conta como tentativa.
+Pedido só com o número ("2.173.132") traz todos os julgados com esse número, de qualquer classe, no STF e no STJ.
 Teste sem gravar: `python3 scripts/julgados_sob_pedido.py --teste "EDcl no AgInt no REsp 1880254/MT"`; só listar os
 pedidos: `--plano`.
 
