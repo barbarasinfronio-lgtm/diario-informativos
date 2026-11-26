@@ -6,6 +6,7 @@
  * nada do conteúdo dos informativos é copiado para este arquivo.
  */
   var STF_DATA = [
+    { edicao: 1238, ano: 2026, data: "2026-11-24", sumula: null },
     { edicao: 1237, ano: 2026, data: "2026-11-16", sumula: null },
     { edicao: 1236, ano: 2026, data: "2026-11-10", sumula: null },
     { edicao: 1235, ano: 2026, data: "2026-11-04", sumula: null },
@@ -1246,6 +1247,7 @@
   ];
 
   var STJ_DATA = [
+    { edicao: 911, ano: 2026, data: "2026-11-24", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0911" },
     { edicao: 910, ano: 2026, data: "2026-11-17", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0910" },
     { edicao: 909, ano: 2026, data: "2026-11-10", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0909" },
     { edicao: 908, ano: 2026, data: "2026-11-03", sumula: null, link: "https://scon.stj.jus.br/SCON/GetPDFINFJ?edicao=0908" },
@@ -2347,6 +2349,7 @@
 
   // Plenário Virtual em Evidência (STF) — numeração reinicia a cada ano.
   var STFPV_DATA = [
+    { edicao: 38, ano: 2026, data: "2026-11-27", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE38_2026_Partes1e2.pdf" },
     { edicao: 37, ano: 2026, data: "2026-11-20", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE37_2026_Partes1e2.pdf" },
     { edicao: 36, ano: 2026, data: "2026-11-13", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE36_2026_Partes1e2.pdf" },
     { edicao: 35, ano: 2026, data: "2026-11-06", sumula: null, link: "http://www.stf.jus.br/arquivo/cms/codi/anexo/PV_EM_EVIDENCIA/2026/PVE35_2026_Partes1e2.pdf" },
