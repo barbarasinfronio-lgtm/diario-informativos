@@ -1,0 +1,226 @@
+# Provas de servidores (27/11/2026)
+
+Busca a partir dos órgãos que já estão no site (TJs, TRFs, TRT1/2/4, TST, MPs, MPU, DPEs, DPU, PGEs, PGMs, TCs, PCs, PF), de 2016 em diante, só cargos com conteúdo jurídico (áreas judiciária e administrativa, oficial de justiça, técnico, escrivão, agente, investigador, papiloscopista). Cargos de TI, saúde, engenharia, contabilidade etc. ficaram de fora.
+
+Pasta no Drive: `Provas/05 Servidores/<BANCA>/<ANO> <ÓRGÃO>-<CARGO>/` (caderno + gabarito definitivo + `_cargo.txt` com o nome do cargo).
+
+## 1. Entraram no site (121 provas)
+
+- **DPDF** — 2020 CESPE: Analista de Apoio à Assistência Judiciária – Área: Direito e Legislação
+- **DPE-RJ** — 2019 FGV: Técnico Médio de Defensoria Pública
+- **DPE-RO** — 2021 CESPE: Analista da Defensoria Pública – Especialidade: Jurídica; 2021 CESPE: Oficial de Diligência; 2021 CESPE: Técnico Administrativo
+- **MPAP** — 2021 CESPE: Técnico Ministerial – Auxiliar Administrativo
+- **MPBA** — 2017 FGV: Assistente Técnico-Administrativo
+- **MPCE** — 2025 CESPE: Analista Ministerial – Especialidade: Direito; 2025 CESPE: Técnico Ministerial
+- **MPPI** — 2018 CESPE: Técnico Ministerial – Área: Administrativa
+- **MPRJ** — 2019 FGV: Analista do Ministério Público – Área Administrativa; 2019 FGV: Analista do Ministério Público – Área Processual; 2019 FGV: Oficial do Ministério Público; 2019 FGV: Técnico do Ministério Público – Área Administrativa; 2025 FGV: Analista do Ministério Público – Área Administrativa; 2025 FGV: Analista do Ministério Público – Área Processual; 2025 FGV: Técnico do Ministério Público – Notificação e Atos Intimatórios; 2025 FGV: Técnico do Ministério Público – Área Administrativa
+- **MPTO** — 2024 CESPE: Técnico Ministerial – Área de Atuação: Assistente Administrativo
+- **MPU** — 2018 CESPE: Analista do MPU – Direito; 2018 CESPE: Técnico do MPU – Administração; 2025 FGV: Analista do MPU – Direito; 2025 FGV: Técnico do MPU – Administração; 2025 FGV: Técnico do MPU – Polícia Institucional
+- **PC-AL** — 2021 CESPE: Agente de Polícia; 2021 CESPE: Escrivão de Polícia
+- **PC-GO** — 2016 CESPE: Agente de Polícia Substituto; 2016 CESPE: Escrivão de Polícia Substituto
+- **PC-MA** — 2018 CESPE: Escrivão de Polícia; 2018 CESPE: Investigador de Polícia
+- **PC-PB** — 2022 CESPE: Agente de Investigação; 2022 CESPE: Escrivão de Polícia; 2022 CESPE: Papiloscopista
+- **PC-PR** — 2026 FGV: Agente de Polícia Judiciária; 2026 FGV: Papiloscopista Policial
+- **PC-RO** — 2022 CESPE: Agente de Polícia Civil; 2022 CESPE: Datiloscopista Policial; 2022 CESPE: Escrivão de Polícia Civil
+- **PC-SE** — 2021 CESPE: Agente de Polícia Judiciária; 2021 CESPE: Escrivão de Polícia
+- **PF** — 2018 CESPE: Agente de Polícia Federal; 2018 CESPE: Escrivão de Polícia Federal; 2018 CESPE: Papiloscopista Policial Federal; 2021 CESPE: Agente de Polícia Federal; 2021 CESPE: Escrivão de Polícia Federal; 2021 CESPE: Papiloscopista Policial Federal; 2025 CESPE: Agente de Polícia Federal; 2025 CESPE: Escrivão de Polícia Federal; 2025 CESPE: Papiloscopista Policial Federal
+- **PGE-PE** — 2018 CESPE: Analista Judiciário de Procuradoria; 2018 CESPE: Assistente de Procuradoria
+- **TCE-AC** — 2024 CESPE: Analista Administrativo – Área: Direito; 2024 CESPE: Analista Ministerial – Área: Direito; 2024 CESPE: Técnico de Controle Externo – Área: Técnico Administrativo – Especialidade: Instrutivo
+- **TCE-GO** — 2024 FGV: Analista de Controle Externo – Controle Externo (CNS102); 2024 FGV: Analista de Controle Externo – Controle Externo (CNS202); 2024 FGV: Analista de Controle Externo – Jurídica (CNS104); 2024 FGV: Analista de Controle Externo – Jurídica (CNS204)
+- **TCE-MS** — 2025 CESPE: Analista de Controle Externo – Área: Direito
+- **TCE-PA** — 2016 CESPE: Auxiliar Técnico de Controle Externo - Área: Administrativa; 2024 FGV: Auxiliar de Controle Externo
+- **TCE-RN** — 2025 CESPE: Técnico Administrativo
+- **TCU** — 2025 CESPE: Técnico Federal de Controle Externo
+- **TJAM** — 2019 CESPE: Analista Judiciário - Especialidade: Oficial de Justiça Avaliador; 2019 CESPE: Analista Judiciário – Especialidade: Direito
+- **TJAP** — 2023 FGV: Analista Judiciário – Administração; 2023 FGV: Analista Judiciário – Controle Interno; 2023 FGV: Analista Judiciário – Área Judiciária; 2023 FGV: Técnico Judiciário – Área Judiciária e Administrativa
+- **TJCE** — 2019 FGV: Técnico Judiciário – Área Judiciária; 2019 FGV: Técnico Judiciário – Área Técnico-Administrativa; 2023 CESPE: Técnico Judiciário – Área: Judiciária; 2023 CESPE: Técnico Judiciário – Área: Técnico-administrativa
+- **TJDFT** — 2022 FGV: Analista Judiciário – Administração; 2022 FGV: Analista Judiciário – Área Judiciária; 2022 FGV: Oficial de Justiça Avaliador Federal; 2022 FGV: Técnico Judiciário – Área Administrativa
+- **TJES** — 2023 CESPE: Analista Judiciário – Apoio Especializado – Especialidade: Direito; 2023 CESPE: Analista Judiciário – Área Administrativa; 2023 CESPE: Analista Judiciário – Área Judiciária – Especialidade: Comissário de Justiça da Infância e Juventude; 2023 CESPE: Analista Judiciário – Área Judiciária – Especialidade: Direito; 2023 CESPE: Analista Judiciário – Área Judiciária – Especialidade: Execução Penal; 2023 CESPE: Analista Judiciário – Área Judiciária – Especialidade: Oficial de Justiça Avaliador
+- **TJMS** — 2022 FGV: Analista Judiciário – Área Fim; 2024 FGV: Analista Judiciário – Área Fim; 2024 FGV: Analista Judiciário – Área Meio; 2025 FGV: Analista Judiciário – Área Fim
+- **TJPA** — 2020 CESPE: Analista Judiciário – Especialidade: Direito; 2020 CESPE: Analista Judiciário – Área: Administrativa; 2020 CESPE: Auxiliar Judiciário; 2020 CESPE: Oficial de Justiça Avaliador; 2025 CESPE: Analista Judiciário – Especialidade: Direito; 2025 CESPE: Analista Judiciário – Área Administrativa; 2025 CESPE: Oficial de Justiça Avaliador
+- **TJPR** — 2019 CESPE: Técnico Judiciário
+- **TJRJ** — 2021 CESPE: Analista Judiciário – Grupo: Judicial – Especialidade: Comissário de Justiça da Infância, da Juventude e do Id; 2021 CESPE: Analista Judiciário – Grupo: Judicial – Especialidade: Execução de Mandados; 2021 CESPE: Analista Judiciário – Grupo: Nível Superior – Sem Especialidade; 2021 CESPE: Técnico de Atividade Judiciária
+- **TJRO** — 2021 FGV: Analista Judiciário – Oficial de Justiça; 2021 FGV: Técnico Judiciário
+- **TJRR** — 2024 FGV: Analista Judiciário – Advogado; 2024 FGV: Analista Judiciário – Apoio à Gestão; 2024 FGV: Técnico Judiciário
+- **TJRS** — 2020 FGV: Oficial de Justiça – Classe O; 2025 FGV: Analista do Poder Judiciário – Área Administrativa; 2025 FGV: Analista do Poder Judiciário – Área Judiciária; 2025 FGV: Técnico do Poder Judiciário – Área Administrativo-Judiciária
+- **TJSC** — 2018 FGV: Analista Administrativo; 2018 FGV: Analista Jurídico; 2018 FGV: Oficial da Infância e Juventude; 2018 FGV: Oficial de Justiça e Avaliador; 2018 FGV: Técnico Judiciário Auxiliar
+- **TJTO** — 2022 FGV: Técnico Judiciário – Apoio Judiciário e Administrativo
+- **TRF1** — 2017 CESPE: Analista Judiciário - Área Judiciária - Especialidade: Oficial de Justiça Avaliador Federal; 2017 CESPE: Analista Judiciário - Área: Administrativa; 2017 CESPE: Analista Judiciário - Área: Judiciária; 2017 CESPE: Técnico Judiciário - Área: Administrativa
+- **TRF6** — 2025 CESPE: Analista Judiciário – Área: Administrativa – Sem Especialidade; 2025 CESPE: Analista Judiciário – Área: Judiciária – Sem Especialidade; 2025 CESPE: Técnico Judiciário – Área: Administrativa – Sem Especialidade
+
+Provas com `questões=0` (28) entraram como caderno inteiro, porque a numeração não pôde ser separada; ficam fora dos percentuais da página de estatísticas.
+
+## 2. Localizadas só no PCI Concursos (baixar à mão: o PCI exige o desafio anti-robô da Cloudflare)
+
+- AGU 2018 (IDECAN): Analista Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/analista-tecnico-administrativo-agu-idecan-2018)
+- DPE-MG 2023 (GES): Analista - Jurídico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-dpe-mg-ges-2023)
+- DPE-MG 2023 (GES): Técnico da Defensoria Pública — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-da-defensoria-publica-dpe-mg-ges-2023)
+- DPE-MT 2022 (IBFC): Técnico de Apoio Administrativo - Área Meio e Área Fim — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-de-apoio-administrativo-area-meio-e-area-fim-dpe-mt-ibfc-2022)
+- DPE-PR 2024 (INSTITUTO CONSULPLAN): Analista da Defensoria Pública - Administração — [PCI](https://www.pciconcursos.com.br/provas/download/analista-da-defensoria-publica-administracao-dpe-pr-instituto-consulplan-2024)
+- DPE-PR 2024 (INSTITUTO CONSULPLAN): Analista da Defensoria Pública - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-da-defensoria-publica-direito-dpe-pr-instituto-consulplan-2024)
+- DPE-PR 2024 (INSTITUTO CONSULPLAN): Técnico da Defensoria Pública - Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-da-defensoria-publica-tecnico-administrativo-dpe-pr-instituto-consulplan-2024)
+- DPE-RO 2025 (FGV): Analista Jurídico - Classe A — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-classe-a-dpe-ro-fgv-2025)
+- DPE-RO 2025 (FGV): Técnico Administrativo - Classe A — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-administrativo-classe-a-dpe-ro-fgv-2025)
+- DPE-RS 2017 (FCC): Técnico Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-dpe-rs-fcc-2017-61)
+- DPE-RS 2023 (FGV): Analista - Área Jurídica - Processual — [PCI](https://www.pciconcursos.com.br/provas/download/analista-area-juridica-processual-dpe-rs-fgv-2023)
+- DPE-SC 2025 (FUNDATEC): Analista Jurídico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-dpe-sc-fundatec-2025)
+- DPE-SC 2025 (FUNDATEC): Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-administrativo-dpe-sc-fundatec-2025)
+- DPU 2016 (CESPE): Analista Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/analista-tecnico-administrativo-dpu-cespe-2016)
+- MPAC 2024 (Instituto Verbena): Analista Ministerial - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-ministerial-direito-mp-ac-instituto-verbena-2024)
+- MPAC 2024 (Instituto Verbena): Técnico Ministerial — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-ministerial-mp-ac-instituto-verbena-2024)
+- MPAL 2018 (FGV): Analista do Ministério Público - Administrador de Rede — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-administrador-de-rede-mpe-al-fgv-2018)
+- MPAL 2018 (FGV): Analista do Ministério Público - Gestão Pública — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-gestao-publica-mpe-al-fgv-2018)
+- MPAL 2018 (FGV): Analista do Ministério Público - Área Jurídica — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-area-juridica-mpe-al-fgv-2018)
+- MPAL 2018 (FGV): Técnico do Ministério Público - Geral — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-do-ministerio-publico-geral-mpe-al-fgv-2018)
+- MPBA 2023 (INSTITUTO CONSULPLAN): Assistente Técnico-Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/assistente-tecnico-administrativo-mp-ba-instituto-consulplan-2023)
+- MPCE 2020 (CEBRASPE): Analista Ministerial - Área Administração — [PCI](https://www.pciconcursos.com.br/provas/download/analista-ministerial-area-administracao-mp-ce-cebraspe-2020)
+- MPCE 2020 (CEBRASPE): Analista Ministerial - Área Ciências da Computação — [PCI](https://www.pciconcursos.com.br/provas/download/analista-ministerial-area-ciencias-da-computacao-mp-ce-cebraspe-2020)
+- MPCE 2020 (CEBRASPE): Analista Ministerial - Área Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-ministerial-area-direito-mp-ce-cebraspe-2020)
+- MPCE 2020 (CEBRASPE): Técnico Ministerial — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-ministerial-mp-ce-cebraspe-2020)
+- MPGO 2016 (MP/GO): Oficial de Promotoria — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-mp-go-mp-go-2016-92)
+- MPGO 2016 (MP/GO): Oficial de Promotoria — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-mp-go-mp-go-2016)
+- MPGO 2021 (MP/GO): Oficial de Promotoria — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-mp-go-mp-go-2021)
+- MPGO 2024 (MP/GO): Oficial de Promotoria — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-mp-go-mp-go-2024)
+- MPMG 2023 (INSTITUTO CONSULPLAN): Analista do Ministério Público - Administração Pública — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-administracao-publica-mp-mg-instituto-consulplan-2023)
+- MPMG 2023 (INSTITUTO CONSULPLAN): Analista do Ministério Público - Design Gráfico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-design-grafico-mp-mg-instituto-consulplan-2023)
+- MPMG 2023 (INSTITUTO CONSULPLAN): Analista do Ministério Público - História — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-historia-mp-mg-instituto-consulplan-2023)
+- MPRJ 2016 (FGV): Analista do Ministério Público - Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-administrativa-mpe-rj-fgv-2016)
+- MPRJ 2016 (FGV): Analista do Ministério Público - Processual — [PCI](https://www.pciconcursos.com.br/provas/download/analista-do-ministerio-publico-processual-mpe-rj-fgv-2016)
+- MPRJ 2016 (FGV): Técnico do Ministério Público - Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-do-ministerio-publico-administrativa-mpe-rj-fgv-2016)
+- MPRJ 2016 (FGV): Técnico do Ministério Público - Notificação e Atos Intimatórios — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-do-ministerio-publico-notificacao-e-atos-intimatorios-mpe-rj-fgv-2016)
+- MPRS 2021 (INSTITUTO AOCP): Técnico do Ministério Público — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-do-ministerio-publico-mp-rs-instituto-aocp-2021)
+- MPSP 2016 (VUNESP): Oficial de Promotoria I — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-i-mp-sp-vunesp-2016)
+- MPSP 2018 (VUNESP): Analista Jurídico do Ministério Público — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-do-ministerio-publico-mp-sp-vunesp-2018)
+- MPSP 2023 (FGV): Oficial de Promotoria I — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-promotoria-i-mp-sp-fgv-2023)
+- MPSP 2025 (VUNESP): Analista Jurídico do Ministério Público — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-do-ministerio-publico-mp-sp-vunesp-2025)
+- PC-AC 2017 (IBADE): Agente de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-civil-policia-civil-ac-ibade-2017)
+- PC-AC 2017 (IBADE): Escrivão de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-civil-policia-civil-ac-ibade-2017)
+- PC-AM 2022 (FGV): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-am-fgv-2022)
+- PC-AM 2022 (FGV): Investigador de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-policia-civil-am-fgv-2022)
+- PC-BA 2016 (INAZ DO PARÁ): Escrivão — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-policia-civil-ba-inaz-do-para-2016)
+- PC-BA 2016 (INAZ DO PARÁ): Investigador — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-policia-civil-ba-inaz-do-para-2016)
+- PC-CE 2024 (CEBRASPE): Agente de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-policia-civil-ce-cebraspe-2024)
+- PC-CE 2024 (CEBRASPE): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-ce-cebraspe-2024)
+- PC-DF 2019 (CEBRASPE): Escrivão de Polícia da Carreira de Polícia Civil do Distrito Federal — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-da-carreira-de-policia-civil-do-distrito-federal-pc-df-cebraspe-2019)
+- PC-DF 2020 (CEBRASPE): Agente de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-pc-df-cebraspe-2020)
+- PC-MG 2018 (FUMARC): Escrivão de Polícia I — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-i-policia-civil-mg-fumarc-2018)
+- PC-MG 2022 (FUMARC): Técnico Assistente da PC - Área de Apoio Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-assistente-da-pc-area-de-apoio-administrativo-policia-civil-mg-fumarc-2022)
+- PC-MG 2025 (FGV): Investigador de Polícia I — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-i-policia-civil-mg-fgv-2025)
+- PC-MS 2025 (Instituto Avalia): Escrivão de Polícia Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-judiciaria-policia-civil-de-mato-grosso-do-sul-instituto-avalia-2025)
+- PC-MS 2025 (Instituto Avalia): Investigador de Polícia Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-judiciaria-pc-ms-instituto-avalia-2025)
+- PC-MT 2022 (UFMT): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-judiciaria-civil-mt-ufmt-2022)
+- PC-MT 2022 (UFMT): Investigador de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-policia-judiciaria-civil-mt-ufmt-2022)
+- PC-PA 2016 (FUNCAB): Escrivão de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-civil-policia-civil-pa-funcab-2016)
+- PC-PA 2016 (FUNCAB): Investigador de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-civil-policia-civil-pa-funcab-2016)
+- PC-PA 2016 (FUNCAB): Papiloscopista — [PCI](https://www.pciconcursos.com.br/provas/download/papiloscopista-policia-civil-pa-funcab-2016)
+- PC-PE 2016 (CESPE): Agente de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-policia-civil-pe-cespe-2016)
+- PC-PE 2016 (CESPE): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-pe-cespe-2016)
+- PC-PI 2018 (NUCEPE/UESPI): Agente de Polícia Civil da 3ºClasse — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-civil-da-3-classe-policia-civil-pi-nucepe-uespi-2018)
+- PC-PI 2025 (FGV CONHECIMENTO): Oficial Investigador — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-investigador-policia-civil-do-piaui-fgv-conhecimento-2025)
+- PC-PR 2018 (UEL/COPS): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-pr-uel-cops-2018)
+- PC-PR 2021 (UFPR): Investigador de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-policia-civil-pr-ufpr-2021)
+- PC-PR 2021 (UFPR): Papiloscopista — [PCI](https://www.pciconcursos.com.br/provas/download/papiloscopista-policia-civil-pr-ufpr-2021)
+- PC-RR 2022 (VUNESP): Agente de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/agente-de-policia-civil-policia-civil-rr-vunesp-2022)
+- PC-RR 2022 (VUNESP): Escrivão de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-civil-policia-civil-rr-vunesp-2022)
+- PC-RR 2025 (Vunesp): Escrivão de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-civil-policia-civil-rr-vunesp-2025)
+- PC-RS 2018 (FUNDATEC): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-rs-fundatec-2018)
+- PC-RS 2018 (FUNDATEC): Inspetor de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/inspetor-de-policia-policia-civil-rs-fundatec-2018)
+- PC-SP 2018 (VUNESP): Escrivão de Polícia - versão 3 — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-versao-3-policia-civil-sp-vunesp-2018)
+- PC-SP 2018 (VUNESP): Investigador de Polícia - versão 02 — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-versao-02-policia-civil-sp-vunesp-2018)
+- PC-SP 2018 (VUNESP): Papiloscopista Policial - Versão 3 — [PCI](https://www.pciconcursos.com.br/provas/download/papiloscopista-policial-versao-3-policia-civil-sp-vunesp-2018)
+- PC-SP 2022 (VUNESP): Escrivão de Polícia — [PCI](https://www.pciconcursos.com.br/provas/download/escrivao-de-policia-policia-civil-sp-vunesp-2022)
+- PC-SP 2022 (VUNESP): Investigador de Polícia Civil — [PCI](https://www.pciconcursos.com.br/provas/download/investigador-de-policia-civil-policia-civil-sp-vunesp-2022)
+- PGE-RS 2021 (FUNDATEC): Analista Jurídico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-pge-rs-fundatec-2021)
+- PGE-RS 2021 (FUNDATEC): Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-administrativo-pge-rs-fundatec-2021)
+- PGM-PGM/CE 2024 (IMPARH): Analista da Procuradoria-Geral do Município — [PCI](https://www.pciconcursos.com.br/provas/download/analista-da-procuradoria-geral-do-municipio-pgm-ce-imparh-2024)
+- PGM-PGM/RJ 2023 (FGV): Analista Processual — [PCI](https://www.pciconcursos.com.br/provas/download/analista-processual-pgm-rj-fgv-2023)
+- TCE-AM 2021 (FGV): Auditor Técnico de Controle Externo - Auditoria Governamental — [PCI](https://www.pciconcursos.com.br/provas/download/auditor-tecnico-de-controle-externo-auditoria-governamental-tce-am-fgv-2021)
+- TCE-AM 2021 (FGV): Auditor Técnico de Controle Externo - Ministério Público de Contas — [PCI](https://www.pciconcursos.com.br/provas/download/auditor-tecnico-de-controle-externo-ministerio-publico-de-contas-tce-am-fgv-2021)
+- TCE-PE 2017 (CESPE): Analista de Controle Externo - Área Auditoria de Contas Públicas — [PCI](https://www.pciconcursos.com.br/provas/download/analista-de-controle-externo-area-auditoria-de-contas-publicas-tce-pe-cespe-2017)
+- TCE-PE 2025 (FGV): Analista de Controle Externo - Contas Públicas — [PCI](https://www.pciconcursos.com.br/provas/download/analista-de-controle-externo-contas-publicas-tce-pe-fgv-2025)
+- TCE-PE 2025 (FGV): Analista de Controle Externo - Obras Públicas — [PCI](https://www.pciconcursos.com.br/provas/download/analista-de-controle-externo-obras-publicas-tce-pe-fgv-2025)
+- TCE-RR 2025 (FVG): Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-administrativo-tce-rr-fvg-2025)
+- TJAC 2024 (IVIN): Analista Judiciário - Administrador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-administrador-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Analista de Ciência de Dados — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-analista-de-ciencia-de-dados-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Contador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-contador-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Direito (Área Administrativa) — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-direito-area-administrativa-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Educador Físico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-educador-fisico-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-oficial-de-justica-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Analista Judiciário - Web Designer — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-web-designer-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Técnico Judiciário - Agente de Polícia Judicial — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-agente-de-policia-judicial-poder-judiciario-ac-ivin-2024)
+- TJAC 2024 (IVIN): Técnico Judiciário - Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-tecnico-judiciario-poder-judiciario-ac-ivin-2024)
+- TJAL 2018 (FGV): Analista Judiciário - Oficial de Justiça Avaliador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-oficial-de-justica-avaliador-tj-al-fgv-2018)
+- TJAL 2018 (FGV): Analista Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-tj-al-fgv-2018)
+- TJAL 2018 (FGV): Técnico Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-judiciaria-tj-al-fgv-2018)
+- TJAM 2016 (TJ/AM): Assistente Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/assistente-judiciario-tj-am-tj-am-2016)
+- TJGO 2021 (UFG): Analista Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-tj-go-ufg-2021)
+- TJGO 2021 (UFG): Analista Judiciário - Área de Apoio Judiciário e Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-de-apoio-judiciario-e-administrativo-tj-go-ufg-2021)
+- TJGO 2024 (Instituto Verbena UFG): Analista Judiciário - Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-oficial-de-justica-tj-go-instituto-verbena-ufg-2024)
+- TJMA 2024 (INSTITUTO CONSULPLAN): Analista Judiciário - Contador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-contador-tj-ma-instituto-consulplan-2024)
+- TJMA 2024 (INSTITUTO CONSULPLAN): Analista Judiciário - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-direito-tj-ma-instituto-consulplan-2024)
+- TJMA 2024 (INSTITUTO CONSULPLAN): Analista Judiciário - Historiador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-historiador-tj-ma-instituto-consulplan-2024)
+- TJMA 2024 (INSTITUTO CONSULPLAN): Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-tj-ma-instituto-consulplan-2024)
+- TJMA 2024 (INSTITUTO CONSULPLAN): Técnico Judiciário - Apoio Técnico Administrativo — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-apoio-tecnico-administrativo-tj-ma-instituto-consulplan-2024)
+- TJMG 2022 (IBFC): Analista Judiciário - Classe C - Administrador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-classe-c-administrador-tj-mg-ibfc-2022)
+- TJMG 2022 (IBFC): Analista Judiciário - Classe C - Analista Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-classe-c-analista-judiciario-tj-mg-ibfc-2022)
+- TJMG 2022 (IBFC): Analista Judiciário - Classe C - Contador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-classe-c-contador-tj-mg-ibfc-2022)
+- TJMG 2022 (IBFC): Oficial Judiciário - Classe D - Assistente Técnico de Controle Financeiro — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-judiciario-classe-d-assistente-tecnico-de-controle-financeiro-tj-mg-ibfc-2022)
+- TJMG 2022 (IBFC): Oficial Judiciário - Classe D - Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-judiciario-classe-d-oficial-de-justica-tj-mg-ibfc-2022)
+- TJMS 2026 (FGV): Analista Judiciário - Área Fim — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-fim-tj-ms-fgv-2026)
+- TJMT 2016 (UFMT): Analista Judiciário - Administração — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-administracao-tj-mt-ufmt-2016)
+- TJMT 2016 (UFMT): Analista Judiciário - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-direito-tj-mt-ufmt-2016)
+- TJMT 2016 (UFMT): Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-tj-mt-ufmt-2016)
+- TJMT 2024 (FGV): Analista Judiciário - Administração — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-administracao-tj-mt-fgv-2024)
+- TJMT 2024 (FGV): Analista Judiciário - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-direito-tj-mt-fgv-2024)
+- TJMT 2024 (FGV): Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-tj-mt-fgv-2024)
+- TJMT 2024 (FGV): Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-tj-mt-fgv-2024)
+- TJPE 2017 (IBFC): Analista Judiciário - Função Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-funcao-administrativa-tj-pe-ibfc-2017)
+- TJPE 2017 (IBFC): Analista Judiciário - Função Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-funcao-judiciaria-tj-pe-ibfc-2017)
+- TJPE 2017 (IBFC): Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-tj-pe-ibfc-2017)
+- TJPE 2017 (IBFC): Técnico Judiciário - Função Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-funcao-administrativa-tj-pe-ibfc-2017)
+- TJPE 2017 (TJ/PE): Técnico Judiciário - Função Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-funcao-judiciaria-tj-pe-tj-pe-2017)
+- TJRN 2023 (FGV): Analista Judiciário - Judiciária - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-judiciaria-direito-tj-rn-fgv-2023)
+- TJRN 2023 (FGV): Oficial de Justiça - Judiciária - Direito — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-judiciaria-direito-tj-rn-fgv-2023)
+- TJRN 2023 (FGV): Técnico Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-judiciaria-tj-rn-fgv-2023)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Administrador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-administrador-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Contador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-contador-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Historiador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-historiador-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Matemático — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-matematico-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Oficial de Justiça — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-oficial-de-justica-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Analista Judiciário - Publicitário — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-publicitario-tj-ro-instituto-consulplan-2025)
+- TJRO 2025 (INSTITUTO CONSULPLAN): Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-tj-ro-instituto-consulplan-2025)
+- TJRS 2022 (IBADE): Oficial de Justiça Estadual — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-estadual-tj-rs-ibade-2022)
+- TJSC 2021 (FCC): Técnico Judiciário Auxiliar — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-auxiliar-tj-sc-fcc-2021)
+- TJSC 2024 (FGV): Analista Jurídico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-tj-sc-fgv-2024)
+- TJSC 2024 (FGV): Oficial de Justiça e Avaliador — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-e-avaliador-tj-sc-fgv-2024)
+- TJSC 2024 (FGV): Técnico Judiciário Auxiliar — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-auxiliar-tj-sc-fgv-2024)
+- TJSC 2026 (FGV): Analista Jurídico — [PCI](https://www.pciconcursos.com.br/provas/download/analista-juridico-tj-sc-fgv-2026)
+- TJSC 2026 (FGV): Oficial de Justiça e Avaliador — [PCI](https://www.pciconcursos.com.br/provas/download/oficial-de-justica-e-avaliador-tj-sc-fgv-2026)
+- TJSC 2026 (FGV): Técnico Judiciário Auxiliar — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-auxiliar-tj-sc-fgv-2026)
+- TJSE 2023 (FGV): Técnico Judiciário - Área Administrativa - Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-judiciaria-tj-se-fgv-2023)
+- TJSP 2017 (VUNESP): Escrevente Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/escrevente-tecnico-judiciario-tj-sp-vunesp-2017)
+- TJSP 2018 (VUNESP): Escrevente Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/escrevente-tecnico-judiciario-tj-sp-vunesp-2018)
+- TJSP 2021 (VUNESP): Escrevente Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/escrevente-tecnico-judiciario-tj-sp-vunesp-2021)
+- TJSP 2025 (Vunesp): Escrevente Técnico Judiciário — [PCI](https://www.pciconcursos.com.br/provas/download/escrevente-tecnico-judiciario-tj-sp-vunesp-2025)
+- TRF1 2024 (FGV): Analista Judiciário: Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-trf-1-fgv-2024)
+- TRF1 2024 (FGV): Técnico Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-trf-1-fgv-2024)
+- TRF2 2017 (CONSULPLAN): Analista Judiciário Área Judiciária - Oficial de Justiça Avaliador — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-oficial-de-justica-avaliador-trf-2-consulplan-2017)
+- TRF3 2016 (FCC): Analista Judiciário - Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-administrativa-trf-3-fcc-2016)
+- TRF3 2019 (FCC): Técnico Judiciário Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-trf-3-fcc-2019)
+- TRF3 2023 (VUNESP): Analista Judiciário - Contadoria — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-contadoria-trf-3-vunesp-2023)
+- TRF5 2024 (IBFC): Analista Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-administrativa-trf-da-5-regiao-ibfc-2024)
+- TRF5 2024 (IBFC): Analista Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-trf-da-5-regiao-ibfc-2024)
+- TRF5 2024 (IBFC): Técnico Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-trf-da-5-regiao-ibfc-2024)
+- TRF5 2024 (IBFC): Técnico Judiciário - Área Administrativa - Agente da Polícia Judicial — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-agente-da-policia-judicial-trf-da-5-regiao-ibfc-2024)
+- TRT1 2018 (AOCP): Analista Judiciário - Área Judiciária — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-judiciaria-trt-1-aocp-2018)
+- TRT1 2018 (AOCP): Técnico Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-trt-1-aocp-2018)
+- TRT1 2024 (FGV): Analista Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-administrativa-trt-1-fgv-2024)
+- TRT4 2022 (FCC): Técnico Administrativo - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-administrativo-area-administrativa-trt-4-fcc-2022)
+- TST 2017 (FCC): Analista Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/analista-judiciario-area-administrativa-tst-fcc-2017)
+- TST 2017 (FCC): Técnico Judiciário - Área Administrativa — [PCI](https://www.pciconcursos.com.br/provas/download/tecnico-judiciario-area-administrativa-tst-fcc-2017)
+
+## 3. Não entraram ainda
+- Cebraspe, cadernos não listados na página: PC-DF 2019 (escrivão) e 2020 (agente), PC-PE 2023 (agente/escrivão), TCDF 2023 (analista administrativo), MPCE 2020 (analista – direito) — só os gabaritos aparecem.
+- FGV, páginas sem os cadernos: PC-AM 2022, PC-MG 2025, PC-PI 2025, TCE-AM 2021, TJRN 2023, DPE-RS 2023; não achei a página de TJAL 2018, TJMT 2024, TJSE 2023, TRF1 2024, TRT1 2024, MPAL 2018, MPRJ 2016, MPSP 2023, PGM-RJ 2023, TCE-PE 2025, TJMS 2026, TJSC 2024/2026.
+- FCC, VUNESP, IBFC, Consulplan, Instituto AOCP, Fundatec e outras: só no PCI (seção 2).
+- PC-SE 2021: a ordem cargo 1 = agente, cargo 2 = escrivão foi deduzida do título do edital — conferir.

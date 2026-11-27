@@ -7,7 +7,7 @@ Uso:  python3 scripts/cobrancas_extrair_texto.py "<pasta Provas>"   (1º: texto 
       python3 scripts/cobrancas_todas_etapas.py  "<pasta Provas>"   (2º: liga e grava)
       (--relatorio: só mostra o que acharia, sem gravar)
 
-Lê <Provas>/_texto/<tipo>/<BANCA>/<ANO> <SIGLA>/*.txt (tipo = "01 Objetivas",
+Lê <Provas>/_texto/<tipo>/<BANCA>/<ANO> <SIGLA>/*.txt (tipo = "01 Objetivas", "05 Servidores",
 "02 Discursivas", "03 Sentenças/Cível|Criminal", "04 Oral") e ENAM/<pasta>/*.txt.
 Cada concurso + etapa vira uma "prova" em provas/cobrancas.json, com o campo
 "etapa"; as provas que já estavam lá (objetivas antigas) são mantidas.
@@ -30,14 +30,28 @@ exec(src[src.index("def rotulo(c):"):src.index("CK={")])
 os.chdir(_cwd)
 LIMIAR = 0.6
 
-ETAPA = {"01 Objetivas": "objetiva", "02 Discursivas": "discursiva", "03 Sentenças": "sentença", "04 Oral": "oral"}
+ETAPA = {"01 Objetivas": "objetiva", "02 Discursivas": "discursiva", "03 Sentenças": "sentença", "04 Oral": "oral", "05 Servidores": "objetiva"}
 ROTULO_ETAPA = {"objetiva": "", "discursiva": " — prova discursiva", "sentença": " — prova de sentença", "oral": " — prova oral"}
 FORA = re.compile(r"gabarit|^gab_|programa|pontos|edital|resultado|convoca|comunicado|instruc|ata[-_ ]|aprovados|recurso", re.I)
 # arquivos de padrão/espelho valem mesmo quando o nome tem "gabarito" (ex.: "gabarito-da-prova-discursiva")
 PADRAO = re.compile(r"padr|espelho|abordagem|gabarito-da-prova-discursiva|gabarito-prova-de-sentenca", re.I)
 
 
+def cargo_servidor(base):
+    """Provas de servidores (05 Servidores): o grupo vem do órgão."""
+    s = base.upper()
+    if s.startswith(("TJ", "TRF", "TRT", "TST", "STJ", "STF")): return "Servidores — Judiciário"
+    if s.startswith(("MPC",)): return "Servidores — Tribunais de Contas"
+    if s.startswith(("MP",)): return "Servidores — Ministério Público"
+    if s.startswith(("DPE", "DPDF", "DPU")): return "Servidores — Defensoria Pública"
+    if s.startswith(("TCE", "TCU", "TCDF", "TCM")): return "Servidores — Tribunais de Contas"
+    if s.startswith(("PGE", "PGM", "PGDF", "AGU")): return "Servidores — Advocacia pública"
+    if s.startswith(("PC", "PF")): return "Policiais (agente, escrivão, investigador, papiloscopista)"
+    return "Servidores"
+
+
 def cargo(sigla):
+    if "(servidores" in sigla: return cargo_servidor(sigla.split(" (")[0])
     s = sigla.upper()
     if s.startswith("TRF"): return "Magistratura federal"
     if s.startswith(("TRT", "CSJT", "TST")): return "Magistratura do Trabalho"
@@ -106,6 +120,17 @@ def unidades():
         if rel[0] not in ETAPA or len(rel) < 4:
             continue
         pasta = rel[-2]
+        if rel[0] == "05 Servidores":
+            # "05 Servidores/<BANCA>/<ANO> <ÓRGÃO>-<CARGO>/" + _cargo.txt (nome do cargo, na pasta dos PDFs)
+            m = re.match(r"(\d{4})\s+(\S+?)-(ANALISTA|TECNICO|AUXILIAR|OFICIAL|ESCRIVAO|AGENTE|INVESTIGADOR|PAPILOSCOPISTA|SERVIDOR)", pasta)
+            if not m: continue
+            try:
+                nome = open(os.path.join(PROVAS_DIR, *rel[:-1], "_cargo.txt"), encoding="utf-8").read().strip()
+            except OSError:
+                nome = pasta.split("-", 1)[1].title()
+            banca = rel[1].split(" (")[0].upper().replace("CEBRASPE", "CESPE")
+            u[("%s (servidores: %s)" % (m[2], nome), m[1], "objetiva", banca)].append(f)
+            continue
         # banca = pasta acima da do concurso, pulando subpastas de organização ("_Concluído")
         banca = next((x for x in reversed(rel[1:-2]) if not x.startswith("_") and x not in ("Cível", "Criminal")), rel[-3])
         # "2021 189 TJSP" (nº do concurso), "2015 TJDFT 1º" (1º/2º concurso do ano)
@@ -174,8 +199,11 @@ CK = {(c["src"], c["key"]): c for c in C}
 novas, stats = [], collections.Counter()
 for (sigla, ano, etapa, banca), arqs in sorted(unidades().items()):
     base = sigla.split(" (")[0]
-    rot = base + " " + ano + (sigla[len(base):] if sigla != base else "") + ROTULO_ETAPA[etapa]
-    if rot in ja_rot or (base != "ENAM" and (base, ano, etapa) in ja):
+    if "(servidores" in sigla:
+        rot = base + " " + ano + " — servidores: " + sigla[len(base) + len(" (servidores: "):-1]
+    else:
+        rot = base + " " + ano + (sigla[len(base):] if sigla != base else "") + ROTULO_ETAPA[etapa]
+    if rot in ja_rot or (base != "ENAM" and "(servidores" not in sigla and (base, ano, etapa) in ja):
         stats["já existia"] += 1; continue
     partes = []
     for f in sorted(arqs):
