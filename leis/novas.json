@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-25",
+ "atualizado": "2026-11-27",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
- "ignoradas": 30,
+ "ignoradas": 31,
  "leis": [
+  {
+   "chave": "lei-15555-2026",
+   "tipo": "LEI",
+   "numero": "Lei nº 15.555/2026",
+   "pedido": "Lei 15.555/2026",
+   "data": "2026-11-26",
+   "ementa": "Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a obrigatoriedade à educação básica à forma disposta na Constituição Federal.",
+   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15555.htm",
+   "noAcervo": false,
+   "visto": "2026-11-27"
+  },
   {
    "chave": "lc-239-2026",
    "tipo": "LC",
@@ -550,28 +561,6 @@
    "data": "2026-07-30",
    "ementa": "Altera a Lei Complementar nº 89, de 18 de fevereiro de 1997, para dispor sobre as receitas e a destinação de recursos do Fundo para Aparelhamento e Operacionalização das Atividades-fim da Polícia Federal (Funapol) e sobre o auxílio-saúde dos servidores das polícias federais; e a Lei nº 13.756, de 12 de dezembro de 2018, para ajustar a destinação do produto da arrecadação das apostas de quota fixa.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15480.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15479-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.479/2026",
-   "pedido": "Lei 15.479/2026",
-   "data": "2026-07-29",
-   "ementa": "Altera a Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil), para dispor sobre a transferência automática do montante da prestação alimentícia.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15479.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15478-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.478/2026",
-   "pedido": "Lei 15.478/2026",
-   "data": "2026-07-29",
-   "ementa": "Acrescenta dispositivo à Lei nº 10.714, de 13 de agosto de 2003, para dispor sobre a divulgação do serviço telefônico de denúncias relacionadas a violência contra a mulher.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15478.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
