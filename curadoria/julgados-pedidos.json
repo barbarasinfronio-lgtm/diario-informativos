@@ -8,22 +8,23 @@
   "resp-526460": "ok",
   "resp-2201660": "ok",
   "2173132": "ja-no-site",
-  "agint-nos-edcl-no-resp-1880922": "ok"
+  "agint-nos-edcl-no-resp-1880922": "ok",
+  "edcl-no-ms-11581-df": "ok"
  },
  "falhas": {
   "hc-205658": {
    "consulta": "hc 205658",
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo a cada rodada, até 6 meses do pedido)",
    "primeira": "2026-10-22",
-   "ultima": "2026-11-26",
-   "tentativas": 7
+   "ultima": "2026-11-27",
+   "tentativas": 8
   },
   "rhc-205658": {
    "consulta": "Rhc 205658",
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta); STJ: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo a cada rodada, até 6 meses do pedido)",
    "primeira": "2026-10-22",
-   "ultima": "2026-11-26",
-   "tentativas": 7
+   "ultima": "2026-11-27",
+   "tentativas": 8
   },
   "agrg-nos-edcl-no-rhc-n-205261-pr": {
    "consulta": "AgRg nos EDcl no RHC n. 205.261/PR",
@@ -32,15 +33,15 @@
   "adi-7770": {
    "motivo": "STF: não achei nos dados baixados (pode ser mais novo que a última coleta) (tentado de novo a cada rodada, até 6 meses do pedido)",
    "primeira": "2026-11-22",
-   "ultima": "2026-11-26",
-   "tentativas": 4,
+   "ultima": "2026-11-27",
+   "tentativas": 5,
    "consulta": "ADI 7.770"
   },
   "resp-1932269": {
    "motivo": "STJ: o processo existe, mas só com: ProAfR no REsp (tentado de novo a cada rodada, até 6 meses do pedido)",
    "primeira": "2026-11-23",
-   "ultima": "2026-11-26",
-   "tentativas": 3,
+   "ultima": "2026-11-27",
+   "tentativas": 4,
    "consulta": "REsp 1.932.269"
   }
  },
@@ -50,6 +51,7 @@
    "1131132",
    "1260306",
    "202403818860",
+   "557815",
    "786271"
   ]
  }
