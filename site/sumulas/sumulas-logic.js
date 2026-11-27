@@ -150,7 +150,7 @@
   // Só tribunais com conteúdo real entram no <select>; os demais aparecem
   // desabilitados com "(em preparação)" para deixar claro que virão.
   var TODOS = "__todos__"; // busca em todos os tribunais, separados por tribunal
-  var currentOrg = ORG_ORDER.filter(function (k) { return SUMULAS_DATA[k].status === "disponivel"; })[0] || ORG_ORDER[0];
+  var currentOrg = TODOS;   // a página abre com as súmulas de todos os tribunais
   var currentMateria = "todas";
   var loteSize = 10;
   var loteAtual = 0; // índice (0-based) do lote sendo exibido
