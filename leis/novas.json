@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-27",
+ "atualizado": "2026-11-28",
  "fonte": "API de dados abertos do Senado Federal (+ Planalto, quando sondado)",
  "ignoradas": 31,
  "leis": [
@@ -550,17 +550,6 @@
    "data": "2026-07-31",
    "ementa": "Altera o § 4º do art. 4º da Lei nº 13.018, de 22 de julho de 2014, que institui a Política Nacional de Cultura Viva, a fim de estabelecer requisitos para parceria e intercâmbio dos pontos e pontões de cultura com os estabelecimentos de ensino da educação básica.",
    "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15481.htm",
-   "noAcervo": false,
-   "visto": "2026-10-21"
-  },
-  {
-   "chave": "lei-15480-2026",
-   "tipo": "LEI",
-   "numero": "Lei nº 15.480/2026",
-   "pedido": "Lei 15.480/2026",
-   "data": "2026-07-30",
-   "ementa": "Altera a Lei Complementar nº 89, de 18 de fevereiro de 1997, para dispor sobre as receitas e a destinação de recursos do Fundo para Aparelhamento e Operacionalização das Atividades-fim da Polícia Federal (Funapol) e sobre o auxílio-saúde dos servidores das polícias federais; e a Lei nº 13.756, de 12 de dezembro de 2018, para ajustar a destinação do produto da arrecadação das apostas de quota fixa.",
-   "link": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15480.htm",
    "noAcervo": false,
    "visto": "2026-10-21"
   }
